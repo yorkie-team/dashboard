@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
-import { fetchDocuments, Document } from './documentsAPI';
+import { listDocuments, DocumentSummary } from '../../api';
 
 export interface DocumentsState {
-  documents: Document[];
+  documents: Array<DocumentSummary>;
   status: 'idle' | 'loading' | 'failed';
 }
 
@@ -12,10 +12,10 @@ const initialState: DocumentsState = {
   status: 'idle',
 };
 
-export const fetchDocumentsAsync = createAsyncThunk(
-  'documents/fetchDocuments',
-  async (): Promise<Array<Document>> => {
-    const documents = await fetchDocuments();
+export const listDocumentsAsync = createAsyncThunk(
+  'documents/listDocuments',
+  async (): Promise<Array<DocumentSummary>> => {
+    const documents = await listDocuments("", 20);
     return documents;
   }
 );
@@ -25,14 +25,14 @@ export const documentSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchDocumentsAsync.pending, (state) => {
+    builder.addCase(listDocumentsAsync.pending, (state) => {
       state.status = 'loading';
     });
-    builder.addCase(fetchDocumentsAsync.fulfilled, (state, action) => {
+    builder.addCase(listDocumentsAsync.fulfilled, (state, action) => {
       state.status = 'idle';
       state.documents = action.payload;
     });
-    builder.addCase(fetchDocumentsAsync.rejected, (state) => {
+    builder.addCase(listDocumentsAsync.rejected, (state) => {
       state.status = 'failed';
     });
   },

@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { selectDocuments, selectStatus, fetchDocumentsAsync } from './documentsSlice';
+import { selectDocuments, selectStatus, listDocumentsAsync } from './documentsSlice';
 
+// DocumentList represents the list of documents in the application.
 export function DocumentList() {
   const status = useAppSelector(selectStatus);
   const documents = useAppSelector(selectDocuments);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchDocumentsAsync());
+    dispatch(listDocumentsAsync());
   }, [dispatch]);
 
   return (
@@ -20,7 +21,7 @@ export function DocumentList() {
       { status === 'idle' &&
         <ul>
           { documents.map(document => (
-            <li key={document.id}>{document.title}</li>
+            <li key={document.id}>{document.key.collection}${document.key.document} {document.snapshot}</li>
           )) }
         </ul>
       }
