@@ -1,15 +1,23 @@
 import React from 'react';
-
-import { DocumentList } from './features/documents/DocumentList';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Documents, Settings, Sidebar } from 'routes';
 
 function App() {
   return (
-    <div className="App">
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
-      <DocumentList />
-    </div>
+    <Router>
+      <div className='relative h-screen flex'>
+        <aside className='fixed top-0 h-screen flex-none w-64 bg-gray-50' aria-label='Sidebar'>
+          <Sidebar />
+        </aside>
+        <main className='ml-64 grow overflow-y-scroll'>
+          <Routes>
+            <Route path='/documents' element={<Documents />} />
+            <Route path='/settings' element={<Settings />} />
+            <Route path='/' element={<Navigate to='/documents' />} />
+          </Routes>
+        </main>
+      </div>
+    </Router>
   );
 }
 
