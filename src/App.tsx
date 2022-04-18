@@ -1,8 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { Documents } from './routes/Documents';
-import { Settings } from './routes/Settings';
-import { Sidebar } from './routes/Sidebar';
+import { Documents, Settings, Sidebar } from 'routes';
 
 function App() {
   return (
