@@ -1,3 +1,5 @@
+import React from 'react';
+
 export function Settings() {
   return (
     <div className='px-12 py-6'>

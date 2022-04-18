@@ -29,7 +29,10 @@
     "build:proto": "protoc -I=./src/api --js_out=import_style=commonjs:./src/api --grpc-web_out=import_style=commonjs+dts,mode=grpcwebtext:./src/api ./src/api/*.proto"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "plugin:react/recommended"
+    ]
   },
   "browserslist": {
     "production": [

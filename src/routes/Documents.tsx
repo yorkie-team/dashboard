@@ -1,3 +1,4 @@
+import React from 'react';
 import { DocumentList } from '../features/documents/DocumentList';
 
 export function Documents() {
