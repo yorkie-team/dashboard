@@ -10,6 +10,7 @@ services:
     restart: always
     ports:
       - '8080:8080'
+      - '9090:9090'
       - '9901:9901'
     command: ['/etc/envoy/envoy.yaml']
     depends_on:
@@ -22,7 +23,7 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
   yorkie:
-    image: 'yorkieteam/yorkie:admin-api'
+    image: 'yorkieteam/yorkie:latest'
     container_name: 'yorkie'
     command: [
       'agent',
@@ -32,3 +33,4 @@ services:
     ports:
       - '11101:11101'
       - '11102:11102'
+      - '11103:11103'
