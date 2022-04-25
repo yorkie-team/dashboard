@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = Function('return this')();
+var global = (function() {
+  if (this) { return this; }
+  if (typeof window !== 'undefined') { return window; }
+  if (typeof global !== 'undefined') { return global; }
+  if (typeof self !== 'undefined') { return self; }
+  return Function('return this')();
+}.call(null));
 
 var resources_pb = require('./resources_pb.js');
 goog.object.extend(proto, resources_pb);
@@ -94,7 +100,8 @@ proto.api.ListDocumentsRequest.prototype.toObject = function(opt_includeInstance
 proto.api.ListDocumentsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     previousId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    isForward: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -139,6 +146,10 @@ proto.api.ListDocumentsRequest.deserializeBinaryFromReader = function(msg, reade
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
       break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsForward(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -182,6 +193,13 @@ proto.api.ListDocumentsRequest.serializeBinaryToWriter = function(message, write
       f
     );
   }
+  f = message.getIsForward();
+  if (f) {
+    writer.writeBool(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -218,6 +236,24 @@ proto.api.ListDocumentsRequest.prototype.getPageSize = function() {
  */
 proto.api.ListDocumentsRequest.prototype.setPageSize = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional bool is_forward = 3;
+ * @return {boolean}
+ */
+proto.api.ListDocumentsRequest.prototype.getIsForward = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.api.ListDocumentsRequest} returns this
+ */
+proto.api.ListDocumentsRequest.prototype.setIsForward = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 

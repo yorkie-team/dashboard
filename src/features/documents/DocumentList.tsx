@@ -5,21 +5,20 @@ import { selectDocuments, listDocumentsAsync } from './documentsSlice';
 
 // DocumentList represents the list of documents in the application.
 export function DocumentList() {
-  const { documents, hasNext, status } = useAppSelector(selectDocuments);
+  const { documents, hasPrevious, hasNext, status } = useAppSelector(selectDocuments);
   const dispatch = useAppDispatch();
 
   const handlePrevBtnClicked = useCallback(() => {
-    // TODO(hackerwins): Implement this.
-    console.log('prev');
-  }, []);
+    dispatch(listDocumentsAsync({ isForward: false, previousID: documents[0].id }));
+  }, [dispatch, documents]);
 
   const handleNextBtnClicked = useCallback(() => {
     const lastDocument = documents[documents.length - 1];
-    dispatch(listDocumentsAsync(lastDocument.id));
+    dispatch(listDocumentsAsync({ isForward: true, previousID: lastDocument.id }));
   }, [dispatch, documents]);
 
   useEffect(() => {
-    dispatch(listDocumentsAsync());
+    dispatch(listDocumentsAsync({ isForward: true }));
   }, [dispatch]);
 
   return (
@@ -42,6 +41,7 @@ export function DocumentList() {
           ne focus-visible:ring-4 focus-visible:ring-gray-200 font-medium text-gray-900 text-sm disabled:text-gray-400 disabled:cursor-not-allowed'
           type='button'
           onClick={handlePrevBtnClicked}
+          disabled={!hasPrevious}
         >
           <span className='flex items-center'>
             <svg
