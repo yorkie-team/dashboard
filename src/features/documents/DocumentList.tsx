@@ -9,16 +9,16 @@ export function DocumentList() {
   const dispatch = useAppDispatch();
 
   const handlePrevBtnClicked = useCallback(() => {
-    dispatch(listDocumentsAsync({ isForward: false, previousID: documents[0].id }));
+    dispatch(listDocumentsAsync({ isForward: true, previousID: documents[0].id }));
   }, [dispatch, documents]);
 
   const handleNextBtnClicked = useCallback(() => {
     const lastDocument = documents[documents.length - 1];
-    dispatch(listDocumentsAsync({ isForward: true, previousID: lastDocument.id }));
+    dispatch(listDocumentsAsync({ isForward: false, previousID: lastDocument.id }));
   }, [dispatch, documents]);
 
   useEffect(() => {
-    dispatch(listDocumentsAsync({ isForward: true }));
+    dispatch(listDocumentsAsync({ isForward: false }));
   }, [dispatch]);
 
   return (

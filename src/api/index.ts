@@ -20,5 +20,8 @@ export async function listDocuments(
   req.setIsForward(isForward);
   const response = await client.listDocuments(req);
   const summaries = converter.fromDocumentSummaries(response.getDocumentsList());
+  if (isForward) {
+    summaries.reverse();
+  }
   return summaries;
 }

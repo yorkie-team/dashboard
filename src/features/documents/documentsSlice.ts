@@ -28,13 +28,13 @@ export const listDocumentsAsync = createAsyncThunk(
     hasNext: boolean;
     hasPrevious: boolean;
   }> => {
-    const { isForward, previousID } = params;
-    const documents = await listDocuments(previousID || '', pageSize + 1, isForward);
+    const { isForward, previousID = '' } = params;
+    const documents = await listDocuments(previousID, pageSize + 1, isForward);
     const isFull = documents.length === pageSize + 1;
     return {
-      documents: isForward ? documents.slice(0, pageSize) : isFull ? documents.slice(1, pageSize + 1) : documents,
-      hasPrevious: !!previousID && (isFull || isForward),
-      hasNext: isFull || (!isFull && !isForward),
+      documents: !isFull ? documents : isForward ? documents.slice(1, pageSize + 1) : documents.slice(0, pageSize),
+      hasPrevious: !!previousID && (isFull || !isForward),
+      hasNext: isFull || (!isFull && isForward),
     };
   }
 );
