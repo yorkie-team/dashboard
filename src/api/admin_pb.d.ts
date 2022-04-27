@@ -10,6 +10,9 @@ export class ListDocumentsRequest extends jspb.Message {
   getPageSize(): number;
   setPageSize(value: number): ListDocumentsRequest;
 
+  getIsForward(): boolean;
+  setIsForward(value: boolean): ListDocumentsRequest;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListDocumentsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListDocumentsRequest): ListDocumentsRequest.AsObject;
@@ -22,6 +25,7 @@ export namespace ListDocumentsRequest {
   export type AsObject = {
     previousId: string,
     pageSize: number,
+    isForward: boolean,
   }
 }
 
