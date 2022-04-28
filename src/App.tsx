@@ -11,7 +11,7 @@ function App() {
         </aside>
         <main className='ml-64 grow overflow-y-scroll'>
           <Routes>
-            <Route path='/documents' element={<Documents />} />
+            <Route path='/documents/*' element={<Documents />} />
             <Route path='/settings' element={<Settings />} />
             <Route path='/' element={<Navigate to='/documents' />} />
           </Routes>
