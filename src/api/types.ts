@@ -1,10 +1,5 @@
 export type DocumentSummary = {
   id: string;
-  key: DocumentKey;
+  key: string;
   snapshot: string;
-}
-
-export type DocumentKey = {
-  collection: string;
-  document: string;
-}
+};

@@ -1,19 +1,31 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
-import { listDocuments, DocumentSummary } from '../../api';
+import { getDocument, listDocuments, DocumentSummary } from '../../api';
 
 export interface DocumentsState {
-  documents: Array<DocumentSummary>;
-  hasPrevious: boolean;
-  hasNext: boolean;
-  status: 'idle' | 'loading' | 'failed';
+  list: {
+    documents: Array<DocumentSummary>;
+    hasPrevious: boolean;
+    hasNext: boolean;
+    status: 'idle' | 'loading' | 'failed';
+  };
+  detail: {
+    document: DocumentSummary | null;
+    status: 'idle' | 'loading' | 'failed';
+  };
 }
 
 const initialState: DocumentsState = {
-  documents: [],
-  hasPrevious: false,
-  hasNext: false,
-  status: 'idle',
+  list: {
+    documents: [],
+    hasPrevious: false,
+    hasNext: false,
+    status: 'idle',
+  },
+  detail: {
+    document: null,
+    status: 'idle',
+  },
 };
 
 const pageSize = 20;
@@ -32,6 +44,14 @@ export const listDocumentsAsync = createAsyncThunk(
     const documents = await listDocuments(previousID, pageSize + 1, isForward);
 
     return getPaginationData({ documents, isForward, previousID, pageSize });
+  }
+);
+
+export const getDocumentAsync = createAsyncThunk(
+  'documents/getDocument',
+  async (id: string): Promise<DocumentSummary | null> => {
+    const document = await getDocument(id);
+    return document;
   }
 );
 
@@ -61,21 +81,32 @@ export const documentSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(listDocumentsAsync.pending, (state) => {
-      state.status = 'loading';
+      state.list.status = 'loading';
     });
     builder.addCase(listDocumentsAsync.fulfilled, (state, action) => {
       const { documents, hasPrevious, hasNext } = action.payload;
-      state.status = 'idle';
-      state.documents = documents;
-      state.hasNext = hasNext;
-      state.hasPrevious = hasPrevious;
+      state.list.status = 'idle';
+      state.list.documents = documents;
+      state.list.hasNext = hasNext;
+      state.list.hasPrevious = hasPrevious;
     });
     builder.addCase(listDocumentsAsync.rejected, (state) => {
-      state.status = 'failed';
+      state.list.status = 'failed';
+    });
+    builder.addCase(getDocumentAsync.pending, (state) => {
+      state.detail.status = 'loading';
+    });
+    builder.addCase(getDocumentAsync.fulfilled, (state, action) => {
+      state.detail.status = 'idle';
+      state.detail.document = action.payload;
+    });
+    builder.addCase(getDocumentAsync.rejected, (state) => {
+      state.detail.status = 'failed';
     });
   },
 });
 
-export const selectDocuments = (state: RootState) => state.documents;
+export const selectDocumentList = (state: RootState) => state.documents.list;
+export const selectDocumentDetail = (state: RootState) => state.documents.detail;
 
 export default documentSlice.reducer;

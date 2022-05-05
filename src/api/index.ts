@@ -1,5 +1,5 @@
 import { AdminPromiseClient } from './admin_grpc_web_pb';
-import { ListDocumentsRequest } from './admin_pb';
+import { ListDocumentsRequest, GetDocumentRequest } from './admin_pb';
 
 import { DocumentSummary } from './types';
 import * as converter from './converter';
@@ -24,4 +24,19 @@ export async function listDocuments(
     summaries.reverse();
   }
   return summaries;
+}
+
+// getDocument fetches a document of the given ID from the admin server.
+export async function getDocument(id: string): Promise<DocumentSummary | null> {
+  const req = new GetDocumentRequest();
+  req.setId(id);
+  const response = await client.getDocument(req);
+
+  const document = response.getDocument();
+  if (!document) {
+    return null;
+  }
+
+  const summary = converter.fromDocumentSummary(document);
+  return summary;
 }

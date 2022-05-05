@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { selectDocuments, listDocumentsAsync } from './documentsSlice';
+import { selectDocumentList, listDocumentsAsync } from './documentsSlice';
 
 // DocumentList represents the list of documents in the application.
 export function DocumentList() {
-  const { documents, hasPrevious, hasNext, status } = useAppSelector(selectDocuments);
+  const { documents, hasPrevious, hasNext, status } = useAppSelector(selectDocumentList);
   const dispatch = useAppDispatch();
   const path = useLocation().pathname.replace(/^\/documents\//, '');
 
@@ -29,21 +29,17 @@ export function DocumentList() {
       {status === 'idle' && (
         <ul>
           {documents.map((document, idx) => {
-            const {
-              id,
-              key: { collection, document: documentKey },
-              snapshot,
-            } = document;
+            const { id, key, snapshot } = document;
             return (
               <li key={id}>
                 <Link
-                  to={`./${documentKey}`}
+                  to={`./${id}`}
                   state={{ snapshot }}
                   className={`flex justify-between items-center p-2 w-full font-medium text-left text-gray-500 border border-gray-200 hover:bg-gray-100 break-all ${
                     idx === documents.length - 1 ? '' : 'border-b-0'
-                  } ${path === documentKey && '!bg-gray-200'}`}
+                  } ${path === id && '!bg-gray-200'}`}
                 >
-                  {collection}${documentKey}
+                  {key}
                   {snapshot}
                 </Link>
               </li>
