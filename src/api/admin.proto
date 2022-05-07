@@ -21,8 +21,33 @@ import "resources.proto";
 
 // Admin is a service that provides a API for Admin.
 service Admin {
+  rpc CreateProject(CreateProjectRequest) returns (CreateProjectResponse) {}
+  rpc ListProjects(ListProjectsRequest) returns (ListProjectsResponse) {}
+  rpc UpdateProject(UpdateProjectRequest) returns (UpdateProjectResponse) {}
+
   rpc ListDocuments (ListDocumentsRequest) returns (ListDocumentsResponse) {}
+  rpc GetDocument (GetDocumentRequest) returns (GetDocumentResponse) {}
 }
+
+message CreateProjectRequest {
+  string name = 1;
+}
+
+message CreateProjectResponse {
+  Project project = 1;
+}
+
+message ListProjectsRequest {}
+
+message ListProjectsResponse {
+  repeated Project projects = 1;
+}
+
+message UpdateProjectRequest {
+  Project project = 1;
+}
+
+message UpdateProjectResponse {}
 
 message ListDocumentsRequest {
   string previous_id = 1;
@@ -32,4 +57,12 @@ message ListDocumentsRequest {
 
 message ListDocumentsResponse {
   repeated DocumentSummary documents = 1;
+}
+
+message GetDocumentRequest {
+  string id = 1;
+}
+
+message GetDocumentResponse {
+  DocumentSummary document = 1;
 }

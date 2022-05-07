@@ -1,12 +1,11 @@
 import * as jspb from 'google-protobuf'
 
+import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb';
 
 
 export class ChangePack extends jspb.Message {
-  getDocumentKey(): DocumentKey | undefined;
-  setDocumentKey(value?: DocumentKey): ChangePack;
-  hasDocumentKey(): boolean;
-  clearDocumentKey(): ChangePack;
+  getDocumentKey(): string;
+  setDocumentKey(value: string): ChangePack;
 
   getCheckpoint(): Checkpoint | undefined;
   setCheckpoint(value?: Checkpoint): ChangePack;
@@ -38,7 +37,7 @@ export class ChangePack extends jspb.Message {
 
 export namespace ChangePack {
   export type AsObject = {
-    documentKey?: DocumentKey.AsObject,
+    documentKey: string,
     checkpoint?: Checkpoint.AsObject,
     snapshot: Uint8Array | string,
     changesList: Array<Change.AsObject>,
@@ -1076,14 +1075,58 @@ export namespace TextNodeID {
   }
 }
 
+export class Project extends jspb.Message {
+  getId(): string;
+  setId(value: string): Project;
+
+  getName(): string;
+  setName(value: string): Project;
+
+  getPublicKey(): string;
+  setPublicKey(value: string): Project;
+
+  getSecretKey(): string;
+  setSecretKey(value: string): Project;
+
+  getAuthWebhookUrl(): string;
+  setAuthWebhookUrl(value: string): Project;
+
+  getAuthWebhookMethodsList(): Array<string>;
+  setAuthWebhookMethodsList(value: Array<string>): Project;
+  clearAuthWebhookMethodsList(): Project;
+  addAuthWebhookMethods(value: string, index?: number): Project;
+
+  getCreatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedAt(value?: google_protobuf_timestamp_pb.Timestamp): Project;
+  hasCreatedAt(): boolean;
+  clearCreatedAt(): Project;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Project.AsObject;
+  static toObject(includeInstance: boolean, msg: Project): Project.AsObject;
+  static serializeBinaryToWriter(message: Project, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Project;
+  static deserializeBinaryFromReader(message: Project, reader: jspb.BinaryReader): Project;
+}
+
+export namespace Project {
+  export type AsObject = {
+    id: string,
+    name: string,
+    publicKey: string,
+    secretKey: string,
+    authWebhookUrl: string,
+    authWebhookMethodsList: Array<string>,
+    createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+  }
+}
+
 export class DocumentSummary extends jspb.Message {
   getId(): string;
   setId(value: string): DocumentSummary;
 
-  getKey(): DocumentKey | undefined;
-  setKey(value?: DocumentKey): DocumentSummary;
-  hasKey(): boolean;
-  clearKey(): DocumentSummary;
+  getKey(): string;
+  setKey(value: string): DocumentSummary;
 
   getSnapshot(): string;
   setSnapshot(value: string): DocumentSummary;
@@ -1099,7 +1142,7 @@ export class DocumentSummary extends jspb.Message {
 export namespace DocumentSummary {
   export type AsObject = {
     id: string,
-    key?: DocumentKey.AsObject,
+    key: string,
     snapshot: string,
   }
 }
@@ -1169,28 +1212,6 @@ export class Clients extends jspb.Message {
 export namespace Clients {
   export type AsObject = {
     clientsList: Array<Client.AsObject>,
-  }
-}
-
-export class DocumentKey extends jspb.Message {
-  getCollection(): string;
-  setCollection(value: string): DocumentKey;
-
-  getDocument(): string;
-  setDocument(value: string): DocumentKey;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DocumentKey.AsObject;
-  static toObject(includeInstance: boolean, msg: DocumentKey): DocumentKey.AsObject;
-  static serializeBinaryToWriter(message: DocumentKey, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): DocumentKey;
-  static deserializeBinaryFromReader(message: DocumentKey, reader: jspb.BinaryReader): DocumentKey;
-}
-
-export namespace DocumentKey {
-  export type AsObject = {
-    collection: string,
-    document: string,
   }
 }
 
@@ -1281,10 +1302,10 @@ export class DocEvent extends jspb.Message {
   hasPublisher(): boolean;
   clearPublisher(): DocEvent;
 
-  getDocumentKeysList(): Array<DocumentKey>;
-  setDocumentKeysList(value: Array<DocumentKey>): DocEvent;
+  getDocumentKeysList(): Array<string>;
+  setDocumentKeysList(value: Array<string>): DocEvent;
   clearDocumentKeysList(): DocEvent;
-  addDocumentKeys(value?: DocumentKey, index?: number): DocumentKey;
+  addDocumentKeys(value: string, index?: number): DocEvent;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DocEvent.AsObject;
@@ -1298,7 +1319,7 @@ export namespace DocEvent {
   export type AsObject = {
     type: DocEventType,
     publisher?: Client.AsObject,
-    documentKeysList: Array<DocumentKey.AsObject>,
+    documentKeysList: Array<string>,
   }
 }
 

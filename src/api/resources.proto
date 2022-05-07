@@ -15,6 +15,8 @@
  */
 syntax = "proto3";
 
+import "google/protobuf/timestamp.proto";
+
 package api;
 
 /////////////////////////////////////////
@@ -22,7 +24,7 @@ package api;
 /////////////////////////////////////////
 
 message ChangePack {
-  DocumentKey document_key = 1;
+  string document_key = 1;
   Checkpoint checkpoint = 2;
   bytes snapshot = 3;
   repeated Change changes = 4;
@@ -217,9 +219,19 @@ message TextNodeID {
 // Messages for Common                 //
 /////////////////////////////////////////
 
+message Project {
+  string id = 1;
+  string name = 2;
+  string public_key = 3;
+  string secret_key = 4;
+  string auth_webhook_url = 5;
+  repeated string auth_webhook_methods = 6;
+  google.protobuf.Timestamp created_at = 7;
+}
+
 message DocumentSummary {
   string id = 1;
-  DocumentKey key = 2;
+  string key = 2;
   string snapshot = 3;
 }
 
@@ -235,11 +247,6 @@ message Client {
 
 message Clients {
   repeated Client clients = 1;
-}
-
-message DocumentKey {
-  string collection = 1;
-  string document = 2;
 }
 
 message Checkpoint {
@@ -287,5 +294,5 @@ enum DocEventType {
 message DocEvent {
   DocEventType type = 1;
   Client publisher = 2;
-  repeated DocumentKey document_keys = 3;
+  repeated string document_keys = 3;
 }

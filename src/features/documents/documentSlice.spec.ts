@@ -7,7 +7,7 @@ const sampleDocumentData: Array<DocumentSummary> = [];
 for (let i = 0; i < TOTAL_SIZE; i++) {
   sampleDocumentData.push({
     id: `${i}`,
-    key: { collection: `col${i}`, document: `doc${i}` },
+    key: `${i}`,
     snapshot: '',
   });
 }
