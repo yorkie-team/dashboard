@@ -14,13 +14,13 @@ export function DocumentDatail() {
   }, [dispatch, documentId]);
 
   return (
-    <div className='px-5 border-l border-gray-100'>
+    <div className="px-5 border-l border-gray-100">
       {status === 'loading' && <div>Loading...</div>}
       {status === 'failed' && <div>Failed!</div>}
       {status === 'idle' && (
         <>
-          <h2 className='text-lg font-semibold'>{document?.key}</h2>
-          <div className='py-6'>{document?.snapshot}</div>
+          <h2 className="text-lg font-semibold">{document?.key}</h2>
+          <div className="py-6">{document?.snapshot}</div>
         </>
       )}
     </div>

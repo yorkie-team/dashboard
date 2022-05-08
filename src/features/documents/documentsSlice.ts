@@ -44,7 +44,7 @@ export const listDocumentsAsync = createAsyncThunk(
     const documents = await listDocuments(previousID, pageSize + 1, isForward);
 
     return getPaginationData({ documents, isForward, previousID, pageSize });
-  }
+  },
 );
 
 export const getDocumentAsync = createAsyncThunk(
@@ -52,7 +52,7 @@ export const getDocumentAsync = createAsyncThunk(
   async (id: string): Promise<DocumentSummary | null> => {
     const document = await getDocument(id);
     return document;
-  }
+  },
 );
 
 export const getPaginationData = (params: {
@@ -69,7 +69,11 @@ export const getPaginationData = (params: {
   const isFull = documents.length === pageSize + 1;
 
   return {
-    documents: !isFull ? documents : isForward ? documents.slice(1, pageSize + 1) : documents.slice(0, pageSize),
+    documents: !isFull
+      ? documents
+      : isForward
+      ? documents.slice(1, pageSize + 1)
+      : documents.slice(0, pageSize),
     hasPrevious: !!previousID && (isFull || !isForward),
     hasNext: isFull || (!isFull && isForward),
   };
@@ -107,6 +111,7 @@ export const documentSlice = createSlice({
 });
 
 export const selectDocumentList = (state: RootState) => state.documents.list;
-export const selectDocumentDetail = (state: RootState) => state.documents.detail;
+export const selectDocumentDetail = (state: RootState) =>
+  state.documents.detail;
 
 export default documentSlice.reducer;

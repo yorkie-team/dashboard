@@ -2,7 +2,9 @@ import { DocumentSummary } from './types';
 
 import { DocumentSummary as PbDocumentSummary } from './resources_pb';
 
-export function fromDocumentSummary(pbDocumentSummary: PbDocumentSummary): DocumentSummary {
+export function fromDocumentSummary(
+  pbDocumentSummary: PbDocumentSummary,
+): DocumentSummary {
   return {
     id: pbDocumentSummary.getId(),
     key: pbDocumentSummary.getKey()!,
@@ -10,7 +12,9 @@ export function fromDocumentSummary(pbDocumentSummary: PbDocumentSummary): Docum
   };
 }
 
-export function fromDocumentSummaries(pbDocumentSummaries: Array<PbDocumentSummary>): Array<DocumentSummary> {
+export function fromDocumentSummaries(
+  pbDocumentSummaries: Array<PbDocumentSummary>,
+): Array<DocumentSummary> {
   const documentSummaries: Array<DocumentSummary> = [];
 
   for (const pbDocumentSummary of pbDocumentSummaries) {
