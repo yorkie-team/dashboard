@@ -40,7 +40,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "docker": "docker-compose -f docker/docker-compose.yml up --build -d",
     "build:proto": "protoc -I=./src/api --js_out=import_style=commonjs:./src/api --grpc-web_out=import_style=commonjs+dts,mode=grpcwebtext:./src/api ./src/api/*.proto"
   },
   "eslintConfig": {
