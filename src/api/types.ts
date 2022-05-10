@@ -4,7 +4,7 @@ export type DocumentSummary = {
   snapshot: string;
 };
 
-export type ProjectSummary = {
+export type Project = {
   id: string;
   name: string;
   publicKey: string;

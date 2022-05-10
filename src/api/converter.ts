@@ -1,33 +1,33 @@
-import { ProjectSummary, DocumentSummary } from './types';
+import { Project, DocumentSummary } from './types';
 
 import {
-  Project as PbProjectSummary,
+  Project as PbProject,
   DocumentSummary as PbDocumentSummary,
 } from './resources_pb';
 
 export function fromProjectSummaries(
-  pbProjectSummaries: Array<PbProjectSummary>,
-): Array<ProjectSummary> {
-  const projectSummaries: Array<ProjectSummary> = [];
+  pbProjects: Array<PbProject>,
+): Array<Project> {
+  const projects: Array<Project> = [];
 
-  for (const pbProjectSummary of pbProjectSummaries) {
-    const timestamp = pbProjectSummary.getCreatedAt();
+  for (const pbProject of pbProjects) {
+    const timestamp = pbProject.getCreatedAt();
     const date = timestamp
       ? new Date(
           timestamp?.getSeconds() * 1000 + timestamp?.getNanos() / 1e6,
         ).toString()
       : '';
 
-    projectSummaries.push({
-      id: pbProjectSummary.getId(),
-      name: pbProjectSummary.getName(),
-      publicKey: pbProjectSummary.getPublicKey(),
-      secretKey: pbProjectSummary.getSecretKey(),
+    projects.push({
+      id: pbProject.getId(),
+      name: pbProject.getName(),
+      publicKey: pbProject.getPublicKey(),
+      secretKey: pbProject.getSecretKey(),
       createdAt: date,
     });
   }
 
-  return projectSummaries;
+  return projects;
 }
 
 export function fromDocumentSummary(

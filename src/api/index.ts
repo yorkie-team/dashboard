@@ -5,7 +5,7 @@ import {
   GetDocumentRequest,
 } from './admin_pb';
 
-import { ProjectSummary, DocumentSummary } from './types';
+import { Project, DocumentSummary } from './types';
 import * as converter from './converter';
 
 export * from './types';
@@ -16,7 +16,7 @@ const client = new AdminPromiseClient(
 );
 
 // listProjects fetches projects from the admin server.
-export async function listProjects(): Promise<Array<ProjectSummary>> {
+export async function listProjects(): Promise<Array<Project>> {
   const req = new ListProjectsRequest();
   const response = await client.listProjects(req);
   const summaries = converter.fromProjectSummaries(response.getProjectsList());

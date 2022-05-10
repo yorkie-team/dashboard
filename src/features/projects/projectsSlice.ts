@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
-import { listProjects, ProjectSummary } from '../../api';
+import { listProjects, Project } from '../../api';
 
 export interface ProjectsState {
-  projects: Array<ProjectSummary>;
+  projects: Array<Project>;
   status: 'idle' | 'loading' | 'failed';
 }
 
@@ -14,7 +14,7 @@ const initialState: ProjectsState = {
 
 export const listProjectsAsync = createAsyncThunk(
   'projects/listDocuments',
-  async (): Promise<Array<ProjectSummary>> => {
+  async (): Promise<Array<Project>> => {
     const projects = await listProjects();
     return projects;
   },
