@@ -34,7 +34,7 @@ export function ProjectList() {
                   <br />
                   {secretKey}
                   <br />
-                  {createdAt}
+                  {createdAt && new Date(createdAt).toString()}
                 </p>
               </li>
             );

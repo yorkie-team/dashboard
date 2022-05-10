@@ -12,18 +12,13 @@ export function fromProjectSummaries(
 
   for (const pbProject of pbProjects) {
     const timestamp = pbProject.getCreatedAt();
-    const date = timestamp
-      ? new Date(
-          timestamp?.getSeconds() * 1000 + timestamp?.getNanos() / 1e6,
-        ).toString()
-      : '';
 
     projects.push({
       id: pbProject.getId(),
       name: pbProject.getName(),
       publicKey: pbProject.getPublicKey(),
       secretKey: pbProject.getSecretKey(),
-      createdAt: date,
+      createdAt: timestamp?.getSeconds() * 1000 + timestamp?.getNanos() / 1e6,
     });
   }
 

@@ -9,5 +9,5 @@ export type Project = {
   name: string;
   publicKey: string;
   secretKey: string;
-  createdAt: string;
+  createdAt: number;
 };
