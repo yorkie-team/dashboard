@@ -5,19 +5,23 @@ import {
   DocumentSummary as PbDocumentSummary,
 } from './resources_pb';
 
-export function fromProject(pbProjects: Array<PbProject>): Array<Project> {
+export function fromProject(pbProject: PbProject): Project {
+  const timestamp = pbProject.getCreatedAt();
+
+  return {
+    id: pbProject.getId(),
+    name: pbProject.getName(),
+    publicKey: pbProject.getPublicKey(),
+    secretKey: pbProject.getSecretKey(),
+    createdAt: timestamp?.getSeconds() * 1000 + timestamp?.getNanos() / 1e6,
+  };
+}
+
+export function fromProjects(pbProjects: Array<PbProject>): Array<Project> {
   const projects: Array<Project> = [];
 
   for (const pbProject of pbProjects) {
-    const timestamp = pbProject.getCreatedAt();
-
-    projects.push({
-      id: pbProject.getId(),
-      name: pbProject.getName(),
-      publicKey: pbProject.getPublicKey(),
-      secretKey: pbProject.getSecretKey(),
-      createdAt: timestamp?.getSeconds() * 1000 + timestamp?.getNanos() / 1e6,
-    });
+    projects.push(fromProject(pbProject));
   }
 
   return projects;

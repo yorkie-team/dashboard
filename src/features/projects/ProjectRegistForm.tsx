@@ -1,12 +1,22 @@
+import { createProject } from 'api';
 import React, { useCallback, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // DocumentList represents the list of documents in the application.
 export function ProjectRegistForm() {
+  const navigate = useNavigate();
   const nameRef = useRef<HTMLInputElement | null>(null);
-  const handleSumbit = useCallback((e) => {
-    e.preventDefault();
-    console.log(nameRef.current?.value);
-  }, []);
+  const handleSumbit = useCallback(
+    async (e) => {
+      e.preventDefault();
+
+      const newProject = await createProject(nameRef.current?.value!);
+      console.log(newProject);
+
+      navigate('../projects');
+    },
+    [navigate],
+  );
 
   return (
     <form className="mt-10" onSubmit={handleSumbit}>
