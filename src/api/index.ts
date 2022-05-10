@@ -19,7 +19,7 @@ const client = new AdminPromiseClient(
 export async function listProjects(): Promise<Array<Project>> {
   const req = new ListProjectsRequest();
   const response = await client.listProjects(req);
-  const summaries = converter.fromProjectSummaries(response.getProjectsList());
+  const summaries = converter.fromProject(response.getProjectsList());
   return summaries;
 }
 

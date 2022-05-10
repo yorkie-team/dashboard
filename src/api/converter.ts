@@ -5,9 +5,7 @@ import {
   DocumentSummary as PbDocumentSummary,
 } from './resources_pb';
 
-export function fromProjectSummaries(
-  pbProjects: Array<PbProject>,
-): Array<Project> {
+export function fromProject(pbProjects: Array<PbProject>): Array<Project> {
   const projects: Array<Project> = [];
 
   for (const pbProject of pbProjects) {
