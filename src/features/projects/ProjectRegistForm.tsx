@@ -2,7 +2,6 @@ import { createProject } from 'api';
 import React, { useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// DocumentList represents the list of documents in the application.
 export function ProjectRegistForm() {
   const navigate = useNavigate();
   const nameRef = useRef<HTMLInputElement | null>(null);
