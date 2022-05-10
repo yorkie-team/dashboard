@@ -1,6 +1,27 @@
-import { DocumentSummary } from './types';
+import { Project, DocumentSummary } from './types';
 
-import { DocumentSummary as PbDocumentSummary } from './resources_pb';
+import {
+  Project as PbProject,
+  DocumentSummary as PbDocumentSummary,
+} from './resources_pb';
+
+export function fromProject(pbProjects: Array<PbProject>): Array<Project> {
+  const projects: Array<Project> = [];
+
+  for (const pbProject of pbProjects) {
+    const timestamp = pbProject.getCreatedAt();
+
+    projects.push({
+      id: pbProject.getId(),
+      name: pbProject.getName(),
+      publicKey: pbProject.getPublicKey(),
+      secretKey: pbProject.getSecretKey(),
+      createdAt: timestamp?.getSeconds() * 1000 + timestamp?.getNanos() / 1e6,
+    });
+  }
+
+  return projects;
+}
 
 export function fromDocumentSummary(
   pbDocumentSummary: PbDocumentSummary,

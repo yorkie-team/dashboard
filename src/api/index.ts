@@ -1,7 +1,11 @@
 import { AdminPromiseClient } from './admin_grpc_web_pb';
-import { ListDocumentsRequest, GetDocumentRequest } from './admin_pb';
+import {
+  ListProjectsRequest,
+  ListDocumentsRequest,
+  GetDocumentRequest,
+} from './admin_pb';
 
-import { DocumentSummary } from './types';
+import { Project, DocumentSummary } from './types';
 import * as converter from './converter';
 
 export * from './types';
@@ -10,6 +14,13 @@ const client = new AdminPromiseClient(
   `${process.env.REACT_APP_ADMIN_ADDR}`,
   null,
 );
+
+// listProjects fetches projects from the admin server.
+export async function listProjects(): Promise<Array<Project>> {
+  const req = new ListProjectsRequest();
+  const response = await client.listProjects(req);
+  return converter.fromProject(response.getProjectsList());
+}
 
 // listDocuments fetches documents from the admin server.
 export async function listDocuments(

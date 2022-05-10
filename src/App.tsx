@@ -5,7 +5,7 @@ import {
   Route,
   Navigate,
 } from 'react-router-dom';
-import { Documents, Settings, Sidebar } from 'routes';
+import { Documents, Settings, Projects, Sidebar } from 'routes';
 
 function App() {
   return (
@@ -20,8 +20,9 @@ function App() {
         <main className="ml-64 grow overflow-y-scroll">
           <Routes>
             <Route path="/documents/*" element={<Documents />} />
+            <Route path="/projects" element={<Projects />} />
             <Route path="/settings" element={<Settings />} />
-            <Route path="/" element={<Navigate to="/documents" />} />
+            <Route path="/" element={<Navigate to="/projects" />} />
           </Routes>
         </main>
       </div>
