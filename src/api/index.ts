@@ -3,6 +3,7 @@ import {
   ListProjectsRequest,
   ListDocumentsRequest,
   GetDocumentRequest,
+  CreateProjectRequest,
 } from './admin_pb';
 
 import { Project, DocumentSummary } from './types';
@@ -19,7 +20,15 @@ const client = new AdminPromiseClient(
 export async function listProjects(): Promise<Array<Project>> {
   const req = new ListProjectsRequest();
   const response = await client.listProjects(req);
-  return converter.fromProject(response.getProjectsList());
+  return converter.fromProjects(response.getProjectsList());
+}
+
+// createProject creates a new project.
+export async function createProject(name: string): Promise<Project> {
+  const req = new CreateProjectRequest();
+  req.setName(name);
+  const response = await client.createProject(req);
+  return converter.fromProject(response.getProject()!);
 }
 
 // listDocuments fetches documents from the admin server.

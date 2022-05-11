@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectProjects, listProjectsAsync } from './projectsSlice';
 
@@ -12,11 +13,18 @@ export function ProjectList() {
   }, [dispatch]);
 
   return (
-    <div className="py-6 w-80">
+    <div className="relative py-6">
+      <Link
+        to={'./new'}
+        className="absolute -top-8 right-0 flex items-center justify-center text-center py-1.5 px-3 bg-gray-100 hover:bg-gray-200 disabled:!bg-gray-300 border border-gray-300 rounded-lg focus:outline-no
+          ne focus-visible:ring-4 focus-visible:ring-gray-200 font-medium text-gray-900 text-sm disabled:text-gray-400 disabled:cursor-not-allowed"
+      >
+        Create Project
+      </Link>
       {status === 'loading' && <div>Loading...</div>}
       {status === 'failed' && <div>Failed!</div>}
       {status === 'idle' && (
-        <ul className="flex">
+        <ul className="flex flex-wrap">
           {projects.map((project) => {
             const { id, name, publicKey, secretKey, createdAt } = project;
             return (
