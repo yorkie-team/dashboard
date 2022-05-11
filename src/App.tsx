@@ -20,8 +20,8 @@ function App() {
         <main className="ml-64 grow overflow-y-scroll">
           <Routes>
             <Route path="/documents/*" element={<Documents />} />
-            <Route path="/create-project" element={<CreateProject />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/new" element={<CreateProject />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/" element={<Navigate to="/projects" />} />
           </Routes>

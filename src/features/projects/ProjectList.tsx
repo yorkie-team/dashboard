@@ -15,7 +15,7 @@ export function ProjectList() {
   return (
     <div className="relative py-6">
       <Link
-        to={'../create-project'}
+        to={'./new'}
         className="absolute -top-8 right-0 flex items-center justify-center text-center py-1.5 px-3 bg-gray-100 hover:bg-gray-200 disabled:!bg-gray-300 border border-gray-300 rounded-lg focus:outline-no
           ne focus-visible:ring-4 focus-visible:ring-gray-200 font-medium text-gray-900 text-sm disabled:text-gray-400 disabled:cursor-not-allowed"
       >

@@ -1,14 +1,10 @@
 import React from 'react';
-import { NavLink as Link, useMatch, useResolvedPath } from 'react-router-dom';
+import { NavLink as Link } from 'react-router-dom';
 
 export function Sidebar() {
   const itemStyle =
     'flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100';
   const activeStyle = '!bg-gray-200';
-  const isMatchProjectUrl = useMatch({
-    path: useResolvedPath('create-project').pathname,
-    end: true,
-  });
 
   return (
     <div className="overflow-y-auto py-4 px-3">
@@ -22,9 +18,7 @@ export function Sidebar() {
           <Link
             to="/projects"
             className={({ isActive }) =>
-              isActive || isMatchProjectUrl
-                ? `${itemStyle} ${activeStyle}`
-                : itemStyle
+              isActive ? `${itemStyle} ${activeStyle}` : itemStyle
             }
           >
             <svg
