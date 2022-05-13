@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import ReactJson from 'react-json-view';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectDocumentDetail, getDocumentAsync } from './documentsSlice';
@@ -23,12 +23,12 @@ function filterEscape(str: string): string {
 export function DocumentDatail() {
   const { document, status } = useAppSelector(selectDocumentDetail);
   const dispatch = useAppDispatch();
-  const documentId = useLocation().pathname.replace(/^\/documents\//, '');
+  const { documentID } = useParams();
   const documentJson = getDocumentJSON(document?.snapshot);
 
   useEffect(() => {
-    dispatch(getDocumentAsync(documentId));
-  }, [dispatch, documentId]);
+    dispatch(getDocumentAsync(documentID!));
+  }, [dispatch, documentID]);
 
   return (
     <div className="px-5 border-l border-gray-100">
