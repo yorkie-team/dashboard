@@ -1,25 +1,30 @@
 import React from 'react';
-import { NavLink as Link } from 'react-router-dom';
+import { NavLink as Link, useParams } from 'react-router-dom';
 
 export function Sidebar() {
   const itemStyle =
     'flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100';
   const activeStyle = '!bg-gray-200';
 
+  let { projectID } = useParams();
+
   return (
     <div className="overflow-y-auto py-4 px-3">
       <div className="flex pl-2.5 mb-5">
         <h1 className="self-center text-lg font-semibold whitespace-nowrap">
-          Yorkie-House
+          <Link to="/projects">
+            Yorkie-House
+          </Link>
         </h1>
       </div>
       <ul className="space-y-2">
         <li>
           <Link
-            to="/projects"
+            to={`/projects/${projectID}`}
             className={({ isActive }) =>
               isActive ? `${itemStyle} ${activeStyle}` : itemStyle
             }
+            end
           >
             <svg
               className="w-6 h-6 text-gray-500"
@@ -35,12 +40,12 @@ export function Sidebar() {
                 d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
               ></path>
             </svg>
-            <span className="ml-3">Projects</span>
+            <span className="ml-3">Overview</span>
           </Link>
         </li>
         <li>
           <Link
-            to="/documents"
+            to={`/projects/${projectID}/documents`}
             className={({ isActive }) =>
               isActive ? `${itemStyle} ${activeStyle}` : itemStyle
             }
@@ -64,7 +69,7 @@ export function Sidebar() {
         </li>
         <li>
           <Link
-            to="/settings"
+            to={`/projects/${projectID}/settings`}
             className={({ isActive }) =>
               isActive ? `${itemStyle} ${activeStyle}` : itemStyle
             }

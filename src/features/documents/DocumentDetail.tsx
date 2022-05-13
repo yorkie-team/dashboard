@@ -1,17 +1,16 @@
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectDocumentDetail, getDocumentAsync } from './documentsSlice';
 
-// DocumentDetail represents the snapshot of document.
 export function DocumentDatail() {
   const { document, status } = useAppSelector(selectDocumentDetail);
   const dispatch = useAppDispatch();
-  const documentId = useLocation().pathname.replace(/^\/documents\//, '');
+  const { documentID } = useParams();
 
   useEffect(() => {
-    dispatch(getDocumentAsync(documentId));
-  }, [dispatch, documentId]);
+    dispatch(getDocumentAsync(documentID!));
+  }, [dispatch, documentID]);
 
   return (
     <div className="px-5 border-l border-gray-100">

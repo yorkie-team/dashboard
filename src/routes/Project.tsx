@@ -1,7 +1,8 @@
 import React from 'react';
+import { ProjectOverview } from 'features/projects';
 import { Sidebar } from 'routes';
 
-export function Settings() {
+export function Project() {
   return (
     <div className="relative h-screen flex">
       <aside
@@ -12,7 +13,8 @@ export function Settings() {
       </aside>
       <main className="ml-64 grow overflow-y-scroll">
         <div className="px-12 py-6">
-          <h2 className="text-lg font-semibold">Settings</h2>
+          <h2 className="text-lg font-semibold">Overview</h2>
+          <ProjectOverview />
         </div>
       </main>
     </div>
