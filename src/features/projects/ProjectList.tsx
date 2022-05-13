@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import * as moment from 'moment';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectProjects, listProjectsAsync } from './projectsSlice';
 
@@ -42,7 +43,7 @@ export function ProjectList() {
                   <br />
                   {secretKey}
                   <br />
-                  {createdAt && new Date(createdAt).toString()}
+                  {moment.unix(createdAt).format('YYYY-MM-DD')}
                 </p>
               </li>
             );
