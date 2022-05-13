@@ -6,13 +6,17 @@
 
 // GENERATED CODE -- DO NOT EDIT!
 
+
 /* eslint-disable */
 // @ts-nocheck
+
+
 
 const grpc = {};
 grpc.web = require('grpc-web');
 
-var resources_pb = require('./resources_pb.js');
+
+var resources_pb = require('./resources_pb.js')
 const proto = {};
 proto.api = require('./admin_pb.js');
 
@@ -24,7 +28,8 @@ proto.api = require('./admin_pb.js');
  * @struct
  * @final
  */
-proto.api.AdminClient = function (hostname, credentials, options) {
+proto.api.AdminClient =
+    function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
 
@@ -37,7 +42,9 @@ proto.api.AdminClient = function (hostname, credentials, options) {
    * @private @const {string} The hostname
    */
   this.hostname_ = hostname;
+
 };
+
 
 /**
  * @param {string} hostname
@@ -47,7 +54,8 @@ proto.api.AdminClient = function (hostname, credentials, options) {
  * @struct
  * @final
  */
-proto.api.AdminPromiseClient = function (hostname, credentials, options) {
+proto.api.AdminPromiseClient =
+    function(hostname, credentials, options) {
   if (!options) options = {};
   options.format = 'text';
 
@@ -60,7 +68,9 @@ proto.api.AdminPromiseClient = function (hostname, credentials, options) {
    * @private @const {string} The hostname
    */
   this.hostname_ = hostname;
+
 };
+
 
 /**
  * @const
@@ -77,11 +87,12 @@ const methodDescriptor_Admin_CreateProject = new grpc.web.MethodDescriptor(
    * @param {!proto.api.CreateProjectRequest} request
    * @return {!Uint8Array}
    */
-  function (request) {
+  function(request) {
     return request.serializeBinary();
   },
-  proto.api.CreateProjectResponse.deserializeBinary,
+  proto.api.CreateProjectResponse.deserializeBinary
 );
+
 
 /**
  * @param {!proto.api.CreateProjectRequest} request The
@@ -93,19 +104,16 @@ const methodDescriptor_Admin_CreateProject = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.api.CreateProjectResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.api.AdminClient.prototype.createProject = function (
-  request,
-  metadata,
-  callback,
-) {
-  return this.client_.rpcCall(
-    this.hostname_ + '/api.Admin/CreateProject',
-    request,
-    metadata || {},
-    methodDescriptor_Admin_CreateProject,
-    callback,
-  );
+proto.api.AdminClient.prototype.createProject =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/api.Admin/CreateProject',
+      request,
+      metadata || {},
+      methodDescriptor_Admin_CreateProject,
+      callback);
 };
+
 
 /**
  * @param {!proto.api.CreateProjectRequest} request The
@@ -115,17 +123,15 @@ proto.api.AdminClient.prototype.createProject = function (
  * @return {!Promise<!proto.api.CreateProjectResponse>}
  *     Promise that resolves to the response
  */
-proto.api.AdminPromiseClient.prototype.createProject = function (
-  request,
-  metadata,
-) {
-  return this.client_.unaryCall(
-    this.hostname_ + '/api.Admin/CreateProject',
-    request,
-    metadata || {},
-    methodDescriptor_Admin_CreateProject,
-  );
+proto.api.AdminPromiseClient.prototype.createProject =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/api.Admin/CreateProject',
+      request,
+      metadata || {},
+      methodDescriptor_Admin_CreateProject);
 };
+
 
 /**
  * @const
@@ -142,11 +148,12 @@ const methodDescriptor_Admin_ListProjects = new grpc.web.MethodDescriptor(
    * @param {!proto.api.ListProjectsRequest} request
    * @return {!Uint8Array}
    */
-  function (request) {
+  function(request) {
     return request.serializeBinary();
   },
-  proto.api.ListProjectsResponse.deserializeBinary,
+  proto.api.ListProjectsResponse.deserializeBinary
 );
+
 
 /**
  * @param {!proto.api.ListProjectsRequest} request The
@@ -158,19 +165,16 @@ const methodDescriptor_Admin_ListProjects = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.api.ListProjectsResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.api.AdminClient.prototype.listProjects = function (
-  request,
-  metadata,
-  callback,
-) {
-  return this.client_.rpcCall(
-    this.hostname_ + '/api.Admin/ListProjects',
-    request,
-    metadata || {},
-    methodDescriptor_Admin_ListProjects,
-    callback,
-  );
+proto.api.AdminClient.prototype.listProjects =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/api.Admin/ListProjects',
+      request,
+      metadata || {},
+      methodDescriptor_Admin_ListProjects,
+      callback);
 };
+
 
 /**
  * @param {!proto.api.ListProjectsRequest} request The
@@ -180,17 +184,15 @@ proto.api.AdminClient.prototype.listProjects = function (
  * @return {!Promise<!proto.api.ListProjectsResponse>}
  *     Promise that resolves to the response
  */
-proto.api.AdminPromiseClient.prototype.listProjects = function (
-  request,
-  metadata,
-) {
-  return this.client_.unaryCall(
-    this.hostname_ + '/api.Admin/ListProjects',
-    request,
-    metadata || {},
-    methodDescriptor_Admin_ListProjects,
-  );
+proto.api.AdminPromiseClient.prototype.listProjects =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/api.Admin/ListProjects',
+      request,
+      metadata || {},
+      methodDescriptor_Admin_ListProjects);
 };
+
 
 /**
  * @const
@@ -207,11 +209,12 @@ const methodDescriptor_Admin_UpdateProject = new grpc.web.MethodDescriptor(
    * @param {!proto.api.UpdateProjectRequest} request
    * @return {!Uint8Array}
    */
-  function (request) {
+  function(request) {
     return request.serializeBinary();
   },
-  proto.api.UpdateProjectResponse.deserializeBinary,
+  proto.api.UpdateProjectResponse.deserializeBinary
 );
+
 
 /**
  * @param {!proto.api.UpdateProjectRequest} request The
@@ -223,19 +226,16 @@ const methodDescriptor_Admin_UpdateProject = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.api.UpdateProjectResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.api.AdminClient.prototype.updateProject = function (
-  request,
-  metadata,
-  callback,
-) {
-  return this.client_.rpcCall(
-    this.hostname_ + '/api.Admin/UpdateProject',
-    request,
-    metadata || {},
-    methodDescriptor_Admin_UpdateProject,
-    callback,
-  );
+proto.api.AdminClient.prototype.updateProject =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/api.Admin/UpdateProject',
+      request,
+      metadata || {},
+      methodDescriptor_Admin_UpdateProject,
+      callback);
 };
+
 
 /**
  * @param {!proto.api.UpdateProjectRequest} request The
@@ -245,17 +245,15 @@ proto.api.AdminClient.prototype.updateProject = function (
  * @return {!Promise<!proto.api.UpdateProjectResponse>}
  *     Promise that resolves to the response
  */
-proto.api.AdminPromiseClient.prototype.updateProject = function (
-  request,
-  metadata,
-) {
-  return this.client_.unaryCall(
-    this.hostname_ + '/api.Admin/UpdateProject',
-    request,
-    metadata || {},
-    methodDescriptor_Admin_UpdateProject,
-  );
+proto.api.AdminPromiseClient.prototype.updateProject =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/api.Admin/UpdateProject',
+      request,
+      metadata || {},
+      methodDescriptor_Admin_UpdateProject);
 };
+
 
 /**
  * @const
@@ -272,11 +270,12 @@ const methodDescriptor_Admin_ListDocuments = new grpc.web.MethodDescriptor(
    * @param {!proto.api.ListDocumentsRequest} request
    * @return {!Uint8Array}
    */
-  function (request) {
+  function(request) {
     return request.serializeBinary();
   },
-  proto.api.ListDocumentsResponse.deserializeBinary,
+  proto.api.ListDocumentsResponse.deserializeBinary
 );
+
 
 /**
  * @param {!proto.api.ListDocumentsRequest} request The
@@ -288,19 +287,16 @@ const methodDescriptor_Admin_ListDocuments = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.api.ListDocumentsResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.api.AdminClient.prototype.listDocuments = function (
-  request,
-  metadata,
-  callback,
-) {
-  return this.client_.rpcCall(
-    this.hostname_ + '/api.Admin/ListDocuments',
-    request,
-    metadata || {},
-    methodDescriptor_Admin_ListDocuments,
-    callback,
-  );
+proto.api.AdminClient.prototype.listDocuments =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/api.Admin/ListDocuments',
+      request,
+      metadata || {},
+      methodDescriptor_Admin_ListDocuments,
+      callback);
 };
+
 
 /**
  * @param {!proto.api.ListDocumentsRequest} request The
@@ -310,17 +306,15 @@ proto.api.AdminClient.prototype.listDocuments = function (
  * @return {!Promise<!proto.api.ListDocumentsResponse>}
  *     Promise that resolves to the response
  */
-proto.api.AdminPromiseClient.prototype.listDocuments = function (
-  request,
-  metadata,
-) {
-  return this.client_.unaryCall(
-    this.hostname_ + '/api.Admin/ListDocuments',
-    request,
-    metadata || {},
-    methodDescriptor_Admin_ListDocuments,
-  );
+proto.api.AdminPromiseClient.prototype.listDocuments =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/api.Admin/ListDocuments',
+      request,
+      metadata || {},
+      methodDescriptor_Admin_ListDocuments);
 };
+
 
 /**
  * @const
@@ -337,11 +331,12 @@ const methodDescriptor_Admin_GetDocument = new grpc.web.MethodDescriptor(
    * @param {!proto.api.GetDocumentRequest} request
    * @return {!Uint8Array}
    */
-  function (request) {
+  function(request) {
     return request.serializeBinary();
   },
-  proto.api.GetDocumentResponse.deserializeBinary,
+  proto.api.GetDocumentResponse.deserializeBinary
 );
+
 
 /**
  * @param {!proto.api.GetDocumentRequest} request The
@@ -353,19 +348,16 @@ const methodDescriptor_Admin_GetDocument = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.api.GetDocumentResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.api.AdminClient.prototype.getDocument = function (
-  request,
-  metadata,
-  callback,
-) {
-  return this.client_.rpcCall(
-    this.hostname_ + '/api.Admin/GetDocument',
-    request,
-    metadata || {},
-    methodDescriptor_Admin_GetDocument,
-    callback,
-  );
+proto.api.AdminClient.prototype.getDocument =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/api.Admin/GetDocument',
+      request,
+      metadata || {},
+      methodDescriptor_Admin_GetDocument,
+      callback);
 };
+
 
 /**
  * @param {!proto.api.GetDocumentRequest} request The
@@ -375,16 +367,15 @@ proto.api.AdminClient.prototype.getDocument = function (
  * @return {!Promise<!proto.api.GetDocumentResponse>}
  *     Promise that resolves to the response
  */
-proto.api.AdminPromiseClient.prototype.getDocument = function (
-  request,
-  metadata,
-) {
-  return this.client_.unaryCall(
-    this.hostname_ + '/api.Admin/GetDocument',
-    request,
-    metadata || {},
-    methodDescriptor_Admin_GetDocument,
-  );
+proto.api.AdminPromiseClient.prototype.getDocument =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/api.Admin/GetDocument',
+      request,
+      metadata || {},
+      methodDescriptor_Admin_GetDocument);
 };
 
+
 module.exports = proto.api;
+

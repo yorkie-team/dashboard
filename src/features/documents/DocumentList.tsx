@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import * as moment from 'moment';
+
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectDocumentList, listDocumentsAsync } from './documentsSlice';
 
@@ -34,18 +36,16 @@ export function DocumentList() {
       {status === 'idle' && (
         <ul>
           {documents.map((document, idx) => {
-            const { id, key, snapshot } = document;
+            const { id, key, createdAt } = document;
             return (
               <li key={id}>
                 <Link
                   to={`./${id}`}
-                  state={{ snapshot }}
                   className={`flex justify-between items-center p-2 w-full font-medium text-left text-gray-500 border border-gray-200 hover:bg-gray-100 break-all ${
                     idx === documents.length - 1 ? '' : 'border-b-0'
                   } ${path === id && '!bg-gray-200'}`}
                 >
-                  {key}
-                  {snapshot}
+                  {`${key} ${moment.unix(createdAt).format('YYYY-MM-DD')}`}
                 </Link>
               </li>
             );
