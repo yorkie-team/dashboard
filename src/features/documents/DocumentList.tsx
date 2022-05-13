@@ -45,7 +45,6 @@ export function DocumentList() {
                   } ${path === id && '!bg-gray-200'}`}
                 >
                   {key}
-                  {snapshot}
                 </Link>
               </li>
             );
