@@ -8,6 +8,7 @@ function getDocumentJSON(snapshot: string | undefined): object {
   if (!snapshot) {
     return {};
   }
+  // TODO(chacha): escape ", \n, \r, \t in server-side
   return JSON.parse(filterEscape(snapshot));
 }
 
@@ -39,8 +40,6 @@ export function DocumentDatail() {
           <div className="py-6">
             <ReactJson
               src={documentJson}
-              collapsed={false}
-              enableClipboard={false}
               displayObjectSize={false}
               displayDataTypes={false}
             />
