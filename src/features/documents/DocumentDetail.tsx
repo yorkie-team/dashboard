@@ -27,8 +27,8 @@ export function DocumentDatail() {
   const documentJson = getDocumentJSON(document?.snapshot);
 
   useEffect(() => {
-    dispatch(getDocumentAsync(documentId));
-  }, [dispatch, documentId]);
+    dispatch(getDocumentAsync(documentID!));
+  }, [dispatch, documentID]);
 
   return (
     <div className="px-5 border-l border-gray-100">
