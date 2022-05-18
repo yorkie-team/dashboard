@@ -8,15 +8,7 @@ function getDocumentJSON(snapshot: string | undefined): object {
   if (!snapshot) {
     return {};
   }
-  // TODO(chacha): escape ", \n, \r, \t in server-side
-  return JSON.parse(filterEscape(snapshot));
-}
-
-function filterEscape(str: string): string {
-  return str //
-    .replace(/\n/g, '\\n')
-    .replace(/\r/g, '\\r')
-    .replace(/\t/g, '\\t');
+  return JSON.parse(snapshot);
 }
 
 // DocumentDetail represents the snapshot of document.
