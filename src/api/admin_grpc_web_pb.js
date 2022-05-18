@@ -197,6 +197,67 @@ proto.api.AdminPromiseClient.prototype.listProjects =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.api.GetProjectRequest,
+ *   !proto.api.GetProjectResponse>}
+ */
+const methodDescriptor_Admin_GetProject = new grpc.web.MethodDescriptor(
+  '/api.Admin/GetProject',
+  grpc.web.MethodType.UNARY,
+  proto.api.GetProjectRequest,
+  proto.api.GetProjectResponse,
+  /**
+   * @param {!proto.api.GetProjectRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.api.GetProjectResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.api.GetProjectRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.api.GetProjectResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.api.GetProjectResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.api.AdminClient.prototype.getProject =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/api.Admin/GetProject',
+      request,
+      metadata || {},
+      methodDescriptor_Admin_GetProject,
+      callback);
+};
+
+
+/**
+ * @param {!proto.api.GetProjectRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.api.GetProjectResponse>}
+ *     Promise that resolves to the response
+ */
+proto.api.AdminPromiseClient.prototype.getProject =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/api.Admin/GetProject',
+      request,
+      metadata || {},
+      methodDescriptor_Admin_GetProject);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.api.UpdateProjectRequest,
  *   !proto.api.UpdateProjectResponse>}
  */

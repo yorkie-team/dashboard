@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { Sidebar } from 'features/projects';
 import { DocumentList, DocumentDatail } from 'features/documents';
-import { Sidebar } from 'routes';
 
 export function Documents() {
   return (
@@ -19,7 +19,7 @@ export function Documents() {
             <DocumentList />
           </div>
           <Routes>
-            <Route path=":documentID" element={<DocumentDatail />} />
+            <Route path=":documentKey" element={<DocumentDatail />} />
           </Routes>
         </div>
       </main>

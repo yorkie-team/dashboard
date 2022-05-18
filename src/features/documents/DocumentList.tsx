@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { NavLink as Link, useParams } from 'react-router-dom';
 import * as moment from 'moment';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -10,24 +10,26 @@ export function DocumentList() {
   const { documents, hasPrevious, hasNext, status } =
     useAppSelector(selectDocumentList);
   const dispatch = useAppDispatch();
-  const path = useLocation().pathname.replace(/^\/documents\//, '');
+  const { projectName } = useParams();
 
   const handlePrevBtnClicked = useCallback(() => {
     dispatch(
-      listDocumentsAsync({ isForward: true, previousID: documents[0].id }),
+      listDocumentsAsync({ projectName: projectName!, isForward: true, previousID: documents[0].id }),
     );
-  }, [dispatch, documents]);
+  }, [dispatch, projectName, documents]);
 
   const handleNextBtnClicked = useCallback(() => {
     const lastDocument = documents[documents.length - 1];
     dispatch(
-      listDocumentsAsync({ isForward: false, previousID: lastDocument.id }),
+      listDocumentsAsync({ projectName: projectName!, isForward: false, previousID: lastDocument.id }),
     );
-  }, [dispatch, documents]);
+  }, [dispatch, projectName, documents]);
 
   useEffect(() => {
-    dispatch(listDocumentsAsync({ isForward: false }));
-  }, [dispatch]);
+    dispatch(listDocumentsAsync({ projectName: projectName!, isForward: false }));
+  }, [dispatch, projectName]);
+
+  const itemStyle = 'flex justify-between items-center p-2 w-full font-medium text-left text-gray-500 border border-gray-200 hover:bg-gray-100 break-all';
 
   return (
     <div className="py-6 w-80">
@@ -36,14 +38,12 @@ export function DocumentList() {
       {status === 'idle' && (
         <ul>
           {documents.map((document, idx) => {
-            const { id, key, createdAt } = document;
+            const { key, createdAt } = document;
             return (
-              <li key={id}>
+              <li key={key}>
                 <Link
-                  to={`./${id}`}
-                  className={`flex justify-between items-center p-2 w-full font-medium text-left text-gray-500 border border-gray-200 hover:bg-gray-100 break-all ${
-                    idx === documents.length - 1 ? '' : 'border-b-0'
-                  } ${path === id && '!bg-gray-200'}`}
+                  to={`./${key}`}
+                  className={({ isActive }) => isActive ? `${itemStyle} !bg-gray-200` : `${itemStyle}` }
                 >
                   {`${key} ${moment.unix(createdAt).format('YYYY-MM-DD')}`}
                 </Link>

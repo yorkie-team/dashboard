@@ -22,6 +22,13 @@ export class AdminClient {
                response: admin_pb.ListProjectsResponse) => void
   ): grpcWeb.ClientReadableStream<admin_pb.ListProjectsResponse>;
 
+  getProject(
+    request: admin_pb.GetProjectRequest,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.RpcError,
+               response: admin_pb.GetProjectResponse) => void
+  ): grpcWeb.ClientReadableStream<admin_pb.GetProjectResponse>;
+
   updateProject(
     request: admin_pb.UpdateProjectRequest,
     metadata: grpcWeb.Metadata | undefined,
@@ -59,6 +66,11 @@ export class AdminPromiseClient {
     request: admin_pb.ListProjectsRequest,
     metadata?: grpcWeb.Metadata
   ): Promise<admin_pb.ListProjectsResponse>;
+
+  getProject(
+    request: admin_pb.GetProjectRequest,
+    metadata?: grpcWeb.Metadata
+  ): Promise<admin_pb.GetProjectResponse>;
 
   updateProject(
     request: admin_pb.UpdateProjectRequest,

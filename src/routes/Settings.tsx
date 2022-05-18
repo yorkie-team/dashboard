@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sidebar } from 'routes';
+import { Sidebar } from 'features/projects';
 
 export function Settings() {
   return (

@@ -1,6 +1,5 @@
 import React from 'react';
-import { ProjectOverview } from 'features/projects';
-import { Sidebar } from 'routes';
+import { Sidebar, ProjectOverview } from 'features/projects';
 
 export function Project() {
   return (
