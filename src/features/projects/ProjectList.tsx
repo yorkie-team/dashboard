@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import * as moment from 'moment';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { selectProjects, listProjectsAsync } from './projectsSlice';
+
+import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { selectProjectList, listProjectsAsync } from './projectsSlice';
 
 // ProjectList represents the list of projects in the application.
 export function ProjectList() {
-  const { projects, status } = useAppSelector(selectProjects);
+  const { projects, status } = useAppSelector(selectProjectList);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -27,24 +28,22 @@ export function ProjectList() {
       {status === 'idle' && (
         <ul className="flex flex-wrap">
           {projects.map((project) => {
-            const { id, name, publicKey, secretKey, createdAt } = project;
+            const { name, publicKey, secretKey, createdAt } = project;
             return (
               <li
-                key={id}
+                key={name}
                 className="p-6 mr-4 mb-4 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100"
               >
-                <Link to={`./${id}`}>
+                <Link to={`./${name}`}>
                   <h5 className="mb-4 text-2xl font-bold tracking-tight text-gray-900 break-words">
                     {name}
                   </h5>
                   <p className="text-gray-700 text-sm">
-                    {id}
+                    Public Key: {publicKey}
                     <br />
-                    {publicKey}
+                    Secret Key: {secretKey}
                     <br />
-                    {secretKey}
-                    <br />
-                    {moment.unix(createdAt).format('YYYY-MM-DD')}
+                    Created At: {moment.unix(createdAt).format('YYYY-MM-DD')}
                   </p>
                 </Link>
               </li>

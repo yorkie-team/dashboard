@@ -1,5 +1,5 @@
-import { ProjectList } from 'features/projects';
 import React from 'react';
+import { ProjectList } from 'features/projects';
 
 export function Projects() {
   return (

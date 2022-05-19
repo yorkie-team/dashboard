@@ -15,12 +15,15 @@ function getDocumentJSON(snapshot: string | undefined): object {
 export function DocumentDatail() {
   const { document, status } = useAppSelector(selectDocumentDetail);
   const dispatch = useAppDispatch();
-  const { documentID } = useParams();
+  const { projectName, documentKey } = useParams();
   const documentJson = getDocumentJSON(document?.snapshot);
 
   useEffect(() => {
-    dispatch(getDocumentAsync(documentID!));
-  }, [dispatch, documentID]);
+    dispatch(getDocumentAsync({
+      projectName: projectName!,
+      documentKey: documentKey!,
+    }));
+  }, [dispatch, projectName, documentKey]);
 
   return (
     <div className="px-5 border-l border-gray-100">

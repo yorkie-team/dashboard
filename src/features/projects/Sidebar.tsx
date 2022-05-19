@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink as Link, useParams } from 'react-router-dom';
+import { useAppDispatch } from 'app/hooks';
+import { getProjectAsync } from './projectsSlice';
 
 export function Sidebar() {
+  let { projectName } = useParams();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (!projectName) {
+      return;
+    }
+
+    dispatch(getProjectAsync(projectName));
+  }, [dispatch, projectName]);
+
   const itemStyle =
     'flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100';
   const activeStyle = '!bg-gray-200';
-
-  let { projectID } = useParams();
 
   return (
     <div className="overflow-y-auto py-4 px-3">
@@ -20,7 +31,7 @@ export function Sidebar() {
       <ul className="space-y-2">
         <li>
           <Link
-            to={`/projects/${projectID}`}
+            to={`/projects/${projectName}`}
             className={({ isActive }) =>
               isActive ? `${itemStyle} ${activeStyle}` : itemStyle
             }
@@ -45,7 +56,7 @@ export function Sidebar() {
         </li>
         <li>
           <Link
-            to={`/projects/${projectID}/documents`}
+            to={`/projects/${projectName}/documents`}
             className={({ isActive }) =>
               isActive ? `${itemStyle} ${activeStyle}` : itemStyle
             }
@@ -69,7 +80,7 @@ export function Sidebar() {
         </li>
         <li>
           <Link
-            to={`/projects/${projectID}/settings`}
+            to={`/projects/${projectName}/settings`}
             className={({ isActive }) =>
               isActive ? `${itemStyle} ${activeStyle}` : itemStyle
             }

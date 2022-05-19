@@ -13,9 +13,9 @@ function App() {
       <Routes>
         <Route path="/projects" element={<Projects />} />
         <Route path="/projects/new" element={<CreateProject />} />
-        <Route path="/projects/:projectID" element={<Project />} />
-        <Route path="/projects/:projectID/documents/*" element={<Documents />} />
-        <Route path="/projects/:projectID/settings" element={<Settings />} />
+        <Route path="/projects/:projectName" element={<Project />} />
+        <Route path="/projects/:projectName/documents/*" element={<Documents />} />
+        <Route path="/projects/:projectName/settings" element={<Settings />} />
         <Route path="/" element={<Navigate to="/projects" />} />
       </Routes>
     </Router>

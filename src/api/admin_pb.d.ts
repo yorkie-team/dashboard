@@ -41,6 +41,44 @@ export namespace CreateProjectResponse {
   }
 }
 
+export class GetProjectRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): GetProjectRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetProjectRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetProjectRequest): GetProjectRequest.AsObject;
+  static serializeBinaryToWriter(message: GetProjectRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetProjectRequest;
+  static deserializeBinaryFromReader(message: GetProjectRequest, reader: jspb.BinaryReader): GetProjectRequest;
+}
+
+export namespace GetProjectRequest {
+  export type AsObject = {
+    name: string,
+  }
+}
+
+export class GetProjectResponse extends jspb.Message {
+  getProject(): resources_pb.Project | undefined;
+  setProject(value?: resources_pb.Project): GetProjectResponse;
+  hasProject(): boolean;
+  clearProject(): GetProjectResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetProjectResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetProjectResponse): GetProjectResponse.AsObject;
+  static serializeBinaryToWriter(message: GetProjectResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetProjectResponse;
+  static deserializeBinaryFromReader(message: GetProjectResponse, reader: jspb.BinaryReader): GetProjectResponse;
+}
+
+export namespace GetProjectResponse {
+  export type AsObject = {
+    project?: resources_pb.Project.AsObject,
+  }
+}
+
 export class ListProjectsRequest extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListProjectsRequest.AsObject;
@@ -110,6 +148,9 @@ export namespace UpdateProjectResponse {
 }
 
 export class ListDocumentsRequest extends jspb.Message {
+  getProjectName(): string;
+  setProjectName(value: string): ListDocumentsRequest;
+
   getPreviousId(): string;
   setPreviousId(value: string): ListDocumentsRequest;
 
@@ -129,6 +170,7 @@ export class ListDocumentsRequest extends jspb.Message {
 
 export namespace ListDocumentsRequest {
   export type AsObject = {
+    projectName: string,
     previousId: string,
     pageSize: number,
     isForward: boolean,
@@ -156,8 +198,11 @@ export namespace ListDocumentsResponse {
 }
 
 export class GetDocumentRequest extends jspb.Message {
-  getId(): string;
-  setId(value: string): GetDocumentRequest;
+  getProjectName(): string;
+  setProjectName(value: string): GetDocumentRequest;
+
+  getDocumentKey(): string;
+  setDocumentKey(value: string): GetDocumentRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetDocumentRequest.AsObject;
@@ -169,7 +214,8 @@ export class GetDocumentRequest extends jspb.Message {
 
 export namespace GetDocumentRequest {
   export type AsObject = {
-    id: string,
+    projectName: string,
+    documentKey: string,
   }
 }
 
