@@ -10,7 +10,7 @@ export interface ProjectsState {
   detail: {
     project: Project | null;
     status: 'idle' | 'loading' | 'failed';
-  }
+  };
 }
 
 const initialState: ProjectsState = {
@@ -21,7 +21,7 @@ const initialState: ProjectsState = {
   detail: {
     project: null,
     status: 'idle',
-  }
+  },
 };
 
 export const listProjectsAsync = createAsyncThunk(
@@ -65,7 +65,6 @@ export const projectsSlice = createSlice({
     builder.addCase(getProjectAsync.rejected, (state) => {
       state.detail.status = 'failed';
     });
-
   },
 });
 

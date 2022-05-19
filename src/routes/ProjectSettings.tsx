@@ -1,7 +1,7 @@
 import React from 'react';
-import { Sidebar } from 'features/projects';
+import { Sidebar, Settings } from 'features/projects';
 
-export function Settings() {
+export function ProjectSettings() {
   return (
     <div className="relative h-screen flex">
       <aside
@@ -13,6 +13,7 @@ export function Settings() {
       <main className="ml-64 grow overflow-y-scroll">
         <div className="px-12 py-6">
           <h2 className="text-lg font-semibold">Settings</h2>
+          <Settings />
         </div>
       </main>
     </div>

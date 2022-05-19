@@ -11,7 +11,7 @@ import {
   ProjectAPIKeys,
   Project,
   Documents,
-  Settings,
+  ProjectSettings,
 } from 'routes';
 
 function App() {
@@ -21,9 +21,18 @@ function App() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/projects/new" element={<CreateProject />} />
         <Route path="/projects/:projectName" element={<Project />} />
-        <Route path="/projects/:projectName/apikeys" element={<ProjectAPIKeys />} />
-        <Route path="/projects/:projectName/documents/*" element={<Documents />} />
-        <Route path="/projects/:projectName/settings" element={<Settings />} />
+        <Route
+          path="/projects/:projectName/apikeys"
+          element={<ProjectAPIKeys />}
+        />
+        <Route
+          path="/projects/:projectName/documents/*"
+          element={<Documents />}
+        />
+        <Route
+          path="/projects/:projectName/settings"
+          element={<ProjectSettings />}
+        />
         <Route path="/" element={<Navigate to="/projects" />} />
       </Routes>
     </Router>

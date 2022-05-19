@@ -42,7 +42,12 @@ export const listDocumentsAsync = createAsyncThunk(
     hasPrevious: boolean;
   }> => {
     const { projectName, isForward, previousID = '' } = params;
-    const documents = await listDocuments(projectName, previousID, pageSize + 1, isForward);
+    const documents = await listDocuments(
+      projectName,
+      previousID,
+      pageSize + 1,
+      isForward,
+    );
 
     return getPaginationData({ documents, isForward, previousID, pageSize });
   },
@@ -50,7 +55,10 @@ export const listDocumentsAsync = createAsyncThunk(
 
 export const getDocumentAsync = createAsyncThunk(
   'documents/getDocument',
-  async (params: {projectName: string, documentKey: string}): Promise<DocumentSummary> => {
+  async (params: {
+    projectName: string;
+    documentKey: string;
+  }): Promise<DocumentSummary> => {
     const { projectName, documentKey } = params;
     const document = await getDocument(projectName, documentKey);
     return document;

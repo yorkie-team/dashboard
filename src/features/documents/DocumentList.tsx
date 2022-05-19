@@ -1,5 +1,9 @@
 import React, { useCallback, useEffect } from 'react';
-import { NavLink as Link, useParams } from 'react-router-dom';
+import {
+  useParams,
+  useNavigate,
+  useLocation,
+} from 'react-router-dom';
 import * as moment from 'moment';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
@@ -8,48 +12,98 @@ import { selectDocumentList, listDocumentsAsync } from './documentsSlice';
 export function DocumentList() {
   const { documents, hasPrevious, hasNext, status } =
     useAppSelector(selectDocumentList);
-  const dispatch = useAppDispatch();
   const { projectName } = useParams();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(
+      listDocumentsAsync({ projectName: projectName!, isForward: false }),
+    );
+  }, [dispatch, projectName]);
+
+  const documentKey = location.pathname.replace(
+    /^\/projects\/(.*)\/documents\//,
+    '',
+  );
+
+  const handleRowClicked = useCallback(
+    (key: string) => {
+      navigate(`./${key}`);
+    },
+    [navigate],
+  );
 
   const handlePrevBtnClicked = useCallback(() => {
     dispatch(
-      listDocumentsAsync({ projectName: projectName!, isForward: true, previousID: documents[0].id }),
+      listDocumentsAsync({
+        projectName: projectName!,
+        isForward: true,
+        previousID: documents[0].id,
+      }),
     );
   }, [dispatch, projectName, documents]);
 
   const handleNextBtnClicked = useCallback(() => {
     const lastDocument = documents[documents.length - 1];
     dispatch(
-      listDocumentsAsync({ projectName: projectName!, isForward: false, previousID: lastDocument.id }),
+      listDocumentsAsync({
+        projectName: projectName!,
+        isForward: false,
+        previousID: lastDocument.id,
+      }),
     );
   }, [dispatch, projectName, documents]);
 
-  useEffect(() => {
-    dispatch(listDocumentsAsync({ projectName: projectName!, isForward: false }));
-  }, [dispatch, projectName]);
-
-  const itemStyle = 'flex justify-between items-center p-2 w-full font-medium text-left text-gray-500 border border-gray-200 hover:bg-gray-100 break-all';
-
   return (
-    <div className="py-6 w-80">
+    <div className="py-6">
       {status === 'loading' && <div>Loading...</div>}
       {status === 'failed' && <div>Failed!</div>}
       {status === 'idle' && (
-        <ul>
-          {documents.map((document, idx) => {
-            const { key, createdAt } = document;
-            return (
-              <li key={key}>
-                <Link
-                  to={`./${key}`}
-                  className={({ isActive }) => isActive ? `${itemStyle} !bg-gray-200` : `${itemStyle}` }
-                >
-                  {`${key} ${moment.unix(createdAt).format('YYYY-MM-DD')}`}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        <div className="relative">
+          <table className="w-full text-sm text-left">
+            <thead className="text-xs text-gray-700 uppercase">
+              <tr>
+                <th scope="col" className="px-6 py-3">
+                  Key
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Created At
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Updated At
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {documents.map((document, idx) => {
+                const { key, createdAt, updatedAt } = document;
+                return (
+                  <tr
+                    key={key}
+                    className={`cursor-pointer ${
+                      documentKey === key ? 'bg-gray-100' : 'hover:bg-gray-200'
+                    }`}
+                    onClick={() => handleRowClicked(key)}
+                  >
+                    <td
+                      className="px-6 py-4 font-medium whitespace-nowrap"
+                    >
+                      {key}
+                    </td>
+                    <td className="px-6 py-4">
+                      {moment.unix(createdAt).format('YYYY-MM-DD')}
+                    </td>
+                    <td className="px-6 py-4">
+                      {moment.unix(updatedAt).format('YYYY-MM-DD')}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       )}
       <div className="flex items-center space-x-2 mt-6">
         <button

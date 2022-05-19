@@ -54,4 +54,3 @@ export function fromDocumentSummaries(
 
   return documentSummaries;
 }
-

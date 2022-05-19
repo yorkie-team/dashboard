@@ -63,7 +63,10 @@ export async function listDocuments(
 }
 
 // getDocument fetches a document of the given ID from the admin server.
-export async function getDocument(projectName: string, documentKey: string): Promise<DocumentSummary> {
+export async function getDocument(
+  projectName: string,
+  documentKey: string,
+): Promise<DocumentSummary> {
   const req = new GetDocumentRequest();
   req.setProjectName(projectName);
   req.setDocumentKey(documentKey);

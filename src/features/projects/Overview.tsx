@@ -10,8 +10,7 @@ export function Overview() {
     <div>
       {status === 'loading' && <div>Loading...</div>}
       {status === 'failed' && <div>Failed!</div>}
-      {status === 'idle' && (<div>{project?.name}</div>)}
+      {status === 'idle' && <div>{project?.name}</div>}
     </div>
-    
   );
 }
