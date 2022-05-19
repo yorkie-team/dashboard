@@ -9,10 +9,8 @@ export function ProjectRegistForm() {
     async (e) => {
       e.preventDefault();
 
-      const newProject = await createProject(nameRef.current?.value!);
-      console.log(newProject);
-
-      navigate('../projects');
+      const project = await createProject(nameRef.current?.value!);
+      navigate(`../projects/${project.name}`);
     },
     [navigate],
   );

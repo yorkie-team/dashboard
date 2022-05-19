@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ReactJson from 'react-json-view';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectDocumentDetail, getDocumentAsync } from './documentsSlice';
@@ -31,6 +31,11 @@ export function DocumentDatail() {
       {status === 'failed' && <div>Failed!</div>}
       {status === 'idle' && (
         <>
+          <Link to={'../'} className="float-right text-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium text-sm p-1 text-center inline-flex items-center dark:text-gray-500 dark:focus:ring-gray-800">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </Link>
           <h2 className="text-lg font-semibold">{document?.key}</h2>
           <div className="py-6">
             <ReactJson
