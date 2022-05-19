@@ -1,4 +1,4 @@
-import { DocumentSummary } from '../../api';
+import { DocumentSummary } from 'api';
 import { getPaginationData } from './documentsSlice';
 
 const PAGE_SIZE = 5;

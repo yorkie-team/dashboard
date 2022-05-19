@@ -1,4 +1,5 @@
 export * from './ProjectList';
-export * from './ProjectOverview';
-export * from './ProjectRegistForm';
+export * from './Overview';
+export * from './RegisterForm';
+export * from './APIKeys';
 export * from './Sidebar';

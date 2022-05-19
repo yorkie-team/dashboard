@@ -1,7 +1,7 @@
 import React from 'react';
-import { Sidebar, Overview } from 'features/projects';
+import { Sidebar, APIKeys } from 'features/projects';
 
-export function Project() {
+export function ProjectAPIKeys() {
   return (
     <div className="relative h-screen flex">
       <aside
@@ -12,8 +12,8 @@ export function Project() {
       </aside>
       <main className="ml-64 grow overflow-y-scroll">
         <div className="px-12 py-6">
-          <h2 className="text-lg font-semibold">Overview</h2>
-          <Overview />
+          <h2 className="text-lg font-semibold">API Keys</h2>
+          <APIKeys />
         </div>
       </main>
     </div>

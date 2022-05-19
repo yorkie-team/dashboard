@@ -3,7 +3,7 @@ import React from 'react';
 import { useAppSelector } from 'app/hooks';
 import { selectProjectDetail } from './projectsSlice';
 
-export function ProjectOverview() {
+export function Overview() {
   const { project, status } = useAppSelector(selectProjectDetail);
 
   return (

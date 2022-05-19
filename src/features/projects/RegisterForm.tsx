@@ -2,7 +2,7 @@ import React, { useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createProject } from 'api';
 
-export function ProjectRegistForm() {
+export function RegisterForm() {
   const navigate = useNavigate();
   const nameRef = useRef<HTMLInputElement | null>(null);
   const handleSumbit = useCallback(

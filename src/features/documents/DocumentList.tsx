@@ -2,10 +2,9 @@ import React, { useCallback, useEffect } from 'react';
 import { NavLink as Link, useParams } from 'react-router-dom';
 import * as moment from 'moment';
 
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectDocumentList, listDocumentsAsync } from './documentsSlice';
 
-// DocumentList represents the list of documents in the application.
 export function DocumentList() {
   const { documents, hasPrevious, hasNext, status } =
     useAppSelector(selectDocumentList);

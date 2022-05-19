@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../../app/store';
-import { getDocument, listDocuments, DocumentSummary } from '../../api';
+import { RootState } from 'app/store';
+import { getDocument, listDocuments, DocumentSummary } from 'api';
 
 export interface DocumentsState {
   list: {

@@ -11,7 +11,6 @@ function getDocumentJSON(snapshot: string | undefined): object {
   return JSON.parse(snapshot);
 }
 
-// DocumentDetail represents the snapshot of document.
 export function DocumentDatail() {
   const { document, status } = useAppSelector(selectDocumentDetail);
   const dispatch = useAppDispatch();
