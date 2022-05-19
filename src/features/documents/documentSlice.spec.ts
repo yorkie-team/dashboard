@@ -28,13 +28,7 @@ describe('Pagination', () => {
 
       expect(result.hasPrevious).toEqual(false);
       expect(result.hasNext).toEqual(false);
-      expect(result.documents.map((document) => document.id)).toEqual([
-        '14',
-        '13',
-        '12',
-        '11',
-        '10',
-      ]);
+      expect(result.documents.map((document) => document.id)).toEqual(['14', '13', '12', '11', '10']);
     });
   });
 
@@ -50,13 +44,7 @@ describe('Pagination', () => {
 
       expect(result.hasPrevious).toEqual(false);
       expect(result.hasNext).toEqual(true);
-      expect(result.documents.map((document) => document.id)).toEqual([
-        '14',
-        '13',
-        '12',
-        '11',
-        '10',
-      ]);
+      expect(result.documents.map((document) => document.id)).toEqual(['14', '13', '12', '11', '10']);
     });
 
     it('Previous button should be disabled when moving to first page', () => {
@@ -70,13 +58,7 @@ describe('Pagination', () => {
 
       expect(result.hasPrevious).toEqual(false);
       expect(result.hasNext).toEqual(true);
-      expect(result.documents.map((document) => document.id)).toEqual([
-        '14',
-        '13',
-        '12',
-        '11',
-        '10',
-      ]);
+      expect(result.documents.map((document) => document.id)).toEqual(['14', '13', '12', '11', '10']);
     });
 
     it('Next button should be disabled when moving to last page', () => {
@@ -90,13 +72,7 @@ describe('Pagination', () => {
 
       expect(result.hasPrevious).toEqual(true);
       expect(result.hasNext).toEqual(false);
-      expect(result.documents.map((document) => document.id)).toEqual([
-        '4',
-        '3',
-        '2',
-        '1',
-        '0',
-      ]);
+      expect(result.documents.map((document) => document.id)).toEqual(['4', '3', '2', '1', '0']);
     });
 
     it('Previous and next buttons should be abled when moving to next page', () => {
@@ -110,13 +86,7 @@ describe('Pagination', () => {
 
       expect(result.hasPrevious).toEqual(true);
       expect(result.hasNext).toEqual(true);
-      expect(result.documents.map((document) => document.id)).toEqual([
-        '9',
-        '8',
-        '7',
-        '6',
-        '5',
-      ]);
+      expect(result.documents.map((document) => document.id)).toEqual(['9', '8', '7', '6', '5']);
     });
 
     it('Previous and next buttons should be abled when moving to previous page', () => {
@@ -130,13 +100,7 @@ describe('Pagination', () => {
 
       expect(result.hasPrevious).toEqual(true);
       expect(result.hasNext).toEqual(true);
-      expect(result.documents.map((document) => document.id)).toEqual([
-        '9',
-        '8',
-        '7',
-        '6',
-        '5',
-      ]);
+      expect(result.documents.map((document) => document.id)).toEqual(['9', '8', '7', '6', '5']);
     });
   });
 });

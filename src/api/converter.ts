@@ -1,10 +1,7 @@
 import { Timestamp as PbTimestamp } from 'google-protobuf/google/protobuf/timestamp_pb';
 import { Project, DocumentSummary } from './types';
 
-import {
-  Project as PbProject,
-  DocumentSummary as PbDocumentSummary,
-} from './resources_pb';
+import { Project as PbProject, DocumentSummary as PbDocumentSummary } from './resources_pb';
 
 export function fromTimestamp(pbTimestamp: PbTimestamp): number {
   return pbTimestamp.getSeconds() + pbTimestamp.getNanos() / 1000;
@@ -30,9 +27,7 @@ export function fromProjects(pbProjects: Array<PbProject>): Array<Project> {
   return projects;
 }
 
-export function fromDocumentSummary(
-  pbDocumentSummary: PbDocumentSummary,
-): DocumentSummary {
+export function fromDocumentSummary(pbDocumentSummary: PbDocumentSummary): DocumentSummary {
   return {
     id: pbDocumentSummary.getId(),
     key: pbDocumentSummary.getKey()!,
@@ -43,9 +38,7 @@ export function fromDocumentSummary(
   };
 }
 
-export function fromDocumentSummaries(
-  pbDocumentSummaries: Array<PbDocumentSummary>,
-): Array<DocumentSummary> {
+export function fromDocumentSummaries(pbDocumentSummaries: Array<PbDocumentSummary>): Array<DocumentSummary> {
   const documentSummaries: Array<DocumentSummary> = [];
 
   for (const pbDocumentSummary of pbDocumentSummaries) {

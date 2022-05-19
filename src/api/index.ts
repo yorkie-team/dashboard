@@ -12,10 +12,7 @@ import * as converter from './converter';
 
 export * from './types';
 
-const client = new AdminPromiseClient(
-  `${process.env.REACT_APP_ADMIN_ADDR}`,
-  null,
-);
+const client = new AdminPromiseClient(`${process.env.REACT_APP_ADMIN_ADDR}`, null);
 
 // createProject creates a new project.
 export async function createProject(name: string): Promise<Project> {
@@ -53,9 +50,7 @@ export async function listDocuments(
   req.setPageSize(pageSize);
   req.setIsForward(isForward);
   const response = await client.listDocuments(req);
-  const summaries = converter.fromDocumentSummaries(
-    response.getDocumentsList(),
-  );
+  const summaries = converter.fromDocumentSummaries(response.getDocumentsList());
   if (isForward) {
     summaries.reverse();
   }
@@ -63,10 +58,7 @@ export async function listDocuments(
 }
 
 // getDocument fetches a document of the given ID from the admin server.
-export async function getDocument(
-  projectName: string,
-  documentKey: string,
-): Promise<DocumentSummary> {
+export async function getDocument(projectName: string, documentKey: string): Promise<DocumentSummary> {
   const req = new GetDocumentRequest();
   req.setProjectName(projectName);
   req.setDocumentKey(documentKey);

@@ -44,20 +44,12 @@ export function DocumentDatail() {
               stroke="currentColor"
               strokeWidth="2"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </Link>
           <h2 className="text-lg font-semibold">{document?.key}</h2>
           <div className="py-6">
-            <ReactJson
-              src={documentJson}
-              displayObjectSize={false}
-              displayDataTypes={false}
-            />
+            <ReactJson src={documentJson} displayObjectSize={false} displayDataTypes={false} />
           </div>
         </>
       )}

@@ -18,10 +18,7 @@ export function RegisterForm() {
   return (
     <form className="mt-10" onSubmit={handleSumbit}>
       <div className="mb-6">
-        <label
-          htmlFor="prjName"
-          className="block mb-2 text-sm font-medium text-gray-900 "
-        >
+        <label htmlFor="prjName" className="block mb-2 text-sm font-medium text-gray-900 ">
           Project name
         </label>
         <input

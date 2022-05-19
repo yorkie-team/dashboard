@@ -24,21 +24,15 @@ const initialState: ProjectsState = {
   },
 };
 
-export const listProjectsAsync = createAsyncThunk(
-  'projects/listDocuments',
-  async (): Promise<Array<Project>> => {
-    const projects = await listProjects();
-    return projects;
-  },
-);
+export const listProjectsAsync = createAsyncThunk('projects/listDocuments', async (): Promise<Array<Project>> => {
+  const projects = await listProjects();
+  return projects;
+});
 
-export const getProjectAsync = createAsyncThunk(
-  'projects/getProject',
-  async (name: string): Promise<Project> => {
-    const project = await getProject(name);
-    return project;
-  },
-);
+export const getProjectAsync = createAsyncThunk('projects/getProject', async (name: string): Promise<Project> => {
+  const project = await getProject(name);
+  return project;
+});
 
 export const projectsSlice = createSlice({
   name: 'projects',

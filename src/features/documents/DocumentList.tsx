@@ -1,32 +1,22 @@
 import React, { useCallback, useEffect } from 'react';
-import {
-  useParams,
-  useNavigate,
-  useLocation,
-} from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import * as moment from 'moment';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectDocumentList, listDocumentsAsync } from './documentsSlice';
 
 export function DocumentList() {
-  const { documents, hasPrevious, hasNext, status } =
-    useAppSelector(selectDocumentList);
+  const { documents, hasPrevious, hasNext, status } = useAppSelector(selectDocumentList);
   const { projectName } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(
-      listDocumentsAsync({ projectName: projectName!, isForward: false }),
-    );
+    dispatch(listDocumentsAsync({ projectName: projectName!, isForward: false }));
   }, [dispatch, projectName]);
 
-  const documentKey = location.pathname.replace(
-    /^\/projects\/(.*)\/documents\//,
-    '',
-  );
+  const documentKey = location.pathname.replace(/^\/projects\/(.*)\/documents\//, '');
 
   const handleRowClicked = useCallback(
     (key: string) => {
@@ -82,22 +72,12 @@ export function DocumentList() {
                 return (
                   <tr
                     key={key}
-                    className={`cursor-pointer ${
-                      documentKey === key ? 'bg-gray-100' : 'hover:bg-gray-200'
-                    }`}
+                    className={`cursor-pointer ${documentKey === key ? 'bg-gray-100' : 'hover:bg-gray-200'}`}
                     onClick={() => handleRowClicked(key)}
                   >
-                    <td
-                      className="px-6 py-4 font-medium whitespace-nowrap"
-                    >
-                      {key}
-                    </td>
-                    <td className="px-6 py-4">
-                      {moment.unix(createdAt).format('YYYY-MM-DD')}
-                    </td>
-                    <td className="px-6 py-4">
-                      {moment.unix(updatedAt).format('YYYY-MM-DD')}
-                    </td>
+                    <td className="px-6 py-4 font-medium whitespace-nowrap">{key}</td>
+                    <td className="px-6 py-4">{moment.unix(createdAt).format('YYYY-MM-DD')}</td>
+                    <td className="px-6 py-4">{moment.unix(updatedAt).format('YYYY-MM-DD')}</td>
                   </tr>
                 );
               })}
@@ -127,11 +107,7 @@ export function DocumentList() {
                 clipRule="evenodd"
                 d="M6.46961 13.5303L1.93928 8.99994L6.46961 4.46961L7.53027 5.53027L3.86 8.99994L7.53027 12.4696L6.46961 13.5303Z"
               ></path>
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M13 9.75L3.5 9.65L3.5 8.3501L13 8.25V9.75Z"
-              ></path>
+              <path fillRule="evenodd" clipRule="evenodd" d="M13 9.75L3.5 9.65L3.5 8.3501L13 8.25V9.75Z"></path>
             </svg>
             Previous
           </span>
@@ -158,11 +134,7 @@ export function DocumentList() {
                 clipRule="evenodd"
                 d="M9.53039 4.46973L14.0607 9.00006L9.53039 13.5304L8.46973 12.4697L12.14 9.00006L8.46973 5.53039L9.53039 4.46973Z"
               ></path>
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M3 8.25L12.5 8.35V9.65L3 9.75V8.25Z"
-              ></path>
+              <path fillRule="evenodd" clipRule="evenodd" d="M3 8.25L12.5 8.35V9.65L3 9.75V8.25Z"></path>
             </svg>
           </span>
         </button>
