@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Sidebar } from 'features/projects';
-import { DocumentList, DocumentDatail } from 'features/documents';
+import { DocumentList, DocumentDetail } from 'features/documents';
 
 export function Documents() {
   return (
@@ -16,7 +16,7 @@ export function Documents() {
             <DocumentList />
           </div>
           <Routes>
-            <Route path=":documentKey" element={<DocumentDatail />} />
+            <Route path=":documentKey" element={<DocumentDetail />} />
           </Routes>
         </div>
       </main>

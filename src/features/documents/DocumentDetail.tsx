@@ -11,7 +11,7 @@ function getDocumentJSON(snapshot: string | undefined): object {
   return JSON.parse(snapshot);
 }
 
-export function DocumentDatail() {
+export function DocumentDetail() {
   const { document, status } = useAppSelector(selectDocumentDetail);
   const dispatch = useAppDispatch();
   const { projectName, documentKey } = useParams();
