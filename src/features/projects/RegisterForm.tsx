@@ -5,7 +5,7 @@ import { createProject } from 'api';
 export function RegisterForm() {
   const navigate = useNavigate();
   const nameRef = useRef<HTMLInputElement | null>(null);
-  const handleSumbit = useCallback(
+  const handleSubmit = useCallback(
     async (e) => {
       e.preventDefault();
 
@@ -16,7 +16,7 @@ export function RegisterForm() {
   );
 
   return (
-    <form className="mt-10" onSubmit={handleSumbit}>
+    <form className="mt-10" onSubmit={handleSubmit}>
       <div className="mb-6">
         <label htmlFor="prjName" className="block mb-2 text-sm font-medium text-gray-900 ">
           Project name
