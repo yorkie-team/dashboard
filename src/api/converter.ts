@@ -4,7 +4,7 @@ import { Project, DocumentSummary } from './types';
 import { Project as PbProject, DocumentSummary as PbDocumentSummary } from './resources_pb';
 
 export function fromTimestamp(pbTimestamp: PbTimestamp): number {
-  return pbTimestamp.getSeconds() + pbTimestamp.getNanos() / 1000;
+  return pbTimestamp.getSeconds() + pbTimestamp.getNanos() / 1e9;
 }
 
 export function fromProject(pbProject: PbProject): Project {
