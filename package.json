@@ -54,7 +54,8 @@
     ],
     "rules": {
       "spellcheck/spell-checker": [
-        "warn", {
+        "warn",
+        {
           "strings": false,
           "skipWords": [
             "req",
@@ -64,7 +65,10 @@
             "idx",
             "unix",
             "unregister",
-            "apikeys"
+            "apikeys",
+            "webhook",
+            "updatable",
+            "protobuf"
           ]
         }
       ]

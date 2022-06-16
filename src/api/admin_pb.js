@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = Function('return this')();
+var global = (function() {
+  if (this) { return this; }
+  if (typeof window !== 'undefined') { return window; }
+  if (typeof global !== 'undefined') { return global; }
+  if (typeof self !== 'undefined') { return self; }
+  return Function('return this')();
+}.call(null));
 
 var resources_pb = require('./resources_pb.js');
 goog.object.extend(proto, resources_pb);
@@ -1136,7 +1142,8 @@ proto.api.UpdateProjectRequest.prototype.toObject = function(opt_includeInstance
  */
 proto.api.UpdateProjectRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    project: (f = msg.getProject()) && resources_pb.Project.toObject(includeInstance, f)
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    fields: (f = msg.getFields()) && resources_pb.UpdatableProjectFields.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1174,9 +1181,13 @@ proto.api.UpdateProjectRequest.deserializeBinaryFromReader = function(msg, reade
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new resources_pb.Project;
-      reader.readMessage(value,resources_pb.Project.deserializeBinaryFromReader);
-      msg.setProject(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    case 2:
+      var value = new resources_pb.UpdatableProjectFields;
+      reader.readMessage(value,resources_pb.UpdatableProjectFields.deserializeBinaryFromReader);
+      msg.setFields(value);
       break;
     default:
       reader.skipField();
@@ -1207,33 +1218,58 @@ proto.api.UpdateProjectRequest.prototype.serializeBinary = function() {
  */
 proto.api.UpdateProjectRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getProject();
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getFields();
   if (f != null) {
     writer.writeMessage(
-      1,
+      2,
       f,
-      resources_pb.Project.serializeBinaryToWriter
+      resources_pb.UpdatableProjectFields.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional Project project = 1;
- * @return {?proto.api.Project}
+ * optional string id = 1;
+ * @return {string}
  */
-proto.api.UpdateProjectRequest.prototype.getProject = function() {
-  return /** @type{?proto.api.Project} */ (
-    jspb.Message.getWrapperField(this, resources_pb.Project, 1));
+proto.api.UpdateProjectRequest.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {?proto.api.Project|undefined} value
+ * @param {string} value
+ * @return {!proto.api.UpdateProjectRequest} returns this
+ */
+proto.api.UpdateProjectRequest.prototype.setId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional UpdatableProjectFields fields = 2;
+ * @return {?proto.api.UpdatableProjectFields}
+ */
+proto.api.UpdateProjectRequest.prototype.getFields = function() {
+  return /** @type{?proto.api.UpdatableProjectFields} */ (
+    jspb.Message.getWrapperField(this, resources_pb.UpdatableProjectFields, 2));
+};
+
+
+/**
+ * @param {?proto.api.UpdatableProjectFields|undefined} value
  * @return {!proto.api.UpdateProjectRequest} returns this
 */
-proto.api.UpdateProjectRequest.prototype.setProject = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
+proto.api.UpdateProjectRequest.prototype.setFields = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
@@ -1241,8 +1277,8 @@ proto.api.UpdateProjectRequest.prototype.setProject = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.api.UpdateProjectRequest} returns this
  */
-proto.api.UpdateProjectRequest.prototype.clearProject = function() {
-  return this.setProject(undefined);
+proto.api.UpdateProjectRequest.prototype.clearFields = function() {
+  return this.setFields(undefined);
 };
 
 
@@ -1250,8 +1286,8 @@ proto.api.UpdateProjectRequest.prototype.clearProject = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.UpdateProjectRequest.prototype.hasProject = function() {
-  return jspb.Message.getField(this, 1) != null;
+proto.api.UpdateProjectRequest.prototype.hasFields = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -1287,7 +1323,7 @@ proto.api.UpdateProjectResponse.prototype.toObject = function(opt_includeInstanc
  */
 proto.api.UpdateProjectResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    project: (f = msg.getProject()) && resources_pb.Project.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1324,6 +1360,11 @@ proto.api.UpdateProjectResponse.deserializeBinaryFromReader = function(msg, read
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = new resources_pb.Project;
+      reader.readMessage(value,resources_pb.Project.deserializeBinaryFromReader);
+      msg.setProject(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1353,6 +1394,51 @@ proto.api.UpdateProjectResponse.prototype.serializeBinary = function() {
  */
 proto.api.UpdateProjectResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getProject();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      resources_pb.Project.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional Project project = 1;
+ * @return {?proto.api.Project}
+ */
+proto.api.UpdateProjectResponse.prototype.getProject = function() {
+  return /** @type{?proto.api.Project} */ (
+    jspb.Message.getWrapperField(this, resources_pb.Project, 1));
+};
+
+
+/**
+ * @param {?proto.api.Project|undefined} value
+ * @return {!proto.api.UpdateProjectResponse} returns this
+*/
+proto.api.UpdateProjectResponse.prototype.setProject = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.api.UpdateProjectResponse} returns this
+ */
+proto.api.UpdateProjectResponse.prototype.clearProject = function() {
+  return this.setProject(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.api.UpdateProjectResponse.prototype.hasProject = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 

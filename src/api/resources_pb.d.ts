@@ -1,6 +1,7 @@
 import * as jspb from 'google-protobuf'
 
 import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb';
+import * as google_protobuf_wrappers_pb from 'google-protobuf/google/protobuf/wrappers_pb';
 
 
 export class ChangePack extends jspb.Message {
@@ -1101,6 +1102,11 @@ export class Project extends jspb.Message {
   hasCreatedAt(): boolean;
   clearCreatedAt(): Project;
 
+  getUpdatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setUpdatedAt(value?: google_protobuf_timestamp_pb.Timestamp): Project;
+  hasUpdatedAt(): boolean;
+  clearUpdatedAt(): Project;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Project.AsObject;
   static toObject(includeInstance: boolean, msg: Project): Project.AsObject;
@@ -1118,7 +1124,61 @@ export namespace Project {
     authWebhookUrl: string,
     authWebhookMethodsList: Array<string>,
     createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
+}
+
+export class UpdatableProjectFields extends jspb.Message {
+  getName(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setName(value?: google_protobuf_wrappers_pb.StringValue): UpdatableProjectFields;
+  hasName(): boolean;
+  clearName(): UpdatableProjectFields;
+
+  getAuthWebhookUrl(): google_protobuf_wrappers_pb.StringValue | undefined;
+  setAuthWebhookUrl(value?: google_protobuf_wrappers_pb.StringValue): UpdatableProjectFields;
+  hasAuthWebhookUrl(): boolean;
+  clearAuthWebhookUrl(): UpdatableProjectFields;
+
+  getAuthWebhookMethods(): UpdatableProjectFields.AuthWebhookMethods | undefined;
+  setAuthWebhookMethods(value?: UpdatableProjectFields.AuthWebhookMethods): UpdatableProjectFields;
+  hasAuthWebhookMethods(): boolean;
+  clearAuthWebhookMethods(): UpdatableProjectFields;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdatableProjectFields.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdatableProjectFields): UpdatableProjectFields.AsObject;
+  static serializeBinaryToWriter(message: UpdatableProjectFields, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdatableProjectFields;
+  static deserializeBinaryFromReader(message: UpdatableProjectFields, reader: jspb.BinaryReader): UpdatableProjectFields;
+}
+
+export namespace UpdatableProjectFields {
+  export type AsObject = {
+    name?: google_protobuf_wrappers_pb.StringValue.AsObject,
+    authWebhookUrl?: google_protobuf_wrappers_pb.StringValue.AsObject,
+    authWebhookMethods?: UpdatableProjectFields.AuthWebhookMethods.AsObject,
+  }
+
+  export class AuthWebhookMethods extends jspb.Message {
+    getMethodsList(): Array<string>;
+    setMethodsList(value: Array<string>): AuthWebhookMethods;
+    clearMethodsList(): AuthWebhookMethods;
+    addMethods(value: string, index?: number): AuthWebhookMethods;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): AuthWebhookMethods.AsObject;
+    static toObject(includeInstance: boolean, msg: AuthWebhookMethods): AuthWebhookMethods.AsObject;
+    static serializeBinaryToWriter(message: AuthWebhookMethods, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): AuthWebhookMethods;
+    static deserializeBinaryFromReader(message: AuthWebhookMethods, reader: jspb.BinaryReader): AuthWebhookMethods;
+  }
+
+  export namespace AuthWebhookMethods {
+    export type AsObject = {
+      methodsList: Array<string>,
+    }
+  }
+
 }
 
 export class DocumentSummary extends jspb.Message {
