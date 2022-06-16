@@ -10,6 +10,8 @@ export type DocumentSummary = {
 export type Project = {
   id: string;
   name: string;
+  authWebhookUrl: string;
+  authWebhookMethods: Array<string>;
   publicKey: string;
   secretKey: string;
   createdAt: number;
@@ -17,6 +19,6 @@ export type Project = {
 
 export type UpdatableProjectFields = {
   name?: string;
-  authWebhookURL?: string;
+  authWebhookUrl?: string;
   authWebhookMethods?: Array<string>;
 };

@@ -50,6 +50,11 @@ export async function updateProject(id: string, fields: UpdatableProjectFields):
     const name = new PbWrappers.StringValue().setValue(fields.name);
     pbFields.setName(name);
   }
+  if (fields.authWebhookUrl) {
+    const authWebhookURL = new PbWrappers.StringValue().setValue(fields.authWebhookUrl);
+    pbFields.setAuthWebhookUrl(authWebhookURL);
+  }
+
   req.setFields(pbFields);
   const response = await client.updateProject(req);
   return converter.fromProject(response.getProject()!);

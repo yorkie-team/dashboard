@@ -14,6 +14,8 @@ export function fromProject(pbProject: PbProject): Project {
     publicKey: pbProject.getPublicKey(),
     secretKey: pbProject.getSecretKey(),
     createdAt: fromTimestamp(pbProject.getCreatedAt()!),
+    authWebhookUrl: pbProject.getAuthWebhookUrl(),
+    authWebhookMethods: pbProject.getAuthWebhookMethodsList(),
   };
 }
 
