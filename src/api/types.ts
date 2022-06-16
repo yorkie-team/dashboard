@@ -14,3 +14,9 @@ export type Project = {
   secretKey: string;
   createdAt: number;
 };
+
+export type UpdatableProjectFields = {
+  name?: string;
+  authWebhookURL?: string;
+  authWebhookMethods?: Array<string>;
+};

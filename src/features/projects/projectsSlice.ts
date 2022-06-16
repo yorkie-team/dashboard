@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from 'app/store';
-import { listProjects, getProject, Project } from 'api';
+import { listProjects, getProject, updateProject, Project, UpdatableProjectFields } from 'api';
 
 export interface ProjectsState {
   list: {
@@ -10,6 +10,7 @@ export interface ProjectsState {
   detail: {
     project: Project | null;
     status: 'idle' | 'loading' | 'failed';
+    updateStatus: 'idle' | 'loading' | 'failed';
   };
 }
 
@@ -21,6 +22,7 @@ const initialState: ProjectsState = {
   detail: {
     project: null,
     status: 'idle',
+    updateStatus: 'idle',
   },
 };
 
@@ -33,6 +35,14 @@ export const getProjectAsync = createAsyncThunk('projects/getProject', async (na
   const project = await getProject(name);
   return project;
 });
+
+export const updateProjectAsync = createAsyncThunk(
+  'projects/updateProject',
+  async ({id, fields}:{id: string, fields: UpdatableProjectFields}): Promise<Project> => {
+    const project = await updateProject(id, fields);
+    return project;
+  },
+);
 
 export const projectsSlice = createSlice({
   name: 'projects',
@@ -58,6 +68,16 @@ export const projectsSlice = createSlice({
     });
     builder.addCase(getProjectAsync.rejected, (state) => {
       state.detail.status = 'failed';
+    });
+    builder.addCase(updateProjectAsync.pending, (state) => {
+      state.detail.updateStatus = 'loading';
+    });
+    builder.addCase(updateProjectAsync.fulfilled, (state, action) => {
+      state.detail.updateStatus = 'idle';
+      state.detail.project = action.payload;
+    });
+    builder.addCase(updateProjectAsync.rejected, (state) => {
+      state.detail.updateStatus = 'failed';
     });
   },
 });

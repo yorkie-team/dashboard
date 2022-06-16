@@ -114,10 +114,13 @@ export namespace ListProjectsResponse {
 }
 
 export class UpdateProjectRequest extends jspb.Message {
-  getProject(): resources_pb.Project | undefined;
-  setProject(value?: resources_pb.Project): UpdateProjectRequest;
-  hasProject(): boolean;
-  clearProject(): UpdateProjectRequest;
+  getId(): string;
+  setId(value: string): UpdateProjectRequest;
+
+  getFields(): resources_pb.UpdatableProjectFields | undefined;
+  setFields(value?: resources_pb.UpdatableProjectFields): UpdateProjectRequest;
+  hasFields(): boolean;
+  clearFields(): UpdateProjectRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateProjectRequest.AsObject;
@@ -129,11 +132,17 @@ export class UpdateProjectRequest extends jspb.Message {
 
 export namespace UpdateProjectRequest {
   export type AsObject = {
-    project?: resources_pb.Project.AsObject,
+    id: string,
+    fields?: resources_pb.UpdatableProjectFields.AsObject,
   }
 }
 
 export class UpdateProjectResponse extends jspb.Message {
+  getProject(): resources_pb.Project | undefined;
+  setProject(value?: resources_pb.Project): UpdateProjectResponse;
+  hasProject(): boolean;
+  clearProject(): UpdateProjectResponse;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateProjectResponse.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateProjectResponse): UpdateProjectResponse.AsObject;
@@ -144,6 +153,7 @@ export class UpdateProjectResponse extends jspb.Message {
 
 export namespace UpdateProjectResponse {
   export type AsObject = {
+    project?: resources_pb.Project.AsObject,
   }
 }
 

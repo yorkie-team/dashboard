@@ -23,6 +23,8 @@ export function Sidebar() {
       <div className="flex pl-2.5 mb-5">
         <h1 className="self-center text-lg font-semibold whitespace-nowrap">
           <Link to="/projects">Yorkie-House</Link>
+          <br />
+          <span className="block mt-2">{projectName}</span>
         </h1>
       </div>
       <ul className="space-y-2">

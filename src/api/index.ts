@@ -5,9 +5,13 @@ import {
   GetProjectRequest,
   GetDocumentRequest,
   CreateProjectRequest,
+  UpdateProjectRequest,
 } from './admin_pb';
 
-import { Project, DocumentSummary } from './types';
+import { UpdatableProjectFields as PbProjectFields } from './resources_pb';
+import * as PbWrappers from 'google-protobuf/google/protobuf/wrappers_pb';
+
+import { Project, DocumentSummary, UpdatableProjectFields } from './types';
 import * as converter from './converter';
 
 export * from './types';
@@ -34,6 +38,20 @@ export async function getProject(name: string): Promise<Project> {
   const req = new GetProjectRequest();
   req.setName(name);
   const response = await client.getProject(req);
+  return converter.fromProject(response.getProject()!);
+}
+
+// UpdateProject updates a project info.
+export async function updateProject(id: string, fields: UpdatableProjectFields): Promise<Project> {
+  const req = new UpdateProjectRequest();
+  req.setId(id);
+  const pbFields = new PbProjectFields();
+  if (fields.name) {
+    const name = new PbWrappers.StringValue().setValue(fields.name);
+    pbFields.setName(name);
+  }
+  req.setFields(pbFields);
+  const response = await client.updateProject(req);
   return converter.fromProject(response.getProject()!);
 }
 
