@@ -2,24 +2,23 @@ import React, { useCallback, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectProjectDetail, updateProjectAsync } from './projectsSlice';
-import { AUTH_WEBHOOK_METHODS, AuthWebhookMethod, validateUpdatableProjectFields} from 'api/types';
+import { AUTH_WEBHOOK_METHODS, AuthWebhookMethod, validateUpdatableProjectFields } from 'api/types';
 
 export function Settings() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { project } = useAppSelector(selectProjectDetail);
   const [name, SetName] = useState('');
-  const [authWebhookUrl, SetAuthWebhookUrl] = useState('');
+  const [authWebhookURL, SetAuthWebhookURL] = useState('');
   const [authWebhookMethods, SetAuthWebhookMethods] = useState<Array<AuthWebhookMethod>>([]);
 
   const handleSubmit = useCallback(
     async (e) => {
       e.preventDefault();
-      const updatableFields = { name, authWebhookUrl, authWebhookMethods };
+      const updatableFields = { name, authWebhookURL, authWebhookMethods };
       if (!validateUpdatableProjectFields(updatableFields)) {
         return;
       }
-
       await dispatch(
         updateProjectAsync({
           id: project?.id!,
@@ -34,7 +33,7 @@ export function Settings() {
           alert(rejectedValueOrSerializedError.message);
         });
     },
-    [navigate, dispatch, project?.id, name, authWebhookUrl, authWebhookMethods],
+    [navigate, dispatch, project?.id, name, authWebhookURL, authWebhookMethods],
   );
 
   const handleChangeName = useCallback((e) => {
@@ -42,7 +41,7 @@ export function Settings() {
   }, []);
 
   const handleChangeAuthWebhookUrl = useCallback((e) => {
-    SetAuthWebhookUrl(e.target.value);
+    SetAuthWebhookURL(e.target.value);
   }, []);
 
   const handleChangeAuthWebhookMethods = useCallback((e) => {
@@ -55,7 +54,7 @@ export function Settings() {
 
   useEffect(() => {
     if (project?.name) SetName(project.name);
-    if (project?.authWebhookURL) SetAuthWebhookUrl(project.authWebhookURL);
+    if (project?.authWebhookURL) SetAuthWebhookURL(project.authWebhookURL);
     if (project?.authWebhookMethods) SetAuthWebhookMethods(project.authWebhookMethods);
   }, [project]);
 
@@ -85,7 +84,7 @@ export function Settings() {
             type="text"
             id="projectAuthWebhookUrl"
             className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            value={authWebhookUrl}
+            value={authWebhookURL}
             onChange={handleChangeAuthWebhookUrl}
           />
         </div>
