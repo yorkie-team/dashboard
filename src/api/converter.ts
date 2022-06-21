@@ -1,5 +1,5 @@
 import { Timestamp as PbTimestamp } from 'google-protobuf/google/protobuf/timestamp_pb';
-import { Project, DocumentSummary } from './types';
+import { Project, DocumentSummary, AuthWebhookMethod } from './types';
 
 import { Project as PbProject, DocumentSummary as PbDocumentSummary } from './resources_pb';
 
@@ -14,8 +14,8 @@ export function fromProject(pbProject: PbProject): Project {
     publicKey: pbProject.getPublicKey(),
     secretKey: pbProject.getSecretKey(),
     createdAt: fromTimestamp(pbProject.getCreatedAt()!),
-    authWebhookUrl: pbProject.getAuthWebhookUrl(),
-    authWebhookMethods: pbProject.getAuthWebhookMethodsList(),
+    authWebhookURL: pbProject.getAuthWebhookUrl(),
+    authWebhookMethods: pbProject.getAuthWebhookMethodsList() as Array<AuthWebhookMethod>,
   };
 }
 

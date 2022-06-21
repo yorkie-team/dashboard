@@ -50,8 +50,8 @@ export async function updateProject(id: string, fields: UpdatableProjectFields):
     const name = new PbWrappers.StringValue().setValue(fields.name);
     pbFields.setName(name);
   }
-  if (fields.authWebhookUrl !== undefined) {
-    const authWebhookURL = new PbWrappers.StringValue().setValue(fields.authWebhookUrl);
+  if (fields.authWebhookURL !== undefined) {
+    const authWebhookURL = new PbWrappers.StringValue().setValue(fields.authWebhookURL);
     pbFields.setAuthWebhookUrl(authWebhookURL);
   }
   if (fields.authWebhookMethods) {
