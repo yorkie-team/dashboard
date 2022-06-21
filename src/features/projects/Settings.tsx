@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectProjectDetail, updateProjectAsync } from './projectsSlice';
@@ -17,24 +17,49 @@ export function Settings() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { project } = useAppSelector(selectProjectDetail);
-  
-  const nameRef = useRef<HTMLInputElement | null>(null);
-  const authWebhookUrlRef = useRef<HTMLInputElement | null>(null);
   const [name, SetName] = useState('');
   const [authWebhookUrl, SetAuthWebhookUrl] = useState('');
   const [selectedAuthWebhookMethods, SetSelectedAuthWebhookMethods] = useState<string[]>([]);
 
+  const validateName = (name: string): boolean => {
+    const nameRegex = /^[A-Za-z0-9_.-]{2,30}$/g;
+    if (!nameRegex.test(name)) {
+      alert('Project Name can only contain letters, numbers, spaces and these characters: _.-');
+      // TODO: alert about length
+      return false;
+    }
+    return true;
+  };
+  const validateAuthWebhookUrl = (authWebhookUrl: string): boolean => {
+    // TODO: Implement proper reg exp for WebhookUrl
+    const urlRegex =
+      /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([-.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?|^((http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/g;
+    if (!urlRegex.test(authWebhookUrl)) {
+      alert('AuthWebhookUrl should fit the url format.');
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = useCallback(
     async (e) => {
       e.preventDefault();
-      // TODO: validate
-      dispatch(
+      if (!validateName(name)) return;
+      if (authWebhookUrl !== '' && !validateAuthWebhookUrl(authWebhookUrl)) return;
+
+      await dispatch(
         updateProjectAsync({
           id: project?.id!,
           fields: { name, authWebhookUrl, authWebhookMethods: selectedAuthWebhookMethods },
         }),
-      );
-      navigate(`../projects/${name}/settings`);
+      )
+        .unwrap()
+        .then((result) => {
+          navigate(`../projects/${result.name}/settings`);
+        })
+        .catch((rejectedValueOrSerializedError) => {
+          alert(rejectedValueOrSerializedError.message);
+        });
     },
     [navigate, dispatch, project?.id, name, authWebhookUrl, selectedAuthWebhookMethods],
   );
@@ -72,7 +97,6 @@ export function Settings() {
         <div className="relative">
           <input
             type="text"
-            ref={nameRef}
             id="projectName"
             className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             value={name}
@@ -88,19 +112,15 @@ export function Settings() {
         <div className="relative">
           <input
             type="text"
-            ref={authWebhookUrlRef}
             id="projectAuthWebhookUrl"
             className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             value={authWebhookUrl}
-            required
             onChange={handleChangeAuthWebhookUrl}
           />
         </div>
       </div>
       <div className="mb-6">
-        <span className="block mb-2 font-medium">
-          AuthWebhookMethods
-        </span>
+        <span className="block mb-2 font-medium">AuthWebhookMethods</span>
         {authWebhookMethods.map((method) => {
           return (
             <li key={method} className="flex items-center mt-4">
