@@ -69,6 +69,10 @@
             "webhook",
             "updatable",
             "protobuf"
+          ],
+          "skipIfMatch": [
+            "TODO\\(.+\\):",
+            "NOTE\\(.+\\):"
           ]
         }
       ]
