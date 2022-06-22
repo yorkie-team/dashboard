@@ -65,7 +65,12 @@ function validateAuthWebhookUrl(authWebhookUrl: string): boolean {
 
 export function validateUpdatableProjectFields(fields: UpdatableProjectFields): boolean {
   if (typeof fields.name !== 'undefined' && !validateName(fields.name)) return false;
-  if (typeof fields.authWebhookURL !== 'undefined' && !validateAuthWebhookUrl(fields.authWebhookURL)) return false;
+  if (
+    typeof fields.authWebhookURL !== 'undefined' &&
+    fields.authWebhookURL !== '' &&
+    !validateAuthWebhookUrl(fields.authWebhookURL)
+  )
+    return false;
 
   return true;
 }
