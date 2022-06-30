@@ -50,6 +50,13 @@ export class AdminClient {
                response: admin_pb.GetDocumentResponse) => void
   ): grpcWeb.ClientReadableStream<admin_pb.GetDocumentResponse>;
 
+  listChanges(
+    request: admin_pb.ListChangesRequest,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.RpcError,
+               response: admin_pb.ListChangesResponse) => void
+  ): grpcWeb.ClientReadableStream<admin_pb.ListChangesResponse>;
+
 }
 
 export class AdminPromiseClient {
@@ -86,6 +93,11 @@ export class AdminPromiseClient {
     request: admin_pb.GetDocumentRequest,
     metadata?: grpcWeb.Metadata
   ): Promise<admin_pb.GetDocumentResponse>;
+
+  listChanges(
+    request: admin_pb.ListChangesRequest,
+    metadata?: grpcWeb.Metadata
+  ): Promise<admin_pb.ListChangesResponse>;
 
 }
 

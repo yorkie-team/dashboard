@@ -249,3 +249,45 @@ export namespace GetDocumentResponse {
   }
 }
 
+export class ListChangesRequest extends jspb.Message {
+  getProjectName(): string;
+  setProjectName(value: string): ListChangesRequest;
+
+  getDocumentKey(): string;
+  setDocumentKey(value: string): ListChangesRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListChangesRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListChangesRequest): ListChangesRequest.AsObject;
+  static serializeBinaryToWriter(message: ListChangesRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListChangesRequest;
+  static deserializeBinaryFromReader(message: ListChangesRequest, reader: jspb.BinaryReader): ListChangesRequest;
+}
+
+export namespace ListChangesRequest {
+  export type AsObject = {
+    projectName: string,
+    documentKey: string,
+  }
+}
+
+export class ListChangesResponse extends jspb.Message {
+  getChangesList(): Array<resources_pb.Change>;
+  setChangesList(value: Array<resources_pb.Change>): ListChangesResponse;
+  clearChangesList(): ListChangesResponse;
+  addChanges(value?: resources_pb.Change, index?: number): resources_pb.Change;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListChangesResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListChangesResponse): ListChangesResponse.AsObject;
+  static serializeBinaryToWriter(message: ListChangesResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListChangesResponse;
+  static deserializeBinaryFromReader(message: ListChangesResponse, reader: jspb.BinaryReader): ListChangesResponse;
+}
+
+export namespace ListChangesResponse {
+  export type AsObject = {
+    changesList: Array<resources_pb.Change.AsObject>,
+  }
+}
+

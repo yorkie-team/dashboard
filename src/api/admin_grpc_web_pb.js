@@ -438,5 +438,66 @@ proto.api.AdminPromiseClient.prototype.getDocument =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.api.ListChangesRequest,
+ *   !proto.api.ListChangesResponse>}
+ */
+const methodDescriptor_Admin_ListChanges = new grpc.web.MethodDescriptor(
+  '/api.Admin/ListChanges',
+  grpc.web.MethodType.UNARY,
+  proto.api.ListChangesRequest,
+  proto.api.ListChangesResponse,
+  /**
+   * @param {!proto.api.ListChangesRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.api.ListChangesResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.api.ListChangesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.api.ListChangesResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.api.ListChangesResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.api.AdminClient.prototype.listChanges =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/api.Admin/ListChanges',
+      request,
+      metadata || {},
+      methodDescriptor_Admin_ListChanges,
+      callback);
+};
+
+
+/**
+ * @param {!proto.api.ListChangesRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.api.ListChangesResponse>}
+ *     Promise that resolves to the response
+ */
+proto.api.AdminPromiseClient.prototype.listChanges =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/api.Admin/ListChanges',
+      request,
+      metadata || {},
+      methodDescriptor_Admin_ListChanges);
+};
+
+
 module.exports = proto.api;
 
