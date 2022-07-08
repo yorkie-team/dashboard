@@ -38,9 +38,13 @@ export const getProjectAsync = createAsyncThunk('projects/getProject', async (na
 
 export const updateProjectAsync = createAsyncThunk(
   'projects/updateProject',
-  async ({id, fields}:{id: string, fields: UpdatableProjectFields}): Promise<Project> => {
-    const project = await updateProject(id, fields);
-    return project;
+  async ({id, fields}:{id: string, fields: UpdatableProjectFields},{rejectWithValue}:{rejectWithValue: any}): Promise<Project> => {
+    try {
+      const project = await updateProject(id, fields);
+      return project;
+    } catch (error) {
+      return rejectWithValue(error)
+    }
   },
 );
 

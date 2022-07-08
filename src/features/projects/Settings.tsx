@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectProjectDetail, updateProjectAsync } from './projectsSlice';
 import { AUTH_WEBHOOK_METHODS, AuthWebhookMethod, validateUpdatableProjectFields } from 'api/types';
+import * as errorDetails from 'grpc-web-error-details';
 
 export function Settings() {
   const navigate = useNavigate();
@@ -16,9 +17,9 @@ export function Settings() {
     async (e) => {
       e.preventDefault();
       const updatableFields = { name, authWebhookURL, authWebhookMethods };
-      if (!validateUpdatableProjectFields(updatableFields)) {
-        return;
-      }
+      // if (!validateUpdatableProjectFields(updatableFields)) {
+      //   return;
+      // }
       await dispatch(
         updateProjectAsync({
           id: project?.id!,
@@ -30,6 +31,23 @@ export function Settings() {
           navigate(`../projects/${result.name}/settings`);
         })
         .catch((rejectedValueOrSerializedError) => {
+          console.log("error!!")
+          console.log(rejectedValueOrSerializedError);
+          const [status, details] = errorDetails.statusFromError(rejectedValueOrSerializedError);
+          console.log('status', status);
+          console.log('details', details);
+          if (status && details) {
+            for (const d of details) {
+              // use `instanceof` for type guard
+              if (d instanceof errorDetails.BadRequest) {
+                // use appropriate methods on details for further information
+                for (const v of d.getFieldViolationsList()) {
+                  console.log(`Violation at field ${v.getField()}: ${v.getDescription}`);
+                }
+              }
+            }
+          }
+
           alert(rejectedValueOrSerializedError.message);
         });
     },
