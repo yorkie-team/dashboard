@@ -31,18 +31,15 @@ export function Settings() {
           navigate(`../projects/${result.name}/settings`);
         })
         .catch((rejectedValueOrSerializedError) => {
-          console.log("error!!")
-          console.log(rejectedValueOrSerializedError);
           const [status, details] = errorDetails.statusFromError(rejectedValueOrSerializedError);
-          console.log('status', status);
-          console.log('details', details);
           if (status && details) {
             for (const d of details) {
               // use `instanceof` for type guard
               if (d instanceof errorDetails.BadRequest) {
                 // use appropriate methods on details for further information
                 for (const v of d.getFieldViolationsList()) {
-                  console.log(`Violation at field ${v.getField()}: ${v.getDescription}`);
+                  console.log(`Violation at field ${v.getField()}: ${v.getDescription()}`);
+                  alert(`Violation at field ${v.getField()}: ${v.getDescription()}`);
                 }
               }
             }
