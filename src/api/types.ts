@@ -42,6 +42,17 @@ export const AUTH_WEBHOOK_METHODS: Array<AuthWebhookMethod> = [
   'ListChangeSummaries',
 ];
 
+type fieldViolation = {
+  field: string;
+  description: string;
+};
+
+export type grpcStatus = {
+  code: number;
+  message: string;
+  details: Array<fieldViolation>;
+};
+
 function validateName(name: string): boolean {
   const nameRegex = /^[A-Za-z0-9_.-]{2,30}$/g;
   if (!nameRegex.test(name)) {

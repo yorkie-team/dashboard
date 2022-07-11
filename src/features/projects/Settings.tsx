@@ -2,8 +2,7 @@ import React, { useCallback, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectProjectDetail, updateProjectAsync } from './projectsSlice';
-import { AUTH_WEBHOOK_METHODS, AuthWebhookMethod, validateUpdatableProjectFields } from 'api/types';
-import * as errorDetails from 'grpc-web-error-details';
+import { AUTH_WEBHOOK_METHODS, AuthWebhookMethod } from 'api/types';
 
 export function Settings() {
   const navigate = useNavigate();
@@ -17,9 +16,6 @@ export function Settings() {
     async (e) => {
       e.preventDefault();
       const updatableFields = { name, authWebhookURL, authWebhookMethods };
-      if (!validateUpdatableProjectFields(updatableFields)) {
-        // return;
-      }
       await dispatch(
         updateProjectAsync({
           id: project?.id!,
@@ -30,21 +26,12 @@ export function Settings() {
         .then((result) => {
           navigate(`../projects/${result.name}/settings`);
         })
-        .catch((rejectedValueOrSerializedError) => {
-          const [status, details] = errorDetails.statusFromError(rejectedValueOrSerializedError);
-          if (status && details) {
-            for (const d of details) {
-              if (d instanceof errorDetails.BadRequest) {
-                // use appropriate methods on details for further information
-                for (const v of d.getFieldViolationsList()) {
-                  console.log(`Violation at field ${v.getField()}: ${v.getDescription()}`);
-                  alert(`Violation at field ${v.getField()}: ${v.getDescription()}`);
-                }
-              }
-            }
+        .catch((rejectedValue) => {
+          console.log(rejectedValue);
+          for (const d of rejectedValue.details) {
+            alert('wrong field: ' + d.field + '\ndescription: ' + d.description);
+            console.log('wrong field: ' + d.field + '\ndescription: ' + d.description);
           }
-
-          alert(rejectedValueOrSerializedError.message);
         });
     },
     [navigate, dispatch, project?.id, name, authWebhookURL, authWebhookMethods],

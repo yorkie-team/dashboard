@@ -60,8 +60,12 @@ export async function updateProject(id: string, fields: UpdatableProjectFields):
   }
 
   req.setFields(pbFields);
-  const response = await client.updateProject(req);
-  return converter.fromProject(response.getProject()!);
+  try {
+    const response = await client.updateProject(req);
+    return converter.fromProject(response.getProject()!);
+  } catch (error) {
+    throw converter.fromError(error);
+  }
 }
 
 // listDocuments fetches documents from the admin server.

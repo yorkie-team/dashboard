@@ -69,7 +69,8 @@
             "apikeys",
             "webhook",
             "updatable",
-            "protobuf"
+            "protobuf",
+            "grpc"
           ],
           "skipIfMatch": [
             "TODO\\(.+\\):",
