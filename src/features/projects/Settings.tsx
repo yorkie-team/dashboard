@@ -17,9 +17,9 @@ export function Settings() {
     async (e) => {
       e.preventDefault();
       const updatableFields = { name, authWebhookURL, authWebhookMethods };
-      // if (!validateUpdatableProjectFields(updatableFields)) {
-      //   return;
-      // }
+      if (!validateUpdatableProjectFields(updatableFields)) {
+        // return;
+      }
       await dispatch(
         updateProjectAsync({
           id: project?.id!,
@@ -34,7 +34,6 @@ export function Settings() {
           const [status, details] = errorDetails.statusFromError(rejectedValueOrSerializedError);
           if (status && details) {
             for (const d of details) {
-              // use `instanceof` for type guard
               if (d instanceof errorDetails.BadRequest) {
                 // use appropriate methods on details for further information
                 for (const v of d.getFieldViolationsList()) {
