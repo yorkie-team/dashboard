@@ -28,7 +28,11 @@ export function Settings() {
         })
         .catch((rejectedValue) => {
           console.log(rejectedValue);
+          if (!rejectedValue.details) {
+            throw rejectedValue;
+          }
           for (const d of rejectedValue.details) {
+            // TODO(DONGJIN SHIN): implement show error details to client
             alert('wrong field: ' + d.field + '\ndescription: ' + d.description);
             console.log('wrong field: ' + d.field + '\ndescription: ' + d.description);
           }

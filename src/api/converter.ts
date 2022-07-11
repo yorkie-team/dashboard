@@ -1,5 +1,5 @@
 import { Timestamp as PbTimestamp } from 'google-protobuf/google/protobuf/timestamp_pb';
-import { Project, DocumentSummary, AuthWebhookMethod, grpcStatus } from './types';
+import { Project, DocumentSummary, AuthWebhookMethod, ErrorWithDetails } from './types';
 
 import { Project as PbProject, DocumentSummary as PbDocumentSummary } from './resources_pb';
 
@@ -52,7 +52,7 @@ export function fromDocumentSummaries(pbDocumentSummaries: Array<PbDocumentSumma
   return documentSummaries;
 }
 
-export function fromError(
+export function toErrorWithDetails(
   error:
     | any
     | {
@@ -64,18 +64,19 @@ export function fromError(
         code?: number;
         message?: string;
       },
-): grpcStatus {
+): any {
   const [status, details] = errorDetails.statusFromError(error);
   if (!status || !details) {
     return error;
   }
-  var res: grpcStatus = { code: status.getCode(), message: status.getMessage(), details: [] };
+
+  const errorWithDetails: ErrorWithDetails = { message: status.getMessage(), code: status.getCode(), details: [] };
   for (const d of details) {
     if (d instanceof errorDetails.BadRequest) {
       for (const v of d.getFieldViolationsList()) {
-        res.details.push({ field: v.getField(), description: v.getDescription() });
+        errorWithDetails.details.push({ field: v.getField(), description: v.getDescription() });
       }
     }
   }
-  return res;
+  return errorWithDetails;
 }

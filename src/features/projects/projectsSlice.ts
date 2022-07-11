@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from 'app/store';
-import { listProjects, getProject, updateProject, Project, UpdatableProjectFields, grpcStatus } from 'api';
+import { listProjects, getProject, updateProject, Project, UpdatableProjectFields } from 'api';
 
 export interface ProjectsState {
   list: {
@@ -36,20 +36,18 @@ export const getProjectAsync = createAsyncThunk('projects/getProject', async (na
   return project;
 });
 
-export const updateProjectAsync = createAsyncThunk(
-  'projects/updateProject',
-  async (
-    { id, fields }: { id: string; fields: UpdatableProjectFields },
-    { rejectWithValue }: { rejectWithValue: any },
-  ): Promise<Project> => {
-    try {
-      const project = await updateProject(id, fields);
-      return project;
-    } catch (error) {
-      return rejectWithValue(error as grpcStatus);
-    }
-  },
-);
+export const updateProjectAsync = createAsyncThunk<
+  Project,
+  { id: string; fields: UpdatableProjectFields },
+  { rejectValue: any }
+>('projects/updateProject', async ({ id, fields }, { rejectWithValue }) => {
+  try {
+    const project = await updateProject(id, fields);
+    return project;
+  } catch (error) {
+    return rejectWithValue(error);
+  }
+});
 
 export const projectsSlice = createSlice({
   name: 'projects',
