@@ -7,6 +7,7 @@ import {
   CreateProjectRequest,
   UpdateProjectRequest,
 } from './admin_pb';
+import * as errorDetails from 'grpc-web-error-details';
 
 import { UpdatableProjectFields as PbProjectFields } from './resources_pb';
 import * as PbWrappers from 'google-protobuf/google/protobuf/wrappers_pb';
@@ -60,8 +61,17 @@ export async function updateProject(id: string, fields: UpdatableProjectFields):
   }
 
   req.setFields(pbFields);
-  const response = await client.updateProject(req);
-  return converter.fromProject(response.getProject()!);
+  try {
+    const response = await client.updateProject(req);
+    return converter.fromProject(response.getProject()!);
+  } catch (error) {
+    const [status, details] = errorDetails.statusFromError(error);
+    if (!status || !details) {
+      throw error;
+    }
+
+    throw converter.toErrorWithDetails(status, details);
+  }
 }
 
 // listDocuments fetches documents from the admin server.

@@ -1,7 +1,9 @@
 import { Timestamp as PbTimestamp } from 'google-protobuf/google/protobuf/timestamp_pb';
-import { Project, DocumentSummary, AuthWebhookMethod } from './types';
+import { Project, DocumentSummary, AuthWebhookMethod, ErrorWithDetails } from './types';
 
 import { Project as PbProject, DocumentSummary as PbDocumentSummary } from './resources_pb';
+
+import * as errorDetails from 'grpc-web-error-details';
 
 export function fromTimestamp(pbTimestamp: PbTimestamp): number {
   return pbTimestamp.getSeconds() + pbTimestamp.getNanos() / 1e9;
@@ -48,4 +50,19 @@ export function fromDocumentSummaries(pbDocumentSummaries: Array<PbDocumentSumma
   }
 
   return documentSummaries;
+}
+
+export function toErrorWithDetails(
+  status: errorDetails.Status,
+  details: Array<errorDetails.ErrorDetails>,
+): ErrorWithDetails {
+  const errorWithDetails: ErrorWithDetails = { message: status.getMessage(), code: status.getCode(), details: [] };
+  for (const d of details) {
+    if (d instanceof errorDetails.BadRequest) {
+      for (const v of d.getFieldViolationsList()) {
+        errorWithDetails.details.push({ field: v.getField(), description: v.getDescription() });
+      }
+    }
+  }
+  return errorWithDetails;
 }

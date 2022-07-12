@@ -2,7 +2,7 @@ import React, { useCallback, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectProjectDetail, updateProjectAsync } from './projectsSlice';
-import { AUTH_WEBHOOK_METHODS, AuthWebhookMethod, validateUpdatableProjectFields } from 'api/types';
+import { AUTH_WEBHOOK_METHODS, AuthWebhookMethod } from 'api/types';
 
 export function Settings() {
   const navigate = useNavigate();
@@ -16,9 +16,6 @@ export function Settings() {
     async (e) => {
       e.preventDefault();
       const updatableFields = { name, authWebhookURL, authWebhookMethods };
-      if (!validateUpdatableProjectFields(updatableFields)) {
-        return;
-      }
       await dispatch(
         updateProjectAsync({
           id: project?.id!,
@@ -29,8 +26,17 @@ export function Settings() {
         .then((result) => {
           navigate(`../projects/${result.name}/settings`);
         })
-        .catch((rejectedValueOrSerializedError) => {
-          alert(rejectedValueOrSerializedError.message);
+        .catch((rejectedValue) => {
+          if (!rejectedValue.details) {
+            throw rejectedValue;
+          }
+
+          // TODO(DONGJIN SHIN): We need to pass below validation details to
+          // the component after implementing displaying errors to the component.
+          for (const d of rejectedValue.details) {
+            alert('invalid field: ' + d.field + '\ndescription: ' + d.description);
+            console.log('invalid field: ' + d.field + '\ndescription: ' + d.description);
+          }
         });
     },
     [navigate, dispatch, project?.id, name, authWebhookURL, authWebhookMethods],
