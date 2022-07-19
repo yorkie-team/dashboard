@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from 'app/store';
-import { getDocument, listDocuments, DocumentSummary } from 'api';
+import { getDocument, listDocuments, DocumentSummary, searchDocuments } from 'api';
 
 export interface DocumentsState {
   list: {
+    type: 'all' | 'search';
     documents: Array<DocumentSummary>;
     hasPrevious: boolean;
     hasNext: boolean;
@@ -17,6 +18,7 @@ export interface DocumentsState {
 
 const initialState: DocumentsState = {
   list: {
+    type: 'all',
     documents: [],
     hasPrevious: false,
     hasNext: false,
@@ -28,7 +30,7 @@ const initialState: DocumentsState = {
   },
 };
 
-const pageSize = 20;
+const PAGE_SIZE = 15;
 
 export const listDocumentsAsync = createAsyncThunk(
   'documents/listDocuments',
@@ -42,9 +44,9 @@ export const listDocumentsAsync = createAsyncThunk(
     hasPrevious: boolean;
   }> => {
     const { projectName, isForward, previousID = '' } = params;
-    const documents = await listDocuments(projectName, previousID, pageSize + 1, isForward);
+    const documents = await listDocuments(projectName, previousID, PAGE_SIZE + 1, isForward);
 
-    return getPaginationData({ documents, isForward, previousID, pageSize });
+    return getPaginationData({ documents, isForward, previousID, pageSize: PAGE_SIZE });
   },
 );
 
@@ -54,6 +56,25 @@ export const getDocumentAsync = createAsyncThunk(
     const { projectName, documentKey } = params;
     const document = await getDocument(projectName, documentKey);
     return document;
+  },
+);
+
+export const searchDocumentsAsync = createAsyncThunk(
+  'documents/searchDocuments',
+  async (params: {
+    projectName: string;
+    documentQuery: string;
+    isForward: boolean;
+    previousID?: string;
+  }): Promise<{
+    documents: Array<DocumentSummary>;
+    hasNext: boolean;
+    hasPrevious: boolean;
+  }> => {
+    const { projectName, documentQuery, isForward, previousID = '' } = params;
+    const documents = await searchDocuments(projectName, documentQuery, previousID, PAGE_SIZE + 1, isForward);
+
+    return getPaginationData({ documents, isForward, previousID, pageSize: PAGE_SIZE });
   },
 );
 
@@ -83,6 +104,7 @@ export const documentSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(listDocumentsAsync.pending, (state) => {
+      state.list.type = 'all';
       state.list.status = 'loading';
     });
     builder.addCase(listDocumentsAsync.fulfilled, (state, action) => {
@@ -93,6 +115,20 @@ export const documentSlice = createSlice({
       state.list.hasPrevious = hasPrevious;
     });
     builder.addCase(listDocumentsAsync.rejected, (state) => {
+      state.list.status = 'failed';
+    });
+    builder.addCase(searchDocumentsAsync.pending, (state) => {
+      state.list.type = 'search';
+      state.list.status = 'loading';
+    });
+    builder.addCase(searchDocumentsAsync.fulfilled, (state, action) => {
+      const { documents, hasPrevious, hasNext } = action.payload;
+      state.list.status = 'idle';
+      state.list.documents = documents;
+      state.list.hasNext = hasNext;
+      state.list.hasPrevious = hasPrevious;
+    });
+    builder.addCase(searchDocumentsAsync.rejected, (state) => {
       state.list.status = 'failed';
     });
     builder.addCase(getDocumentAsync.pending, (state) => {

@@ -249,12 +249,125 @@ export namespace GetDocumentResponse {
   }
 }
 
+export class GetSnapshotMetaRequest extends jspb.Message {
+  getProjectName(): string;
+  setProjectName(value: string): GetSnapshotMetaRequest;
+
+  getDocumentKey(): string;
+  setDocumentKey(value: string): GetSnapshotMetaRequest;
+
+  getServerSeq(): number;
+  setServerSeq(value: number): GetSnapshotMetaRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetSnapshotMetaRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSnapshotMetaRequest): GetSnapshotMetaRequest.AsObject;
+  static serializeBinaryToWriter(message: GetSnapshotMetaRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSnapshotMetaRequest;
+  static deserializeBinaryFromReader(message: GetSnapshotMetaRequest, reader: jspb.BinaryReader): GetSnapshotMetaRequest;
+}
+
+export namespace GetSnapshotMetaRequest {
+  export type AsObject = {
+    projectName: string,
+    documentKey: string,
+    serverSeq: number,
+  }
+}
+
+export class GetSnapshotMetaResponse extends jspb.Message {
+  getSnapshot(): Uint8Array | string;
+  getSnapshot_asU8(): Uint8Array;
+  getSnapshot_asB64(): string;
+  setSnapshot(value: Uint8Array | string): GetSnapshotMetaResponse;
+
+  getLamport(): number;
+  setLamport(value: number): GetSnapshotMetaResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): GetSnapshotMetaResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: GetSnapshotMetaResponse): GetSnapshotMetaResponse.AsObject;
+  static serializeBinaryToWriter(message: GetSnapshotMetaResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): GetSnapshotMetaResponse;
+  static deserializeBinaryFromReader(message: GetSnapshotMetaResponse, reader: jspb.BinaryReader): GetSnapshotMetaResponse;
+}
+
+export namespace GetSnapshotMetaResponse {
+  export type AsObject = {
+    snapshot: Uint8Array | string,
+    lamport: number,
+  }
+}
+
+export class SearchDocumentsRequest extends jspb.Message {
+  getProjectName(): string;
+  setProjectName(value: string): SearchDocumentsRequest;
+
+  getQuery(): string;
+  setQuery(value: string): SearchDocumentsRequest;
+
+  getPreviousId(): string;
+  setPreviousId(value: string): SearchDocumentsRequest;
+
+  getPageSize(): number;
+  setPageSize(value: number): SearchDocumentsRequest;
+
+  getIsForward(): boolean;
+  setIsForward(value: boolean): SearchDocumentsRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SearchDocumentsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SearchDocumentsRequest): SearchDocumentsRequest.AsObject;
+  static serializeBinaryToWriter(message: SearchDocumentsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SearchDocumentsRequest;
+  static deserializeBinaryFromReader(message: SearchDocumentsRequest, reader: jspb.BinaryReader): SearchDocumentsRequest;
+}
+
+export namespace SearchDocumentsRequest {
+  export type AsObject = {
+    projectName: string,
+    query: string,
+    previousId: string,
+    pageSize: number,
+    isForward: boolean,
+  }
+}
+
+export class SearchDocumentsResponse extends jspb.Message {
+  getDocumentsList(): Array<resources_pb.DocumentSummary>;
+  setDocumentsList(value: Array<resources_pb.DocumentSummary>): SearchDocumentsResponse;
+  clearDocumentsList(): SearchDocumentsResponse;
+  addDocuments(value?: resources_pb.DocumentSummary, index?: number): resources_pb.DocumentSummary;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SearchDocumentsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SearchDocumentsResponse): SearchDocumentsResponse.AsObject;
+  static serializeBinaryToWriter(message: SearchDocumentsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SearchDocumentsResponse;
+  static deserializeBinaryFromReader(message: SearchDocumentsResponse, reader: jspb.BinaryReader): SearchDocumentsResponse;
+}
+
+export namespace SearchDocumentsResponse {
+  export type AsObject = {
+    documentsList: Array<resources_pb.DocumentSummary.AsObject>,
+  }
+}
+
 export class ListChangesRequest extends jspb.Message {
   getProjectName(): string;
   setProjectName(value: string): ListChangesRequest;
 
   getDocumentKey(): string;
   setDocumentKey(value: string): ListChangesRequest;
+
+  getPreviousSeq(): number;
+  setPreviousSeq(value: number): ListChangesRequest;
+
+  getPageSize(): number;
+  setPageSize(value: number): ListChangesRequest;
+
+  getIsForward(): boolean;
+  setIsForward(value: boolean): ListChangesRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListChangesRequest.AsObject;
@@ -268,6 +381,9 @@ export namespace ListChangesRequest {
   export type AsObject = {
     projectName: string,
     documentKey: string,
+    previousSeq: number,
+    pageSize: number,
+    isForward: boolean,
   }
 }
 

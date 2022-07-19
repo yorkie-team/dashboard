@@ -6,6 +6,7 @@ import {
   GetDocumentRequest,
   CreateProjectRequest,
   UpdateProjectRequest,
+  SearchDocumentsRequest,
 } from './admin_pb';
 import * as errorDetails from 'grpc-web-error-details';
 
@@ -103,4 +104,26 @@ export async function getDocument(projectName: string, documentKey: string): Pro
 
   const document = response.getDocument();
   return converter.fromDocumentSummary(document!);
+}
+
+// searchDocuments fetches documents that match the query parameters.
+export async function searchDocuments(
+  projectName: string,
+  documentQuery: string,
+  previousID: string,
+  pageSize: number,
+  isForward: boolean,
+): Promise<Array<DocumentSummary>> {
+  const req = new SearchDocumentsRequest();
+  req.setProjectName(projectName);
+  req.setQuery(documentQuery);
+  req.setPreviousId(previousID);
+  req.setPageSize(pageSize);
+  req.setIsForward(isForward);
+  const response = await client.searchDocuments(req);
+  const summaries = converter.fromDocumentSummaries(response.getDocumentsList());
+  if (isForward) {
+    summaries.reverse();
+  }
+  return summaries;
 }
