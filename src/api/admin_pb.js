@@ -2895,7 +2895,7 @@ proto.api.SearchDocumentsRequest.prototype.setIsForward = function(value) {
  * @private {!Array<number>}
  * @const
  */
-proto.api.SearchDocumentsResponse.repeatedFields_ = [1];
+proto.api.SearchDocumentsResponse.repeatedFields_ = [2];
 
 
 
@@ -2928,6 +2928,7 @@ proto.api.SearchDocumentsResponse.prototype.toObject = function(opt_includeInsta
  */
 proto.api.SearchDocumentsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
+    totalCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
     documentsList: jspb.Message.toObjectList(msg.getDocumentsList(),
     resources_pb.DocumentSummary.toObject, includeInstance)
   };
@@ -2967,6 +2968,10 @@ proto.api.SearchDocumentsResponse.deserializeBinaryFromReader = function(msg, re
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setTotalCount(value);
+      break;
+    case 2:
       var value = new resources_pb.DocumentSummary;
       reader.readMessage(value,resources_pb.DocumentSummary.deserializeBinaryFromReader);
       msg.addDocuments(value);
@@ -3000,10 +3005,17 @@ proto.api.SearchDocumentsResponse.prototype.serializeBinary = function() {
  */
 proto.api.SearchDocumentsResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getTotalCount();
+  if (f !== 0) {
+    writer.writeInt32(
+      1,
+      f
+    );
+  }
   f = message.getDocumentsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      1,
+      2,
       f,
       resources_pb.DocumentSummary.serializeBinaryToWriter
     );
@@ -3012,12 +3024,30 @@ proto.api.SearchDocumentsResponse.serializeBinaryToWriter = function(message, wr
 
 
 /**
- * repeated DocumentSummary documents = 1;
+ * optional int32 total_count = 1;
+ * @return {number}
+ */
+proto.api.SearchDocumentsResponse.prototype.getTotalCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.api.SearchDocumentsResponse} returns this
+ */
+proto.api.SearchDocumentsResponse.prototype.setTotalCount = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * repeated DocumentSummary documents = 2;
  * @return {!Array<!proto.api.DocumentSummary>}
  */
 proto.api.SearchDocumentsResponse.prototype.getDocumentsList = function() {
   return /** @type{!Array<!proto.api.DocumentSummary>} */ (
-    jspb.Message.getRepeatedWrapperField(this, resources_pb.DocumentSummary, 1));
+    jspb.Message.getRepeatedWrapperField(this, resources_pb.DocumentSummary, 2));
 };
 
 
@@ -3026,7 +3056,7 @@ proto.api.SearchDocumentsResponse.prototype.getDocumentsList = function() {
  * @return {!proto.api.SearchDocumentsResponse} returns this
 */
 proto.api.SearchDocumentsResponse.prototype.setDocumentsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+  return jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
 
 
@@ -3036,7 +3066,7 @@ proto.api.SearchDocumentsResponse.prototype.setDocumentsList = function(value) {
  * @return {!proto.api.DocumentSummary}
  */
 proto.api.SearchDocumentsResponse.prototype.addDocuments = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.api.DocumentSummary, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.api.DocumentSummary, opt_index);
 };
 
 

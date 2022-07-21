@@ -334,6 +334,9 @@ export namespace SearchDocumentsRequest {
 }
 
 export class SearchDocumentsResponse extends jspb.Message {
+  getTotalCount(): number;
+  setTotalCount(value: number): SearchDocumentsResponse;
+
   getDocumentsList(): Array<resources_pb.DocumentSummary>;
   setDocumentsList(value: Array<resources_pb.DocumentSummary>): SearchDocumentsResponse;
   clearDocumentsList(): SearchDocumentsResponse;
@@ -349,6 +352,7 @@ export class SearchDocumentsResponse extends jspb.Message {
 
 export namespace SearchDocumentsResponse {
   export type AsObject = {
+    totalCount: number,
     documentsList: Array<resources_pb.DocumentSummary.AsObject>,
   }
 }

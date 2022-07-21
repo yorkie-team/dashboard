@@ -113,7 +113,10 @@ export async function searchDocuments(
   previousID: string,
   pageSize: number,
   isForward: boolean,
-): Promise<Array<DocumentSummary>> {
+): Promise<{
+  totalCount: number;
+  documents: Array<DocumentSummary>;
+}> {
   const req = new SearchDocumentsRequest();
   req.setProjectName(projectName);
   req.setQuery(documentQuery);
@@ -125,5 +128,9 @@ export async function searchDocuments(
   if (isForward) {
     summaries.reverse();
   }
-  return summaries;
+  console.log(isForward, summaries);
+  return {
+    totalCount: response.getTotalCount(),
+    documents: summaries,
+  };
 }

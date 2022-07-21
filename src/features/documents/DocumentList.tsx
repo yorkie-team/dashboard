@@ -9,7 +9,7 @@ export function DocumentList() {
   const dispatch = useAppDispatch();
   const documentKey = useLocation().pathname.replace(/^\/projects\/(.*)\/documents\//, '');
   const projectName = useParams().projectName!;
-  const { type: queryType, documents, hasPrevious, hasNext, status } = useAppSelector(selectDocumentList);
+  const { type: queryType, totalCount, documents, hasPrevious, hasNext, status } = useAppSelector(selectDocumentList);
 
   const [query, SetQuery] = useState('');
   const handleChangeQuery = useCallback((e) => {
@@ -89,23 +89,30 @@ export function DocumentList() {
     <div className="py-6">
       <div className="px-5">
         <h2 className="text-lg font-semibold">Documents</h2>
-        <form className="relative mt-12 mb-8 w-48" onSubmit={handleSearch}>
-          <button type="submit" className="absolute top-0 right-0 flex items-center justify-center w-8 h-10">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M7.3335 2.66659C4.75617 2.66659 2.66683 4.75592 2.66683 7.33325C2.66683 9.91058 4.75617 11.9999 7.3335 11.9999C8.59079 11.9999 9.73196 11.5027 10.5711 10.6942C10.5886 10.6714 10.6079 10.6494 10.6288 10.6285C10.6497 10.6076 10.6716 10.5884 10.6944 10.5708C11.5029 9.73172 12.0002 8.59055 12.0002 7.33325C12.0002 4.75592 9.91083 2.66659 7.3335 2.66659ZM12.0214 11.0784C12.8425 10.0519 13.3335 8.74993 13.3335 7.33325C13.3335 4.01954 10.6472 1.33325 7.3335 1.33325C4.01979 1.33325 1.3335 4.01954 1.3335 7.33325C1.3335 10.647 4.01979 13.3333 7.3335 13.3333C8.75017 13.3333 10.0522 12.8423 11.0786 12.0212L13.5288 14.4713C13.7891 14.7317 14.2112 14.7317 14.4716 14.4713C14.7319 14.211 14.7319 13.7889 14.4716 13.5285L12.0214 11.0784Z"
-                fill="#514C49"
-              />
-            </svg>
-          </button>
-          <input
-            type="text"
-            className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-8"
-            value={query}
-            onChange={handleChangeQuery}
-          />
+        <form className="mt-12 mb-8" onSubmit={handleSearch}>
+          <div className="inline-block relative w-48">
+            <button type="submit" className="absolute top-0 right-0 flex items-center justify-center w-8 h-10">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M7.3335 2.66659C4.75617 2.66659 2.66683 4.75592 2.66683 7.33325C2.66683 9.91058 4.75617 11.9999 7.3335 11.9999C8.59079 11.9999 9.73196 11.5027 10.5711 10.6942C10.5886 10.6714 10.6079 10.6494 10.6288 10.6285C10.6497 10.6076 10.6716 10.5884 10.6944 10.5708C11.5029 9.73172 12.0002 8.59055 12.0002 7.33325C12.0002 4.75592 9.91083 2.66659 7.3335 2.66659ZM12.0214 11.0784C12.8425 10.0519 13.3335 8.74993 13.3335 7.33325C13.3335 4.01954 10.6472 1.33325 7.3335 1.33325C4.01979 1.33325 1.3335 4.01954 1.3335 7.33325C1.3335 10.647 4.01979 13.3333 7.3335 13.3333C8.75017 13.3333 10.0522 12.8423 11.0786 12.0212L13.5288 14.4713C13.7891 14.7317 14.2112 14.7317 14.4716 14.4713C14.7319 14.211 14.7319 13.7889 14.4716 13.5285L12.0214 11.0784Z"
+                  fill="#514C49"
+                />
+              </svg>
+            </button>
+            <input
+              type="text"
+              className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-8"
+              value={query}
+              onChange={handleChangeQuery}
+            />
+          </div>
+          {totalCount !== null && (
+            <span className="ml-4 text-xs text-gray-700">
+              Search <span className="font-bold">{totalCount}</span> documents
+            </span>
+          )}
         </form>
       </div>
       {status === 'loading' && <div>Loading...</div>}

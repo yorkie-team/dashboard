@@ -5,6 +5,7 @@ import { getDocument, listDocuments, DocumentSummary, searchDocuments } from 'ap
 export interface DocumentsState {
   list: {
     type: 'all' | 'search';
+    totalCount: number | null;
     documents: Array<DocumentSummary>;
     hasPrevious: boolean;
     hasNext: boolean;
@@ -19,6 +20,7 @@ export interface DocumentsState {
 const initialState: DocumentsState = {
   list: {
     type: 'all',
+    totalCount: null,
     documents: [],
     hasPrevious: false,
     hasNext: false,
@@ -67,14 +69,24 @@ export const searchDocumentsAsync = createAsyncThunk(
     isForward: boolean;
     previousID?: string;
   }): Promise<{
+    totalCount: number;
     documents: Array<DocumentSummary>;
     hasNext: boolean;
     hasPrevious: boolean;
   }> => {
     const { projectName, documentQuery, isForward, previousID = '' } = params;
-    const documents = await searchDocuments(projectName, documentQuery, previousID, PAGE_SIZE + 1, isForward);
+    const res = await searchDocuments(projectName, documentQuery, previousID, PAGE_SIZE + 1, isForward);
 
-    return getPaginationData({ documents, isForward, previousID, pageSize: PAGE_SIZE });
+    const paginationData = getPaginationData({
+      documents: res.documents,
+      isForward,
+      previousID,
+      pageSize: PAGE_SIZE,
+    });
+    return {
+      ...paginationData,
+      totalCount: res.totalCount,
+    };
   },
 );
 
@@ -110,6 +122,7 @@ export const documentSlice = createSlice({
     builder.addCase(listDocumentsAsync.fulfilled, (state, action) => {
       const { documents, hasPrevious, hasNext } = action.payload;
       state.list.status = 'idle';
+      state.list.totalCount = null;
       state.list.documents = documents;
       state.list.hasNext = hasNext;
       state.list.hasPrevious = hasPrevious;
@@ -122,8 +135,9 @@ export const documentSlice = createSlice({
       state.list.status = 'loading';
     });
     builder.addCase(searchDocumentsAsync.fulfilled, (state, action) => {
-      const { documents, hasPrevious, hasNext } = action.payload;
+      const { totalCount, documents, hasPrevious, hasNext } = action.payload;
       state.list.status = 'idle';
+      state.list.totalCount = totalCount;
       state.list.documents = documents;
       state.list.hasNext = hasNext;
       state.list.hasPrevious = hasPrevious;
