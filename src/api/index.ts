@@ -20,9 +20,18 @@ export * from './types';
 
 const client = new AdminPromiseClient(`${process.env.REACT_APP_ADMIN_ADDR}`, null);
 
-// loginUser logins the user and returns a token.
+// loginUser logins the user and returns a user.
 export async function loginUser(email: string, password: string): Promise<User> {
   // TODO(hackerwins): Implement login and token saving logic.
+  return Promise.resolve({
+    email: 'dl_alto_dev@navercorp.com',
+    createdAt: 0,
+  });
+}
+
+// signupUser creates a new user and returns a user.
+export async function signupUser(email: string, password: string): Promise<User> {
+  // TODO(hackerwins): Implement signup and token saving logic.
   return Promise.resolve({
     email: 'dl_alto_dev@navercorp.com',
     createdAt: 0,

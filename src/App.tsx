@@ -1,12 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { Projects, CreateProject, ProjectAPIKeys, Project, Documents, ProjectSettings, Login } from 'routes';
+import { Projects, CreateProject, ProjectAPIKeys, Project, Documents, ProjectSettings, Login, Signup } from 'routes';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/projects/new" element={<CreateProject />} />
         <Route path="/projects/:projectName" element={<Project />} />

@@ -32,15 +32,14 @@ export function LoginForm() {
         Email
       </label>
       <input className="appearance-none border-2 rounded w-full py-3 px-3 leading-tight border-gray-300 bg-gray-100 focus:outline-none focus:border-orange-700 focus:bg-white text-gray-700 pr-16 font-mono" type="text" autoComplete="off" autoFocus {...register('email', { required: true })} />
-        {errors.email && <p className="text-red-500 text-xs italic">Email required.</p>}
+      {errors.email && <p className="text-red-500 text-xs italic">Email required.</p>}
 
       <label className="font-medium block mb-1 mt-6 text-gray-700" htmlFor="password">
         Password
       </label>
-      <div className="relative w-full">
-        <input className="appearance-none border-2 rounded w-full py-3 px-3 leading-tight border-gray-300 bg-gray-100 focus:outline-none focus:border-orange-700 focus:bg-white text-gray-700 pr-16 font-mono js-password" type="password" autoComplete="off" {...register('password', { required: true })} />
-        {errors.password && <p className="text-red-500 text-xs italic">Password required.</p>}
-      </div>
+      <input className="appearance-none border-2 rounded w-full py-3 px-3 leading-tight border-gray-300 bg-gray-100 focus:outline-none focus:border-orange-700 focus:bg-white text-gray-700 pr-16 font-mono js-password" type="password" autoComplete="off" {...register('password', { required: true })} />
+      {errors.password && <p className="text-red-500 text-xs italic">Password required.</p>}
+
       <button className="w-full bg-orange-700 hover:bg-orange-900 text-white font-medium py-3 px-4 mt-10 rounded focus:outline-none focus:shadow-outline" type="submit">
         Log in
       </button>

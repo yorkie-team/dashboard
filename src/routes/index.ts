@@ -5,3 +5,4 @@ export * from './ProjectAPIKeys';
 export * from './Documents';
 export * from './ProjectSettings';
 export * from './Login';
+export * from './Signup';

@@ -73,7 +73,8 @@
             "protobuf",
             "grpc",
             "bg",
-            "str"
+            "str",
+            "signup"
           ],
           "skipIfMatch": [
             "TODO\\(.+\\):",

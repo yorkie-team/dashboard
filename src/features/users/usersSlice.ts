@@ -14,6 +14,12 @@ export type LoginFields = {
   password: string;
 };
 
+export type SignupFields = {
+  email: string;
+  password: string;
+  passwordConfirm: string;
+};
+
 const initialState: UsersState = {
   email: '',
   isSuccess: false,
@@ -32,6 +38,18 @@ export const loginUser = createAsyncThunk<
   }
 });
 
+export const signupUser = createAsyncThunk<
+  User,
+  SignupFields,
+  { rejectValue: any }
+>('users/signup', async ({ email, password }, { rejectWithValue }) => {
+  try {
+    return await api.signupUser(email, password);
+  } catch (error) {
+    return rejectWithValue(error);
+  }
+});
+
 export const usersSlice = createSlice({
   name: 'users',
   initialState,
@@ -45,6 +63,16 @@ export const usersSlice = createSlice({
       state.status = 'loading';
     });
     builder.addCase(loginUser.rejected, (state) => {
+      state.status = 'failed';
+    });
+    builder.addCase(signupUser.fulfilled, (state) => {
+      state.status = 'idle';
+      state.isSuccess = true;
+    });
+    builder.addCase(signupUser.pending, (state) => {
+      state.status = 'loading';
+    });
+    builder.addCase(signupUser.rejected, (state) => {
       state.status = 'failed';
     });
   },
