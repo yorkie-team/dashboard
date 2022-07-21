@@ -13,12 +13,21 @@ import * as errorDetails from 'grpc-web-error-details';
 import { UpdatableProjectFields as PbProjectFields } from './resources_pb';
 import * as PbWrappers from 'google-protobuf/google/protobuf/wrappers_pb';
 
-import { Project, DocumentSummary, UpdatableProjectFields } from './types';
+import { User, Project, DocumentSummary, UpdatableProjectFields } from './types';
 import * as converter from './converter';
 
 export * from './types';
 
 const client = new AdminPromiseClient(`${process.env.REACT_APP_ADMIN_ADDR}`, null);
+
+// loginUser logins the user and returns a token.
+export async function loginUser(email: string, password: string): Promise<User> {
+  // TODO(hackerwins): Implement login and token saving logic.
+  return Promise.resolve({
+    email: 'dl_alto_dev@navercorp.com',
+    createdAt: 0,
+  });
+}
 
 // createProject creates a new project.
 export async function createProject(name: string): Promise<Project> {

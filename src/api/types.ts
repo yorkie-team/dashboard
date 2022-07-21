@@ -7,6 +7,11 @@ export type DocumentSummary = {
   updatedAt: number;
 };
 
+export type User = {
+  email: string;
+  createdAt: number;
+};
+
 export type Project = {
   id: string;
   name: string;

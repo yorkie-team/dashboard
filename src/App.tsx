@@ -1,11 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { Projects, CreateProject, ProjectAPIKeys, Project, Documents, ProjectSettings } from 'routes';
+import { Projects, CreateProject, ProjectAPIKeys, Project, Documents, ProjectSettings, Login } from 'routes';
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/login" element={<Login />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/projects/new" element={<CreateProject />} />
         <Route path="/projects/:projectName" element={<Project />} />
