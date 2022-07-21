@@ -11,7 +11,10 @@ export function Documents() {
       </aside>
       <main className="ml-64 grow overflow-y-scroll">
         <div className="flex px-12 py-6">
-          <DocumentList />
+          <div className="px-5">
+            <h2 className="text-lg font-semibold">Documents</h2>
+            <DocumentList />
+          </div>
           <Routes>
             <Route path=":documentKey" element={<DocumentDetail />} />
           </Routes>
