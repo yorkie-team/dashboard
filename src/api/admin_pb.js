@@ -2673,9 +2673,7 @@ proto.api.SearchDocumentsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     projectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
     query: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    previousId: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    isForward: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
+    pageSize: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -2721,16 +2719,8 @@ proto.api.SearchDocumentsRequest.deserializeBinaryFromReader = function(msg, rea
       msg.setQuery(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setPreviousId(value);
-      break;
-    case 4:
       var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
-      break;
-    case 5:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIsForward(value);
       break;
     default:
       reader.skipField();
@@ -2775,24 +2765,10 @@ proto.api.SearchDocumentsRequest.serializeBinaryToWriter = function(message, wri
       f
     );
   }
-  f = message.getPreviousId();
-  if (f.length > 0) {
-    writer.writeString(
-      3,
-      f
-    );
-  }
   f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
-      4,
-      f
-    );
-  }
-  f = message.getIsForward();
-  if (f) {
-    writer.writeBool(
-      5,
+      3,
       f
     );
   }
@@ -2836,29 +2812,11 @@ proto.api.SearchDocumentsRequest.prototype.setQuery = function(value) {
 
 
 /**
- * optional string previous_id = 3;
- * @return {string}
- */
-proto.api.SearchDocumentsRequest.prototype.getPreviousId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.api.SearchDocumentsRequest} returns this
- */
-proto.api.SearchDocumentsRequest.prototype.setPreviousId = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
-};
-
-
-/**
- * optional int32 page_size = 4;
+ * optional int32 page_size = 3;
  * @return {number}
  */
 proto.api.SearchDocumentsRequest.prototype.getPageSize = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 
@@ -2867,25 +2825,7 @@ proto.api.SearchDocumentsRequest.prototype.getPageSize = function() {
  * @return {!proto.api.SearchDocumentsRequest} returns this
  */
 proto.api.SearchDocumentsRequest.prototype.setPageSize = function(value) {
-  return jspb.Message.setProto3IntField(this, 4, value);
-};
-
-
-/**
- * optional bool is_forward = 5;
- * @return {boolean}
- */
-proto.api.SearchDocumentsRequest.prototype.getIsForward = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.api.SearchDocumentsRequest} returns this
- */
-proto.api.SearchDocumentsRequest.prototype.setIsForward = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 5, value);
+  return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 

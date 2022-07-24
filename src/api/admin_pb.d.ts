@@ -306,14 +306,8 @@ export class SearchDocumentsRequest extends jspb.Message {
   getQuery(): string;
   setQuery(value: string): SearchDocumentsRequest;
 
-  getPreviousId(): string;
-  setPreviousId(value: string): SearchDocumentsRequest;
-
   getPageSize(): number;
   setPageSize(value: number): SearchDocumentsRequest;
-
-  getIsForward(): boolean;
-  setIsForward(value: boolean): SearchDocumentsRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SearchDocumentsRequest.AsObject;
@@ -327,9 +321,7 @@ export namespace SearchDocumentsRequest {
   export type AsObject = {
     projectName: string,
     query: string,
-    previousId: string,
     pageSize: number,
-    isForward: boolean,
   }
 }
 

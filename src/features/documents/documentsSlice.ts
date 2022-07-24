@@ -66,26 +66,16 @@ export const searchDocumentsAsync = createAsyncThunk(
   async (params: {
     projectName: string;
     documentQuery: string;
-    isForward: boolean;
-    previousID?: string;
   }): Promise<{
     totalCount: number;
     documents: Array<DocumentSummary>;
-    hasNext: boolean;
-    hasPrevious: boolean;
   }> => {
-    const { projectName, documentQuery, isForward, previousID = '' } = params;
-    const res = await searchDocuments(projectName, documentQuery, previousID, PAGE_SIZE + 1, isForward);
+    const { projectName, documentQuery } = params;
+    const res = await searchDocuments(projectName, documentQuery, PAGE_SIZE);
 
-    const paginationData = getPaginationData({
-      documents: res.documents,
-      isForward,
-      previousID,
-      pageSize: PAGE_SIZE,
-    });
     return {
-      ...paginationData,
       totalCount: res.totalCount,
+      documents: res.documents,
     };
   },
 );
@@ -135,12 +125,10 @@ export const documentSlice = createSlice({
       state.list.status = 'loading';
     });
     builder.addCase(searchDocumentsAsync.fulfilled, (state, action) => {
-      const { totalCount, documents, hasPrevious, hasNext } = action.payload;
+      const { totalCount, documents } = action.payload;
       state.list.status = 'idle';
       state.list.totalCount = totalCount;
       state.list.documents = documents;
-      state.list.hasNext = hasNext;
-      state.list.hasPrevious = hasPrevious;
     });
     builder.addCase(searchDocumentsAsync.rejected, (state) => {
       state.list.status = 'failed';
