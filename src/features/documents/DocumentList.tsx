@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import * as moment from 'moment';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
@@ -7,8 +7,10 @@ import { selectDocumentList, listDocumentsAsync, searchDocumentsAsync } from './
 
 export function DocumentList() {
   const dispatch = useAppDispatch();
-  const documentKey = useLocation().pathname.replace(/^\/projects\/(.*)\/documents\//, '');
   const projectName = useParams().projectName!;
+  // NOTE(chacha912): DocumentList is outside of the dynamic params `<Route path=":documentKey">`.
+  // So we need to use `*` to get the `documentKey`.
+  const documentKey = useParams()['*'];
   const { type: queryType, totalCount, documents, hasPrevious, hasNext, status } = useAppSelector(selectDocumentList);
 
   const [query, SetQuery] = useState('');
