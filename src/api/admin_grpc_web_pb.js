@@ -441,6 +441,128 @@ proto.api.AdminPromiseClient.prototype.getDocument =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.api.GetSnapshotMetaRequest,
+ *   !proto.api.GetSnapshotMetaResponse>}
+ */
+const methodDescriptor_Admin_GetSnapshotMeta = new grpc.web.MethodDescriptor(
+  '/api.Admin/GetSnapshotMeta',
+  grpc.web.MethodType.UNARY,
+  proto.api.GetSnapshotMetaRequest,
+  proto.api.GetSnapshotMetaResponse,
+  /**
+   * @param {!proto.api.GetSnapshotMetaRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.api.GetSnapshotMetaResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.api.GetSnapshotMetaRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.api.GetSnapshotMetaResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.api.GetSnapshotMetaResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.api.AdminClient.prototype.getSnapshotMeta =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/api.Admin/GetSnapshotMeta',
+      request,
+      metadata || {},
+      methodDescriptor_Admin_GetSnapshotMeta,
+      callback);
+};
+
+
+/**
+ * @param {!proto.api.GetSnapshotMetaRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.api.GetSnapshotMetaResponse>}
+ *     Promise that resolves to the response
+ */
+proto.api.AdminPromiseClient.prototype.getSnapshotMeta =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/api.Admin/GetSnapshotMeta',
+      request,
+      metadata || {},
+      methodDescriptor_Admin_GetSnapshotMeta);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.api.SearchDocumentsRequest,
+ *   !proto.api.SearchDocumentsResponse>}
+ */
+const methodDescriptor_Admin_SearchDocuments = new grpc.web.MethodDescriptor(
+  '/api.Admin/SearchDocuments',
+  grpc.web.MethodType.UNARY,
+  proto.api.SearchDocumentsRequest,
+  proto.api.SearchDocumentsResponse,
+  /**
+   * @param {!proto.api.SearchDocumentsRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.api.SearchDocumentsResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.api.SearchDocumentsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.api.SearchDocumentsResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.api.SearchDocumentsResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.api.AdminClient.prototype.searchDocuments =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/api.Admin/SearchDocuments',
+      request,
+      metadata || {},
+      methodDescriptor_Admin_SearchDocuments,
+      callback);
+};
+
+
+/**
+ * @param {!proto.api.SearchDocumentsRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.api.SearchDocumentsResponse>}
+ *     Promise that resolves to the response
+ */
+proto.api.AdminPromiseClient.prototype.searchDocuments =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/api.Admin/SearchDocuments',
+      request,
+      metadata || {},
+      methodDescriptor_Admin_SearchDocuments);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.api.ListChangesRequest,
  *   !proto.api.ListChangesResponse>}
  */

@@ -50,6 +50,20 @@ export class AdminClient {
                response: admin_pb.GetDocumentResponse) => void
   ): grpcWeb.ClientReadableStream<admin_pb.GetDocumentResponse>;
 
+  getSnapshotMeta(
+    request: admin_pb.GetSnapshotMetaRequest,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.RpcError,
+               response: admin_pb.GetSnapshotMetaResponse) => void
+  ): grpcWeb.ClientReadableStream<admin_pb.GetSnapshotMetaResponse>;
+
+  searchDocuments(
+    request: admin_pb.SearchDocumentsRequest,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.RpcError,
+               response: admin_pb.SearchDocumentsResponse) => void
+  ): grpcWeb.ClientReadableStream<admin_pb.SearchDocumentsResponse>;
+
   listChanges(
     request: admin_pb.ListChangesRequest,
     metadata: grpcWeb.Metadata | undefined,
@@ -93,6 +107,16 @@ export class AdminPromiseClient {
     request: admin_pb.GetDocumentRequest,
     metadata?: grpcWeb.Metadata
   ): Promise<admin_pb.GetDocumentResponse>;
+
+  getSnapshotMeta(
+    request: admin_pb.GetSnapshotMetaRequest,
+    metadata?: grpcWeb.Metadata
+  ): Promise<admin_pb.GetSnapshotMetaResponse>;
+
+  searchDocuments(
+    request: admin_pb.SearchDocumentsRequest,
+    metadata?: grpcWeb.Metadata
+  ): Promise<admin_pb.SearchDocumentsResponse>;
 
   listChanges(
     request: admin_pb.ListChangesRequest,

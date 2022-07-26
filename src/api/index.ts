@@ -6,6 +6,7 @@ import {
   GetDocumentRequest,
   CreateProjectRequest,
   UpdateProjectRequest,
+  SearchDocumentsRequest,
 } from './admin_pb';
 import * as errorDetails from 'grpc-web-error-details';
 
@@ -103,4 +104,25 @@ export async function getDocument(projectName: string, documentKey: string): Pro
 
   const document = response.getDocument();
   return converter.fromDocumentSummary(document!);
+}
+
+// searchDocuments fetches documents that match the query parameters.
+export async function searchDocuments(
+  projectName: string,
+  documentQuery: string,
+  pageSize: number,
+): Promise<{
+  totalCount: number;
+  documents: Array<DocumentSummary>;
+}> {
+  const req = new SearchDocumentsRequest();
+  req.setProjectName(projectName);
+  req.setQuery(documentQuery);
+  req.setPageSize(pageSize);
+  const response = await client.searchDocuments(req);
+  const summaries = converter.fromDocumentSummaries(response.getDocumentsList());
+  return {
+    totalCount: response.getTotalCount(),
+    documents: summaries,
+  };
 }
