@@ -99,6 +99,7 @@ export function DocumentDetail() {
                   navigator.clipboard
                     .writeText(document?.snapshot || '')
                     .then(() => {
+                      // TODO(chacha912): Replace `alert()` with alert component
                       alert('Copied!');
                     })
                     .catch(() => {
