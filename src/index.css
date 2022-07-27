@@ -53,6 +53,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+pre, code {
+  font-family: Menlo, source-code-pro, Monaco, Consolas, 'Courier New', monospace;
+  tab-size: 2;
 }

@@ -103,13 +103,13 @@ export function DocumentList() {
           <table className="w-full text-sm text-left">
             <thead className="text-xs text-gray-700 uppercase">
               <tr>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-6 py-3" style={{ minWidth: '140px' }}>
                   Key
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-6 py-3" style={{ width: '140px' }}>
                   Created At
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-6 py-3" style={{ width: '140px' }}>
                   Updated At
                 </th>
               </tr>
@@ -123,7 +123,7 @@ export function DocumentList() {
                     className={`cursor-pointer ${documentKey === key ? 'bg-gray-100' : 'hover:bg-gray-200'}`}
                     onClick={() => handleRowClicked(key)}
                   >
-                    <td className="px-6 py-4 font-medium whitespace-nowrap">{key}</td>
+                    <td className="px-6 py-4 font-medium whitespace-pre-wrap break-all">{key}</td>
                     <td className="px-6 py-4">{moment.unix(createdAt).format('YYYY-MM-DD')}</td>
                     <td className="px-6 py-4">{moment.unix(updatedAt).format('YYYY-MM-DD')}</td>
                   </tr>
