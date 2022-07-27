@@ -153,6 +153,7 @@ export function DocumentDetail() {
                 src={documentJSON}
                 displayObjectSize={false}
                 displayDataTypes={false}
+                // TODO(chacha912): Extract theme like `prisimThemeLight`
                 theme={{
                   base00: 'transparent', // background
                   base01: 'black',
