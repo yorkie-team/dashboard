@@ -67,6 +67,5 @@ export function SignupForm() {
         Sign up
       </button>
     </form>
-
   );
 }
