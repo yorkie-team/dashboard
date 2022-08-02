@@ -9,16 +9,15 @@ export function SignupForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { register, watch, formState: { errors }, handleSubmit } = useForm<SignupFields>();
-  const { isSuccess } = useSelector(selectUsers);
+  const { signup: { isSuccess } } = useSelector(selectUsers);
 
   const onSubmit = (data: SignupFields) => {
     dispatch(signupUser(data));
   };
 
   useEffect(() => {
-    // TODO(hackerwins): Go to dashboard if the user is already logged in.
     if (isSuccess) {
-      navigate('/');
+      navigate('/login');
     }
   }, [navigate, isSuccess]);
 
@@ -29,13 +28,13 @@ export function SignupForm() {
     >
       <h1 className="font-medium text-3xl text-center py-4 text-gray-800">Create an account</h1>
       <label className="font-medium block mb-1 mt-6 text-gray-700" htmlFor="username">
-        Email
+        Username
       </label>
       <input
         className="appearance-none border-2 rounded w-full py-3 px-3 leading-tight border-gray-300 bg-gray-100 focus:outline-none focus:border-orange-700 focus:bg-white text-gray-700 pr-16 font-mono" type="text" autoComplete="off" autoFocus
-        {...register('email', { required: true })}
+        {...register('username', { required: true })}
       />
-      {errors.email && <p className="text-red-500 text-xs italic">Email required.</p>}
+      {errors.username && <p className="text-red-500 text-xs italic">Username required.</p>}
 
       <label className="font-medium block mb-1 mt-6 text-gray-700" htmlFor="password">
         Password

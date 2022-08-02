@@ -4,35 +4,47 @@ import { User } from 'api/types'
 import { RootState } from 'app/store';
 
 export interface UsersState {
-  email: string;
-  isSuccess: boolean;
-  status: 'idle' | 'loading' | 'failed';
+  token: string;
+  login: {
+    isSuccess: boolean;
+    status: 'idle' | 'loading' | 'failed';
+  },
+  signup: {
+    isSuccess: boolean;
+    status: 'idle' | 'loading' | 'failed';
+  }
 }
 
 export type LoginFields = {
-  email: string;
+  username: string;
   password: string;
 };
 
 export type SignupFields = {
-  email: string;
+  username: string;
   password: string;
   passwordConfirm: string;
 };
 
 const initialState: UsersState = {
-  email: '',
-  isSuccess: false,
-  status: 'idle',
+  token: '',
+  login: {
+    isSuccess: false,
+    status: 'idle',
+  },
+  signup: {
+    isSuccess: false,
+    status: 'idle',
+  }
 }
 
 export const loginUser = createAsyncThunk<
-  User,
+  string,
   LoginFields,
   { rejectValue: any }
->('users/login', async ({ email, password }, { rejectWithValue }) => {
+>('users/login', async ({ username, password }, { rejectWithValue }) => {
   try {
-    return await api.loginUser(email, password);
+    return await api.logIn(username, password);
   } catch (error) {
     return rejectWithValue(error);
   }
@@ -42,9 +54,9 @@ export const signupUser = createAsyncThunk<
   User,
   SignupFields,
   { rejectValue: any }
->('users/signup', async ({ email, password }, { rejectWithValue }) => {
+>('users/signup', async ({ username, password }, { rejectWithValue }) => {
   try {
-    return await api.signupUser(email, password);
+    return await api.signUp(username, password);
   } catch (error) {
     return rejectWithValue(error);
   }
@@ -55,25 +67,26 @@ export const usersSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(loginUser.fulfilled, (state) => {
-      state.status = 'idle';
-      state.isSuccess = true;
+    builder.addCase(loginUser.fulfilled, (state, action) => {
+      state.token = action.payload;
+      state.login.status = 'idle';
+      state.login.isSuccess = true;
     });
     builder.addCase(loginUser.pending, (state) => {
-      state.status = 'loading';
+      state.login.status = 'loading';
     });
     builder.addCase(loginUser.rejected, (state) => {
-      state.status = 'failed';
+      state.login.status = 'failed';
     });
     builder.addCase(signupUser.fulfilled, (state) => {
-      state.status = 'idle';
-      state.isSuccess = true;
+      state.signup.status = 'idle';
+      state.signup.isSuccess = true;
     });
     builder.addCase(signupUser.pending, (state) => {
-      state.status = 'loading';
+      state.signup.status = 'loading';
     });
     builder.addCase(signupUser.rejected, (state) => {
-      state.status = 'failed';
+      state.signup.status = 'failed';
     });
   },
 });

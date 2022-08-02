@@ -3,6 +3,88 @@ import * as jspb from 'google-protobuf'
 import * as resources_pb from './resources_pb';
 
 
+export class SignUpRequest extends jspb.Message {
+  getUsername(): string;
+  setUsername(value: string): SignUpRequest;
+
+  getPassword(): string;
+  setPassword(value: string): SignUpRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SignUpRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SignUpRequest): SignUpRequest.AsObject;
+  static serializeBinaryToWriter(message: SignUpRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SignUpRequest;
+  static deserializeBinaryFromReader(message: SignUpRequest, reader: jspb.BinaryReader): SignUpRequest;
+}
+
+export namespace SignUpRequest {
+  export type AsObject = {
+    username: string,
+    password: string,
+  }
+}
+
+export class SignUpResponse extends jspb.Message {
+  getUser(): resources_pb.User | undefined;
+  setUser(value?: resources_pb.User): SignUpResponse;
+  hasUser(): boolean;
+  clearUser(): SignUpResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SignUpResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SignUpResponse): SignUpResponse.AsObject;
+  static serializeBinaryToWriter(message: SignUpResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SignUpResponse;
+  static deserializeBinaryFromReader(message: SignUpResponse, reader: jspb.BinaryReader): SignUpResponse;
+}
+
+export namespace SignUpResponse {
+  export type AsObject = {
+    user?: resources_pb.User.AsObject,
+  }
+}
+
+export class LogInRequest extends jspb.Message {
+  getUsername(): string;
+  setUsername(value: string): LogInRequest;
+
+  getPassword(): string;
+  setPassword(value: string): LogInRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): LogInRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: LogInRequest): LogInRequest.AsObject;
+  static serializeBinaryToWriter(message: LogInRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): LogInRequest;
+  static deserializeBinaryFromReader(message: LogInRequest, reader: jspb.BinaryReader): LogInRequest;
+}
+
+export namespace LogInRequest {
+  export type AsObject = {
+    username: string,
+    password: string,
+  }
+}
+
+export class LogInResponse extends jspb.Message {
+  getToken(): string;
+  setToken(value: string): LogInResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): LogInResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: LogInResponse): LogInResponse.AsObject;
+  static serializeBinaryToWriter(message: LogInResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): LogInResponse;
+  static deserializeBinaryFromReader(message: LogInResponse, reader: jspb.BinaryReader): LogInResponse;
+}
+
+export namespace LogInResponse {
+  export type AsObject = {
+    token: string,
+  }
+}
+
 export class CreateProjectRequest extends jspb.Message {
   getName(): string;
   setName(value: string): CreateProjectRequest;

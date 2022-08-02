@@ -1,5 +1,7 @@
 import { AdminPromiseClient } from './admin_grpc_web_pb';
 import {
+  LogInRequest,
+  SignUpRequest,
   ListProjectsRequest,
   ListDocumentsRequest,
   GetProjectRequest,
@@ -10,6 +12,7 @@ import {
 } from './admin_pb';
 import * as errorDetails from 'grpc-web-error-details';
 
+import { AuthUnaryInterceptor, AuthStreamInterceptor } from './auth_interceptor';
 import { UpdatableProjectFields as PbProjectFields } from './resources_pb';
 import * as PbWrappers from 'google-protobuf/google/protobuf/wrappers_pb';
 
@@ -18,47 +21,58 @@ import * as converter from './converter';
 
 export * from './types';
 
-const client = new AdminPromiseClient(`${process.env.REACT_APP_ADMIN_ADDR}`, null);
+// TODO(hackerwins): Consider combining these two interceptors into one.
+const unaryInterceptor = new AuthUnaryInterceptor();
+const streamInterceptor = new AuthStreamInterceptor();
+const client = new AdminPromiseClient(`${process.env.REACT_APP_ADMIN_ADDR}`, null, {
+  unaryInterceptors: [unaryInterceptor],
+  streamInterceptors: [streamInterceptor],
+});
 
-// loginUser logins the user and returns a user.
-export async function loginUser(email: string, password: string): Promise<User> {
-  // TODO(hackerwins): Implement login and token saving logic.
-  return Promise.resolve({
-    email: 'dl_alto_dev@navercorp.com',
-    createdAt: 0,
-  });
+// logIn logs in the user and returns a token.
+export async function logIn(username: string, password: string): Promise<string> {
+  const req = new LogInRequest();
+  req.setUsername(username);
+  req.setPassword(password);
+  const res = await client.logIn(req);
+
+  // TODO(hackerwins): We should probably store the token in localStorage or cookies.
+  const token = res.getToken();
+  unaryInterceptor.setToken(token);
+  streamInterceptor.setToken(token);
+  return token;
 }
 
-// signupUser creates a new user and returns a user.
-export async function signupUser(email: string, password: string): Promise<User> {
-  // TODO(hackerwins): Implement signup and token saving logic.
-  return Promise.resolve({
-    email: 'dl_alto_dev@navercorp.com',
-    createdAt: 0,
-  });
+// signUp signs up the user and returns a user.
+export async function signUp(username: string, password: string): Promise<User> {
+  const req = new SignUpRequest();
+  req.setUsername(username);
+  req.setPassword(password);
+  const res = await client.signUp(req);
+  return converter.fromUser(res.getUser()!);
 }
 
 // createProject creates a new project.
 export async function createProject(name: string): Promise<Project> {
   const req = new CreateProjectRequest();
   req.setName(name);
-  const response = await client.createProject(req);
-  return converter.fromProject(response.getProject()!);
+  const res = await client.createProject(req);
+  return converter.fromProject(res.getProject()!);
 }
 
 // listProjects fetches projects from the admin server.
 export async function listProjects(): Promise<Array<Project>> {
   const req = new ListProjectsRequest();
-  const response = await client.listProjects(req);
-  return converter.fromProjects(response.getProjectsList());
+  const res = await client.listProjects(req);
+  return converter.fromProjects(res.getProjectsList());
 }
 
 // getProject fetch project from the admin server.
 export async function getProject(name: string): Promise<Project> {
   const req = new GetProjectRequest();
   req.setName(name);
-  const response = await client.getProject(req);
-  return converter.fromProject(response.getProject()!);
+  const res = await client.getProject(req);
+  return converter.fromProject(res.getProject()!);
 }
 
 // UpdateProject updates a project info.
@@ -81,8 +95,8 @@ export async function updateProject(id: string, fields: UpdatableProjectFields):
 
   req.setFields(pbFields);
   try {
-    const response = await client.updateProject(req);
-    return converter.fromProject(response.getProject()!);
+    const res = await client.updateProject(req);
+    return converter.fromProject(res.getProject()!);
   } catch (error) {
     const [status, details] = errorDetails.statusFromError(error);
     if (!status || !details) {
@@ -105,8 +119,8 @@ export async function listDocuments(
   req.setPreviousId(previousID);
   req.setPageSize(pageSize);
   req.setIsForward(isForward);
-  const response = await client.listDocuments(req);
-  const summaries = converter.fromDocumentSummaries(response.getDocumentsList());
+  const res = await client.listDocuments(req);
+  const summaries = converter.fromDocumentSummaries(res.getDocumentsList());
   if (isForward) {
     summaries.reverse();
   }
@@ -118,9 +132,9 @@ export async function getDocument(projectName: string, documentKey: string): Pro
   const req = new GetDocumentRequest();
   req.setProjectName(projectName);
   req.setDocumentKey(documentKey);
-  const response = await client.getDocument(req);
+  const res = await client.getDocument(req);
 
-  const document = response.getDocument();
+  const document = res.getDocument();
   return converter.fromDocumentSummary(document!);
 }
 
@@ -137,10 +151,10 @@ export async function searchDocuments(
   req.setProjectName(projectName);
   req.setQuery(documentQuery);
   req.setPageSize(pageSize);
-  const response = await client.searchDocuments(req);
-  const summaries = converter.fromDocumentSummaries(response.getDocumentsList());
+  const res = await client.searchDocuments(req);
+  const summaries = converter.fromDocumentSummaries(res.getDocumentsList());
   return {
-    totalCount: response.getTotalCount(),
+    totalCount: res.getTotalCount(),
     documents: summaries,
   };
 }
