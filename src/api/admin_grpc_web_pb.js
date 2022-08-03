@@ -75,6 +75,128 @@ proto.api.AdminPromiseClient =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.api.SignUpRequest,
+ *   !proto.api.SignUpResponse>}
+ */
+const methodDescriptor_Admin_SignUp = new grpc.web.MethodDescriptor(
+  '/api.Admin/SignUp',
+  grpc.web.MethodType.UNARY,
+  proto.api.SignUpRequest,
+  proto.api.SignUpResponse,
+  /**
+   * @param {!proto.api.SignUpRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.api.SignUpResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.api.SignUpRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.api.SignUpResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.api.SignUpResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.api.AdminClient.prototype.signUp =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/api.Admin/SignUp',
+      request,
+      metadata || {},
+      methodDescriptor_Admin_SignUp,
+      callback);
+};
+
+
+/**
+ * @param {!proto.api.SignUpRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.api.SignUpResponse>}
+ *     Promise that resolves to the response
+ */
+proto.api.AdminPromiseClient.prototype.signUp =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/api.Admin/SignUp',
+      request,
+      metadata || {},
+      methodDescriptor_Admin_SignUp);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.api.LogInRequest,
+ *   !proto.api.LogInResponse>}
+ */
+const methodDescriptor_Admin_LogIn = new grpc.web.MethodDescriptor(
+  '/api.Admin/LogIn',
+  grpc.web.MethodType.UNARY,
+  proto.api.LogInRequest,
+  proto.api.LogInResponse,
+  /**
+   * @param {!proto.api.LogInRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.api.LogInResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.api.LogInRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.api.LogInResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.api.LogInResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.api.AdminClient.prototype.logIn =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/api.Admin/LogIn',
+      request,
+      metadata || {},
+      methodDescriptor_Admin_LogIn,
+      callback);
+};
+
+
+/**
+ * @param {!proto.api.LogInRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.api.LogInResponse>}
+ *     Promise that resolves to the response
+ */
+proto.api.AdminPromiseClient.prototype.logIn =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/api.Admin/LogIn',
+      request,
+      metadata || {},
+      methodDescriptor_Admin_LogIn);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.api.CreateProjectRequest,
  *   !proto.api.CreateProjectResponse>}
  */

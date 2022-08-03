@@ -7,6 +7,12 @@ export type DocumentSummary = {
   updatedAt: number;
 };
 
+export type User = {
+  id: string;
+  username: string;
+  createdAt: number;
+};
+
 export type Project = {
   id: string;
   name: string;

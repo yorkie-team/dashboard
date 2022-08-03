@@ -1,6 +1,6 @@
 # Yorkie House
 
-Yorkie House is a service that allows you to manage your Document.
+Yorkie House is an admin dashboard that allows managing projects and documents.
 
 ## How Yorkie House works
 
