@@ -29,17 +29,20 @@ const client = new AdminPromiseClient(`${process.env.REACT_APP_ADMIN_ADDR}`, nul
   streamInterceptors: [streamInterceptor],
 });
 
+// setToken sets the token for the current user.
+export function setToken(token: string) {
+  unaryInterceptor.setToken(token);
+  streamInterceptor.setToken(token);
+}
+
 // logIn logs in the user and returns a token.
 export async function logIn(username: string, password: string): Promise<string> {
   const req = new LogInRequest();
   req.setUsername(username);
   req.setPassword(password);
   const res = await client.logIn(req);
-
-  // TODO(hackerwins): We should probably store the token in localStorage or cookies.
   const token = res.getToken();
-  unaryInterceptor.setToken(token);
-  streamInterceptor.setToken(token);
+  setToken(token);
   return token;
 }
 

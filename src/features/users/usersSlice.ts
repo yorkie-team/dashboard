@@ -27,7 +27,7 @@ export type SignupFields = {
 };
 
 const initialState: UsersState = {
-  token: '',
+  token: localStorage.getItem('token') || '',
   login: {
     isSuccess: false,
     status: 'idle',
@@ -38,13 +38,19 @@ const initialState: UsersState = {
   }
 }
 
+if (initialState.token) {
+  api.setToken(initialState.token);
+}
+
 export const loginUser = createAsyncThunk<
   string,
   LoginFields,
   { rejectValue: any }
 >('users/login', async ({ username, password }, { rejectWithValue }) => {
   try {
-    return await api.logIn(username, password);
+    const token = await api.logIn(username, password);
+    localStorage.setItem('token', token);
+    return token;
   } catch (error) {
     return rejectWithValue(error);
   }
