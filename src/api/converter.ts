@@ -1,7 +1,7 @@
 import { Timestamp as PbTimestamp } from 'google-protobuf/google/protobuf/timestamp_pb';
 import { Project, DocumentSummary, AuthWebhookMethod, ErrorWithDetails } from './types';
-
-import { Project as PbProject, DocumentSummary as PbDocumentSummary } from './resources_pb';
+import { Change, converter } from 'yorkie-js-sdk';
+import { Project as PbProject, DocumentSummary as PbDocumentSummary, Change as PbChange } from './resources_pb';
 
 import * as errorDetails from 'grpc-web-error-details';
 
@@ -50,6 +50,10 @@ export function fromDocumentSummaries(pbDocumentSummaries: Array<PbDocumentSumma
   }
 
   return documentSummaries;
+}
+
+export function fromChanges(pbChanges: Array<PbChange>): Array<Change> {
+  return converter.fromChanges(pbChanges);
 }
 
 export function toErrorWithDetails(

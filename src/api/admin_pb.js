@@ -2299,7 +2299,7 @@ proto.api.GetSnapshotMetaRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     projectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
     documentKey: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    serverSeq: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    serverSeq: jspb.Message.getFieldWithDefault(msg, 3, "0")
   };
 
   if (includeInstance) {
@@ -2345,7 +2345,7 @@ proto.api.GetSnapshotMetaRequest.deserializeBinaryFromReader = function(msg, rea
       msg.setDocumentKey(value);
       break;
     case 3:
-      var value = /** @type {number} */ (reader.readUint64());
+      var value = /** @type {string} */ (reader.readUint64String());
       msg.setServerSeq(value);
       break;
     default:
@@ -2392,8 +2392,8 @@ proto.api.GetSnapshotMetaRequest.serializeBinaryToWriter = function(message, wri
     );
   }
   f = message.getServerSeq();
-  if (f !== 0) {
-    writer.writeUint64(
+  if (parseInt(f, 10) !== 0) {
+    writer.writeUint64String(
       3,
       f
     );
@@ -2439,19 +2439,19 @@ proto.api.GetSnapshotMetaRequest.prototype.setDocumentKey = function(value) {
 
 /**
  * optional uint64 server_seq = 3;
- * @return {number}
+ * @return {string}
  */
 proto.api.GetSnapshotMetaRequest.prototype.getServerSeq = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, "0"));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.api.GetSnapshotMetaRequest} returns this
  */
 proto.api.GetSnapshotMetaRequest.prototype.setServerSeq = function(value) {
-  return jspb.Message.setProto3IntField(this, 3, value);
+  return jspb.Message.setProto3StringIntField(this, 3, value);
 };
 
 
@@ -2488,7 +2488,7 @@ proto.api.GetSnapshotMetaResponse.prototype.toObject = function(opt_includeInsta
 proto.api.GetSnapshotMetaResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     snapshot: msg.getSnapshot_asB64(),
-    lamport: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    lamport: jspb.Message.getFieldWithDefault(msg, 2, "0")
   };
 
   if (includeInstance) {
@@ -2530,7 +2530,7 @@ proto.api.GetSnapshotMetaResponse.deserializeBinaryFromReader = function(msg, re
       msg.setSnapshot(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readUint64());
+      var value = /** @type {string} */ (reader.readUint64String());
       msg.setLamport(value);
       break;
     default:
@@ -2570,8 +2570,8 @@ proto.api.GetSnapshotMetaResponse.serializeBinaryToWriter = function(message, wr
     );
   }
   f = message.getLamport();
-  if (f !== 0) {
-    writer.writeUint64(
+  if (parseInt(f, 10) !== 0) {
+    writer.writeUint64String(
       2,
       f
     );
@@ -2623,19 +2623,19 @@ proto.api.GetSnapshotMetaResponse.prototype.setSnapshot = function(value) {
 
 /**
  * optional uint64 lamport = 2;
- * @return {number}
+ * @return {string}
  */
 proto.api.GetSnapshotMetaResponse.prototype.getLamport = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, "0"));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.api.GetSnapshotMetaResponse} returns this
  */
 proto.api.GetSnapshotMetaResponse.prototype.setLamport = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
+  return jspb.Message.setProto3StringIntField(this, 2, value);
 };
 
 
@@ -3053,7 +3053,7 @@ proto.api.ListChangesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     projectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
     documentKey: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    previousSeq: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    previousSeq: jspb.Message.getFieldWithDefault(msg, 3, "0"),
     pageSize: jspb.Message.getFieldWithDefault(msg, 4, 0),
     isForward: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
   };
@@ -3101,7 +3101,7 @@ proto.api.ListChangesRequest.deserializeBinaryFromReader = function(msg, reader)
       msg.setDocumentKey(value);
       break;
     case 3:
-      var value = /** @type {number} */ (reader.readUint64());
+      var value = /** @type {string} */ (reader.readUint64String());
       msg.setPreviousSeq(value);
       break;
     case 4:
@@ -3156,8 +3156,8 @@ proto.api.ListChangesRequest.serializeBinaryToWriter = function(message, writer)
     );
   }
   f = message.getPreviousSeq();
-  if (f !== 0) {
-    writer.writeUint64(
+  if (parseInt(f, 10) !== 0) {
+    writer.writeUint64String(
       3,
       f
     );
@@ -3217,19 +3217,19 @@ proto.api.ListChangesRequest.prototype.setDocumentKey = function(value) {
 
 /**
  * optional uint64 previous_seq = 3;
- * @return {number}
+ * @return {string}
  */
 proto.api.ListChangesRequest.prototype.getPreviousSeq = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, "0"));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.api.ListChangesRequest} returns this
  */
 proto.api.ListChangesRequest.prototype.setPreviousSeq = function(value) {
-  return jspb.Message.setProto3IntField(this, 3, value);
+  return jspb.Message.setProto3StringIntField(this, 3, value);
 };
 
 

@@ -1,3 +1,5 @@
+import Long from 'long';
+import { Document } from 'yorkie-js-sdk';
 import { AdminPromiseClient } from './admin_grpc_web_pb';
 import {
   ListProjectsRequest,
@@ -7,6 +9,8 @@ import {
   CreateProjectRequest,
   UpdateProjectRequest,
   SearchDocumentsRequest,
+  ListChangesRequest,
+  GetSnapshotMetaRequest,
 } from './admin_pb';
 import * as errorDetails from 'grpc-web-error-details';
 
@@ -125,4 +129,35 @@ export async function searchDocuments(
     totalCount: response.getTotalCount(),
     documents: summaries,
   };
+}
+
+// listDocumentHistories lists of changes for the given document.
+export async function listDocumentHistories(projectName: string, documentKey: string): Promise<Array<string>> {
+  const req = new ListChangesRequest();
+  req.setProjectName(projectName);
+  req.setDocumentKey(documentKey);
+  req.setPreviousSeq('0');
+  req.setPageSize(50);
+  req.setIsForward(false);
+  const response = await client.listChanges(req);
+  const pbChanges = response.getChangesList();
+  const changes = converter.fromChanges(pbChanges);
+
+  const seq = Long.fromString(pbChanges[0].getId()!.getServerSeq()).add(-1);
+  const metaReq = new GetSnapshotMetaRequest();
+  metaReq.setProjectName(projectName);
+  metaReq.setDocumentKey(documentKey);
+  metaReq.setServerSeq(seq.toString());
+  const snapshotMeta = await client.getSnapshotMeta(metaReq);
+
+  const document = new Document(documentKey);
+  document.applySnapshot(seq, snapshotMeta.getSnapshot() as any);
+
+  const summaries: Array<string> = [];
+  for (const change of changes) {
+    document.applyChanges([change]);
+    summaries.push(document.toJSON());
+  }
+
+  return summaries;
 }

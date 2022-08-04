@@ -256,8 +256,8 @@ export class GetSnapshotMetaRequest extends jspb.Message {
   getDocumentKey(): string;
   setDocumentKey(value: string): GetSnapshotMetaRequest;
 
-  getServerSeq(): number;
-  setServerSeq(value: number): GetSnapshotMetaRequest;
+  getServerSeq(): string;
+  setServerSeq(value: string): GetSnapshotMetaRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetSnapshotMetaRequest.AsObject;
@@ -271,7 +271,7 @@ export namespace GetSnapshotMetaRequest {
   export type AsObject = {
     projectName: string,
     documentKey: string,
-    serverSeq: number,
+    serverSeq: string,
   }
 }
 
@@ -281,8 +281,8 @@ export class GetSnapshotMetaResponse extends jspb.Message {
   getSnapshot_asB64(): string;
   setSnapshot(value: Uint8Array | string): GetSnapshotMetaResponse;
 
-  getLamport(): number;
-  setLamport(value: number): GetSnapshotMetaResponse;
+  getLamport(): string;
+  setLamport(value: string): GetSnapshotMetaResponse;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetSnapshotMetaResponse.AsObject;
@@ -295,7 +295,7 @@ export class GetSnapshotMetaResponse extends jspb.Message {
 export namespace GetSnapshotMetaResponse {
   export type AsObject = {
     snapshot: Uint8Array | string,
-    lamport: number,
+    lamport: string,
   }
 }
 
@@ -356,8 +356,8 @@ export class ListChangesRequest extends jspb.Message {
   getDocumentKey(): string;
   setDocumentKey(value: string): ListChangesRequest;
 
-  getPreviousSeq(): number;
-  setPreviousSeq(value: number): ListChangesRequest;
+  getPreviousSeq(): string;
+  setPreviousSeq(value: string): ListChangesRequest;
 
   getPageSize(): number;
   setPageSize(value: number): ListChangesRequest;
@@ -377,7 +377,7 @@ export namespace ListChangesRequest {
   export type AsObject = {
     projectName: string,
     documentKey: string,
-    previousSeq: number,
+    previousSeq: string,
     pageSize: number,
     isForward: boolean,
   }

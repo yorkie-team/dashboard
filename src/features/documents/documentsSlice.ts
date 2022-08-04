@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from 'app/store';
-import { getDocument, listDocuments, DocumentSummary, searchDocuments } from 'api';
+import { getDocument, listDocuments, DocumentSummary, searchDocuments, listDocumentHistories } from 'api';
 
 export interface DocumentsState {
   list: {
@@ -13,6 +13,10 @@ export interface DocumentsState {
   };
   detail: {
     document: DocumentSummary | null;
+    status: 'idle' | 'loading' | 'failed';
+  };
+  history: {
+    histories: Array<string>;
     status: 'idle' | 'loading' | 'failed';
   };
 }
@@ -28,6 +32,10 @@ const initialState: DocumentsState = {
   },
   detail: {
     document: null,
+    status: 'idle',
+  },
+  history: {
+    histories: [],
     status: 'idle',
   },
 };
@@ -80,6 +88,15 @@ export const searchDocumentsAsync = createAsyncThunk(
   },
 );
 
+export const listDocumentHistoriesAsync = createAsyncThunk(
+  'documents/listDocumentHistories',
+  async (params: { projectName: string; documentKey: string }): Promise<Array<string>> => {
+    const { projectName, documentKey } = params;
+    const documents = await listDocumentHistories(projectName, documentKey);
+    return documents;
+  },
+);
+
 export const getPaginationData = (params: {
   documents: Array<DocumentSummary>;
   isForward: boolean;
@@ -103,7 +120,14 @@ export const getPaginationData = (params: {
 export const documentSlice = createSlice({
   name: 'documents',
   initialState,
-  reducers: {},
+  reducers: {
+    setHistory: (state, action) => {
+      state.detail.document!.snapshot = state.history.histories[action.payload];
+    },
+    resetHistory: (state) => {
+      state.history.histories = [];
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(listDocumentsAsync.pending, (state) => {
       state.list.type = 'all';
@@ -143,10 +167,23 @@ export const documentSlice = createSlice({
     builder.addCase(getDocumentAsync.rejected, (state) => {
       state.detail.status = 'failed';
     });
+    builder.addCase(listDocumentHistoriesAsync.pending, (state) => {
+      state.history.status = 'loading';
+    });
+    builder.addCase(listDocumentHistoriesAsync.fulfilled, (state, action) => {
+      state.history.status = 'idle';
+      state.history.histories = action.payload;
+    });
+    builder.addCase(listDocumentHistoriesAsync.rejected, (state) => {
+      state.history.status = 'failed';
+    });
   },
 });
 
+export const { setHistory, resetHistory } = documentSlice.actions;
+
 export const selectDocumentList = (state: RootState) => state.documents.list;
 export const selectDocumentDetail = (state: RootState) => state.documents.detail;
+export const selectDocumentHistory = (state: RootState) => state.documents.history;
 
 export default documentSlice.reducer;
