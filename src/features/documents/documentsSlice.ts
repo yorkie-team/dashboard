@@ -1,6 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from 'app/store';
-import { getDocument, listDocuments, DocumentSummary, searchDocuments, listDocumentHistories } from 'api';
+import {
+  getDocument,
+  listDocuments,
+  DocumentSummary,
+  searchDocuments,
+  listDocumentHistories,
+  DocumentHistory,
+} from 'api';
 
 export interface DocumentsState {
   list: {
@@ -16,7 +23,9 @@ export interface DocumentsState {
     status: 'idle' | 'loading' | 'failed';
   };
   history: {
-    histories: Array<string>;
+    histories: Array<DocumentHistory>;
+    hasPrevious: boolean;
+    hasNext: boolean;
     status: 'idle' | 'loading' | 'failed';
   };
 }
@@ -36,11 +45,14 @@ const initialState: DocumentsState = {
   },
   history: {
     histories: [],
+    hasPrevious: false,
+    hasNext: false,
     status: 'idle',
   },
 };
 
-const PAGE_SIZE = 15;
+const DOCUMENTS_LIMIT = 15;
+const HISTORIES_LIMIT = 20;
 
 export const listDocumentsAsync = createAsyncThunk(
   'documents/listDocuments',
@@ -49,14 +61,14 @@ export const listDocumentsAsync = createAsyncThunk(
     isForward: boolean;
     previousID?: string;
   }): Promise<{
-    documents: Array<DocumentSummary>;
+    data: Array<DocumentSummary>;
     hasNext: boolean;
     hasPrevious: boolean;
   }> => {
     const { projectName, isForward, previousID = '' } = params;
-    const documents = await listDocuments(projectName, previousID, PAGE_SIZE + 1, isForward);
+    const documents = await listDocuments(projectName, previousID, DOCUMENTS_LIMIT + 1, isForward);
 
-    return getPaginationData({ documents, isForward, previousID, pageSize: PAGE_SIZE });
+    return getPaginationData({ data: documents, isForward, previousID, pageSize: DOCUMENTS_LIMIT });
   },
 );
 
@@ -79,7 +91,7 @@ export const searchDocumentsAsync = createAsyncThunk(
     documents: Array<DocumentSummary>;
   }> => {
     const { projectName, documentQuery } = params;
-    const res = await searchDocuments(projectName, documentQuery, PAGE_SIZE);
+    const res = await searchDocuments(projectName, documentQuery, DOCUMENTS_LIMIT);
 
     return {
       totalCount: res.totalCount,
@@ -90,30 +102,58 @@ export const searchDocumentsAsync = createAsyncThunk(
 
 export const listDocumentHistoriesAsync = createAsyncThunk(
   'documents/listDocumentHistories',
-  async (params: { projectName: string; documentKey: string }): Promise<Array<string>> => {
-    const { projectName, documentKey } = params;
-    const documents = await listDocumentHistories(projectName, documentKey);
-    return documents;
+  async (params: {
+    projectName: string;
+    documentKey: string;
+    isForward: boolean;
+    previousSeq?: string;
+  }): Promise<{
+    data: Array<DocumentHistory>;
+    hasNext: boolean;
+    hasPrevious: boolean;
+  }> => {
+    const { projectName, documentKey, isForward, previousSeq = '0' } = params;
+    const histories = await listDocumentHistories(
+      projectName,
+      documentKey,
+      previousSeq,
+      HISTORIES_LIMIT + 1,
+      isForward,
+    );
+
+    return getPaginationData({
+      data: histories,
+      isForward,
+      previousID: previousSeq,
+      pageSize: HISTORIES_LIMIT,
+      reverse: true,
+    });
   },
 );
 
-export const getPaginationData = (params: {
-  documents: Array<DocumentSummary>;
+export const getPaginationData = <T extends {}>(params: {
+  data: Array<T>;
   isForward: boolean;
   previousID: string;
   pageSize: number;
+  reverse?: boolean;
 }): {
-  documents: Array<DocumentSummary>;
+  data: Array<T>;
   hasNext: boolean;
   hasPrevious: boolean;
 } => {
-  const { isForward, previousID, documents, pageSize } = params;
-  const isFull = documents.length === pageSize + 1;
+  const { isForward, previousID, data: totalData, pageSize, reverse = false } = params;
+  const isFull = totalData.length === pageSize + 1;
+  const hasPreviousID = previousID !== '' && previousID !== '0';
+  const hasPrevious = hasPreviousID && (isFull || !isForward);
+  const hasNext = isFull || (!isFull && isForward);
 
+  let data = reverse === isForward ? totalData.slice(0, pageSize) : totalData.slice(1, pageSize + 1);
+  if (!isFull) data = totalData;
   return {
-    documents: !isFull ? documents : isForward ? documents.slice(1, pageSize + 1) : documents.slice(0, pageSize),
-    hasPrevious: !!previousID && (isFull || !isForward),
-    hasNext: isFull || (!isFull && isForward),
+    data,
+    hasPrevious: reverse ? hasNext : hasPrevious,
+    hasNext: reverse ? hasPrevious : hasNext,
   };
 };
 
@@ -122,7 +162,7 @@ export const documentSlice = createSlice({
   initialState,
   reducers: {
     setHistory: (state, action) => {
-      state.detail.document!.snapshot = state.history.histories[action.payload];
+      state.detail.document!.snapshot = state.history.histories[action.payload].snapshot;
     },
     resetHistory: (state) => {
       state.history.histories = [];
@@ -134,10 +174,10 @@ export const documentSlice = createSlice({
       state.list.status = 'loading';
     });
     builder.addCase(listDocumentsAsync.fulfilled, (state, action) => {
-      const { documents, hasPrevious, hasNext } = action.payload;
+      const { data, hasPrevious, hasNext } = action.payload;
       state.list.status = 'idle';
       state.list.totalCount = null;
-      state.list.documents = documents;
+      state.list.documents = data;
       state.list.hasNext = hasNext;
       state.list.hasPrevious = hasPrevious;
     });
@@ -171,8 +211,11 @@ export const documentSlice = createSlice({
       state.history.status = 'loading';
     });
     builder.addCase(listDocumentHistoriesAsync.fulfilled, (state, action) => {
+      const { data, hasPrevious, hasNext } = action.payload;
       state.history.status = 'idle';
-      state.history.histories = action.payload;
+      state.history.histories = data;
+      state.history.hasNext = hasNext;
+      state.history.hasPrevious = hasPrevious;
     });
     builder.addCase(listDocumentHistoriesAsync.rejected, (state) => {
       state.history.status = 'failed';

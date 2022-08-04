@@ -7,6 +7,11 @@ export type DocumentSummary = {
   updatedAt: number;
 };
 
+export type DocumentHistory = {
+  serverSeq: string;
+  snapshot: string;
+};
+
 export type Project = {
   id: string;
   name: string;

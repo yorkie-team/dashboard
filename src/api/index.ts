@@ -17,7 +17,7 @@ import * as errorDetails from 'grpc-web-error-details';
 import { UpdatableProjectFields as PbProjectFields } from './resources_pb';
 import * as PbWrappers from 'google-protobuf/google/protobuf/wrappers_pb';
 
-import { Project, DocumentSummary, UpdatableProjectFields } from './types';
+import { Project, DocumentSummary, UpdatableProjectFields, DocumentHistory } from './types';
 import * as converter from './converter';
 
 export * from './types';
@@ -132,13 +132,19 @@ export async function searchDocuments(
 }
 
 // listDocumentHistories lists of changes for the given document.
-export async function listDocumentHistories(projectName: string, documentKey: string): Promise<Array<string>> {
+export async function listDocumentHistories(
+  projectName: string,
+  documentKey: string,
+  previousSeq: string,
+  pageSize: number,
+  isForward: boolean,
+): Promise<Array<DocumentHistory>> {
   const req = new ListChangesRequest();
   req.setProjectName(projectName);
   req.setDocumentKey(documentKey);
-  req.setPreviousSeq('0');
-  req.setPageSize(50);
-  req.setIsForward(false);
+  req.setPreviousSeq(previousSeq);
+  req.setPageSize(pageSize);
+  req.setIsForward(isForward);
   const response = await client.listChanges(req);
   const pbChanges = response.getChangesList();
   const changes = converter.fromChanges(pbChanges);
@@ -153,11 +159,13 @@ export async function listDocumentHistories(projectName: string, documentKey: st
   const document = new Document(documentKey);
   document.applySnapshot(seq, snapshotMeta.getSnapshot() as any);
 
-  const summaries: Array<string> = [];
-  for (const change of changes) {
-    document.applyChanges([change]);
-    summaries.push(document.toJSON());
+  const histories: Array<DocumentHistory> = [];
+  for (let i = 0; i < changes.length; i++) {
+    document.applyChanges([changes[i]]);
+    histories.push({
+      serverSeq: pbChanges[i].getId()!.getServerSeq(),
+      snapshot: document.toJSON(),
+    });
   }
-
-  return summaries;
+  return histories;
 }

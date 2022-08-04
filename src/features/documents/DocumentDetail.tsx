@@ -17,9 +17,11 @@ import {
 
 export function DocumentDetail() {
   const { document, status } = useAppSelector(selectDocumentDetail);
-  const { histories, status: historyStatus } = useAppSelector(selectDocumentHistory);
+  const { histories, status: historyStatus, hasNext, hasPrevious } = useAppSelector(selectDocumentHistory);
   const dispatch = useAppDispatch();
-  const { projectName, documentKey } = useParams();
+  const params = useParams();
+  const projectName = params.projectName!;
+  const documentKey = params.documentKey!;
   const documentJSON = document ? JSON.parse(document.snapshot) : {};
   const documentJSONStr = JSON.stringify(documentJSON, null, '\t');
   const [viewType, SetViewType] = useState('code');
@@ -27,23 +29,47 @@ export function DocumentDetail() {
   const getHistories = useCallback(() => {
     dispatch(
       listDocumentHistoriesAsync({
-        projectName: projectName!,
-        documentKey: documentKey!,
+        projectName,
+        documentKey,
+        isForward: false,
       }),
     );
   }, [dispatch, projectName, documentKey]);
-  const handleHistories = useCallback(
+
+  const handleClickHistories = useCallback(
     (i) => {
       dispatch(setHistory(i));
     },
     [dispatch],
   );
 
+  const handlePrevHistories = useCallback(() => {
+    dispatch(
+      listDocumentHistoriesAsync({
+        projectName,
+        documentKey,
+        isForward: false,
+        previousSeq: histories[0].serverSeq,
+      }),
+    );
+  }, [dispatch, projectName, documentKey, histories]);
+
+  const handleNextHistories = useCallback(() => {
+    dispatch(
+      listDocumentHistoriesAsync({
+        projectName,
+        documentKey,
+        isForward: true,
+        previousSeq: histories[histories.length - 1].serverSeq,
+      }),
+    );
+  }, [dispatch, projectName, documentKey, histories]);
+
   useEffect(() => {
     dispatch(
       getDocumentAsync({
-        projectName: projectName!,
-        documentKey: documentKey!,
+        projectName,
+        documentKey,
       }),
     );
     dispatch(resetHistory());
@@ -160,17 +186,53 @@ export function DocumentDetail() {
             {historyStatus === 'loading' && <span className="p-2">Loading...</span>}
             {historyStatus === 'failed' && <span className="p-2">Failed!</span>}
             {historyStatus === 'idle' && histories.length !== 0 && (
-              <div className="w-full px-4 py-2">
-                <Slider
-                  dots
-                  min={0}
-                  max={histories.length - 1}
-                  step={1}
-                  defaultValue={histories.length - 1}
-                  onChange={handleHistories}
-                  included={false}
-                  handleStyle={{ borderColor: '#3C9AF1' }}
-                />
+              <div className="flex w-full items-center p-2">
+                {hasPrevious && (
+                  <button
+                    className="relative inline-flex items-center justify-center text-center p-1.5 bg-gray-100 hover:bg-gray-200 disabled:!bg-gray-300 border border-gray-300 rounded-lg focus:outline-no
+           ne focus-visible:ring-4 focus-visible:ring-gray-200 font-medium text-gray-900 text-sm disabled:text-gray-400 disabled:cursor-not-allowed ml-1"
+                    type="button"
+                    onClick={handlePrevHistories}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M10.7803 3.23013C11.0732 3.53697 11.0732 4.03446 10.7803 4.3413L6.81066 8.5L10.7803 12.6587C11.0732 12.9655 11.0732 13.463 10.7803 13.7699C10.4874 14.0767 10.0126 14.0767 9.71967 13.7699L5.21967 9.05558C4.92678 8.74874 4.92678 8.25126 5.21967 7.94442L9.71967 3.23013C10.0126 2.92329 10.4874 2.92329 10.7803 3.23013Z"
+                        fill="#424242"
+                      />
+                    </svg>
+                  </button>
+                )}
+                <div className="w-full px-4">
+                  <Slider
+                    dots
+                    min={0}
+                    max={histories.length - 1}
+                    step={1}
+                    defaultValue={histories.length - 1}
+                    onChange={handleClickHistories}
+                    included={false}
+                    handleStyle={{ borderColor: '#3C9AF1' }}
+                  />
+                </div>
+                {hasNext && (
+                  <button
+                    className="relative inline-flex items-center justify-center text-center p-1.5 bg-gray-100 hover:bg-gray-200 disabled:!bg-gray-300 border border-gray-300 rounded-lg focus:outline-no
+          ne focus-visible:ring-4 focus-visible:ring-gray-200 font-medium text-gray-900 text-sm disabled:text-gray-400 disabled:cursor-not-allowed"
+                    type="button"
+                    onClick={handleNextHistories}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M5.21967 13.7699C4.92678 13.463 4.92678 12.9655 5.21967 12.6587L9.18934 8.5L5.21967 4.3413C4.92678 4.03446 4.92678 3.53697 5.21967 3.23013C5.51256 2.92329 5.98744 2.92329 6.28033 3.23013L10.7803 7.94442C11.0732 8.25126 11.0732 8.74874 10.7803 9.05558L6.28033 13.7699C5.98744 14.0767 5.51256 14.0767 5.21967 13.7699Z"
+                        fill="#424242"
+                      />
+                    </svg>
+                  </button>
+                )}
               </div>
             )}
           </div>
