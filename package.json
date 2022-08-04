@@ -78,7 +78,8 @@
             "str",
             "signup",
             "unary",
-            "invoker"
+            "invoker",
+            "uint"
           ],
           "skipIfMatch": [
             "TODO\\(.+\\):",

@@ -192,7 +192,7 @@ export async function listDocumentHistories(
   const snapshotMeta = await client.getSnapshotMeta(metaReq);
 
   const document = new Document(documentKey);
-  document.applySnapshot(seq, snapshotMeta.getSnapshot() as any);
+  document.applySnapshot(seq, snapshotMeta.getSnapshot() as Uint8Array);
 
   const histories: Array<DocumentHistory> = [];
   for (let i = 0; i < changes.length; i++) {
