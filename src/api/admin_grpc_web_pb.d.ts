@@ -8,6 +8,20 @@ export class AdminClient {
                credentials?: null | { [index: string]: string; },
                options?: null | { [index: string]: any; });
 
+  signUp(
+    request: admin_pb.SignUpRequest,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.RpcError,
+               response: admin_pb.SignUpResponse) => void
+  ): grpcWeb.ClientReadableStream<admin_pb.SignUpResponse>;
+
+  logIn(
+    request: admin_pb.LogInRequest,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.RpcError,
+               response: admin_pb.LogInResponse) => void
+  ): grpcWeb.ClientReadableStream<admin_pb.LogInResponse>;
+
   createProject(
     request: admin_pb.CreateProjectRequest,
     metadata: grpcWeb.Metadata | undefined,
@@ -77,6 +91,16 @@ export class AdminPromiseClient {
   constructor (hostname: string,
                credentials?: null | { [index: string]: string; },
                options?: null | { [index: string]: any; });
+
+  signUp(
+    request: admin_pb.SignUpRequest,
+    metadata?: grpcWeb.Metadata
+  ): Promise<admin_pb.SignUpResponse>;
+
+  logIn(
+    request: admin_pb.LogInRequest,
+    metadata?: grpcWeb.Metadata
+  ): Promise<admin_pb.LogInResponse>;
 
   createProject(
     request: admin_pb.CreateProjectRequest,

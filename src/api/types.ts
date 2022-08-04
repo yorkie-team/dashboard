@@ -12,6 +12,12 @@ export type DocumentHistory = {
   snapshot: string;
 };
 
+export type User = {
+  id: string;
+  username: string;
+  createdAt: number;
+};
+
 export type Project = {
   id: string;
   name: string;

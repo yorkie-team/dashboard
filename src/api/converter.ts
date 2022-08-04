@@ -1,12 +1,25 @@
 import { Timestamp as PbTimestamp } from 'google-protobuf/google/protobuf/timestamp_pb';
-import { Project, DocumentSummary, AuthWebhookMethod, ErrorWithDetails } from './types';
+import { User, Project, DocumentSummary, AuthWebhookMethod, ErrorWithDetails } from './types';
 import { Change, converter } from 'yorkie-js-sdk';
-import { Project as PbProject, DocumentSummary as PbDocumentSummary, Change as PbChange } from './resources_pb';
+import {
+  User as PbUser,
+  Project as PbProject,
+  DocumentSummary as PbDocumentSummary,
+  Change as PbChange,
+} from './resources_pb';
 
 import * as errorDetails from 'grpc-web-error-details';
 
 export function fromTimestamp(pbTimestamp: PbTimestamp): number {
   return pbTimestamp.getSeconds() + pbTimestamp.getNanos() / 1e9;
+}
+
+export function fromUser(pbUser: PbUser): User {
+  return {
+    id: pbUser.getId(),
+    username: pbUser.getUsername(),
+    createdAt: fromTimestamp(pbUser.getCreatedAt()!),
+  };
 }
 
 export function fromProject(pbProject: PbProject): Project {
