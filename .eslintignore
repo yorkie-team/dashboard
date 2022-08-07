@@ -1,2 +1,2 @@
 src/serviceWorker.ts
-src/api/*_pb.js
+src/api/yorkie/v1/*_pb.js
