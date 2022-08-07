@@ -1,4 +1,4 @@
-// source: resources.proto
+// source: yorkie/v1/resources.proto
 /**
  * @fileoverview
  * @enhanceable
@@ -25,49 +25,49 @@ var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/time
 goog.object.extend(proto, google_protobuf_timestamp_pb);
 var google_protobuf_wrappers_pb = require('google-protobuf/google/protobuf/wrappers_pb.js');
 goog.object.extend(proto, google_protobuf_wrappers_pb);
-goog.exportSymbol('proto.api.Change', null, global);
-goog.exportSymbol('proto.api.ChangeID', null, global);
-goog.exportSymbol('proto.api.ChangePack', null, global);
-goog.exportSymbol('proto.api.Checkpoint', null, global);
-goog.exportSymbol('proto.api.Client', null, global);
-goog.exportSymbol('proto.api.Clients', null, global);
-goog.exportSymbol('proto.api.DocEvent', null, global);
-goog.exportSymbol('proto.api.DocEventType', null, global);
-goog.exportSymbol('proto.api.DocumentSummary', null, global);
-goog.exportSymbol('proto.api.JSONElement', null, global);
-goog.exportSymbol('proto.api.JSONElement.BodyCase', null, global);
-goog.exportSymbol('proto.api.JSONElement.Counter', null, global);
-goog.exportSymbol('proto.api.JSONElement.JSONArray', null, global);
-goog.exportSymbol('proto.api.JSONElement.JSONObject', null, global);
-goog.exportSymbol('proto.api.JSONElement.Primitive', null, global);
-goog.exportSymbol('proto.api.JSONElement.RichText', null, global);
-goog.exportSymbol('proto.api.JSONElement.Text', null, global);
-goog.exportSymbol('proto.api.JSONElementSimple', null, global);
-goog.exportSymbol('proto.api.Operation', null, global);
-goog.exportSymbol('proto.api.Operation.Add', null, global);
-goog.exportSymbol('proto.api.Operation.BodyCase', null, global);
-goog.exportSymbol('proto.api.Operation.Edit', null, global);
-goog.exportSymbol('proto.api.Operation.Increase', null, global);
-goog.exportSymbol('proto.api.Operation.Move', null, global);
-goog.exportSymbol('proto.api.Operation.Remove', null, global);
-goog.exportSymbol('proto.api.Operation.RichEdit', null, global);
-goog.exportSymbol('proto.api.Operation.Select', null, global);
-goog.exportSymbol('proto.api.Operation.Set', null, global);
-goog.exportSymbol('proto.api.Operation.Style', null, global);
-goog.exportSymbol('proto.api.Presence', null, global);
-goog.exportSymbol('proto.api.Project', null, global);
-goog.exportSymbol('proto.api.RGANode', null, global);
-goog.exportSymbol('proto.api.RHTNode', null, global);
-goog.exportSymbol('proto.api.RichTextNode', null, global);
-goog.exportSymbol('proto.api.RichTextNodeAttr', null, global);
-goog.exportSymbol('proto.api.TextNode', null, global);
-goog.exportSymbol('proto.api.TextNodeID', null, global);
-goog.exportSymbol('proto.api.TextNodePos', null, global);
-goog.exportSymbol('proto.api.TimeTicket', null, global);
-goog.exportSymbol('proto.api.UpdatableProjectFields', null, global);
-goog.exportSymbol('proto.api.UpdatableProjectFields.AuthWebhookMethods', null, global);
-goog.exportSymbol('proto.api.User', null, global);
-goog.exportSymbol('proto.api.ValueType', null, global);
+goog.exportSymbol('proto.yorkie.v1.Change', null, global);
+goog.exportSymbol('proto.yorkie.v1.ChangeID', null, global);
+goog.exportSymbol('proto.yorkie.v1.ChangePack', null, global);
+goog.exportSymbol('proto.yorkie.v1.Checkpoint', null, global);
+goog.exportSymbol('proto.yorkie.v1.Client', null, global);
+goog.exportSymbol('proto.yorkie.v1.Clients', null, global);
+goog.exportSymbol('proto.yorkie.v1.DocEvent', null, global);
+goog.exportSymbol('proto.yorkie.v1.DocEventType', null, global);
+goog.exportSymbol('proto.yorkie.v1.DocumentSummary', null, global);
+goog.exportSymbol('proto.yorkie.v1.JSONElement', null, global);
+goog.exportSymbol('proto.yorkie.v1.JSONElement.BodyCase', null, global);
+goog.exportSymbol('proto.yorkie.v1.JSONElement.Counter', null, global);
+goog.exportSymbol('proto.yorkie.v1.JSONElement.JSONArray', null, global);
+goog.exportSymbol('proto.yorkie.v1.JSONElement.JSONObject', null, global);
+goog.exportSymbol('proto.yorkie.v1.JSONElement.Primitive', null, global);
+goog.exportSymbol('proto.yorkie.v1.JSONElement.RichText', null, global);
+goog.exportSymbol('proto.yorkie.v1.JSONElement.Text', null, global);
+goog.exportSymbol('proto.yorkie.v1.JSONElementSimple', null, global);
+goog.exportSymbol('proto.yorkie.v1.Operation', null, global);
+goog.exportSymbol('proto.yorkie.v1.Operation.Add', null, global);
+goog.exportSymbol('proto.yorkie.v1.Operation.BodyCase', null, global);
+goog.exportSymbol('proto.yorkie.v1.Operation.Edit', null, global);
+goog.exportSymbol('proto.yorkie.v1.Operation.Increase', null, global);
+goog.exportSymbol('proto.yorkie.v1.Operation.Move', null, global);
+goog.exportSymbol('proto.yorkie.v1.Operation.Remove', null, global);
+goog.exportSymbol('proto.yorkie.v1.Operation.RichEdit', null, global);
+goog.exportSymbol('proto.yorkie.v1.Operation.Select', null, global);
+goog.exportSymbol('proto.yorkie.v1.Operation.Set', null, global);
+goog.exportSymbol('proto.yorkie.v1.Operation.Style', null, global);
+goog.exportSymbol('proto.yorkie.v1.Presence', null, global);
+goog.exportSymbol('proto.yorkie.v1.Project', null, global);
+goog.exportSymbol('proto.yorkie.v1.RGANode', null, global);
+goog.exportSymbol('proto.yorkie.v1.RHTNode', null, global);
+goog.exportSymbol('proto.yorkie.v1.RichTextNode', null, global);
+goog.exportSymbol('proto.yorkie.v1.RichTextNodeAttr', null, global);
+goog.exportSymbol('proto.yorkie.v1.TextNode', null, global);
+goog.exportSymbol('proto.yorkie.v1.TextNodeID', null, global);
+goog.exportSymbol('proto.yorkie.v1.TextNodePos', null, global);
+goog.exportSymbol('proto.yorkie.v1.TimeTicket', null, global);
+goog.exportSymbol('proto.yorkie.v1.UpdatableProjectFields', null, global);
+goog.exportSymbol('proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods', null, global);
+goog.exportSymbol('proto.yorkie.v1.User', null, global);
+goog.exportSymbol('proto.yorkie.v1.ValueType', null, global);
 /**
  * Generated by JsPbCodeGenerator.
  * @param {Array=} opt_data Optional initial data array, typically from a
@@ -78,16 +78,16 @@ goog.exportSymbol('proto.api.ValueType', null, global);
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.ChangePack = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.api.ChangePack.repeatedFields_, null);
+proto.yorkie.v1.ChangePack = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.yorkie.v1.ChangePack.repeatedFields_, null);
 };
-goog.inherits(proto.api.ChangePack, jspb.Message);
+goog.inherits(proto.yorkie.v1.ChangePack, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.ChangePack.displayName = 'proto.api.ChangePack';
+  proto.yorkie.v1.ChangePack.displayName = 'proto.yorkie.v1.ChangePack';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -99,16 +99,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.Change = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.api.Change.repeatedFields_, null);
+proto.yorkie.v1.Change = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.yorkie.v1.Change.repeatedFields_, null);
 };
-goog.inherits(proto.api.Change, jspb.Message);
+goog.inherits(proto.yorkie.v1.Change, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.Change.displayName = 'proto.api.Change';
+  proto.yorkie.v1.Change.displayName = 'proto.yorkie.v1.Change';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -120,16 +120,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.ChangeID = function(opt_data) {
+proto.yorkie.v1.ChangeID = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.ChangeID, jspb.Message);
+goog.inherits(proto.yorkie.v1.ChangeID, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.ChangeID.displayName = 'proto.api.ChangeID';
+  proto.yorkie.v1.ChangeID.displayName = 'proto.yorkie.v1.ChangeID';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -141,16 +141,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.Operation = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.api.Operation.oneofGroups_);
+proto.yorkie.v1.Operation = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.yorkie.v1.Operation.oneofGroups_);
 };
-goog.inherits(proto.api.Operation, jspb.Message);
+goog.inherits(proto.yorkie.v1.Operation, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.Operation.displayName = 'proto.api.Operation';
+  proto.yorkie.v1.Operation.displayName = 'proto.yorkie.v1.Operation';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -162,16 +162,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.Operation.Set = function(opt_data) {
+proto.yorkie.v1.Operation.Set = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.Operation.Set, jspb.Message);
+goog.inherits(proto.yorkie.v1.Operation.Set, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.Operation.Set.displayName = 'proto.api.Operation.Set';
+  proto.yorkie.v1.Operation.Set.displayName = 'proto.yorkie.v1.Operation.Set';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -183,16 +183,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.Operation.Add = function(opt_data) {
+proto.yorkie.v1.Operation.Add = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.Operation.Add, jspb.Message);
+goog.inherits(proto.yorkie.v1.Operation.Add, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.Operation.Add.displayName = 'proto.api.Operation.Add';
+  proto.yorkie.v1.Operation.Add.displayName = 'proto.yorkie.v1.Operation.Add';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -204,16 +204,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.Operation.Move = function(opt_data) {
+proto.yorkie.v1.Operation.Move = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.Operation.Move, jspb.Message);
+goog.inherits(proto.yorkie.v1.Operation.Move, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.Operation.Move.displayName = 'proto.api.Operation.Move';
+  proto.yorkie.v1.Operation.Move.displayName = 'proto.yorkie.v1.Operation.Move';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -225,16 +225,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.Operation.Remove = function(opt_data) {
+proto.yorkie.v1.Operation.Remove = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.Operation.Remove, jspb.Message);
+goog.inherits(proto.yorkie.v1.Operation.Remove, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.Operation.Remove.displayName = 'proto.api.Operation.Remove';
+  proto.yorkie.v1.Operation.Remove.displayName = 'proto.yorkie.v1.Operation.Remove';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -246,16 +246,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.Operation.Edit = function(opt_data) {
+proto.yorkie.v1.Operation.Edit = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.Operation.Edit, jspb.Message);
+goog.inherits(proto.yorkie.v1.Operation.Edit, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.Operation.Edit.displayName = 'proto.api.Operation.Edit';
+  proto.yorkie.v1.Operation.Edit.displayName = 'proto.yorkie.v1.Operation.Edit';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -267,16 +267,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.Operation.Select = function(opt_data) {
+proto.yorkie.v1.Operation.Select = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.Operation.Select, jspb.Message);
+goog.inherits(proto.yorkie.v1.Operation.Select, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.Operation.Select.displayName = 'proto.api.Operation.Select';
+  proto.yorkie.v1.Operation.Select.displayName = 'proto.yorkie.v1.Operation.Select';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -288,16 +288,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.Operation.RichEdit = function(opt_data) {
+proto.yorkie.v1.Operation.RichEdit = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.Operation.RichEdit, jspb.Message);
+goog.inherits(proto.yorkie.v1.Operation.RichEdit, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.Operation.RichEdit.displayName = 'proto.api.Operation.RichEdit';
+  proto.yorkie.v1.Operation.RichEdit.displayName = 'proto.yorkie.v1.Operation.RichEdit';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -309,16 +309,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.Operation.Style = function(opt_data) {
+proto.yorkie.v1.Operation.Style = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.Operation.Style, jspb.Message);
+goog.inherits(proto.yorkie.v1.Operation.Style, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.Operation.Style.displayName = 'proto.api.Operation.Style';
+  proto.yorkie.v1.Operation.Style.displayName = 'proto.yorkie.v1.Operation.Style';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -330,16 +330,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.Operation.Increase = function(opt_data) {
+proto.yorkie.v1.Operation.Increase = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.Operation.Increase, jspb.Message);
+goog.inherits(proto.yorkie.v1.Operation.Increase, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.Operation.Increase.displayName = 'proto.api.Operation.Increase';
+  proto.yorkie.v1.Operation.Increase.displayName = 'proto.yorkie.v1.Operation.Increase';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -351,16 +351,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.JSONElementSimple = function(opt_data) {
+proto.yorkie.v1.JSONElementSimple = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.JSONElementSimple, jspb.Message);
+goog.inherits(proto.yorkie.v1.JSONElementSimple, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.JSONElementSimple.displayName = 'proto.api.JSONElementSimple';
+  proto.yorkie.v1.JSONElementSimple.displayName = 'proto.yorkie.v1.JSONElementSimple';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -372,16 +372,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.JSONElement = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.api.JSONElement.oneofGroups_);
+proto.yorkie.v1.JSONElement = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.yorkie.v1.JSONElement.oneofGroups_);
 };
-goog.inherits(proto.api.JSONElement, jspb.Message);
+goog.inherits(proto.yorkie.v1.JSONElement, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.JSONElement.displayName = 'proto.api.JSONElement';
+  proto.yorkie.v1.JSONElement.displayName = 'proto.yorkie.v1.JSONElement';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -393,16 +393,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.JSONElement.JSONObject = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.api.JSONElement.JSONObject.repeatedFields_, null);
+proto.yorkie.v1.JSONElement.JSONObject = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.yorkie.v1.JSONElement.JSONObject.repeatedFields_, null);
 };
-goog.inherits(proto.api.JSONElement.JSONObject, jspb.Message);
+goog.inherits(proto.yorkie.v1.JSONElement.JSONObject, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.JSONElement.JSONObject.displayName = 'proto.api.JSONElement.JSONObject';
+  proto.yorkie.v1.JSONElement.JSONObject.displayName = 'proto.yorkie.v1.JSONElement.JSONObject';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -414,16 +414,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.JSONElement.JSONArray = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.api.JSONElement.JSONArray.repeatedFields_, null);
+proto.yorkie.v1.JSONElement.JSONArray = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.yorkie.v1.JSONElement.JSONArray.repeatedFields_, null);
 };
-goog.inherits(proto.api.JSONElement.JSONArray, jspb.Message);
+goog.inherits(proto.yorkie.v1.JSONElement.JSONArray, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.JSONElement.JSONArray.displayName = 'proto.api.JSONElement.JSONArray';
+  proto.yorkie.v1.JSONElement.JSONArray.displayName = 'proto.yorkie.v1.JSONElement.JSONArray';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -435,16 +435,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.JSONElement.Primitive = function(opt_data) {
+proto.yorkie.v1.JSONElement.Primitive = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.JSONElement.Primitive, jspb.Message);
+goog.inherits(proto.yorkie.v1.JSONElement.Primitive, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.JSONElement.Primitive.displayName = 'proto.api.JSONElement.Primitive';
+  proto.yorkie.v1.JSONElement.Primitive.displayName = 'proto.yorkie.v1.JSONElement.Primitive';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -456,16 +456,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.JSONElement.Text = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.api.JSONElement.Text.repeatedFields_, null);
+proto.yorkie.v1.JSONElement.Text = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.yorkie.v1.JSONElement.Text.repeatedFields_, null);
 };
-goog.inherits(proto.api.JSONElement.Text, jspb.Message);
+goog.inherits(proto.yorkie.v1.JSONElement.Text, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.JSONElement.Text.displayName = 'proto.api.JSONElement.Text';
+  proto.yorkie.v1.JSONElement.Text.displayName = 'proto.yorkie.v1.JSONElement.Text';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -477,16 +477,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.JSONElement.RichText = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.api.JSONElement.RichText.repeatedFields_, null);
+proto.yorkie.v1.JSONElement.RichText = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.yorkie.v1.JSONElement.RichText.repeatedFields_, null);
 };
-goog.inherits(proto.api.JSONElement.RichText, jspb.Message);
+goog.inherits(proto.yorkie.v1.JSONElement.RichText, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.JSONElement.RichText.displayName = 'proto.api.JSONElement.RichText';
+  proto.yorkie.v1.JSONElement.RichText.displayName = 'proto.yorkie.v1.JSONElement.RichText';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -498,16 +498,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.JSONElement.Counter = function(opt_data) {
+proto.yorkie.v1.JSONElement.Counter = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.JSONElement.Counter, jspb.Message);
+goog.inherits(proto.yorkie.v1.JSONElement.Counter, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.JSONElement.Counter.displayName = 'proto.api.JSONElement.Counter';
+  proto.yorkie.v1.JSONElement.Counter.displayName = 'proto.yorkie.v1.JSONElement.Counter';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -519,16 +519,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.RHTNode = function(opt_data) {
+proto.yorkie.v1.RHTNode = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.RHTNode, jspb.Message);
+goog.inherits(proto.yorkie.v1.RHTNode, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.RHTNode.displayName = 'proto.api.RHTNode';
+  proto.yorkie.v1.RHTNode.displayName = 'proto.yorkie.v1.RHTNode';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -540,16 +540,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.RGANode = function(opt_data) {
+proto.yorkie.v1.RGANode = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.RGANode, jspb.Message);
+goog.inherits(proto.yorkie.v1.RGANode, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.RGANode.displayName = 'proto.api.RGANode';
+  proto.yorkie.v1.RGANode.displayName = 'proto.yorkie.v1.RGANode';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -561,16 +561,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.TextNode = function(opt_data) {
+proto.yorkie.v1.TextNode = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.TextNode, jspb.Message);
+goog.inherits(proto.yorkie.v1.TextNode, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.TextNode.displayName = 'proto.api.TextNode';
+  proto.yorkie.v1.TextNode.displayName = 'proto.yorkie.v1.TextNode';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -582,16 +582,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.RichTextNodeAttr = function(opt_data) {
+proto.yorkie.v1.RichTextNodeAttr = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.RichTextNodeAttr, jspb.Message);
+goog.inherits(proto.yorkie.v1.RichTextNodeAttr, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.RichTextNodeAttr.displayName = 'proto.api.RichTextNodeAttr';
+  proto.yorkie.v1.RichTextNodeAttr.displayName = 'proto.yorkie.v1.RichTextNodeAttr';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -603,16 +603,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.RichTextNode = function(opt_data) {
+proto.yorkie.v1.RichTextNode = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.RichTextNode, jspb.Message);
+goog.inherits(proto.yorkie.v1.RichTextNode, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.RichTextNode.displayName = 'proto.api.RichTextNode';
+  proto.yorkie.v1.RichTextNode.displayName = 'proto.yorkie.v1.RichTextNode';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -624,16 +624,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.TextNodeID = function(opt_data) {
+proto.yorkie.v1.TextNodeID = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.TextNodeID, jspb.Message);
+goog.inherits(proto.yorkie.v1.TextNodeID, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.TextNodeID.displayName = 'proto.api.TextNodeID';
+  proto.yorkie.v1.TextNodeID.displayName = 'proto.yorkie.v1.TextNodeID';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -645,16 +645,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.User = function(opt_data) {
+proto.yorkie.v1.User = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.User, jspb.Message);
+goog.inherits(proto.yorkie.v1.User, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.User.displayName = 'proto.api.User';
+  proto.yorkie.v1.User.displayName = 'proto.yorkie.v1.User';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -666,16 +666,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.Project = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.api.Project.repeatedFields_, null);
+proto.yorkie.v1.Project = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.yorkie.v1.Project.repeatedFields_, null);
 };
-goog.inherits(proto.api.Project, jspb.Message);
+goog.inherits(proto.yorkie.v1.Project, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.Project.displayName = 'proto.api.Project';
+  proto.yorkie.v1.Project.displayName = 'proto.yorkie.v1.Project';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -687,16 +687,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.UpdatableProjectFields = function(opt_data) {
+proto.yorkie.v1.UpdatableProjectFields = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.UpdatableProjectFields, jspb.Message);
+goog.inherits(proto.yorkie.v1.UpdatableProjectFields, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.UpdatableProjectFields.displayName = 'proto.api.UpdatableProjectFields';
+  proto.yorkie.v1.UpdatableProjectFields.displayName = 'proto.yorkie.v1.UpdatableProjectFields';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -708,16 +708,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.UpdatableProjectFields.AuthWebhookMethods = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.api.UpdatableProjectFields.AuthWebhookMethods.repeatedFields_, null);
+proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods.repeatedFields_, null);
 };
-goog.inherits(proto.api.UpdatableProjectFields.AuthWebhookMethods, jspb.Message);
+goog.inherits(proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.UpdatableProjectFields.AuthWebhookMethods.displayName = 'proto.api.UpdatableProjectFields.AuthWebhookMethods';
+  proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods.displayName = 'proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -729,16 +729,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.DocumentSummary = function(opt_data) {
+proto.yorkie.v1.DocumentSummary = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.DocumentSummary, jspb.Message);
+goog.inherits(proto.yorkie.v1.DocumentSummary, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.DocumentSummary.displayName = 'proto.api.DocumentSummary';
+  proto.yorkie.v1.DocumentSummary.displayName = 'proto.yorkie.v1.DocumentSummary';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -750,16 +750,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.Presence = function(opt_data) {
+proto.yorkie.v1.Presence = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.Presence, jspb.Message);
+goog.inherits(proto.yorkie.v1.Presence, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.Presence.displayName = 'proto.api.Presence';
+  proto.yorkie.v1.Presence.displayName = 'proto.yorkie.v1.Presence';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -771,16 +771,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.Client = function(opt_data) {
+proto.yorkie.v1.Client = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.Client, jspb.Message);
+goog.inherits(proto.yorkie.v1.Client, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.Client.displayName = 'proto.api.Client';
+  proto.yorkie.v1.Client.displayName = 'proto.yorkie.v1.Client';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -792,16 +792,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.Clients = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.api.Clients.repeatedFields_, null);
+proto.yorkie.v1.Clients = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.yorkie.v1.Clients.repeatedFields_, null);
 };
-goog.inherits(proto.api.Clients, jspb.Message);
+goog.inherits(proto.yorkie.v1.Clients, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.Clients.displayName = 'proto.api.Clients';
+  proto.yorkie.v1.Clients.displayName = 'proto.yorkie.v1.Clients';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -813,16 +813,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.Checkpoint = function(opt_data) {
+proto.yorkie.v1.Checkpoint = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.Checkpoint, jspb.Message);
+goog.inherits(proto.yorkie.v1.Checkpoint, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.Checkpoint.displayName = 'proto.api.Checkpoint';
+  proto.yorkie.v1.Checkpoint.displayName = 'proto.yorkie.v1.Checkpoint';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -834,16 +834,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.TextNodePos = function(opt_data) {
+proto.yorkie.v1.TextNodePos = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.TextNodePos, jspb.Message);
+goog.inherits(proto.yorkie.v1.TextNodePos, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.TextNodePos.displayName = 'proto.api.TextNodePos';
+  proto.yorkie.v1.TextNodePos.displayName = 'proto.yorkie.v1.TextNodePos';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -855,16 +855,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.TimeTicket = function(opt_data) {
+proto.yorkie.v1.TimeTicket = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.api.TimeTicket, jspb.Message);
+goog.inherits(proto.yorkie.v1.TimeTicket, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.TimeTicket.displayName = 'proto.api.TimeTicket';
+  proto.yorkie.v1.TimeTicket.displayName = 'proto.yorkie.v1.TimeTicket';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -876,16 +876,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.api.DocEvent = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.api.DocEvent.repeatedFields_, null);
+proto.yorkie.v1.DocEvent = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.yorkie.v1.DocEvent.repeatedFields_, null);
 };
-goog.inherits(proto.api.DocEvent, jspb.Message);
+goog.inherits(proto.yorkie.v1.DocEvent, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.api.DocEvent.displayName = 'proto.api.DocEvent';
+  proto.yorkie.v1.DocEvent.displayName = 'proto.yorkie.v1.DocEvent';
 }
 
 /**
@@ -893,7 +893,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.api.ChangePack.repeatedFields_ = [4];
+proto.yorkie.v1.ChangePack.repeatedFields_ = [4];
 
 
 
@@ -910,8 +910,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.ChangePack.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.ChangePack.toObject(opt_includeInstance, this);
+proto.yorkie.v1.ChangePack.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.ChangePack.toObject(opt_includeInstance, this);
 };
 
 
@@ -920,18 +920,18 @@ proto.api.ChangePack.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.ChangePack} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.ChangePack} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.ChangePack.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.ChangePack.toObject = function(includeInstance, msg) {
   var f, obj = {
     documentKey: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    checkpoint: (f = msg.getCheckpoint()) && proto.api.Checkpoint.toObject(includeInstance, f),
+    checkpoint: (f = msg.getCheckpoint()) && proto.yorkie.v1.Checkpoint.toObject(includeInstance, f),
     snapshot: msg.getSnapshot_asB64(),
     changesList: jspb.Message.toObjectList(msg.getChangesList(),
-    proto.api.Change.toObject, includeInstance),
-    minSyncedTicket: (f = msg.getMinSyncedTicket()) && proto.api.TimeTicket.toObject(includeInstance, f)
+    proto.yorkie.v1.Change.toObject, includeInstance),
+    minSyncedTicket: (f = msg.getMinSyncedTicket()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -945,23 +945,23 @@ proto.api.ChangePack.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.ChangePack}
+ * @return {!proto.yorkie.v1.ChangePack}
  */
-proto.api.ChangePack.deserializeBinary = function(bytes) {
+proto.yorkie.v1.ChangePack.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.ChangePack;
-  return proto.api.ChangePack.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.ChangePack;
+  return proto.yorkie.v1.ChangePack.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.ChangePack} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.ChangePack} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.ChangePack}
+ * @return {!proto.yorkie.v1.ChangePack}
  */
-proto.api.ChangePack.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.ChangePack.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -973,8 +973,8 @@ proto.api.ChangePack.deserializeBinaryFromReader = function(msg, reader) {
       msg.setDocumentKey(value);
       break;
     case 2:
-      var value = new proto.api.Checkpoint;
-      reader.readMessage(value,proto.api.Checkpoint.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.Checkpoint;
+      reader.readMessage(value,proto.yorkie.v1.Checkpoint.deserializeBinaryFromReader);
       msg.setCheckpoint(value);
       break;
     case 3:
@@ -982,13 +982,13 @@ proto.api.ChangePack.deserializeBinaryFromReader = function(msg, reader) {
       msg.setSnapshot(value);
       break;
     case 4:
-      var value = new proto.api.Change;
-      reader.readMessage(value,proto.api.Change.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.Change;
+      reader.readMessage(value,proto.yorkie.v1.Change.deserializeBinaryFromReader);
       msg.addChanges(value);
       break;
     case 5:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setMinSyncedTicket(value);
       break;
     default:
@@ -1004,9 +1004,9 @@ proto.api.ChangePack.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.ChangePack.prototype.serializeBinary = function() {
+proto.yorkie.v1.ChangePack.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.ChangePack.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.ChangePack.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -1014,11 +1014,11 @@ proto.api.ChangePack.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.ChangePack} message
+ * @param {!proto.yorkie.v1.ChangePack} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.ChangePack.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.ChangePack.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getDocumentKey();
   if (f.length > 0) {
@@ -1032,7 +1032,7 @@ proto.api.ChangePack.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       2,
       f,
-      proto.api.Checkpoint.serializeBinaryToWriter
+      proto.yorkie.v1.Checkpoint.serializeBinaryToWriter
     );
   }
   f = message.getSnapshot_asU8();
@@ -1047,7 +1047,7 @@ proto.api.ChangePack.serializeBinaryToWriter = function(message, writer) {
     writer.writeRepeatedMessage(
       4,
       f,
-      proto.api.Change.serializeBinaryToWriter
+      proto.yorkie.v1.Change.serializeBinaryToWriter
     );
   }
   f = message.getMinSyncedTicket();
@@ -1055,7 +1055,7 @@ proto.api.ChangePack.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       5,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
 };
@@ -1065,44 +1065,44 @@ proto.api.ChangePack.serializeBinaryToWriter = function(message, writer) {
  * optional string document_key = 1;
  * @return {string}
  */
-proto.api.ChangePack.prototype.getDocumentKey = function() {
+proto.yorkie.v1.ChangePack.prototype.getDocumentKey = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.api.ChangePack} returns this
+ * @return {!proto.yorkie.v1.ChangePack} returns this
  */
-proto.api.ChangePack.prototype.setDocumentKey = function(value) {
+proto.yorkie.v1.ChangePack.prototype.setDocumentKey = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
  * optional Checkpoint checkpoint = 2;
- * @return {?proto.api.Checkpoint}
+ * @return {?proto.yorkie.v1.Checkpoint}
  */
-proto.api.ChangePack.prototype.getCheckpoint = function() {
-  return /** @type{?proto.api.Checkpoint} */ (
-    jspb.Message.getWrapperField(this, proto.api.Checkpoint, 2));
+proto.yorkie.v1.ChangePack.prototype.getCheckpoint = function() {
+  return /** @type{?proto.yorkie.v1.Checkpoint} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.Checkpoint, 2));
 };
 
 
 /**
- * @param {?proto.api.Checkpoint|undefined} value
- * @return {!proto.api.ChangePack} returns this
+ * @param {?proto.yorkie.v1.Checkpoint|undefined} value
+ * @return {!proto.yorkie.v1.ChangePack} returns this
 */
-proto.api.ChangePack.prototype.setCheckpoint = function(value) {
+proto.yorkie.v1.ChangePack.prototype.setCheckpoint = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.ChangePack} returns this
+ * @return {!proto.yorkie.v1.ChangePack} returns this
  */
-proto.api.ChangePack.prototype.clearCheckpoint = function() {
+proto.yorkie.v1.ChangePack.prototype.clearCheckpoint = function() {
   return this.setCheckpoint(undefined);
 };
 
@@ -1111,7 +1111,7 @@ proto.api.ChangePack.prototype.clearCheckpoint = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.ChangePack.prototype.hasCheckpoint = function() {
+proto.yorkie.v1.ChangePack.prototype.hasCheckpoint = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -1120,7 +1120,7 @@ proto.api.ChangePack.prototype.hasCheckpoint = function() {
  * optional bytes snapshot = 3;
  * @return {string}
  */
-proto.api.ChangePack.prototype.getSnapshot = function() {
+proto.yorkie.v1.ChangePack.prototype.getSnapshot = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -1130,7 +1130,7 @@ proto.api.ChangePack.prototype.getSnapshot = function() {
  * This is a type-conversion wrapper around `getSnapshot()`
  * @return {string}
  */
-proto.api.ChangePack.prototype.getSnapshot_asB64 = function() {
+proto.yorkie.v1.ChangePack.prototype.getSnapshot_asB64 = function() {
   return /** @type {string} */ (jspb.Message.bytesAsB64(
       this.getSnapshot()));
 };
@@ -1143,7 +1143,7 @@ proto.api.ChangePack.prototype.getSnapshot_asB64 = function() {
  * This is a type-conversion wrapper around `getSnapshot()`
  * @return {!Uint8Array}
  */
-proto.api.ChangePack.prototype.getSnapshot_asU8 = function() {
+proto.yorkie.v1.ChangePack.prototype.getSnapshot_asU8 = function() {
   return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
       this.getSnapshot()));
 };
@@ -1151,75 +1151,75 @@ proto.api.ChangePack.prototype.getSnapshot_asU8 = function() {
 
 /**
  * @param {!(string|Uint8Array)} value
- * @return {!proto.api.ChangePack} returns this
+ * @return {!proto.yorkie.v1.ChangePack} returns this
  */
-proto.api.ChangePack.prototype.setSnapshot = function(value) {
+proto.yorkie.v1.ChangePack.prototype.setSnapshot = function(value) {
   return jspb.Message.setProto3BytesField(this, 3, value);
 };
 
 
 /**
  * repeated Change changes = 4;
- * @return {!Array<!proto.api.Change>}
+ * @return {!Array<!proto.yorkie.v1.Change>}
  */
-proto.api.ChangePack.prototype.getChangesList = function() {
-  return /** @type{!Array<!proto.api.Change>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.api.Change, 4));
+proto.yorkie.v1.ChangePack.prototype.getChangesList = function() {
+  return /** @type{!Array<!proto.yorkie.v1.Change>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.yorkie.v1.Change, 4));
 };
 
 
 /**
- * @param {!Array<!proto.api.Change>} value
- * @return {!proto.api.ChangePack} returns this
+ * @param {!Array<!proto.yorkie.v1.Change>} value
+ * @return {!proto.yorkie.v1.ChangePack} returns this
 */
-proto.api.ChangePack.prototype.setChangesList = function(value) {
+proto.yorkie.v1.ChangePack.prototype.setChangesList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 4, value);
 };
 
 
 /**
- * @param {!proto.api.Change=} opt_value
+ * @param {!proto.yorkie.v1.Change=} opt_value
  * @param {number=} opt_index
- * @return {!proto.api.Change}
+ * @return {!proto.yorkie.v1.Change}
  */
-proto.api.ChangePack.prototype.addChanges = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.api.Change, opt_index);
+proto.yorkie.v1.ChangePack.prototype.addChanges = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.yorkie.v1.Change, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.api.ChangePack} returns this
+ * @return {!proto.yorkie.v1.ChangePack} returns this
  */
-proto.api.ChangePack.prototype.clearChangesList = function() {
+proto.yorkie.v1.ChangePack.prototype.clearChangesList = function() {
   return this.setChangesList([]);
 };
 
 
 /**
  * optional TimeTicket min_synced_ticket = 5;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.ChangePack.prototype.getMinSyncedTicket = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 5));
+proto.yorkie.v1.ChangePack.prototype.getMinSyncedTicket = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 5));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.ChangePack} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.ChangePack} returns this
 */
-proto.api.ChangePack.prototype.setMinSyncedTicket = function(value) {
+proto.yorkie.v1.ChangePack.prototype.setMinSyncedTicket = function(value) {
   return jspb.Message.setWrapperField(this, 5, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.ChangePack} returns this
+ * @return {!proto.yorkie.v1.ChangePack} returns this
  */
-proto.api.ChangePack.prototype.clearMinSyncedTicket = function() {
+proto.yorkie.v1.ChangePack.prototype.clearMinSyncedTicket = function() {
   return this.setMinSyncedTicket(undefined);
 };
 
@@ -1228,7 +1228,7 @@ proto.api.ChangePack.prototype.clearMinSyncedTicket = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.ChangePack.prototype.hasMinSyncedTicket = function() {
+proto.yorkie.v1.ChangePack.prototype.hasMinSyncedTicket = function() {
   return jspb.Message.getField(this, 5) != null;
 };
 
@@ -1239,7 +1239,7 @@ proto.api.ChangePack.prototype.hasMinSyncedTicket = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.api.Change.repeatedFields_ = [3];
+proto.yorkie.v1.Change.repeatedFields_ = [3];
 
 
 
@@ -1256,8 +1256,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.Change.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.Change.toObject(opt_includeInstance, this);
+proto.yorkie.v1.Change.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.Change.toObject(opt_includeInstance, this);
 };
 
 
@@ -1266,16 +1266,16 @@ proto.api.Change.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.Change} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.Change} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Change.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.Change.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: (f = msg.getId()) && proto.api.ChangeID.toObject(includeInstance, f),
+    id: (f = msg.getId()) && proto.yorkie.v1.ChangeID.toObject(includeInstance, f),
     message: jspb.Message.getFieldWithDefault(msg, 2, ""),
     operationsList: jspb.Message.toObjectList(msg.getOperationsList(),
-    proto.api.Operation.toObject, includeInstance)
+    proto.yorkie.v1.Operation.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -1289,23 +1289,23 @@ proto.api.Change.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.Change}
+ * @return {!proto.yorkie.v1.Change}
  */
-proto.api.Change.deserializeBinary = function(bytes) {
+proto.yorkie.v1.Change.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.Change;
-  return proto.api.Change.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.Change;
+  return proto.yorkie.v1.Change.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.Change} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.Change} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.Change}
+ * @return {!proto.yorkie.v1.Change}
  */
-proto.api.Change.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.Change.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -1313,8 +1313,8 @@ proto.api.Change.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.api.ChangeID;
-      reader.readMessage(value,proto.api.ChangeID.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.ChangeID;
+      reader.readMessage(value,proto.yorkie.v1.ChangeID.deserializeBinaryFromReader);
       msg.setId(value);
       break;
     case 2:
@@ -1322,8 +1322,8 @@ proto.api.Change.deserializeBinaryFromReader = function(msg, reader) {
       msg.setMessage(value);
       break;
     case 3:
-      var value = new proto.api.Operation;
-      reader.readMessage(value,proto.api.Operation.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.Operation;
+      reader.readMessage(value,proto.yorkie.v1.Operation.deserializeBinaryFromReader);
       msg.addOperations(value);
       break;
     default:
@@ -1339,9 +1339,9 @@ proto.api.Change.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.Change.prototype.serializeBinary = function() {
+proto.yorkie.v1.Change.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.Change.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.Change.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -1349,18 +1349,18 @@ proto.api.Change.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.Change} message
+ * @param {!proto.yorkie.v1.Change} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Change.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.Change.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.api.ChangeID.serializeBinaryToWriter
+      proto.yorkie.v1.ChangeID.serializeBinaryToWriter
     );
   }
   f = message.getMessage();
@@ -1375,7 +1375,7 @@ proto.api.Change.serializeBinaryToWriter = function(message, writer) {
     writer.writeRepeatedMessage(
       3,
       f,
-      proto.api.Operation.serializeBinaryToWriter
+      proto.yorkie.v1.Operation.serializeBinaryToWriter
     );
   }
 };
@@ -1383,28 +1383,28 @@ proto.api.Change.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * optional ChangeID id = 1;
- * @return {?proto.api.ChangeID}
+ * @return {?proto.yorkie.v1.ChangeID}
  */
-proto.api.Change.prototype.getId = function() {
-  return /** @type{?proto.api.ChangeID} */ (
-    jspb.Message.getWrapperField(this, proto.api.ChangeID, 1));
+proto.yorkie.v1.Change.prototype.getId = function() {
+  return /** @type{?proto.yorkie.v1.ChangeID} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.ChangeID, 1));
 };
 
 
 /**
- * @param {?proto.api.ChangeID|undefined} value
- * @return {!proto.api.Change} returns this
+ * @param {?proto.yorkie.v1.ChangeID|undefined} value
+ * @return {!proto.yorkie.v1.Change} returns this
 */
-proto.api.Change.prototype.setId = function(value) {
+proto.yorkie.v1.Change.prototype.setId = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Change} returns this
+ * @return {!proto.yorkie.v1.Change} returns this
  */
-proto.api.Change.prototype.clearId = function() {
+proto.yorkie.v1.Change.prototype.clearId = function() {
   return this.setId(undefined);
 };
 
@@ -1413,7 +1413,7 @@ proto.api.Change.prototype.clearId = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Change.prototype.hasId = function() {
+proto.yorkie.v1.Change.prototype.hasId = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -1422,54 +1422,54 @@ proto.api.Change.prototype.hasId = function() {
  * optional string message = 2;
  * @return {string}
  */
-proto.api.Change.prototype.getMessage = function() {
+proto.yorkie.v1.Change.prototype.getMessage = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.api.Change} returns this
+ * @return {!proto.yorkie.v1.Change} returns this
  */
-proto.api.Change.prototype.setMessage = function(value) {
+proto.yorkie.v1.Change.prototype.setMessage = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
  * repeated Operation operations = 3;
- * @return {!Array<!proto.api.Operation>}
+ * @return {!Array<!proto.yorkie.v1.Operation>}
  */
-proto.api.Change.prototype.getOperationsList = function() {
-  return /** @type{!Array<!proto.api.Operation>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.api.Operation, 3));
+proto.yorkie.v1.Change.prototype.getOperationsList = function() {
+  return /** @type{!Array<!proto.yorkie.v1.Operation>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.yorkie.v1.Operation, 3));
 };
 
 
 /**
- * @param {!Array<!proto.api.Operation>} value
- * @return {!proto.api.Change} returns this
+ * @param {!Array<!proto.yorkie.v1.Operation>} value
+ * @return {!proto.yorkie.v1.Change} returns this
 */
-proto.api.Change.prototype.setOperationsList = function(value) {
+proto.yorkie.v1.Change.prototype.setOperationsList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
 
 
 /**
- * @param {!proto.api.Operation=} opt_value
+ * @param {!proto.yorkie.v1.Operation=} opt_value
  * @param {number=} opt_index
- * @return {!proto.api.Operation}
+ * @return {!proto.yorkie.v1.Operation}
  */
-proto.api.Change.prototype.addOperations = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.api.Operation, opt_index);
+proto.yorkie.v1.Change.prototype.addOperations = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.yorkie.v1.Operation, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.api.Change} returns this
+ * @return {!proto.yorkie.v1.Change} returns this
  */
-proto.api.Change.prototype.clearOperationsList = function() {
+proto.yorkie.v1.Change.prototype.clearOperationsList = function() {
   return this.setOperationsList([]);
 };
 
@@ -1490,8 +1490,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.ChangeID.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.ChangeID.toObject(opt_includeInstance, this);
+proto.yorkie.v1.ChangeID.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.ChangeID.toObject(opt_includeInstance, this);
 };
 
 
@@ -1500,11 +1500,11 @@ proto.api.ChangeID.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.ChangeID} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.ChangeID} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.ChangeID.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.ChangeID.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientSeq: jspb.Message.getFieldWithDefault(msg, 1, 0),
     serverSeq: jspb.Message.getFieldWithDefault(msg, 2, "0"),
@@ -1523,23 +1523,23 @@ proto.api.ChangeID.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.ChangeID}
+ * @return {!proto.yorkie.v1.ChangeID}
  */
-proto.api.ChangeID.deserializeBinary = function(bytes) {
+proto.yorkie.v1.ChangeID.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.ChangeID;
-  return proto.api.ChangeID.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.ChangeID;
+  return proto.yorkie.v1.ChangeID.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.ChangeID} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.ChangeID} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.ChangeID}
+ * @return {!proto.yorkie.v1.ChangeID}
  */
-proto.api.ChangeID.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.ChangeID.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -1551,11 +1551,11 @@ proto.api.ChangeID.deserializeBinaryFromReader = function(msg, reader) {
       msg.setClientSeq(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readUint64String());
+      var value = /** @type {string} */ (reader.readInt64String());
       msg.setServerSeq(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readUint64String());
+      var value = /** @type {string} */ (reader.readInt64String());
       msg.setLamport(value);
       break;
     case 4:
@@ -1575,9 +1575,9 @@ proto.api.ChangeID.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.ChangeID.prototype.serializeBinary = function() {
+proto.yorkie.v1.ChangeID.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.ChangeID.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.ChangeID.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -1585,11 +1585,11 @@ proto.api.ChangeID.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.ChangeID} message
+ * @param {!proto.yorkie.v1.ChangeID} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.ChangeID.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.ChangeID.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getClientSeq();
   if (f !== 0) {
@@ -1600,14 +1600,14 @@ proto.api.ChangeID.serializeBinaryToWriter = function(message, writer) {
   }
   f = message.getServerSeq();
   if (parseInt(f, 10) !== 0) {
-    writer.writeUint64String(
+    writer.writeInt64String(
       2,
       f
     );
   }
   f = message.getLamport();
   if (parseInt(f, 10) !== 0) {
-    writer.writeUint64String(
+    writer.writeInt64String(
       3,
       f
     );
@@ -1626,52 +1626,52 @@ proto.api.ChangeID.serializeBinaryToWriter = function(message, writer) {
  * optional uint32 client_seq = 1;
  * @return {number}
  */
-proto.api.ChangeID.prototype.getClientSeq = function() {
+proto.yorkie.v1.ChangeID.prototype.getClientSeq = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.api.ChangeID} returns this
+ * @return {!proto.yorkie.v1.ChangeID} returns this
  */
-proto.api.ChangeID.prototype.setClientSeq = function(value) {
+proto.yorkie.v1.ChangeID.prototype.setClientSeq = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
- * optional uint64 server_seq = 2;
+ * optional int64 server_seq = 2;
  * @return {string}
  */
-proto.api.ChangeID.prototype.getServerSeq = function() {
+proto.yorkie.v1.ChangeID.prototype.getServerSeq = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, "0"));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.api.ChangeID} returns this
+ * @return {!proto.yorkie.v1.ChangeID} returns this
  */
-proto.api.ChangeID.prototype.setServerSeq = function(value) {
+proto.yorkie.v1.ChangeID.prototype.setServerSeq = function(value) {
   return jspb.Message.setProto3StringIntField(this, 2, value);
 };
 
 
 /**
- * optional uint64 lamport = 3;
+ * optional int64 lamport = 3;
  * @return {string}
  */
-proto.api.ChangeID.prototype.getLamport = function() {
+proto.yorkie.v1.ChangeID.prototype.getLamport = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, "0"));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.api.ChangeID} returns this
+ * @return {!proto.yorkie.v1.ChangeID} returns this
  */
-proto.api.ChangeID.prototype.setLamport = function(value) {
+proto.yorkie.v1.ChangeID.prototype.setLamport = function(value) {
   return jspb.Message.setProto3StringIntField(this, 3, value);
 };
 
@@ -1680,7 +1680,7 @@ proto.api.ChangeID.prototype.setLamport = function(value) {
  * optional bytes actor_id = 4;
  * @return {string}
  */
-proto.api.ChangeID.prototype.getActorId = function() {
+proto.yorkie.v1.ChangeID.prototype.getActorId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -1690,7 +1690,7 @@ proto.api.ChangeID.prototype.getActorId = function() {
  * This is a type-conversion wrapper around `getActorId()`
  * @return {string}
  */
-proto.api.ChangeID.prototype.getActorId_asB64 = function() {
+proto.yorkie.v1.ChangeID.prototype.getActorId_asB64 = function() {
   return /** @type {string} */ (jspb.Message.bytesAsB64(
       this.getActorId()));
 };
@@ -1703,7 +1703,7 @@ proto.api.ChangeID.prototype.getActorId_asB64 = function() {
  * This is a type-conversion wrapper around `getActorId()`
  * @return {!Uint8Array}
  */
-proto.api.ChangeID.prototype.getActorId_asU8 = function() {
+proto.yorkie.v1.ChangeID.prototype.getActorId_asU8 = function() {
   return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
       this.getActorId()));
 };
@@ -1711,9 +1711,9 @@ proto.api.ChangeID.prototype.getActorId_asU8 = function() {
 
 /**
  * @param {!(string|Uint8Array)} value
- * @return {!proto.api.ChangeID} returns this
+ * @return {!proto.yorkie.v1.ChangeID} returns this
  */
-proto.api.ChangeID.prototype.setActorId = function(value) {
+proto.yorkie.v1.ChangeID.prototype.setActorId = function(value) {
   return jspb.Message.setProto3BytesField(this, 4, value);
 };
 
@@ -1727,12 +1727,12 @@ proto.api.ChangeID.prototype.setActorId = function(value) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.api.Operation.oneofGroups_ = [[1,2,3,4,5,6,7,8,9]];
+proto.yorkie.v1.Operation.oneofGroups_ = [[1,2,3,4,5,6,7,8,9]];
 
 /**
  * @enum {number}
  */
-proto.api.Operation.BodyCase = {
+proto.yorkie.v1.Operation.BodyCase = {
   BODY_NOT_SET: 0,
   SET: 1,
   ADD: 2,
@@ -1746,10 +1746,10 @@ proto.api.Operation.BodyCase = {
 };
 
 /**
- * @return {proto.api.Operation.BodyCase}
+ * @return {proto.yorkie.v1.Operation.BodyCase}
  */
-proto.api.Operation.prototype.getBodyCase = function() {
-  return /** @type {proto.api.Operation.BodyCase} */(jspb.Message.computeOneofCase(this, proto.api.Operation.oneofGroups_[0]));
+proto.yorkie.v1.Operation.prototype.getBodyCase = function() {
+  return /** @type {proto.yorkie.v1.Operation.BodyCase} */(jspb.Message.computeOneofCase(this, proto.yorkie.v1.Operation.oneofGroups_[0]));
 };
 
 
@@ -1767,8 +1767,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.Operation.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.Operation.toObject(opt_includeInstance, this);
+proto.yorkie.v1.Operation.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.Operation.toObject(opt_includeInstance, this);
 };
 
 
@@ -1777,21 +1777,21 @@ proto.api.Operation.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.Operation} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.Operation} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Operation.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.Operation.toObject = function(includeInstance, msg) {
   var f, obj = {
-    set: (f = msg.getSet()) && proto.api.Operation.Set.toObject(includeInstance, f),
-    add: (f = msg.getAdd()) && proto.api.Operation.Add.toObject(includeInstance, f),
-    move: (f = msg.getMove()) && proto.api.Operation.Move.toObject(includeInstance, f),
-    remove: (f = msg.getRemove()) && proto.api.Operation.Remove.toObject(includeInstance, f),
-    edit: (f = msg.getEdit()) && proto.api.Operation.Edit.toObject(includeInstance, f),
-    select: (f = msg.getSelect()) && proto.api.Operation.Select.toObject(includeInstance, f),
-    richEdit: (f = msg.getRichEdit()) && proto.api.Operation.RichEdit.toObject(includeInstance, f),
-    style: (f = msg.getStyle()) && proto.api.Operation.Style.toObject(includeInstance, f),
-    increase: (f = msg.getIncrease()) && proto.api.Operation.Increase.toObject(includeInstance, f)
+    set: (f = msg.getSet()) && proto.yorkie.v1.Operation.Set.toObject(includeInstance, f),
+    add: (f = msg.getAdd()) && proto.yorkie.v1.Operation.Add.toObject(includeInstance, f),
+    move: (f = msg.getMove()) && proto.yorkie.v1.Operation.Move.toObject(includeInstance, f),
+    remove: (f = msg.getRemove()) && proto.yorkie.v1.Operation.Remove.toObject(includeInstance, f),
+    edit: (f = msg.getEdit()) && proto.yorkie.v1.Operation.Edit.toObject(includeInstance, f),
+    select: (f = msg.getSelect()) && proto.yorkie.v1.Operation.Select.toObject(includeInstance, f),
+    richEdit: (f = msg.getRichEdit()) && proto.yorkie.v1.Operation.RichEdit.toObject(includeInstance, f),
+    style: (f = msg.getStyle()) && proto.yorkie.v1.Operation.Style.toObject(includeInstance, f),
+    increase: (f = msg.getIncrease()) && proto.yorkie.v1.Operation.Increase.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1805,23 +1805,23 @@ proto.api.Operation.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.Operation}
+ * @return {!proto.yorkie.v1.Operation}
  */
-proto.api.Operation.deserializeBinary = function(bytes) {
+proto.yorkie.v1.Operation.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.Operation;
-  return proto.api.Operation.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.Operation;
+  return proto.yorkie.v1.Operation.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.Operation} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.Operation} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.Operation}
+ * @return {!proto.yorkie.v1.Operation}
  */
-proto.api.Operation.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.Operation.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -1829,48 +1829,48 @@ proto.api.Operation.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.api.Operation.Set;
-      reader.readMessage(value,proto.api.Operation.Set.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.Operation.Set;
+      reader.readMessage(value,proto.yorkie.v1.Operation.Set.deserializeBinaryFromReader);
       msg.setSet(value);
       break;
     case 2:
-      var value = new proto.api.Operation.Add;
-      reader.readMessage(value,proto.api.Operation.Add.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.Operation.Add;
+      reader.readMessage(value,proto.yorkie.v1.Operation.Add.deserializeBinaryFromReader);
       msg.setAdd(value);
       break;
     case 3:
-      var value = new proto.api.Operation.Move;
-      reader.readMessage(value,proto.api.Operation.Move.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.Operation.Move;
+      reader.readMessage(value,proto.yorkie.v1.Operation.Move.deserializeBinaryFromReader);
       msg.setMove(value);
       break;
     case 4:
-      var value = new proto.api.Operation.Remove;
-      reader.readMessage(value,proto.api.Operation.Remove.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.Operation.Remove;
+      reader.readMessage(value,proto.yorkie.v1.Operation.Remove.deserializeBinaryFromReader);
       msg.setRemove(value);
       break;
     case 5:
-      var value = new proto.api.Operation.Edit;
-      reader.readMessage(value,proto.api.Operation.Edit.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.Operation.Edit;
+      reader.readMessage(value,proto.yorkie.v1.Operation.Edit.deserializeBinaryFromReader);
       msg.setEdit(value);
       break;
     case 6:
-      var value = new proto.api.Operation.Select;
-      reader.readMessage(value,proto.api.Operation.Select.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.Operation.Select;
+      reader.readMessage(value,proto.yorkie.v1.Operation.Select.deserializeBinaryFromReader);
       msg.setSelect(value);
       break;
     case 7:
-      var value = new proto.api.Operation.RichEdit;
-      reader.readMessage(value,proto.api.Operation.RichEdit.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.Operation.RichEdit;
+      reader.readMessage(value,proto.yorkie.v1.Operation.RichEdit.deserializeBinaryFromReader);
       msg.setRichEdit(value);
       break;
     case 8:
-      var value = new proto.api.Operation.Style;
-      reader.readMessage(value,proto.api.Operation.Style.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.Operation.Style;
+      reader.readMessage(value,proto.yorkie.v1.Operation.Style.deserializeBinaryFromReader);
       msg.setStyle(value);
       break;
     case 9:
-      var value = new proto.api.Operation.Increase;
-      reader.readMessage(value,proto.api.Operation.Increase.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.Operation.Increase;
+      reader.readMessage(value,proto.yorkie.v1.Operation.Increase.deserializeBinaryFromReader);
       msg.setIncrease(value);
       break;
     default:
@@ -1886,9 +1886,9 @@ proto.api.Operation.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.Operation.prototype.serializeBinary = function() {
+proto.yorkie.v1.Operation.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.Operation.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.Operation.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -1896,18 +1896,18 @@ proto.api.Operation.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.Operation} message
+ * @param {!proto.yorkie.v1.Operation} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Operation.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.Operation.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getSet();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.api.Operation.Set.serializeBinaryToWriter
+      proto.yorkie.v1.Operation.Set.serializeBinaryToWriter
     );
   }
   f = message.getAdd();
@@ -1915,7 +1915,7 @@ proto.api.Operation.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       2,
       f,
-      proto.api.Operation.Add.serializeBinaryToWriter
+      proto.yorkie.v1.Operation.Add.serializeBinaryToWriter
     );
   }
   f = message.getMove();
@@ -1923,7 +1923,7 @@ proto.api.Operation.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       3,
       f,
-      proto.api.Operation.Move.serializeBinaryToWriter
+      proto.yorkie.v1.Operation.Move.serializeBinaryToWriter
     );
   }
   f = message.getRemove();
@@ -1931,7 +1931,7 @@ proto.api.Operation.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       4,
       f,
-      proto.api.Operation.Remove.serializeBinaryToWriter
+      proto.yorkie.v1.Operation.Remove.serializeBinaryToWriter
     );
   }
   f = message.getEdit();
@@ -1939,7 +1939,7 @@ proto.api.Operation.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       5,
       f,
-      proto.api.Operation.Edit.serializeBinaryToWriter
+      proto.yorkie.v1.Operation.Edit.serializeBinaryToWriter
     );
   }
   f = message.getSelect();
@@ -1947,7 +1947,7 @@ proto.api.Operation.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       6,
       f,
-      proto.api.Operation.Select.serializeBinaryToWriter
+      proto.yorkie.v1.Operation.Select.serializeBinaryToWriter
     );
   }
   f = message.getRichEdit();
@@ -1955,7 +1955,7 @@ proto.api.Operation.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       7,
       f,
-      proto.api.Operation.RichEdit.serializeBinaryToWriter
+      proto.yorkie.v1.Operation.RichEdit.serializeBinaryToWriter
     );
   }
   f = message.getStyle();
@@ -1963,7 +1963,7 @@ proto.api.Operation.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       8,
       f,
-      proto.api.Operation.Style.serializeBinaryToWriter
+      proto.yorkie.v1.Operation.Style.serializeBinaryToWriter
     );
   }
   f = message.getIncrease();
@@ -1971,7 +1971,7 @@ proto.api.Operation.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       9,
       f,
-      proto.api.Operation.Increase.serializeBinaryToWriter
+      proto.yorkie.v1.Operation.Increase.serializeBinaryToWriter
     );
   }
 };
@@ -1993,8 +1993,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.Operation.Set.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.Operation.Set.toObject(opt_includeInstance, this);
+proto.yorkie.v1.Operation.Set.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.Operation.Set.toObject(opt_includeInstance, this);
 };
 
 
@@ -2003,16 +2003,16 @@ proto.api.Operation.Set.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.Operation.Set} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.Operation.Set} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Operation.Set.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.Operation.Set.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parentCreatedAt: (f = msg.getParentCreatedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
+    parentCreatedAt: (f = msg.getParentCreatedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
     key: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    value: (f = msg.getValue()) && proto.api.JSONElementSimple.toObject(includeInstance, f),
-    executedAt: (f = msg.getExecutedAt()) && proto.api.TimeTicket.toObject(includeInstance, f)
+    value: (f = msg.getValue()) && proto.yorkie.v1.JSONElementSimple.toObject(includeInstance, f),
+    executedAt: (f = msg.getExecutedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2026,23 +2026,23 @@ proto.api.Operation.Set.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.Operation.Set}
+ * @return {!proto.yorkie.v1.Operation.Set}
  */
-proto.api.Operation.Set.deserializeBinary = function(bytes) {
+proto.yorkie.v1.Operation.Set.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.Operation.Set;
-  return proto.api.Operation.Set.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.Operation.Set;
+  return proto.yorkie.v1.Operation.Set.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.Operation.Set} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.Operation.Set} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.Operation.Set}
+ * @return {!proto.yorkie.v1.Operation.Set}
  */
-proto.api.Operation.Set.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.Operation.Set.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -2050,8 +2050,8 @@ proto.api.Operation.Set.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setParentCreatedAt(value);
       break;
     case 2:
@@ -2059,13 +2059,13 @@ proto.api.Operation.Set.deserializeBinaryFromReader = function(msg, reader) {
       msg.setKey(value);
       break;
     case 3:
-      var value = new proto.api.JSONElementSimple;
-      reader.readMessage(value,proto.api.JSONElementSimple.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.JSONElementSimple;
+      reader.readMessage(value,proto.yorkie.v1.JSONElementSimple.deserializeBinaryFromReader);
       msg.setValue(value);
       break;
     case 4:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setExecutedAt(value);
       break;
     default:
@@ -2081,9 +2081,9 @@ proto.api.Operation.Set.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.Operation.Set.prototype.serializeBinary = function() {
+proto.yorkie.v1.Operation.Set.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.Operation.Set.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.Operation.Set.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -2091,18 +2091,18 @@ proto.api.Operation.Set.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.Operation.Set} message
+ * @param {!proto.yorkie.v1.Operation.Set} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Operation.Set.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.Operation.Set.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getParentCreatedAt();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getKey();
@@ -2117,7 +2117,7 @@ proto.api.Operation.Set.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       3,
       f,
-      proto.api.JSONElementSimple.serializeBinaryToWriter
+      proto.yorkie.v1.JSONElementSimple.serializeBinaryToWriter
     );
   }
   f = message.getExecutedAt();
@@ -2125,7 +2125,7 @@ proto.api.Operation.Set.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       4,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
 };
@@ -2133,28 +2133,28 @@ proto.api.Operation.Set.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * optional TimeTicket parent_created_at = 1;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.Operation.Set.prototype.getParentCreatedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 1));
+proto.yorkie.v1.Operation.Set.prototype.getParentCreatedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 1));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.Operation.Set} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Set} returns this
 */
-proto.api.Operation.Set.prototype.setParentCreatedAt = function(value) {
+proto.yorkie.v1.Operation.Set.prototype.setParentCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Set} returns this
+ * @return {!proto.yorkie.v1.Operation.Set} returns this
  */
-proto.api.Operation.Set.prototype.clearParentCreatedAt = function() {
+proto.yorkie.v1.Operation.Set.prototype.clearParentCreatedAt = function() {
   return this.setParentCreatedAt(undefined);
 };
 
@@ -2163,7 +2163,7 @@ proto.api.Operation.Set.prototype.clearParentCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Set.prototype.hasParentCreatedAt = function() {
+proto.yorkie.v1.Operation.Set.prototype.hasParentCreatedAt = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -2172,44 +2172,44 @@ proto.api.Operation.Set.prototype.hasParentCreatedAt = function() {
  * optional string key = 2;
  * @return {string}
  */
-proto.api.Operation.Set.prototype.getKey = function() {
+proto.yorkie.v1.Operation.Set.prototype.getKey = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.api.Operation.Set} returns this
+ * @return {!proto.yorkie.v1.Operation.Set} returns this
  */
-proto.api.Operation.Set.prototype.setKey = function(value) {
+proto.yorkie.v1.Operation.Set.prototype.setKey = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
  * optional JSONElementSimple value = 3;
- * @return {?proto.api.JSONElementSimple}
+ * @return {?proto.yorkie.v1.JSONElementSimple}
  */
-proto.api.Operation.Set.prototype.getValue = function() {
-  return /** @type{?proto.api.JSONElementSimple} */ (
-    jspb.Message.getWrapperField(this, proto.api.JSONElementSimple, 3));
+proto.yorkie.v1.Operation.Set.prototype.getValue = function() {
+  return /** @type{?proto.yorkie.v1.JSONElementSimple} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.JSONElementSimple, 3));
 };
 
 
 /**
- * @param {?proto.api.JSONElementSimple|undefined} value
- * @return {!proto.api.Operation.Set} returns this
+ * @param {?proto.yorkie.v1.JSONElementSimple|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Set} returns this
 */
-proto.api.Operation.Set.prototype.setValue = function(value) {
+proto.yorkie.v1.Operation.Set.prototype.setValue = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Set} returns this
+ * @return {!proto.yorkie.v1.Operation.Set} returns this
  */
-proto.api.Operation.Set.prototype.clearValue = function() {
+proto.yorkie.v1.Operation.Set.prototype.clearValue = function() {
   return this.setValue(undefined);
 };
 
@@ -2218,35 +2218,35 @@ proto.api.Operation.Set.prototype.clearValue = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Set.prototype.hasValue = function() {
+proto.yorkie.v1.Operation.Set.prototype.hasValue = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
  * optional TimeTicket executed_at = 4;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.Operation.Set.prototype.getExecutedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 4));
+proto.yorkie.v1.Operation.Set.prototype.getExecutedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 4));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.Operation.Set} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Set} returns this
 */
-proto.api.Operation.Set.prototype.setExecutedAt = function(value) {
+proto.yorkie.v1.Operation.Set.prototype.setExecutedAt = function(value) {
   return jspb.Message.setWrapperField(this, 4, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Set} returns this
+ * @return {!proto.yorkie.v1.Operation.Set} returns this
  */
-proto.api.Operation.Set.prototype.clearExecutedAt = function() {
+proto.yorkie.v1.Operation.Set.prototype.clearExecutedAt = function() {
   return this.setExecutedAt(undefined);
 };
 
@@ -2255,7 +2255,7 @@ proto.api.Operation.Set.prototype.clearExecutedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Set.prototype.hasExecutedAt = function() {
+proto.yorkie.v1.Operation.Set.prototype.hasExecutedAt = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
@@ -2276,8 +2276,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.Operation.Add.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.Operation.Add.toObject(opt_includeInstance, this);
+proto.yorkie.v1.Operation.Add.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.Operation.Add.toObject(opt_includeInstance, this);
 };
 
 
@@ -2286,16 +2286,16 @@ proto.api.Operation.Add.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.Operation.Add} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.Operation.Add} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Operation.Add.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.Operation.Add.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parentCreatedAt: (f = msg.getParentCreatedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    prevCreatedAt: (f = msg.getPrevCreatedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    value: (f = msg.getValue()) && proto.api.JSONElementSimple.toObject(includeInstance, f),
-    executedAt: (f = msg.getExecutedAt()) && proto.api.TimeTicket.toObject(includeInstance, f)
+    parentCreatedAt: (f = msg.getParentCreatedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    prevCreatedAt: (f = msg.getPrevCreatedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    value: (f = msg.getValue()) && proto.yorkie.v1.JSONElementSimple.toObject(includeInstance, f),
+    executedAt: (f = msg.getExecutedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2309,23 +2309,23 @@ proto.api.Operation.Add.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.Operation.Add}
+ * @return {!proto.yorkie.v1.Operation.Add}
  */
-proto.api.Operation.Add.deserializeBinary = function(bytes) {
+proto.yorkie.v1.Operation.Add.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.Operation.Add;
-  return proto.api.Operation.Add.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.Operation.Add;
+  return proto.yorkie.v1.Operation.Add.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.Operation.Add} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.Operation.Add} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.Operation.Add}
+ * @return {!proto.yorkie.v1.Operation.Add}
  */
-proto.api.Operation.Add.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.Operation.Add.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -2333,23 +2333,23 @@ proto.api.Operation.Add.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setParentCreatedAt(value);
       break;
     case 2:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setPrevCreatedAt(value);
       break;
     case 3:
-      var value = new proto.api.JSONElementSimple;
-      reader.readMessage(value,proto.api.JSONElementSimple.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.JSONElementSimple;
+      reader.readMessage(value,proto.yorkie.v1.JSONElementSimple.deserializeBinaryFromReader);
       msg.setValue(value);
       break;
     case 4:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setExecutedAt(value);
       break;
     default:
@@ -2365,9 +2365,9 @@ proto.api.Operation.Add.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.Operation.Add.prototype.serializeBinary = function() {
+proto.yorkie.v1.Operation.Add.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.Operation.Add.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.Operation.Add.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -2375,18 +2375,18 @@ proto.api.Operation.Add.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.Operation.Add} message
+ * @param {!proto.yorkie.v1.Operation.Add} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Operation.Add.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.Operation.Add.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getParentCreatedAt();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getPrevCreatedAt();
@@ -2394,7 +2394,7 @@ proto.api.Operation.Add.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       2,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getValue();
@@ -2402,7 +2402,7 @@ proto.api.Operation.Add.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       3,
       f,
-      proto.api.JSONElementSimple.serializeBinaryToWriter
+      proto.yorkie.v1.JSONElementSimple.serializeBinaryToWriter
     );
   }
   f = message.getExecutedAt();
@@ -2410,7 +2410,7 @@ proto.api.Operation.Add.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       4,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
 };
@@ -2418,28 +2418,28 @@ proto.api.Operation.Add.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * optional TimeTicket parent_created_at = 1;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.Operation.Add.prototype.getParentCreatedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 1));
+proto.yorkie.v1.Operation.Add.prototype.getParentCreatedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 1));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.Operation.Add} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Add} returns this
 */
-proto.api.Operation.Add.prototype.setParentCreatedAt = function(value) {
+proto.yorkie.v1.Operation.Add.prototype.setParentCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Add} returns this
+ * @return {!proto.yorkie.v1.Operation.Add} returns this
  */
-proto.api.Operation.Add.prototype.clearParentCreatedAt = function() {
+proto.yorkie.v1.Operation.Add.prototype.clearParentCreatedAt = function() {
   return this.setParentCreatedAt(undefined);
 };
 
@@ -2448,35 +2448,35 @@ proto.api.Operation.Add.prototype.clearParentCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Add.prototype.hasParentCreatedAt = function() {
+proto.yorkie.v1.Operation.Add.prototype.hasParentCreatedAt = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
  * optional TimeTicket prev_created_at = 2;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.Operation.Add.prototype.getPrevCreatedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 2));
+proto.yorkie.v1.Operation.Add.prototype.getPrevCreatedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 2));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.Operation.Add} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Add} returns this
 */
-proto.api.Operation.Add.prototype.setPrevCreatedAt = function(value) {
+proto.yorkie.v1.Operation.Add.prototype.setPrevCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Add} returns this
+ * @return {!proto.yorkie.v1.Operation.Add} returns this
  */
-proto.api.Operation.Add.prototype.clearPrevCreatedAt = function() {
+proto.yorkie.v1.Operation.Add.prototype.clearPrevCreatedAt = function() {
   return this.setPrevCreatedAt(undefined);
 };
 
@@ -2485,35 +2485,35 @@ proto.api.Operation.Add.prototype.clearPrevCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Add.prototype.hasPrevCreatedAt = function() {
+proto.yorkie.v1.Operation.Add.prototype.hasPrevCreatedAt = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
  * optional JSONElementSimple value = 3;
- * @return {?proto.api.JSONElementSimple}
+ * @return {?proto.yorkie.v1.JSONElementSimple}
  */
-proto.api.Operation.Add.prototype.getValue = function() {
-  return /** @type{?proto.api.JSONElementSimple} */ (
-    jspb.Message.getWrapperField(this, proto.api.JSONElementSimple, 3));
+proto.yorkie.v1.Operation.Add.prototype.getValue = function() {
+  return /** @type{?proto.yorkie.v1.JSONElementSimple} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.JSONElementSimple, 3));
 };
 
 
 /**
- * @param {?proto.api.JSONElementSimple|undefined} value
- * @return {!proto.api.Operation.Add} returns this
+ * @param {?proto.yorkie.v1.JSONElementSimple|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Add} returns this
 */
-proto.api.Operation.Add.prototype.setValue = function(value) {
+proto.yorkie.v1.Operation.Add.prototype.setValue = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Add} returns this
+ * @return {!proto.yorkie.v1.Operation.Add} returns this
  */
-proto.api.Operation.Add.prototype.clearValue = function() {
+proto.yorkie.v1.Operation.Add.prototype.clearValue = function() {
   return this.setValue(undefined);
 };
 
@@ -2522,35 +2522,35 @@ proto.api.Operation.Add.prototype.clearValue = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Add.prototype.hasValue = function() {
+proto.yorkie.v1.Operation.Add.prototype.hasValue = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
  * optional TimeTicket executed_at = 4;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.Operation.Add.prototype.getExecutedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 4));
+proto.yorkie.v1.Operation.Add.prototype.getExecutedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 4));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.Operation.Add} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Add} returns this
 */
-proto.api.Operation.Add.prototype.setExecutedAt = function(value) {
+proto.yorkie.v1.Operation.Add.prototype.setExecutedAt = function(value) {
   return jspb.Message.setWrapperField(this, 4, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Add} returns this
+ * @return {!proto.yorkie.v1.Operation.Add} returns this
  */
-proto.api.Operation.Add.prototype.clearExecutedAt = function() {
+proto.yorkie.v1.Operation.Add.prototype.clearExecutedAt = function() {
   return this.setExecutedAt(undefined);
 };
 
@@ -2559,7 +2559,7 @@ proto.api.Operation.Add.prototype.clearExecutedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Add.prototype.hasExecutedAt = function() {
+proto.yorkie.v1.Operation.Add.prototype.hasExecutedAt = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
@@ -2580,8 +2580,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.Operation.Move.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.Operation.Move.toObject(opt_includeInstance, this);
+proto.yorkie.v1.Operation.Move.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.Operation.Move.toObject(opt_includeInstance, this);
 };
 
 
@@ -2590,16 +2590,16 @@ proto.api.Operation.Move.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.Operation.Move} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.Operation.Move} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Operation.Move.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.Operation.Move.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parentCreatedAt: (f = msg.getParentCreatedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    prevCreatedAt: (f = msg.getPrevCreatedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    createdAt: (f = msg.getCreatedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    executedAt: (f = msg.getExecutedAt()) && proto.api.TimeTicket.toObject(includeInstance, f)
+    parentCreatedAt: (f = msg.getParentCreatedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    prevCreatedAt: (f = msg.getPrevCreatedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    createdAt: (f = msg.getCreatedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    executedAt: (f = msg.getExecutedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2613,23 +2613,23 @@ proto.api.Operation.Move.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.Operation.Move}
+ * @return {!proto.yorkie.v1.Operation.Move}
  */
-proto.api.Operation.Move.deserializeBinary = function(bytes) {
+proto.yorkie.v1.Operation.Move.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.Operation.Move;
-  return proto.api.Operation.Move.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.Operation.Move;
+  return proto.yorkie.v1.Operation.Move.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.Operation.Move} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.Operation.Move} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.Operation.Move}
+ * @return {!proto.yorkie.v1.Operation.Move}
  */
-proto.api.Operation.Move.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.Operation.Move.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -2637,23 +2637,23 @@ proto.api.Operation.Move.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setParentCreatedAt(value);
       break;
     case 2:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setPrevCreatedAt(value);
       break;
     case 3:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setCreatedAt(value);
       break;
     case 4:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setExecutedAt(value);
       break;
     default:
@@ -2669,9 +2669,9 @@ proto.api.Operation.Move.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.Operation.Move.prototype.serializeBinary = function() {
+proto.yorkie.v1.Operation.Move.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.Operation.Move.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.Operation.Move.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -2679,18 +2679,18 @@ proto.api.Operation.Move.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.Operation.Move} message
+ * @param {!proto.yorkie.v1.Operation.Move} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Operation.Move.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.Operation.Move.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getParentCreatedAt();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getPrevCreatedAt();
@@ -2698,7 +2698,7 @@ proto.api.Operation.Move.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       2,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getCreatedAt();
@@ -2706,7 +2706,7 @@ proto.api.Operation.Move.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       3,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getExecutedAt();
@@ -2714,7 +2714,7 @@ proto.api.Operation.Move.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       4,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
 };
@@ -2722,28 +2722,28 @@ proto.api.Operation.Move.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * optional TimeTicket parent_created_at = 1;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.Operation.Move.prototype.getParentCreatedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 1));
+proto.yorkie.v1.Operation.Move.prototype.getParentCreatedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 1));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.Operation.Move} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Move} returns this
 */
-proto.api.Operation.Move.prototype.setParentCreatedAt = function(value) {
+proto.yorkie.v1.Operation.Move.prototype.setParentCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Move} returns this
+ * @return {!proto.yorkie.v1.Operation.Move} returns this
  */
-proto.api.Operation.Move.prototype.clearParentCreatedAt = function() {
+proto.yorkie.v1.Operation.Move.prototype.clearParentCreatedAt = function() {
   return this.setParentCreatedAt(undefined);
 };
 
@@ -2752,35 +2752,35 @@ proto.api.Operation.Move.prototype.clearParentCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Move.prototype.hasParentCreatedAt = function() {
+proto.yorkie.v1.Operation.Move.prototype.hasParentCreatedAt = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
  * optional TimeTicket prev_created_at = 2;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.Operation.Move.prototype.getPrevCreatedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 2));
+proto.yorkie.v1.Operation.Move.prototype.getPrevCreatedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 2));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.Operation.Move} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Move} returns this
 */
-proto.api.Operation.Move.prototype.setPrevCreatedAt = function(value) {
+proto.yorkie.v1.Operation.Move.prototype.setPrevCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Move} returns this
+ * @return {!proto.yorkie.v1.Operation.Move} returns this
  */
-proto.api.Operation.Move.prototype.clearPrevCreatedAt = function() {
+proto.yorkie.v1.Operation.Move.prototype.clearPrevCreatedAt = function() {
   return this.setPrevCreatedAt(undefined);
 };
 
@@ -2789,35 +2789,35 @@ proto.api.Operation.Move.prototype.clearPrevCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Move.prototype.hasPrevCreatedAt = function() {
+proto.yorkie.v1.Operation.Move.prototype.hasPrevCreatedAt = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
  * optional TimeTicket created_at = 3;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.Operation.Move.prototype.getCreatedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 3));
+proto.yorkie.v1.Operation.Move.prototype.getCreatedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 3));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.Operation.Move} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Move} returns this
 */
-proto.api.Operation.Move.prototype.setCreatedAt = function(value) {
+proto.yorkie.v1.Operation.Move.prototype.setCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Move} returns this
+ * @return {!proto.yorkie.v1.Operation.Move} returns this
  */
-proto.api.Operation.Move.prototype.clearCreatedAt = function() {
+proto.yorkie.v1.Operation.Move.prototype.clearCreatedAt = function() {
   return this.setCreatedAt(undefined);
 };
 
@@ -2826,35 +2826,35 @@ proto.api.Operation.Move.prototype.clearCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Move.prototype.hasCreatedAt = function() {
+proto.yorkie.v1.Operation.Move.prototype.hasCreatedAt = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
  * optional TimeTicket executed_at = 4;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.Operation.Move.prototype.getExecutedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 4));
+proto.yorkie.v1.Operation.Move.prototype.getExecutedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 4));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.Operation.Move} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Move} returns this
 */
-proto.api.Operation.Move.prototype.setExecutedAt = function(value) {
+proto.yorkie.v1.Operation.Move.prototype.setExecutedAt = function(value) {
   return jspb.Message.setWrapperField(this, 4, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Move} returns this
+ * @return {!proto.yorkie.v1.Operation.Move} returns this
  */
-proto.api.Operation.Move.prototype.clearExecutedAt = function() {
+proto.yorkie.v1.Operation.Move.prototype.clearExecutedAt = function() {
   return this.setExecutedAt(undefined);
 };
 
@@ -2863,7 +2863,7 @@ proto.api.Operation.Move.prototype.clearExecutedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Move.prototype.hasExecutedAt = function() {
+proto.yorkie.v1.Operation.Move.prototype.hasExecutedAt = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
@@ -2884,8 +2884,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.Operation.Remove.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.Operation.Remove.toObject(opt_includeInstance, this);
+proto.yorkie.v1.Operation.Remove.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.Operation.Remove.toObject(opt_includeInstance, this);
 };
 
 
@@ -2894,15 +2894,15 @@ proto.api.Operation.Remove.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.Operation.Remove} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.Operation.Remove} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Operation.Remove.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.Operation.Remove.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parentCreatedAt: (f = msg.getParentCreatedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    createdAt: (f = msg.getCreatedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    executedAt: (f = msg.getExecutedAt()) && proto.api.TimeTicket.toObject(includeInstance, f)
+    parentCreatedAt: (f = msg.getParentCreatedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    createdAt: (f = msg.getCreatedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    executedAt: (f = msg.getExecutedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2916,23 +2916,23 @@ proto.api.Operation.Remove.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.Operation.Remove}
+ * @return {!proto.yorkie.v1.Operation.Remove}
  */
-proto.api.Operation.Remove.deserializeBinary = function(bytes) {
+proto.yorkie.v1.Operation.Remove.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.Operation.Remove;
-  return proto.api.Operation.Remove.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.Operation.Remove;
+  return proto.yorkie.v1.Operation.Remove.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.Operation.Remove} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.Operation.Remove} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.Operation.Remove}
+ * @return {!proto.yorkie.v1.Operation.Remove}
  */
-proto.api.Operation.Remove.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.Operation.Remove.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -2940,18 +2940,18 @@ proto.api.Operation.Remove.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setParentCreatedAt(value);
       break;
     case 2:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setCreatedAt(value);
       break;
     case 3:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setExecutedAt(value);
       break;
     default:
@@ -2967,9 +2967,9 @@ proto.api.Operation.Remove.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.Operation.Remove.prototype.serializeBinary = function() {
+proto.yorkie.v1.Operation.Remove.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.Operation.Remove.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.Operation.Remove.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -2977,18 +2977,18 @@ proto.api.Operation.Remove.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.Operation.Remove} message
+ * @param {!proto.yorkie.v1.Operation.Remove} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Operation.Remove.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.Operation.Remove.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getParentCreatedAt();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getCreatedAt();
@@ -2996,7 +2996,7 @@ proto.api.Operation.Remove.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       2,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getExecutedAt();
@@ -3004,7 +3004,7 @@ proto.api.Operation.Remove.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       3,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
 };
@@ -3012,28 +3012,28 @@ proto.api.Operation.Remove.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * optional TimeTicket parent_created_at = 1;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.Operation.Remove.prototype.getParentCreatedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 1));
+proto.yorkie.v1.Operation.Remove.prototype.getParentCreatedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 1));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.Operation.Remove} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Remove} returns this
 */
-proto.api.Operation.Remove.prototype.setParentCreatedAt = function(value) {
+proto.yorkie.v1.Operation.Remove.prototype.setParentCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Remove} returns this
+ * @return {!proto.yorkie.v1.Operation.Remove} returns this
  */
-proto.api.Operation.Remove.prototype.clearParentCreatedAt = function() {
+proto.yorkie.v1.Operation.Remove.prototype.clearParentCreatedAt = function() {
   return this.setParentCreatedAt(undefined);
 };
 
@@ -3042,35 +3042,35 @@ proto.api.Operation.Remove.prototype.clearParentCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Remove.prototype.hasParentCreatedAt = function() {
+proto.yorkie.v1.Operation.Remove.prototype.hasParentCreatedAt = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
  * optional TimeTicket created_at = 2;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.Operation.Remove.prototype.getCreatedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 2));
+proto.yorkie.v1.Operation.Remove.prototype.getCreatedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 2));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.Operation.Remove} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Remove} returns this
 */
-proto.api.Operation.Remove.prototype.setCreatedAt = function(value) {
+proto.yorkie.v1.Operation.Remove.prototype.setCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Remove} returns this
+ * @return {!proto.yorkie.v1.Operation.Remove} returns this
  */
-proto.api.Operation.Remove.prototype.clearCreatedAt = function() {
+proto.yorkie.v1.Operation.Remove.prototype.clearCreatedAt = function() {
   return this.setCreatedAt(undefined);
 };
 
@@ -3079,35 +3079,35 @@ proto.api.Operation.Remove.prototype.clearCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Remove.prototype.hasCreatedAt = function() {
+proto.yorkie.v1.Operation.Remove.prototype.hasCreatedAt = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
  * optional TimeTicket executed_at = 3;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.Operation.Remove.prototype.getExecutedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 3));
+proto.yorkie.v1.Operation.Remove.prototype.getExecutedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 3));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.Operation.Remove} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Remove} returns this
 */
-proto.api.Operation.Remove.prototype.setExecutedAt = function(value) {
+proto.yorkie.v1.Operation.Remove.prototype.setExecutedAt = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Remove} returns this
+ * @return {!proto.yorkie.v1.Operation.Remove} returns this
  */
-proto.api.Operation.Remove.prototype.clearExecutedAt = function() {
+proto.yorkie.v1.Operation.Remove.prototype.clearExecutedAt = function() {
   return this.setExecutedAt(undefined);
 };
 
@@ -3116,7 +3116,7 @@ proto.api.Operation.Remove.prototype.clearExecutedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Remove.prototype.hasExecutedAt = function() {
+proto.yorkie.v1.Operation.Remove.prototype.hasExecutedAt = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
@@ -3137,8 +3137,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.Operation.Edit.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.Operation.Edit.toObject(opt_includeInstance, this);
+proto.yorkie.v1.Operation.Edit.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.Operation.Edit.toObject(opt_includeInstance, this);
 };
 
 
@@ -3147,18 +3147,18 @@ proto.api.Operation.Edit.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.Operation.Edit} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.Operation.Edit} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Operation.Edit.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.Operation.Edit.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parentCreatedAt: (f = msg.getParentCreatedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    from: (f = msg.getFrom()) && proto.api.TextNodePos.toObject(includeInstance, f),
-    to: (f = msg.getTo()) && proto.api.TextNodePos.toObject(includeInstance, f),
-    createdAtMapByActorMap: (f = msg.getCreatedAtMapByActorMap()) ? f.toObject(includeInstance, proto.api.TimeTicket.toObject) : [],
+    parentCreatedAt: (f = msg.getParentCreatedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    from: (f = msg.getFrom()) && proto.yorkie.v1.TextNodePos.toObject(includeInstance, f),
+    to: (f = msg.getTo()) && proto.yorkie.v1.TextNodePos.toObject(includeInstance, f),
+    createdAtMapByActorMap: (f = msg.getCreatedAtMapByActorMap()) ? f.toObject(includeInstance, proto.yorkie.v1.TimeTicket.toObject) : [],
     content: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    executedAt: (f = msg.getExecutedAt()) && proto.api.TimeTicket.toObject(includeInstance, f)
+    executedAt: (f = msg.getExecutedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3172,23 +3172,23 @@ proto.api.Operation.Edit.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.Operation.Edit}
+ * @return {!proto.yorkie.v1.Operation.Edit}
  */
-proto.api.Operation.Edit.deserializeBinary = function(bytes) {
+proto.yorkie.v1.Operation.Edit.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.Operation.Edit;
-  return proto.api.Operation.Edit.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.Operation.Edit;
+  return proto.yorkie.v1.Operation.Edit.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.Operation.Edit} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.Operation.Edit} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.Operation.Edit}
+ * @return {!proto.yorkie.v1.Operation.Edit}
  */
-proto.api.Operation.Edit.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.Operation.Edit.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -3196,24 +3196,24 @@ proto.api.Operation.Edit.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setParentCreatedAt(value);
       break;
     case 2:
-      var value = new proto.api.TextNodePos;
-      reader.readMessage(value,proto.api.TextNodePos.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TextNodePos;
+      reader.readMessage(value,proto.yorkie.v1.TextNodePos.deserializeBinaryFromReader);
       msg.setFrom(value);
       break;
     case 3:
-      var value = new proto.api.TextNodePos;
-      reader.readMessage(value,proto.api.TextNodePos.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TextNodePos;
+      reader.readMessage(value,proto.yorkie.v1.TextNodePos.deserializeBinaryFromReader);
       msg.setTo(value);
       break;
     case 4:
       var value = msg.getCreatedAtMapByActorMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.api.TimeTicket.deserializeBinaryFromReader, "", new proto.api.TimeTicket());
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader, "", new proto.yorkie.v1.TimeTicket());
          });
       break;
     case 5:
@@ -3221,8 +3221,8 @@ proto.api.Operation.Edit.deserializeBinaryFromReader = function(msg, reader) {
       msg.setContent(value);
       break;
     case 6:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setExecutedAt(value);
       break;
     default:
@@ -3238,9 +3238,9 @@ proto.api.Operation.Edit.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.Operation.Edit.prototype.serializeBinary = function() {
+proto.yorkie.v1.Operation.Edit.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.Operation.Edit.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.Operation.Edit.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -3248,18 +3248,18 @@ proto.api.Operation.Edit.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.Operation.Edit} message
+ * @param {!proto.yorkie.v1.Operation.Edit} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Operation.Edit.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.Operation.Edit.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getParentCreatedAt();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getFrom();
@@ -3267,7 +3267,7 @@ proto.api.Operation.Edit.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       2,
       f,
-      proto.api.TextNodePos.serializeBinaryToWriter
+      proto.yorkie.v1.TextNodePos.serializeBinaryToWriter
     );
   }
   f = message.getTo();
@@ -3275,12 +3275,12 @@ proto.api.Operation.Edit.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       3,
       f,
-      proto.api.TextNodePos.serializeBinaryToWriter
+      proto.yorkie.v1.TextNodePos.serializeBinaryToWriter
     );
   }
   f = message.getCreatedAtMapByActorMap(true);
   if (f && f.getLength() > 0) {
-    f.serializeBinary(4, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.api.TimeTicket.serializeBinaryToWriter);
+    f.serializeBinary(4, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.yorkie.v1.TimeTicket.serializeBinaryToWriter);
   }
   f = message.getContent();
   if (f.length > 0) {
@@ -3294,7 +3294,7 @@ proto.api.Operation.Edit.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       6,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
 };
@@ -3302,28 +3302,28 @@ proto.api.Operation.Edit.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * optional TimeTicket parent_created_at = 1;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.Operation.Edit.prototype.getParentCreatedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 1));
+proto.yorkie.v1.Operation.Edit.prototype.getParentCreatedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 1));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.Operation.Edit} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Edit} returns this
 */
-proto.api.Operation.Edit.prototype.setParentCreatedAt = function(value) {
+proto.yorkie.v1.Operation.Edit.prototype.setParentCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Edit} returns this
+ * @return {!proto.yorkie.v1.Operation.Edit} returns this
  */
-proto.api.Operation.Edit.prototype.clearParentCreatedAt = function() {
+proto.yorkie.v1.Operation.Edit.prototype.clearParentCreatedAt = function() {
   return this.setParentCreatedAt(undefined);
 };
 
@@ -3332,35 +3332,35 @@ proto.api.Operation.Edit.prototype.clearParentCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Edit.prototype.hasParentCreatedAt = function() {
+proto.yorkie.v1.Operation.Edit.prototype.hasParentCreatedAt = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
  * optional TextNodePos from = 2;
- * @return {?proto.api.TextNodePos}
+ * @return {?proto.yorkie.v1.TextNodePos}
  */
-proto.api.Operation.Edit.prototype.getFrom = function() {
-  return /** @type{?proto.api.TextNodePos} */ (
-    jspb.Message.getWrapperField(this, proto.api.TextNodePos, 2));
+proto.yorkie.v1.Operation.Edit.prototype.getFrom = function() {
+  return /** @type{?proto.yorkie.v1.TextNodePos} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TextNodePos, 2));
 };
 
 
 /**
- * @param {?proto.api.TextNodePos|undefined} value
- * @return {!proto.api.Operation.Edit} returns this
+ * @param {?proto.yorkie.v1.TextNodePos|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Edit} returns this
 */
-proto.api.Operation.Edit.prototype.setFrom = function(value) {
+proto.yorkie.v1.Operation.Edit.prototype.setFrom = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Edit} returns this
+ * @return {!proto.yorkie.v1.Operation.Edit} returns this
  */
-proto.api.Operation.Edit.prototype.clearFrom = function() {
+proto.yorkie.v1.Operation.Edit.prototype.clearFrom = function() {
   return this.setFrom(undefined);
 };
 
@@ -3369,35 +3369,35 @@ proto.api.Operation.Edit.prototype.clearFrom = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Edit.prototype.hasFrom = function() {
+proto.yorkie.v1.Operation.Edit.prototype.hasFrom = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
  * optional TextNodePos to = 3;
- * @return {?proto.api.TextNodePos}
+ * @return {?proto.yorkie.v1.TextNodePos}
  */
-proto.api.Operation.Edit.prototype.getTo = function() {
-  return /** @type{?proto.api.TextNodePos} */ (
-    jspb.Message.getWrapperField(this, proto.api.TextNodePos, 3));
+proto.yorkie.v1.Operation.Edit.prototype.getTo = function() {
+  return /** @type{?proto.yorkie.v1.TextNodePos} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TextNodePos, 3));
 };
 
 
 /**
- * @param {?proto.api.TextNodePos|undefined} value
- * @return {!proto.api.Operation.Edit} returns this
+ * @param {?proto.yorkie.v1.TextNodePos|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Edit} returns this
 */
-proto.api.Operation.Edit.prototype.setTo = function(value) {
+proto.yorkie.v1.Operation.Edit.prototype.setTo = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Edit} returns this
+ * @return {!proto.yorkie.v1.Operation.Edit} returns this
  */
-proto.api.Operation.Edit.prototype.clearTo = function() {
+proto.yorkie.v1.Operation.Edit.prototype.clearTo = function() {
   return this.setTo(undefined);
 };
 
@@ -3406,7 +3406,7 @@ proto.api.Operation.Edit.prototype.clearTo = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Edit.prototype.hasTo = function() {
+proto.yorkie.v1.Operation.Edit.prototype.hasTo = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
@@ -3415,20 +3415,20 @@ proto.api.Operation.Edit.prototype.hasTo = function() {
  * map<string, TimeTicket> created_at_map_by_actor = 4;
  * @param {boolean=} opt_noLazyCreate Do not create the map if
  * empty, instead returning `undefined`
- * @return {!jspb.Map<string,!proto.api.TimeTicket>}
+ * @return {!jspb.Map<string,!proto.yorkie.v1.TimeTicket>}
  */
-proto.api.Operation.Edit.prototype.getCreatedAtMapByActorMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,!proto.api.TimeTicket>} */ (
+proto.yorkie.v1.Operation.Edit.prototype.getCreatedAtMapByActorMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,!proto.yorkie.v1.TimeTicket>} */ (
       jspb.Message.getMapField(this, 4, opt_noLazyCreate,
-      proto.api.TimeTicket));
+      proto.yorkie.v1.TimeTicket));
 };
 
 
 /**
  * Clears values from the map. The map will be non-null.
- * @return {!proto.api.Operation.Edit} returns this
+ * @return {!proto.yorkie.v1.Operation.Edit} returns this
  */
-proto.api.Operation.Edit.prototype.clearCreatedAtMapByActorMap = function() {
+proto.yorkie.v1.Operation.Edit.prototype.clearCreatedAtMapByActorMap = function() {
   this.getCreatedAtMapByActorMap().clear();
   return this;};
 
@@ -3437,44 +3437,44 @@ proto.api.Operation.Edit.prototype.clearCreatedAtMapByActorMap = function() {
  * optional string content = 5;
  * @return {string}
  */
-proto.api.Operation.Edit.prototype.getContent = function() {
+proto.yorkie.v1.Operation.Edit.prototype.getContent = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.api.Operation.Edit} returns this
+ * @return {!proto.yorkie.v1.Operation.Edit} returns this
  */
-proto.api.Operation.Edit.prototype.setContent = function(value) {
+proto.yorkie.v1.Operation.Edit.prototype.setContent = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
 /**
  * optional TimeTicket executed_at = 6;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.Operation.Edit.prototype.getExecutedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 6));
+proto.yorkie.v1.Operation.Edit.prototype.getExecutedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 6));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.Operation.Edit} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Edit} returns this
 */
-proto.api.Operation.Edit.prototype.setExecutedAt = function(value) {
+proto.yorkie.v1.Operation.Edit.prototype.setExecutedAt = function(value) {
   return jspb.Message.setWrapperField(this, 6, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Edit} returns this
+ * @return {!proto.yorkie.v1.Operation.Edit} returns this
  */
-proto.api.Operation.Edit.prototype.clearExecutedAt = function() {
+proto.yorkie.v1.Operation.Edit.prototype.clearExecutedAt = function() {
   return this.setExecutedAt(undefined);
 };
 
@@ -3483,7 +3483,7 @@ proto.api.Operation.Edit.prototype.clearExecutedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Edit.prototype.hasExecutedAt = function() {
+proto.yorkie.v1.Operation.Edit.prototype.hasExecutedAt = function() {
   return jspb.Message.getField(this, 6) != null;
 };
 
@@ -3504,8 +3504,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.Operation.Select.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.Operation.Select.toObject(opt_includeInstance, this);
+proto.yorkie.v1.Operation.Select.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.Operation.Select.toObject(opt_includeInstance, this);
 };
 
 
@@ -3514,16 +3514,16 @@ proto.api.Operation.Select.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.Operation.Select} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.Operation.Select} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Operation.Select.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.Operation.Select.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parentCreatedAt: (f = msg.getParentCreatedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    from: (f = msg.getFrom()) && proto.api.TextNodePos.toObject(includeInstance, f),
-    to: (f = msg.getTo()) && proto.api.TextNodePos.toObject(includeInstance, f),
-    executedAt: (f = msg.getExecutedAt()) && proto.api.TimeTicket.toObject(includeInstance, f)
+    parentCreatedAt: (f = msg.getParentCreatedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    from: (f = msg.getFrom()) && proto.yorkie.v1.TextNodePos.toObject(includeInstance, f),
+    to: (f = msg.getTo()) && proto.yorkie.v1.TextNodePos.toObject(includeInstance, f),
+    executedAt: (f = msg.getExecutedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3537,23 +3537,23 @@ proto.api.Operation.Select.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.Operation.Select}
+ * @return {!proto.yorkie.v1.Operation.Select}
  */
-proto.api.Operation.Select.deserializeBinary = function(bytes) {
+proto.yorkie.v1.Operation.Select.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.Operation.Select;
-  return proto.api.Operation.Select.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.Operation.Select;
+  return proto.yorkie.v1.Operation.Select.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.Operation.Select} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.Operation.Select} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.Operation.Select}
+ * @return {!proto.yorkie.v1.Operation.Select}
  */
-proto.api.Operation.Select.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.Operation.Select.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -3561,23 +3561,23 @@ proto.api.Operation.Select.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setParentCreatedAt(value);
       break;
     case 2:
-      var value = new proto.api.TextNodePos;
-      reader.readMessage(value,proto.api.TextNodePos.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TextNodePos;
+      reader.readMessage(value,proto.yorkie.v1.TextNodePos.deserializeBinaryFromReader);
       msg.setFrom(value);
       break;
     case 3:
-      var value = new proto.api.TextNodePos;
-      reader.readMessage(value,proto.api.TextNodePos.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TextNodePos;
+      reader.readMessage(value,proto.yorkie.v1.TextNodePos.deserializeBinaryFromReader);
       msg.setTo(value);
       break;
     case 4:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setExecutedAt(value);
       break;
     default:
@@ -3593,9 +3593,9 @@ proto.api.Operation.Select.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.Operation.Select.prototype.serializeBinary = function() {
+proto.yorkie.v1.Operation.Select.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.Operation.Select.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.Operation.Select.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -3603,18 +3603,18 @@ proto.api.Operation.Select.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.Operation.Select} message
+ * @param {!proto.yorkie.v1.Operation.Select} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Operation.Select.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.Operation.Select.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getParentCreatedAt();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getFrom();
@@ -3622,7 +3622,7 @@ proto.api.Operation.Select.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       2,
       f,
-      proto.api.TextNodePos.serializeBinaryToWriter
+      proto.yorkie.v1.TextNodePos.serializeBinaryToWriter
     );
   }
   f = message.getTo();
@@ -3630,7 +3630,7 @@ proto.api.Operation.Select.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       3,
       f,
-      proto.api.TextNodePos.serializeBinaryToWriter
+      proto.yorkie.v1.TextNodePos.serializeBinaryToWriter
     );
   }
   f = message.getExecutedAt();
@@ -3638,7 +3638,7 @@ proto.api.Operation.Select.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       4,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
 };
@@ -3646,28 +3646,28 @@ proto.api.Operation.Select.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * optional TimeTicket parent_created_at = 1;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.Operation.Select.prototype.getParentCreatedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 1));
+proto.yorkie.v1.Operation.Select.prototype.getParentCreatedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 1));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.Operation.Select} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Select} returns this
 */
-proto.api.Operation.Select.prototype.setParentCreatedAt = function(value) {
+proto.yorkie.v1.Operation.Select.prototype.setParentCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Select} returns this
+ * @return {!proto.yorkie.v1.Operation.Select} returns this
  */
-proto.api.Operation.Select.prototype.clearParentCreatedAt = function() {
+proto.yorkie.v1.Operation.Select.prototype.clearParentCreatedAt = function() {
   return this.setParentCreatedAt(undefined);
 };
 
@@ -3676,35 +3676,35 @@ proto.api.Operation.Select.prototype.clearParentCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Select.prototype.hasParentCreatedAt = function() {
+proto.yorkie.v1.Operation.Select.prototype.hasParentCreatedAt = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
  * optional TextNodePos from = 2;
- * @return {?proto.api.TextNodePos}
+ * @return {?proto.yorkie.v1.TextNodePos}
  */
-proto.api.Operation.Select.prototype.getFrom = function() {
-  return /** @type{?proto.api.TextNodePos} */ (
-    jspb.Message.getWrapperField(this, proto.api.TextNodePos, 2));
+proto.yorkie.v1.Operation.Select.prototype.getFrom = function() {
+  return /** @type{?proto.yorkie.v1.TextNodePos} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TextNodePos, 2));
 };
 
 
 /**
- * @param {?proto.api.TextNodePos|undefined} value
- * @return {!proto.api.Operation.Select} returns this
+ * @param {?proto.yorkie.v1.TextNodePos|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Select} returns this
 */
-proto.api.Operation.Select.prototype.setFrom = function(value) {
+proto.yorkie.v1.Operation.Select.prototype.setFrom = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Select} returns this
+ * @return {!proto.yorkie.v1.Operation.Select} returns this
  */
-proto.api.Operation.Select.prototype.clearFrom = function() {
+proto.yorkie.v1.Operation.Select.prototype.clearFrom = function() {
   return this.setFrom(undefined);
 };
 
@@ -3713,35 +3713,35 @@ proto.api.Operation.Select.prototype.clearFrom = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Select.prototype.hasFrom = function() {
+proto.yorkie.v1.Operation.Select.prototype.hasFrom = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
  * optional TextNodePos to = 3;
- * @return {?proto.api.TextNodePos}
+ * @return {?proto.yorkie.v1.TextNodePos}
  */
-proto.api.Operation.Select.prototype.getTo = function() {
-  return /** @type{?proto.api.TextNodePos} */ (
-    jspb.Message.getWrapperField(this, proto.api.TextNodePos, 3));
+proto.yorkie.v1.Operation.Select.prototype.getTo = function() {
+  return /** @type{?proto.yorkie.v1.TextNodePos} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TextNodePos, 3));
 };
 
 
 /**
- * @param {?proto.api.TextNodePos|undefined} value
- * @return {!proto.api.Operation.Select} returns this
+ * @param {?proto.yorkie.v1.TextNodePos|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Select} returns this
 */
-proto.api.Operation.Select.prototype.setTo = function(value) {
+proto.yorkie.v1.Operation.Select.prototype.setTo = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Select} returns this
+ * @return {!proto.yorkie.v1.Operation.Select} returns this
  */
-proto.api.Operation.Select.prototype.clearTo = function() {
+proto.yorkie.v1.Operation.Select.prototype.clearTo = function() {
   return this.setTo(undefined);
 };
 
@@ -3750,35 +3750,35 @@ proto.api.Operation.Select.prototype.clearTo = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Select.prototype.hasTo = function() {
+proto.yorkie.v1.Operation.Select.prototype.hasTo = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
  * optional TimeTicket executed_at = 4;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.Operation.Select.prototype.getExecutedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 4));
+proto.yorkie.v1.Operation.Select.prototype.getExecutedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 4));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.Operation.Select} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Select} returns this
 */
-proto.api.Operation.Select.prototype.setExecutedAt = function(value) {
+proto.yorkie.v1.Operation.Select.prototype.setExecutedAt = function(value) {
   return jspb.Message.setWrapperField(this, 4, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Select} returns this
+ * @return {!proto.yorkie.v1.Operation.Select} returns this
  */
-proto.api.Operation.Select.prototype.clearExecutedAt = function() {
+proto.yorkie.v1.Operation.Select.prototype.clearExecutedAt = function() {
   return this.setExecutedAt(undefined);
 };
 
@@ -3787,7 +3787,7 @@ proto.api.Operation.Select.prototype.clearExecutedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Select.prototype.hasExecutedAt = function() {
+proto.yorkie.v1.Operation.Select.prototype.hasExecutedAt = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
@@ -3808,8 +3808,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.Operation.RichEdit.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.Operation.RichEdit.toObject(opt_includeInstance, this);
+proto.yorkie.v1.Operation.RichEdit.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.Operation.RichEdit.toObject(opt_includeInstance, this);
 };
 
 
@@ -3818,19 +3818,19 @@ proto.api.Operation.RichEdit.prototype.toObject = function(opt_includeInstance) 
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.Operation.RichEdit} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.Operation.RichEdit} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Operation.RichEdit.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.Operation.RichEdit.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parentCreatedAt: (f = msg.getParentCreatedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    from: (f = msg.getFrom()) && proto.api.TextNodePos.toObject(includeInstance, f),
-    to: (f = msg.getTo()) && proto.api.TextNodePos.toObject(includeInstance, f),
-    createdAtMapByActorMap: (f = msg.getCreatedAtMapByActorMap()) ? f.toObject(includeInstance, proto.api.TimeTicket.toObject) : [],
+    parentCreatedAt: (f = msg.getParentCreatedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    from: (f = msg.getFrom()) && proto.yorkie.v1.TextNodePos.toObject(includeInstance, f),
+    to: (f = msg.getTo()) && proto.yorkie.v1.TextNodePos.toObject(includeInstance, f),
+    createdAtMapByActorMap: (f = msg.getCreatedAtMapByActorMap()) ? f.toObject(includeInstance, proto.yorkie.v1.TimeTicket.toObject) : [],
     content: jspb.Message.getFieldWithDefault(msg, 5, ""),
     attributesMap: (f = msg.getAttributesMap()) ? f.toObject(includeInstance, undefined) : [],
-    executedAt: (f = msg.getExecutedAt()) && proto.api.TimeTicket.toObject(includeInstance, f)
+    executedAt: (f = msg.getExecutedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3844,23 +3844,23 @@ proto.api.Operation.RichEdit.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.Operation.RichEdit}
+ * @return {!proto.yorkie.v1.Operation.RichEdit}
  */
-proto.api.Operation.RichEdit.deserializeBinary = function(bytes) {
+proto.yorkie.v1.Operation.RichEdit.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.Operation.RichEdit;
-  return proto.api.Operation.RichEdit.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.Operation.RichEdit;
+  return proto.yorkie.v1.Operation.RichEdit.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.Operation.RichEdit} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.Operation.RichEdit} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.Operation.RichEdit}
+ * @return {!proto.yorkie.v1.Operation.RichEdit}
  */
-proto.api.Operation.RichEdit.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.Operation.RichEdit.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -3868,24 +3868,24 @@ proto.api.Operation.RichEdit.deserializeBinaryFromReader = function(msg, reader)
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setParentCreatedAt(value);
       break;
     case 2:
-      var value = new proto.api.TextNodePos;
-      reader.readMessage(value,proto.api.TextNodePos.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TextNodePos;
+      reader.readMessage(value,proto.yorkie.v1.TextNodePos.deserializeBinaryFromReader);
       msg.setFrom(value);
       break;
     case 3:
-      var value = new proto.api.TextNodePos;
-      reader.readMessage(value,proto.api.TextNodePos.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TextNodePos;
+      reader.readMessage(value,proto.yorkie.v1.TextNodePos.deserializeBinaryFromReader);
       msg.setTo(value);
       break;
     case 4:
       var value = msg.getCreatedAtMapByActorMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.api.TimeTicket.deserializeBinaryFromReader, "", new proto.api.TimeTicket());
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader, "", new proto.yorkie.v1.TimeTicket());
          });
       break;
     case 5:
@@ -3899,8 +3899,8 @@ proto.api.Operation.RichEdit.deserializeBinaryFromReader = function(msg, reader)
          });
       break;
     case 7:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setExecutedAt(value);
       break;
     default:
@@ -3916,9 +3916,9 @@ proto.api.Operation.RichEdit.deserializeBinaryFromReader = function(msg, reader)
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.Operation.RichEdit.prototype.serializeBinary = function() {
+proto.yorkie.v1.Operation.RichEdit.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.Operation.RichEdit.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.Operation.RichEdit.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -3926,18 +3926,18 @@ proto.api.Operation.RichEdit.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.Operation.RichEdit} message
+ * @param {!proto.yorkie.v1.Operation.RichEdit} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Operation.RichEdit.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.Operation.RichEdit.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getParentCreatedAt();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getFrom();
@@ -3945,7 +3945,7 @@ proto.api.Operation.RichEdit.serializeBinaryToWriter = function(message, writer)
     writer.writeMessage(
       2,
       f,
-      proto.api.TextNodePos.serializeBinaryToWriter
+      proto.yorkie.v1.TextNodePos.serializeBinaryToWriter
     );
   }
   f = message.getTo();
@@ -3953,12 +3953,12 @@ proto.api.Operation.RichEdit.serializeBinaryToWriter = function(message, writer)
     writer.writeMessage(
       3,
       f,
-      proto.api.TextNodePos.serializeBinaryToWriter
+      proto.yorkie.v1.TextNodePos.serializeBinaryToWriter
     );
   }
   f = message.getCreatedAtMapByActorMap(true);
   if (f && f.getLength() > 0) {
-    f.serializeBinary(4, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.api.TimeTicket.serializeBinaryToWriter);
+    f.serializeBinary(4, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.yorkie.v1.TimeTicket.serializeBinaryToWriter);
   }
   f = message.getContent();
   if (f.length > 0) {
@@ -3976,7 +3976,7 @@ proto.api.Operation.RichEdit.serializeBinaryToWriter = function(message, writer)
     writer.writeMessage(
       7,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
 };
@@ -3984,28 +3984,28 @@ proto.api.Operation.RichEdit.serializeBinaryToWriter = function(message, writer)
 
 /**
  * optional TimeTicket parent_created_at = 1;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.Operation.RichEdit.prototype.getParentCreatedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 1));
+proto.yorkie.v1.Operation.RichEdit.prototype.getParentCreatedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 1));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.Operation.RichEdit} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.Operation.RichEdit} returns this
 */
-proto.api.Operation.RichEdit.prototype.setParentCreatedAt = function(value) {
+proto.yorkie.v1.Operation.RichEdit.prototype.setParentCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.RichEdit} returns this
+ * @return {!proto.yorkie.v1.Operation.RichEdit} returns this
  */
-proto.api.Operation.RichEdit.prototype.clearParentCreatedAt = function() {
+proto.yorkie.v1.Operation.RichEdit.prototype.clearParentCreatedAt = function() {
   return this.setParentCreatedAt(undefined);
 };
 
@@ -4014,35 +4014,35 @@ proto.api.Operation.RichEdit.prototype.clearParentCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.RichEdit.prototype.hasParentCreatedAt = function() {
+proto.yorkie.v1.Operation.RichEdit.prototype.hasParentCreatedAt = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
  * optional TextNodePos from = 2;
- * @return {?proto.api.TextNodePos}
+ * @return {?proto.yorkie.v1.TextNodePos}
  */
-proto.api.Operation.RichEdit.prototype.getFrom = function() {
-  return /** @type{?proto.api.TextNodePos} */ (
-    jspb.Message.getWrapperField(this, proto.api.TextNodePos, 2));
+proto.yorkie.v1.Operation.RichEdit.prototype.getFrom = function() {
+  return /** @type{?proto.yorkie.v1.TextNodePos} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TextNodePos, 2));
 };
 
 
 /**
- * @param {?proto.api.TextNodePos|undefined} value
- * @return {!proto.api.Operation.RichEdit} returns this
+ * @param {?proto.yorkie.v1.TextNodePos|undefined} value
+ * @return {!proto.yorkie.v1.Operation.RichEdit} returns this
 */
-proto.api.Operation.RichEdit.prototype.setFrom = function(value) {
+proto.yorkie.v1.Operation.RichEdit.prototype.setFrom = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.RichEdit} returns this
+ * @return {!proto.yorkie.v1.Operation.RichEdit} returns this
  */
-proto.api.Operation.RichEdit.prototype.clearFrom = function() {
+proto.yorkie.v1.Operation.RichEdit.prototype.clearFrom = function() {
   return this.setFrom(undefined);
 };
 
@@ -4051,35 +4051,35 @@ proto.api.Operation.RichEdit.prototype.clearFrom = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.RichEdit.prototype.hasFrom = function() {
+proto.yorkie.v1.Operation.RichEdit.prototype.hasFrom = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
  * optional TextNodePos to = 3;
- * @return {?proto.api.TextNodePos}
+ * @return {?proto.yorkie.v1.TextNodePos}
  */
-proto.api.Operation.RichEdit.prototype.getTo = function() {
-  return /** @type{?proto.api.TextNodePos} */ (
-    jspb.Message.getWrapperField(this, proto.api.TextNodePos, 3));
+proto.yorkie.v1.Operation.RichEdit.prototype.getTo = function() {
+  return /** @type{?proto.yorkie.v1.TextNodePos} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TextNodePos, 3));
 };
 
 
 /**
- * @param {?proto.api.TextNodePos|undefined} value
- * @return {!proto.api.Operation.RichEdit} returns this
+ * @param {?proto.yorkie.v1.TextNodePos|undefined} value
+ * @return {!proto.yorkie.v1.Operation.RichEdit} returns this
 */
-proto.api.Operation.RichEdit.prototype.setTo = function(value) {
+proto.yorkie.v1.Operation.RichEdit.prototype.setTo = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.RichEdit} returns this
+ * @return {!proto.yorkie.v1.Operation.RichEdit} returns this
  */
-proto.api.Operation.RichEdit.prototype.clearTo = function() {
+proto.yorkie.v1.Operation.RichEdit.prototype.clearTo = function() {
   return this.setTo(undefined);
 };
 
@@ -4088,7 +4088,7 @@ proto.api.Operation.RichEdit.prototype.clearTo = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.RichEdit.prototype.hasTo = function() {
+proto.yorkie.v1.Operation.RichEdit.prototype.hasTo = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
@@ -4097,20 +4097,20 @@ proto.api.Operation.RichEdit.prototype.hasTo = function() {
  * map<string, TimeTicket> created_at_map_by_actor = 4;
  * @param {boolean=} opt_noLazyCreate Do not create the map if
  * empty, instead returning `undefined`
- * @return {!jspb.Map<string,!proto.api.TimeTicket>}
+ * @return {!jspb.Map<string,!proto.yorkie.v1.TimeTicket>}
  */
-proto.api.Operation.RichEdit.prototype.getCreatedAtMapByActorMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,!proto.api.TimeTicket>} */ (
+proto.yorkie.v1.Operation.RichEdit.prototype.getCreatedAtMapByActorMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,!proto.yorkie.v1.TimeTicket>} */ (
       jspb.Message.getMapField(this, 4, opt_noLazyCreate,
-      proto.api.TimeTicket));
+      proto.yorkie.v1.TimeTicket));
 };
 
 
 /**
  * Clears values from the map. The map will be non-null.
- * @return {!proto.api.Operation.RichEdit} returns this
+ * @return {!proto.yorkie.v1.Operation.RichEdit} returns this
  */
-proto.api.Operation.RichEdit.prototype.clearCreatedAtMapByActorMap = function() {
+proto.yorkie.v1.Operation.RichEdit.prototype.clearCreatedAtMapByActorMap = function() {
   this.getCreatedAtMapByActorMap().clear();
   return this;};
 
@@ -4119,16 +4119,16 @@ proto.api.Operation.RichEdit.prototype.clearCreatedAtMapByActorMap = function() 
  * optional string content = 5;
  * @return {string}
  */
-proto.api.Operation.RichEdit.prototype.getContent = function() {
+proto.yorkie.v1.Operation.RichEdit.prototype.getContent = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.api.Operation.RichEdit} returns this
+ * @return {!proto.yorkie.v1.Operation.RichEdit} returns this
  */
-proto.api.Operation.RichEdit.prototype.setContent = function(value) {
+proto.yorkie.v1.Operation.RichEdit.prototype.setContent = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
@@ -4139,7 +4139,7 @@ proto.api.Operation.RichEdit.prototype.setContent = function(value) {
  * empty, instead returning `undefined`
  * @return {!jspb.Map<string,string>}
  */
-proto.api.Operation.RichEdit.prototype.getAttributesMap = function(opt_noLazyCreate) {
+proto.yorkie.v1.Operation.RichEdit.prototype.getAttributesMap = function(opt_noLazyCreate) {
   return /** @type {!jspb.Map<string,string>} */ (
       jspb.Message.getMapField(this, 6, opt_noLazyCreate,
       null));
@@ -4148,37 +4148,37 @@ proto.api.Operation.RichEdit.prototype.getAttributesMap = function(opt_noLazyCre
 
 /**
  * Clears values from the map. The map will be non-null.
- * @return {!proto.api.Operation.RichEdit} returns this
+ * @return {!proto.yorkie.v1.Operation.RichEdit} returns this
  */
-proto.api.Operation.RichEdit.prototype.clearAttributesMap = function() {
+proto.yorkie.v1.Operation.RichEdit.prototype.clearAttributesMap = function() {
   this.getAttributesMap().clear();
   return this;};
 
 
 /**
  * optional TimeTicket executed_at = 7;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.Operation.RichEdit.prototype.getExecutedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 7));
+proto.yorkie.v1.Operation.RichEdit.prototype.getExecutedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 7));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.Operation.RichEdit} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.Operation.RichEdit} returns this
 */
-proto.api.Operation.RichEdit.prototype.setExecutedAt = function(value) {
+proto.yorkie.v1.Operation.RichEdit.prototype.setExecutedAt = function(value) {
   return jspb.Message.setWrapperField(this, 7, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.RichEdit} returns this
+ * @return {!proto.yorkie.v1.Operation.RichEdit} returns this
  */
-proto.api.Operation.RichEdit.prototype.clearExecutedAt = function() {
+proto.yorkie.v1.Operation.RichEdit.prototype.clearExecutedAt = function() {
   return this.setExecutedAt(undefined);
 };
 
@@ -4187,7 +4187,7 @@ proto.api.Operation.RichEdit.prototype.clearExecutedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.RichEdit.prototype.hasExecutedAt = function() {
+proto.yorkie.v1.Operation.RichEdit.prototype.hasExecutedAt = function() {
   return jspb.Message.getField(this, 7) != null;
 };
 
@@ -4208,8 +4208,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.Operation.Style.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.Operation.Style.toObject(opt_includeInstance, this);
+proto.yorkie.v1.Operation.Style.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.Operation.Style.toObject(opt_includeInstance, this);
 };
 
 
@@ -4218,17 +4218,17 @@ proto.api.Operation.Style.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.Operation.Style} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.Operation.Style} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Operation.Style.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.Operation.Style.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parentCreatedAt: (f = msg.getParentCreatedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    from: (f = msg.getFrom()) && proto.api.TextNodePos.toObject(includeInstance, f),
-    to: (f = msg.getTo()) && proto.api.TextNodePos.toObject(includeInstance, f),
+    parentCreatedAt: (f = msg.getParentCreatedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    from: (f = msg.getFrom()) && proto.yorkie.v1.TextNodePos.toObject(includeInstance, f),
+    to: (f = msg.getTo()) && proto.yorkie.v1.TextNodePos.toObject(includeInstance, f),
     attributesMap: (f = msg.getAttributesMap()) ? f.toObject(includeInstance, undefined) : [],
-    executedAt: (f = msg.getExecutedAt()) && proto.api.TimeTicket.toObject(includeInstance, f)
+    executedAt: (f = msg.getExecutedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4242,23 +4242,23 @@ proto.api.Operation.Style.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.Operation.Style}
+ * @return {!proto.yorkie.v1.Operation.Style}
  */
-proto.api.Operation.Style.deserializeBinary = function(bytes) {
+proto.yorkie.v1.Operation.Style.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.Operation.Style;
-  return proto.api.Operation.Style.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.Operation.Style;
+  return proto.yorkie.v1.Operation.Style.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.Operation.Style} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.Operation.Style} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.Operation.Style}
+ * @return {!proto.yorkie.v1.Operation.Style}
  */
-proto.api.Operation.Style.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.Operation.Style.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -4266,18 +4266,18 @@ proto.api.Operation.Style.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setParentCreatedAt(value);
       break;
     case 2:
-      var value = new proto.api.TextNodePos;
-      reader.readMessage(value,proto.api.TextNodePos.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TextNodePos;
+      reader.readMessage(value,proto.yorkie.v1.TextNodePos.deserializeBinaryFromReader);
       msg.setFrom(value);
       break;
     case 3:
-      var value = new proto.api.TextNodePos;
-      reader.readMessage(value,proto.api.TextNodePos.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TextNodePos;
+      reader.readMessage(value,proto.yorkie.v1.TextNodePos.deserializeBinaryFromReader);
       msg.setTo(value);
       break;
     case 4:
@@ -4287,8 +4287,8 @@ proto.api.Operation.Style.deserializeBinaryFromReader = function(msg, reader) {
          });
       break;
     case 5:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setExecutedAt(value);
       break;
     default:
@@ -4304,9 +4304,9 @@ proto.api.Operation.Style.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.Operation.Style.prototype.serializeBinary = function() {
+proto.yorkie.v1.Operation.Style.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.Operation.Style.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.Operation.Style.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -4314,18 +4314,18 @@ proto.api.Operation.Style.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.Operation.Style} message
+ * @param {!proto.yorkie.v1.Operation.Style} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Operation.Style.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.Operation.Style.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getParentCreatedAt();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getFrom();
@@ -4333,7 +4333,7 @@ proto.api.Operation.Style.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       2,
       f,
-      proto.api.TextNodePos.serializeBinaryToWriter
+      proto.yorkie.v1.TextNodePos.serializeBinaryToWriter
     );
   }
   f = message.getTo();
@@ -4341,7 +4341,7 @@ proto.api.Operation.Style.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       3,
       f,
-      proto.api.TextNodePos.serializeBinaryToWriter
+      proto.yorkie.v1.TextNodePos.serializeBinaryToWriter
     );
   }
   f = message.getAttributesMap(true);
@@ -4353,7 +4353,7 @@ proto.api.Operation.Style.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       5,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
 };
@@ -4361,28 +4361,28 @@ proto.api.Operation.Style.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * optional TimeTicket parent_created_at = 1;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.Operation.Style.prototype.getParentCreatedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 1));
+proto.yorkie.v1.Operation.Style.prototype.getParentCreatedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 1));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.Operation.Style} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Style} returns this
 */
-proto.api.Operation.Style.prototype.setParentCreatedAt = function(value) {
+proto.yorkie.v1.Operation.Style.prototype.setParentCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Style} returns this
+ * @return {!proto.yorkie.v1.Operation.Style} returns this
  */
-proto.api.Operation.Style.prototype.clearParentCreatedAt = function() {
+proto.yorkie.v1.Operation.Style.prototype.clearParentCreatedAt = function() {
   return this.setParentCreatedAt(undefined);
 };
 
@@ -4391,35 +4391,35 @@ proto.api.Operation.Style.prototype.clearParentCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Style.prototype.hasParentCreatedAt = function() {
+proto.yorkie.v1.Operation.Style.prototype.hasParentCreatedAt = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
  * optional TextNodePos from = 2;
- * @return {?proto.api.TextNodePos}
+ * @return {?proto.yorkie.v1.TextNodePos}
  */
-proto.api.Operation.Style.prototype.getFrom = function() {
-  return /** @type{?proto.api.TextNodePos} */ (
-    jspb.Message.getWrapperField(this, proto.api.TextNodePos, 2));
+proto.yorkie.v1.Operation.Style.prototype.getFrom = function() {
+  return /** @type{?proto.yorkie.v1.TextNodePos} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TextNodePos, 2));
 };
 
 
 /**
- * @param {?proto.api.TextNodePos|undefined} value
- * @return {!proto.api.Operation.Style} returns this
+ * @param {?proto.yorkie.v1.TextNodePos|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Style} returns this
 */
-proto.api.Operation.Style.prototype.setFrom = function(value) {
+proto.yorkie.v1.Operation.Style.prototype.setFrom = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Style} returns this
+ * @return {!proto.yorkie.v1.Operation.Style} returns this
  */
-proto.api.Operation.Style.prototype.clearFrom = function() {
+proto.yorkie.v1.Operation.Style.prototype.clearFrom = function() {
   return this.setFrom(undefined);
 };
 
@@ -4428,35 +4428,35 @@ proto.api.Operation.Style.prototype.clearFrom = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Style.prototype.hasFrom = function() {
+proto.yorkie.v1.Operation.Style.prototype.hasFrom = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
  * optional TextNodePos to = 3;
- * @return {?proto.api.TextNodePos}
+ * @return {?proto.yorkie.v1.TextNodePos}
  */
-proto.api.Operation.Style.prototype.getTo = function() {
-  return /** @type{?proto.api.TextNodePos} */ (
-    jspb.Message.getWrapperField(this, proto.api.TextNodePos, 3));
+proto.yorkie.v1.Operation.Style.prototype.getTo = function() {
+  return /** @type{?proto.yorkie.v1.TextNodePos} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TextNodePos, 3));
 };
 
 
 /**
- * @param {?proto.api.TextNodePos|undefined} value
- * @return {!proto.api.Operation.Style} returns this
+ * @param {?proto.yorkie.v1.TextNodePos|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Style} returns this
 */
-proto.api.Operation.Style.prototype.setTo = function(value) {
+proto.yorkie.v1.Operation.Style.prototype.setTo = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Style} returns this
+ * @return {!proto.yorkie.v1.Operation.Style} returns this
  */
-proto.api.Operation.Style.prototype.clearTo = function() {
+proto.yorkie.v1.Operation.Style.prototype.clearTo = function() {
   return this.setTo(undefined);
 };
 
@@ -4465,7 +4465,7 @@ proto.api.Operation.Style.prototype.clearTo = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Style.prototype.hasTo = function() {
+proto.yorkie.v1.Operation.Style.prototype.hasTo = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
@@ -4476,7 +4476,7 @@ proto.api.Operation.Style.prototype.hasTo = function() {
  * empty, instead returning `undefined`
  * @return {!jspb.Map<string,string>}
  */
-proto.api.Operation.Style.prototype.getAttributesMap = function(opt_noLazyCreate) {
+proto.yorkie.v1.Operation.Style.prototype.getAttributesMap = function(opt_noLazyCreate) {
   return /** @type {!jspb.Map<string,string>} */ (
       jspb.Message.getMapField(this, 4, opt_noLazyCreate,
       null));
@@ -4485,37 +4485,37 @@ proto.api.Operation.Style.prototype.getAttributesMap = function(opt_noLazyCreate
 
 /**
  * Clears values from the map. The map will be non-null.
- * @return {!proto.api.Operation.Style} returns this
+ * @return {!proto.yorkie.v1.Operation.Style} returns this
  */
-proto.api.Operation.Style.prototype.clearAttributesMap = function() {
+proto.yorkie.v1.Operation.Style.prototype.clearAttributesMap = function() {
   this.getAttributesMap().clear();
   return this;};
 
 
 /**
  * optional TimeTicket executed_at = 5;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.Operation.Style.prototype.getExecutedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 5));
+proto.yorkie.v1.Operation.Style.prototype.getExecutedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 5));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.Operation.Style} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Style} returns this
 */
-proto.api.Operation.Style.prototype.setExecutedAt = function(value) {
+proto.yorkie.v1.Operation.Style.prototype.setExecutedAt = function(value) {
   return jspb.Message.setWrapperField(this, 5, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Style} returns this
+ * @return {!proto.yorkie.v1.Operation.Style} returns this
  */
-proto.api.Operation.Style.prototype.clearExecutedAt = function() {
+proto.yorkie.v1.Operation.Style.prototype.clearExecutedAt = function() {
   return this.setExecutedAt(undefined);
 };
 
@@ -4524,7 +4524,7 @@ proto.api.Operation.Style.prototype.clearExecutedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Style.prototype.hasExecutedAt = function() {
+proto.yorkie.v1.Operation.Style.prototype.hasExecutedAt = function() {
   return jspb.Message.getField(this, 5) != null;
 };
 
@@ -4545,8 +4545,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.Operation.Increase.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.Operation.Increase.toObject(opt_includeInstance, this);
+proto.yorkie.v1.Operation.Increase.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.Operation.Increase.toObject(opt_includeInstance, this);
 };
 
 
@@ -4555,15 +4555,15 @@ proto.api.Operation.Increase.prototype.toObject = function(opt_includeInstance) 
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.Operation.Increase} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.Operation.Increase} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Operation.Increase.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.Operation.Increase.toObject = function(includeInstance, msg) {
   var f, obj = {
-    parentCreatedAt: (f = msg.getParentCreatedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    value: (f = msg.getValue()) && proto.api.JSONElementSimple.toObject(includeInstance, f),
-    executedAt: (f = msg.getExecutedAt()) && proto.api.TimeTicket.toObject(includeInstance, f)
+    parentCreatedAt: (f = msg.getParentCreatedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    value: (f = msg.getValue()) && proto.yorkie.v1.JSONElementSimple.toObject(includeInstance, f),
+    executedAt: (f = msg.getExecutedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4577,23 +4577,23 @@ proto.api.Operation.Increase.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.Operation.Increase}
+ * @return {!proto.yorkie.v1.Operation.Increase}
  */
-proto.api.Operation.Increase.deserializeBinary = function(bytes) {
+proto.yorkie.v1.Operation.Increase.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.Operation.Increase;
-  return proto.api.Operation.Increase.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.Operation.Increase;
+  return proto.yorkie.v1.Operation.Increase.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.Operation.Increase} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.Operation.Increase} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.Operation.Increase}
+ * @return {!proto.yorkie.v1.Operation.Increase}
  */
-proto.api.Operation.Increase.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.Operation.Increase.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -4601,18 +4601,18 @@ proto.api.Operation.Increase.deserializeBinaryFromReader = function(msg, reader)
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setParentCreatedAt(value);
       break;
     case 2:
-      var value = new proto.api.JSONElementSimple;
-      reader.readMessage(value,proto.api.JSONElementSimple.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.JSONElementSimple;
+      reader.readMessage(value,proto.yorkie.v1.JSONElementSimple.deserializeBinaryFromReader);
       msg.setValue(value);
       break;
     case 3:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setExecutedAt(value);
       break;
     default:
@@ -4628,9 +4628,9 @@ proto.api.Operation.Increase.deserializeBinaryFromReader = function(msg, reader)
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.Operation.Increase.prototype.serializeBinary = function() {
+proto.yorkie.v1.Operation.Increase.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.Operation.Increase.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.Operation.Increase.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -4638,18 +4638,18 @@ proto.api.Operation.Increase.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.Operation.Increase} message
+ * @param {!proto.yorkie.v1.Operation.Increase} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Operation.Increase.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.Operation.Increase.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getParentCreatedAt();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getValue();
@@ -4657,7 +4657,7 @@ proto.api.Operation.Increase.serializeBinaryToWriter = function(message, writer)
     writer.writeMessage(
       2,
       f,
-      proto.api.JSONElementSimple.serializeBinaryToWriter
+      proto.yorkie.v1.JSONElementSimple.serializeBinaryToWriter
     );
   }
   f = message.getExecutedAt();
@@ -4665,7 +4665,7 @@ proto.api.Operation.Increase.serializeBinaryToWriter = function(message, writer)
     writer.writeMessage(
       3,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
 };
@@ -4673,28 +4673,28 @@ proto.api.Operation.Increase.serializeBinaryToWriter = function(message, writer)
 
 /**
  * optional TimeTicket parent_created_at = 1;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.Operation.Increase.prototype.getParentCreatedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 1));
+proto.yorkie.v1.Operation.Increase.prototype.getParentCreatedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 1));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.Operation.Increase} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Increase} returns this
 */
-proto.api.Operation.Increase.prototype.setParentCreatedAt = function(value) {
+proto.yorkie.v1.Operation.Increase.prototype.setParentCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Increase} returns this
+ * @return {!proto.yorkie.v1.Operation.Increase} returns this
  */
-proto.api.Operation.Increase.prototype.clearParentCreatedAt = function() {
+proto.yorkie.v1.Operation.Increase.prototype.clearParentCreatedAt = function() {
   return this.setParentCreatedAt(undefined);
 };
 
@@ -4703,35 +4703,35 @@ proto.api.Operation.Increase.prototype.clearParentCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Increase.prototype.hasParentCreatedAt = function() {
+proto.yorkie.v1.Operation.Increase.prototype.hasParentCreatedAt = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
  * optional JSONElementSimple value = 2;
- * @return {?proto.api.JSONElementSimple}
+ * @return {?proto.yorkie.v1.JSONElementSimple}
  */
-proto.api.Operation.Increase.prototype.getValue = function() {
-  return /** @type{?proto.api.JSONElementSimple} */ (
-    jspb.Message.getWrapperField(this, proto.api.JSONElementSimple, 2));
+proto.yorkie.v1.Operation.Increase.prototype.getValue = function() {
+  return /** @type{?proto.yorkie.v1.JSONElementSimple} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.JSONElementSimple, 2));
 };
 
 
 /**
- * @param {?proto.api.JSONElementSimple|undefined} value
- * @return {!proto.api.Operation.Increase} returns this
+ * @param {?proto.yorkie.v1.JSONElementSimple|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Increase} returns this
 */
-proto.api.Operation.Increase.prototype.setValue = function(value) {
+proto.yorkie.v1.Operation.Increase.prototype.setValue = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Increase} returns this
+ * @return {!proto.yorkie.v1.Operation.Increase} returns this
  */
-proto.api.Operation.Increase.prototype.clearValue = function() {
+proto.yorkie.v1.Operation.Increase.prototype.clearValue = function() {
   return this.setValue(undefined);
 };
 
@@ -4740,35 +4740,35 @@ proto.api.Operation.Increase.prototype.clearValue = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Increase.prototype.hasValue = function() {
+proto.yorkie.v1.Operation.Increase.prototype.hasValue = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
  * optional TimeTicket executed_at = 3;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.Operation.Increase.prototype.getExecutedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 3));
+proto.yorkie.v1.Operation.Increase.prototype.getExecutedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 3));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.Operation.Increase} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.Operation.Increase} returns this
 */
-proto.api.Operation.Increase.prototype.setExecutedAt = function(value) {
+proto.yorkie.v1.Operation.Increase.prototype.setExecutedAt = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation.Increase} returns this
+ * @return {!proto.yorkie.v1.Operation.Increase} returns this
  */
-proto.api.Operation.Increase.prototype.clearExecutedAt = function() {
+proto.yorkie.v1.Operation.Increase.prototype.clearExecutedAt = function() {
   return this.setExecutedAt(undefined);
 };
 
@@ -4777,35 +4777,35 @@ proto.api.Operation.Increase.prototype.clearExecutedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.Increase.prototype.hasExecutedAt = function() {
+proto.yorkie.v1.Operation.Increase.prototype.hasExecutedAt = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
  * optional Set set = 1;
- * @return {?proto.api.Operation.Set}
+ * @return {?proto.yorkie.v1.Operation.Set}
  */
-proto.api.Operation.prototype.getSet = function() {
-  return /** @type{?proto.api.Operation.Set} */ (
-    jspb.Message.getWrapperField(this, proto.api.Operation.Set, 1));
+proto.yorkie.v1.Operation.prototype.getSet = function() {
+  return /** @type{?proto.yorkie.v1.Operation.Set} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.Operation.Set, 1));
 };
 
 
 /**
- * @param {?proto.api.Operation.Set|undefined} value
- * @return {!proto.api.Operation} returns this
+ * @param {?proto.yorkie.v1.Operation.Set|undefined} value
+ * @return {!proto.yorkie.v1.Operation} returns this
 */
-proto.api.Operation.prototype.setSet = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 1, proto.api.Operation.oneofGroups_[0], value);
+proto.yorkie.v1.Operation.prototype.setSet = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 1, proto.yorkie.v1.Operation.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation} returns this
+ * @return {!proto.yorkie.v1.Operation} returns this
  */
-proto.api.Operation.prototype.clearSet = function() {
+proto.yorkie.v1.Operation.prototype.clearSet = function() {
   return this.setSet(undefined);
 };
 
@@ -4814,35 +4814,35 @@ proto.api.Operation.prototype.clearSet = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.prototype.hasSet = function() {
+proto.yorkie.v1.Operation.prototype.hasSet = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
  * optional Add add = 2;
- * @return {?proto.api.Operation.Add}
+ * @return {?proto.yorkie.v1.Operation.Add}
  */
-proto.api.Operation.prototype.getAdd = function() {
-  return /** @type{?proto.api.Operation.Add} */ (
-    jspb.Message.getWrapperField(this, proto.api.Operation.Add, 2));
+proto.yorkie.v1.Operation.prototype.getAdd = function() {
+  return /** @type{?proto.yorkie.v1.Operation.Add} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.Operation.Add, 2));
 };
 
 
 /**
- * @param {?proto.api.Operation.Add|undefined} value
- * @return {!proto.api.Operation} returns this
+ * @param {?proto.yorkie.v1.Operation.Add|undefined} value
+ * @return {!proto.yorkie.v1.Operation} returns this
 */
-proto.api.Operation.prototype.setAdd = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 2, proto.api.Operation.oneofGroups_[0], value);
+proto.yorkie.v1.Operation.prototype.setAdd = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 2, proto.yorkie.v1.Operation.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation} returns this
+ * @return {!proto.yorkie.v1.Operation} returns this
  */
-proto.api.Operation.prototype.clearAdd = function() {
+proto.yorkie.v1.Operation.prototype.clearAdd = function() {
   return this.setAdd(undefined);
 };
 
@@ -4851,35 +4851,35 @@ proto.api.Operation.prototype.clearAdd = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.prototype.hasAdd = function() {
+proto.yorkie.v1.Operation.prototype.hasAdd = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
  * optional Move move = 3;
- * @return {?proto.api.Operation.Move}
+ * @return {?proto.yorkie.v1.Operation.Move}
  */
-proto.api.Operation.prototype.getMove = function() {
-  return /** @type{?proto.api.Operation.Move} */ (
-    jspb.Message.getWrapperField(this, proto.api.Operation.Move, 3));
+proto.yorkie.v1.Operation.prototype.getMove = function() {
+  return /** @type{?proto.yorkie.v1.Operation.Move} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.Operation.Move, 3));
 };
 
 
 /**
- * @param {?proto.api.Operation.Move|undefined} value
- * @return {!proto.api.Operation} returns this
+ * @param {?proto.yorkie.v1.Operation.Move|undefined} value
+ * @return {!proto.yorkie.v1.Operation} returns this
 */
-proto.api.Operation.prototype.setMove = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 3, proto.api.Operation.oneofGroups_[0], value);
+proto.yorkie.v1.Operation.prototype.setMove = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 3, proto.yorkie.v1.Operation.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation} returns this
+ * @return {!proto.yorkie.v1.Operation} returns this
  */
-proto.api.Operation.prototype.clearMove = function() {
+proto.yorkie.v1.Operation.prototype.clearMove = function() {
   return this.setMove(undefined);
 };
 
@@ -4888,35 +4888,35 @@ proto.api.Operation.prototype.clearMove = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.prototype.hasMove = function() {
+proto.yorkie.v1.Operation.prototype.hasMove = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
  * optional Remove remove = 4;
- * @return {?proto.api.Operation.Remove}
+ * @return {?proto.yorkie.v1.Operation.Remove}
  */
-proto.api.Operation.prototype.getRemove = function() {
-  return /** @type{?proto.api.Operation.Remove} */ (
-    jspb.Message.getWrapperField(this, proto.api.Operation.Remove, 4));
+proto.yorkie.v1.Operation.prototype.getRemove = function() {
+  return /** @type{?proto.yorkie.v1.Operation.Remove} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.Operation.Remove, 4));
 };
 
 
 /**
- * @param {?proto.api.Operation.Remove|undefined} value
- * @return {!proto.api.Operation} returns this
+ * @param {?proto.yorkie.v1.Operation.Remove|undefined} value
+ * @return {!proto.yorkie.v1.Operation} returns this
 */
-proto.api.Operation.prototype.setRemove = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 4, proto.api.Operation.oneofGroups_[0], value);
+proto.yorkie.v1.Operation.prototype.setRemove = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 4, proto.yorkie.v1.Operation.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation} returns this
+ * @return {!proto.yorkie.v1.Operation} returns this
  */
-proto.api.Operation.prototype.clearRemove = function() {
+proto.yorkie.v1.Operation.prototype.clearRemove = function() {
   return this.setRemove(undefined);
 };
 
@@ -4925,35 +4925,35 @@ proto.api.Operation.prototype.clearRemove = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.prototype.hasRemove = function() {
+proto.yorkie.v1.Operation.prototype.hasRemove = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
 
 /**
  * optional Edit edit = 5;
- * @return {?proto.api.Operation.Edit}
+ * @return {?proto.yorkie.v1.Operation.Edit}
  */
-proto.api.Operation.prototype.getEdit = function() {
-  return /** @type{?proto.api.Operation.Edit} */ (
-    jspb.Message.getWrapperField(this, proto.api.Operation.Edit, 5));
+proto.yorkie.v1.Operation.prototype.getEdit = function() {
+  return /** @type{?proto.yorkie.v1.Operation.Edit} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.Operation.Edit, 5));
 };
 
 
 /**
- * @param {?proto.api.Operation.Edit|undefined} value
- * @return {!proto.api.Operation} returns this
+ * @param {?proto.yorkie.v1.Operation.Edit|undefined} value
+ * @return {!proto.yorkie.v1.Operation} returns this
 */
-proto.api.Operation.prototype.setEdit = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 5, proto.api.Operation.oneofGroups_[0], value);
+proto.yorkie.v1.Operation.prototype.setEdit = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 5, proto.yorkie.v1.Operation.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation} returns this
+ * @return {!proto.yorkie.v1.Operation} returns this
  */
-proto.api.Operation.prototype.clearEdit = function() {
+proto.yorkie.v1.Operation.prototype.clearEdit = function() {
   return this.setEdit(undefined);
 };
 
@@ -4962,35 +4962,35 @@ proto.api.Operation.prototype.clearEdit = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.prototype.hasEdit = function() {
+proto.yorkie.v1.Operation.prototype.hasEdit = function() {
   return jspb.Message.getField(this, 5) != null;
 };
 
 
 /**
  * optional Select select = 6;
- * @return {?proto.api.Operation.Select}
+ * @return {?proto.yorkie.v1.Operation.Select}
  */
-proto.api.Operation.prototype.getSelect = function() {
-  return /** @type{?proto.api.Operation.Select} */ (
-    jspb.Message.getWrapperField(this, proto.api.Operation.Select, 6));
+proto.yorkie.v1.Operation.prototype.getSelect = function() {
+  return /** @type{?proto.yorkie.v1.Operation.Select} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.Operation.Select, 6));
 };
 
 
 /**
- * @param {?proto.api.Operation.Select|undefined} value
- * @return {!proto.api.Operation} returns this
+ * @param {?proto.yorkie.v1.Operation.Select|undefined} value
+ * @return {!proto.yorkie.v1.Operation} returns this
 */
-proto.api.Operation.prototype.setSelect = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 6, proto.api.Operation.oneofGroups_[0], value);
+proto.yorkie.v1.Operation.prototype.setSelect = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 6, proto.yorkie.v1.Operation.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation} returns this
+ * @return {!proto.yorkie.v1.Operation} returns this
  */
-proto.api.Operation.prototype.clearSelect = function() {
+proto.yorkie.v1.Operation.prototype.clearSelect = function() {
   return this.setSelect(undefined);
 };
 
@@ -4999,35 +4999,35 @@ proto.api.Operation.prototype.clearSelect = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.prototype.hasSelect = function() {
+proto.yorkie.v1.Operation.prototype.hasSelect = function() {
   return jspb.Message.getField(this, 6) != null;
 };
 
 
 /**
  * optional RichEdit rich_edit = 7;
- * @return {?proto.api.Operation.RichEdit}
+ * @return {?proto.yorkie.v1.Operation.RichEdit}
  */
-proto.api.Operation.prototype.getRichEdit = function() {
-  return /** @type{?proto.api.Operation.RichEdit} */ (
-    jspb.Message.getWrapperField(this, proto.api.Operation.RichEdit, 7));
+proto.yorkie.v1.Operation.prototype.getRichEdit = function() {
+  return /** @type{?proto.yorkie.v1.Operation.RichEdit} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.Operation.RichEdit, 7));
 };
 
 
 /**
- * @param {?proto.api.Operation.RichEdit|undefined} value
- * @return {!proto.api.Operation} returns this
+ * @param {?proto.yorkie.v1.Operation.RichEdit|undefined} value
+ * @return {!proto.yorkie.v1.Operation} returns this
 */
-proto.api.Operation.prototype.setRichEdit = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 7, proto.api.Operation.oneofGroups_[0], value);
+proto.yorkie.v1.Operation.prototype.setRichEdit = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 7, proto.yorkie.v1.Operation.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation} returns this
+ * @return {!proto.yorkie.v1.Operation} returns this
  */
-proto.api.Operation.prototype.clearRichEdit = function() {
+proto.yorkie.v1.Operation.prototype.clearRichEdit = function() {
   return this.setRichEdit(undefined);
 };
 
@@ -5036,35 +5036,35 @@ proto.api.Operation.prototype.clearRichEdit = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.prototype.hasRichEdit = function() {
+proto.yorkie.v1.Operation.prototype.hasRichEdit = function() {
   return jspb.Message.getField(this, 7) != null;
 };
 
 
 /**
  * optional Style style = 8;
- * @return {?proto.api.Operation.Style}
+ * @return {?proto.yorkie.v1.Operation.Style}
  */
-proto.api.Operation.prototype.getStyle = function() {
-  return /** @type{?proto.api.Operation.Style} */ (
-    jspb.Message.getWrapperField(this, proto.api.Operation.Style, 8));
+proto.yorkie.v1.Operation.prototype.getStyle = function() {
+  return /** @type{?proto.yorkie.v1.Operation.Style} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.Operation.Style, 8));
 };
 
 
 /**
- * @param {?proto.api.Operation.Style|undefined} value
- * @return {!proto.api.Operation} returns this
+ * @param {?proto.yorkie.v1.Operation.Style|undefined} value
+ * @return {!proto.yorkie.v1.Operation} returns this
 */
-proto.api.Operation.prototype.setStyle = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 8, proto.api.Operation.oneofGroups_[0], value);
+proto.yorkie.v1.Operation.prototype.setStyle = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 8, proto.yorkie.v1.Operation.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation} returns this
+ * @return {!proto.yorkie.v1.Operation} returns this
  */
-proto.api.Operation.prototype.clearStyle = function() {
+proto.yorkie.v1.Operation.prototype.clearStyle = function() {
   return this.setStyle(undefined);
 };
 
@@ -5073,35 +5073,35 @@ proto.api.Operation.prototype.clearStyle = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.prototype.hasStyle = function() {
+proto.yorkie.v1.Operation.prototype.hasStyle = function() {
   return jspb.Message.getField(this, 8) != null;
 };
 
 
 /**
  * optional Increase increase = 9;
- * @return {?proto.api.Operation.Increase}
+ * @return {?proto.yorkie.v1.Operation.Increase}
  */
-proto.api.Operation.prototype.getIncrease = function() {
-  return /** @type{?proto.api.Operation.Increase} */ (
-    jspb.Message.getWrapperField(this, proto.api.Operation.Increase, 9));
+proto.yorkie.v1.Operation.prototype.getIncrease = function() {
+  return /** @type{?proto.yorkie.v1.Operation.Increase} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.Operation.Increase, 9));
 };
 
 
 /**
- * @param {?proto.api.Operation.Increase|undefined} value
- * @return {!proto.api.Operation} returns this
+ * @param {?proto.yorkie.v1.Operation.Increase|undefined} value
+ * @return {!proto.yorkie.v1.Operation} returns this
 */
-proto.api.Operation.prototype.setIncrease = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 9, proto.api.Operation.oneofGroups_[0], value);
+proto.yorkie.v1.Operation.prototype.setIncrease = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 9, proto.yorkie.v1.Operation.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Operation} returns this
+ * @return {!proto.yorkie.v1.Operation} returns this
  */
-proto.api.Operation.prototype.clearIncrease = function() {
+proto.yorkie.v1.Operation.prototype.clearIncrease = function() {
   return this.setIncrease(undefined);
 };
 
@@ -5110,7 +5110,7 @@ proto.api.Operation.prototype.clearIncrease = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Operation.prototype.hasIncrease = function() {
+proto.yorkie.v1.Operation.prototype.hasIncrease = function() {
   return jspb.Message.getField(this, 9) != null;
 };
 
@@ -5131,8 +5131,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.JSONElementSimple.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.JSONElementSimple.toObject(opt_includeInstance, this);
+proto.yorkie.v1.JSONElementSimple.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.JSONElementSimple.toObject(opt_includeInstance, this);
 };
 
 
@@ -5141,15 +5141,15 @@ proto.api.JSONElementSimple.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.JSONElementSimple} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.JSONElementSimple} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.JSONElementSimple.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.JSONElementSimple.toObject = function(includeInstance, msg) {
   var f, obj = {
-    createdAt: (f = msg.getCreatedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    movedAt: (f = msg.getMovedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    removedAt: (f = msg.getRemovedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
+    createdAt: (f = msg.getCreatedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    movedAt: (f = msg.getMovedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    removedAt: (f = msg.getRemovedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
     type: jspb.Message.getFieldWithDefault(msg, 4, 0),
     value: msg.getValue_asB64()
   };
@@ -5165,23 +5165,23 @@ proto.api.JSONElementSimple.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.JSONElementSimple}
+ * @return {!proto.yorkie.v1.JSONElementSimple}
  */
-proto.api.JSONElementSimple.deserializeBinary = function(bytes) {
+proto.yorkie.v1.JSONElementSimple.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.JSONElementSimple;
-  return proto.api.JSONElementSimple.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.JSONElementSimple;
+  return proto.yorkie.v1.JSONElementSimple.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.JSONElementSimple} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.JSONElementSimple} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.JSONElementSimple}
+ * @return {!proto.yorkie.v1.JSONElementSimple}
  */
-proto.api.JSONElementSimple.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.JSONElementSimple.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -5189,22 +5189,22 @@ proto.api.JSONElementSimple.deserializeBinaryFromReader = function(msg, reader) 
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setCreatedAt(value);
       break;
     case 2:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setMovedAt(value);
       break;
     case 3:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setRemovedAt(value);
       break;
     case 4:
-      var value = /** @type {!proto.api.ValueType} */ (reader.readEnum());
+      var value = /** @type {!proto.yorkie.v1.ValueType} */ (reader.readEnum());
       msg.setType(value);
       break;
     case 5:
@@ -5224,9 +5224,9 @@ proto.api.JSONElementSimple.deserializeBinaryFromReader = function(msg, reader) 
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.JSONElementSimple.prototype.serializeBinary = function() {
+proto.yorkie.v1.JSONElementSimple.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.JSONElementSimple.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.JSONElementSimple.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -5234,18 +5234,18 @@ proto.api.JSONElementSimple.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.JSONElementSimple} message
+ * @param {!proto.yorkie.v1.JSONElementSimple} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.JSONElementSimple.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.JSONElementSimple.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getCreatedAt();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getMovedAt();
@@ -5253,7 +5253,7 @@ proto.api.JSONElementSimple.serializeBinaryToWriter = function(message, writer) 
     writer.writeMessage(
       2,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getRemovedAt();
@@ -5261,7 +5261,7 @@ proto.api.JSONElementSimple.serializeBinaryToWriter = function(message, writer) 
     writer.writeMessage(
       3,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getType();
@@ -5283,28 +5283,28 @@ proto.api.JSONElementSimple.serializeBinaryToWriter = function(message, writer) 
 
 /**
  * optional TimeTicket created_at = 1;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.JSONElementSimple.prototype.getCreatedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 1));
+proto.yorkie.v1.JSONElementSimple.prototype.getCreatedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 1));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.JSONElementSimple} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.JSONElementSimple} returns this
 */
-proto.api.JSONElementSimple.prototype.setCreatedAt = function(value) {
+proto.yorkie.v1.JSONElementSimple.prototype.setCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElementSimple} returns this
+ * @return {!proto.yorkie.v1.JSONElementSimple} returns this
  */
-proto.api.JSONElementSimple.prototype.clearCreatedAt = function() {
+proto.yorkie.v1.JSONElementSimple.prototype.clearCreatedAt = function() {
   return this.setCreatedAt(undefined);
 };
 
@@ -5313,35 +5313,35 @@ proto.api.JSONElementSimple.prototype.clearCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElementSimple.prototype.hasCreatedAt = function() {
+proto.yorkie.v1.JSONElementSimple.prototype.hasCreatedAt = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
  * optional TimeTicket moved_at = 2;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.JSONElementSimple.prototype.getMovedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 2));
+proto.yorkie.v1.JSONElementSimple.prototype.getMovedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 2));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.JSONElementSimple} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.JSONElementSimple} returns this
 */
-proto.api.JSONElementSimple.prototype.setMovedAt = function(value) {
+proto.yorkie.v1.JSONElementSimple.prototype.setMovedAt = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElementSimple} returns this
+ * @return {!proto.yorkie.v1.JSONElementSimple} returns this
  */
-proto.api.JSONElementSimple.prototype.clearMovedAt = function() {
+proto.yorkie.v1.JSONElementSimple.prototype.clearMovedAt = function() {
   return this.setMovedAt(undefined);
 };
 
@@ -5350,35 +5350,35 @@ proto.api.JSONElementSimple.prototype.clearMovedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElementSimple.prototype.hasMovedAt = function() {
+proto.yorkie.v1.JSONElementSimple.prototype.hasMovedAt = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
  * optional TimeTicket removed_at = 3;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.JSONElementSimple.prototype.getRemovedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 3));
+proto.yorkie.v1.JSONElementSimple.prototype.getRemovedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 3));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.JSONElementSimple} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.JSONElementSimple} returns this
 */
-proto.api.JSONElementSimple.prototype.setRemovedAt = function(value) {
+proto.yorkie.v1.JSONElementSimple.prototype.setRemovedAt = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElementSimple} returns this
+ * @return {!proto.yorkie.v1.JSONElementSimple} returns this
  */
-proto.api.JSONElementSimple.prototype.clearRemovedAt = function() {
+proto.yorkie.v1.JSONElementSimple.prototype.clearRemovedAt = function() {
   return this.setRemovedAt(undefined);
 };
 
@@ -5387,25 +5387,25 @@ proto.api.JSONElementSimple.prototype.clearRemovedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElementSimple.prototype.hasRemovedAt = function() {
+proto.yorkie.v1.JSONElementSimple.prototype.hasRemovedAt = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
  * optional ValueType type = 4;
- * @return {!proto.api.ValueType}
+ * @return {!proto.yorkie.v1.ValueType}
  */
-proto.api.JSONElementSimple.prototype.getType = function() {
-  return /** @type {!proto.api.ValueType} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+proto.yorkie.v1.JSONElementSimple.prototype.getType = function() {
+  return /** @type {!proto.yorkie.v1.ValueType} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
 
 /**
- * @param {!proto.api.ValueType} value
- * @return {!proto.api.JSONElementSimple} returns this
+ * @param {!proto.yorkie.v1.ValueType} value
+ * @return {!proto.yorkie.v1.JSONElementSimple} returns this
  */
-proto.api.JSONElementSimple.prototype.setType = function(value) {
+proto.yorkie.v1.JSONElementSimple.prototype.setType = function(value) {
   return jspb.Message.setProto3EnumField(this, 4, value);
 };
 
@@ -5414,7 +5414,7 @@ proto.api.JSONElementSimple.prototype.setType = function(value) {
  * optional bytes value = 5;
  * @return {string}
  */
-proto.api.JSONElementSimple.prototype.getValue = function() {
+proto.yorkie.v1.JSONElementSimple.prototype.getValue = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
@@ -5424,7 +5424,7 @@ proto.api.JSONElementSimple.prototype.getValue = function() {
  * This is a type-conversion wrapper around `getValue()`
  * @return {string}
  */
-proto.api.JSONElementSimple.prototype.getValue_asB64 = function() {
+proto.yorkie.v1.JSONElementSimple.prototype.getValue_asB64 = function() {
   return /** @type {string} */ (jspb.Message.bytesAsB64(
       this.getValue()));
 };
@@ -5437,7 +5437,7 @@ proto.api.JSONElementSimple.prototype.getValue_asB64 = function() {
  * This is a type-conversion wrapper around `getValue()`
  * @return {!Uint8Array}
  */
-proto.api.JSONElementSimple.prototype.getValue_asU8 = function() {
+proto.yorkie.v1.JSONElementSimple.prototype.getValue_asU8 = function() {
   return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
       this.getValue()));
 };
@@ -5445,9 +5445,9 @@ proto.api.JSONElementSimple.prototype.getValue_asU8 = function() {
 
 /**
  * @param {!(string|Uint8Array)} value
- * @return {!proto.api.JSONElementSimple} returns this
+ * @return {!proto.yorkie.v1.JSONElementSimple} returns this
  */
-proto.api.JSONElementSimple.prototype.setValue = function(value) {
+proto.yorkie.v1.JSONElementSimple.prototype.setValue = function(value) {
   return jspb.Message.setProto3BytesField(this, 5, value);
 };
 
@@ -5461,12 +5461,12 @@ proto.api.JSONElementSimple.prototype.setValue = function(value) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.api.JSONElement.oneofGroups_ = [[1,2,3,4,5,6]];
+proto.yorkie.v1.JSONElement.oneofGroups_ = [[1,2,3,4,5,6]];
 
 /**
  * @enum {number}
  */
-proto.api.JSONElement.BodyCase = {
+proto.yorkie.v1.JSONElement.BodyCase = {
   BODY_NOT_SET: 0,
   JSON_OBJECT: 1,
   JSON_ARRAY: 2,
@@ -5477,10 +5477,10 @@ proto.api.JSONElement.BodyCase = {
 };
 
 /**
- * @return {proto.api.JSONElement.BodyCase}
+ * @return {proto.yorkie.v1.JSONElement.BodyCase}
  */
-proto.api.JSONElement.prototype.getBodyCase = function() {
-  return /** @type {proto.api.JSONElement.BodyCase} */(jspb.Message.computeOneofCase(this, proto.api.JSONElement.oneofGroups_[0]));
+proto.yorkie.v1.JSONElement.prototype.getBodyCase = function() {
+  return /** @type {proto.yorkie.v1.JSONElement.BodyCase} */(jspb.Message.computeOneofCase(this, proto.yorkie.v1.JSONElement.oneofGroups_[0]));
 };
 
 
@@ -5498,8 +5498,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.JSONElement.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.JSONElement.toObject(opt_includeInstance, this);
+proto.yorkie.v1.JSONElement.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.JSONElement.toObject(opt_includeInstance, this);
 };
 
 
@@ -5508,18 +5508,18 @@ proto.api.JSONElement.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.JSONElement} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.JSONElement} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.JSONElement.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.JSONElement.toObject = function(includeInstance, msg) {
   var f, obj = {
-    jsonObject: (f = msg.getJsonObject()) && proto.api.JSONElement.JSONObject.toObject(includeInstance, f),
-    jsonArray: (f = msg.getJsonArray()) && proto.api.JSONElement.JSONArray.toObject(includeInstance, f),
-    primitive: (f = msg.getPrimitive()) && proto.api.JSONElement.Primitive.toObject(includeInstance, f),
-    text: (f = msg.getText()) && proto.api.JSONElement.Text.toObject(includeInstance, f),
-    richText: (f = msg.getRichText()) && proto.api.JSONElement.RichText.toObject(includeInstance, f),
-    counter: (f = msg.getCounter()) && proto.api.JSONElement.Counter.toObject(includeInstance, f)
+    jsonObject: (f = msg.getJsonObject()) && proto.yorkie.v1.JSONElement.JSONObject.toObject(includeInstance, f),
+    jsonArray: (f = msg.getJsonArray()) && proto.yorkie.v1.JSONElement.JSONArray.toObject(includeInstance, f),
+    primitive: (f = msg.getPrimitive()) && proto.yorkie.v1.JSONElement.Primitive.toObject(includeInstance, f),
+    text: (f = msg.getText()) && proto.yorkie.v1.JSONElement.Text.toObject(includeInstance, f),
+    richText: (f = msg.getRichText()) && proto.yorkie.v1.JSONElement.RichText.toObject(includeInstance, f),
+    counter: (f = msg.getCounter()) && proto.yorkie.v1.JSONElement.Counter.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5533,23 +5533,23 @@ proto.api.JSONElement.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.JSONElement}
+ * @return {!proto.yorkie.v1.JSONElement}
  */
-proto.api.JSONElement.deserializeBinary = function(bytes) {
+proto.yorkie.v1.JSONElement.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.JSONElement;
-  return proto.api.JSONElement.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.JSONElement;
+  return proto.yorkie.v1.JSONElement.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.JSONElement} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.JSONElement} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.JSONElement}
+ * @return {!proto.yorkie.v1.JSONElement}
  */
-proto.api.JSONElement.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.JSONElement.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -5557,33 +5557,33 @@ proto.api.JSONElement.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.api.JSONElement.JSONObject;
-      reader.readMessage(value,proto.api.JSONElement.JSONObject.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.JSONElement.JSONObject;
+      reader.readMessage(value,proto.yorkie.v1.JSONElement.JSONObject.deserializeBinaryFromReader);
       msg.setJsonObject(value);
       break;
     case 2:
-      var value = new proto.api.JSONElement.JSONArray;
-      reader.readMessage(value,proto.api.JSONElement.JSONArray.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.JSONElement.JSONArray;
+      reader.readMessage(value,proto.yorkie.v1.JSONElement.JSONArray.deserializeBinaryFromReader);
       msg.setJsonArray(value);
       break;
     case 3:
-      var value = new proto.api.JSONElement.Primitive;
-      reader.readMessage(value,proto.api.JSONElement.Primitive.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.JSONElement.Primitive;
+      reader.readMessage(value,proto.yorkie.v1.JSONElement.Primitive.deserializeBinaryFromReader);
       msg.setPrimitive(value);
       break;
     case 4:
-      var value = new proto.api.JSONElement.Text;
-      reader.readMessage(value,proto.api.JSONElement.Text.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.JSONElement.Text;
+      reader.readMessage(value,proto.yorkie.v1.JSONElement.Text.deserializeBinaryFromReader);
       msg.setText(value);
       break;
     case 5:
-      var value = new proto.api.JSONElement.RichText;
-      reader.readMessage(value,proto.api.JSONElement.RichText.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.JSONElement.RichText;
+      reader.readMessage(value,proto.yorkie.v1.JSONElement.RichText.deserializeBinaryFromReader);
       msg.setRichText(value);
       break;
     case 6:
-      var value = new proto.api.JSONElement.Counter;
-      reader.readMessage(value,proto.api.JSONElement.Counter.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.JSONElement.Counter;
+      reader.readMessage(value,proto.yorkie.v1.JSONElement.Counter.deserializeBinaryFromReader);
       msg.setCounter(value);
       break;
     default:
@@ -5599,9 +5599,9 @@ proto.api.JSONElement.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.JSONElement.prototype.serializeBinary = function() {
+proto.yorkie.v1.JSONElement.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.JSONElement.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.JSONElement.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -5609,18 +5609,18 @@ proto.api.JSONElement.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.JSONElement} message
+ * @param {!proto.yorkie.v1.JSONElement} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.JSONElement.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.JSONElement.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getJsonObject();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.api.JSONElement.JSONObject.serializeBinaryToWriter
+      proto.yorkie.v1.JSONElement.JSONObject.serializeBinaryToWriter
     );
   }
   f = message.getJsonArray();
@@ -5628,7 +5628,7 @@ proto.api.JSONElement.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       2,
       f,
-      proto.api.JSONElement.JSONArray.serializeBinaryToWriter
+      proto.yorkie.v1.JSONElement.JSONArray.serializeBinaryToWriter
     );
   }
   f = message.getPrimitive();
@@ -5636,7 +5636,7 @@ proto.api.JSONElement.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       3,
       f,
-      proto.api.JSONElement.Primitive.serializeBinaryToWriter
+      proto.yorkie.v1.JSONElement.Primitive.serializeBinaryToWriter
     );
   }
   f = message.getText();
@@ -5644,7 +5644,7 @@ proto.api.JSONElement.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       4,
       f,
-      proto.api.JSONElement.Text.serializeBinaryToWriter
+      proto.yorkie.v1.JSONElement.Text.serializeBinaryToWriter
     );
   }
   f = message.getRichText();
@@ -5652,7 +5652,7 @@ proto.api.JSONElement.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       5,
       f,
-      proto.api.JSONElement.RichText.serializeBinaryToWriter
+      proto.yorkie.v1.JSONElement.RichText.serializeBinaryToWriter
     );
   }
   f = message.getCounter();
@@ -5660,7 +5660,7 @@ proto.api.JSONElement.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       6,
       f,
-      proto.api.JSONElement.Counter.serializeBinaryToWriter
+      proto.yorkie.v1.JSONElement.Counter.serializeBinaryToWriter
     );
   }
 };
@@ -5672,7 +5672,7 @@ proto.api.JSONElement.serializeBinaryToWriter = function(message, writer) {
  * @private {!Array<number>}
  * @const
  */
-proto.api.JSONElement.JSONObject.repeatedFields_ = [1];
+proto.yorkie.v1.JSONElement.JSONObject.repeatedFields_ = [1];
 
 
 
@@ -5689,8 +5689,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.JSONElement.JSONObject.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.JSONElement.JSONObject.toObject(opt_includeInstance, this);
+proto.yorkie.v1.JSONElement.JSONObject.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.JSONElement.JSONObject.toObject(opt_includeInstance, this);
 };
 
 
@@ -5699,17 +5699,17 @@ proto.api.JSONElement.JSONObject.prototype.toObject = function(opt_includeInstan
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.JSONElement.JSONObject} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.JSONElement.JSONObject} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.JSONElement.JSONObject.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.JSONElement.JSONObject.toObject = function(includeInstance, msg) {
   var f, obj = {
     nodesList: jspb.Message.toObjectList(msg.getNodesList(),
-    proto.api.RHTNode.toObject, includeInstance),
-    createdAt: (f = msg.getCreatedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    movedAt: (f = msg.getMovedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    removedAt: (f = msg.getRemovedAt()) && proto.api.TimeTicket.toObject(includeInstance, f)
+    proto.yorkie.v1.RHTNode.toObject, includeInstance),
+    createdAt: (f = msg.getCreatedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    movedAt: (f = msg.getMovedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    removedAt: (f = msg.getRemovedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -5723,23 +5723,23 @@ proto.api.JSONElement.JSONObject.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.JSONElement.JSONObject}
+ * @return {!proto.yorkie.v1.JSONElement.JSONObject}
  */
-proto.api.JSONElement.JSONObject.deserializeBinary = function(bytes) {
+proto.yorkie.v1.JSONElement.JSONObject.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.JSONElement.JSONObject;
-  return proto.api.JSONElement.JSONObject.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.JSONElement.JSONObject;
+  return proto.yorkie.v1.JSONElement.JSONObject.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.JSONElement.JSONObject} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.JSONElement.JSONObject} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.JSONElement.JSONObject}
+ * @return {!proto.yorkie.v1.JSONElement.JSONObject}
  */
-proto.api.JSONElement.JSONObject.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.JSONElement.JSONObject.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -5747,23 +5747,23 @@ proto.api.JSONElement.JSONObject.deserializeBinaryFromReader = function(msg, rea
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.api.RHTNode;
-      reader.readMessage(value,proto.api.RHTNode.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.RHTNode;
+      reader.readMessage(value,proto.yorkie.v1.RHTNode.deserializeBinaryFromReader);
       msg.addNodes(value);
       break;
     case 2:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setCreatedAt(value);
       break;
     case 3:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setMovedAt(value);
       break;
     case 4:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setRemovedAt(value);
       break;
     default:
@@ -5779,9 +5779,9 @@ proto.api.JSONElement.JSONObject.deserializeBinaryFromReader = function(msg, rea
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.JSONElement.JSONObject.prototype.serializeBinary = function() {
+proto.yorkie.v1.JSONElement.JSONObject.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.JSONElement.JSONObject.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.JSONElement.JSONObject.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -5789,18 +5789,18 @@ proto.api.JSONElement.JSONObject.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.JSONElement.JSONObject} message
+ * @param {!proto.yorkie.v1.JSONElement.JSONObject} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.JSONElement.JSONObject.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.JSONElement.JSONObject.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getNodesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
       f,
-      proto.api.RHTNode.serializeBinaryToWriter
+      proto.yorkie.v1.RHTNode.serializeBinaryToWriter
     );
   }
   f = message.getCreatedAt();
@@ -5808,7 +5808,7 @@ proto.api.JSONElement.JSONObject.serializeBinaryToWriter = function(message, wri
     writer.writeMessage(
       2,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getMovedAt();
@@ -5816,7 +5816,7 @@ proto.api.JSONElement.JSONObject.serializeBinaryToWriter = function(message, wri
     writer.writeMessage(
       3,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getRemovedAt();
@@ -5824,7 +5824,7 @@ proto.api.JSONElement.JSONObject.serializeBinaryToWriter = function(message, wri
     writer.writeMessage(
       4,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
 };
@@ -5832,66 +5832,66 @@ proto.api.JSONElement.JSONObject.serializeBinaryToWriter = function(message, wri
 
 /**
  * repeated RHTNode nodes = 1;
- * @return {!Array<!proto.api.RHTNode>}
+ * @return {!Array<!proto.yorkie.v1.RHTNode>}
  */
-proto.api.JSONElement.JSONObject.prototype.getNodesList = function() {
-  return /** @type{!Array<!proto.api.RHTNode>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.api.RHTNode, 1));
+proto.yorkie.v1.JSONElement.JSONObject.prototype.getNodesList = function() {
+  return /** @type{!Array<!proto.yorkie.v1.RHTNode>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.yorkie.v1.RHTNode, 1));
 };
 
 
 /**
- * @param {!Array<!proto.api.RHTNode>} value
- * @return {!proto.api.JSONElement.JSONObject} returns this
+ * @param {!Array<!proto.yorkie.v1.RHTNode>} value
+ * @return {!proto.yorkie.v1.JSONElement.JSONObject} returns this
 */
-proto.api.JSONElement.JSONObject.prototype.setNodesList = function(value) {
+proto.yorkie.v1.JSONElement.JSONObject.prototype.setNodesList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * @param {!proto.api.RHTNode=} opt_value
+ * @param {!proto.yorkie.v1.RHTNode=} opt_value
  * @param {number=} opt_index
- * @return {!proto.api.RHTNode}
+ * @return {!proto.yorkie.v1.RHTNode}
  */
-proto.api.JSONElement.JSONObject.prototype.addNodes = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.api.RHTNode, opt_index);
+proto.yorkie.v1.JSONElement.JSONObject.prototype.addNodes = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.yorkie.v1.RHTNode, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.api.JSONElement.JSONObject} returns this
+ * @return {!proto.yorkie.v1.JSONElement.JSONObject} returns this
  */
-proto.api.JSONElement.JSONObject.prototype.clearNodesList = function() {
+proto.yorkie.v1.JSONElement.JSONObject.prototype.clearNodesList = function() {
   return this.setNodesList([]);
 };
 
 
 /**
  * optional TimeTicket created_at = 2;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.JSONElement.JSONObject.prototype.getCreatedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 2));
+proto.yorkie.v1.JSONElement.JSONObject.prototype.getCreatedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 2));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.JSONElement.JSONObject} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.JSONElement.JSONObject} returns this
 */
-proto.api.JSONElement.JSONObject.prototype.setCreatedAt = function(value) {
+proto.yorkie.v1.JSONElement.JSONObject.prototype.setCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElement.JSONObject} returns this
+ * @return {!proto.yorkie.v1.JSONElement.JSONObject} returns this
  */
-proto.api.JSONElement.JSONObject.prototype.clearCreatedAt = function() {
+proto.yorkie.v1.JSONElement.JSONObject.prototype.clearCreatedAt = function() {
   return this.setCreatedAt(undefined);
 };
 
@@ -5900,35 +5900,35 @@ proto.api.JSONElement.JSONObject.prototype.clearCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElement.JSONObject.prototype.hasCreatedAt = function() {
+proto.yorkie.v1.JSONElement.JSONObject.prototype.hasCreatedAt = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
  * optional TimeTicket moved_at = 3;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.JSONElement.JSONObject.prototype.getMovedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 3));
+proto.yorkie.v1.JSONElement.JSONObject.prototype.getMovedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 3));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.JSONElement.JSONObject} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.JSONElement.JSONObject} returns this
 */
-proto.api.JSONElement.JSONObject.prototype.setMovedAt = function(value) {
+proto.yorkie.v1.JSONElement.JSONObject.prototype.setMovedAt = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElement.JSONObject} returns this
+ * @return {!proto.yorkie.v1.JSONElement.JSONObject} returns this
  */
-proto.api.JSONElement.JSONObject.prototype.clearMovedAt = function() {
+proto.yorkie.v1.JSONElement.JSONObject.prototype.clearMovedAt = function() {
   return this.setMovedAt(undefined);
 };
 
@@ -5937,35 +5937,35 @@ proto.api.JSONElement.JSONObject.prototype.clearMovedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElement.JSONObject.prototype.hasMovedAt = function() {
+proto.yorkie.v1.JSONElement.JSONObject.prototype.hasMovedAt = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
  * optional TimeTicket removed_at = 4;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.JSONElement.JSONObject.prototype.getRemovedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 4));
+proto.yorkie.v1.JSONElement.JSONObject.prototype.getRemovedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 4));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.JSONElement.JSONObject} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.JSONElement.JSONObject} returns this
 */
-proto.api.JSONElement.JSONObject.prototype.setRemovedAt = function(value) {
+proto.yorkie.v1.JSONElement.JSONObject.prototype.setRemovedAt = function(value) {
   return jspb.Message.setWrapperField(this, 4, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElement.JSONObject} returns this
+ * @return {!proto.yorkie.v1.JSONElement.JSONObject} returns this
  */
-proto.api.JSONElement.JSONObject.prototype.clearRemovedAt = function() {
+proto.yorkie.v1.JSONElement.JSONObject.prototype.clearRemovedAt = function() {
   return this.setRemovedAt(undefined);
 };
 
@@ -5974,7 +5974,7 @@ proto.api.JSONElement.JSONObject.prototype.clearRemovedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElement.JSONObject.prototype.hasRemovedAt = function() {
+proto.yorkie.v1.JSONElement.JSONObject.prototype.hasRemovedAt = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
@@ -5985,7 +5985,7 @@ proto.api.JSONElement.JSONObject.prototype.hasRemovedAt = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.api.JSONElement.JSONArray.repeatedFields_ = [1];
+proto.yorkie.v1.JSONElement.JSONArray.repeatedFields_ = [1];
 
 
 
@@ -6002,8 +6002,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.JSONElement.JSONArray.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.JSONElement.JSONArray.toObject(opt_includeInstance, this);
+proto.yorkie.v1.JSONElement.JSONArray.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.JSONElement.JSONArray.toObject(opt_includeInstance, this);
 };
 
 
@@ -6012,17 +6012,17 @@ proto.api.JSONElement.JSONArray.prototype.toObject = function(opt_includeInstanc
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.JSONElement.JSONArray} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.JSONElement.JSONArray} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.JSONElement.JSONArray.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.JSONElement.JSONArray.toObject = function(includeInstance, msg) {
   var f, obj = {
     nodesList: jspb.Message.toObjectList(msg.getNodesList(),
-    proto.api.RGANode.toObject, includeInstance),
-    createdAt: (f = msg.getCreatedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    movedAt: (f = msg.getMovedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    removedAt: (f = msg.getRemovedAt()) && proto.api.TimeTicket.toObject(includeInstance, f)
+    proto.yorkie.v1.RGANode.toObject, includeInstance),
+    createdAt: (f = msg.getCreatedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    movedAt: (f = msg.getMovedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    removedAt: (f = msg.getRemovedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6036,23 +6036,23 @@ proto.api.JSONElement.JSONArray.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.JSONElement.JSONArray}
+ * @return {!proto.yorkie.v1.JSONElement.JSONArray}
  */
-proto.api.JSONElement.JSONArray.deserializeBinary = function(bytes) {
+proto.yorkie.v1.JSONElement.JSONArray.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.JSONElement.JSONArray;
-  return proto.api.JSONElement.JSONArray.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.JSONElement.JSONArray;
+  return proto.yorkie.v1.JSONElement.JSONArray.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.JSONElement.JSONArray} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.JSONElement.JSONArray} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.JSONElement.JSONArray}
+ * @return {!proto.yorkie.v1.JSONElement.JSONArray}
  */
-proto.api.JSONElement.JSONArray.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.JSONElement.JSONArray.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -6060,23 +6060,23 @@ proto.api.JSONElement.JSONArray.deserializeBinaryFromReader = function(msg, read
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.api.RGANode;
-      reader.readMessage(value,proto.api.RGANode.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.RGANode;
+      reader.readMessage(value,proto.yorkie.v1.RGANode.deserializeBinaryFromReader);
       msg.addNodes(value);
       break;
     case 2:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setCreatedAt(value);
       break;
     case 3:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setMovedAt(value);
       break;
     case 4:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setRemovedAt(value);
       break;
     default:
@@ -6092,9 +6092,9 @@ proto.api.JSONElement.JSONArray.deserializeBinaryFromReader = function(msg, read
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.JSONElement.JSONArray.prototype.serializeBinary = function() {
+proto.yorkie.v1.JSONElement.JSONArray.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.JSONElement.JSONArray.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.JSONElement.JSONArray.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -6102,18 +6102,18 @@ proto.api.JSONElement.JSONArray.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.JSONElement.JSONArray} message
+ * @param {!proto.yorkie.v1.JSONElement.JSONArray} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.JSONElement.JSONArray.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.JSONElement.JSONArray.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getNodesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
       f,
-      proto.api.RGANode.serializeBinaryToWriter
+      proto.yorkie.v1.RGANode.serializeBinaryToWriter
     );
   }
   f = message.getCreatedAt();
@@ -6121,7 +6121,7 @@ proto.api.JSONElement.JSONArray.serializeBinaryToWriter = function(message, writ
     writer.writeMessage(
       2,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getMovedAt();
@@ -6129,7 +6129,7 @@ proto.api.JSONElement.JSONArray.serializeBinaryToWriter = function(message, writ
     writer.writeMessage(
       3,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getRemovedAt();
@@ -6137,7 +6137,7 @@ proto.api.JSONElement.JSONArray.serializeBinaryToWriter = function(message, writ
     writer.writeMessage(
       4,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
 };
@@ -6145,66 +6145,66 @@ proto.api.JSONElement.JSONArray.serializeBinaryToWriter = function(message, writ
 
 /**
  * repeated RGANode nodes = 1;
- * @return {!Array<!proto.api.RGANode>}
+ * @return {!Array<!proto.yorkie.v1.RGANode>}
  */
-proto.api.JSONElement.JSONArray.prototype.getNodesList = function() {
-  return /** @type{!Array<!proto.api.RGANode>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.api.RGANode, 1));
+proto.yorkie.v1.JSONElement.JSONArray.prototype.getNodesList = function() {
+  return /** @type{!Array<!proto.yorkie.v1.RGANode>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.yorkie.v1.RGANode, 1));
 };
 
 
 /**
- * @param {!Array<!proto.api.RGANode>} value
- * @return {!proto.api.JSONElement.JSONArray} returns this
+ * @param {!Array<!proto.yorkie.v1.RGANode>} value
+ * @return {!proto.yorkie.v1.JSONElement.JSONArray} returns this
 */
-proto.api.JSONElement.JSONArray.prototype.setNodesList = function(value) {
+proto.yorkie.v1.JSONElement.JSONArray.prototype.setNodesList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * @param {!proto.api.RGANode=} opt_value
+ * @param {!proto.yorkie.v1.RGANode=} opt_value
  * @param {number=} opt_index
- * @return {!proto.api.RGANode}
+ * @return {!proto.yorkie.v1.RGANode}
  */
-proto.api.JSONElement.JSONArray.prototype.addNodes = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.api.RGANode, opt_index);
+proto.yorkie.v1.JSONElement.JSONArray.prototype.addNodes = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.yorkie.v1.RGANode, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.api.JSONElement.JSONArray} returns this
+ * @return {!proto.yorkie.v1.JSONElement.JSONArray} returns this
  */
-proto.api.JSONElement.JSONArray.prototype.clearNodesList = function() {
+proto.yorkie.v1.JSONElement.JSONArray.prototype.clearNodesList = function() {
   return this.setNodesList([]);
 };
 
 
 /**
  * optional TimeTicket created_at = 2;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.JSONElement.JSONArray.prototype.getCreatedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 2));
+proto.yorkie.v1.JSONElement.JSONArray.prototype.getCreatedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 2));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.JSONElement.JSONArray} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.JSONElement.JSONArray} returns this
 */
-proto.api.JSONElement.JSONArray.prototype.setCreatedAt = function(value) {
+proto.yorkie.v1.JSONElement.JSONArray.prototype.setCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElement.JSONArray} returns this
+ * @return {!proto.yorkie.v1.JSONElement.JSONArray} returns this
  */
-proto.api.JSONElement.JSONArray.prototype.clearCreatedAt = function() {
+proto.yorkie.v1.JSONElement.JSONArray.prototype.clearCreatedAt = function() {
   return this.setCreatedAt(undefined);
 };
 
@@ -6213,35 +6213,35 @@ proto.api.JSONElement.JSONArray.prototype.clearCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElement.JSONArray.prototype.hasCreatedAt = function() {
+proto.yorkie.v1.JSONElement.JSONArray.prototype.hasCreatedAt = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
  * optional TimeTicket moved_at = 3;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.JSONElement.JSONArray.prototype.getMovedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 3));
+proto.yorkie.v1.JSONElement.JSONArray.prototype.getMovedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 3));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.JSONElement.JSONArray} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.JSONElement.JSONArray} returns this
 */
-proto.api.JSONElement.JSONArray.prototype.setMovedAt = function(value) {
+proto.yorkie.v1.JSONElement.JSONArray.prototype.setMovedAt = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElement.JSONArray} returns this
+ * @return {!proto.yorkie.v1.JSONElement.JSONArray} returns this
  */
-proto.api.JSONElement.JSONArray.prototype.clearMovedAt = function() {
+proto.yorkie.v1.JSONElement.JSONArray.prototype.clearMovedAt = function() {
   return this.setMovedAt(undefined);
 };
 
@@ -6250,35 +6250,35 @@ proto.api.JSONElement.JSONArray.prototype.clearMovedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElement.JSONArray.prototype.hasMovedAt = function() {
+proto.yorkie.v1.JSONElement.JSONArray.prototype.hasMovedAt = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
  * optional TimeTicket removed_at = 4;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.JSONElement.JSONArray.prototype.getRemovedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 4));
+proto.yorkie.v1.JSONElement.JSONArray.prototype.getRemovedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 4));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.JSONElement.JSONArray} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.JSONElement.JSONArray} returns this
 */
-proto.api.JSONElement.JSONArray.prototype.setRemovedAt = function(value) {
+proto.yorkie.v1.JSONElement.JSONArray.prototype.setRemovedAt = function(value) {
   return jspb.Message.setWrapperField(this, 4, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElement.JSONArray} returns this
+ * @return {!proto.yorkie.v1.JSONElement.JSONArray} returns this
  */
-proto.api.JSONElement.JSONArray.prototype.clearRemovedAt = function() {
+proto.yorkie.v1.JSONElement.JSONArray.prototype.clearRemovedAt = function() {
   return this.setRemovedAt(undefined);
 };
 
@@ -6287,7 +6287,7 @@ proto.api.JSONElement.JSONArray.prototype.clearRemovedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElement.JSONArray.prototype.hasRemovedAt = function() {
+proto.yorkie.v1.JSONElement.JSONArray.prototype.hasRemovedAt = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
@@ -6308,8 +6308,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.JSONElement.Primitive.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.JSONElement.Primitive.toObject(opt_includeInstance, this);
+proto.yorkie.v1.JSONElement.Primitive.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.JSONElement.Primitive.toObject(opt_includeInstance, this);
 };
 
 
@@ -6318,17 +6318,17 @@ proto.api.JSONElement.Primitive.prototype.toObject = function(opt_includeInstanc
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.JSONElement.Primitive} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.JSONElement.Primitive} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.JSONElement.Primitive.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.JSONElement.Primitive.toObject = function(includeInstance, msg) {
   var f, obj = {
     type: jspb.Message.getFieldWithDefault(msg, 1, 0),
     value: msg.getValue_asB64(),
-    createdAt: (f = msg.getCreatedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    movedAt: (f = msg.getMovedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    removedAt: (f = msg.getRemovedAt()) && proto.api.TimeTicket.toObject(includeInstance, f)
+    createdAt: (f = msg.getCreatedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    movedAt: (f = msg.getMovedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    removedAt: (f = msg.getRemovedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6342,23 +6342,23 @@ proto.api.JSONElement.Primitive.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.JSONElement.Primitive}
+ * @return {!proto.yorkie.v1.JSONElement.Primitive}
  */
-proto.api.JSONElement.Primitive.deserializeBinary = function(bytes) {
+proto.yorkie.v1.JSONElement.Primitive.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.JSONElement.Primitive;
-  return proto.api.JSONElement.Primitive.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.JSONElement.Primitive;
+  return proto.yorkie.v1.JSONElement.Primitive.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.JSONElement.Primitive} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.JSONElement.Primitive} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.JSONElement.Primitive}
+ * @return {!proto.yorkie.v1.JSONElement.Primitive}
  */
-proto.api.JSONElement.Primitive.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.JSONElement.Primitive.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -6366,7 +6366,7 @@ proto.api.JSONElement.Primitive.deserializeBinaryFromReader = function(msg, read
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {!proto.api.ValueType} */ (reader.readEnum());
+      var value = /** @type {!proto.yorkie.v1.ValueType} */ (reader.readEnum());
       msg.setType(value);
       break;
     case 2:
@@ -6374,18 +6374,18 @@ proto.api.JSONElement.Primitive.deserializeBinaryFromReader = function(msg, read
       msg.setValue(value);
       break;
     case 3:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setCreatedAt(value);
       break;
     case 4:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setMovedAt(value);
       break;
     case 5:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setRemovedAt(value);
       break;
     default:
@@ -6401,9 +6401,9 @@ proto.api.JSONElement.Primitive.deserializeBinaryFromReader = function(msg, read
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.JSONElement.Primitive.prototype.serializeBinary = function() {
+proto.yorkie.v1.JSONElement.Primitive.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.JSONElement.Primitive.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.JSONElement.Primitive.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -6411,11 +6411,11 @@ proto.api.JSONElement.Primitive.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.JSONElement.Primitive} message
+ * @param {!proto.yorkie.v1.JSONElement.Primitive} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.JSONElement.Primitive.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.JSONElement.Primitive.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getType();
   if (f !== 0.0) {
@@ -6436,7 +6436,7 @@ proto.api.JSONElement.Primitive.serializeBinaryToWriter = function(message, writ
     writer.writeMessage(
       3,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getMovedAt();
@@ -6444,7 +6444,7 @@ proto.api.JSONElement.Primitive.serializeBinaryToWriter = function(message, writ
     writer.writeMessage(
       4,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getRemovedAt();
@@ -6452,7 +6452,7 @@ proto.api.JSONElement.Primitive.serializeBinaryToWriter = function(message, writ
     writer.writeMessage(
       5,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
 };
@@ -6460,18 +6460,18 @@ proto.api.JSONElement.Primitive.serializeBinaryToWriter = function(message, writ
 
 /**
  * optional ValueType type = 1;
- * @return {!proto.api.ValueType}
+ * @return {!proto.yorkie.v1.ValueType}
  */
-proto.api.JSONElement.Primitive.prototype.getType = function() {
-  return /** @type {!proto.api.ValueType} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+proto.yorkie.v1.JSONElement.Primitive.prototype.getType = function() {
+  return /** @type {!proto.yorkie.v1.ValueType} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
- * @param {!proto.api.ValueType} value
- * @return {!proto.api.JSONElement.Primitive} returns this
+ * @param {!proto.yorkie.v1.ValueType} value
+ * @return {!proto.yorkie.v1.JSONElement.Primitive} returns this
  */
-proto.api.JSONElement.Primitive.prototype.setType = function(value) {
+proto.yorkie.v1.JSONElement.Primitive.prototype.setType = function(value) {
   return jspb.Message.setProto3EnumField(this, 1, value);
 };
 
@@ -6480,7 +6480,7 @@ proto.api.JSONElement.Primitive.prototype.setType = function(value) {
  * optional bytes value = 2;
  * @return {string}
  */
-proto.api.JSONElement.Primitive.prototype.getValue = function() {
+proto.yorkie.v1.JSONElement.Primitive.prototype.getValue = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -6490,7 +6490,7 @@ proto.api.JSONElement.Primitive.prototype.getValue = function() {
  * This is a type-conversion wrapper around `getValue()`
  * @return {string}
  */
-proto.api.JSONElement.Primitive.prototype.getValue_asB64 = function() {
+proto.yorkie.v1.JSONElement.Primitive.prototype.getValue_asB64 = function() {
   return /** @type {string} */ (jspb.Message.bytesAsB64(
       this.getValue()));
 };
@@ -6503,7 +6503,7 @@ proto.api.JSONElement.Primitive.prototype.getValue_asB64 = function() {
  * This is a type-conversion wrapper around `getValue()`
  * @return {!Uint8Array}
  */
-proto.api.JSONElement.Primitive.prototype.getValue_asU8 = function() {
+proto.yorkie.v1.JSONElement.Primitive.prototype.getValue_asU8 = function() {
   return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
       this.getValue()));
 };
@@ -6511,37 +6511,37 @@ proto.api.JSONElement.Primitive.prototype.getValue_asU8 = function() {
 
 /**
  * @param {!(string|Uint8Array)} value
- * @return {!proto.api.JSONElement.Primitive} returns this
+ * @return {!proto.yorkie.v1.JSONElement.Primitive} returns this
  */
-proto.api.JSONElement.Primitive.prototype.setValue = function(value) {
+proto.yorkie.v1.JSONElement.Primitive.prototype.setValue = function(value) {
   return jspb.Message.setProto3BytesField(this, 2, value);
 };
 
 
 /**
  * optional TimeTicket created_at = 3;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.JSONElement.Primitive.prototype.getCreatedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 3));
+proto.yorkie.v1.JSONElement.Primitive.prototype.getCreatedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 3));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.JSONElement.Primitive} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.JSONElement.Primitive} returns this
 */
-proto.api.JSONElement.Primitive.prototype.setCreatedAt = function(value) {
+proto.yorkie.v1.JSONElement.Primitive.prototype.setCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElement.Primitive} returns this
+ * @return {!proto.yorkie.v1.JSONElement.Primitive} returns this
  */
-proto.api.JSONElement.Primitive.prototype.clearCreatedAt = function() {
+proto.yorkie.v1.JSONElement.Primitive.prototype.clearCreatedAt = function() {
   return this.setCreatedAt(undefined);
 };
 
@@ -6550,35 +6550,35 @@ proto.api.JSONElement.Primitive.prototype.clearCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElement.Primitive.prototype.hasCreatedAt = function() {
+proto.yorkie.v1.JSONElement.Primitive.prototype.hasCreatedAt = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
  * optional TimeTicket moved_at = 4;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.JSONElement.Primitive.prototype.getMovedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 4));
+proto.yorkie.v1.JSONElement.Primitive.prototype.getMovedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 4));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.JSONElement.Primitive} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.JSONElement.Primitive} returns this
 */
-proto.api.JSONElement.Primitive.prototype.setMovedAt = function(value) {
+proto.yorkie.v1.JSONElement.Primitive.prototype.setMovedAt = function(value) {
   return jspb.Message.setWrapperField(this, 4, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElement.Primitive} returns this
+ * @return {!proto.yorkie.v1.JSONElement.Primitive} returns this
  */
-proto.api.JSONElement.Primitive.prototype.clearMovedAt = function() {
+proto.yorkie.v1.JSONElement.Primitive.prototype.clearMovedAt = function() {
   return this.setMovedAt(undefined);
 };
 
@@ -6587,35 +6587,35 @@ proto.api.JSONElement.Primitive.prototype.clearMovedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElement.Primitive.prototype.hasMovedAt = function() {
+proto.yorkie.v1.JSONElement.Primitive.prototype.hasMovedAt = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
 
 /**
  * optional TimeTicket removed_at = 5;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.JSONElement.Primitive.prototype.getRemovedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 5));
+proto.yorkie.v1.JSONElement.Primitive.prototype.getRemovedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 5));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.JSONElement.Primitive} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.JSONElement.Primitive} returns this
 */
-proto.api.JSONElement.Primitive.prototype.setRemovedAt = function(value) {
+proto.yorkie.v1.JSONElement.Primitive.prototype.setRemovedAt = function(value) {
   return jspb.Message.setWrapperField(this, 5, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElement.Primitive} returns this
+ * @return {!proto.yorkie.v1.JSONElement.Primitive} returns this
  */
-proto.api.JSONElement.Primitive.prototype.clearRemovedAt = function() {
+proto.yorkie.v1.JSONElement.Primitive.prototype.clearRemovedAt = function() {
   return this.setRemovedAt(undefined);
 };
 
@@ -6624,7 +6624,7 @@ proto.api.JSONElement.Primitive.prototype.clearRemovedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElement.Primitive.prototype.hasRemovedAt = function() {
+proto.yorkie.v1.JSONElement.Primitive.prototype.hasRemovedAt = function() {
   return jspb.Message.getField(this, 5) != null;
 };
 
@@ -6635,7 +6635,7 @@ proto.api.JSONElement.Primitive.prototype.hasRemovedAt = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.api.JSONElement.Text.repeatedFields_ = [1];
+proto.yorkie.v1.JSONElement.Text.repeatedFields_ = [1];
 
 
 
@@ -6652,8 +6652,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.JSONElement.Text.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.JSONElement.Text.toObject(opt_includeInstance, this);
+proto.yorkie.v1.JSONElement.Text.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.JSONElement.Text.toObject(opt_includeInstance, this);
 };
 
 
@@ -6662,17 +6662,17 @@ proto.api.JSONElement.Text.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.JSONElement.Text} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.JSONElement.Text} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.JSONElement.Text.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.JSONElement.Text.toObject = function(includeInstance, msg) {
   var f, obj = {
     nodesList: jspb.Message.toObjectList(msg.getNodesList(),
-    proto.api.TextNode.toObject, includeInstance),
-    createdAt: (f = msg.getCreatedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    movedAt: (f = msg.getMovedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    removedAt: (f = msg.getRemovedAt()) && proto.api.TimeTicket.toObject(includeInstance, f)
+    proto.yorkie.v1.TextNode.toObject, includeInstance),
+    createdAt: (f = msg.getCreatedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    movedAt: (f = msg.getMovedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    removedAt: (f = msg.getRemovedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6686,23 +6686,23 @@ proto.api.JSONElement.Text.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.JSONElement.Text}
+ * @return {!proto.yorkie.v1.JSONElement.Text}
  */
-proto.api.JSONElement.Text.deserializeBinary = function(bytes) {
+proto.yorkie.v1.JSONElement.Text.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.JSONElement.Text;
-  return proto.api.JSONElement.Text.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.JSONElement.Text;
+  return proto.yorkie.v1.JSONElement.Text.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.JSONElement.Text} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.JSONElement.Text} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.JSONElement.Text}
+ * @return {!proto.yorkie.v1.JSONElement.Text}
  */
-proto.api.JSONElement.Text.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.JSONElement.Text.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -6710,23 +6710,23 @@ proto.api.JSONElement.Text.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.api.TextNode;
-      reader.readMessage(value,proto.api.TextNode.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TextNode;
+      reader.readMessage(value,proto.yorkie.v1.TextNode.deserializeBinaryFromReader);
       msg.addNodes(value);
       break;
     case 2:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setCreatedAt(value);
       break;
     case 3:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setMovedAt(value);
       break;
     case 4:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setRemovedAt(value);
       break;
     default:
@@ -6742,9 +6742,9 @@ proto.api.JSONElement.Text.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.JSONElement.Text.prototype.serializeBinary = function() {
+proto.yorkie.v1.JSONElement.Text.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.JSONElement.Text.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.JSONElement.Text.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -6752,18 +6752,18 @@ proto.api.JSONElement.Text.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.JSONElement.Text} message
+ * @param {!proto.yorkie.v1.JSONElement.Text} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.JSONElement.Text.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.JSONElement.Text.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getNodesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
       f,
-      proto.api.TextNode.serializeBinaryToWriter
+      proto.yorkie.v1.TextNode.serializeBinaryToWriter
     );
   }
   f = message.getCreatedAt();
@@ -6771,7 +6771,7 @@ proto.api.JSONElement.Text.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       2,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getMovedAt();
@@ -6779,7 +6779,7 @@ proto.api.JSONElement.Text.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       3,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getRemovedAt();
@@ -6787,7 +6787,7 @@ proto.api.JSONElement.Text.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       4,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
 };
@@ -6795,66 +6795,66 @@ proto.api.JSONElement.Text.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * repeated TextNode nodes = 1;
- * @return {!Array<!proto.api.TextNode>}
+ * @return {!Array<!proto.yorkie.v1.TextNode>}
  */
-proto.api.JSONElement.Text.prototype.getNodesList = function() {
-  return /** @type{!Array<!proto.api.TextNode>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.api.TextNode, 1));
+proto.yorkie.v1.JSONElement.Text.prototype.getNodesList = function() {
+  return /** @type{!Array<!proto.yorkie.v1.TextNode>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.yorkie.v1.TextNode, 1));
 };
 
 
 /**
- * @param {!Array<!proto.api.TextNode>} value
- * @return {!proto.api.JSONElement.Text} returns this
+ * @param {!Array<!proto.yorkie.v1.TextNode>} value
+ * @return {!proto.yorkie.v1.JSONElement.Text} returns this
 */
-proto.api.JSONElement.Text.prototype.setNodesList = function(value) {
+proto.yorkie.v1.JSONElement.Text.prototype.setNodesList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * @param {!proto.api.TextNode=} opt_value
+ * @param {!proto.yorkie.v1.TextNode=} opt_value
  * @param {number=} opt_index
- * @return {!proto.api.TextNode}
+ * @return {!proto.yorkie.v1.TextNode}
  */
-proto.api.JSONElement.Text.prototype.addNodes = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.api.TextNode, opt_index);
+proto.yorkie.v1.JSONElement.Text.prototype.addNodes = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.yorkie.v1.TextNode, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.api.JSONElement.Text} returns this
+ * @return {!proto.yorkie.v1.JSONElement.Text} returns this
  */
-proto.api.JSONElement.Text.prototype.clearNodesList = function() {
+proto.yorkie.v1.JSONElement.Text.prototype.clearNodesList = function() {
   return this.setNodesList([]);
 };
 
 
 /**
  * optional TimeTicket created_at = 2;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.JSONElement.Text.prototype.getCreatedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 2));
+proto.yorkie.v1.JSONElement.Text.prototype.getCreatedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 2));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.JSONElement.Text} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.JSONElement.Text} returns this
 */
-proto.api.JSONElement.Text.prototype.setCreatedAt = function(value) {
+proto.yorkie.v1.JSONElement.Text.prototype.setCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElement.Text} returns this
+ * @return {!proto.yorkie.v1.JSONElement.Text} returns this
  */
-proto.api.JSONElement.Text.prototype.clearCreatedAt = function() {
+proto.yorkie.v1.JSONElement.Text.prototype.clearCreatedAt = function() {
   return this.setCreatedAt(undefined);
 };
 
@@ -6863,35 +6863,35 @@ proto.api.JSONElement.Text.prototype.clearCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElement.Text.prototype.hasCreatedAt = function() {
+proto.yorkie.v1.JSONElement.Text.prototype.hasCreatedAt = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
  * optional TimeTicket moved_at = 3;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.JSONElement.Text.prototype.getMovedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 3));
+proto.yorkie.v1.JSONElement.Text.prototype.getMovedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 3));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.JSONElement.Text} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.JSONElement.Text} returns this
 */
-proto.api.JSONElement.Text.prototype.setMovedAt = function(value) {
+proto.yorkie.v1.JSONElement.Text.prototype.setMovedAt = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElement.Text} returns this
+ * @return {!proto.yorkie.v1.JSONElement.Text} returns this
  */
-proto.api.JSONElement.Text.prototype.clearMovedAt = function() {
+proto.yorkie.v1.JSONElement.Text.prototype.clearMovedAt = function() {
   return this.setMovedAt(undefined);
 };
 
@@ -6900,35 +6900,35 @@ proto.api.JSONElement.Text.prototype.clearMovedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElement.Text.prototype.hasMovedAt = function() {
+proto.yorkie.v1.JSONElement.Text.prototype.hasMovedAt = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
  * optional TimeTicket removed_at = 4;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.JSONElement.Text.prototype.getRemovedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 4));
+proto.yorkie.v1.JSONElement.Text.prototype.getRemovedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 4));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.JSONElement.Text} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.JSONElement.Text} returns this
 */
-proto.api.JSONElement.Text.prototype.setRemovedAt = function(value) {
+proto.yorkie.v1.JSONElement.Text.prototype.setRemovedAt = function(value) {
   return jspb.Message.setWrapperField(this, 4, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElement.Text} returns this
+ * @return {!proto.yorkie.v1.JSONElement.Text} returns this
  */
-proto.api.JSONElement.Text.prototype.clearRemovedAt = function() {
+proto.yorkie.v1.JSONElement.Text.prototype.clearRemovedAt = function() {
   return this.setRemovedAt(undefined);
 };
 
@@ -6937,7 +6937,7 @@ proto.api.JSONElement.Text.prototype.clearRemovedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElement.Text.prototype.hasRemovedAt = function() {
+proto.yorkie.v1.JSONElement.Text.prototype.hasRemovedAt = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
@@ -6948,7 +6948,7 @@ proto.api.JSONElement.Text.prototype.hasRemovedAt = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.api.JSONElement.RichText.repeatedFields_ = [1];
+proto.yorkie.v1.JSONElement.RichText.repeatedFields_ = [1];
 
 
 
@@ -6965,8 +6965,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.JSONElement.RichText.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.JSONElement.RichText.toObject(opt_includeInstance, this);
+proto.yorkie.v1.JSONElement.RichText.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.JSONElement.RichText.toObject(opt_includeInstance, this);
 };
 
 
@@ -6975,17 +6975,17 @@ proto.api.JSONElement.RichText.prototype.toObject = function(opt_includeInstance
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.JSONElement.RichText} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.JSONElement.RichText} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.JSONElement.RichText.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.JSONElement.RichText.toObject = function(includeInstance, msg) {
   var f, obj = {
     nodesList: jspb.Message.toObjectList(msg.getNodesList(),
-    proto.api.RichTextNode.toObject, includeInstance),
-    createdAt: (f = msg.getCreatedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    movedAt: (f = msg.getMovedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    removedAt: (f = msg.getRemovedAt()) && proto.api.TimeTicket.toObject(includeInstance, f)
+    proto.yorkie.v1.RichTextNode.toObject, includeInstance),
+    createdAt: (f = msg.getCreatedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    movedAt: (f = msg.getMovedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    removedAt: (f = msg.getRemovedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6999,23 +6999,23 @@ proto.api.JSONElement.RichText.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.JSONElement.RichText}
+ * @return {!proto.yorkie.v1.JSONElement.RichText}
  */
-proto.api.JSONElement.RichText.deserializeBinary = function(bytes) {
+proto.yorkie.v1.JSONElement.RichText.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.JSONElement.RichText;
-  return proto.api.JSONElement.RichText.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.JSONElement.RichText;
+  return proto.yorkie.v1.JSONElement.RichText.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.JSONElement.RichText} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.JSONElement.RichText} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.JSONElement.RichText}
+ * @return {!proto.yorkie.v1.JSONElement.RichText}
  */
-proto.api.JSONElement.RichText.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.JSONElement.RichText.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -7023,23 +7023,23 @@ proto.api.JSONElement.RichText.deserializeBinaryFromReader = function(msg, reade
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.api.RichTextNode;
-      reader.readMessage(value,proto.api.RichTextNode.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.RichTextNode;
+      reader.readMessage(value,proto.yorkie.v1.RichTextNode.deserializeBinaryFromReader);
       msg.addNodes(value);
       break;
     case 2:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setCreatedAt(value);
       break;
     case 3:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setMovedAt(value);
       break;
     case 4:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setRemovedAt(value);
       break;
     default:
@@ -7055,9 +7055,9 @@ proto.api.JSONElement.RichText.deserializeBinaryFromReader = function(msg, reade
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.JSONElement.RichText.prototype.serializeBinary = function() {
+proto.yorkie.v1.JSONElement.RichText.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.JSONElement.RichText.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.JSONElement.RichText.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -7065,18 +7065,18 @@ proto.api.JSONElement.RichText.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.JSONElement.RichText} message
+ * @param {!proto.yorkie.v1.JSONElement.RichText} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.JSONElement.RichText.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.JSONElement.RichText.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getNodesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
       f,
-      proto.api.RichTextNode.serializeBinaryToWriter
+      proto.yorkie.v1.RichTextNode.serializeBinaryToWriter
     );
   }
   f = message.getCreatedAt();
@@ -7084,7 +7084,7 @@ proto.api.JSONElement.RichText.serializeBinaryToWriter = function(message, write
     writer.writeMessage(
       2,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getMovedAt();
@@ -7092,7 +7092,7 @@ proto.api.JSONElement.RichText.serializeBinaryToWriter = function(message, write
     writer.writeMessage(
       3,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getRemovedAt();
@@ -7100,7 +7100,7 @@ proto.api.JSONElement.RichText.serializeBinaryToWriter = function(message, write
     writer.writeMessage(
       4,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
 };
@@ -7108,66 +7108,66 @@ proto.api.JSONElement.RichText.serializeBinaryToWriter = function(message, write
 
 /**
  * repeated RichTextNode nodes = 1;
- * @return {!Array<!proto.api.RichTextNode>}
+ * @return {!Array<!proto.yorkie.v1.RichTextNode>}
  */
-proto.api.JSONElement.RichText.prototype.getNodesList = function() {
-  return /** @type{!Array<!proto.api.RichTextNode>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.api.RichTextNode, 1));
+proto.yorkie.v1.JSONElement.RichText.prototype.getNodesList = function() {
+  return /** @type{!Array<!proto.yorkie.v1.RichTextNode>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.yorkie.v1.RichTextNode, 1));
 };
 
 
 /**
- * @param {!Array<!proto.api.RichTextNode>} value
- * @return {!proto.api.JSONElement.RichText} returns this
+ * @param {!Array<!proto.yorkie.v1.RichTextNode>} value
+ * @return {!proto.yorkie.v1.JSONElement.RichText} returns this
 */
-proto.api.JSONElement.RichText.prototype.setNodesList = function(value) {
+proto.yorkie.v1.JSONElement.RichText.prototype.setNodesList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * @param {!proto.api.RichTextNode=} opt_value
+ * @param {!proto.yorkie.v1.RichTextNode=} opt_value
  * @param {number=} opt_index
- * @return {!proto.api.RichTextNode}
+ * @return {!proto.yorkie.v1.RichTextNode}
  */
-proto.api.JSONElement.RichText.prototype.addNodes = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.api.RichTextNode, opt_index);
+proto.yorkie.v1.JSONElement.RichText.prototype.addNodes = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.yorkie.v1.RichTextNode, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.api.JSONElement.RichText} returns this
+ * @return {!proto.yorkie.v1.JSONElement.RichText} returns this
  */
-proto.api.JSONElement.RichText.prototype.clearNodesList = function() {
+proto.yorkie.v1.JSONElement.RichText.prototype.clearNodesList = function() {
   return this.setNodesList([]);
 };
 
 
 /**
  * optional TimeTicket created_at = 2;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.JSONElement.RichText.prototype.getCreatedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 2));
+proto.yorkie.v1.JSONElement.RichText.prototype.getCreatedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 2));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.JSONElement.RichText} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.JSONElement.RichText} returns this
 */
-proto.api.JSONElement.RichText.prototype.setCreatedAt = function(value) {
+proto.yorkie.v1.JSONElement.RichText.prototype.setCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElement.RichText} returns this
+ * @return {!proto.yorkie.v1.JSONElement.RichText} returns this
  */
-proto.api.JSONElement.RichText.prototype.clearCreatedAt = function() {
+proto.yorkie.v1.JSONElement.RichText.prototype.clearCreatedAt = function() {
   return this.setCreatedAt(undefined);
 };
 
@@ -7176,35 +7176,35 @@ proto.api.JSONElement.RichText.prototype.clearCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElement.RichText.prototype.hasCreatedAt = function() {
+proto.yorkie.v1.JSONElement.RichText.prototype.hasCreatedAt = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
  * optional TimeTicket moved_at = 3;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.JSONElement.RichText.prototype.getMovedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 3));
+proto.yorkie.v1.JSONElement.RichText.prototype.getMovedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 3));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.JSONElement.RichText} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.JSONElement.RichText} returns this
 */
-proto.api.JSONElement.RichText.prototype.setMovedAt = function(value) {
+proto.yorkie.v1.JSONElement.RichText.prototype.setMovedAt = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElement.RichText} returns this
+ * @return {!proto.yorkie.v1.JSONElement.RichText} returns this
  */
-proto.api.JSONElement.RichText.prototype.clearMovedAt = function() {
+proto.yorkie.v1.JSONElement.RichText.prototype.clearMovedAt = function() {
   return this.setMovedAt(undefined);
 };
 
@@ -7213,35 +7213,35 @@ proto.api.JSONElement.RichText.prototype.clearMovedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElement.RichText.prototype.hasMovedAt = function() {
+proto.yorkie.v1.JSONElement.RichText.prototype.hasMovedAt = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
  * optional TimeTicket removed_at = 4;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.JSONElement.RichText.prototype.getRemovedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 4));
+proto.yorkie.v1.JSONElement.RichText.prototype.getRemovedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 4));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.JSONElement.RichText} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.JSONElement.RichText} returns this
 */
-proto.api.JSONElement.RichText.prototype.setRemovedAt = function(value) {
+proto.yorkie.v1.JSONElement.RichText.prototype.setRemovedAt = function(value) {
   return jspb.Message.setWrapperField(this, 4, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElement.RichText} returns this
+ * @return {!proto.yorkie.v1.JSONElement.RichText} returns this
  */
-proto.api.JSONElement.RichText.prototype.clearRemovedAt = function() {
+proto.yorkie.v1.JSONElement.RichText.prototype.clearRemovedAt = function() {
   return this.setRemovedAt(undefined);
 };
 
@@ -7250,7 +7250,7 @@ proto.api.JSONElement.RichText.prototype.clearRemovedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElement.RichText.prototype.hasRemovedAt = function() {
+proto.yorkie.v1.JSONElement.RichText.prototype.hasRemovedAt = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
@@ -7271,8 +7271,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.JSONElement.Counter.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.JSONElement.Counter.toObject(opt_includeInstance, this);
+proto.yorkie.v1.JSONElement.Counter.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.JSONElement.Counter.toObject(opt_includeInstance, this);
 };
 
 
@@ -7281,17 +7281,17 @@ proto.api.JSONElement.Counter.prototype.toObject = function(opt_includeInstance)
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.JSONElement.Counter} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.JSONElement.Counter} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.JSONElement.Counter.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.JSONElement.Counter.toObject = function(includeInstance, msg) {
   var f, obj = {
     type: jspb.Message.getFieldWithDefault(msg, 1, 0),
     value: msg.getValue_asB64(),
-    createdAt: (f = msg.getCreatedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    movedAt: (f = msg.getMovedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    removedAt: (f = msg.getRemovedAt()) && proto.api.TimeTicket.toObject(includeInstance, f)
+    createdAt: (f = msg.getCreatedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    movedAt: (f = msg.getMovedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    removedAt: (f = msg.getRemovedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -7305,23 +7305,23 @@ proto.api.JSONElement.Counter.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.JSONElement.Counter}
+ * @return {!proto.yorkie.v1.JSONElement.Counter}
  */
-proto.api.JSONElement.Counter.deserializeBinary = function(bytes) {
+proto.yorkie.v1.JSONElement.Counter.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.JSONElement.Counter;
-  return proto.api.JSONElement.Counter.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.JSONElement.Counter;
+  return proto.yorkie.v1.JSONElement.Counter.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.JSONElement.Counter} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.JSONElement.Counter} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.JSONElement.Counter}
+ * @return {!proto.yorkie.v1.JSONElement.Counter}
  */
-proto.api.JSONElement.Counter.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.JSONElement.Counter.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -7329,7 +7329,7 @@ proto.api.JSONElement.Counter.deserializeBinaryFromReader = function(msg, reader
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {!proto.api.ValueType} */ (reader.readEnum());
+      var value = /** @type {!proto.yorkie.v1.ValueType} */ (reader.readEnum());
       msg.setType(value);
       break;
     case 2:
@@ -7337,18 +7337,18 @@ proto.api.JSONElement.Counter.deserializeBinaryFromReader = function(msg, reader
       msg.setValue(value);
       break;
     case 3:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setCreatedAt(value);
       break;
     case 4:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setMovedAt(value);
       break;
     case 5:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setRemovedAt(value);
       break;
     default:
@@ -7364,9 +7364,9 @@ proto.api.JSONElement.Counter.deserializeBinaryFromReader = function(msg, reader
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.JSONElement.Counter.prototype.serializeBinary = function() {
+proto.yorkie.v1.JSONElement.Counter.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.JSONElement.Counter.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.JSONElement.Counter.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -7374,11 +7374,11 @@ proto.api.JSONElement.Counter.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.JSONElement.Counter} message
+ * @param {!proto.yorkie.v1.JSONElement.Counter} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.JSONElement.Counter.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.JSONElement.Counter.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getType();
   if (f !== 0.0) {
@@ -7399,7 +7399,7 @@ proto.api.JSONElement.Counter.serializeBinaryToWriter = function(message, writer
     writer.writeMessage(
       3,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getMovedAt();
@@ -7407,7 +7407,7 @@ proto.api.JSONElement.Counter.serializeBinaryToWriter = function(message, writer
     writer.writeMessage(
       4,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getRemovedAt();
@@ -7415,7 +7415,7 @@ proto.api.JSONElement.Counter.serializeBinaryToWriter = function(message, writer
     writer.writeMessage(
       5,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
 };
@@ -7423,18 +7423,18 @@ proto.api.JSONElement.Counter.serializeBinaryToWriter = function(message, writer
 
 /**
  * optional ValueType type = 1;
- * @return {!proto.api.ValueType}
+ * @return {!proto.yorkie.v1.ValueType}
  */
-proto.api.JSONElement.Counter.prototype.getType = function() {
-  return /** @type {!proto.api.ValueType} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+proto.yorkie.v1.JSONElement.Counter.prototype.getType = function() {
+  return /** @type {!proto.yorkie.v1.ValueType} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
- * @param {!proto.api.ValueType} value
- * @return {!proto.api.JSONElement.Counter} returns this
+ * @param {!proto.yorkie.v1.ValueType} value
+ * @return {!proto.yorkie.v1.JSONElement.Counter} returns this
  */
-proto.api.JSONElement.Counter.prototype.setType = function(value) {
+proto.yorkie.v1.JSONElement.Counter.prototype.setType = function(value) {
   return jspb.Message.setProto3EnumField(this, 1, value);
 };
 
@@ -7443,7 +7443,7 @@ proto.api.JSONElement.Counter.prototype.setType = function(value) {
  * optional bytes value = 2;
  * @return {string}
  */
-proto.api.JSONElement.Counter.prototype.getValue = function() {
+proto.yorkie.v1.JSONElement.Counter.prototype.getValue = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -7453,7 +7453,7 @@ proto.api.JSONElement.Counter.prototype.getValue = function() {
  * This is a type-conversion wrapper around `getValue()`
  * @return {string}
  */
-proto.api.JSONElement.Counter.prototype.getValue_asB64 = function() {
+proto.yorkie.v1.JSONElement.Counter.prototype.getValue_asB64 = function() {
   return /** @type {string} */ (jspb.Message.bytesAsB64(
       this.getValue()));
 };
@@ -7466,7 +7466,7 @@ proto.api.JSONElement.Counter.prototype.getValue_asB64 = function() {
  * This is a type-conversion wrapper around `getValue()`
  * @return {!Uint8Array}
  */
-proto.api.JSONElement.Counter.prototype.getValue_asU8 = function() {
+proto.yorkie.v1.JSONElement.Counter.prototype.getValue_asU8 = function() {
   return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
       this.getValue()));
 };
@@ -7474,37 +7474,37 @@ proto.api.JSONElement.Counter.prototype.getValue_asU8 = function() {
 
 /**
  * @param {!(string|Uint8Array)} value
- * @return {!proto.api.JSONElement.Counter} returns this
+ * @return {!proto.yorkie.v1.JSONElement.Counter} returns this
  */
-proto.api.JSONElement.Counter.prototype.setValue = function(value) {
+proto.yorkie.v1.JSONElement.Counter.prototype.setValue = function(value) {
   return jspb.Message.setProto3BytesField(this, 2, value);
 };
 
 
 /**
  * optional TimeTicket created_at = 3;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.JSONElement.Counter.prototype.getCreatedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 3));
+proto.yorkie.v1.JSONElement.Counter.prototype.getCreatedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 3));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.JSONElement.Counter} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.JSONElement.Counter} returns this
 */
-proto.api.JSONElement.Counter.prototype.setCreatedAt = function(value) {
+proto.yorkie.v1.JSONElement.Counter.prototype.setCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElement.Counter} returns this
+ * @return {!proto.yorkie.v1.JSONElement.Counter} returns this
  */
-proto.api.JSONElement.Counter.prototype.clearCreatedAt = function() {
+proto.yorkie.v1.JSONElement.Counter.prototype.clearCreatedAt = function() {
   return this.setCreatedAt(undefined);
 };
 
@@ -7513,35 +7513,35 @@ proto.api.JSONElement.Counter.prototype.clearCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElement.Counter.prototype.hasCreatedAt = function() {
+proto.yorkie.v1.JSONElement.Counter.prototype.hasCreatedAt = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
  * optional TimeTicket moved_at = 4;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.JSONElement.Counter.prototype.getMovedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 4));
+proto.yorkie.v1.JSONElement.Counter.prototype.getMovedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 4));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.JSONElement.Counter} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.JSONElement.Counter} returns this
 */
-proto.api.JSONElement.Counter.prototype.setMovedAt = function(value) {
+proto.yorkie.v1.JSONElement.Counter.prototype.setMovedAt = function(value) {
   return jspb.Message.setWrapperField(this, 4, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElement.Counter} returns this
+ * @return {!proto.yorkie.v1.JSONElement.Counter} returns this
  */
-proto.api.JSONElement.Counter.prototype.clearMovedAt = function() {
+proto.yorkie.v1.JSONElement.Counter.prototype.clearMovedAt = function() {
   return this.setMovedAt(undefined);
 };
 
@@ -7550,35 +7550,35 @@ proto.api.JSONElement.Counter.prototype.clearMovedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElement.Counter.prototype.hasMovedAt = function() {
+proto.yorkie.v1.JSONElement.Counter.prototype.hasMovedAt = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
 
 /**
  * optional TimeTicket removed_at = 5;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.JSONElement.Counter.prototype.getRemovedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 5));
+proto.yorkie.v1.JSONElement.Counter.prototype.getRemovedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 5));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.JSONElement.Counter} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.JSONElement.Counter} returns this
 */
-proto.api.JSONElement.Counter.prototype.setRemovedAt = function(value) {
+proto.yorkie.v1.JSONElement.Counter.prototype.setRemovedAt = function(value) {
   return jspb.Message.setWrapperField(this, 5, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElement.Counter} returns this
+ * @return {!proto.yorkie.v1.JSONElement.Counter} returns this
  */
-proto.api.JSONElement.Counter.prototype.clearRemovedAt = function() {
+proto.yorkie.v1.JSONElement.Counter.prototype.clearRemovedAt = function() {
   return this.setRemovedAt(undefined);
 };
 
@@ -7587,35 +7587,35 @@ proto.api.JSONElement.Counter.prototype.clearRemovedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElement.Counter.prototype.hasRemovedAt = function() {
+proto.yorkie.v1.JSONElement.Counter.prototype.hasRemovedAt = function() {
   return jspb.Message.getField(this, 5) != null;
 };
 
 
 /**
  * optional JSONObject json_object = 1;
- * @return {?proto.api.JSONElement.JSONObject}
+ * @return {?proto.yorkie.v1.JSONElement.JSONObject}
  */
-proto.api.JSONElement.prototype.getJsonObject = function() {
-  return /** @type{?proto.api.JSONElement.JSONObject} */ (
-    jspb.Message.getWrapperField(this, proto.api.JSONElement.JSONObject, 1));
+proto.yorkie.v1.JSONElement.prototype.getJsonObject = function() {
+  return /** @type{?proto.yorkie.v1.JSONElement.JSONObject} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.JSONElement.JSONObject, 1));
 };
 
 
 /**
- * @param {?proto.api.JSONElement.JSONObject|undefined} value
- * @return {!proto.api.JSONElement} returns this
+ * @param {?proto.yorkie.v1.JSONElement.JSONObject|undefined} value
+ * @return {!proto.yorkie.v1.JSONElement} returns this
 */
-proto.api.JSONElement.prototype.setJsonObject = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 1, proto.api.JSONElement.oneofGroups_[0], value);
+proto.yorkie.v1.JSONElement.prototype.setJsonObject = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 1, proto.yorkie.v1.JSONElement.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElement} returns this
+ * @return {!proto.yorkie.v1.JSONElement} returns this
  */
-proto.api.JSONElement.prototype.clearJsonObject = function() {
+proto.yorkie.v1.JSONElement.prototype.clearJsonObject = function() {
   return this.setJsonObject(undefined);
 };
 
@@ -7624,35 +7624,35 @@ proto.api.JSONElement.prototype.clearJsonObject = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElement.prototype.hasJsonObject = function() {
+proto.yorkie.v1.JSONElement.prototype.hasJsonObject = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
  * optional JSONArray json_array = 2;
- * @return {?proto.api.JSONElement.JSONArray}
+ * @return {?proto.yorkie.v1.JSONElement.JSONArray}
  */
-proto.api.JSONElement.prototype.getJsonArray = function() {
-  return /** @type{?proto.api.JSONElement.JSONArray} */ (
-    jspb.Message.getWrapperField(this, proto.api.JSONElement.JSONArray, 2));
+proto.yorkie.v1.JSONElement.prototype.getJsonArray = function() {
+  return /** @type{?proto.yorkie.v1.JSONElement.JSONArray} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.JSONElement.JSONArray, 2));
 };
 
 
 /**
- * @param {?proto.api.JSONElement.JSONArray|undefined} value
- * @return {!proto.api.JSONElement} returns this
+ * @param {?proto.yorkie.v1.JSONElement.JSONArray|undefined} value
+ * @return {!proto.yorkie.v1.JSONElement} returns this
 */
-proto.api.JSONElement.prototype.setJsonArray = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 2, proto.api.JSONElement.oneofGroups_[0], value);
+proto.yorkie.v1.JSONElement.prototype.setJsonArray = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 2, proto.yorkie.v1.JSONElement.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElement} returns this
+ * @return {!proto.yorkie.v1.JSONElement} returns this
  */
-proto.api.JSONElement.prototype.clearJsonArray = function() {
+proto.yorkie.v1.JSONElement.prototype.clearJsonArray = function() {
   return this.setJsonArray(undefined);
 };
 
@@ -7661,35 +7661,35 @@ proto.api.JSONElement.prototype.clearJsonArray = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElement.prototype.hasJsonArray = function() {
+proto.yorkie.v1.JSONElement.prototype.hasJsonArray = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
  * optional Primitive primitive = 3;
- * @return {?proto.api.JSONElement.Primitive}
+ * @return {?proto.yorkie.v1.JSONElement.Primitive}
  */
-proto.api.JSONElement.prototype.getPrimitive = function() {
-  return /** @type{?proto.api.JSONElement.Primitive} */ (
-    jspb.Message.getWrapperField(this, proto.api.JSONElement.Primitive, 3));
+proto.yorkie.v1.JSONElement.prototype.getPrimitive = function() {
+  return /** @type{?proto.yorkie.v1.JSONElement.Primitive} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.JSONElement.Primitive, 3));
 };
 
 
 /**
- * @param {?proto.api.JSONElement.Primitive|undefined} value
- * @return {!proto.api.JSONElement} returns this
+ * @param {?proto.yorkie.v1.JSONElement.Primitive|undefined} value
+ * @return {!proto.yorkie.v1.JSONElement} returns this
 */
-proto.api.JSONElement.prototype.setPrimitive = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 3, proto.api.JSONElement.oneofGroups_[0], value);
+proto.yorkie.v1.JSONElement.prototype.setPrimitive = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 3, proto.yorkie.v1.JSONElement.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElement} returns this
+ * @return {!proto.yorkie.v1.JSONElement} returns this
  */
-proto.api.JSONElement.prototype.clearPrimitive = function() {
+proto.yorkie.v1.JSONElement.prototype.clearPrimitive = function() {
   return this.setPrimitive(undefined);
 };
 
@@ -7698,35 +7698,35 @@ proto.api.JSONElement.prototype.clearPrimitive = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElement.prototype.hasPrimitive = function() {
+proto.yorkie.v1.JSONElement.prototype.hasPrimitive = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
  * optional Text text = 4;
- * @return {?proto.api.JSONElement.Text}
+ * @return {?proto.yorkie.v1.JSONElement.Text}
  */
-proto.api.JSONElement.prototype.getText = function() {
-  return /** @type{?proto.api.JSONElement.Text} */ (
-    jspb.Message.getWrapperField(this, proto.api.JSONElement.Text, 4));
+proto.yorkie.v1.JSONElement.prototype.getText = function() {
+  return /** @type{?proto.yorkie.v1.JSONElement.Text} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.JSONElement.Text, 4));
 };
 
 
 /**
- * @param {?proto.api.JSONElement.Text|undefined} value
- * @return {!proto.api.JSONElement} returns this
+ * @param {?proto.yorkie.v1.JSONElement.Text|undefined} value
+ * @return {!proto.yorkie.v1.JSONElement} returns this
 */
-proto.api.JSONElement.prototype.setText = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 4, proto.api.JSONElement.oneofGroups_[0], value);
+proto.yorkie.v1.JSONElement.prototype.setText = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 4, proto.yorkie.v1.JSONElement.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElement} returns this
+ * @return {!proto.yorkie.v1.JSONElement} returns this
  */
-proto.api.JSONElement.prototype.clearText = function() {
+proto.yorkie.v1.JSONElement.prototype.clearText = function() {
   return this.setText(undefined);
 };
 
@@ -7735,35 +7735,35 @@ proto.api.JSONElement.prototype.clearText = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElement.prototype.hasText = function() {
+proto.yorkie.v1.JSONElement.prototype.hasText = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
 
 /**
  * optional RichText rich_text = 5;
- * @return {?proto.api.JSONElement.RichText}
+ * @return {?proto.yorkie.v1.JSONElement.RichText}
  */
-proto.api.JSONElement.prototype.getRichText = function() {
-  return /** @type{?proto.api.JSONElement.RichText} */ (
-    jspb.Message.getWrapperField(this, proto.api.JSONElement.RichText, 5));
+proto.yorkie.v1.JSONElement.prototype.getRichText = function() {
+  return /** @type{?proto.yorkie.v1.JSONElement.RichText} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.JSONElement.RichText, 5));
 };
 
 
 /**
- * @param {?proto.api.JSONElement.RichText|undefined} value
- * @return {!proto.api.JSONElement} returns this
+ * @param {?proto.yorkie.v1.JSONElement.RichText|undefined} value
+ * @return {!proto.yorkie.v1.JSONElement} returns this
 */
-proto.api.JSONElement.prototype.setRichText = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 5, proto.api.JSONElement.oneofGroups_[0], value);
+proto.yorkie.v1.JSONElement.prototype.setRichText = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 5, proto.yorkie.v1.JSONElement.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElement} returns this
+ * @return {!proto.yorkie.v1.JSONElement} returns this
  */
-proto.api.JSONElement.prototype.clearRichText = function() {
+proto.yorkie.v1.JSONElement.prototype.clearRichText = function() {
   return this.setRichText(undefined);
 };
 
@@ -7772,35 +7772,35 @@ proto.api.JSONElement.prototype.clearRichText = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElement.prototype.hasRichText = function() {
+proto.yorkie.v1.JSONElement.prototype.hasRichText = function() {
   return jspb.Message.getField(this, 5) != null;
 };
 
 
 /**
  * optional Counter counter = 6;
- * @return {?proto.api.JSONElement.Counter}
+ * @return {?proto.yorkie.v1.JSONElement.Counter}
  */
-proto.api.JSONElement.prototype.getCounter = function() {
-  return /** @type{?proto.api.JSONElement.Counter} */ (
-    jspb.Message.getWrapperField(this, proto.api.JSONElement.Counter, 6));
+proto.yorkie.v1.JSONElement.prototype.getCounter = function() {
+  return /** @type{?proto.yorkie.v1.JSONElement.Counter} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.JSONElement.Counter, 6));
 };
 
 
 /**
- * @param {?proto.api.JSONElement.Counter|undefined} value
- * @return {!proto.api.JSONElement} returns this
+ * @param {?proto.yorkie.v1.JSONElement.Counter|undefined} value
+ * @return {!proto.yorkie.v1.JSONElement} returns this
 */
-proto.api.JSONElement.prototype.setCounter = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 6, proto.api.JSONElement.oneofGroups_[0], value);
+proto.yorkie.v1.JSONElement.prototype.setCounter = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 6, proto.yorkie.v1.JSONElement.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.JSONElement} returns this
+ * @return {!proto.yorkie.v1.JSONElement} returns this
  */
-proto.api.JSONElement.prototype.clearCounter = function() {
+proto.yorkie.v1.JSONElement.prototype.clearCounter = function() {
   return this.setCounter(undefined);
 };
 
@@ -7809,7 +7809,7 @@ proto.api.JSONElement.prototype.clearCounter = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.JSONElement.prototype.hasCounter = function() {
+proto.yorkie.v1.JSONElement.prototype.hasCounter = function() {
   return jspb.Message.getField(this, 6) != null;
 };
 
@@ -7830,8 +7830,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.RHTNode.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.RHTNode.toObject(opt_includeInstance, this);
+proto.yorkie.v1.RHTNode.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.RHTNode.toObject(opt_includeInstance, this);
 };
 
 
@@ -7840,14 +7840,14 @@ proto.api.RHTNode.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.RHTNode} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.RHTNode} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.RHTNode.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.RHTNode.toObject = function(includeInstance, msg) {
   var f, obj = {
     key: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    element: (f = msg.getElement()) && proto.api.JSONElement.toObject(includeInstance, f)
+    element: (f = msg.getElement()) && proto.yorkie.v1.JSONElement.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -7861,23 +7861,23 @@ proto.api.RHTNode.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.RHTNode}
+ * @return {!proto.yorkie.v1.RHTNode}
  */
-proto.api.RHTNode.deserializeBinary = function(bytes) {
+proto.yorkie.v1.RHTNode.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.RHTNode;
-  return proto.api.RHTNode.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.RHTNode;
+  return proto.yorkie.v1.RHTNode.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.RHTNode} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.RHTNode} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.RHTNode}
+ * @return {!proto.yorkie.v1.RHTNode}
  */
-proto.api.RHTNode.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.RHTNode.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -7889,8 +7889,8 @@ proto.api.RHTNode.deserializeBinaryFromReader = function(msg, reader) {
       msg.setKey(value);
       break;
     case 2:
-      var value = new proto.api.JSONElement;
-      reader.readMessage(value,proto.api.JSONElement.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.JSONElement;
+      reader.readMessage(value,proto.yorkie.v1.JSONElement.deserializeBinaryFromReader);
       msg.setElement(value);
       break;
     default:
@@ -7906,9 +7906,9 @@ proto.api.RHTNode.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.RHTNode.prototype.serializeBinary = function() {
+proto.yorkie.v1.RHTNode.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.RHTNode.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.RHTNode.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -7916,11 +7916,11 @@ proto.api.RHTNode.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.RHTNode} message
+ * @param {!proto.yorkie.v1.RHTNode} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.RHTNode.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.RHTNode.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getKey();
   if (f.length > 0) {
@@ -7934,7 +7934,7 @@ proto.api.RHTNode.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       2,
       f,
-      proto.api.JSONElement.serializeBinaryToWriter
+      proto.yorkie.v1.JSONElement.serializeBinaryToWriter
     );
   }
 };
@@ -7944,44 +7944,44 @@ proto.api.RHTNode.serializeBinaryToWriter = function(message, writer) {
  * optional string key = 1;
  * @return {string}
  */
-proto.api.RHTNode.prototype.getKey = function() {
+proto.yorkie.v1.RHTNode.prototype.getKey = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.api.RHTNode} returns this
+ * @return {!proto.yorkie.v1.RHTNode} returns this
  */
-proto.api.RHTNode.prototype.setKey = function(value) {
+proto.yorkie.v1.RHTNode.prototype.setKey = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
  * optional JSONElement element = 2;
- * @return {?proto.api.JSONElement}
+ * @return {?proto.yorkie.v1.JSONElement}
  */
-proto.api.RHTNode.prototype.getElement = function() {
-  return /** @type{?proto.api.JSONElement} */ (
-    jspb.Message.getWrapperField(this, proto.api.JSONElement, 2));
+proto.yorkie.v1.RHTNode.prototype.getElement = function() {
+  return /** @type{?proto.yorkie.v1.JSONElement} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.JSONElement, 2));
 };
 
 
 /**
- * @param {?proto.api.JSONElement|undefined} value
- * @return {!proto.api.RHTNode} returns this
+ * @param {?proto.yorkie.v1.JSONElement|undefined} value
+ * @return {!proto.yorkie.v1.RHTNode} returns this
 */
-proto.api.RHTNode.prototype.setElement = function(value) {
+proto.yorkie.v1.RHTNode.prototype.setElement = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.RHTNode} returns this
+ * @return {!proto.yorkie.v1.RHTNode} returns this
  */
-proto.api.RHTNode.prototype.clearElement = function() {
+proto.yorkie.v1.RHTNode.prototype.clearElement = function() {
   return this.setElement(undefined);
 };
 
@@ -7990,7 +7990,7 @@ proto.api.RHTNode.prototype.clearElement = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.RHTNode.prototype.hasElement = function() {
+proto.yorkie.v1.RHTNode.prototype.hasElement = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -8011,8 +8011,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.RGANode.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.RGANode.toObject(opt_includeInstance, this);
+proto.yorkie.v1.RGANode.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.RGANode.toObject(opt_includeInstance, this);
 };
 
 
@@ -8021,14 +8021,14 @@ proto.api.RGANode.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.RGANode} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.RGANode} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.RGANode.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.RGANode.toObject = function(includeInstance, msg) {
   var f, obj = {
-    next: (f = msg.getNext()) && proto.api.RGANode.toObject(includeInstance, f),
-    element: (f = msg.getElement()) && proto.api.JSONElement.toObject(includeInstance, f)
+    next: (f = msg.getNext()) && proto.yorkie.v1.RGANode.toObject(includeInstance, f),
+    element: (f = msg.getElement()) && proto.yorkie.v1.JSONElement.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -8042,23 +8042,23 @@ proto.api.RGANode.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.RGANode}
+ * @return {!proto.yorkie.v1.RGANode}
  */
-proto.api.RGANode.deserializeBinary = function(bytes) {
+proto.yorkie.v1.RGANode.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.RGANode;
-  return proto.api.RGANode.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.RGANode;
+  return proto.yorkie.v1.RGANode.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.RGANode} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.RGANode} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.RGANode}
+ * @return {!proto.yorkie.v1.RGANode}
  */
-proto.api.RGANode.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.RGANode.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -8066,13 +8066,13 @@ proto.api.RGANode.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.api.RGANode;
-      reader.readMessage(value,proto.api.RGANode.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.RGANode;
+      reader.readMessage(value,proto.yorkie.v1.RGANode.deserializeBinaryFromReader);
       msg.setNext(value);
       break;
     case 2:
-      var value = new proto.api.JSONElement;
-      reader.readMessage(value,proto.api.JSONElement.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.JSONElement;
+      reader.readMessage(value,proto.yorkie.v1.JSONElement.deserializeBinaryFromReader);
       msg.setElement(value);
       break;
     default:
@@ -8088,9 +8088,9 @@ proto.api.RGANode.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.RGANode.prototype.serializeBinary = function() {
+proto.yorkie.v1.RGANode.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.RGANode.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.RGANode.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -8098,18 +8098,18 @@ proto.api.RGANode.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.RGANode} message
+ * @param {!proto.yorkie.v1.RGANode} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.RGANode.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.RGANode.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getNext();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.api.RGANode.serializeBinaryToWriter
+      proto.yorkie.v1.RGANode.serializeBinaryToWriter
     );
   }
   f = message.getElement();
@@ -8117,7 +8117,7 @@ proto.api.RGANode.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       2,
       f,
-      proto.api.JSONElement.serializeBinaryToWriter
+      proto.yorkie.v1.JSONElement.serializeBinaryToWriter
     );
   }
 };
@@ -8125,28 +8125,28 @@ proto.api.RGANode.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * optional RGANode next = 1;
- * @return {?proto.api.RGANode}
+ * @return {?proto.yorkie.v1.RGANode}
  */
-proto.api.RGANode.prototype.getNext = function() {
-  return /** @type{?proto.api.RGANode} */ (
-    jspb.Message.getWrapperField(this, proto.api.RGANode, 1));
+proto.yorkie.v1.RGANode.prototype.getNext = function() {
+  return /** @type{?proto.yorkie.v1.RGANode} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.RGANode, 1));
 };
 
 
 /**
- * @param {?proto.api.RGANode|undefined} value
- * @return {!proto.api.RGANode} returns this
+ * @param {?proto.yorkie.v1.RGANode|undefined} value
+ * @return {!proto.yorkie.v1.RGANode} returns this
 */
-proto.api.RGANode.prototype.setNext = function(value) {
+proto.yorkie.v1.RGANode.prototype.setNext = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.RGANode} returns this
+ * @return {!proto.yorkie.v1.RGANode} returns this
  */
-proto.api.RGANode.prototype.clearNext = function() {
+proto.yorkie.v1.RGANode.prototype.clearNext = function() {
   return this.setNext(undefined);
 };
 
@@ -8155,35 +8155,35 @@ proto.api.RGANode.prototype.clearNext = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.RGANode.prototype.hasNext = function() {
+proto.yorkie.v1.RGANode.prototype.hasNext = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
  * optional JSONElement element = 2;
- * @return {?proto.api.JSONElement}
+ * @return {?proto.yorkie.v1.JSONElement}
  */
-proto.api.RGANode.prototype.getElement = function() {
-  return /** @type{?proto.api.JSONElement} */ (
-    jspb.Message.getWrapperField(this, proto.api.JSONElement, 2));
+proto.yorkie.v1.RGANode.prototype.getElement = function() {
+  return /** @type{?proto.yorkie.v1.JSONElement} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.JSONElement, 2));
 };
 
 
 /**
- * @param {?proto.api.JSONElement|undefined} value
- * @return {!proto.api.RGANode} returns this
+ * @param {?proto.yorkie.v1.JSONElement|undefined} value
+ * @return {!proto.yorkie.v1.RGANode} returns this
 */
-proto.api.RGANode.prototype.setElement = function(value) {
+proto.yorkie.v1.RGANode.prototype.setElement = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.RGANode} returns this
+ * @return {!proto.yorkie.v1.RGANode} returns this
  */
-proto.api.RGANode.prototype.clearElement = function() {
+proto.yorkie.v1.RGANode.prototype.clearElement = function() {
   return this.setElement(undefined);
 };
 
@@ -8192,7 +8192,7 @@ proto.api.RGANode.prototype.clearElement = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.RGANode.prototype.hasElement = function() {
+proto.yorkie.v1.RGANode.prototype.hasElement = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -8213,8 +8213,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.TextNode.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.TextNode.toObject(opt_includeInstance, this);
+proto.yorkie.v1.TextNode.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.TextNode.toObject(opt_includeInstance, this);
 };
 
 
@@ -8223,16 +8223,16 @@ proto.api.TextNode.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.TextNode} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.TextNode} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.TextNode.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.TextNode.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: (f = msg.getId()) && proto.api.TextNodeID.toObject(includeInstance, f),
+    id: (f = msg.getId()) && proto.yorkie.v1.TextNodeID.toObject(includeInstance, f),
     value: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    removedAt: (f = msg.getRemovedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    insPrevId: (f = msg.getInsPrevId()) && proto.api.TextNodeID.toObject(includeInstance, f)
+    removedAt: (f = msg.getRemovedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    insPrevId: (f = msg.getInsPrevId()) && proto.yorkie.v1.TextNodeID.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -8246,23 +8246,23 @@ proto.api.TextNode.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.TextNode}
+ * @return {!proto.yorkie.v1.TextNode}
  */
-proto.api.TextNode.deserializeBinary = function(bytes) {
+proto.yorkie.v1.TextNode.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.TextNode;
-  return proto.api.TextNode.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.TextNode;
+  return proto.yorkie.v1.TextNode.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.TextNode} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.TextNode} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.TextNode}
+ * @return {!proto.yorkie.v1.TextNode}
  */
-proto.api.TextNode.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.TextNode.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -8270,8 +8270,8 @@ proto.api.TextNode.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.api.TextNodeID;
-      reader.readMessage(value,proto.api.TextNodeID.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TextNodeID;
+      reader.readMessage(value,proto.yorkie.v1.TextNodeID.deserializeBinaryFromReader);
       msg.setId(value);
       break;
     case 2:
@@ -8279,13 +8279,13 @@ proto.api.TextNode.deserializeBinaryFromReader = function(msg, reader) {
       msg.setValue(value);
       break;
     case 3:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setRemovedAt(value);
       break;
     case 4:
-      var value = new proto.api.TextNodeID;
-      reader.readMessage(value,proto.api.TextNodeID.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TextNodeID;
+      reader.readMessage(value,proto.yorkie.v1.TextNodeID.deserializeBinaryFromReader);
       msg.setInsPrevId(value);
       break;
     default:
@@ -8301,9 +8301,9 @@ proto.api.TextNode.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.TextNode.prototype.serializeBinary = function() {
+proto.yorkie.v1.TextNode.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.TextNode.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.TextNode.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -8311,18 +8311,18 @@ proto.api.TextNode.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.TextNode} message
+ * @param {!proto.yorkie.v1.TextNode} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.TextNode.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.TextNode.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.api.TextNodeID.serializeBinaryToWriter
+      proto.yorkie.v1.TextNodeID.serializeBinaryToWriter
     );
   }
   f = message.getValue();
@@ -8337,7 +8337,7 @@ proto.api.TextNode.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       3,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getInsPrevId();
@@ -8345,7 +8345,7 @@ proto.api.TextNode.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       4,
       f,
-      proto.api.TextNodeID.serializeBinaryToWriter
+      proto.yorkie.v1.TextNodeID.serializeBinaryToWriter
     );
   }
 };
@@ -8353,28 +8353,28 @@ proto.api.TextNode.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * optional TextNodeID id = 1;
- * @return {?proto.api.TextNodeID}
+ * @return {?proto.yorkie.v1.TextNodeID}
  */
-proto.api.TextNode.prototype.getId = function() {
-  return /** @type{?proto.api.TextNodeID} */ (
-    jspb.Message.getWrapperField(this, proto.api.TextNodeID, 1));
+proto.yorkie.v1.TextNode.prototype.getId = function() {
+  return /** @type{?proto.yorkie.v1.TextNodeID} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TextNodeID, 1));
 };
 
 
 /**
- * @param {?proto.api.TextNodeID|undefined} value
- * @return {!proto.api.TextNode} returns this
+ * @param {?proto.yorkie.v1.TextNodeID|undefined} value
+ * @return {!proto.yorkie.v1.TextNode} returns this
 */
-proto.api.TextNode.prototype.setId = function(value) {
+proto.yorkie.v1.TextNode.prototype.setId = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.TextNode} returns this
+ * @return {!proto.yorkie.v1.TextNode} returns this
  */
-proto.api.TextNode.prototype.clearId = function() {
+proto.yorkie.v1.TextNode.prototype.clearId = function() {
   return this.setId(undefined);
 };
 
@@ -8383,7 +8383,7 @@ proto.api.TextNode.prototype.clearId = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.TextNode.prototype.hasId = function() {
+proto.yorkie.v1.TextNode.prototype.hasId = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -8392,44 +8392,44 @@ proto.api.TextNode.prototype.hasId = function() {
  * optional string value = 2;
  * @return {string}
  */
-proto.api.TextNode.prototype.getValue = function() {
+proto.yorkie.v1.TextNode.prototype.getValue = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.api.TextNode} returns this
+ * @return {!proto.yorkie.v1.TextNode} returns this
  */
-proto.api.TextNode.prototype.setValue = function(value) {
+proto.yorkie.v1.TextNode.prototype.setValue = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
  * optional TimeTicket removed_at = 3;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.TextNode.prototype.getRemovedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 3));
+proto.yorkie.v1.TextNode.prototype.getRemovedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 3));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.TextNode} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.TextNode} returns this
 */
-proto.api.TextNode.prototype.setRemovedAt = function(value) {
+proto.yorkie.v1.TextNode.prototype.setRemovedAt = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.TextNode} returns this
+ * @return {!proto.yorkie.v1.TextNode} returns this
  */
-proto.api.TextNode.prototype.clearRemovedAt = function() {
+proto.yorkie.v1.TextNode.prototype.clearRemovedAt = function() {
   return this.setRemovedAt(undefined);
 };
 
@@ -8438,35 +8438,35 @@ proto.api.TextNode.prototype.clearRemovedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.TextNode.prototype.hasRemovedAt = function() {
+proto.yorkie.v1.TextNode.prototype.hasRemovedAt = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
 
 /**
  * optional TextNodeID ins_prev_id = 4;
- * @return {?proto.api.TextNodeID}
+ * @return {?proto.yorkie.v1.TextNodeID}
  */
-proto.api.TextNode.prototype.getInsPrevId = function() {
-  return /** @type{?proto.api.TextNodeID} */ (
-    jspb.Message.getWrapperField(this, proto.api.TextNodeID, 4));
+proto.yorkie.v1.TextNode.prototype.getInsPrevId = function() {
+  return /** @type{?proto.yorkie.v1.TextNodeID} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TextNodeID, 4));
 };
 
 
 /**
- * @param {?proto.api.TextNodeID|undefined} value
- * @return {!proto.api.TextNode} returns this
+ * @param {?proto.yorkie.v1.TextNodeID|undefined} value
+ * @return {!proto.yorkie.v1.TextNode} returns this
 */
-proto.api.TextNode.prototype.setInsPrevId = function(value) {
+proto.yorkie.v1.TextNode.prototype.setInsPrevId = function(value) {
   return jspb.Message.setWrapperField(this, 4, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.TextNode} returns this
+ * @return {!proto.yorkie.v1.TextNode} returns this
  */
-proto.api.TextNode.prototype.clearInsPrevId = function() {
+proto.yorkie.v1.TextNode.prototype.clearInsPrevId = function() {
   return this.setInsPrevId(undefined);
 };
 
@@ -8475,7 +8475,7 @@ proto.api.TextNode.prototype.clearInsPrevId = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.TextNode.prototype.hasInsPrevId = function() {
+proto.yorkie.v1.TextNode.prototype.hasInsPrevId = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
@@ -8496,8 +8496,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.RichTextNodeAttr.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.RichTextNodeAttr.toObject(opt_includeInstance, this);
+proto.yorkie.v1.RichTextNodeAttr.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.RichTextNodeAttr.toObject(opt_includeInstance, this);
 };
 
 
@@ -8506,15 +8506,15 @@ proto.api.RichTextNodeAttr.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.RichTextNodeAttr} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.RichTextNodeAttr} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.RichTextNodeAttr.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.RichTextNodeAttr.toObject = function(includeInstance, msg) {
   var f, obj = {
     key: jspb.Message.getFieldWithDefault(msg, 1, ""),
     value: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    updatedAt: (f = msg.getUpdatedAt()) && proto.api.TimeTicket.toObject(includeInstance, f)
+    updatedAt: (f = msg.getUpdatedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -8528,23 +8528,23 @@ proto.api.RichTextNodeAttr.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.RichTextNodeAttr}
+ * @return {!proto.yorkie.v1.RichTextNodeAttr}
  */
-proto.api.RichTextNodeAttr.deserializeBinary = function(bytes) {
+proto.yorkie.v1.RichTextNodeAttr.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.RichTextNodeAttr;
-  return proto.api.RichTextNodeAttr.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.RichTextNodeAttr;
+  return proto.yorkie.v1.RichTextNodeAttr.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.RichTextNodeAttr} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.RichTextNodeAttr} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.RichTextNodeAttr}
+ * @return {!proto.yorkie.v1.RichTextNodeAttr}
  */
-proto.api.RichTextNodeAttr.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.RichTextNodeAttr.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -8560,8 +8560,8 @@ proto.api.RichTextNodeAttr.deserializeBinaryFromReader = function(msg, reader) {
       msg.setValue(value);
       break;
     case 3:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setUpdatedAt(value);
       break;
     default:
@@ -8577,9 +8577,9 @@ proto.api.RichTextNodeAttr.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.RichTextNodeAttr.prototype.serializeBinary = function() {
+proto.yorkie.v1.RichTextNodeAttr.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.RichTextNodeAttr.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.RichTextNodeAttr.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -8587,11 +8587,11 @@ proto.api.RichTextNodeAttr.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.RichTextNodeAttr} message
+ * @param {!proto.yorkie.v1.RichTextNodeAttr} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.RichTextNodeAttr.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.RichTextNodeAttr.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getKey();
   if (f.length > 0) {
@@ -8612,7 +8612,7 @@ proto.api.RichTextNodeAttr.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       3,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
 };
@@ -8622,16 +8622,16 @@ proto.api.RichTextNodeAttr.serializeBinaryToWriter = function(message, writer) {
  * optional string key = 1;
  * @return {string}
  */
-proto.api.RichTextNodeAttr.prototype.getKey = function() {
+proto.yorkie.v1.RichTextNodeAttr.prototype.getKey = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.api.RichTextNodeAttr} returns this
+ * @return {!proto.yorkie.v1.RichTextNodeAttr} returns this
  */
-proto.api.RichTextNodeAttr.prototype.setKey = function(value) {
+proto.yorkie.v1.RichTextNodeAttr.prototype.setKey = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -8640,44 +8640,44 @@ proto.api.RichTextNodeAttr.prototype.setKey = function(value) {
  * optional string value = 2;
  * @return {string}
  */
-proto.api.RichTextNodeAttr.prototype.getValue = function() {
+proto.yorkie.v1.RichTextNodeAttr.prototype.getValue = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.api.RichTextNodeAttr} returns this
+ * @return {!proto.yorkie.v1.RichTextNodeAttr} returns this
  */
-proto.api.RichTextNodeAttr.prototype.setValue = function(value) {
+proto.yorkie.v1.RichTextNodeAttr.prototype.setValue = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
  * optional TimeTicket updated_at = 3;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.RichTextNodeAttr.prototype.getUpdatedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 3));
+proto.yorkie.v1.RichTextNodeAttr.prototype.getUpdatedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 3));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.RichTextNodeAttr} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.RichTextNodeAttr} returns this
 */
-proto.api.RichTextNodeAttr.prototype.setUpdatedAt = function(value) {
+proto.yorkie.v1.RichTextNodeAttr.prototype.setUpdatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.RichTextNodeAttr} returns this
+ * @return {!proto.yorkie.v1.RichTextNodeAttr} returns this
  */
-proto.api.RichTextNodeAttr.prototype.clearUpdatedAt = function() {
+proto.yorkie.v1.RichTextNodeAttr.prototype.clearUpdatedAt = function() {
   return this.setUpdatedAt(undefined);
 };
 
@@ -8686,7 +8686,7 @@ proto.api.RichTextNodeAttr.prototype.clearUpdatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.RichTextNodeAttr.prototype.hasUpdatedAt = function() {
+proto.yorkie.v1.RichTextNodeAttr.prototype.hasUpdatedAt = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
@@ -8707,8 +8707,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.RichTextNode.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.RichTextNode.toObject(opt_includeInstance, this);
+proto.yorkie.v1.RichTextNode.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.RichTextNode.toObject(opt_includeInstance, this);
 };
 
 
@@ -8717,17 +8717,17 @@ proto.api.RichTextNode.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.RichTextNode} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.RichTextNode} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.RichTextNode.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.RichTextNode.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: (f = msg.getId()) && proto.api.TextNodeID.toObject(includeInstance, f),
-    attributesMap: (f = msg.getAttributesMap()) ? f.toObject(includeInstance, proto.api.RichTextNodeAttr.toObject) : [],
+    id: (f = msg.getId()) && proto.yorkie.v1.TextNodeID.toObject(includeInstance, f),
+    attributesMap: (f = msg.getAttributesMap()) ? f.toObject(includeInstance, proto.yorkie.v1.RichTextNodeAttr.toObject) : [],
     value: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    removedAt: (f = msg.getRemovedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
-    insPrevId: (f = msg.getInsPrevId()) && proto.api.TextNodeID.toObject(includeInstance, f)
+    removedAt: (f = msg.getRemovedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
+    insPrevId: (f = msg.getInsPrevId()) && proto.yorkie.v1.TextNodeID.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -8741,23 +8741,23 @@ proto.api.RichTextNode.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.RichTextNode}
+ * @return {!proto.yorkie.v1.RichTextNode}
  */
-proto.api.RichTextNode.deserializeBinary = function(bytes) {
+proto.yorkie.v1.RichTextNode.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.RichTextNode;
-  return proto.api.RichTextNode.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.RichTextNode;
+  return proto.yorkie.v1.RichTextNode.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.RichTextNode} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.RichTextNode} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.RichTextNode}
+ * @return {!proto.yorkie.v1.RichTextNode}
  */
-proto.api.RichTextNode.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.RichTextNode.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -8765,14 +8765,14 @@ proto.api.RichTextNode.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.api.TextNodeID;
-      reader.readMessage(value,proto.api.TextNodeID.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TextNodeID;
+      reader.readMessage(value,proto.yorkie.v1.TextNodeID.deserializeBinaryFromReader);
       msg.setId(value);
       break;
     case 2:
       var value = msg.getAttributesMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.api.RichTextNodeAttr.deserializeBinaryFromReader, "", new proto.api.RichTextNodeAttr());
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.yorkie.v1.RichTextNodeAttr.deserializeBinaryFromReader, "", new proto.yorkie.v1.RichTextNodeAttr());
          });
       break;
     case 3:
@@ -8780,13 +8780,13 @@ proto.api.RichTextNode.deserializeBinaryFromReader = function(msg, reader) {
       msg.setValue(value);
       break;
     case 4:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setRemovedAt(value);
       break;
     case 5:
-      var value = new proto.api.TextNodeID;
-      reader.readMessage(value,proto.api.TextNodeID.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TextNodeID;
+      reader.readMessage(value,proto.yorkie.v1.TextNodeID.deserializeBinaryFromReader);
       msg.setInsPrevId(value);
       break;
     default:
@@ -8802,9 +8802,9 @@ proto.api.RichTextNode.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.RichTextNode.prototype.serializeBinary = function() {
+proto.yorkie.v1.RichTextNode.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.RichTextNode.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.RichTextNode.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -8812,23 +8812,23 @@ proto.api.RichTextNode.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.RichTextNode} message
+ * @param {!proto.yorkie.v1.RichTextNode} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.RichTextNode.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.RichTextNode.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.api.TextNodeID.serializeBinaryToWriter
+      proto.yorkie.v1.TextNodeID.serializeBinaryToWriter
     );
   }
   f = message.getAttributesMap(true);
   if (f && f.getLength() > 0) {
-    f.serializeBinary(2, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.api.RichTextNodeAttr.serializeBinaryToWriter);
+    f.serializeBinary(2, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.yorkie.v1.RichTextNodeAttr.serializeBinaryToWriter);
   }
   f = message.getValue();
   if (f.length > 0) {
@@ -8842,7 +8842,7 @@ proto.api.RichTextNode.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       4,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getInsPrevId();
@@ -8850,7 +8850,7 @@ proto.api.RichTextNode.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       5,
       f,
-      proto.api.TextNodeID.serializeBinaryToWriter
+      proto.yorkie.v1.TextNodeID.serializeBinaryToWriter
     );
   }
 };
@@ -8858,28 +8858,28 @@ proto.api.RichTextNode.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * optional TextNodeID id = 1;
- * @return {?proto.api.TextNodeID}
+ * @return {?proto.yorkie.v1.TextNodeID}
  */
-proto.api.RichTextNode.prototype.getId = function() {
-  return /** @type{?proto.api.TextNodeID} */ (
-    jspb.Message.getWrapperField(this, proto.api.TextNodeID, 1));
+proto.yorkie.v1.RichTextNode.prototype.getId = function() {
+  return /** @type{?proto.yorkie.v1.TextNodeID} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TextNodeID, 1));
 };
 
 
 /**
- * @param {?proto.api.TextNodeID|undefined} value
- * @return {!proto.api.RichTextNode} returns this
+ * @param {?proto.yorkie.v1.TextNodeID|undefined} value
+ * @return {!proto.yorkie.v1.RichTextNode} returns this
 */
-proto.api.RichTextNode.prototype.setId = function(value) {
+proto.yorkie.v1.RichTextNode.prototype.setId = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.RichTextNode} returns this
+ * @return {!proto.yorkie.v1.RichTextNode} returns this
  */
-proto.api.RichTextNode.prototype.clearId = function() {
+proto.yorkie.v1.RichTextNode.prototype.clearId = function() {
   return this.setId(undefined);
 };
 
@@ -8888,7 +8888,7 @@ proto.api.RichTextNode.prototype.clearId = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.RichTextNode.prototype.hasId = function() {
+proto.yorkie.v1.RichTextNode.prototype.hasId = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -8897,20 +8897,20 @@ proto.api.RichTextNode.prototype.hasId = function() {
  * map<string, RichTextNodeAttr> attributes = 2;
  * @param {boolean=} opt_noLazyCreate Do not create the map if
  * empty, instead returning `undefined`
- * @return {!jspb.Map<string,!proto.api.RichTextNodeAttr>}
+ * @return {!jspb.Map<string,!proto.yorkie.v1.RichTextNodeAttr>}
  */
-proto.api.RichTextNode.prototype.getAttributesMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,!proto.api.RichTextNodeAttr>} */ (
+proto.yorkie.v1.RichTextNode.prototype.getAttributesMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,!proto.yorkie.v1.RichTextNodeAttr>} */ (
       jspb.Message.getMapField(this, 2, opt_noLazyCreate,
-      proto.api.RichTextNodeAttr));
+      proto.yorkie.v1.RichTextNodeAttr));
 };
 
 
 /**
  * Clears values from the map. The map will be non-null.
- * @return {!proto.api.RichTextNode} returns this
+ * @return {!proto.yorkie.v1.RichTextNode} returns this
  */
-proto.api.RichTextNode.prototype.clearAttributesMap = function() {
+proto.yorkie.v1.RichTextNode.prototype.clearAttributesMap = function() {
   this.getAttributesMap().clear();
   return this;};
 
@@ -8919,44 +8919,44 @@ proto.api.RichTextNode.prototype.clearAttributesMap = function() {
  * optional string value = 3;
  * @return {string}
  */
-proto.api.RichTextNode.prototype.getValue = function() {
+proto.yorkie.v1.RichTextNode.prototype.getValue = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.api.RichTextNode} returns this
+ * @return {!proto.yorkie.v1.RichTextNode} returns this
  */
-proto.api.RichTextNode.prototype.setValue = function(value) {
+proto.yorkie.v1.RichTextNode.prototype.setValue = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
  * optional TimeTicket removed_at = 4;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.RichTextNode.prototype.getRemovedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 4));
+proto.yorkie.v1.RichTextNode.prototype.getRemovedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 4));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.RichTextNode} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.RichTextNode} returns this
 */
-proto.api.RichTextNode.prototype.setRemovedAt = function(value) {
+proto.yorkie.v1.RichTextNode.prototype.setRemovedAt = function(value) {
   return jspb.Message.setWrapperField(this, 4, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.RichTextNode} returns this
+ * @return {!proto.yorkie.v1.RichTextNode} returns this
  */
-proto.api.RichTextNode.prototype.clearRemovedAt = function() {
+proto.yorkie.v1.RichTextNode.prototype.clearRemovedAt = function() {
   return this.setRemovedAt(undefined);
 };
 
@@ -8965,35 +8965,35 @@ proto.api.RichTextNode.prototype.clearRemovedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.RichTextNode.prototype.hasRemovedAt = function() {
+proto.yorkie.v1.RichTextNode.prototype.hasRemovedAt = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
 
 /**
  * optional TextNodeID ins_prev_id = 5;
- * @return {?proto.api.TextNodeID}
+ * @return {?proto.yorkie.v1.TextNodeID}
  */
-proto.api.RichTextNode.prototype.getInsPrevId = function() {
-  return /** @type{?proto.api.TextNodeID} */ (
-    jspb.Message.getWrapperField(this, proto.api.TextNodeID, 5));
+proto.yorkie.v1.RichTextNode.prototype.getInsPrevId = function() {
+  return /** @type{?proto.yorkie.v1.TextNodeID} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TextNodeID, 5));
 };
 
 
 /**
- * @param {?proto.api.TextNodeID|undefined} value
- * @return {!proto.api.RichTextNode} returns this
+ * @param {?proto.yorkie.v1.TextNodeID|undefined} value
+ * @return {!proto.yorkie.v1.RichTextNode} returns this
 */
-proto.api.RichTextNode.prototype.setInsPrevId = function(value) {
+proto.yorkie.v1.RichTextNode.prototype.setInsPrevId = function(value) {
   return jspb.Message.setWrapperField(this, 5, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.RichTextNode} returns this
+ * @return {!proto.yorkie.v1.RichTextNode} returns this
  */
-proto.api.RichTextNode.prototype.clearInsPrevId = function() {
+proto.yorkie.v1.RichTextNode.prototype.clearInsPrevId = function() {
   return this.setInsPrevId(undefined);
 };
 
@@ -9002,7 +9002,7 @@ proto.api.RichTextNode.prototype.clearInsPrevId = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.RichTextNode.prototype.hasInsPrevId = function() {
+proto.yorkie.v1.RichTextNode.prototype.hasInsPrevId = function() {
   return jspb.Message.getField(this, 5) != null;
 };
 
@@ -9023,8 +9023,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.TextNodeID.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.TextNodeID.toObject(opt_includeInstance, this);
+proto.yorkie.v1.TextNodeID.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.TextNodeID.toObject(opt_includeInstance, this);
 };
 
 
@@ -9033,13 +9033,13 @@ proto.api.TextNodeID.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.TextNodeID} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.TextNodeID} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.TextNodeID.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.TextNodeID.toObject = function(includeInstance, msg) {
   var f, obj = {
-    createdAt: (f = msg.getCreatedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
+    createdAt: (f = msg.getCreatedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
     offset: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
@@ -9054,23 +9054,23 @@ proto.api.TextNodeID.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.TextNodeID}
+ * @return {!proto.yorkie.v1.TextNodeID}
  */
-proto.api.TextNodeID.deserializeBinary = function(bytes) {
+proto.yorkie.v1.TextNodeID.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.TextNodeID;
-  return proto.api.TextNodeID.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.TextNodeID;
+  return proto.yorkie.v1.TextNodeID.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.TextNodeID} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.TextNodeID} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.TextNodeID}
+ * @return {!proto.yorkie.v1.TextNodeID}
  */
-proto.api.TextNodeID.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.TextNodeID.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -9078,8 +9078,8 @@ proto.api.TextNodeID.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setCreatedAt(value);
       break;
     case 2:
@@ -9099,9 +9099,9 @@ proto.api.TextNodeID.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.TextNodeID.prototype.serializeBinary = function() {
+proto.yorkie.v1.TextNodeID.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.TextNodeID.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.TextNodeID.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -9109,18 +9109,18 @@ proto.api.TextNodeID.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.TextNodeID} message
+ * @param {!proto.yorkie.v1.TextNodeID} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.TextNodeID.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.TextNodeID.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getCreatedAt();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getOffset();
@@ -9135,28 +9135,28 @@ proto.api.TextNodeID.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * optional TimeTicket created_at = 1;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.TextNodeID.prototype.getCreatedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 1));
+proto.yorkie.v1.TextNodeID.prototype.getCreatedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 1));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.TextNodeID} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.TextNodeID} returns this
 */
-proto.api.TextNodeID.prototype.setCreatedAt = function(value) {
+proto.yorkie.v1.TextNodeID.prototype.setCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.TextNodeID} returns this
+ * @return {!proto.yorkie.v1.TextNodeID} returns this
  */
-proto.api.TextNodeID.prototype.clearCreatedAt = function() {
+proto.yorkie.v1.TextNodeID.prototype.clearCreatedAt = function() {
   return this.setCreatedAt(undefined);
 };
 
@@ -9165,7 +9165,7 @@ proto.api.TextNodeID.prototype.clearCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.TextNodeID.prototype.hasCreatedAt = function() {
+proto.yorkie.v1.TextNodeID.prototype.hasCreatedAt = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -9174,16 +9174,16 @@ proto.api.TextNodeID.prototype.hasCreatedAt = function() {
  * optional int32 offset = 2;
  * @return {number}
  */
-proto.api.TextNodeID.prototype.getOffset = function() {
+proto.yorkie.v1.TextNodeID.prototype.getOffset = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.api.TextNodeID} returns this
+ * @return {!proto.yorkie.v1.TextNodeID} returns this
  */
-proto.api.TextNodeID.prototype.setOffset = function(value) {
+proto.yorkie.v1.TextNodeID.prototype.setOffset = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 
@@ -9204,8 +9204,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.User.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.User.toObject(opt_includeInstance, this);
+proto.yorkie.v1.User.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.User.toObject(opt_includeInstance, this);
 };
 
 
@@ -9214,11 +9214,11 @@ proto.api.User.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.User} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.User} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.User.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.User.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     username: jspb.Message.getFieldWithDefault(msg, 2, ""),
@@ -9236,23 +9236,23 @@ proto.api.User.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.User}
+ * @return {!proto.yorkie.v1.User}
  */
-proto.api.User.deserializeBinary = function(bytes) {
+proto.yorkie.v1.User.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.User;
-  return proto.api.User.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.User;
+  return proto.yorkie.v1.User.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.User} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.User} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.User}
+ * @return {!proto.yorkie.v1.User}
  */
-proto.api.User.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.User.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -9285,9 +9285,9 @@ proto.api.User.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.User.prototype.serializeBinary = function() {
+proto.yorkie.v1.User.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.User.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.User.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -9295,11 +9295,11 @@ proto.api.User.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.User} message
+ * @param {!proto.yorkie.v1.User} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.User.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.User.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
   if (f.length > 0) {
@@ -9330,16 +9330,16 @@ proto.api.User.serializeBinaryToWriter = function(message, writer) {
  * optional string id = 1;
  * @return {string}
  */
-proto.api.User.prototype.getId = function() {
+proto.yorkie.v1.User.prototype.getId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.api.User} returns this
+ * @return {!proto.yorkie.v1.User} returns this
  */
-proto.api.User.prototype.setId = function(value) {
+proto.yorkie.v1.User.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -9348,16 +9348,16 @@ proto.api.User.prototype.setId = function(value) {
  * optional string username = 2;
  * @return {string}
  */
-proto.api.User.prototype.getUsername = function() {
+proto.yorkie.v1.User.prototype.getUsername = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.api.User} returns this
+ * @return {!proto.yorkie.v1.User} returns this
  */
-proto.api.User.prototype.setUsername = function(value) {
+proto.yorkie.v1.User.prototype.setUsername = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -9366,7 +9366,7 @@ proto.api.User.prototype.setUsername = function(value) {
  * optional google.protobuf.Timestamp created_at = 3;
  * @return {?proto.google.protobuf.Timestamp}
  */
-proto.api.User.prototype.getCreatedAt = function() {
+proto.yorkie.v1.User.prototype.getCreatedAt = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
     jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 3));
 };
@@ -9374,18 +9374,18 @@ proto.api.User.prototype.getCreatedAt = function() {
 
 /**
  * @param {?proto.google.protobuf.Timestamp|undefined} value
- * @return {!proto.api.User} returns this
+ * @return {!proto.yorkie.v1.User} returns this
 */
-proto.api.User.prototype.setCreatedAt = function(value) {
+proto.yorkie.v1.User.prototype.setCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.User} returns this
+ * @return {!proto.yorkie.v1.User} returns this
  */
-proto.api.User.prototype.clearCreatedAt = function() {
+proto.yorkie.v1.User.prototype.clearCreatedAt = function() {
   return this.setCreatedAt(undefined);
 };
 
@@ -9394,7 +9394,7 @@ proto.api.User.prototype.clearCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.User.prototype.hasCreatedAt = function() {
+proto.yorkie.v1.User.prototype.hasCreatedAt = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
@@ -9405,7 +9405,7 @@ proto.api.User.prototype.hasCreatedAt = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.api.Project.repeatedFields_ = [6];
+proto.yorkie.v1.Project.repeatedFields_ = [6];
 
 
 
@@ -9422,8 +9422,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.Project.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.Project.toObject(opt_includeInstance, this);
+proto.yorkie.v1.Project.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.Project.toObject(opt_includeInstance, this);
 };
 
 
@@ -9432,11 +9432,11 @@ proto.api.Project.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.Project} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.Project} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Project.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.Project.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
@@ -9459,23 +9459,23 @@ proto.api.Project.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.Project}
+ * @return {!proto.yorkie.v1.Project}
  */
-proto.api.Project.deserializeBinary = function(bytes) {
+proto.yorkie.v1.Project.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.Project;
-  return proto.api.Project.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.Project;
+  return proto.yorkie.v1.Project.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.Project} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.Project} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.Project}
+ * @return {!proto.yorkie.v1.Project}
  */
-proto.api.Project.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.Project.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -9529,9 +9529,9 @@ proto.api.Project.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.Project.prototype.serializeBinary = function() {
+proto.yorkie.v1.Project.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.Project.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.Project.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -9539,11 +9539,11 @@ proto.api.Project.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.Project} message
+ * @param {!proto.yorkie.v1.Project} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Project.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.Project.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
   if (f.length > 0) {
@@ -9610,16 +9610,16 @@ proto.api.Project.serializeBinaryToWriter = function(message, writer) {
  * optional string id = 1;
  * @return {string}
  */
-proto.api.Project.prototype.getId = function() {
+proto.yorkie.v1.Project.prototype.getId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.api.Project} returns this
+ * @return {!proto.yorkie.v1.Project} returns this
  */
-proto.api.Project.prototype.setId = function(value) {
+proto.yorkie.v1.Project.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -9628,16 +9628,16 @@ proto.api.Project.prototype.setId = function(value) {
  * optional string name = 2;
  * @return {string}
  */
-proto.api.Project.prototype.getName = function() {
+proto.yorkie.v1.Project.prototype.getName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.api.Project} returns this
+ * @return {!proto.yorkie.v1.Project} returns this
  */
-proto.api.Project.prototype.setName = function(value) {
+proto.yorkie.v1.Project.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -9646,16 +9646,16 @@ proto.api.Project.prototype.setName = function(value) {
  * optional string public_key = 3;
  * @return {string}
  */
-proto.api.Project.prototype.getPublicKey = function() {
+proto.yorkie.v1.Project.prototype.getPublicKey = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.api.Project} returns this
+ * @return {!proto.yorkie.v1.Project} returns this
  */
-proto.api.Project.prototype.setPublicKey = function(value) {
+proto.yorkie.v1.Project.prototype.setPublicKey = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
@@ -9664,16 +9664,16 @@ proto.api.Project.prototype.setPublicKey = function(value) {
  * optional string secret_key = 4;
  * @return {string}
  */
-proto.api.Project.prototype.getSecretKey = function() {
+proto.yorkie.v1.Project.prototype.getSecretKey = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.api.Project} returns this
+ * @return {!proto.yorkie.v1.Project} returns this
  */
-proto.api.Project.prototype.setSecretKey = function(value) {
+proto.yorkie.v1.Project.prototype.setSecretKey = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
@@ -9682,16 +9682,16 @@ proto.api.Project.prototype.setSecretKey = function(value) {
  * optional string auth_webhook_url = 5;
  * @return {string}
  */
-proto.api.Project.prototype.getAuthWebhookUrl = function() {
+proto.yorkie.v1.Project.prototype.getAuthWebhookUrl = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.api.Project} returns this
+ * @return {!proto.yorkie.v1.Project} returns this
  */
-proto.api.Project.prototype.setAuthWebhookUrl = function(value) {
+proto.yorkie.v1.Project.prototype.setAuthWebhookUrl = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
@@ -9700,16 +9700,16 @@ proto.api.Project.prototype.setAuthWebhookUrl = function(value) {
  * repeated string auth_webhook_methods = 6;
  * @return {!Array<string>}
  */
-proto.api.Project.prototype.getAuthWebhookMethodsList = function() {
+proto.yorkie.v1.Project.prototype.getAuthWebhookMethodsList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 6));
 };
 
 
 /**
  * @param {!Array<string>} value
- * @return {!proto.api.Project} returns this
+ * @return {!proto.yorkie.v1.Project} returns this
  */
-proto.api.Project.prototype.setAuthWebhookMethodsList = function(value) {
+proto.yorkie.v1.Project.prototype.setAuthWebhookMethodsList = function(value) {
   return jspb.Message.setField(this, 6, value || []);
 };
 
@@ -9717,18 +9717,18 @@ proto.api.Project.prototype.setAuthWebhookMethodsList = function(value) {
 /**
  * @param {string} value
  * @param {number=} opt_index
- * @return {!proto.api.Project} returns this
+ * @return {!proto.yorkie.v1.Project} returns this
  */
-proto.api.Project.prototype.addAuthWebhookMethods = function(value, opt_index) {
+proto.yorkie.v1.Project.prototype.addAuthWebhookMethods = function(value, opt_index) {
   return jspb.Message.addToRepeatedField(this, 6, value, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.api.Project} returns this
+ * @return {!proto.yorkie.v1.Project} returns this
  */
-proto.api.Project.prototype.clearAuthWebhookMethodsList = function() {
+proto.yorkie.v1.Project.prototype.clearAuthWebhookMethodsList = function() {
   return this.setAuthWebhookMethodsList([]);
 };
 
@@ -9737,7 +9737,7 @@ proto.api.Project.prototype.clearAuthWebhookMethodsList = function() {
  * optional google.protobuf.Timestamp created_at = 7;
  * @return {?proto.google.protobuf.Timestamp}
  */
-proto.api.Project.prototype.getCreatedAt = function() {
+proto.yorkie.v1.Project.prototype.getCreatedAt = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
     jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 7));
 };
@@ -9745,18 +9745,18 @@ proto.api.Project.prototype.getCreatedAt = function() {
 
 /**
  * @param {?proto.google.protobuf.Timestamp|undefined} value
- * @return {!proto.api.Project} returns this
+ * @return {!proto.yorkie.v1.Project} returns this
 */
-proto.api.Project.prototype.setCreatedAt = function(value) {
+proto.yorkie.v1.Project.prototype.setCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 7, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Project} returns this
+ * @return {!proto.yorkie.v1.Project} returns this
  */
-proto.api.Project.prototype.clearCreatedAt = function() {
+proto.yorkie.v1.Project.prototype.clearCreatedAt = function() {
   return this.setCreatedAt(undefined);
 };
 
@@ -9765,7 +9765,7 @@ proto.api.Project.prototype.clearCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Project.prototype.hasCreatedAt = function() {
+proto.yorkie.v1.Project.prototype.hasCreatedAt = function() {
   return jspb.Message.getField(this, 7) != null;
 };
 
@@ -9774,7 +9774,7 @@ proto.api.Project.prototype.hasCreatedAt = function() {
  * optional google.protobuf.Timestamp updated_at = 8;
  * @return {?proto.google.protobuf.Timestamp}
  */
-proto.api.Project.prototype.getUpdatedAt = function() {
+proto.yorkie.v1.Project.prototype.getUpdatedAt = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
     jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 8));
 };
@@ -9782,18 +9782,18 @@ proto.api.Project.prototype.getUpdatedAt = function() {
 
 /**
  * @param {?proto.google.protobuf.Timestamp|undefined} value
- * @return {!proto.api.Project} returns this
+ * @return {!proto.yorkie.v1.Project} returns this
 */
-proto.api.Project.prototype.setUpdatedAt = function(value) {
+proto.yorkie.v1.Project.prototype.setUpdatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 8, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Project} returns this
+ * @return {!proto.yorkie.v1.Project} returns this
  */
-proto.api.Project.prototype.clearUpdatedAt = function() {
+proto.yorkie.v1.Project.prototype.clearUpdatedAt = function() {
   return this.setUpdatedAt(undefined);
 };
 
@@ -9802,7 +9802,7 @@ proto.api.Project.prototype.clearUpdatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Project.prototype.hasUpdatedAt = function() {
+proto.yorkie.v1.Project.prototype.hasUpdatedAt = function() {
   return jspb.Message.getField(this, 8) != null;
 };
 
@@ -9823,8 +9823,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.UpdatableProjectFields.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.UpdatableProjectFields.toObject(opt_includeInstance, this);
+proto.yorkie.v1.UpdatableProjectFields.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.UpdatableProjectFields.toObject(opt_includeInstance, this);
 };
 
 
@@ -9833,15 +9833,15 @@ proto.api.UpdatableProjectFields.prototype.toObject = function(opt_includeInstan
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.UpdatableProjectFields} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.UpdatableProjectFields} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.UpdatableProjectFields.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.UpdatableProjectFields.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: (f = msg.getName()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
     authWebhookUrl: (f = msg.getAuthWebhookUrl()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
-    authWebhookMethods: (f = msg.getAuthWebhookMethods()) && proto.api.UpdatableProjectFields.AuthWebhookMethods.toObject(includeInstance, f)
+    authWebhookMethods: (f = msg.getAuthWebhookMethods()) && proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -9855,23 +9855,23 @@ proto.api.UpdatableProjectFields.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.UpdatableProjectFields}
+ * @return {!proto.yorkie.v1.UpdatableProjectFields}
  */
-proto.api.UpdatableProjectFields.deserializeBinary = function(bytes) {
+proto.yorkie.v1.UpdatableProjectFields.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.UpdatableProjectFields;
-  return proto.api.UpdatableProjectFields.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.UpdatableProjectFields;
+  return proto.yorkie.v1.UpdatableProjectFields.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.UpdatableProjectFields} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.UpdatableProjectFields} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.UpdatableProjectFields}
+ * @return {!proto.yorkie.v1.UpdatableProjectFields}
  */
-proto.api.UpdatableProjectFields.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.UpdatableProjectFields.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -9889,8 +9889,8 @@ proto.api.UpdatableProjectFields.deserializeBinaryFromReader = function(msg, rea
       msg.setAuthWebhookUrl(value);
       break;
     case 3:
-      var value = new proto.api.UpdatableProjectFields.AuthWebhookMethods;
-      reader.readMessage(value,proto.api.UpdatableProjectFields.AuthWebhookMethods.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods;
+      reader.readMessage(value,proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods.deserializeBinaryFromReader);
       msg.setAuthWebhookMethods(value);
       break;
     default:
@@ -9906,9 +9906,9 @@ proto.api.UpdatableProjectFields.deserializeBinaryFromReader = function(msg, rea
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.UpdatableProjectFields.prototype.serializeBinary = function() {
+proto.yorkie.v1.UpdatableProjectFields.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.UpdatableProjectFields.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.UpdatableProjectFields.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -9916,11 +9916,11 @@ proto.api.UpdatableProjectFields.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.UpdatableProjectFields} message
+ * @param {!proto.yorkie.v1.UpdatableProjectFields} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.UpdatableProjectFields.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.UpdatableProjectFields.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getName();
   if (f != null) {
@@ -9943,7 +9943,7 @@ proto.api.UpdatableProjectFields.serializeBinaryToWriter = function(message, wri
     writer.writeMessage(
       3,
       f,
-      proto.api.UpdatableProjectFields.AuthWebhookMethods.serializeBinaryToWriter
+      proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods.serializeBinaryToWriter
     );
   }
 };
@@ -9955,7 +9955,7 @@ proto.api.UpdatableProjectFields.serializeBinaryToWriter = function(message, wri
  * @private {!Array<number>}
  * @const
  */
-proto.api.UpdatableProjectFields.AuthWebhookMethods.repeatedFields_ = [1];
+proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods.repeatedFields_ = [1];
 
 
 
@@ -9972,8 +9972,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.UpdatableProjectFields.AuthWebhookMethods.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.UpdatableProjectFields.AuthWebhookMethods.toObject(opt_includeInstance, this);
+proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods.toObject(opt_includeInstance, this);
 };
 
 
@@ -9982,11 +9982,11 @@ proto.api.UpdatableProjectFields.AuthWebhookMethods.prototype.toObject = functio
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.UpdatableProjectFields.AuthWebhookMethods} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.UpdatableProjectFields.AuthWebhookMethods.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods.toObject = function(includeInstance, msg) {
   var f, obj = {
     methodsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
@@ -10002,23 +10002,23 @@ proto.api.UpdatableProjectFields.AuthWebhookMethods.toObject = function(includeI
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.UpdatableProjectFields.AuthWebhookMethods}
+ * @return {!proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods}
  */
-proto.api.UpdatableProjectFields.AuthWebhookMethods.deserializeBinary = function(bytes) {
+proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.UpdatableProjectFields.AuthWebhookMethods;
-  return proto.api.UpdatableProjectFields.AuthWebhookMethods.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods;
+  return proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.UpdatableProjectFields.AuthWebhookMethods} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.UpdatableProjectFields.AuthWebhookMethods}
+ * @return {!proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods}
  */
-proto.api.UpdatableProjectFields.AuthWebhookMethods.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -10042,9 +10042,9 @@ proto.api.UpdatableProjectFields.AuthWebhookMethods.deserializeBinaryFromReader 
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.UpdatableProjectFields.AuthWebhookMethods.prototype.serializeBinary = function() {
+proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.UpdatableProjectFields.AuthWebhookMethods.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -10052,11 +10052,11 @@ proto.api.UpdatableProjectFields.AuthWebhookMethods.prototype.serializeBinary = 
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.UpdatableProjectFields.AuthWebhookMethods} message
+ * @param {!proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.UpdatableProjectFields.AuthWebhookMethods.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getMethodsList();
   if (f.length > 0) {
@@ -10072,16 +10072,16 @@ proto.api.UpdatableProjectFields.AuthWebhookMethods.serializeBinaryToWriter = fu
  * repeated string methods = 1;
  * @return {!Array<string>}
  */
-proto.api.UpdatableProjectFields.AuthWebhookMethods.prototype.getMethodsList = function() {
+proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods.prototype.getMethodsList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
 /**
  * @param {!Array<string>} value
- * @return {!proto.api.UpdatableProjectFields.AuthWebhookMethods} returns this
+ * @return {!proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods} returns this
  */
-proto.api.UpdatableProjectFields.AuthWebhookMethods.prototype.setMethodsList = function(value) {
+proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods.prototype.setMethodsList = function(value) {
   return jspb.Message.setField(this, 1, value || []);
 };
 
@@ -10089,18 +10089,18 @@ proto.api.UpdatableProjectFields.AuthWebhookMethods.prototype.setMethodsList = f
 /**
  * @param {string} value
  * @param {number=} opt_index
- * @return {!proto.api.UpdatableProjectFields.AuthWebhookMethods} returns this
+ * @return {!proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods} returns this
  */
-proto.api.UpdatableProjectFields.AuthWebhookMethods.prototype.addMethods = function(value, opt_index) {
+proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods.prototype.addMethods = function(value, opt_index) {
   return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.api.UpdatableProjectFields.AuthWebhookMethods} returns this
+ * @return {!proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods} returns this
  */
-proto.api.UpdatableProjectFields.AuthWebhookMethods.prototype.clearMethodsList = function() {
+proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods.prototype.clearMethodsList = function() {
   return this.setMethodsList([]);
 };
 
@@ -10109,7 +10109,7 @@ proto.api.UpdatableProjectFields.AuthWebhookMethods.prototype.clearMethodsList =
  * optional google.protobuf.StringValue name = 1;
  * @return {?proto.google.protobuf.StringValue}
  */
-proto.api.UpdatableProjectFields.prototype.getName = function() {
+proto.yorkie.v1.UpdatableProjectFields.prototype.getName = function() {
   return /** @type{?proto.google.protobuf.StringValue} */ (
     jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 1));
 };
@@ -10117,18 +10117,18 @@ proto.api.UpdatableProjectFields.prototype.getName = function() {
 
 /**
  * @param {?proto.google.protobuf.StringValue|undefined} value
- * @return {!proto.api.UpdatableProjectFields} returns this
+ * @return {!proto.yorkie.v1.UpdatableProjectFields} returns this
 */
-proto.api.UpdatableProjectFields.prototype.setName = function(value) {
+proto.yorkie.v1.UpdatableProjectFields.prototype.setName = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.UpdatableProjectFields} returns this
+ * @return {!proto.yorkie.v1.UpdatableProjectFields} returns this
  */
-proto.api.UpdatableProjectFields.prototype.clearName = function() {
+proto.yorkie.v1.UpdatableProjectFields.prototype.clearName = function() {
   return this.setName(undefined);
 };
 
@@ -10137,7 +10137,7 @@ proto.api.UpdatableProjectFields.prototype.clearName = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.UpdatableProjectFields.prototype.hasName = function() {
+proto.yorkie.v1.UpdatableProjectFields.prototype.hasName = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -10146,7 +10146,7 @@ proto.api.UpdatableProjectFields.prototype.hasName = function() {
  * optional google.protobuf.StringValue auth_webhook_url = 2;
  * @return {?proto.google.protobuf.StringValue}
  */
-proto.api.UpdatableProjectFields.prototype.getAuthWebhookUrl = function() {
+proto.yorkie.v1.UpdatableProjectFields.prototype.getAuthWebhookUrl = function() {
   return /** @type{?proto.google.protobuf.StringValue} */ (
     jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 2));
 };
@@ -10154,18 +10154,18 @@ proto.api.UpdatableProjectFields.prototype.getAuthWebhookUrl = function() {
 
 /**
  * @param {?proto.google.protobuf.StringValue|undefined} value
- * @return {!proto.api.UpdatableProjectFields} returns this
+ * @return {!proto.yorkie.v1.UpdatableProjectFields} returns this
 */
-proto.api.UpdatableProjectFields.prototype.setAuthWebhookUrl = function(value) {
+proto.yorkie.v1.UpdatableProjectFields.prototype.setAuthWebhookUrl = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.UpdatableProjectFields} returns this
+ * @return {!proto.yorkie.v1.UpdatableProjectFields} returns this
  */
-proto.api.UpdatableProjectFields.prototype.clearAuthWebhookUrl = function() {
+proto.yorkie.v1.UpdatableProjectFields.prototype.clearAuthWebhookUrl = function() {
   return this.setAuthWebhookUrl(undefined);
 };
 
@@ -10174,35 +10174,35 @@ proto.api.UpdatableProjectFields.prototype.clearAuthWebhookUrl = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.UpdatableProjectFields.prototype.hasAuthWebhookUrl = function() {
+proto.yorkie.v1.UpdatableProjectFields.prototype.hasAuthWebhookUrl = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
  * optional AuthWebhookMethods auth_webhook_methods = 3;
- * @return {?proto.api.UpdatableProjectFields.AuthWebhookMethods}
+ * @return {?proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods}
  */
-proto.api.UpdatableProjectFields.prototype.getAuthWebhookMethods = function() {
-  return /** @type{?proto.api.UpdatableProjectFields.AuthWebhookMethods} */ (
-    jspb.Message.getWrapperField(this, proto.api.UpdatableProjectFields.AuthWebhookMethods, 3));
+proto.yorkie.v1.UpdatableProjectFields.prototype.getAuthWebhookMethods = function() {
+  return /** @type{?proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods, 3));
 };
 
 
 /**
- * @param {?proto.api.UpdatableProjectFields.AuthWebhookMethods|undefined} value
- * @return {!proto.api.UpdatableProjectFields} returns this
+ * @param {?proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods|undefined} value
+ * @return {!proto.yorkie.v1.UpdatableProjectFields} returns this
 */
-proto.api.UpdatableProjectFields.prototype.setAuthWebhookMethods = function(value) {
+proto.yorkie.v1.UpdatableProjectFields.prototype.setAuthWebhookMethods = function(value) {
   return jspb.Message.setWrapperField(this, 3, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.UpdatableProjectFields} returns this
+ * @return {!proto.yorkie.v1.UpdatableProjectFields} returns this
  */
-proto.api.UpdatableProjectFields.prototype.clearAuthWebhookMethods = function() {
+proto.yorkie.v1.UpdatableProjectFields.prototype.clearAuthWebhookMethods = function() {
   return this.setAuthWebhookMethods(undefined);
 };
 
@@ -10211,7 +10211,7 @@ proto.api.UpdatableProjectFields.prototype.clearAuthWebhookMethods = function() 
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.UpdatableProjectFields.prototype.hasAuthWebhookMethods = function() {
+proto.yorkie.v1.UpdatableProjectFields.prototype.hasAuthWebhookMethods = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
@@ -10232,8 +10232,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.DocumentSummary.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.DocumentSummary.toObject(opt_includeInstance, this);
+proto.yorkie.v1.DocumentSummary.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.DocumentSummary.toObject(opt_includeInstance, this);
 };
 
 
@@ -10242,11 +10242,11 @@ proto.api.DocumentSummary.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.DocumentSummary} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.DocumentSummary} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.DocumentSummary.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.DocumentSummary.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     key: jspb.Message.getFieldWithDefault(msg, 2, ""),
@@ -10267,23 +10267,23 @@ proto.api.DocumentSummary.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.DocumentSummary}
+ * @return {!proto.yorkie.v1.DocumentSummary}
  */
-proto.api.DocumentSummary.deserializeBinary = function(bytes) {
+proto.yorkie.v1.DocumentSummary.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.DocumentSummary;
-  return proto.api.DocumentSummary.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.DocumentSummary;
+  return proto.yorkie.v1.DocumentSummary.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.DocumentSummary} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.DocumentSummary} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.DocumentSummary}
+ * @return {!proto.yorkie.v1.DocumentSummary}
  */
-proto.api.DocumentSummary.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.DocumentSummary.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -10330,9 +10330,9 @@ proto.api.DocumentSummary.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.DocumentSummary.prototype.serializeBinary = function() {
+proto.yorkie.v1.DocumentSummary.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.DocumentSummary.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.DocumentSummary.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -10340,11 +10340,11 @@ proto.api.DocumentSummary.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.DocumentSummary} message
+ * @param {!proto.yorkie.v1.DocumentSummary} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.DocumentSummary.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.DocumentSummary.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
   if (f.length > 0) {
@@ -10398,16 +10398,16 @@ proto.api.DocumentSummary.serializeBinaryToWriter = function(message, writer) {
  * optional string id = 1;
  * @return {string}
  */
-proto.api.DocumentSummary.prototype.getId = function() {
+proto.yorkie.v1.DocumentSummary.prototype.getId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.api.DocumentSummary} returns this
+ * @return {!proto.yorkie.v1.DocumentSummary} returns this
  */
-proto.api.DocumentSummary.prototype.setId = function(value) {
+proto.yorkie.v1.DocumentSummary.prototype.setId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -10416,16 +10416,16 @@ proto.api.DocumentSummary.prototype.setId = function(value) {
  * optional string key = 2;
  * @return {string}
  */
-proto.api.DocumentSummary.prototype.getKey = function() {
+proto.yorkie.v1.DocumentSummary.prototype.getKey = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.api.DocumentSummary} returns this
+ * @return {!proto.yorkie.v1.DocumentSummary} returns this
  */
-proto.api.DocumentSummary.prototype.setKey = function(value) {
+proto.yorkie.v1.DocumentSummary.prototype.setKey = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -10434,16 +10434,16 @@ proto.api.DocumentSummary.prototype.setKey = function(value) {
  * optional string snapshot = 3;
  * @return {string}
  */
-proto.api.DocumentSummary.prototype.getSnapshot = function() {
+proto.yorkie.v1.DocumentSummary.prototype.getSnapshot = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.api.DocumentSummary} returns this
+ * @return {!proto.yorkie.v1.DocumentSummary} returns this
  */
-proto.api.DocumentSummary.prototype.setSnapshot = function(value) {
+proto.yorkie.v1.DocumentSummary.prototype.setSnapshot = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
@@ -10452,7 +10452,7 @@ proto.api.DocumentSummary.prototype.setSnapshot = function(value) {
  * optional google.protobuf.Timestamp created_at = 4;
  * @return {?proto.google.protobuf.Timestamp}
  */
-proto.api.DocumentSummary.prototype.getCreatedAt = function() {
+proto.yorkie.v1.DocumentSummary.prototype.getCreatedAt = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
     jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 4));
 };
@@ -10460,18 +10460,18 @@ proto.api.DocumentSummary.prototype.getCreatedAt = function() {
 
 /**
  * @param {?proto.google.protobuf.Timestamp|undefined} value
- * @return {!proto.api.DocumentSummary} returns this
+ * @return {!proto.yorkie.v1.DocumentSummary} returns this
 */
-proto.api.DocumentSummary.prototype.setCreatedAt = function(value) {
+proto.yorkie.v1.DocumentSummary.prototype.setCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 4, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.DocumentSummary} returns this
+ * @return {!proto.yorkie.v1.DocumentSummary} returns this
  */
-proto.api.DocumentSummary.prototype.clearCreatedAt = function() {
+proto.yorkie.v1.DocumentSummary.prototype.clearCreatedAt = function() {
   return this.setCreatedAt(undefined);
 };
 
@@ -10480,7 +10480,7 @@ proto.api.DocumentSummary.prototype.clearCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.DocumentSummary.prototype.hasCreatedAt = function() {
+proto.yorkie.v1.DocumentSummary.prototype.hasCreatedAt = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
@@ -10489,7 +10489,7 @@ proto.api.DocumentSummary.prototype.hasCreatedAt = function() {
  * optional google.protobuf.Timestamp accessed_at = 5;
  * @return {?proto.google.protobuf.Timestamp}
  */
-proto.api.DocumentSummary.prototype.getAccessedAt = function() {
+proto.yorkie.v1.DocumentSummary.prototype.getAccessedAt = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
     jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 5));
 };
@@ -10497,18 +10497,18 @@ proto.api.DocumentSummary.prototype.getAccessedAt = function() {
 
 /**
  * @param {?proto.google.protobuf.Timestamp|undefined} value
- * @return {!proto.api.DocumentSummary} returns this
+ * @return {!proto.yorkie.v1.DocumentSummary} returns this
 */
-proto.api.DocumentSummary.prototype.setAccessedAt = function(value) {
+proto.yorkie.v1.DocumentSummary.prototype.setAccessedAt = function(value) {
   return jspb.Message.setWrapperField(this, 5, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.DocumentSummary} returns this
+ * @return {!proto.yorkie.v1.DocumentSummary} returns this
  */
-proto.api.DocumentSummary.prototype.clearAccessedAt = function() {
+proto.yorkie.v1.DocumentSummary.prototype.clearAccessedAt = function() {
   return this.setAccessedAt(undefined);
 };
 
@@ -10517,7 +10517,7 @@ proto.api.DocumentSummary.prototype.clearAccessedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.DocumentSummary.prototype.hasAccessedAt = function() {
+proto.yorkie.v1.DocumentSummary.prototype.hasAccessedAt = function() {
   return jspb.Message.getField(this, 5) != null;
 };
 
@@ -10526,7 +10526,7 @@ proto.api.DocumentSummary.prototype.hasAccessedAt = function() {
  * optional google.protobuf.Timestamp updated_at = 6;
  * @return {?proto.google.protobuf.Timestamp}
  */
-proto.api.DocumentSummary.prototype.getUpdatedAt = function() {
+proto.yorkie.v1.DocumentSummary.prototype.getUpdatedAt = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
     jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 6));
 };
@@ -10534,18 +10534,18 @@ proto.api.DocumentSummary.prototype.getUpdatedAt = function() {
 
 /**
  * @param {?proto.google.protobuf.Timestamp|undefined} value
- * @return {!proto.api.DocumentSummary} returns this
+ * @return {!proto.yorkie.v1.DocumentSummary} returns this
 */
-proto.api.DocumentSummary.prototype.setUpdatedAt = function(value) {
+proto.yorkie.v1.DocumentSummary.prototype.setUpdatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 6, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.DocumentSummary} returns this
+ * @return {!proto.yorkie.v1.DocumentSummary} returns this
  */
-proto.api.DocumentSummary.prototype.clearUpdatedAt = function() {
+proto.yorkie.v1.DocumentSummary.prototype.clearUpdatedAt = function() {
   return this.setUpdatedAt(undefined);
 };
 
@@ -10554,7 +10554,7 @@ proto.api.DocumentSummary.prototype.clearUpdatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.DocumentSummary.prototype.hasUpdatedAt = function() {
+proto.yorkie.v1.DocumentSummary.prototype.hasUpdatedAt = function() {
   return jspb.Message.getField(this, 6) != null;
 };
 
@@ -10575,8 +10575,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.Presence.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.Presence.toObject(opt_includeInstance, this);
+proto.yorkie.v1.Presence.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.Presence.toObject(opt_includeInstance, this);
 };
 
 
@@ -10585,11 +10585,11 @@ proto.api.Presence.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.Presence} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.Presence} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Presence.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.Presence.toObject = function(includeInstance, msg) {
   var f, obj = {
     clock: jspb.Message.getFieldWithDefault(msg, 1, 0),
     dataMap: (f = msg.getDataMap()) ? f.toObject(includeInstance, undefined) : []
@@ -10606,23 +10606,23 @@ proto.api.Presence.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.Presence}
+ * @return {!proto.yorkie.v1.Presence}
  */
-proto.api.Presence.deserializeBinary = function(bytes) {
+proto.yorkie.v1.Presence.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.Presence;
-  return proto.api.Presence.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.Presence;
+  return proto.yorkie.v1.Presence.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.Presence} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.Presence} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.Presence}
+ * @return {!proto.yorkie.v1.Presence}
  */
-proto.api.Presence.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.Presence.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -10652,9 +10652,9 @@ proto.api.Presence.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.Presence.prototype.serializeBinary = function() {
+proto.yorkie.v1.Presence.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.Presence.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.Presence.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -10662,11 +10662,11 @@ proto.api.Presence.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.Presence} message
+ * @param {!proto.yorkie.v1.Presence} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Presence.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.Presence.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getClock();
   if (f !== 0) {
@@ -10686,16 +10686,16 @@ proto.api.Presence.serializeBinaryToWriter = function(message, writer) {
  * optional int32 clock = 1;
  * @return {number}
  */
-proto.api.Presence.prototype.getClock = function() {
+proto.yorkie.v1.Presence.prototype.getClock = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.api.Presence} returns this
+ * @return {!proto.yorkie.v1.Presence} returns this
  */
-proto.api.Presence.prototype.setClock = function(value) {
+proto.yorkie.v1.Presence.prototype.setClock = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
@@ -10706,7 +10706,7 @@ proto.api.Presence.prototype.setClock = function(value) {
  * empty, instead returning `undefined`
  * @return {!jspb.Map<string,string>}
  */
-proto.api.Presence.prototype.getDataMap = function(opt_noLazyCreate) {
+proto.yorkie.v1.Presence.prototype.getDataMap = function(opt_noLazyCreate) {
   return /** @type {!jspb.Map<string,string>} */ (
       jspb.Message.getMapField(this, 2, opt_noLazyCreate,
       null));
@@ -10715,9 +10715,9 @@ proto.api.Presence.prototype.getDataMap = function(opt_noLazyCreate) {
 
 /**
  * Clears values from the map. The map will be non-null.
- * @return {!proto.api.Presence} returns this
+ * @return {!proto.yorkie.v1.Presence} returns this
  */
-proto.api.Presence.prototype.clearDataMap = function() {
+proto.yorkie.v1.Presence.prototype.clearDataMap = function() {
   this.getDataMap().clear();
   return this;};
 
@@ -10738,8 +10738,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.Client.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.Client.toObject(opt_includeInstance, this);
+proto.yorkie.v1.Client.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.Client.toObject(opt_includeInstance, this);
 };
 
 
@@ -10748,14 +10748,14 @@ proto.api.Client.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.Client} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.Client} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Client.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.Client.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: msg.getId_asB64(),
-    presence: (f = msg.getPresence()) && proto.api.Presence.toObject(includeInstance, f)
+    presence: (f = msg.getPresence()) && proto.yorkie.v1.Presence.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -10769,23 +10769,23 @@ proto.api.Client.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.Client}
+ * @return {!proto.yorkie.v1.Client}
  */
-proto.api.Client.deserializeBinary = function(bytes) {
+proto.yorkie.v1.Client.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.Client;
-  return proto.api.Client.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.Client;
+  return proto.yorkie.v1.Client.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.Client} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.Client} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.Client}
+ * @return {!proto.yorkie.v1.Client}
  */
-proto.api.Client.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.Client.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -10797,8 +10797,8 @@ proto.api.Client.deserializeBinaryFromReader = function(msg, reader) {
       msg.setId(value);
       break;
     case 2:
-      var value = new proto.api.Presence;
-      reader.readMessage(value,proto.api.Presence.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.Presence;
+      reader.readMessage(value,proto.yorkie.v1.Presence.deserializeBinaryFromReader);
       msg.setPresence(value);
       break;
     default:
@@ -10814,9 +10814,9 @@ proto.api.Client.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.Client.prototype.serializeBinary = function() {
+proto.yorkie.v1.Client.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.Client.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.Client.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -10824,11 +10824,11 @@ proto.api.Client.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.Client} message
+ * @param {!proto.yorkie.v1.Client} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Client.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.Client.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId_asU8();
   if (f.length > 0) {
@@ -10842,7 +10842,7 @@ proto.api.Client.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       2,
       f,
-      proto.api.Presence.serializeBinaryToWriter
+      proto.yorkie.v1.Presence.serializeBinaryToWriter
     );
   }
 };
@@ -10852,7 +10852,7 @@ proto.api.Client.serializeBinaryToWriter = function(message, writer) {
  * optional bytes id = 1;
  * @return {string}
  */
-proto.api.Client.prototype.getId = function() {
+proto.yorkie.v1.Client.prototype.getId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -10862,7 +10862,7 @@ proto.api.Client.prototype.getId = function() {
  * This is a type-conversion wrapper around `getId()`
  * @return {string}
  */
-proto.api.Client.prototype.getId_asB64 = function() {
+proto.yorkie.v1.Client.prototype.getId_asB64 = function() {
   return /** @type {string} */ (jspb.Message.bytesAsB64(
       this.getId()));
 };
@@ -10875,7 +10875,7 @@ proto.api.Client.prototype.getId_asB64 = function() {
  * This is a type-conversion wrapper around `getId()`
  * @return {!Uint8Array}
  */
-proto.api.Client.prototype.getId_asU8 = function() {
+proto.yorkie.v1.Client.prototype.getId_asU8 = function() {
   return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
       this.getId()));
 };
@@ -10883,37 +10883,37 @@ proto.api.Client.prototype.getId_asU8 = function() {
 
 /**
  * @param {!(string|Uint8Array)} value
- * @return {!proto.api.Client} returns this
+ * @return {!proto.yorkie.v1.Client} returns this
  */
-proto.api.Client.prototype.setId = function(value) {
+proto.yorkie.v1.Client.prototype.setId = function(value) {
   return jspb.Message.setProto3BytesField(this, 1, value);
 };
 
 
 /**
  * optional Presence presence = 2;
- * @return {?proto.api.Presence}
+ * @return {?proto.yorkie.v1.Presence}
  */
-proto.api.Client.prototype.getPresence = function() {
-  return /** @type{?proto.api.Presence} */ (
-    jspb.Message.getWrapperField(this, proto.api.Presence, 2));
+proto.yorkie.v1.Client.prototype.getPresence = function() {
+  return /** @type{?proto.yorkie.v1.Presence} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.Presence, 2));
 };
 
 
 /**
- * @param {?proto.api.Presence|undefined} value
- * @return {!proto.api.Client} returns this
+ * @param {?proto.yorkie.v1.Presence|undefined} value
+ * @return {!proto.yorkie.v1.Client} returns this
 */
-proto.api.Client.prototype.setPresence = function(value) {
+proto.yorkie.v1.Client.prototype.setPresence = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.Client} returns this
+ * @return {!proto.yorkie.v1.Client} returns this
  */
-proto.api.Client.prototype.clearPresence = function() {
+proto.yorkie.v1.Client.prototype.clearPresence = function() {
   return this.setPresence(undefined);
 };
 
@@ -10922,7 +10922,7 @@ proto.api.Client.prototype.clearPresence = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.Client.prototype.hasPresence = function() {
+proto.yorkie.v1.Client.prototype.hasPresence = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -10933,7 +10933,7 @@ proto.api.Client.prototype.hasPresence = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.api.Clients.repeatedFields_ = [1];
+proto.yorkie.v1.Clients.repeatedFields_ = [1];
 
 
 
@@ -10950,8 +10950,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.Clients.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.Clients.toObject(opt_includeInstance, this);
+proto.yorkie.v1.Clients.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.Clients.toObject(opt_includeInstance, this);
 };
 
 
@@ -10960,14 +10960,14 @@ proto.api.Clients.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.Clients} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.Clients} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Clients.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.Clients.toObject = function(includeInstance, msg) {
   var f, obj = {
     clientsList: jspb.Message.toObjectList(msg.getClientsList(),
-    proto.api.Client.toObject, includeInstance)
+    proto.yorkie.v1.Client.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -10981,23 +10981,23 @@ proto.api.Clients.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.Clients}
+ * @return {!proto.yorkie.v1.Clients}
  */
-proto.api.Clients.deserializeBinary = function(bytes) {
+proto.yorkie.v1.Clients.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.Clients;
-  return proto.api.Clients.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.Clients;
+  return proto.yorkie.v1.Clients.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.Clients} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.Clients} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.Clients}
+ * @return {!proto.yorkie.v1.Clients}
  */
-proto.api.Clients.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.Clients.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -11005,8 +11005,8 @@ proto.api.Clients.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.api.Client;
-      reader.readMessage(value,proto.api.Client.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.Client;
+      reader.readMessage(value,proto.yorkie.v1.Client.deserializeBinaryFromReader);
       msg.addClients(value);
       break;
     default:
@@ -11022,9 +11022,9 @@ proto.api.Clients.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.Clients.prototype.serializeBinary = function() {
+proto.yorkie.v1.Clients.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.Clients.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.Clients.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -11032,18 +11032,18 @@ proto.api.Clients.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.Clients} message
+ * @param {!proto.yorkie.v1.Clients} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Clients.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.Clients.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getClientsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
       f,
-      proto.api.Client.serializeBinaryToWriter
+      proto.yorkie.v1.Client.serializeBinaryToWriter
     );
   }
 };
@@ -11051,38 +11051,38 @@ proto.api.Clients.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * repeated Client clients = 1;
- * @return {!Array<!proto.api.Client>}
+ * @return {!Array<!proto.yorkie.v1.Client>}
  */
-proto.api.Clients.prototype.getClientsList = function() {
-  return /** @type{!Array<!proto.api.Client>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.api.Client, 1));
+proto.yorkie.v1.Clients.prototype.getClientsList = function() {
+  return /** @type{!Array<!proto.yorkie.v1.Client>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.yorkie.v1.Client, 1));
 };
 
 
 /**
- * @param {!Array<!proto.api.Client>} value
- * @return {!proto.api.Clients} returns this
+ * @param {!Array<!proto.yorkie.v1.Client>} value
+ * @return {!proto.yorkie.v1.Clients} returns this
 */
-proto.api.Clients.prototype.setClientsList = function(value) {
+proto.yorkie.v1.Clients.prototype.setClientsList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * @param {!proto.api.Client=} opt_value
+ * @param {!proto.yorkie.v1.Client=} opt_value
  * @param {number=} opt_index
- * @return {!proto.api.Client}
+ * @return {!proto.yorkie.v1.Client}
  */
-proto.api.Clients.prototype.addClients = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.api.Client, opt_index);
+proto.yorkie.v1.Clients.prototype.addClients = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.yorkie.v1.Client, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.api.Clients} returns this
+ * @return {!proto.yorkie.v1.Clients} returns this
  */
-proto.api.Clients.prototype.clearClientsList = function() {
+proto.yorkie.v1.Clients.prototype.clearClientsList = function() {
   return this.setClientsList([]);
 };
 
@@ -11103,8 +11103,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.Checkpoint.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.Checkpoint.toObject(opt_includeInstance, this);
+proto.yorkie.v1.Checkpoint.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.Checkpoint.toObject(opt_includeInstance, this);
 };
 
 
@@ -11113,11 +11113,11 @@ proto.api.Checkpoint.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.Checkpoint} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.Checkpoint} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Checkpoint.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.Checkpoint.toObject = function(includeInstance, msg) {
   var f, obj = {
     serverSeq: jspb.Message.getFieldWithDefault(msg, 1, "0"),
     clientSeq: jspb.Message.getFieldWithDefault(msg, 2, 0)
@@ -11134,23 +11134,23 @@ proto.api.Checkpoint.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.Checkpoint}
+ * @return {!proto.yorkie.v1.Checkpoint}
  */
-proto.api.Checkpoint.deserializeBinary = function(bytes) {
+proto.yorkie.v1.Checkpoint.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.Checkpoint;
-  return proto.api.Checkpoint.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.Checkpoint;
+  return proto.yorkie.v1.Checkpoint.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.Checkpoint} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.Checkpoint} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.Checkpoint}
+ * @return {!proto.yorkie.v1.Checkpoint}
  */
-proto.api.Checkpoint.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.Checkpoint.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -11158,7 +11158,7 @@ proto.api.Checkpoint.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readUint64String());
+      var value = /** @type {string} */ (reader.readInt64String());
       msg.setServerSeq(value);
       break;
     case 2:
@@ -11178,9 +11178,9 @@ proto.api.Checkpoint.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.Checkpoint.prototype.serializeBinary = function() {
+proto.yorkie.v1.Checkpoint.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.Checkpoint.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.Checkpoint.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -11188,15 +11188,15 @@ proto.api.Checkpoint.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.Checkpoint} message
+ * @param {!proto.yorkie.v1.Checkpoint} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.Checkpoint.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.Checkpoint.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getServerSeq();
   if (parseInt(f, 10) !== 0) {
-    writer.writeUint64String(
+    writer.writeInt64String(
       1,
       f
     );
@@ -11212,19 +11212,19 @@ proto.api.Checkpoint.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional uint64 server_seq = 1;
+ * optional int64 server_seq = 1;
  * @return {string}
  */
-proto.api.Checkpoint.prototype.getServerSeq = function() {
+proto.yorkie.v1.Checkpoint.prototype.getServerSeq = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, "0"));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.api.Checkpoint} returns this
+ * @return {!proto.yorkie.v1.Checkpoint} returns this
  */
-proto.api.Checkpoint.prototype.setServerSeq = function(value) {
+proto.yorkie.v1.Checkpoint.prototype.setServerSeq = function(value) {
   return jspb.Message.setProto3StringIntField(this, 1, value);
 };
 
@@ -11233,16 +11233,16 @@ proto.api.Checkpoint.prototype.setServerSeq = function(value) {
  * optional uint32 client_seq = 2;
  * @return {number}
  */
-proto.api.Checkpoint.prototype.getClientSeq = function() {
+proto.yorkie.v1.Checkpoint.prototype.getClientSeq = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.api.Checkpoint} returns this
+ * @return {!proto.yorkie.v1.Checkpoint} returns this
  */
-proto.api.Checkpoint.prototype.setClientSeq = function(value) {
+proto.yorkie.v1.Checkpoint.prototype.setClientSeq = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 
@@ -11263,8 +11263,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.TextNodePos.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.TextNodePos.toObject(opt_includeInstance, this);
+proto.yorkie.v1.TextNodePos.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.TextNodePos.toObject(opt_includeInstance, this);
 };
 
 
@@ -11273,13 +11273,13 @@ proto.api.TextNodePos.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.TextNodePos} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.TextNodePos} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.TextNodePos.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.TextNodePos.toObject = function(includeInstance, msg) {
   var f, obj = {
-    createdAt: (f = msg.getCreatedAt()) && proto.api.TimeTicket.toObject(includeInstance, f),
+    createdAt: (f = msg.getCreatedAt()) && proto.yorkie.v1.TimeTicket.toObject(includeInstance, f),
     offset: jspb.Message.getFieldWithDefault(msg, 2, 0),
     relativeOffset: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
@@ -11295,23 +11295,23 @@ proto.api.TextNodePos.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.TextNodePos}
+ * @return {!proto.yorkie.v1.TextNodePos}
  */
-proto.api.TextNodePos.deserializeBinary = function(bytes) {
+proto.yorkie.v1.TextNodePos.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.TextNodePos;
-  return proto.api.TextNodePos.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.TextNodePos;
+  return proto.yorkie.v1.TextNodePos.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.TextNodePos} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.TextNodePos} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.TextNodePos}
+ * @return {!proto.yorkie.v1.TextNodePos}
  */
-proto.api.TextNodePos.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.TextNodePos.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -11319,8 +11319,8 @@ proto.api.TextNodePos.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.api.TimeTicket;
-      reader.readMessage(value,proto.api.TimeTicket.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.TimeTicket;
+      reader.readMessage(value,proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader);
       msg.setCreatedAt(value);
       break;
     case 2:
@@ -11344,9 +11344,9 @@ proto.api.TextNodePos.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.TextNodePos.prototype.serializeBinary = function() {
+proto.yorkie.v1.TextNodePos.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.TextNodePos.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.TextNodePos.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -11354,18 +11354,18 @@ proto.api.TextNodePos.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.TextNodePos} message
+ * @param {!proto.yorkie.v1.TextNodePos} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.TextNodePos.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.TextNodePos.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getCreatedAt();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      proto.api.TimeTicket.serializeBinaryToWriter
+      proto.yorkie.v1.TimeTicket.serializeBinaryToWriter
     );
   }
   f = message.getOffset();
@@ -11387,28 +11387,28 @@ proto.api.TextNodePos.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * optional TimeTicket created_at = 1;
- * @return {?proto.api.TimeTicket}
+ * @return {?proto.yorkie.v1.TimeTicket}
  */
-proto.api.TextNodePos.prototype.getCreatedAt = function() {
-  return /** @type{?proto.api.TimeTicket} */ (
-    jspb.Message.getWrapperField(this, proto.api.TimeTicket, 1));
+proto.yorkie.v1.TextNodePos.prototype.getCreatedAt = function() {
+  return /** @type{?proto.yorkie.v1.TimeTicket} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.TimeTicket, 1));
 };
 
 
 /**
- * @param {?proto.api.TimeTicket|undefined} value
- * @return {!proto.api.TextNodePos} returns this
+ * @param {?proto.yorkie.v1.TimeTicket|undefined} value
+ * @return {!proto.yorkie.v1.TextNodePos} returns this
 */
-proto.api.TextNodePos.prototype.setCreatedAt = function(value) {
+proto.yorkie.v1.TextNodePos.prototype.setCreatedAt = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.TextNodePos} returns this
+ * @return {!proto.yorkie.v1.TextNodePos} returns this
  */
-proto.api.TextNodePos.prototype.clearCreatedAt = function() {
+proto.yorkie.v1.TextNodePos.prototype.clearCreatedAt = function() {
   return this.setCreatedAt(undefined);
 };
 
@@ -11417,7 +11417,7 @@ proto.api.TextNodePos.prototype.clearCreatedAt = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.TextNodePos.prototype.hasCreatedAt = function() {
+proto.yorkie.v1.TextNodePos.prototype.hasCreatedAt = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -11426,16 +11426,16 @@ proto.api.TextNodePos.prototype.hasCreatedAt = function() {
  * optional int32 offset = 2;
  * @return {number}
  */
-proto.api.TextNodePos.prototype.getOffset = function() {
+proto.yorkie.v1.TextNodePos.prototype.getOffset = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.api.TextNodePos} returns this
+ * @return {!proto.yorkie.v1.TextNodePos} returns this
  */
-proto.api.TextNodePos.prototype.setOffset = function(value) {
+proto.yorkie.v1.TextNodePos.prototype.setOffset = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 
@@ -11444,16 +11444,16 @@ proto.api.TextNodePos.prototype.setOffset = function(value) {
  * optional int32 relative_offset = 3;
  * @return {number}
  */
-proto.api.TextNodePos.prototype.getRelativeOffset = function() {
+proto.yorkie.v1.TextNodePos.prototype.getRelativeOffset = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.api.TextNodePos} returns this
+ * @return {!proto.yorkie.v1.TextNodePos} returns this
  */
-proto.api.TextNodePos.prototype.setRelativeOffset = function(value) {
+proto.yorkie.v1.TextNodePos.prototype.setRelativeOffset = function(value) {
   return jspb.Message.setProto3IntField(this, 3, value);
 };
 
@@ -11474,8 +11474,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.TimeTicket.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.TimeTicket.toObject(opt_includeInstance, this);
+proto.yorkie.v1.TimeTicket.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.TimeTicket.toObject(opt_includeInstance, this);
 };
 
 
@@ -11484,11 +11484,11 @@ proto.api.TimeTicket.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.TimeTicket} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.TimeTicket} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.TimeTicket.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.TimeTicket.toObject = function(includeInstance, msg) {
   var f, obj = {
     lamport: jspb.Message.getFieldWithDefault(msg, 1, "0"),
     delimiter: jspb.Message.getFieldWithDefault(msg, 2, 0),
@@ -11506,23 +11506,23 @@ proto.api.TimeTicket.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.TimeTicket}
+ * @return {!proto.yorkie.v1.TimeTicket}
  */
-proto.api.TimeTicket.deserializeBinary = function(bytes) {
+proto.yorkie.v1.TimeTicket.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.TimeTicket;
-  return proto.api.TimeTicket.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.TimeTicket;
+  return proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.TimeTicket} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.TimeTicket} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.TimeTicket}
+ * @return {!proto.yorkie.v1.TimeTicket}
  */
-proto.api.TimeTicket.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.TimeTicket.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -11530,7 +11530,7 @@ proto.api.TimeTicket.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readUint64String());
+      var value = /** @type {string} */ (reader.readInt64String());
       msg.setLamport(value);
       break;
     case 2:
@@ -11554,9 +11554,9 @@ proto.api.TimeTicket.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.TimeTicket.prototype.serializeBinary = function() {
+proto.yorkie.v1.TimeTicket.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.TimeTicket.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.TimeTicket.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -11564,15 +11564,15 @@ proto.api.TimeTicket.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.TimeTicket} message
+ * @param {!proto.yorkie.v1.TimeTicket} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.TimeTicket.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.TimeTicket.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getLamport();
   if (parseInt(f, 10) !== 0) {
-    writer.writeUint64String(
+    writer.writeInt64String(
       1,
       f
     );
@@ -11595,19 +11595,19 @@ proto.api.TimeTicket.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional uint64 lamport = 1;
+ * optional int64 lamport = 1;
  * @return {string}
  */
-proto.api.TimeTicket.prototype.getLamport = function() {
+proto.yorkie.v1.TimeTicket.prototype.getLamport = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, "0"));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.api.TimeTicket} returns this
+ * @return {!proto.yorkie.v1.TimeTicket} returns this
  */
-proto.api.TimeTicket.prototype.setLamport = function(value) {
+proto.yorkie.v1.TimeTicket.prototype.setLamport = function(value) {
   return jspb.Message.setProto3StringIntField(this, 1, value);
 };
 
@@ -11616,16 +11616,16 @@ proto.api.TimeTicket.prototype.setLamport = function(value) {
  * optional uint32 delimiter = 2;
  * @return {number}
  */
-proto.api.TimeTicket.prototype.getDelimiter = function() {
+proto.yorkie.v1.TimeTicket.prototype.getDelimiter = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.api.TimeTicket} returns this
+ * @return {!proto.yorkie.v1.TimeTicket} returns this
  */
-proto.api.TimeTicket.prototype.setDelimiter = function(value) {
+proto.yorkie.v1.TimeTicket.prototype.setDelimiter = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 
@@ -11634,7 +11634,7 @@ proto.api.TimeTicket.prototype.setDelimiter = function(value) {
  * optional bytes actor_id = 3;
  * @return {string}
  */
-proto.api.TimeTicket.prototype.getActorId = function() {
+proto.yorkie.v1.TimeTicket.prototype.getActorId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -11644,7 +11644,7 @@ proto.api.TimeTicket.prototype.getActorId = function() {
  * This is a type-conversion wrapper around `getActorId()`
  * @return {string}
  */
-proto.api.TimeTicket.prototype.getActorId_asB64 = function() {
+proto.yorkie.v1.TimeTicket.prototype.getActorId_asB64 = function() {
   return /** @type {string} */ (jspb.Message.bytesAsB64(
       this.getActorId()));
 };
@@ -11657,7 +11657,7 @@ proto.api.TimeTicket.prototype.getActorId_asB64 = function() {
  * This is a type-conversion wrapper around `getActorId()`
  * @return {!Uint8Array}
  */
-proto.api.TimeTicket.prototype.getActorId_asU8 = function() {
+proto.yorkie.v1.TimeTicket.prototype.getActorId_asU8 = function() {
   return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
       this.getActorId()));
 };
@@ -11665,9 +11665,9 @@ proto.api.TimeTicket.prototype.getActorId_asU8 = function() {
 
 /**
  * @param {!(string|Uint8Array)} value
- * @return {!proto.api.TimeTicket} returns this
+ * @return {!proto.yorkie.v1.TimeTicket} returns this
  */
-proto.api.TimeTicket.prototype.setActorId = function(value) {
+proto.yorkie.v1.TimeTicket.prototype.setActorId = function(value) {
   return jspb.Message.setProto3BytesField(this, 3, value);
 };
 
@@ -11678,7 +11678,7 @@ proto.api.TimeTicket.prototype.setActorId = function(value) {
  * @private {!Array<number>}
  * @const
  */
-proto.api.DocEvent.repeatedFields_ = [3];
+proto.yorkie.v1.DocEvent.repeatedFields_ = [3];
 
 
 
@@ -11695,8 +11695,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.api.DocEvent.prototype.toObject = function(opt_includeInstance) {
-  return proto.api.DocEvent.toObject(opt_includeInstance, this);
+proto.yorkie.v1.DocEvent.prototype.toObject = function(opt_includeInstance) {
+  return proto.yorkie.v1.DocEvent.toObject(opt_includeInstance, this);
 };
 
 
@@ -11705,14 +11705,14 @@ proto.api.DocEvent.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.api.DocEvent} msg The msg instance to transform.
+ * @param {!proto.yorkie.v1.DocEvent} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.DocEvent.toObject = function(includeInstance, msg) {
+proto.yorkie.v1.DocEvent.toObject = function(includeInstance, msg) {
   var f, obj = {
     type: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    publisher: (f = msg.getPublisher()) && proto.api.Client.toObject(includeInstance, f),
+    publisher: (f = msg.getPublisher()) && proto.yorkie.v1.Client.toObject(includeInstance, f),
     documentKeysList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
   };
 
@@ -11727,23 +11727,23 @@ proto.api.DocEvent.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.api.DocEvent}
+ * @return {!proto.yorkie.v1.DocEvent}
  */
-proto.api.DocEvent.deserializeBinary = function(bytes) {
+proto.yorkie.v1.DocEvent.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.api.DocEvent;
-  return proto.api.DocEvent.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.yorkie.v1.DocEvent;
+  return proto.yorkie.v1.DocEvent.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.api.DocEvent} msg The message object to deserialize into.
+ * @param {!proto.yorkie.v1.DocEvent} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.api.DocEvent}
+ * @return {!proto.yorkie.v1.DocEvent}
  */
-proto.api.DocEvent.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.DocEvent.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -11751,12 +11751,12 @@ proto.api.DocEvent.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {!proto.api.DocEventType} */ (reader.readEnum());
+      var value = /** @type {!proto.yorkie.v1.DocEventType} */ (reader.readEnum());
       msg.setType(value);
       break;
     case 2:
-      var value = new proto.api.Client;
-      reader.readMessage(value,proto.api.Client.deserializeBinaryFromReader);
+      var value = new proto.yorkie.v1.Client;
+      reader.readMessage(value,proto.yorkie.v1.Client.deserializeBinaryFromReader);
       msg.setPublisher(value);
       break;
     case 3:
@@ -11776,9 +11776,9 @@ proto.api.DocEvent.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.api.DocEvent.prototype.serializeBinary = function() {
+proto.yorkie.v1.DocEvent.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.api.DocEvent.serializeBinaryToWriter(this, writer);
+  proto.yorkie.v1.DocEvent.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -11786,11 +11786,11 @@ proto.api.DocEvent.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.api.DocEvent} message
+ * @param {!proto.yorkie.v1.DocEvent} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.api.DocEvent.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.DocEvent.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getType();
   if (f !== 0.0) {
@@ -11804,7 +11804,7 @@ proto.api.DocEvent.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       2,
       f,
-      proto.api.Client.serializeBinaryToWriter
+      proto.yorkie.v1.Client.serializeBinaryToWriter
     );
   }
   f = message.getDocumentKeysList();
@@ -11819,46 +11819,46 @@ proto.api.DocEvent.serializeBinaryToWriter = function(message, writer) {
 
 /**
  * optional DocEventType type = 1;
- * @return {!proto.api.DocEventType}
+ * @return {!proto.yorkie.v1.DocEventType}
  */
-proto.api.DocEvent.prototype.getType = function() {
-  return /** @type {!proto.api.DocEventType} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+proto.yorkie.v1.DocEvent.prototype.getType = function() {
+  return /** @type {!proto.yorkie.v1.DocEventType} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
- * @param {!proto.api.DocEventType} value
- * @return {!proto.api.DocEvent} returns this
+ * @param {!proto.yorkie.v1.DocEventType} value
+ * @return {!proto.yorkie.v1.DocEvent} returns this
  */
-proto.api.DocEvent.prototype.setType = function(value) {
+proto.yorkie.v1.DocEvent.prototype.setType = function(value) {
   return jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
 /**
  * optional Client publisher = 2;
- * @return {?proto.api.Client}
+ * @return {?proto.yorkie.v1.Client}
  */
-proto.api.DocEvent.prototype.getPublisher = function() {
-  return /** @type{?proto.api.Client} */ (
-    jspb.Message.getWrapperField(this, proto.api.Client, 2));
+proto.yorkie.v1.DocEvent.prototype.getPublisher = function() {
+  return /** @type{?proto.yorkie.v1.Client} */ (
+    jspb.Message.getWrapperField(this, proto.yorkie.v1.Client, 2));
 };
 
 
 /**
- * @param {?proto.api.Client|undefined} value
- * @return {!proto.api.DocEvent} returns this
+ * @param {?proto.yorkie.v1.Client|undefined} value
+ * @return {!proto.yorkie.v1.DocEvent} returns this
 */
-proto.api.DocEvent.prototype.setPublisher = function(value) {
+proto.yorkie.v1.DocEvent.prototype.setPublisher = function(value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
 
 
 /**
  * Clears the message field making it undefined.
- * @return {!proto.api.DocEvent} returns this
+ * @return {!proto.yorkie.v1.DocEvent} returns this
  */
-proto.api.DocEvent.prototype.clearPublisher = function() {
+proto.yorkie.v1.DocEvent.prototype.clearPublisher = function() {
   return this.setPublisher(undefined);
 };
 
@@ -11867,7 +11867,7 @@ proto.api.DocEvent.prototype.clearPublisher = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.api.DocEvent.prototype.hasPublisher = function() {
+proto.yorkie.v1.DocEvent.prototype.hasPublisher = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -11876,16 +11876,16 @@ proto.api.DocEvent.prototype.hasPublisher = function() {
  * repeated string document_keys = 3;
  * @return {!Array<string>}
  */
-proto.api.DocEvent.prototype.getDocumentKeysList = function() {
+proto.yorkie.v1.DocEvent.prototype.getDocumentKeysList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
 };
 
 
 /**
  * @param {!Array<string>} value
- * @return {!proto.api.DocEvent} returns this
+ * @return {!proto.yorkie.v1.DocEvent} returns this
  */
-proto.api.DocEvent.prototype.setDocumentKeysList = function(value) {
+proto.yorkie.v1.DocEvent.prototype.setDocumentKeysList = function(value) {
   return jspb.Message.setField(this, 3, value || []);
 };
 
@@ -11893,18 +11893,18 @@ proto.api.DocEvent.prototype.setDocumentKeysList = function(value) {
 /**
  * @param {string} value
  * @param {number=} opt_index
- * @return {!proto.api.DocEvent} returns this
+ * @return {!proto.yorkie.v1.DocEvent} returns this
  */
-proto.api.DocEvent.prototype.addDocumentKeys = function(value, opt_index) {
+proto.yorkie.v1.DocEvent.prototype.addDocumentKeys = function(value, opt_index) {
   return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.api.DocEvent} returns this
+ * @return {!proto.yorkie.v1.DocEvent} returns this
  */
-proto.api.DocEvent.prototype.clearDocumentKeysList = function() {
+proto.yorkie.v1.DocEvent.prototype.clearDocumentKeysList = function() {
   return this.setDocumentKeysList([]);
 };
 
@@ -11912,32 +11912,32 @@ proto.api.DocEvent.prototype.clearDocumentKeysList = function() {
 /**
  * @enum {number}
  */
-proto.api.ValueType = {
-  NULL: 0,
-  BOOLEAN: 1,
-  INTEGER: 2,
-  LONG: 3,
-  DOUBLE: 4,
-  STRING: 5,
-  BYTES: 6,
-  DATE: 7,
-  JSON_OBJECT: 8,
-  JSON_ARRAY: 9,
-  TEXT: 10,
-  RICH_TEXT: 11,
-  INTEGER_CNT: 12,
-  LONG_CNT: 13,
-  DOUBLE_CNT: 14
+proto.yorkie.v1.ValueType = {
+  VALUE_TYPE_NULL: 0,
+  VALUE_TYPE_BOOLEAN: 1,
+  VALUE_TYPE_INTEGER: 2,
+  VALUE_TYPE_LONG: 3,
+  VALUE_TYPE_DOUBLE: 4,
+  VALUE_TYPE_STRING: 5,
+  VALUE_TYPE_BYTES: 6,
+  VALUE_TYPE_DATE: 7,
+  VALUE_TYPE_JSON_OBJECT: 8,
+  VALUE_TYPE_JSON_ARRAY: 9,
+  VALUE_TYPE_TEXT: 10,
+  VALUE_TYPE_RICH_TEXT: 11,
+  VALUE_TYPE_INTEGER_CNT: 12,
+  VALUE_TYPE_LONG_CNT: 13,
+  VALUE_TYPE_DOUBLE_CNT: 14
 };
 
 /**
  * @enum {number}
  */
-proto.api.DocEventType = {
-  DOCUMENTS_CHANGED: 0,
-  DOCUMENTS_WATCHED: 1,
-  DOCUMENTS_UNWATCHED: 2,
-  PRESENCE_CHANGED: 3
+proto.yorkie.v1.DocEventType = {
+  DOC_EVENT_TYPE_DOCUMENTS_CHANGED: 0,
+  DOC_EVENT_TYPE_DOCUMENTS_WATCHED: 1,
+  DOC_EVENT_TYPE_DOCUMENTS_UNWATCHED: 2,
+  DOC_EVENT_TYPE_PRESENCE_CHANGED: 3
 };
 
-goog.object.extend(exports, proto.api);
+goog.object.extend(exports, proto.yorkie.v1);
