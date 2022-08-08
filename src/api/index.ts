@@ -1,6 +1,22 @@
+/*
+ * Copyright 2022 The Yorkie Authors. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import Long from 'long';
 import { Document } from 'yorkie-js-sdk';
-import { AdminPromiseClient } from './admin_grpc_web_pb';
+import { AdminServicePromiseClient } from './yorkie/v1/admin_grpc_web_pb';
 import {
   LogInRequest,
   SignUpRequest,
@@ -13,13 +29,12 @@ import {
   SearchDocumentsRequest,
   ListChangesRequest,
   GetSnapshotMetaRequest,
-} from './admin_pb';
+} from './yorkie/v1/admin_pb';
 import * as errorDetails from 'grpc-web-error-details';
-
-import { AuthUnaryInterceptor, AuthStreamInterceptor } from './auth_interceptor';
-import { UpdatableProjectFields as PbProjectFields } from './resources_pb';
+import { UpdatableProjectFields as PbProjectFields } from './yorkie/v1/resources_pb';
 import * as PbWrappers from 'google-protobuf/google/protobuf/wrappers_pb';
 
+import { AuthUnaryInterceptor, AuthStreamInterceptor } from './auth_interceptor';
 import { User, Project, DocumentSummary, UpdatableProjectFields, DocumentHistory } from './types';
 import * as converter from './converter';
 
@@ -28,7 +43,7 @@ export * from './types';
 // TODO(hackerwins): Consider combining these two interceptors into one.
 const unaryInterceptor = new AuthUnaryInterceptor();
 const streamInterceptor = new AuthStreamInterceptor();
-const client = new AdminPromiseClient(`${process.env.REACT_APP_ADMIN_ADDR}`, null, {
+const client = new AdminServicePromiseClient(`${process.env.REACT_APP_ADMIN_ADDR}`, null, {
   unaryInterceptors: [unaryInterceptor],
   streamInterceptors: [streamInterceptor],
 });

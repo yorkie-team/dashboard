@@ -1,6 +1,6 @@
 import * as jspb from 'google-protobuf'
 
-import * as resources_pb from './resources_pb';
+import * as yorkie_v1_resources_pb from '../../yorkie/v1/resources_pb';
 
 
 export class SignUpRequest extends jspb.Message {
@@ -26,8 +26,8 @@ export namespace SignUpRequest {
 }
 
 export class SignUpResponse extends jspb.Message {
-  getUser(): resources_pb.User | undefined;
-  setUser(value?: resources_pb.User): SignUpResponse;
+  getUser(): yorkie_v1_resources_pb.User | undefined;
+  setUser(value?: yorkie_v1_resources_pb.User): SignUpResponse;
   hasUser(): boolean;
   clearUser(): SignUpResponse;
 
@@ -41,7 +41,7 @@ export class SignUpResponse extends jspb.Message {
 
 export namespace SignUpResponse {
   export type AsObject = {
-    user?: resources_pb.User.AsObject,
+    user?: yorkie_v1_resources_pb.User.AsObject,
   }
 }
 
@@ -104,8 +104,8 @@ export namespace CreateProjectRequest {
 }
 
 export class CreateProjectResponse extends jspb.Message {
-  getProject(): resources_pb.Project | undefined;
-  setProject(value?: resources_pb.Project): CreateProjectResponse;
+  getProject(): yorkie_v1_resources_pb.Project | undefined;
+  setProject(value?: yorkie_v1_resources_pb.Project): CreateProjectResponse;
   hasProject(): boolean;
   clearProject(): CreateProjectResponse;
 
@@ -119,7 +119,7 @@ export class CreateProjectResponse extends jspb.Message {
 
 export namespace CreateProjectResponse {
   export type AsObject = {
-    project?: resources_pb.Project.AsObject,
+    project?: yorkie_v1_resources_pb.Project.AsObject,
   }
 }
 
@@ -142,8 +142,8 @@ export namespace GetProjectRequest {
 }
 
 export class GetProjectResponse extends jspb.Message {
-  getProject(): resources_pb.Project | undefined;
-  setProject(value?: resources_pb.Project): GetProjectResponse;
+  getProject(): yorkie_v1_resources_pb.Project | undefined;
+  setProject(value?: yorkie_v1_resources_pb.Project): GetProjectResponse;
   hasProject(): boolean;
   clearProject(): GetProjectResponse;
 
@@ -157,7 +157,7 @@ export class GetProjectResponse extends jspb.Message {
 
 export namespace GetProjectResponse {
   export type AsObject = {
-    project?: resources_pb.Project.AsObject,
+    project?: yorkie_v1_resources_pb.Project.AsObject,
   }
 }
 
@@ -176,10 +176,10 @@ export namespace ListProjectsRequest {
 }
 
 export class ListProjectsResponse extends jspb.Message {
-  getProjectsList(): Array<resources_pb.Project>;
-  setProjectsList(value: Array<resources_pb.Project>): ListProjectsResponse;
+  getProjectsList(): Array<yorkie_v1_resources_pb.Project>;
+  setProjectsList(value: Array<yorkie_v1_resources_pb.Project>): ListProjectsResponse;
   clearProjectsList(): ListProjectsResponse;
-  addProjects(value?: resources_pb.Project, index?: number): resources_pb.Project;
+  addProjects(value?: yorkie_v1_resources_pb.Project, index?: number): yorkie_v1_resources_pb.Project;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListProjectsResponse.AsObject;
@@ -191,7 +191,7 @@ export class ListProjectsResponse extends jspb.Message {
 
 export namespace ListProjectsResponse {
   export type AsObject = {
-    projectsList: Array<resources_pb.Project.AsObject>,
+    projectsList: Array<yorkie_v1_resources_pb.Project.AsObject>,
   }
 }
 
@@ -199,8 +199,8 @@ export class UpdateProjectRequest extends jspb.Message {
   getId(): string;
   setId(value: string): UpdateProjectRequest;
 
-  getFields(): resources_pb.UpdatableProjectFields | undefined;
-  setFields(value?: resources_pb.UpdatableProjectFields): UpdateProjectRequest;
+  getFields(): yorkie_v1_resources_pb.UpdatableProjectFields | undefined;
+  setFields(value?: yorkie_v1_resources_pb.UpdatableProjectFields): UpdateProjectRequest;
   hasFields(): boolean;
   clearFields(): UpdateProjectRequest;
 
@@ -215,13 +215,13 @@ export class UpdateProjectRequest extends jspb.Message {
 export namespace UpdateProjectRequest {
   export type AsObject = {
     id: string,
-    fields?: resources_pb.UpdatableProjectFields.AsObject,
+    fields?: yorkie_v1_resources_pb.UpdatableProjectFields.AsObject,
   }
 }
 
 export class UpdateProjectResponse extends jspb.Message {
-  getProject(): resources_pb.Project | undefined;
-  setProject(value?: resources_pb.Project): UpdateProjectResponse;
+  getProject(): yorkie_v1_resources_pb.Project | undefined;
+  setProject(value?: yorkie_v1_resources_pb.Project): UpdateProjectResponse;
   hasProject(): boolean;
   clearProject(): UpdateProjectResponse;
 
@@ -235,7 +235,7 @@ export class UpdateProjectResponse extends jspb.Message {
 
 export namespace UpdateProjectResponse {
   export type AsObject = {
-    project?: resources_pb.Project.AsObject,
+    project?: yorkie_v1_resources_pb.Project.AsObject,
   }
 }
 
@@ -270,10 +270,10 @@ export namespace ListDocumentsRequest {
 }
 
 export class ListDocumentsResponse extends jspb.Message {
-  getDocumentsList(): Array<resources_pb.DocumentSummary>;
-  setDocumentsList(value: Array<resources_pb.DocumentSummary>): ListDocumentsResponse;
+  getDocumentsList(): Array<yorkie_v1_resources_pb.DocumentSummary>;
+  setDocumentsList(value: Array<yorkie_v1_resources_pb.DocumentSummary>): ListDocumentsResponse;
   clearDocumentsList(): ListDocumentsResponse;
-  addDocuments(value?: resources_pb.DocumentSummary, index?: number): resources_pb.DocumentSummary;
+  addDocuments(value?: yorkie_v1_resources_pb.DocumentSummary, index?: number): yorkie_v1_resources_pb.DocumentSummary;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListDocumentsResponse.AsObject;
@@ -285,7 +285,7 @@ export class ListDocumentsResponse extends jspb.Message {
 
 export namespace ListDocumentsResponse {
   export type AsObject = {
-    documentsList: Array<resources_pb.DocumentSummary.AsObject>,
+    documentsList: Array<yorkie_v1_resources_pb.DocumentSummary.AsObject>,
   }
 }
 
@@ -312,8 +312,8 @@ export namespace GetDocumentRequest {
 }
 
 export class GetDocumentResponse extends jspb.Message {
-  getDocument(): resources_pb.DocumentSummary | undefined;
-  setDocument(value?: resources_pb.DocumentSummary): GetDocumentResponse;
+  getDocument(): yorkie_v1_resources_pb.DocumentSummary | undefined;
+  setDocument(value?: yorkie_v1_resources_pb.DocumentSummary): GetDocumentResponse;
   hasDocument(): boolean;
   clearDocument(): GetDocumentResponse;
 
@@ -327,7 +327,7 @@ export class GetDocumentResponse extends jspb.Message {
 
 export namespace GetDocumentResponse {
   export type AsObject = {
-    document?: resources_pb.DocumentSummary.AsObject,
+    document?: yorkie_v1_resources_pb.DocumentSummary.AsObject,
   }
 }
 
@@ -411,10 +411,10 @@ export class SearchDocumentsResponse extends jspb.Message {
   getTotalCount(): number;
   setTotalCount(value: number): SearchDocumentsResponse;
 
-  getDocumentsList(): Array<resources_pb.DocumentSummary>;
-  setDocumentsList(value: Array<resources_pb.DocumentSummary>): SearchDocumentsResponse;
+  getDocumentsList(): Array<yorkie_v1_resources_pb.DocumentSummary>;
+  setDocumentsList(value: Array<yorkie_v1_resources_pb.DocumentSummary>): SearchDocumentsResponse;
   clearDocumentsList(): SearchDocumentsResponse;
-  addDocuments(value?: resources_pb.DocumentSummary, index?: number): resources_pb.DocumentSummary;
+  addDocuments(value?: yorkie_v1_resources_pb.DocumentSummary, index?: number): yorkie_v1_resources_pb.DocumentSummary;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SearchDocumentsResponse.AsObject;
@@ -427,7 +427,7 @@ export class SearchDocumentsResponse extends jspb.Message {
 export namespace SearchDocumentsResponse {
   export type AsObject = {
     totalCount: number,
-    documentsList: Array<resources_pb.DocumentSummary.AsObject>,
+    documentsList: Array<yorkie_v1_resources_pb.DocumentSummary.AsObject>,
   }
 }
 
@@ -466,10 +466,10 @@ export namespace ListChangesRequest {
 }
 
 export class ListChangesResponse extends jspb.Message {
-  getChangesList(): Array<resources_pb.Change>;
-  setChangesList(value: Array<resources_pb.Change>): ListChangesResponse;
+  getChangesList(): Array<yorkie_v1_resources_pb.Change>;
+  setChangesList(value: Array<yorkie_v1_resources_pb.Change>): ListChangesResponse;
   clearChangesList(): ListChangesResponse;
-  addChanges(value?: resources_pb.Change, index?: number): resources_pb.Change;
+  addChanges(value?: yorkie_v1_resources_pb.Change, index?: number): yorkie_v1_resources_pb.Change;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListChangesResponse.AsObject;
@@ -481,7 +481,7 @@ export class ListChangesResponse extends jspb.Message {
 
 export namespace ListChangesResponse {
   export type AsObject = {
-    changesList: Array<resources_pb.Change.AsObject>,
+    changesList: Array<yorkie_v1_resources_pb.Change.AsObject>,
   }
 }
 
