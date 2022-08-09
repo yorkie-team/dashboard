@@ -16,19 +16,14 @@
 
 import * as errorDetails from 'grpc-web-error-details';
 import { Timestamp as PbTimestamp } from 'google-protobuf/google/protobuf/timestamp_pb';
+import { User, Project, DocumentSummary, AuthWebhookMethod, ErrorWithDetails } from './types';
+import { Change, converter } from 'yorkie-js-sdk';
 import {
   User as PbUser,
   Project as PbProject,
   DocumentSummary as PbDocumentSummary,
+  Change as PbChange,
 } from './yorkie/v1/resources_pb';
-
-import {
-  User,
-  Project,
-  DocumentSummary,
-  AuthWebhookMethod,
-  ErrorWithDetails,
-} from './types';
 
 export function fromTimestamp(pbTimestamp: PbTimestamp): number {
   return pbTimestamp.getSeconds() + pbTimestamp.getNanos() / 1e9;
@@ -83,6 +78,10 @@ export function fromDocumentSummaries(pbDocumentSummaries: Array<PbDocumentSumma
   }
 
   return documentSummaries;
+}
+
+export function fromChanges(pbChanges: Array<PbChange>): Array<Change> {
+  return converter.fromChanges(pbChanges);
 }
 
 export function toErrorWithDetails(

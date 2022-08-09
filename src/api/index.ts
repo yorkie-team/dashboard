@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import Long from 'long';
+import { Document } from 'yorkie-js-sdk';
 import { AdminServicePromiseClient } from './yorkie/v1/admin_grpc_web_pb';
 import {
   LogInRequest,
@@ -25,13 +27,15 @@ import {
   CreateProjectRequest,
   UpdateProjectRequest,
   SearchDocumentsRequest,
+  ListChangesRequest,
+  GetSnapshotMetaRequest,
 } from './yorkie/v1/admin_pb';
 import * as errorDetails from 'grpc-web-error-details';
 import { UpdatableProjectFields as PbProjectFields } from './yorkie/v1/resources_pb';
 import * as PbWrappers from 'google-protobuf/google/protobuf/wrappers_pb';
 
 import { AuthUnaryInterceptor, AuthStreamInterceptor } from './auth_interceptor';
-import { User, Project, DocumentSummary, UpdatableProjectFields } from './types';
+import { User, Project, DocumentSummary, UpdatableProjectFields, DocumentHistory } from './types';
 import * as converter from './converter';
 
 export * from './types';
@@ -175,4 +179,43 @@ export async function searchDocuments(
     totalCount: res.getTotalCount(),
     documents: summaries,
   };
+}
+
+// listDocumentHistories lists of changes for the given document.
+export async function listDocumentHistories(
+  projectName: string,
+  documentKey: string,
+  previousSeq: string,
+  pageSize: number,
+  isForward: boolean,
+): Promise<Array<DocumentHistory>> {
+  const req = new ListChangesRequest();
+  req.setProjectName(projectName);
+  req.setDocumentKey(documentKey);
+  req.setPreviousSeq(previousSeq);
+  req.setPageSize(pageSize);
+  req.setIsForward(isForward);
+  const response = await client.listChanges(req);
+  const pbChanges = response.getChangesList();
+  const changes = converter.fromChanges(pbChanges);
+
+  const seq = Long.fromString(pbChanges[0].getId()!.getServerSeq()).add(-1);
+  const metaReq = new GetSnapshotMetaRequest();
+  metaReq.setProjectName(projectName);
+  metaReq.setDocumentKey(documentKey);
+  metaReq.setServerSeq(seq.toString());
+  const snapshotMeta = await client.getSnapshotMeta(metaReq);
+
+  const document = new Document(documentKey);
+  document.applySnapshot(seq, snapshotMeta.getSnapshot() as Uint8Array);
+
+  const histories: Array<DocumentHistory> = [];
+  for (let i = 0; i < changes.length; i++) {
+    document.applyChanges([changes[i]]);
+    histories.push({
+      serverSeq: pbChanges[i].getId()!.getServerSeq(),
+      snapshot: document.toJSON(),
+    });
+  }
+  return histories;
 }

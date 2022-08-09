@@ -13,13 +13,21 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() {
-  if (this) { return this; }
-  if (typeof window !== 'undefined') { return window; }
-  if (typeof global !== 'undefined') { return global; }
-  if (typeof self !== 'undefined') { return self; }
+var global = function () {
+  if (this) {
+    return this;
+  }
+  if (typeof window !== 'undefined') {
+    return window;
+  }
+  if (typeof global !== 'undefined') {
+    return global;
+  }
+  if (typeof self !== 'undefined') {
+    return self;
+  }
   return Function('return this')();
-}.call(null));
+}.call(null);
 
 var yorkie_v1_resources_pb = require('../../yorkie/v1/resources_pb.js');
 goog.object.extend(proto, yorkie_v1_resources_pb);
@@ -55,7 +63,7 @@ goog.exportSymbol('proto.yorkie.v1.UpdateProjectResponse', null, global);
  * @extends {jspb.Message}
  * @constructor
  */
-proto.yorkie.v1.SignUpRequest = function(opt_data) {
+proto.yorkie.v1.SignUpRequest = function (opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.yorkie.v1.SignUpRequest, jspb.Message);
@@ -76,7 +84,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.yorkie.v1.SignUpResponse = function(opt_data) {
+proto.yorkie.v1.SignUpResponse = function (opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.yorkie.v1.SignUpResponse, jspb.Message);
@@ -97,7 +105,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.yorkie.v1.LogInRequest = function(opt_data) {
+proto.yorkie.v1.LogInRequest = function (opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.yorkie.v1.LogInRequest, jspb.Message);
@@ -118,7 +126,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.yorkie.v1.LogInResponse = function(opt_data) {
+proto.yorkie.v1.LogInResponse = function (opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.yorkie.v1.LogInResponse, jspb.Message);
@@ -139,7 +147,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.yorkie.v1.CreateProjectRequest = function(opt_data) {
+proto.yorkie.v1.CreateProjectRequest = function (opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.yorkie.v1.CreateProjectRequest, jspb.Message);
@@ -160,7 +168,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.yorkie.v1.CreateProjectResponse = function(opt_data) {
+proto.yorkie.v1.CreateProjectResponse = function (opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.yorkie.v1.CreateProjectResponse, jspb.Message);
@@ -181,7 +189,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.yorkie.v1.GetProjectRequest = function(opt_data) {
+proto.yorkie.v1.GetProjectRequest = function (opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.yorkie.v1.GetProjectRequest, jspb.Message);
@@ -202,7 +210,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.yorkie.v1.GetProjectResponse = function(opt_data) {
+proto.yorkie.v1.GetProjectResponse = function (opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.yorkie.v1.GetProjectResponse, jspb.Message);
@@ -223,7 +231,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.yorkie.v1.ListProjectsRequest = function(opt_data) {
+proto.yorkie.v1.ListProjectsRequest = function (opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.yorkie.v1.ListProjectsRequest, jspb.Message);
@@ -244,7 +252,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.yorkie.v1.ListProjectsResponse = function(opt_data) {
+proto.yorkie.v1.ListProjectsResponse = function (opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, proto.yorkie.v1.ListProjectsResponse.repeatedFields_, null);
 };
 goog.inherits(proto.yorkie.v1.ListProjectsResponse, jspb.Message);
@@ -265,7 +273,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.yorkie.v1.UpdateProjectRequest = function(opt_data) {
+proto.yorkie.v1.UpdateProjectRequest = function (opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.yorkie.v1.UpdateProjectRequest, jspb.Message);
@@ -286,7 +294,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.yorkie.v1.UpdateProjectResponse = function(opt_data) {
+proto.yorkie.v1.UpdateProjectResponse = function (opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.yorkie.v1.UpdateProjectResponse, jspb.Message);
@@ -307,7 +315,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.yorkie.v1.ListDocumentsRequest = function(opt_data) {
+proto.yorkie.v1.ListDocumentsRequest = function (opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.yorkie.v1.ListDocumentsRequest, jspb.Message);
@@ -328,7 +336,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.yorkie.v1.ListDocumentsResponse = function(opt_data) {
+proto.yorkie.v1.ListDocumentsResponse = function (opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, proto.yorkie.v1.ListDocumentsResponse.repeatedFields_, null);
 };
 goog.inherits(proto.yorkie.v1.ListDocumentsResponse, jspb.Message);
@@ -349,7 +357,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.yorkie.v1.GetDocumentRequest = function(opt_data) {
+proto.yorkie.v1.GetDocumentRequest = function (opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.yorkie.v1.GetDocumentRequest, jspb.Message);
@@ -370,7 +378,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.yorkie.v1.GetDocumentResponse = function(opt_data) {
+proto.yorkie.v1.GetDocumentResponse = function (opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.yorkie.v1.GetDocumentResponse, jspb.Message);
@@ -391,7 +399,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.yorkie.v1.GetSnapshotMetaRequest = function(opt_data) {
+proto.yorkie.v1.GetSnapshotMetaRequest = function (opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.yorkie.v1.GetSnapshotMetaRequest, jspb.Message);
@@ -412,7 +420,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.yorkie.v1.GetSnapshotMetaResponse = function(opt_data) {
+proto.yorkie.v1.GetSnapshotMetaResponse = function (opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.yorkie.v1.GetSnapshotMetaResponse, jspb.Message);
@@ -433,7 +441,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.yorkie.v1.SearchDocumentsRequest = function(opt_data) {
+proto.yorkie.v1.SearchDocumentsRequest = function (opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.yorkie.v1.SearchDocumentsRequest, jspb.Message);
@@ -454,7 +462,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.yorkie.v1.SearchDocumentsResponse = function(opt_data) {
+proto.yorkie.v1.SearchDocumentsResponse = function (opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, proto.yorkie.v1.SearchDocumentsResponse.repeatedFields_, null);
 };
 goog.inherits(proto.yorkie.v1.SearchDocumentsResponse, jspb.Message);
@@ -475,7 +483,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.yorkie.v1.ListChangesRequest = function(opt_data) {
+proto.yorkie.v1.ListChangesRequest = function (opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.yorkie.v1.ListChangesRequest, jspb.Message);
@@ -496,7 +504,7 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.yorkie.v1.ListChangesResponse = function(opt_data) {
+proto.yorkie.v1.ListChangesResponse = function (opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, proto.yorkie.v1.ListChangesResponse.repeatedFields_, null);
 };
 goog.inherits(proto.yorkie.v1.ListChangesResponse, jspb.Message);
@@ -508,60 +516,56 @@ if (goog.DEBUG && !COMPILED) {
   proto.yorkie.v1.ListChangesResponse.displayName = 'proto.yorkie.v1.ListChangesResponse';
 }
 
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.yorkie.v1.SignUpRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.yorkie.v1.SignUpRequest.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.yorkie.v1.SignUpRequest} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.yorkie.v1.SignUpRequest.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    username: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    password: jspb.Message.getFieldWithDefault(msg, 2, "")
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.yorkie.v1.SignUpRequest.prototype.toObject = function (opt_includeInstance) {
+    return proto.yorkie.v1.SignUpRequest.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.yorkie.v1.SignUpRequest} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.yorkie.v1.SignUpRequest.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {
+        username: jspb.Message.getFieldWithDefault(msg, 1, ''),
+        password: jspb.Message.getFieldWithDefault(msg, 2, ''),
+      };
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.yorkie.v1.SignUpRequest}
  */
-proto.yorkie.v1.SignUpRequest.deserializeBinary = function(bytes) {
+proto.yorkie.v1.SignUpRequest.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.yorkie.v1.SignUpRequest;
+  var msg = new proto.yorkie.v1.SignUpRequest();
   return proto.yorkie.v1.SignUpRequest.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -570,40 +574,38 @@ proto.yorkie.v1.SignUpRequest.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.yorkie.v1.SignUpRequest}
  */
-proto.yorkie.v1.SignUpRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.SignUpRequest.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setUsername(value);
-      break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setPassword(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setUsername(value);
+        break;
+      case 2:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setPassword(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.yorkie.v1.SignUpRequest.prototype.serializeBinary = function() {
+proto.yorkie.v1.SignUpRequest.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.yorkie.v1.SignUpRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -612,115 +614,99 @@ proto.yorkie.v1.SignUpRequest.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.yorkie.v1.SignUpRequest.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.SignUpRequest.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
   f = message.getUsername();
   if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
+    writer.writeString(1, f);
   }
   f = message.getPassword();
   if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
-    );
+    writer.writeString(2, f);
   }
 };
-
 
 /**
  * optional string username = 1;
  * @return {string}
  */
-proto.yorkie.v1.SignUpRequest.prototype.getUsername = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.yorkie.v1.SignUpRequest.prototype.getUsername = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.yorkie.v1.SignUpRequest} returns this
  */
-proto.yorkie.v1.SignUpRequest.prototype.setUsername = function(value) {
+proto.yorkie.v1.SignUpRequest.prototype.setUsername = function (value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
-
 
 /**
  * optional string password = 2;
  * @return {string}
  */
-proto.yorkie.v1.SignUpRequest.prototype.getPassword = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+proto.yorkie.v1.SignUpRequest.prototype.getPassword = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.yorkie.v1.SignUpRequest} returns this
  */
-proto.yorkie.v1.SignUpRequest.prototype.setPassword = function(value) {
+proto.yorkie.v1.SignUpRequest.prototype.setPassword = function (value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
-
-
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.yorkie.v1.SignUpResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.yorkie.v1.SignUpResponse.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.yorkie.v1.SignUpResponse} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.yorkie.v1.SignUpResponse.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    user: (f = msg.getUser()) && yorkie_v1_resources_pb.User.toObject(includeInstance, f)
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.yorkie.v1.SignUpResponse.prototype.toObject = function (opt_includeInstance) {
+    return proto.yorkie.v1.SignUpResponse.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.yorkie.v1.SignUpResponse} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.yorkie.v1.SignUpResponse.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {
+        user: (f = msg.getUser()) && yorkie_v1_resources_pb.User.toObject(includeInstance, f),
+      };
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.yorkie.v1.SignUpResponse}
  */
-proto.yorkie.v1.SignUpResponse.deserializeBinary = function(bytes) {
+proto.yorkie.v1.SignUpResponse.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.yorkie.v1.SignUpResponse;
+  var msg = new proto.yorkie.v1.SignUpResponse();
   return proto.yorkie.v1.SignUpResponse.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -729,37 +715,35 @@ proto.yorkie.v1.SignUpResponse.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.yorkie.v1.SignUpResponse}
  */
-proto.yorkie.v1.SignUpResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.SignUpResponse.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new yorkie_v1_resources_pb.User;
-      reader.readMessage(value,yorkie_v1_resources_pb.User.deserializeBinaryFromReader);
-      msg.setUser(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = new yorkie_v1_resources_pb.User();
+        reader.readMessage(value, yorkie_v1_resources_pb.User.deserializeBinaryFromReader);
+        msg.setUser(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.yorkie.v1.SignUpResponse.prototype.serializeBinary = function() {
+proto.yorkie.v1.SignUpResponse.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.yorkie.v1.SignUpResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -768,111 +752,96 @@ proto.yorkie.v1.SignUpResponse.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.yorkie.v1.SignUpResponse.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.SignUpResponse.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
   f = message.getUser();
   if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      yorkie_v1_resources_pb.User.serializeBinaryToWriter
-    );
+    writer.writeMessage(1, f, yorkie_v1_resources_pb.User.serializeBinaryToWriter);
   }
 };
-
 
 /**
  * optional User user = 1;
  * @return {?proto.yorkie.v1.User}
  */
-proto.yorkie.v1.SignUpResponse.prototype.getUser = function() {
-  return /** @type{?proto.yorkie.v1.User} */ (
-    jspb.Message.getWrapperField(this, yorkie_v1_resources_pb.User, 1));
+proto.yorkie.v1.SignUpResponse.prototype.getUser = function () {
+  return /** @type{?proto.yorkie.v1.User} */ (jspb.Message.getWrapperField(this, yorkie_v1_resources_pb.User, 1));
 };
-
 
 /**
  * @param {?proto.yorkie.v1.User|undefined} value
  * @return {!proto.yorkie.v1.SignUpResponse} returns this
-*/
-proto.yorkie.v1.SignUpResponse.prototype.setUser = function(value) {
+ */
+proto.yorkie.v1.SignUpResponse.prototype.setUser = function (value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
-
 
 /**
  * Clears the message field making it undefined.
  * @return {!proto.yorkie.v1.SignUpResponse} returns this
  */
-proto.yorkie.v1.SignUpResponse.prototype.clearUser = function() {
+proto.yorkie.v1.SignUpResponse.prototype.clearUser = function () {
   return this.setUser(undefined);
 };
-
 
 /**
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.yorkie.v1.SignUpResponse.prototype.hasUser = function() {
+proto.yorkie.v1.SignUpResponse.prototype.hasUser = function () {
   return jspb.Message.getField(this, 1) != null;
 };
 
-
-
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.yorkie.v1.LogInRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.yorkie.v1.LogInRequest.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.yorkie.v1.LogInRequest} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.yorkie.v1.LogInRequest.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    username: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    password: jspb.Message.getFieldWithDefault(msg, 2, "")
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.yorkie.v1.LogInRequest.prototype.toObject = function (opt_includeInstance) {
+    return proto.yorkie.v1.LogInRequest.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.yorkie.v1.LogInRequest} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.yorkie.v1.LogInRequest.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {
+        username: jspb.Message.getFieldWithDefault(msg, 1, ''),
+        password: jspb.Message.getFieldWithDefault(msg, 2, ''),
+      };
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.yorkie.v1.LogInRequest}
  */
-proto.yorkie.v1.LogInRequest.deserializeBinary = function(bytes) {
+proto.yorkie.v1.LogInRequest.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.yorkie.v1.LogInRequest;
+  var msg = new proto.yorkie.v1.LogInRequest();
   return proto.yorkie.v1.LogInRequest.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -881,40 +850,38 @@ proto.yorkie.v1.LogInRequest.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.yorkie.v1.LogInRequest}
  */
-proto.yorkie.v1.LogInRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.LogInRequest.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setUsername(value);
-      break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setPassword(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setUsername(value);
+        break;
+      case 2:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setPassword(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.yorkie.v1.LogInRequest.prototype.serializeBinary = function() {
+proto.yorkie.v1.LogInRequest.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.yorkie.v1.LogInRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -923,115 +890,99 @@ proto.yorkie.v1.LogInRequest.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.yorkie.v1.LogInRequest.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.LogInRequest.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
   f = message.getUsername();
   if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
+    writer.writeString(1, f);
   }
   f = message.getPassword();
   if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
-    );
+    writer.writeString(2, f);
   }
 };
-
 
 /**
  * optional string username = 1;
  * @return {string}
  */
-proto.yorkie.v1.LogInRequest.prototype.getUsername = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.yorkie.v1.LogInRequest.prototype.getUsername = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.yorkie.v1.LogInRequest} returns this
  */
-proto.yorkie.v1.LogInRequest.prototype.setUsername = function(value) {
+proto.yorkie.v1.LogInRequest.prototype.setUsername = function (value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
-
 
 /**
  * optional string password = 2;
  * @return {string}
  */
-proto.yorkie.v1.LogInRequest.prototype.getPassword = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+proto.yorkie.v1.LogInRequest.prototype.getPassword = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.yorkie.v1.LogInRequest} returns this
  */
-proto.yorkie.v1.LogInRequest.prototype.setPassword = function(value) {
+proto.yorkie.v1.LogInRequest.prototype.setPassword = function (value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
-
-
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.yorkie.v1.LogInResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.yorkie.v1.LogInResponse.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.yorkie.v1.LogInResponse} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.yorkie.v1.LogInResponse.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    token: jspb.Message.getFieldWithDefault(msg, 1, "")
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.yorkie.v1.LogInResponse.prototype.toObject = function (opt_includeInstance) {
+    return proto.yorkie.v1.LogInResponse.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.yorkie.v1.LogInResponse} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.yorkie.v1.LogInResponse.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {
+        token: jspb.Message.getFieldWithDefault(msg, 1, ''),
+      };
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.yorkie.v1.LogInResponse}
  */
-proto.yorkie.v1.LogInResponse.deserializeBinary = function(bytes) {
+proto.yorkie.v1.LogInResponse.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.yorkie.v1.LogInResponse;
+  var msg = new proto.yorkie.v1.LogInResponse();
   return proto.yorkie.v1.LogInResponse.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -1040,36 +991,34 @@ proto.yorkie.v1.LogInResponse.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.yorkie.v1.LogInResponse}
  */
-proto.yorkie.v1.LogInResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.LogInResponse.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setToken(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setToken(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.yorkie.v1.LogInResponse.prototype.serializeBinary = function() {
+proto.yorkie.v1.LogInResponse.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.yorkie.v1.LogInResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -1078,90 +1027,79 @@ proto.yorkie.v1.LogInResponse.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.yorkie.v1.LogInResponse.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.LogInResponse.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
   f = message.getToken();
   if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
+    writer.writeString(1, f);
   }
 };
-
 
 /**
  * optional string token = 1;
  * @return {string}
  */
-proto.yorkie.v1.LogInResponse.prototype.getToken = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.yorkie.v1.LogInResponse.prototype.getToken = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.yorkie.v1.LogInResponse} returns this
  */
-proto.yorkie.v1.LogInResponse.prototype.setToken = function(value) {
+proto.yorkie.v1.LogInResponse.prototype.setToken = function (value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
-
-
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.yorkie.v1.CreateProjectRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.yorkie.v1.CreateProjectRequest.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.yorkie.v1.CreateProjectRequest} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.yorkie.v1.CreateProjectRequest.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.yorkie.v1.CreateProjectRequest.prototype.toObject = function (opt_includeInstance) {
+    return proto.yorkie.v1.CreateProjectRequest.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.yorkie.v1.CreateProjectRequest} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.yorkie.v1.CreateProjectRequest.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {
+        name: jspb.Message.getFieldWithDefault(msg, 1, ''),
+      };
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.yorkie.v1.CreateProjectRequest}
  */
-proto.yorkie.v1.CreateProjectRequest.deserializeBinary = function(bytes) {
+proto.yorkie.v1.CreateProjectRequest.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.yorkie.v1.CreateProjectRequest;
+  var msg = new proto.yorkie.v1.CreateProjectRequest();
   return proto.yorkie.v1.CreateProjectRequest.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -1170,36 +1108,34 @@ proto.yorkie.v1.CreateProjectRequest.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.yorkie.v1.CreateProjectRequest}
  */
-proto.yorkie.v1.CreateProjectRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.CreateProjectRequest.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setName(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setName(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.yorkie.v1.CreateProjectRequest.prototype.serializeBinary = function() {
+proto.yorkie.v1.CreateProjectRequest.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.yorkie.v1.CreateProjectRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -1208,90 +1144,79 @@ proto.yorkie.v1.CreateProjectRequest.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.yorkie.v1.CreateProjectRequest.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.CreateProjectRequest.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
   f = message.getName();
   if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
+    writer.writeString(1, f);
   }
 };
-
 
 /**
  * optional string name = 1;
  * @return {string}
  */
-proto.yorkie.v1.CreateProjectRequest.prototype.getName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.yorkie.v1.CreateProjectRequest.prototype.getName = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.yorkie.v1.CreateProjectRequest} returns this
  */
-proto.yorkie.v1.CreateProjectRequest.prototype.setName = function(value) {
+proto.yorkie.v1.CreateProjectRequest.prototype.setName = function (value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
-
-
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.yorkie.v1.CreateProjectResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.yorkie.v1.CreateProjectResponse.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.yorkie.v1.CreateProjectResponse} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.yorkie.v1.CreateProjectResponse.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    project: (f = msg.getProject()) && yorkie_v1_resources_pb.Project.toObject(includeInstance, f)
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.yorkie.v1.CreateProjectResponse.prototype.toObject = function (opt_includeInstance) {
+    return proto.yorkie.v1.CreateProjectResponse.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.yorkie.v1.CreateProjectResponse} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.yorkie.v1.CreateProjectResponse.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {
+        project: (f = msg.getProject()) && yorkie_v1_resources_pb.Project.toObject(includeInstance, f),
+      };
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.yorkie.v1.CreateProjectResponse}
  */
-proto.yorkie.v1.CreateProjectResponse.deserializeBinary = function(bytes) {
+proto.yorkie.v1.CreateProjectResponse.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.yorkie.v1.CreateProjectResponse;
+  var msg = new proto.yorkie.v1.CreateProjectResponse();
   return proto.yorkie.v1.CreateProjectResponse.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -1300,37 +1225,35 @@ proto.yorkie.v1.CreateProjectResponse.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.yorkie.v1.CreateProjectResponse}
  */
-proto.yorkie.v1.CreateProjectResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.CreateProjectResponse.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new yorkie_v1_resources_pb.Project;
-      reader.readMessage(value,yorkie_v1_resources_pb.Project.deserializeBinaryFromReader);
-      msg.setProject(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = new yorkie_v1_resources_pb.Project();
+        reader.readMessage(value, yorkie_v1_resources_pb.Project.deserializeBinaryFromReader);
+        msg.setProject(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.yorkie.v1.CreateProjectResponse.prototype.serializeBinary = function() {
+proto.yorkie.v1.CreateProjectResponse.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.yorkie.v1.CreateProjectResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -1339,110 +1262,95 @@ proto.yorkie.v1.CreateProjectResponse.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.yorkie.v1.CreateProjectResponse.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.CreateProjectResponse.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
   f = message.getProject();
   if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      yorkie_v1_resources_pb.Project.serializeBinaryToWriter
-    );
+    writer.writeMessage(1, f, yorkie_v1_resources_pb.Project.serializeBinaryToWriter);
   }
 };
-
 
 /**
  * optional Project project = 1;
  * @return {?proto.yorkie.v1.Project}
  */
-proto.yorkie.v1.CreateProjectResponse.prototype.getProject = function() {
-  return /** @type{?proto.yorkie.v1.Project} */ (
-    jspb.Message.getWrapperField(this, yorkie_v1_resources_pb.Project, 1));
+proto.yorkie.v1.CreateProjectResponse.prototype.getProject = function () {
+  return /** @type{?proto.yorkie.v1.Project} */ (jspb.Message.getWrapperField(this, yorkie_v1_resources_pb.Project, 1));
 };
-
 
 /**
  * @param {?proto.yorkie.v1.Project|undefined} value
  * @return {!proto.yorkie.v1.CreateProjectResponse} returns this
-*/
-proto.yorkie.v1.CreateProjectResponse.prototype.setProject = function(value) {
+ */
+proto.yorkie.v1.CreateProjectResponse.prototype.setProject = function (value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
-
 
 /**
  * Clears the message field making it undefined.
  * @return {!proto.yorkie.v1.CreateProjectResponse} returns this
  */
-proto.yorkie.v1.CreateProjectResponse.prototype.clearProject = function() {
+proto.yorkie.v1.CreateProjectResponse.prototype.clearProject = function () {
   return this.setProject(undefined);
 };
-
 
 /**
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.yorkie.v1.CreateProjectResponse.prototype.hasProject = function() {
+proto.yorkie.v1.CreateProjectResponse.prototype.hasProject = function () {
   return jspb.Message.getField(this, 1) != null;
 };
 
-
-
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.yorkie.v1.GetProjectRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.yorkie.v1.GetProjectRequest.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.yorkie.v1.GetProjectRequest} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.yorkie.v1.GetProjectRequest.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.yorkie.v1.GetProjectRequest.prototype.toObject = function (opt_includeInstance) {
+    return proto.yorkie.v1.GetProjectRequest.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.yorkie.v1.GetProjectRequest} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.yorkie.v1.GetProjectRequest.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {
+        name: jspb.Message.getFieldWithDefault(msg, 1, ''),
+      };
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.yorkie.v1.GetProjectRequest}
  */
-proto.yorkie.v1.GetProjectRequest.deserializeBinary = function(bytes) {
+proto.yorkie.v1.GetProjectRequest.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.yorkie.v1.GetProjectRequest;
+  var msg = new proto.yorkie.v1.GetProjectRequest();
   return proto.yorkie.v1.GetProjectRequest.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -1451,36 +1359,34 @@ proto.yorkie.v1.GetProjectRequest.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.yorkie.v1.GetProjectRequest}
  */
-proto.yorkie.v1.GetProjectRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.GetProjectRequest.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setName(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setName(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.yorkie.v1.GetProjectRequest.prototype.serializeBinary = function() {
+proto.yorkie.v1.GetProjectRequest.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.yorkie.v1.GetProjectRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -1489,90 +1395,79 @@ proto.yorkie.v1.GetProjectRequest.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.yorkie.v1.GetProjectRequest.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.GetProjectRequest.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
   f = message.getName();
   if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
+    writer.writeString(1, f);
   }
 };
-
 
 /**
  * optional string name = 1;
  * @return {string}
  */
-proto.yorkie.v1.GetProjectRequest.prototype.getName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.yorkie.v1.GetProjectRequest.prototype.getName = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.yorkie.v1.GetProjectRequest} returns this
  */
-proto.yorkie.v1.GetProjectRequest.prototype.setName = function(value) {
+proto.yorkie.v1.GetProjectRequest.prototype.setName = function (value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
-
-
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.yorkie.v1.GetProjectResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.yorkie.v1.GetProjectResponse.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.yorkie.v1.GetProjectResponse} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.yorkie.v1.GetProjectResponse.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    project: (f = msg.getProject()) && yorkie_v1_resources_pb.Project.toObject(includeInstance, f)
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.yorkie.v1.GetProjectResponse.prototype.toObject = function (opt_includeInstance) {
+    return proto.yorkie.v1.GetProjectResponse.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.yorkie.v1.GetProjectResponse} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.yorkie.v1.GetProjectResponse.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {
+        project: (f = msg.getProject()) && yorkie_v1_resources_pb.Project.toObject(includeInstance, f),
+      };
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.yorkie.v1.GetProjectResponse}
  */
-proto.yorkie.v1.GetProjectResponse.deserializeBinary = function(bytes) {
+proto.yorkie.v1.GetProjectResponse.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.yorkie.v1.GetProjectResponse;
+  var msg = new proto.yorkie.v1.GetProjectResponse();
   return proto.yorkie.v1.GetProjectResponse.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -1581,37 +1476,35 @@ proto.yorkie.v1.GetProjectResponse.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.yorkie.v1.GetProjectResponse}
  */
-proto.yorkie.v1.GetProjectResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.GetProjectResponse.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new yorkie_v1_resources_pb.Project;
-      reader.readMessage(value,yorkie_v1_resources_pb.Project.deserializeBinaryFromReader);
-      msg.setProject(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = new yorkie_v1_resources_pb.Project();
+        reader.readMessage(value, yorkie_v1_resources_pb.Project.deserializeBinaryFromReader);
+        msg.setProject(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.yorkie.v1.GetProjectResponse.prototype.serializeBinary = function() {
+proto.yorkie.v1.GetProjectResponse.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.yorkie.v1.GetProjectResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -1620,110 +1513,93 @@ proto.yorkie.v1.GetProjectResponse.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.yorkie.v1.GetProjectResponse.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.GetProjectResponse.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
   f = message.getProject();
   if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      yorkie_v1_resources_pb.Project.serializeBinaryToWriter
-    );
+    writer.writeMessage(1, f, yorkie_v1_resources_pb.Project.serializeBinaryToWriter);
   }
 };
-
 
 /**
  * optional Project project = 1;
  * @return {?proto.yorkie.v1.Project}
  */
-proto.yorkie.v1.GetProjectResponse.prototype.getProject = function() {
-  return /** @type{?proto.yorkie.v1.Project} */ (
-    jspb.Message.getWrapperField(this, yorkie_v1_resources_pb.Project, 1));
+proto.yorkie.v1.GetProjectResponse.prototype.getProject = function () {
+  return /** @type{?proto.yorkie.v1.Project} */ (jspb.Message.getWrapperField(this, yorkie_v1_resources_pb.Project, 1));
 };
-
 
 /**
  * @param {?proto.yorkie.v1.Project|undefined} value
  * @return {!proto.yorkie.v1.GetProjectResponse} returns this
-*/
-proto.yorkie.v1.GetProjectResponse.prototype.setProject = function(value) {
+ */
+proto.yorkie.v1.GetProjectResponse.prototype.setProject = function (value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
-
 
 /**
  * Clears the message field making it undefined.
  * @return {!proto.yorkie.v1.GetProjectResponse} returns this
  */
-proto.yorkie.v1.GetProjectResponse.prototype.clearProject = function() {
+proto.yorkie.v1.GetProjectResponse.prototype.clearProject = function () {
   return this.setProject(undefined);
 };
-
 
 /**
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.yorkie.v1.GetProjectResponse.prototype.hasProject = function() {
+proto.yorkie.v1.GetProjectResponse.prototype.hasProject = function () {
   return jspb.Message.getField(this, 1) != null;
 };
 
-
-
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.yorkie.v1.ListProjectsRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.yorkie.v1.ListProjectsRequest.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.yorkie.v1.ListProjectsRequest} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.yorkie.v1.ListProjectsRequest.toObject = function(includeInstance, msg) {
-  var f, obj = {
-
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.yorkie.v1.ListProjectsRequest.prototype.toObject = function (opt_includeInstance) {
+    return proto.yorkie.v1.ListProjectsRequest.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.yorkie.v1.ListProjectsRequest} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.yorkie.v1.ListProjectsRequest.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {};
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.yorkie.v1.ListProjectsRequest}
  */
-proto.yorkie.v1.ListProjectsRequest.deserializeBinary = function(bytes) {
+proto.yorkie.v1.ListProjectsRequest.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.yorkie.v1.ListProjectsRequest;
+  var msg = new proto.yorkie.v1.ListProjectsRequest();
   return proto.yorkie.v1.ListProjectsRequest.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -1732,32 +1608,30 @@ proto.yorkie.v1.ListProjectsRequest.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.yorkie.v1.ListProjectsRequest}
  */
-proto.yorkie.v1.ListProjectsRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.ListProjectsRequest.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    default:
-      reader.skipField();
-      break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.yorkie.v1.ListProjectsRequest.prototype.serializeBinary = function() {
+proto.yorkie.v1.ListProjectsRequest.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.yorkie.v1.ListProjectsRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -1766,11 +1640,9 @@ proto.yorkie.v1.ListProjectsRequest.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.yorkie.v1.ListProjectsRequest.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.ListProjectsRequest.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
 };
-
-
 
 /**
  * List of repeated fields within this message type.
@@ -1779,60 +1651,59 @@ proto.yorkie.v1.ListProjectsRequest.serializeBinaryToWriter = function(message, 
  */
 proto.yorkie.v1.ListProjectsResponse.repeatedFields_ = [1];
 
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.yorkie.v1.ListProjectsResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.yorkie.v1.ListProjectsResponse.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.yorkie.v1.ListProjectsResponse} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.yorkie.v1.ListProjectsResponse.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    projectsList: jspb.Message.toObjectList(msg.getProjectsList(),
-    yorkie_v1_resources_pb.Project.toObject, includeInstance)
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.yorkie.v1.ListProjectsResponse.prototype.toObject = function (opt_includeInstance) {
+    return proto.yorkie.v1.ListProjectsResponse.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.yorkie.v1.ListProjectsResponse} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.yorkie.v1.ListProjectsResponse.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {
+        projectsList: jspb.Message.toObjectList(
+          msg.getProjectsList(),
+          yorkie_v1_resources_pb.Project.toObject,
+          includeInstance,
+        ),
+      };
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.yorkie.v1.ListProjectsResponse}
  */
-proto.yorkie.v1.ListProjectsResponse.deserializeBinary = function(bytes) {
+proto.yorkie.v1.ListProjectsResponse.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.yorkie.v1.ListProjectsResponse;
+  var msg = new proto.yorkie.v1.ListProjectsResponse();
   return proto.yorkie.v1.ListProjectsResponse.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -1841,37 +1712,35 @@ proto.yorkie.v1.ListProjectsResponse.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.yorkie.v1.ListProjectsResponse}
  */
-proto.yorkie.v1.ListProjectsResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.ListProjectsResponse.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new yorkie_v1_resources_pb.Project;
-      reader.readMessage(value,yorkie_v1_resources_pb.Project.deserializeBinaryFromReader);
-      msg.addProjects(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = new yorkie_v1_resources_pb.Project();
+        reader.readMessage(value, yorkie_v1_resources_pb.Project.deserializeBinaryFromReader);
+        msg.addProjects(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.yorkie.v1.ListProjectsResponse.prototype.serializeBinary = function() {
+proto.yorkie.v1.ListProjectsResponse.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.yorkie.v1.ListProjectsResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -1880,112 +1749,99 @@ proto.yorkie.v1.ListProjectsResponse.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.yorkie.v1.ListProjectsResponse.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.ListProjectsResponse.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
   f = message.getProjectsList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      1,
-      f,
-      yorkie_v1_resources_pb.Project.serializeBinaryToWriter
-    );
+    writer.writeRepeatedMessage(1, f, yorkie_v1_resources_pb.Project.serializeBinaryToWriter);
   }
 };
-
 
 /**
  * repeated Project projects = 1;
  * @return {!Array<!proto.yorkie.v1.Project>}
  */
-proto.yorkie.v1.ListProjectsResponse.prototype.getProjectsList = function() {
+proto.yorkie.v1.ListProjectsResponse.prototype.getProjectsList = function () {
   return /** @type{!Array<!proto.yorkie.v1.Project>} */ (
-    jspb.Message.getRepeatedWrapperField(this, yorkie_v1_resources_pb.Project, 1));
+    jspb.Message.getRepeatedWrapperField(this, yorkie_v1_resources_pb.Project, 1)
+  );
 };
-
 
 /**
  * @param {!Array<!proto.yorkie.v1.Project>} value
  * @return {!proto.yorkie.v1.ListProjectsResponse} returns this
-*/
-proto.yorkie.v1.ListProjectsResponse.prototype.setProjectsList = function(value) {
+ */
+proto.yorkie.v1.ListProjectsResponse.prototype.setProjectsList = function (value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
-
 
 /**
  * @param {!proto.yorkie.v1.Project=} opt_value
  * @param {number=} opt_index
  * @return {!proto.yorkie.v1.Project}
  */
-proto.yorkie.v1.ListProjectsResponse.prototype.addProjects = function(opt_value, opt_index) {
+proto.yorkie.v1.ListProjectsResponse.prototype.addProjects = function (opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.yorkie.v1.Project, opt_index);
 };
-
 
 /**
  * Clears the list making it empty but non-null.
  * @return {!proto.yorkie.v1.ListProjectsResponse} returns this
  */
-proto.yorkie.v1.ListProjectsResponse.prototype.clearProjectsList = function() {
+proto.yorkie.v1.ListProjectsResponse.prototype.clearProjectsList = function () {
   return this.setProjectsList([]);
 };
 
-
-
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.yorkie.v1.UpdateProjectRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.yorkie.v1.UpdateProjectRequest.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.yorkie.v1.UpdateProjectRequest} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.yorkie.v1.UpdateProjectRequest.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    fields: (f = msg.getFields()) && yorkie_v1_resources_pb.UpdatableProjectFields.toObject(includeInstance, f)
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.yorkie.v1.UpdateProjectRequest.prototype.toObject = function (opt_includeInstance) {
+    return proto.yorkie.v1.UpdateProjectRequest.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.yorkie.v1.UpdateProjectRequest} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.yorkie.v1.UpdateProjectRequest.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {
+        id: jspb.Message.getFieldWithDefault(msg, 1, ''),
+        fields: (f = msg.getFields()) && yorkie_v1_resources_pb.UpdatableProjectFields.toObject(includeInstance, f),
+      };
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.yorkie.v1.UpdateProjectRequest}
  */
-proto.yorkie.v1.UpdateProjectRequest.deserializeBinary = function(bytes) {
+proto.yorkie.v1.UpdateProjectRequest.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.yorkie.v1.UpdateProjectRequest;
+  var msg = new proto.yorkie.v1.UpdateProjectRequest();
   return proto.yorkie.v1.UpdateProjectRequest.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -1994,41 +1850,39 @@ proto.yorkie.v1.UpdateProjectRequest.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.yorkie.v1.UpdateProjectRequest}
  */
-proto.yorkie.v1.UpdateProjectRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.UpdateProjectRequest.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setId(value);
-      break;
-    case 2:
-      var value = new yorkie_v1_resources_pb.UpdatableProjectFields;
-      reader.readMessage(value,yorkie_v1_resources_pb.UpdatableProjectFields.deserializeBinaryFromReader);
-      msg.setFields(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setId(value);
+        break;
+      case 2:
+        var value = new yorkie_v1_resources_pb.UpdatableProjectFields();
+        reader.readMessage(value, yorkie_v1_resources_pb.UpdatableProjectFields.deserializeBinaryFromReader);
+        msg.setFields(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.yorkie.v1.UpdateProjectRequest.prototype.serializeBinary = function() {
+proto.yorkie.v1.UpdateProjectRequest.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.yorkie.v1.UpdateProjectRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -2037,135 +1891,117 @@ proto.yorkie.v1.UpdateProjectRequest.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.yorkie.v1.UpdateProjectRequest.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.UpdateProjectRequest.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
   f = message.getId();
   if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
+    writer.writeString(1, f);
   }
   f = message.getFields();
   if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      yorkie_v1_resources_pb.UpdatableProjectFields.serializeBinaryToWriter
-    );
+    writer.writeMessage(2, f, yorkie_v1_resources_pb.UpdatableProjectFields.serializeBinaryToWriter);
   }
 };
-
 
 /**
  * optional string id = 1;
  * @return {string}
  */
-proto.yorkie.v1.UpdateProjectRequest.prototype.getId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.yorkie.v1.UpdateProjectRequest.prototype.getId = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.yorkie.v1.UpdateProjectRequest} returns this
  */
-proto.yorkie.v1.UpdateProjectRequest.prototype.setId = function(value) {
+proto.yorkie.v1.UpdateProjectRequest.prototype.setId = function (value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
-
 
 /**
  * optional UpdatableProjectFields fields = 2;
  * @return {?proto.yorkie.v1.UpdatableProjectFields}
  */
-proto.yorkie.v1.UpdateProjectRequest.prototype.getFields = function() {
+proto.yorkie.v1.UpdateProjectRequest.prototype.getFields = function () {
   return /** @type{?proto.yorkie.v1.UpdatableProjectFields} */ (
-    jspb.Message.getWrapperField(this, yorkie_v1_resources_pb.UpdatableProjectFields, 2));
+    jspb.Message.getWrapperField(this, yorkie_v1_resources_pb.UpdatableProjectFields, 2)
+  );
 };
-
 
 /**
  * @param {?proto.yorkie.v1.UpdatableProjectFields|undefined} value
  * @return {!proto.yorkie.v1.UpdateProjectRequest} returns this
-*/
-proto.yorkie.v1.UpdateProjectRequest.prototype.setFields = function(value) {
+ */
+proto.yorkie.v1.UpdateProjectRequest.prototype.setFields = function (value) {
   return jspb.Message.setWrapperField(this, 2, value);
 };
-
 
 /**
  * Clears the message field making it undefined.
  * @return {!proto.yorkie.v1.UpdateProjectRequest} returns this
  */
-proto.yorkie.v1.UpdateProjectRequest.prototype.clearFields = function() {
+proto.yorkie.v1.UpdateProjectRequest.prototype.clearFields = function () {
   return this.setFields(undefined);
 };
-
 
 /**
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.yorkie.v1.UpdateProjectRequest.prototype.hasFields = function() {
+proto.yorkie.v1.UpdateProjectRequest.prototype.hasFields = function () {
   return jspb.Message.getField(this, 2) != null;
 };
 
-
-
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.yorkie.v1.UpdateProjectResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.yorkie.v1.UpdateProjectResponse.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.yorkie.v1.UpdateProjectResponse} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.yorkie.v1.UpdateProjectResponse.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    project: (f = msg.getProject()) && yorkie_v1_resources_pb.Project.toObject(includeInstance, f)
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.yorkie.v1.UpdateProjectResponse.prototype.toObject = function (opt_includeInstance) {
+    return proto.yorkie.v1.UpdateProjectResponse.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.yorkie.v1.UpdateProjectResponse} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.yorkie.v1.UpdateProjectResponse.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {
+        project: (f = msg.getProject()) && yorkie_v1_resources_pb.Project.toObject(includeInstance, f),
+      };
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.yorkie.v1.UpdateProjectResponse}
  */
-proto.yorkie.v1.UpdateProjectResponse.deserializeBinary = function(bytes) {
+proto.yorkie.v1.UpdateProjectResponse.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.yorkie.v1.UpdateProjectResponse;
+  var msg = new proto.yorkie.v1.UpdateProjectResponse();
   return proto.yorkie.v1.UpdateProjectResponse.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -2174,37 +2010,35 @@ proto.yorkie.v1.UpdateProjectResponse.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.yorkie.v1.UpdateProjectResponse}
  */
-proto.yorkie.v1.UpdateProjectResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.UpdateProjectResponse.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new yorkie_v1_resources_pb.Project;
-      reader.readMessage(value,yorkie_v1_resources_pb.Project.deserializeBinaryFromReader);
-      msg.setProject(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = new yorkie_v1_resources_pb.Project();
+        reader.readMessage(value, yorkie_v1_resources_pb.Project.deserializeBinaryFromReader);
+        msg.setProject(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.yorkie.v1.UpdateProjectResponse.prototype.serializeBinary = function() {
+proto.yorkie.v1.UpdateProjectResponse.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.yorkie.v1.UpdateProjectResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -2213,113 +2047,98 @@ proto.yorkie.v1.UpdateProjectResponse.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.yorkie.v1.UpdateProjectResponse.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.UpdateProjectResponse.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
   f = message.getProject();
   if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      yorkie_v1_resources_pb.Project.serializeBinaryToWriter
-    );
+    writer.writeMessage(1, f, yorkie_v1_resources_pb.Project.serializeBinaryToWriter);
   }
 };
-
 
 /**
  * optional Project project = 1;
  * @return {?proto.yorkie.v1.Project}
  */
-proto.yorkie.v1.UpdateProjectResponse.prototype.getProject = function() {
-  return /** @type{?proto.yorkie.v1.Project} */ (
-    jspb.Message.getWrapperField(this, yorkie_v1_resources_pb.Project, 1));
+proto.yorkie.v1.UpdateProjectResponse.prototype.getProject = function () {
+  return /** @type{?proto.yorkie.v1.Project} */ (jspb.Message.getWrapperField(this, yorkie_v1_resources_pb.Project, 1));
 };
-
 
 /**
  * @param {?proto.yorkie.v1.Project|undefined} value
  * @return {!proto.yorkie.v1.UpdateProjectResponse} returns this
-*/
-proto.yorkie.v1.UpdateProjectResponse.prototype.setProject = function(value) {
+ */
+proto.yorkie.v1.UpdateProjectResponse.prototype.setProject = function (value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
-
 
 /**
  * Clears the message field making it undefined.
  * @return {!proto.yorkie.v1.UpdateProjectResponse} returns this
  */
-proto.yorkie.v1.UpdateProjectResponse.prototype.clearProject = function() {
+proto.yorkie.v1.UpdateProjectResponse.prototype.clearProject = function () {
   return this.setProject(undefined);
 };
-
 
 /**
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.yorkie.v1.UpdateProjectResponse.prototype.hasProject = function() {
+proto.yorkie.v1.UpdateProjectResponse.prototype.hasProject = function () {
   return jspb.Message.getField(this, 1) != null;
 };
 
-
-
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.yorkie.v1.ListDocumentsRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.yorkie.v1.ListDocumentsRequest.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.yorkie.v1.ListDocumentsRequest} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.yorkie.v1.ListDocumentsRequest.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    projectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    previousId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    isForward: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.yorkie.v1.ListDocumentsRequest.prototype.toObject = function (opt_includeInstance) {
+    return proto.yorkie.v1.ListDocumentsRequest.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.yorkie.v1.ListDocumentsRequest} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.yorkie.v1.ListDocumentsRequest.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {
+        projectName: jspb.Message.getFieldWithDefault(msg, 1, ''),
+        previousId: jspb.Message.getFieldWithDefault(msg, 2, ''),
+        pageSize: jspb.Message.getFieldWithDefault(msg, 3, 0),
+        isForward: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+      };
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.yorkie.v1.ListDocumentsRequest}
  */
-proto.yorkie.v1.ListDocumentsRequest.deserializeBinary = function(bytes) {
+proto.yorkie.v1.ListDocumentsRequest.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.yorkie.v1.ListDocumentsRequest;
+  var msg = new proto.yorkie.v1.ListDocumentsRequest();
   return proto.yorkie.v1.ListDocumentsRequest.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -2328,48 +2147,46 @@ proto.yorkie.v1.ListDocumentsRequest.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.yorkie.v1.ListDocumentsRequest}
  */
-proto.yorkie.v1.ListDocumentsRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.ListDocumentsRequest.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setProjectName(value);
-      break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setPreviousId(value);
-      break;
-    case 3:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setPageSize(value);
-      break;
-    case 4:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIsForward(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setProjectName(value);
+        break;
+      case 2:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setPreviousId(value);
+        break;
+      case 3:
+        var value = /** @type {number} */ (reader.readInt32());
+        msg.setPageSize(value);
+        break;
+      case 4:
+        var value = /** @type {boolean} */ (reader.readBool());
+        msg.setIsForward(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.yorkie.v1.ListDocumentsRequest.prototype.serializeBinary = function() {
+proto.yorkie.v1.ListDocumentsRequest.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.yorkie.v1.ListDocumentsRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -2378,111 +2195,89 @@ proto.yorkie.v1.ListDocumentsRequest.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.yorkie.v1.ListDocumentsRequest.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.ListDocumentsRequest.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
   f = message.getProjectName();
   if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
+    writer.writeString(1, f);
   }
   f = message.getPreviousId();
   if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
-    );
+    writer.writeString(2, f);
   }
   f = message.getPageSize();
   if (f !== 0) {
-    writer.writeInt32(
-      3,
-      f
-    );
+    writer.writeInt32(3, f);
   }
   f = message.getIsForward();
   if (f) {
-    writer.writeBool(
-      4,
-      f
-    );
+    writer.writeBool(4, f);
   }
 };
-
 
 /**
  * optional string project_name = 1;
  * @return {string}
  */
-proto.yorkie.v1.ListDocumentsRequest.prototype.getProjectName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.yorkie.v1.ListDocumentsRequest.prototype.getProjectName = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.yorkie.v1.ListDocumentsRequest} returns this
  */
-proto.yorkie.v1.ListDocumentsRequest.prototype.setProjectName = function(value) {
+proto.yorkie.v1.ListDocumentsRequest.prototype.setProjectName = function (value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
-
 
 /**
  * optional string previous_id = 2;
  * @return {string}
  */
-proto.yorkie.v1.ListDocumentsRequest.prototype.getPreviousId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+proto.yorkie.v1.ListDocumentsRequest.prototype.getPreviousId = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.yorkie.v1.ListDocumentsRequest} returns this
  */
-proto.yorkie.v1.ListDocumentsRequest.prototype.setPreviousId = function(value) {
+proto.yorkie.v1.ListDocumentsRequest.prototype.setPreviousId = function (value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
-
 
 /**
  * optional int32 page_size = 3;
  * @return {number}
  */
-proto.yorkie.v1.ListDocumentsRequest.prototype.getPageSize = function() {
+proto.yorkie.v1.ListDocumentsRequest.prototype.getPageSize = function () {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
-
 
 /**
  * @param {number} value
  * @return {!proto.yorkie.v1.ListDocumentsRequest} returns this
  */
-proto.yorkie.v1.ListDocumentsRequest.prototype.setPageSize = function(value) {
+proto.yorkie.v1.ListDocumentsRequest.prototype.setPageSize = function (value) {
   return jspb.Message.setProto3IntField(this, 3, value);
 };
-
 
 /**
  * optional bool is_forward = 4;
  * @return {boolean}
  */
-proto.yorkie.v1.ListDocumentsRequest.prototype.getIsForward = function() {
+proto.yorkie.v1.ListDocumentsRequest.prototype.getIsForward = function () {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
 };
-
 
 /**
  * @param {boolean} value
  * @return {!proto.yorkie.v1.ListDocumentsRequest} returns this
  */
-proto.yorkie.v1.ListDocumentsRequest.prototype.setIsForward = function(value) {
+proto.yorkie.v1.ListDocumentsRequest.prototype.setIsForward = function (value) {
   return jspb.Message.setProto3BooleanField(this, 4, value);
 };
-
-
 
 /**
  * List of repeated fields within this message type.
@@ -2491,60 +2286,59 @@ proto.yorkie.v1.ListDocumentsRequest.prototype.setIsForward = function(value) {
  */
 proto.yorkie.v1.ListDocumentsResponse.repeatedFields_ = [1];
 
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.yorkie.v1.ListDocumentsResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.yorkie.v1.ListDocumentsResponse.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.yorkie.v1.ListDocumentsResponse} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.yorkie.v1.ListDocumentsResponse.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    documentsList: jspb.Message.toObjectList(msg.getDocumentsList(),
-    yorkie_v1_resources_pb.DocumentSummary.toObject, includeInstance)
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.yorkie.v1.ListDocumentsResponse.prototype.toObject = function (opt_includeInstance) {
+    return proto.yorkie.v1.ListDocumentsResponse.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.yorkie.v1.ListDocumentsResponse} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.yorkie.v1.ListDocumentsResponse.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {
+        documentsList: jspb.Message.toObjectList(
+          msg.getDocumentsList(),
+          yorkie_v1_resources_pb.DocumentSummary.toObject,
+          includeInstance,
+        ),
+      };
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.yorkie.v1.ListDocumentsResponse}
  */
-proto.yorkie.v1.ListDocumentsResponse.deserializeBinary = function(bytes) {
+proto.yorkie.v1.ListDocumentsResponse.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.yorkie.v1.ListDocumentsResponse;
+  var msg = new proto.yorkie.v1.ListDocumentsResponse();
   return proto.yorkie.v1.ListDocumentsResponse.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -2553,37 +2347,35 @@ proto.yorkie.v1.ListDocumentsResponse.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.yorkie.v1.ListDocumentsResponse}
  */
-proto.yorkie.v1.ListDocumentsResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.ListDocumentsResponse.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new yorkie_v1_resources_pb.DocumentSummary;
-      reader.readMessage(value,yorkie_v1_resources_pb.DocumentSummary.deserializeBinaryFromReader);
-      msg.addDocuments(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = new yorkie_v1_resources_pb.DocumentSummary();
+        reader.readMessage(value, yorkie_v1_resources_pb.DocumentSummary.deserializeBinaryFromReader);
+        msg.addDocuments(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.yorkie.v1.ListDocumentsResponse.prototype.serializeBinary = function() {
+proto.yorkie.v1.ListDocumentsResponse.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.yorkie.v1.ListDocumentsResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -2592,112 +2384,99 @@ proto.yorkie.v1.ListDocumentsResponse.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.yorkie.v1.ListDocumentsResponse.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.ListDocumentsResponse.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
   f = message.getDocumentsList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      1,
-      f,
-      yorkie_v1_resources_pb.DocumentSummary.serializeBinaryToWriter
-    );
+    writer.writeRepeatedMessage(1, f, yorkie_v1_resources_pb.DocumentSummary.serializeBinaryToWriter);
   }
 };
-
 
 /**
  * repeated DocumentSummary documents = 1;
  * @return {!Array<!proto.yorkie.v1.DocumentSummary>}
  */
-proto.yorkie.v1.ListDocumentsResponse.prototype.getDocumentsList = function() {
+proto.yorkie.v1.ListDocumentsResponse.prototype.getDocumentsList = function () {
   return /** @type{!Array<!proto.yorkie.v1.DocumentSummary>} */ (
-    jspb.Message.getRepeatedWrapperField(this, yorkie_v1_resources_pb.DocumentSummary, 1));
+    jspb.Message.getRepeatedWrapperField(this, yorkie_v1_resources_pb.DocumentSummary, 1)
+  );
 };
-
 
 /**
  * @param {!Array<!proto.yorkie.v1.DocumentSummary>} value
  * @return {!proto.yorkie.v1.ListDocumentsResponse} returns this
-*/
-proto.yorkie.v1.ListDocumentsResponse.prototype.setDocumentsList = function(value) {
+ */
+proto.yorkie.v1.ListDocumentsResponse.prototype.setDocumentsList = function (value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
-
 
 /**
  * @param {!proto.yorkie.v1.DocumentSummary=} opt_value
  * @param {number=} opt_index
  * @return {!proto.yorkie.v1.DocumentSummary}
  */
-proto.yorkie.v1.ListDocumentsResponse.prototype.addDocuments = function(opt_value, opt_index) {
+proto.yorkie.v1.ListDocumentsResponse.prototype.addDocuments = function (opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.yorkie.v1.DocumentSummary, opt_index);
 };
-
 
 /**
  * Clears the list making it empty but non-null.
  * @return {!proto.yorkie.v1.ListDocumentsResponse} returns this
  */
-proto.yorkie.v1.ListDocumentsResponse.prototype.clearDocumentsList = function() {
+proto.yorkie.v1.ListDocumentsResponse.prototype.clearDocumentsList = function () {
   return this.setDocumentsList([]);
 };
 
-
-
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.yorkie.v1.GetDocumentRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.yorkie.v1.GetDocumentRequest.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.yorkie.v1.GetDocumentRequest} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.yorkie.v1.GetDocumentRequest.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    projectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    documentKey: jspb.Message.getFieldWithDefault(msg, 2, "")
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.yorkie.v1.GetDocumentRequest.prototype.toObject = function (opt_includeInstance) {
+    return proto.yorkie.v1.GetDocumentRequest.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.yorkie.v1.GetDocumentRequest} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.yorkie.v1.GetDocumentRequest.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {
+        projectName: jspb.Message.getFieldWithDefault(msg, 1, ''),
+        documentKey: jspb.Message.getFieldWithDefault(msg, 2, ''),
+      };
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.yorkie.v1.GetDocumentRequest}
  */
-proto.yorkie.v1.GetDocumentRequest.deserializeBinary = function(bytes) {
+proto.yorkie.v1.GetDocumentRequest.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.yorkie.v1.GetDocumentRequest;
+  var msg = new proto.yorkie.v1.GetDocumentRequest();
   return proto.yorkie.v1.GetDocumentRequest.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -2706,40 +2485,38 @@ proto.yorkie.v1.GetDocumentRequest.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.yorkie.v1.GetDocumentRequest}
  */
-proto.yorkie.v1.GetDocumentRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.GetDocumentRequest.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setProjectName(value);
-      break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setDocumentKey(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setProjectName(value);
+        break;
+      case 2:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setDocumentKey(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.yorkie.v1.GetDocumentRequest.prototype.serializeBinary = function() {
+proto.yorkie.v1.GetDocumentRequest.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.yorkie.v1.GetDocumentRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -2748,115 +2525,99 @@ proto.yorkie.v1.GetDocumentRequest.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.yorkie.v1.GetDocumentRequest.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.GetDocumentRequest.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
   f = message.getProjectName();
   if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
+    writer.writeString(1, f);
   }
   f = message.getDocumentKey();
   if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
-    );
+    writer.writeString(2, f);
   }
 };
-
 
 /**
  * optional string project_name = 1;
  * @return {string}
  */
-proto.yorkie.v1.GetDocumentRequest.prototype.getProjectName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.yorkie.v1.GetDocumentRequest.prototype.getProjectName = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.yorkie.v1.GetDocumentRequest} returns this
  */
-proto.yorkie.v1.GetDocumentRequest.prototype.setProjectName = function(value) {
+proto.yorkie.v1.GetDocumentRequest.prototype.setProjectName = function (value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
-
 
 /**
  * optional string document_key = 2;
  * @return {string}
  */
-proto.yorkie.v1.GetDocumentRequest.prototype.getDocumentKey = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+proto.yorkie.v1.GetDocumentRequest.prototype.getDocumentKey = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.yorkie.v1.GetDocumentRequest} returns this
  */
-proto.yorkie.v1.GetDocumentRequest.prototype.setDocumentKey = function(value) {
+proto.yorkie.v1.GetDocumentRequest.prototype.setDocumentKey = function (value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
-
-
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.yorkie.v1.GetDocumentResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.yorkie.v1.GetDocumentResponse.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.yorkie.v1.GetDocumentResponse} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.yorkie.v1.GetDocumentResponse.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    document: (f = msg.getDocument()) && yorkie_v1_resources_pb.DocumentSummary.toObject(includeInstance, f)
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.yorkie.v1.GetDocumentResponse.prototype.toObject = function (opt_includeInstance) {
+    return proto.yorkie.v1.GetDocumentResponse.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.yorkie.v1.GetDocumentResponse} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.yorkie.v1.GetDocumentResponse.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {
+        document: (f = msg.getDocument()) && yorkie_v1_resources_pb.DocumentSummary.toObject(includeInstance, f),
+      };
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.yorkie.v1.GetDocumentResponse}
  */
-proto.yorkie.v1.GetDocumentResponse.deserializeBinary = function(bytes) {
+proto.yorkie.v1.GetDocumentResponse.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.yorkie.v1.GetDocumentResponse;
+  var msg = new proto.yorkie.v1.GetDocumentResponse();
   return proto.yorkie.v1.GetDocumentResponse.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -2865,37 +2626,35 @@ proto.yorkie.v1.GetDocumentResponse.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.yorkie.v1.GetDocumentResponse}
  */
-proto.yorkie.v1.GetDocumentResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.GetDocumentResponse.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new yorkie_v1_resources_pb.DocumentSummary;
-      reader.readMessage(value,yorkie_v1_resources_pb.DocumentSummary.deserializeBinaryFromReader);
-      msg.setDocument(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = new yorkie_v1_resources_pb.DocumentSummary();
+        reader.readMessage(value, yorkie_v1_resources_pb.DocumentSummary.deserializeBinaryFromReader);
+        msg.setDocument(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.yorkie.v1.GetDocumentResponse.prototype.serializeBinary = function() {
+proto.yorkie.v1.GetDocumentResponse.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.yorkie.v1.GetDocumentResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -2904,112 +2663,99 @@ proto.yorkie.v1.GetDocumentResponse.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.yorkie.v1.GetDocumentResponse.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.GetDocumentResponse.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
   f = message.getDocument();
   if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      yorkie_v1_resources_pb.DocumentSummary.serializeBinaryToWriter
-    );
+    writer.writeMessage(1, f, yorkie_v1_resources_pb.DocumentSummary.serializeBinaryToWriter);
   }
 };
-
 
 /**
  * optional DocumentSummary document = 1;
  * @return {?proto.yorkie.v1.DocumentSummary}
  */
-proto.yorkie.v1.GetDocumentResponse.prototype.getDocument = function() {
+proto.yorkie.v1.GetDocumentResponse.prototype.getDocument = function () {
   return /** @type{?proto.yorkie.v1.DocumentSummary} */ (
-    jspb.Message.getWrapperField(this, yorkie_v1_resources_pb.DocumentSummary, 1));
+    jspb.Message.getWrapperField(this, yorkie_v1_resources_pb.DocumentSummary, 1)
+  );
 };
-
 
 /**
  * @param {?proto.yorkie.v1.DocumentSummary|undefined} value
  * @return {!proto.yorkie.v1.GetDocumentResponse} returns this
-*/
-proto.yorkie.v1.GetDocumentResponse.prototype.setDocument = function(value) {
+ */
+proto.yorkie.v1.GetDocumentResponse.prototype.setDocument = function (value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
-
 
 /**
  * Clears the message field making it undefined.
  * @return {!proto.yorkie.v1.GetDocumentResponse} returns this
  */
-proto.yorkie.v1.GetDocumentResponse.prototype.clearDocument = function() {
+proto.yorkie.v1.GetDocumentResponse.prototype.clearDocument = function () {
   return this.setDocument(undefined);
 };
-
 
 /**
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.yorkie.v1.GetDocumentResponse.prototype.hasDocument = function() {
+proto.yorkie.v1.GetDocumentResponse.prototype.hasDocument = function () {
   return jspb.Message.getField(this, 1) != null;
 };
 
-
-
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.yorkie.v1.GetSnapshotMetaRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.yorkie.v1.GetSnapshotMetaRequest.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.yorkie.v1.GetSnapshotMetaRequest} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.yorkie.v1.GetSnapshotMetaRequest.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    projectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    documentKey: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    serverSeq: jspb.Message.getFieldWithDefault(msg, 3, "0")
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.yorkie.v1.GetSnapshotMetaRequest.prototype.toObject = function (opt_includeInstance) {
+    return proto.yorkie.v1.GetSnapshotMetaRequest.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.yorkie.v1.GetSnapshotMetaRequest} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.yorkie.v1.GetSnapshotMetaRequest.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {
+        projectName: jspb.Message.getFieldWithDefault(msg, 1, ''),
+        documentKey: jspb.Message.getFieldWithDefault(msg, 2, ''),
+        serverSeq: jspb.Message.getFieldWithDefault(msg, 3, '0'),
+      };
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.yorkie.v1.GetSnapshotMetaRequest}
  */
-proto.yorkie.v1.GetSnapshotMetaRequest.deserializeBinary = function(bytes) {
+proto.yorkie.v1.GetSnapshotMetaRequest.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.yorkie.v1.GetSnapshotMetaRequest;
+  var msg = new proto.yorkie.v1.GetSnapshotMetaRequest();
   return proto.yorkie.v1.GetSnapshotMetaRequest.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -3018,44 +2764,42 @@ proto.yorkie.v1.GetSnapshotMetaRequest.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.yorkie.v1.GetSnapshotMetaRequest}
  */
-proto.yorkie.v1.GetSnapshotMetaRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.GetSnapshotMetaRequest.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setProjectName(value);
-      break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setDocumentKey(value);
-      break;
-    case 3:
-      var value = /** @type {string} */ (reader.readInt64String());
-      msg.setServerSeq(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setProjectName(value);
+        break;
+      case 2:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setDocumentKey(value);
+        break;
+      case 3:
+        var value = /** @type {string} */ (reader.readInt64String());
+        msg.setServerSeq(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.yorkie.v1.GetSnapshotMetaRequest.prototype.serializeBinary = function() {
+proto.yorkie.v1.GetSnapshotMetaRequest.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.yorkie.v1.GetSnapshotMetaRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -3064,141 +2808,120 @@ proto.yorkie.v1.GetSnapshotMetaRequest.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.yorkie.v1.GetSnapshotMetaRequest.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.GetSnapshotMetaRequest.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
   f = message.getProjectName();
   if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
+    writer.writeString(1, f);
   }
   f = message.getDocumentKey();
   if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
-    );
+    writer.writeString(2, f);
   }
   f = message.getServerSeq();
   if (parseInt(f, 10) !== 0) {
-    writer.writeInt64String(
-      3,
-      f
-    );
+    writer.writeInt64String(3, f);
   }
 };
-
 
 /**
  * optional string project_name = 1;
  * @return {string}
  */
-proto.yorkie.v1.GetSnapshotMetaRequest.prototype.getProjectName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.yorkie.v1.GetSnapshotMetaRequest.prototype.getProjectName = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.yorkie.v1.GetSnapshotMetaRequest} returns this
  */
-proto.yorkie.v1.GetSnapshotMetaRequest.prototype.setProjectName = function(value) {
+proto.yorkie.v1.GetSnapshotMetaRequest.prototype.setProjectName = function (value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
-
 
 /**
  * optional string document_key = 2;
  * @return {string}
  */
-proto.yorkie.v1.GetSnapshotMetaRequest.prototype.getDocumentKey = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+proto.yorkie.v1.GetSnapshotMetaRequest.prototype.getDocumentKey = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.yorkie.v1.GetSnapshotMetaRequest} returns this
  */
-proto.yorkie.v1.GetSnapshotMetaRequest.prototype.setDocumentKey = function(value) {
+proto.yorkie.v1.GetSnapshotMetaRequest.prototype.setDocumentKey = function (value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
-
 
 /**
  * optional int64 server_seq = 3;
  * @return {string}
  */
-proto.yorkie.v1.GetSnapshotMetaRequest.prototype.getServerSeq = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, "0"));
+proto.yorkie.v1.GetSnapshotMetaRequest.prototype.getServerSeq = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, '0'));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.yorkie.v1.GetSnapshotMetaRequest} returns this
  */
-proto.yorkie.v1.GetSnapshotMetaRequest.prototype.setServerSeq = function(value) {
+proto.yorkie.v1.GetSnapshotMetaRequest.prototype.setServerSeq = function (value) {
   return jspb.Message.setProto3StringIntField(this, 3, value);
 };
 
-
-
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.yorkie.v1.GetSnapshotMetaResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.yorkie.v1.GetSnapshotMetaResponse.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.yorkie.v1.GetSnapshotMetaResponse} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.yorkie.v1.GetSnapshotMetaResponse.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    snapshot: msg.getSnapshot_asB64(),
-    lamport: jspb.Message.getFieldWithDefault(msg, 2, "0")
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.yorkie.v1.GetSnapshotMetaResponse.prototype.toObject = function (opt_includeInstance) {
+    return proto.yorkie.v1.GetSnapshotMetaResponse.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.yorkie.v1.GetSnapshotMetaResponse} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.yorkie.v1.GetSnapshotMetaResponse.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {
+        snapshot: msg.getSnapshot_asB64(),
+        lamport: jspb.Message.getFieldWithDefault(msg, 2, '0'),
+      };
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.yorkie.v1.GetSnapshotMetaResponse}
  */
-proto.yorkie.v1.GetSnapshotMetaResponse.deserializeBinary = function(bytes) {
+proto.yorkie.v1.GetSnapshotMetaResponse.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.yorkie.v1.GetSnapshotMetaResponse;
+  var msg = new proto.yorkie.v1.GetSnapshotMetaResponse();
   return proto.yorkie.v1.GetSnapshotMetaResponse.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -3207,40 +2930,38 @@ proto.yorkie.v1.GetSnapshotMetaResponse.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.yorkie.v1.GetSnapshotMetaResponse}
  */
-proto.yorkie.v1.GetSnapshotMetaResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.GetSnapshotMetaResponse.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setSnapshot(value);
-      break;
-    case 2:
-      var value = /** @type {string} */ (reader.readInt64String());
-      msg.setLamport(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = /** @type {!Uint8Array} */ (reader.readBytes());
+        msg.setSnapshot(value);
+        break;
+      case 2:
+        var value = /** @type {string} */ (reader.readInt64String());
+        msg.setLamport(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.yorkie.v1.GetSnapshotMetaResponse.prototype.serializeBinary = function() {
+proto.yorkie.v1.GetSnapshotMetaResponse.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.yorkie.v1.GetSnapshotMetaResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -3249,44 +2970,34 @@ proto.yorkie.v1.GetSnapshotMetaResponse.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.yorkie.v1.GetSnapshotMetaResponse.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.GetSnapshotMetaResponse.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
   f = message.getSnapshot_asU8();
   if (f.length > 0) {
-    writer.writeBytes(
-      1,
-      f
-    );
+    writer.writeBytes(1, f);
   }
   f = message.getLamport();
   if (parseInt(f, 10) !== 0) {
-    writer.writeInt64String(
-      2,
-      f
-    );
+    writer.writeInt64String(2, f);
   }
 };
-
 
 /**
  * optional bytes snapshot = 1;
  * @return {string}
  */
-proto.yorkie.v1.GetSnapshotMetaResponse.prototype.getSnapshot = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.yorkie.v1.GetSnapshotMetaResponse.prototype.getSnapshot = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
 };
-
 
 /**
  * optional bytes snapshot = 1;
  * This is a type-conversion wrapper around `getSnapshot()`
  * @return {string}
  */
-proto.yorkie.v1.GetSnapshotMetaResponse.prototype.getSnapshot_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getSnapshot()));
+proto.yorkie.v1.GetSnapshotMetaResponse.prototype.getSnapshot_asB64 = function () {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(this.getSnapshot()));
 };
-
 
 /**
  * optional bytes snapshot = 1;
@@ -3295,95 +3006,85 @@ proto.yorkie.v1.GetSnapshotMetaResponse.prototype.getSnapshot_asB64 = function()
  * This is a type-conversion wrapper around `getSnapshot()`
  * @return {!Uint8Array}
  */
-proto.yorkie.v1.GetSnapshotMetaResponse.prototype.getSnapshot_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getSnapshot()));
+proto.yorkie.v1.GetSnapshotMetaResponse.prototype.getSnapshot_asU8 = function () {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(this.getSnapshot()));
 };
-
 
 /**
  * @param {!(string|Uint8Array)} value
  * @return {!proto.yorkie.v1.GetSnapshotMetaResponse} returns this
  */
-proto.yorkie.v1.GetSnapshotMetaResponse.prototype.setSnapshot = function(value) {
+proto.yorkie.v1.GetSnapshotMetaResponse.prototype.setSnapshot = function (value) {
   return jspb.Message.setProto3BytesField(this, 1, value);
 };
-
 
 /**
  * optional int64 lamport = 2;
  * @return {string}
  */
-proto.yorkie.v1.GetSnapshotMetaResponse.prototype.getLamport = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, "0"));
+proto.yorkie.v1.GetSnapshotMetaResponse.prototype.getLamport = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, '0'));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.yorkie.v1.GetSnapshotMetaResponse} returns this
  */
-proto.yorkie.v1.GetSnapshotMetaResponse.prototype.setLamport = function(value) {
+proto.yorkie.v1.GetSnapshotMetaResponse.prototype.setLamport = function (value) {
   return jspb.Message.setProto3StringIntField(this, 2, value);
 };
 
-
-
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.yorkie.v1.SearchDocumentsRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.yorkie.v1.SearchDocumentsRequest.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.yorkie.v1.SearchDocumentsRequest} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.yorkie.v1.SearchDocumentsRequest.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    projectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    query: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 3, 0)
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.yorkie.v1.SearchDocumentsRequest.prototype.toObject = function (opt_includeInstance) {
+    return proto.yorkie.v1.SearchDocumentsRequest.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.yorkie.v1.SearchDocumentsRequest} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.yorkie.v1.SearchDocumentsRequest.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {
+        projectName: jspb.Message.getFieldWithDefault(msg, 1, ''),
+        query: jspb.Message.getFieldWithDefault(msg, 2, ''),
+        pageSize: jspb.Message.getFieldWithDefault(msg, 3, 0),
+      };
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.yorkie.v1.SearchDocumentsRequest}
  */
-proto.yorkie.v1.SearchDocumentsRequest.deserializeBinary = function(bytes) {
+proto.yorkie.v1.SearchDocumentsRequest.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.yorkie.v1.SearchDocumentsRequest;
+  var msg = new proto.yorkie.v1.SearchDocumentsRequest();
   return proto.yorkie.v1.SearchDocumentsRequest.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -3392,44 +3093,42 @@ proto.yorkie.v1.SearchDocumentsRequest.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.yorkie.v1.SearchDocumentsRequest}
  */
-proto.yorkie.v1.SearchDocumentsRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.SearchDocumentsRequest.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setProjectName(value);
-      break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setQuery(value);
-      break;
-    case 3:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setPageSize(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setProjectName(value);
+        break;
+      case 2:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setQuery(value);
+        break;
+      case 3:
+        var value = /** @type {number} */ (reader.readInt32());
+        msg.setPageSize(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.yorkie.v1.SearchDocumentsRequest.prototype.serializeBinary = function() {
+proto.yorkie.v1.SearchDocumentsRequest.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.yorkie.v1.SearchDocumentsRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -3438,86 +3137,69 @@ proto.yorkie.v1.SearchDocumentsRequest.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.yorkie.v1.SearchDocumentsRequest.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.SearchDocumentsRequest.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
   f = message.getProjectName();
   if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
+    writer.writeString(1, f);
   }
   f = message.getQuery();
   if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
-    );
+    writer.writeString(2, f);
   }
   f = message.getPageSize();
   if (f !== 0) {
-    writer.writeInt32(
-      3,
-      f
-    );
+    writer.writeInt32(3, f);
   }
 };
-
 
 /**
  * optional string project_name = 1;
  * @return {string}
  */
-proto.yorkie.v1.SearchDocumentsRequest.prototype.getProjectName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.yorkie.v1.SearchDocumentsRequest.prototype.getProjectName = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.yorkie.v1.SearchDocumentsRequest} returns this
  */
-proto.yorkie.v1.SearchDocumentsRequest.prototype.setProjectName = function(value) {
+proto.yorkie.v1.SearchDocumentsRequest.prototype.setProjectName = function (value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
-
 
 /**
  * optional string query = 2;
  * @return {string}
  */
-proto.yorkie.v1.SearchDocumentsRequest.prototype.getQuery = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+proto.yorkie.v1.SearchDocumentsRequest.prototype.getQuery = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.yorkie.v1.SearchDocumentsRequest} returns this
  */
-proto.yorkie.v1.SearchDocumentsRequest.prototype.setQuery = function(value) {
+proto.yorkie.v1.SearchDocumentsRequest.prototype.setQuery = function (value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
-
 
 /**
  * optional int32 page_size = 3;
  * @return {number}
  */
-proto.yorkie.v1.SearchDocumentsRequest.prototype.getPageSize = function() {
+proto.yorkie.v1.SearchDocumentsRequest.prototype.getPageSize = function () {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
-
 
 /**
  * @param {number} value
  * @return {!proto.yorkie.v1.SearchDocumentsRequest} returns this
  */
-proto.yorkie.v1.SearchDocumentsRequest.prototype.setPageSize = function(value) {
+proto.yorkie.v1.SearchDocumentsRequest.prototype.setPageSize = function (value) {
   return jspb.Message.setProto3IntField(this, 3, value);
 };
-
-
 
 /**
  * List of repeated fields within this message type.
@@ -3526,61 +3208,60 @@ proto.yorkie.v1.SearchDocumentsRequest.prototype.setPageSize = function(value) {
  */
 proto.yorkie.v1.SearchDocumentsResponse.repeatedFields_ = [2];
 
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.yorkie.v1.SearchDocumentsResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.yorkie.v1.SearchDocumentsResponse.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.yorkie.v1.SearchDocumentsResponse} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.yorkie.v1.SearchDocumentsResponse.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    totalCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    documentsList: jspb.Message.toObjectList(msg.getDocumentsList(),
-    yorkie_v1_resources_pb.DocumentSummary.toObject, includeInstance)
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.yorkie.v1.SearchDocumentsResponse.prototype.toObject = function (opt_includeInstance) {
+    return proto.yorkie.v1.SearchDocumentsResponse.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.yorkie.v1.SearchDocumentsResponse} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.yorkie.v1.SearchDocumentsResponse.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {
+        totalCount: jspb.Message.getFieldWithDefault(msg, 1, 0),
+        documentsList: jspb.Message.toObjectList(
+          msg.getDocumentsList(),
+          yorkie_v1_resources_pb.DocumentSummary.toObject,
+          includeInstance,
+        ),
+      };
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.yorkie.v1.SearchDocumentsResponse}
  */
-proto.yorkie.v1.SearchDocumentsResponse.deserializeBinary = function(bytes) {
+proto.yorkie.v1.SearchDocumentsResponse.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.yorkie.v1.SearchDocumentsResponse;
+  var msg = new proto.yorkie.v1.SearchDocumentsResponse();
   return proto.yorkie.v1.SearchDocumentsResponse.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -3589,41 +3270,39 @@ proto.yorkie.v1.SearchDocumentsResponse.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.yorkie.v1.SearchDocumentsResponse}
  */
-proto.yorkie.v1.SearchDocumentsResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.SearchDocumentsResponse.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setTotalCount(value);
-      break;
-    case 2:
-      var value = new yorkie_v1_resources_pb.DocumentSummary;
-      reader.readMessage(value,yorkie_v1_resources_pb.DocumentSummary.deserializeBinaryFromReader);
-      msg.addDocuments(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = /** @type {number} */ (reader.readInt32());
+        msg.setTotalCount(value);
+        break;
+      case 2:
+        var value = new yorkie_v1_resources_pb.DocumentSummary();
+        reader.readMessage(value, yorkie_v1_resources_pb.DocumentSummary.deserializeBinaryFromReader);
+        msg.addDocuments(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.yorkie.v1.SearchDocumentsResponse.prototype.serializeBinary = function() {
+proto.yorkie.v1.SearchDocumentsResponse.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.yorkie.v1.SearchDocumentsResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -3632,140 +3311,122 @@ proto.yorkie.v1.SearchDocumentsResponse.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.yorkie.v1.SearchDocumentsResponse.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.SearchDocumentsResponse.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
   f = message.getTotalCount();
   if (f !== 0) {
-    writer.writeInt32(
-      1,
-      f
-    );
+    writer.writeInt32(1, f);
   }
   f = message.getDocumentsList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      2,
-      f,
-      yorkie_v1_resources_pb.DocumentSummary.serializeBinaryToWriter
-    );
+    writer.writeRepeatedMessage(2, f, yorkie_v1_resources_pb.DocumentSummary.serializeBinaryToWriter);
   }
 };
-
 
 /**
  * optional int32 total_count = 1;
  * @return {number}
  */
-proto.yorkie.v1.SearchDocumentsResponse.prototype.getTotalCount = function() {
+proto.yorkie.v1.SearchDocumentsResponse.prototype.getTotalCount = function () {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
-
 
 /**
  * @param {number} value
  * @return {!proto.yorkie.v1.SearchDocumentsResponse} returns this
  */
-proto.yorkie.v1.SearchDocumentsResponse.prototype.setTotalCount = function(value) {
+proto.yorkie.v1.SearchDocumentsResponse.prototype.setTotalCount = function (value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
-
 
 /**
  * repeated DocumentSummary documents = 2;
  * @return {!Array<!proto.yorkie.v1.DocumentSummary>}
  */
-proto.yorkie.v1.SearchDocumentsResponse.prototype.getDocumentsList = function() {
+proto.yorkie.v1.SearchDocumentsResponse.prototype.getDocumentsList = function () {
   return /** @type{!Array<!proto.yorkie.v1.DocumentSummary>} */ (
-    jspb.Message.getRepeatedWrapperField(this, yorkie_v1_resources_pb.DocumentSummary, 2));
+    jspb.Message.getRepeatedWrapperField(this, yorkie_v1_resources_pb.DocumentSummary, 2)
+  );
 };
-
 
 /**
  * @param {!Array<!proto.yorkie.v1.DocumentSummary>} value
  * @return {!proto.yorkie.v1.SearchDocumentsResponse} returns this
-*/
-proto.yorkie.v1.SearchDocumentsResponse.prototype.setDocumentsList = function(value) {
+ */
+proto.yorkie.v1.SearchDocumentsResponse.prototype.setDocumentsList = function (value) {
   return jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
-
 
 /**
  * @param {!proto.yorkie.v1.DocumentSummary=} opt_value
  * @param {number=} opt_index
  * @return {!proto.yorkie.v1.DocumentSummary}
  */
-proto.yorkie.v1.SearchDocumentsResponse.prototype.addDocuments = function(opt_value, opt_index) {
+proto.yorkie.v1.SearchDocumentsResponse.prototype.addDocuments = function (opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.yorkie.v1.DocumentSummary, opt_index);
 };
-
 
 /**
  * Clears the list making it empty but non-null.
  * @return {!proto.yorkie.v1.SearchDocumentsResponse} returns this
  */
-proto.yorkie.v1.SearchDocumentsResponse.prototype.clearDocumentsList = function() {
+proto.yorkie.v1.SearchDocumentsResponse.prototype.clearDocumentsList = function () {
   return this.setDocumentsList([]);
 };
 
-
-
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.yorkie.v1.ListChangesRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.yorkie.v1.ListChangesRequest.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.yorkie.v1.ListChangesRequest} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.yorkie.v1.ListChangesRequest.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    projectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    documentKey: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    previousSeq: jspb.Message.getFieldWithDefault(msg, 3, "0"),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    isForward: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.yorkie.v1.ListChangesRequest.prototype.toObject = function (opt_includeInstance) {
+    return proto.yorkie.v1.ListChangesRequest.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.yorkie.v1.ListChangesRequest} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.yorkie.v1.ListChangesRequest.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {
+        projectName: jspb.Message.getFieldWithDefault(msg, 1, ''),
+        documentKey: jspb.Message.getFieldWithDefault(msg, 2, ''),
+        previousSeq: jspb.Message.getFieldWithDefault(msg, 3, '0'),
+        pageSize: jspb.Message.getFieldWithDefault(msg, 4, 0),
+        isForward: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+      };
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.yorkie.v1.ListChangesRequest}
  */
-proto.yorkie.v1.ListChangesRequest.deserializeBinary = function(bytes) {
+proto.yorkie.v1.ListChangesRequest.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.yorkie.v1.ListChangesRequest;
+  var msg = new proto.yorkie.v1.ListChangesRequest();
   return proto.yorkie.v1.ListChangesRequest.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -3774,52 +3435,50 @@ proto.yorkie.v1.ListChangesRequest.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.yorkie.v1.ListChangesRequest}
  */
-proto.yorkie.v1.ListChangesRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.ListChangesRequest.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setProjectName(value);
-      break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setDocumentKey(value);
-      break;
-    case 3:
-      var value = /** @type {string} */ (reader.readInt64String());
-      msg.setPreviousSeq(value);
-      break;
-    case 4:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setPageSize(value);
-      break;
-    case 5:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setIsForward(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setProjectName(value);
+        break;
+      case 2:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setDocumentKey(value);
+        break;
+      case 3:
+        var value = /** @type {string} */ (reader.readInt64String());
+        msg.setPreviousSeq(value);
+        break;
+      case 4:
+        var value = /** @type {number} */ (reader.readInt32());
+        msg.setPageSize(value);
+        break;
+      case 5:
+        var value = /** @type {boolean} */ (reader.readBool());
+        msg.setIsForward(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.yorkie.v1.ListChangesRequest.prototype.serializeBinary = function() {
+proto.yorkie.v1.ListChangesRequest.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.yorkie.v1.ListChangesRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -3828,136 +3487,109 @@ proto.yorkie.v1.ListChangesRequest.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.yorkie.v1.ListChangesRequest.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.ListChangesRequest.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
   f = message.getProjectName();
   if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
+    writer.writeString(1, f);
   }
   f = message.getDocumentKey();
   if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
-    );
+    writer.writeString(2, f);
   }
   f = message.getPreviousSeq();
   if (parseInt(f, 10) !== 0) {
-    writer.writeInt64String(
-      3,
-      f
-    );
+    writer.writeInt64String(3, f);
   }
   f = message.getPageSize();
   if (f !== 0) {
-    writer.writeInt32(
-      4,
-      f
-    );
+    writer.writeInt32(4, f);
   }
   f = message.getIsForward();
   if (f) {
-    writer.writeBool(
-      5,
-      f
-    );
+    writer.writeBool(5, f);
   }
 };
-
 
 /**
  * optional string project_name = 1;
  * @return {string}
  */
-proto.yorkie.v1.ListChangesRequest.prototype.getProjectName = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.yorkie.v1.ListChangesRequest.prototype.getProjectName = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ''));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.yorkie.v1.ListChangesRequest} returns this
  */
-proto.yorkie.v1.ListChangesRequest.prototype.setProjectName = function(value) {
+proto.yorkie.v1.ListChangesRequest.prototype.setProjectName = function (value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
-
 
 /**
  * optional string document_key = 2;
  * @return {string}
  */
-proto.yorkie.v1.ListChangesRequest.prototype.getDocumentKey = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+proto.yorkie.v1.ListChangesRequest.prototype.getDocumentKey = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ''));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.yorkie.v1.ListChangesRequest} returns this
  */
-proto.yorkie.v1.ListChangesRequest.prototype.setDocumentKey = function(value) {
+proto.yorkie.v1.ListChangesRequest.prototype.setDocumentKey = function (value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
-
 
 /**
  * optional int64 previous_seq = 3;
  * @return {string}
  */
-proto.yorkie.v1.ListChangesRequest.prototype.getPreviousSeq = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, "0"));
+proto.yorkie.v1.ListChangesRequest.prototype.getPreviousSeq = function () {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, '0'));
 };
-
 
 /**
  * @param {string} value
  * @return {!proto.yorkie.v1.ListChangesRequest} returns this
  */
-proto.yorkie.v1.ListChangesRequest.prototype.setPreviousSeq = function(value) {
+proto.yorkie.v1.ListChangesRequest.prototype.setPreviousSeq = function (value) {
   return jspb.Message.setProto3StringIntField(this, 3, value);
 };
-
 
 /**
  * optional int32 page_size = 4;
  * @return {number}
  */
-proto.yorkie.v1.ListChangesRequest.prototype.getPageSize = function() {
+proto.yorkie.v1.ListChangesRequest.prototype.getPageSize = function () {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
-
 
 /**
  * @param {number} value
  * @return {!proto.yorkie.v1.ListChangesRequest} returns this
  */
-proto.yorkie.v1.ListChangesRequest.prototype.setPageSize = function(value) {
+proto.yorkie.v1.ListChangesRequest.prototype.setPageSize = function (value) {
   return jspb.Message.setProto3IntField(this, 4, value);
 };
-
 
 /**
  * optional bool is_forward = 5;
  * @return {boolean}
  */
-proto.yorkie.v1.ListChangesRequest.prototype.getIsForward = function() {
+proto.yorkie.v1.ListChangesRequest.prototype.getIsForward = function () {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
 };
-
 
 /**
  * @param {boolean} value
  * @return {!proto.yorkie.v1.ListChangesRequest} returns this
  */
-proto.yorkie.v1.ListChangesRequest.prototype.setIsForward = function(value) {
+proto.yorkie.v1.ListChangesRequest.prototype.setIsForward = function (value) {
   return jspb.Message.setProto3BooleanField(this, 5, value);
 };
-
-
 
 /**
  * List of repeated fields within this message type.
@@ -3966,60 +3598,59 @@ proto.yorkie.v1.ListChangesRequest.prototype.setIsForward = function(value) {
  */
 proto.yorkie.v1.ListChangesResponse.repeatedFields_ = [1];
 
-
-
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.yorkie.v1.ListChangesResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.yorkie.v1.ListChangesResponse.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.yorkie.v1.ListChangesResponse} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.yorkie.v1.ListChangesResponse.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    changesList: jspb.Message.toObjectList(msg.getChangesList(),
-    yorkie_v1_resources_pb.Change.toObject, includeInstance)
+  /**
+   * Creates an object representation of this proto.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * Optional fields that are not set will be set to undefined.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+   * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+   *     JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.yorkie.v1.ListChangesResponse.prototype.toObject = function (opt_includeInstance) {
+    return proto.yorkie.v1.ListChangesResponse.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+   *     the JSPB instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.yorkie.v1.ListChangesResponse} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.yorkie.v1.ListChangesResponse.toObject = function (includeInstance, msg) {
+    var f,
+      obj = {
+        changesList: jspb.Message.toObjectList(
+          msg.getChangesList(),
+          yorkie_v1_resources_pb.Change.toObject,
+          includeInstance,
+        ),
+      };
 
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
+}
 
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.yorkie.v1.ListChangesResponse}
  */
-proto.yorkie.v1.ListChangesResponse.deserializeBinary = function(bytes) {
+proto.yorkie.v1.ListChangesResponse.deserializeBinary = function (bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.yorkie.v1.ListChangesResponse;
+  var msg = new proto.yorkie.v1.ListChangesResponse();
   return proto.yorkie.v1.ListChangesResponse.deserializeBinaryFromReader(msg, reader);
 };
-
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
@@ -4028,37 +3659,35 @@ proto.yorkie.v1.ListChangesResponse.deserializeBinary = function(bytes) {
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
  * @return {!proto.yorkie.v1.ListChangesResponse}
  */
-proto.yorkie.v1.ListChangesResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.yorkie.v1.ListChangesResponse.deserializeBinaryFromReader = function (msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new yorkie_v1_resources_pb.Change;
-      reader.readMessage(value,yorkie_v1_resources_pb.Change.deserializeBinaryFromReader);
-      msg.addChanges(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = new yorkie_v1_resources_pb.Change();
+        reader.readMessage(value, yorkie_v1_resources_pb.Change.deserializeBinaryFromReader);
+        msg.addChanges(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
 };
 
-
 /**
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.yorkie.v1.ListChangesResponse.prototype.serializeBinary = function() {
+proto.yorkie.v1.ListChangesResponse.prototype.serializeBinary = function () {
   var writer = new jspb.BinaryWriter();
   proto.yorkie.v1.ListChangesResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
-
 
 /**
  * Serializes the given message to binary data (in protobuf wire
@@ -4067,55 +3696,47 @@ proto.yorkie.v1.ListChangesResponse.prototype.serializeBinary = function() {
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.yorkie.v1.ListChangesResponse.serializeBinaryToWriter = function(message, writer) {
+proto.yorkie.v1.ListChangesResponse.serializeBinaryToWriter = function (message, writer) {
   var f = undefined;
   f = message.getChangesList();
   if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      1,
-      f,
-      yorkie_v1_resources_pb.Change.serializeBinaryToWriter
-    );
+    writer.writeRepeatedMessage(1, f, yorkie_v1_resources_pb.Change.serializeBinaryToWriter);
   }
 };
-
 
 /**
  * repeated Change changes = 1;
  * @return {!Array<!proto.yorkie.v1.Change>}
  */
-proto.yorkie.v1.ListChangesResponse.prototype.getChangesList = function() {
+proto.yorkie.v1.ListChangesResponse.prototype.getChangesList = function () {
   return /** @type{!Array<!proto.yorkie.v1.Change>} */ (
-    jspb.Message.getRepeatedWrapperField(this, yorkie_v1_resources_pb.Change, 1));
+    jspb.Message.getRepeatedWrapperField(this, yorkie_v1_resources_pb.Change, 1)
+  );
 };
-
 
 /**
  * @param {!Array<!proto.yorkie.v1.Change>} value
  * @return {!proto.yorkie.v1.ListChangesResponse} returns this
-*/
-proto.yorkie.v1.ListChangesResponse.prototype.setChangesList = function(value) {
+ */
+proto.yorkie.v1.ListChangesResponse.prototype.setChangesList = function (value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
-
 
 /**
  * @param {!proto.yorkie.v1.Change=} opt_value
  * @param {number=} opt_index
  * @return {!proto.yorkie.v1.Change}
  */
-proto.yorkie.v1.ListChangesResponse.prototype.addChanges = function(opt_value, opt_index) {
+proto.yorkie.v1.ListChangesResponse.prototype.addChanges = function (opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.yorkie.v1.Change, opt_index);
 };
-
 
 /**
  * Clears the list making it empty but non-null.
  * @return {!proto.yorkie.v1.ListChangesResponse} returns this
  */
-proto.yorkie.v1.ListChangesResponse.prototype.clearChangesList = function() {
+proto.yorkie.v1.ListChangesResponse.prototype.clearChangesList = function () {
   return this.setChangesList([]);
 };
-
 
 goog.object.extend(exports, proto.yorkie.v1);
