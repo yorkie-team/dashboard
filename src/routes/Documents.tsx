@@ -15,18 +15,18 @@
  */
 
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useParams } from 'react-router-dom';
 import { ProjectMenu } from 'features/projects';
 import { DocumentList, DocumentDetail } from 'features/documents';
 
 export function Documents() {
+  const documentKey = useParams()['*'];
+
   return (
     <>
       <ProjectMenu />
-      <div className="flex h-full w-full">
-        <div className="h-full w-full px-6 py-6" style={{ maxWidth: '34rem' }}>
-          <DocumentList />
-        </div>
+      <div className="flex w-full mt-12">
+        <DocumentList isDetailOpen={documentKey !== ''} />
         <Routes>
           <Route path=":documentKey" element={<DocumentDetail />} />
         </Routes>
