@@ -157,7 +157,7 @@ function App() {
           )}
         </div>
       </nav>
-      <div className="flex-1 py-16 max-w-5xl mx-auto px-2 sm:px-4">
+      <div className="flex-1 py-16 max-w-5xl mx-auto px-2 sm:px-4 w-full">
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route element={<PrivateRoute />}>
