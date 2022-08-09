@@ -79,7 +79,8 @@
             "signup",
             "unary",
             "invoker",
-            "uint"
+            "uint",
+            "dropdown"
           ],
           "skipIfMatch": [
             "TODO\\(.+\\):",
