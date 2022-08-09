@@ -181,6 +181,7 @@ export const documentSlice = createSlice({
       state.detail.document!.snapshot = state.history.histories[action.payload].snapshot;
     },
     resetHistory: (state) => {
+      state.history.status = 'idle';
       state.history.histories = [];
     },
   },
