@@ -21,7 +21,11 @@ import * as moment from 'moment';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectDocumentList, listDocumentsAsync, searchDocumentsAsync } from './documentsSlice';
 
-export function DocumentList() {
+type DocumentListProps = {
+  isDetailOpen: boolean;
+};
+
+export function DocumentList({ isDetailOpen }: DocumentListProps) {
   const dispatch = useAppDispatch();
   const projectName = useParams().projectName!;
   // NOTE(chacha912): DocumentList is outside of the dynamic params `<Route path=":documentKey">`.
@@ -86,10 +90,20 @@ export function DocumentList() {
   }, [dispatch, projectName]);
 
   return (
-    <>
-      <form className="mt-12 mb-8" onSubmit={handleSearch}>
-        <div className="inline-block relative w-48">
-          <button type="submit" className="absolute top-0 right-0 flex items-center justify-center w-8 h-10">
+    <div className={`${isDetailOpen ? 'w-60 mr-24 hidden md:block' : 'w-full'}`}>
+      <form
+        className={`flex ${isDetailOpen ? 'flex-col' : ''} border-b border-solid border-gray-200 mb-4`}
+        onSubmit={handleSearch}
+      >
+        <div className="relative">
+          <input
+            type="text"
+            className="text-gray-900 text-sm p-2.5 pl-10"
+            value={query}
+            onChange={handleChangeQuery}
+            placeholder="Search"
+          />
+          <button type="submit" className="absolute top-0 left-0 flex items-center justify-center w-8 h-10">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path
                 fillRule="evenodd"
@@ -99,16 +113,10 @@ export function DocumentList() {
               />
             </svg>
           </button>
-          <input
-            type="text"
-            className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-8"
-            value={query}
-            onChange={handleChangeQuery}
-          />
         </div>
         {totalCount !== null && (
-          <span className="ml-4 text-xs text-gray-700">
-            Search <span className="font-bold">{totalCount}</span> documents
+          <span className={`${!isDetailOpen ? 'self-end' : ''} m-2 text-xs text-gray-700`}>
+            <span className="font-bold">{totalCount}</span> documents
           </span>
         )}
       </form>
@@ -117,19 +125,21 @@ export function DocumentList() {
       {status === 'idle' && (
         <div className="relative">
           <table className="w-full text-sm text-left">
-            <thead className="text-xs text-gray-700 uppercase">
-              <tr>
-                <th scope="col" className="px-6 py-3" style={{ minWidth: '140px' }}>
-                  Key
-                </th>
-                <th scope="col" className="px-6 py-3" style={{ width: '140px' }}>
-                  Created At
-                </th>
-                <th scope="col" className="px-6 py-3" style={{ width: '140px' }}>
-                  Updated At
-                </th>
-              </tr>
-            </thead>
+            {!isDetailOpen && (
+              <thead className="text-xs text-gray-700">
+                <tr>
+                  <th scope="col" className="px-6 py-3">
+                    Document Key
+                  </th>
+                  <th scope="col" className="px-6 py-3 md:w-40">
+                    Created
+                  </th>
+                  <th scope="col" className="px-6 py-3 md:w-40">
+                    Last updated
+                  </th>
+                </tr>
+              </thead>
+            )}
             <tbody>
               {documents.map((document, idx) => {
                 const { key, createdAt, updatedAt } = document;
@@ -140,8 +150,8 @@ export function DocumentList() {
                     onClick={() => handleRowClicked(key)}
                   >
                     <td className="px-6 py-4 font-medium whitespace-pre-wrap break-all">{key}</td>
-                    <td className="px-6 py-4">{moment.unix(createdAt).format('YYYY-MM-DD')}</td>
-                    <td className="px-6 py-4">{moment.unix(updatedAt).format('YYYY-MM-DD')}</td>
+                    {!isDetailOpen && <td className="px-6 py-4">{moment.unix(createdAt).format('YYYY-MM-DD')}</td>}
+                    {!isDetailOpen && <td className="px-6 py-4">{moment.unix(updatedAt).format('YYYY-MM-DD')}</td>}
                   </tr>
                 );
               })}
@@ -205,6 +215,6 @@ export function DocumentList() {
           </button>
         </div>
       )}
-    </>
+    </div>
   );
 }

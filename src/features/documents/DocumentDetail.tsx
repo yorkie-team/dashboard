@@ -92,30 +92,24 @@ export function DocumentDetail() {
   }, [dispatch, projectName, documentKey]);
 
   return (
-    <div
-      className="w-full h-full px-6 py-6 overflow-y-auto"
-      style={{ borderLeft: '1px #ddd solid', minWidth: '400px' }}
-    >
+    <div className="w-full">
       {status === 'loading' && <div>Loading...</div>}
       {status === 'failed' && <div>Failed!</div>}
       {status === 'idle' && (
         <>
-          <Link
-            to={'../'}
-            className="float-right text-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium text-sm p-1 text-center inline-flex items-center dark:text-gray-500 dark:focus:ring-gray-800"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </Link>
-          <h2 className="text-lg font-semibold">{document?.key}</h2>
+          <div className="flex items-center">
+            <Link to={'../'} className="mr-2 p-1">
+              <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M13.2071 4.29289C13.5976 4.68342 13.5976 5.31658 13.2071 5.70711L7.91421 11H19.5C20.0523 11 20.5 11.4477 20.5 12C20.5 12.5523 20.0523 13 19.5 13H7.91421L13.2071 18.2929C13.5976 18.6834 13.5976 19.3166 13.2071 19.7071C12.8166 20.0976 12.1834 20.0976 11.7929 19.7071L4.79289 12.7071C4.40237 12.3166 4.40237 11.6834 4.79289 11.2929L11.7929 4.29289C12.1834 3.90237 12.8166 3.90237 13.2071 4.29289Z"
+                  fill="#514C49"
+                />
+              </svg>
+            </Link>
+            <h2 className="text-lg font-semibold">{document?.key}</h2>
+          </div>
           <div className="flex w-full justify-between bg-stone-100 mt-6 p-2">
             <button
               type="button"

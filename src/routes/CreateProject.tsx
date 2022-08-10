@@ -15,18 +15,22 @@
  */
 
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import { RegisterForm } from 'features/projects';
 
 export function CreateProject() {
   return (
-    <div className="relative h-screen flex">
-      <main className="ml-64 grow overflow-y-scroll">
-        <div className="px-12 py-6">
-          <h2 className="text-lg font-semibold">Create a new Project</h2>
-          <RegisterForm />
-        </div>
-      </main>
+    <div className="max-w-2xl mx-auto">
+      <div className="flex justify-between items-center">
+        <h2 className="text-lg font-semibold">Create a new Project</h2>
+        <Link
+          to={'../'}
+          className="text-gray-700 border border-solid border-gray-300 rounded font-medium text-sm px-4 py-2 text-center inline-flex items-center"
+        >
+          cancel
+        </Link>
+      </div>
+      <RegisterForm />
     </div>
   );
 }

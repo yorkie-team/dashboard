@@ -18,5 +18,5 @@ export * from './ProjectList';
 export * from './Overview';
 export * from './RegisterForm';
 export * from './APIKeys';
-export * from './Sidebar';
+export * from './ProjectMenu';
 export * from './Settings';
