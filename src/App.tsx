@@ -54,7 +54,7 @@ function App() {
   // TODO(hackerwins): For now, all user can access to all projects in the cluster.
   // After implementing the user-specific project role, let's open the signup here.
   // <Route path="/signup" element={<Signup />} />
-
+  // TODO(chacha912): Extract Nav and Footer as separate React components.
   // TODO(hackerwins): Redirect to 404 page when accessing non-existent pages.
   return (
     <Router>
