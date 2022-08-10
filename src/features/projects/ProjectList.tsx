@@ -41,9 +41,9 @@ export function ProjectList() {
             return (
               <li
                 key={name}
-                className="p-6 mr-4 mb-4 bg-white rounded border border-solid border-gray-200 hover:bg-gray-100"
+                className="mr-4 mb-4 bg-white rounded border border-solid border-gray-200 hover:bg-gray-100"
               >
-                <Link to={`./${name}`}>
+                <Link to={`./${name}`} className="block p-6">
                   <h5 className="mb-4 text-2xl font-bold tracking-tight text-gray-900 break-words">{name}</h5>
                   <p className="text-gray-700 text-sm">
                     Public Key: {publicKey}
