@@ -93,22 +93,6 @@ function App() {
               <div className="hidden relative w-full items-center sm:flex sm:w-auto">
                 <ul className="inline-flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 sm:flex-row sm:space-x-8 sm:mt-0 sm:text-sm sm:font-medium sm:border-0 sm:bg-white">
                   <li>
-                    <button
-                      type="button"
-                      className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 sm:hover:bg-transparent sm:border-0 sm:hover:text-orange-500 sm:p-0"
-                    >
-                      Feedback
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      type="button"
-                      className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 sm:hover:bg-transparent sm:border-0 sm:hover:text-orange-500 sm:p-0"
-                    >
-                      Support
-                    </button>
-                  </li>
-                  <li>
                     <a
                       href="https://yorkie.dev/docs"
                       target="_blank"
@@ -121,7 +105,7 @@ function App() {
                 </ul>
                 <button
                   type="button"
-                  className="inline-flex items-center justify-center ml-3 w-6 h-6 rounded-full bg-orange-400"
+                  className="inline-flex items-center justify-center ml-3 w-6 h-6 rounded-full bg-orange-300"
                   onClick={() => setIsUserDropdownOpen(true)}
                 >
                   A
@@ -129,27 +113,18 @@ function App() {
                 {isUserDropdownOpen && (
                   <div
                     ref={userDropdownRef}
-                    className="absolute z-10 top-12 right-0 bg-white rounded drop-shadow-lg py-1"
+                    className="absolute z-10 top-12 right-0 bg-white rounded drop-shadow-lg py-1 min-w-[12rem]"
                   >
                     <div className="py-3 px-4 text-sm text-gray-900">
                       <div className="font-medium">Admin</div>
-                      <div className="text-xs truncate">admin@naver.com</div>
                     </div>
-                    <ul className="border-y border-gray-200 border-solid py-1 text-sm text-gray-700">
+                    <ul className="border-t border-solid border-gray-200 py-1 text-sm text-gray-700">
                       <li>
                         <button type="button" className="block w-full py-2 px-4 hover:bg-gray-100 text-left">
                           Sign out
                         </button>
                       </li>
                     </ul>
-                    <div className="py-2 px-4">
-                      <Link to="/" className="mx-2 text-xs text-gray-400 hover:text-gray-600">
-                        Privacy policy
-                      </Link>
-                      <Link to="/" className="mx-2 text-xs text-gray-400 hover:text-gray-600">
-                        Terms of service
-                      </Link>
-                    </div>
                   </div>
                 )}
               </div>
