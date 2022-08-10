@@ -80,7 +80,8 @@
             "unary",
             "invoker",
             "uint",
-            "dropdown"
+            "dropdown",
+            "mb"
           ],
           "skipIfMatch": [
             "TODO\\(.+\\):",
