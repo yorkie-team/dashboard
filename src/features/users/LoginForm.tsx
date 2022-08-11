@@ -15,26 +15,50 @@
  */
 
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-
+import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { LoginFields, selectUsers, loginUser } from './usersSlice';
+import { GrpcStatusCode } from 'api/types';
 
 export function LoginForm() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const {
     register,
-    formState: { errors },
+    formState: { errors: formErrors },
     handleSubmit,
+    setError,
   } = useForm<LoginFields>();
   const {
     login: { isSuccess },
-  } = useSelector(selectUsers);
+  } = useAppSelector(selectUsers);
 
-  const onSubmit = (data: LoginFields) => {
-    dispatch(loginUser(data));
+  const onSubmit = async (data: LoginFields) => {
+    try {
+      await dispatch(loginUser(data)).unwrap();
+    } catch (error: any) {
+      if (error.code === GrpcStatusCode.NOT_FOUND) {
+        setError(
+          'username',
+          { type: 'notFound', message: 'No matching accounts have been found. Check your user name and try again' },
+          { shouldFocus: true },
+        );
+        return;
+      }
+      if (error.code === GrpcStatusCode.UNAUTHENTICATED) {
+        setError(
+          'password',
+          { type: 'unauthenticated', message: 'The password is not correct. Please try again.' },
+          { shouldFocus: true },
+        );
+        return;
+      }
+
+      // TODO(chacha912): Handle unexpected error (e.g. network error).
+      // Redirect to error page or show error modal.
+      console.error(error);
+    }
   };
 
   useEffect(() => {
@@ -57,7 +81,7 @@ export function LoginForm() {
           placeholder=" "
           autoComplete="off"
           autoFocus
-          {...register('username', { required: true })}
+          {...register('username', { required: 'Username is required' })}
         />
         <label
           htmlFor="username"
@@ -66,7 +90,7 @@ export function LoginForm() {
           Username
         </label>
       </div>
-      {errors.username && <p className="text-red-500 text-xs italic mb-6">Username is required.</p>}
+      {formErrors.username && <p className="text-red-500 text-xs italic mb-6">{formErrors.username.message}</p>}
 
       <div className="relative mb-4">
         <input
@@ -74,7 +98,7 @@ export function LoginForm() {
           id="password"
           className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded border border-solid border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-orange-600 peer"
           placeholder=" "
-          {...register('password', { required: true })}
+          {...register('password', { required: 'Password is required' })}
         />
         <label
           htmlFor="password"
@@ -83,8 +107,7 @@ export function LoginForm() {
           Password
         </label>
       </div>
-      {errors.password && <p className="text-red-500 text-xs italic">Password is required.</p>}
-
+      {formErrors.password && <p className="text-red-500 text-xs italic">{formErrors.password.message}</p>}
       <button
         className="w-full bg-orange-500 hover:bg-orange-400 text-white font-medium py-3 px-4 mt-8 rounded focus:outline-none focus:shadow-outline"
         type="submit"

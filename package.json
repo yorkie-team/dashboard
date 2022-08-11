@@ -81,7 +81,8 @@
             "invoker",
             "uint",
             "dropdown",
-            "mb"
+            "mb",
+            "rpc"
           ],
           "skipIfMatch": [
             "TODO\\(.+\\):",

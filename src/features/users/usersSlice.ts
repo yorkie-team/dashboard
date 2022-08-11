@@ -16,7 +16,7 @@
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from 'api';
-import { User } from 'api/types';
+import { User, RpcError } from 'api/types';
 import { RootState } from 'app/store';
 
 export interface UsersState {
@@ -66,7 +66,8 @@ export const loginUser = createAsyncThunk<string, LoginFields, { rejectValue: an
       localStorage.setItem('token', token);
       return token;
     } catch (error) {
-      return rejectWithValue(error);
+      const { code, message } = error as RpcError;
+      return rejectWithValue({ code, message });
     }
   },
 );
