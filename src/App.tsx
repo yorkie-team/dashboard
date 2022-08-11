@@ -26,12 +26,18 @@ import {
   Documents,
   ProjectSettings,
 } from 'routes';
-import { useAppSelector } from 'app/hooks';
+import { useAppSelector, useAppDispatch } from 'app/hooks';
+import { logoutUser } from './features/users/usersSlice';
 
 function App() {
   const { token } = useAppSelector((state) => state.users);
   const userDropdownRef = useRef<HTMLDivElement | null>(null);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
+
+  const dispatch = useAppDispatch();
+  const logout = useCallback(() => {
+    dispatch(logoutUser());
+  }, [dispatch]);
 
   const handleClickOutside = useCallback(
     (e) => {
@@ -120,7 +126,11 @@ function App() {
                     </div>
                     <ul className="border-t border-solid border-gray-200 py-1 text-sm text-gray-700">
                       <li>
-                        <button type="button" className="block w-full py-2 px-4 hover:bg-gray-100 text-left">
+                        <button
+                          type="button"
+                          onClick={logout}
+                          className="block w-full py-2 px-4 hover:bg-gray-100 text-left"
+                        >
                           Sign out
                         </button>
                       </li>

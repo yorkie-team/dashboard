@@ -16,7 +16,7 @@
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from 'api';
-import { User } from 'api/types'
+import { User } from 'api/types';
 import { RootState } from 'app/store';
 
 export interface UsersState {
@@ -24,11 +24,11 @@ export interface UsersState {
   login: {
     isSuccess: boolean;
     status: 'idle' | 'loading' | 'failed';
-  },
+  };
   signup: {
     isSuccess: boolean;
     status: 'idle' | 'loading' | 'failed';
-  }
+  };
 }
 
 export type LoginFields = {
@@ -51,43 +51,48 @@ const initialState: UsersState = {
   signup: {
     isSuccess: false,
     status: 'idle',
-  }
-}
+  },
+};
 
 if (initialState.token) {
   api.setToken(initialState.token);
 }
 
-export const loginUser = createAsyncThunk<
-  string,
-  LoginFields,
-  { rejectValue: any }
->('users/login', async ({ username, password }, { rejectWithValue }) => {
-  try {
-    const token = await api.logIn(username, password);
-    localStorage.setItem('token', token);
-    return token;
-  } catch (error) {
-    return rejectWithValue(error);
-  }
-});
+export const loginUser = createAsyncThunk<string, LoginFields, { rejectValue: any }>(
+  'users/login',
+  async ({ username, password }, { rejectWithValue }) => {
+    try {
+      const token = await api.logIn(username, password);
+      localStorage.setItem('token', token);
+      return token;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
 
-export const signupUser = createAsyncThunk<
-  User,
-  SignupFields,
-  { rejectValue: any }
->('users/signup', async ({ username, password }, { rejectWithValue }) => {
-  try {
-    return await api.signUp(username, password);
-  } catch (error) {
-    return rejectWithValue(error);
-  }
-});
+export const signupUser = createAsyncThunk<User, SignupFields, { rejectValue: any }>(
+  'users/signup',
+  async ({ username, password }, { rejectWithValue }) => {
+    try {
+      return await api.signUp(username, password);
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
 
 export const usersSlice = createSlice({
   name: 'users',
   initialState,
-  reducers: {},
+  reducers: {
+    logoutUser: (state) => {
+      localStorage.removeItem('token');
+      state.token = '';
+      state.login.status = 'idle';
+      state.login.isSuccess = false;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.token = action.payload;
@@ -112,6 +117,8 @@ export const usersSlice = createSlice({
     });
   },
 });
+
+export const { logoutUser } = usersSlice.actions;
 
 export const selectUsers = (state: RootState) => state.users;
 
