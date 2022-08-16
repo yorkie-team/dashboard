@@ -34,7 +34,7 @@ export class AuthUnaryInterceptor {
   }
 
   /**
-   * `intercept` intercepts the request and adds the token to the metadata.
+   * `intercept` intercepts the request and adds the token and deadline to the metadata.
    */
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public intercept(request: any, invoker: any): any {
@@ -42,6 +42,7 @@ export class AuthUnaryInterceptor {
     if (this.token) {
       metadata['authorization'] = this.token;
     }
+    metadata.deadline = new Date().getTime() + 3000;
     return invoker(request);
   }
 }
@@ -66,7 +67,7 @@ export class AuthStreamInterceptor {
   }
 
   /**
-   * `intercept` intercepts the request and adds the token to the metadata.
+   * `intercept` intercepts the request and adds the token and deadline to the metadata.
    */
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public intercept(request: any, invoker: any): any {
@@ -74,6 +75,7 @@ export class AuthStreamInterceptor {
     if (this.token) {
       metadata['authorization'] = this.token;
     }
+    metadata.deadline = new Date().getTime() + 3000;
     return invoker(request);
   }
 }

@@ -69,7 +69,7 @@ export const AUTH_WEBHOOK_METHODS: Array<AuthWebhookMethod> = [
   'ListChangeSummaries',
 ];
 
-export type RpcError = {
+export type RPCError = {
   code: number;
   message: string;
 };
@@ -79,11 +79,11 @@ type FieldViolation = {
   description: string;
 };
 
-export type ErrorWithDetails = RpcError & {
+export type ErrorWithDetails = RPCError & {
   details: Array<FieldViolation>;
 };
 
-export enum GrpcStatusCode {
+export enum RPCStatusCode {
   OK = 0,
   CANCELLED = 1,
   UNKNOWN = 2,
