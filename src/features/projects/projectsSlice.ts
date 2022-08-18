@@ -16,7 +16,8 @@
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from 'app/store';
-import { listProjects, getProject, updateProject, Project, UpdatableProjectFields } from 'api';
+import { listProjects, getProject, createProject, updateProject, Project, UpdatableProjectFields } from 'api';
+import { RPCStatusCode } from 'api/types';
 
 export interface ProjectsState {
   list: {
@@ -28,7 +29,18 @@ export interface ProjectsState {
     status: 'idle' | 'loading' | 'failed';
     updateStatus: 'idle' | 'loading' | 'failed';
   };
+  create: {
+    status: 'idle' | 'loading' | 'failed';
+    error: {
+      target: keyof RegisterFields;
+      message: string;
+    } | null;
+  };
 }
+
+export type RegisterFields = {
+  projectName: string;
+};
 
 const initialState: ProjectsState = {
   list: {
@@ -39,6 +51,10 @@ const initialState: ProjectsState = {
     project: null,
     status: 'idle',
     updateStatus: 'idle',
+  },
+  create: {
+    status: 'idle',
+    error: null,
   },
 };
 
@@ -51,6 +67,14 @@ export const getProjectAsync = createAsyncThunk('projects/getProject', async (na
   const project = await getProject(name);
   return project;
 });
+
+export const createProjectAsync = createAsyncThunk<Project, RegisterFields>(
+  'projects/createProject',
+  async ({ projectName }) => {
+    const project = await createProject(projectName);
+    return project;
+  },
+);
 
 export const updateProjectAsync = createAsyncThunk<
   Project,
@@ -90,6 +114,24 @@ export const projectsSlice = createSlice({
     builder.addCase(getProjectAsync.rejected, (state) => {
       state.detail.status = 'failed';
     });
+    builder.addCase(createProjectAsync.pending, (state) => {
+      state.create.status = 'loading';
+      state.create.error = null;
+    });
+    builder.addCase(createProjectAsync.fulfilled, (state, action) => {
+      state.create.status = 'idle';
+      state.detail.project = action.payload;
+    });
+    builder.addCase(createProjectAsync.rejected, (state, action) => {
+      state.create.status = 'failed';
+      const errorCode = Number(action.error.code);
+      if (errorCode === RPCStatusCode.ALREADY_EXISTS) {
+        state.create.error = {
+          target: 'projectName',
+          message: 'The project name is already in use. Please try again.',
+        };
+      }
+    });
     builder.addCase(updateProjectAsync.pending, (state) => {
       state.detail.updateStatus = 'loading';
     });
@@ -105,5 +147,6 @@ export const projectsSlice = createSlice({
 
 export const selectProjectList = (state: RootState) => state.projects.list;
 export const selectProjectDetail = (state: RootState) => state.projects.detail;
+export const selectProjectCreate = (state: RootState) => state.projects.create;
 
 export default projectsSlice.reducer;

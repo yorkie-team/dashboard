@@ -25,7 +25,7 @@ export interface UsersState {
     isSuccess: boolean;
     status: 'idle' | 'loading' | 'failed';
     error: {
-      target: 'username' | 'password';
+      target: keyof LoginFields;
       message: string;
     } | null;
   };
