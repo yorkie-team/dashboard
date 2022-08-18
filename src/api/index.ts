@@ -30,7 +30,6 @@ import {
   ListChangesRequest,
   GetSnapshotMetaRequest,
 } from './yorkie/v1/admin_pb';
-import * as errorDetails from 'grpc-web-error-details';
 import { UpdatableProjectFields as PbProjectFields } from './yorkie/v1/resources_pb';
 import * as PbWrappers from 'google-protobuf/google/protobuf/wrappers_pb';
 

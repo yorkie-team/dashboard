@@ -35,18 +35,20 @@ export const globalErrorSlice = createSlice({
   initialState,
   reducers: {
     setGlobalError: (state, action) => {
-      const code = action.payload;
-      state.code = code;
-      switch (code) {
+      const { statusCode, errorMessage } = action.payload;
+      state.code = statusCode;
+      switch (statusCode) {
         case RPCStatusCode.DEADLINE_EXCEEDED:
           state.title = 'Request timed out';
           state.message = 'This request takes too long to process.';
           break;
         case RPCStatusCode.UNAUTHENTICATED:
           state.title = 'Session has expired';
-          state.message = 'Your session has timed out. Please log in again';
+          state.message = 'Your session has timed out. Please log in again.';
           break;
         default:
+          state.title = 'Error';
+          state.message = errorMessage;
           break;
       }
     },

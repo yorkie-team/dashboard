@@ -15,8 +15,11 @@
  */
 
 import type { Action, PayloadAction, SerializedError, MiddlewareAPI, Middleware } from '@reduxjs/toolkit';
+import { isRejectedWithValue } from '@reduxjs/toolkit';
 import { RPCStatusCode } from 'api/types';
 import { setGlobalError } from 'features/globalError/globalErrorSlice';
+import { loginUser } from 'features/users/usersSlice';
+import { createProjectAsync, updateProjectAsync } from 'features/projects/projectsSlice';
 
 type RejectedAction = PayloadAction<
   {
@@ -37,19 +40,45 @@ function isRejectedAction(action: Action): action is RejectedAction {
   return action.type.endsWith('/rejected');
 }
 
+function isHandledError(actionType: any, statusCode: RPCStatusCode): boolean {
+  if (
+    actionType === loginUser.rejected.type &&
+    (statusCode === RPCStatusCode.NOT_FOUND || statusCode === RPCStatusCode.UNAUTHENTICATED)
+  ) {
+    return true;
+  }
+
+  if (actionType === createProjectAsync.rejected.type && statusCode === RPCStatusCode.ALREADY_EXISTS) {
+    return true;
+  }
+
+  if (
+    actionType === updateProjectAsync.rejected.type &&
+    (statusCode === RPCStatusCode.ALREADY_EXISTS || statusCode === RPCStatusCode.INVALID_ARGUMENT)
+  ) {
+    return true;
+  }
+
+  return false;
+}
+
 export const globalErrorHandler: Middleware = (store: MiddlewareAPI) => (next) => (action) => {
   next(action);
 
-  if (!isRejectedAction(action)) return;
-
+  if (!isRejectedAction(action) && !isRejectedWithValue(action)) return;
   console.log('middleware', action);
-  const statusCode = Number(action.error.code);
-  const errorMessage = action.error.message;
 
-  if (
-    (statusCode === RPCStatusCode.UNAUTHENTICATED && errorMessage === 'authorization is invalid') ||
-    statusCode === RPCStatusCode.DEADLINE_EXCEEDED
-  ) {
-    store.dispatch(setGlobalError(statusCode));
+  let { code: statusCode, message: errorMessage, name: errorName } = action.error;
+  if (isRejectedWithValue(action)) {
+    statusCode = action.payload.error.code;
+    errorMessage = action.payload.error.message;
+    errorName = action.payload.error.name;
   }
+  statusCode = Number(statusCode);
+
+  if (errorName !== 'RPCError') {
+    throw action.error;
+  }
+  if (isHandledError(action.type, statusCode)) return;
+  store.dispatch(setGlobalError({ statusCode, errorMessage }));
 };
