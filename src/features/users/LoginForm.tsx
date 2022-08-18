@@ -16,13 +16,14 @@
 
 import React, { useEffect, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { LoginFields, selectUsers, loginUser } from './usersSlice';
 
 export function LoginForm() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const {
     register,
     formState: { errors: formErrors },
@@ -46,10 +47,11 @@ export function LoginForm() {
   }, [error, setError]);
 
   useEffect(() => {
+    const { from } = (location.state as { from: string }) || { from: '/' };
     if (isSuccess) {
-      navigate('/');
+      navigate(from);
     }
-  }, [navigate, isSuccess]);
+  }, [navigate, isSuccess, location]);
 
   return (
     <form

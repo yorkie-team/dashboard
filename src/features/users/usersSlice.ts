@@ -16,7 +16,7 @@
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from 'api';
-import { User, RPCError, RPCStatusCode } from 'api/types';
+import { User, RPCStatusCode } from 'api/types';
 import { RootState } from 'app/store';
 
 export interface UsersState {
@@ -63,30 +63,15 @@ if (initialState.token) {
   api.setToken(initialState.token);
 }
 
-export const loginUser = createAsyncThunk<string, LoginFields, { rejectValue: any }>(
-  'users/login',
-  async ({ username, password }, { rejectWithValue }) => {
-    try {
-      const token = await api.logIn(username, password);
-      localStorage.setItem('token', token);
-      return token;
-    } catch (error) {
-      const { code, message } = error as RPCError;
-      return rejectWithValue({ code, message });
-    }
-  },
-);
+export const loginUser = createAsyncThunk<string, LoginFields>('users/login', async ({ username, password }) => {
+  const token = await api.logIn(username, password);
+  localStorage.setItem('token', token);
+  return token;
+});
 
-export const signupUser = createAsyncThunk<User, SignupFields, { rejectValue: any }>(
-  'users/signup',
-  async ({ username, password }, { rejectWithValue }) => {
-    try {
-      return await api.signUp(username, password);
-    } catch (error) {
-      return rejectWithValue(error);
-    }
-  },
-);
+export const signupUser = createAsyncThunk<User, SignupFields>('users/signup', async ({ username, password }) => {
+  return await api.signUp(username, password);
+});
 
 export const usersSlice = createSlice({
   name: 'users',
@@ -112,21 +97,17 @@ export const usersSlice = createSlice({
     });
     builder.addCase(loginUser.rejected, (state, action) => {
       state.login.status = 'failed';
-      switch (action.payload.code) {
-        case RPCStatusCode.NOT_FOUND:
-          state.login.error = {
-            target: 'username',
-            message: 'No matching accounts have been found. Check your user name and try again.',
-          };
-          break;
-        case RPCStatusCode.UNAUTHENTICATED:
-          state.login.error = {
-            target: 'password',
-            message: 'The password is not correct. Please try again.',
-          };
-          break;
-        default:
-          throw action.payload;
+      const errorCode = Number(action.error.code);
+      if (errorCode === RPCStatusCode.NOT_FOUND) {
+        state.login.error = {
+          target: 'username',
+          message: 'No matching accounts have been found. Check your user name and try again.',
+        };
+      } else if (errorCode === RPCStatusCode.UNAUTHENTICATED) {
+        state.login.error = {
+          target: 'password',
+          message: 'The password is not correct. Please try again.',
+        };
       }
     });
     builder.addCase(signupUser.fulfilled, (state) => {

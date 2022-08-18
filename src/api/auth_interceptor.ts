@@ -43,7 +43,9 @@ export class AuthUnaryInterceptor {
       metadata['authorization'] = this.token;
     }
     metadata.deadline = new Date().getTime() + 3000;
-    return invoker(request);
+    return invoker(request).catch((err: any) => {
+      throw new RPCError(err.code, err.message);
+    });
   }
 }
 
@@ -76,6 +78,20 @@ export class AuthStreamInterceptor {
       metadata['authorization'] = this.token;
     }
     metadata.deadline = new Date().getTime() + 3000;
-    return invoker(request);
+    return invoker(request).catch((err: any) => {
+      throw new RPCError(err.code, err.message);
+    });
+  }
+}
+
+class RPCError extends Error {
+  name: string;
+  code: string;
+  message: string;
+  constructor(code: number, message: string) {
+    super(message);
+    this.name = 'RpcError';
+    this.code = String(code);
+    this.message = message;
   }
 }

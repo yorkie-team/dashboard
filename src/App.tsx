@@ -28,6 +28,7 @@ import {
 } from 'routes';
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 import { logoutUser } from './features/users/usersSlice';
+import { ErrorModal } from 'features/globalError/ErrorModal';
 
 function App() {
   const { token } = useAppSelector((state) => state.users);
@@ -196,6 +197,7 @@ function App() {
           />
         </svg>
       </footer>
+      <ErrorModal />
     </Router>
   );
 }

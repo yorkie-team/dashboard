@@ -69,17 +69,14 @@ export const AUTH_WEBHOOK_METHODS: Array<AuthWebhookMethod> = [
   'ListChangeSummaries',
 ];
 
-export type RPCError = {
-  code: number;
-  message: string;
-};
-
 type FieldViolation = {
   field: string;
   description: string;
 };
 
-export type ErrorWithDetails = RPCError & {
+export type ErrorWithDetails = {
+  code: number;
+  message: string;
   details: Array<FieldViolation>;
 };
 
