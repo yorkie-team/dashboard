@@ -97,13 +97,13 @@ export const usersSlice = createSlice({
     });
     builder.addCase(loginUser.rejected, (state, action) => {
       state.login.status = 'failed';
-      const errorCode = Number(action.error.code);
-      if (errorCode === RPCStatusCode.NOT_FOUND) {
+      const statusCode = Number(action.error.code);
+      if (statusCode === RPCStatusCode.NOT_FOUND) {
         state.login.error = {
           target: 'username',
           message: 'No matching accounts have been found. Check your user name and try again.',
         };
-      } else if (errorCode === RPCStatusCode.UNAUTHENTICATED) {
+      } else if (statusCode === RPCStatusCode.UNAUTHENTICATED) {
         state.login.error = {
           target: 'password',
           message: 'The password is not correct. Please try again.',

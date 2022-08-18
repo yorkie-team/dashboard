@@ -139,8 +139,8 @@ export const projectsSlice = createSlice({
     });
     builder.addCase(createProjectAsync.rejected, (state, action) => {
       state.create.status = 'failed';
-      const errorCode = Number(action.error.code);
-      if (errorCode === RPCStatusCode.ALREADY_EXISTS) {
+      const statusCode = Number(action.error.code);
+      if (statusCode === RPCStatusCode.ALREADY_EXISTS) {
         state.create.error = {
           target: 'projectName',
           message: 'The project name is already in use. Please try again.',

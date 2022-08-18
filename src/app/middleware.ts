@@ -43,13 +43,13 @@ export const globalErrorHandler: Middleware = (store: MiddlewareAPI) => (next) =
   if (!isRejectedAction(action)) return;
 
   console.log('middleware', action);
-  const errorCode = Number(action.error.code);
+  const statusCode = Number(action.error.code);
   const errorMessage = action.error.message;
 
   if (
-    (errorCode === RPCStatusCode.UNAUTHENTICATED && errorMessage === 'authorization is invalid') ||
-    errorCode === RPCStatusCode.DEADLINE_EXCEEDED
+    (statusCode === RPCStatusCode.UNAUTHENTICATED && errorMessage === 'authorization is invalid') ||
+    statusCode === RPCStatusCode.DEADLINE_EXCEEDED
   ) {
-    store.dispatch(setGlobalError(errorCode));
+    store.dispatch(setGlobalError(statusCode));
   }
 };
