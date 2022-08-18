@@ -18,7 +18,7 @@ import React, { useEffect, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { RegisterFields, createProjectAsync, selectProjectCreate } from './projectsSlice';
+import { ProjectCreateFields, createProjectAsync, selectProjectCreate } from './projectsSlice';
 
 export function RegisterForm() {
   const dispatch = useAppDispatch();
@@ -28,11 +28,11 @@ export function RegisterForm() {
     formState: { errors: formErrors },
     handleSubmit,
     setError,
-  } = useForm<RegisterFields>();
+  } = useForm<ProjectCreateFields>();
   const { error } = useAppSelector(selectProjectCreate);
 
   const onSubmit = useCallback(
-    async (data: RegisterFields) => {
+    async (data: ProjectCreateFields) => {
       try {
         const project = await dispatch(createProjectAsync(data)).unwrap();
         navigate(`../projects/${project.name}`);

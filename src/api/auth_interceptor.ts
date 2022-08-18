@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import * as errorDetails from 'grpc-web-error-details';
+
 /**
  * `AuthUnaryInterceptor` is a unary interceptor to add the Authorization header for each
  * request.
@@ -44,6 +46,19 @@ export class AuthUnaryInterceptor {
     }
     metadata.deadline = new Date().getTime() + 3000;
     return invoker(request).catch((err: any) => {
+      const [, pbDetails] = errorDetails.statusFromError(err);
+      if (pbDetails && pbDetails.length > 0) {
+        const details: Array<FieldViolation> = [];
+        for (const pbDetail of pbDetails) {
+          if (pbDetail instanceof errorDetails.BadRequest) {
+            for (const v of pbDetail.getFieldViolationsList()) {
+              details.push({ field: v.getField(), description: v.getDescription() });
+            }
+          }
+        }
+        throw new RPCError(err.code, err.message, details);
+      }
+
       throw new RPCError(err.code, err.message);
     });
   }
@@ -79,6 +94,19 @@ export class AuthStreamInterceptor {
     }
     metadata.deadline = new Date().getTime() + 3000;
     return invoker(request).catch((err: any) => {
+      const [, pbDetails] = errorDetails.statusFromError(err);
+      if (pbDetails && pbDetails.length > 0) {
+        const details: Array<FieldViolation> = [];
+        for (const pbDetail of pbDetails) {
+          if (pbDetail instanceof errorDetails.BadRequest) {
+            for (const v of pbDetail.getFieldViolationsList()) {
+              details.push({ field: v.getField(), description: v.getDescription() });
+            }
+          }
+        }
+        throw new RPCError(err.code, err.message, details);
+      }
+
       throw new RPCError(err.code, err.message);
     });
   }
@@ -88,10 +116,17 @@ class RPCError extends Error {
   name: string;
   code: string;
   message: string;
-  constructor(code: number, message: string) {
+  details: Array<FieldViolation>;
+  constructor(code: number, message: string, details?: Array<FieldViolation>) {
     super(message);
-    this.name = 'RpcError';
+    this.name = 'RPCError';
     this.code = String(code);
     this.message = message;
+    this.details = details || [];
   }
 }
+
+type FieldViolation = {
+  field: string;
+  description: string;
+};

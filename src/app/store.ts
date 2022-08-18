@@ -25,7 +25,12 @@ export const store = configureStore({
     documents: documentsReducer,
     globalError: globalErrorReducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(globalErrorHandler),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActionPaths: ['payload.error'],
+      },
+    }).concat(globalErrorHandler),
 });
 
 export type AppDispatch = typeof store.dispatch;

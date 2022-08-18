@@ -69,17 +69,6 @@ export const AUTH_WEBHOOK_METHODS: Array<AuthWebhookMethod> = [
   'ListChangeSummaries',
 ];
 
-type FieldViolation = {
-  field: string;
-  description: string;
-};
-
-export type ErrorWithDetails = {
-  code: number;
-  message: string;
-  details: Array<FieldViolation>;
-};
-
 export enum RPCStatusCode {
   OK = 0,
   CANCELLED = 1,

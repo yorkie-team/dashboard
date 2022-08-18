@@ -29,7 +29,12 @@ export function LoginForm() {
     formState: { errors: formErrors },
     handleSubmit,
     setError,
-  } = useForm<LoginFields>();
+  } = useForm<LoginFields>({
+    defaultValues: {
+      username: '',
+      password: '',
+    },
+  });
   const {
     login: { isSuccess, status, error },
   } = useAppSelector(selectUsers);
@@ -64,7 +69,6 @@ export function LoginForm() {
           type="text"
           id="username"
           className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded border border-solid border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-orange-600 peer"
-          placeholder=" "
           autoComplete="off"
           autoFocus
           {...register('username', { required: 'Username is required' })}
@@ -83,7 +87,6 @@ export function LoginForm() {
           type="password"
           id="password"
           className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded border border-solid border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-orange-600 peer"
-          placeholder=" "
           {...register('password', { required: 'Password is required' })}
         />
         <label

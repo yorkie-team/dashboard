@@ -82,7 +82,8 @@
             "uint",
             "dropdown",
             "mb",
-            "rpc"
+            "rpc",
+            "serializable"
           ],
           "skipIfMatch": [
             "TODO\\(.+\\):",

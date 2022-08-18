@@ -17,7 +17,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from 'app/store';
 import { listProjects, getProject, createProject, updateProject, Project, UpdatableProjectFields } from 'api';
-import { RPCStatusCode } from 'api/types';
+import { RPCStatusCode, AuthWebhookMethod } from 'api/types';
 
 export interface ProjectsState {
   list: {
@@ -27,19 +27,31 @@ export interface ProjectsState {
   detail: {
     project: Project | null;
     status: 'idle' | 'loading' | 'failed';
-    updateStatus: 'idle' | 'loading' | 'failed';
   };
   create: {
     status: 'idle' | 'loading' | 'failed';
     error: {
-      target: keyof RegisterFields;
+      target: keyof ProjectCreateFields;
+      message: string;
+    } | null;
+  };
+  update: {
+    status: 'idle' | 'loading' | 'failed';
+    error: {
+      target: keyof ProjectUpdateFields;
       message: string;
     } | null;
   };
 }
 
-export type RegisterFields = {
+export type ProjectCreateFields = {
   projectName: string;
+};
+
+export type ProjectUpdateFields = {
+  projectName: string;
+  authWebhookURL: string;
+  authWebhookMethods: Array<AuthWebhookMethod>;
 };
 
 const initialState: ProjectsState = {
@@ -50,9 +62,12 @@ const initialState: ProjectsState = {
   detail: {
     project: null,
     status: 'idle',
-    updateStatus: 'idle',
   },
   create: {
+    status: 'idle',
+    error: null,
+  },
+  update: {
     status: 'idle',
     error: null,
   },
@@ -68,7 +83,7 @@ export const getProjectAsync = createAsyncThunk('projects/getProject', async (na
   return project;
 });
 
-export const createProjectAsync = createAsyncThunk<Project, RegisterFields>(
+export const createProjectAsync = createAsyncThunk<Project, ProjectCreateFields>(
   'projects/createProject',
   async ({ projectName }) => {
     const project = await createProject(projectName);
@@ -85,7 +100,7 @@ export const updateProjectAsync = createAsyncThunk<
     const project = await updateProject(id, fields);
     return project;
   } catch (error) {
-    return rejectWithValue(error);
+    return rejectWithValue({ error });
   }
 });
 
@@ -133,14 +148,38 @@ export const projectsSlice = createSlice({
       }
     });
     builder.addCase(updateProjectAsync.pending, (state) => {
-      state.detail.updateStatus = 'loading';
+      state.update.status = 'loading';
+      state.update.error = null;
     });
     builder.addCase(updateProjectAsync.fulfilled, (state, action) => {
-      state.detail.updateStatus = 'idle';
+      state.update.status = 'idle';
       state.detail.project = action.payload;
     });
-    builder.addCase(updateProjectAsync.rejected, (state) => {
-      state.detail.updateStatus = 'failed';
+    builder.addCase(updateProjectAsync.rejected, (state, action) => {
+      state.update.status = 'failed';
+
+      const statusCode = Number(action.payload.error.code);
+      if (statusCode === RPCStatusCode.ALREADY_EXISTS) {
+        state.update.error = {
+          target: 'projectName',
+          message: 'The project name is already in use. Please try again.',
+        };
+      } else if (statusCode === RPCStatusCode.INVALID_ARGUMENT) {
+        const errorDetails = action.payload.error.details;
+        for (const { field, description } of errorDetails) {
+          if (field === 'Name') {
+            state.update.error = {
+              target: 'projectName',
+              message: description,
+            };
+          } else if (field === 'AuthWebhookURL') {
+            state.update.error = {
+              target: 'authWebhookURL',
+              message: description,
+            };
+          }
+        }
+      }
     });
   },
 });
@@ -148,5 +187,6 @@ export const projectsSlice = createSlice({
 export const selectProjectList = (state: RootState) => state.projects.list;
 export const selectProjectDetail = (state: RootState) => state.projects.detail;
 export const selectProjectCreate = (state: RootState) => state.projects.create;
+export const selectProjectUpdate = (state: RootState) => state.projects.update;
 
 export default projectsSlice.reducer;
