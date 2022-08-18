@@ -34,6 +34,7 @@ export interface ProjectsState {
       target: keyof ProjectCreateFields;
       message: string;
     } | null;
+    isSuccess: boolean;
   };
   update: {
     status: 'idle' | 'loading' | 'failed';
@@ -41,6 +42,7 @@ export interface ProjectsState {
       target: keyof ProjectUpdateFields;
       message: string;
     } | null;
+    isSuccess: boolean;
   };
 }
 
@@ -66,10 +68,12 @@ const initialState: ProjectsState = {
   create: {
     status: 'idle',
     error: null,
+    isSuccess: false,
   },
   update: {
     status: 'idle',
     error: null,
+    isSuccess: false,
   },
 };
 
@@ -107,7 +111,14 @@ export const updateProjectAsync = createAsyncThunk<
 export const projectsSlice = createSlice({
   name: 'projects',
   initialState,
-  reducers: {},
+  reducers: {
+    resetCreateSuccess: (state) => {
+      state.create.isSuccess = false;
+    },
+    resetUpdateSuccess: (state) => {
+      state.update.isSuccess = false;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(listProjectsAsync.pending, (state) => {
       state.list.status = 'loading';
@@ -121,6 +132,7 @@ export const projectsSlice = createSlice({
     });
     builder.addCase(getProjectAsync.pending, (state) => {
       state.detail.status = 'loading';
+      state.detail.project = null;
     });
     builder.addCase(getProjectAsync.fulfilled, (state, action) => {
       state.detail.status = 'idle';
@@ -135,6 +147,7 @@ export const projectsSlice = createSlice({
     });
     builder.addCase(createProjectAsync.fulfilled, (state, action) => {
       state.create.status = 'idle';
+      state.create.isSuccess = true;
       state.detail.project = action.payload;
     });
     builder.addCase(createProjectAsync.rejected, (state, action) => {
@@ -153,6 +166,7 @@ export const projectsSlice = createSlice({
     });
     builder.addCase(updateProjectAsync.fulfilled, (state, action) => {
       state.update.status = 'idle';
+      state.update.isSuccess = true;
       state.detail.project = action.payload;
     });
     builder.addCase(updateProjectAsync.rejected, (state, action) => {
@@ -183,6 +197,8 @@ export const projectsSlice = createSlice({
     });
   },
 });
+
+export const { resetCreateSuccess, resetUpdateSuccess } = projectsSlice.actions;
 
 export const selectProjectList = (state: RootState) => state.projects.list;
 export const selectProjectDetail = (state: RootState) => state.projects.detail;

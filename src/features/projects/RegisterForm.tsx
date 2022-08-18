@@ -18,7 +18,13 @@ import React, { useEffect, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { ProjectCreateFields, createProjectAsync, selectProjectCreate } from './projectsSlice';
+import {
+  ProjectCreateFields,
+  createProjectAsync,
+  selectProjectCreate,
+  selectProjectDetail,
+  resetCreateSuccess,
+} from './projectsSlice';
 
 export function RegisterForm() {
   const dispatch = useAppDispatch();
@@ -29,22 +35,27 @@ export function RegisterForm() {
     handleSubmit,
     setError,
   } = useForm<ProjectCreateFields>();
-  const { error } = useAppSelector(selectProjectCreate);
+  const { isSuccess, error } = useAppSelector(selectProjectCreate);
+  const { project } = useAppSelector(selectProjectDetail);
 
   const onSubmit = useCallback(
-    async (data: ProjectCreateFields) => {
-      try {
-        const project = await dispatch(createProjectAsync(data)).unwrap();
-        navigate(`../projects/${project.name}`);
-      } catch (err) {}
+    (data: ProjectCreateFields) => {
+      dispatch(createProjectAsync(data));
     },
-    [dispatch, navigate],
+    [dispatch],
   );
 
   useEffect(() => {
     if (!error) return;
     setError(error.target, { type: 'custom', message: error.message }, { shouldFocus: true });
   }, [error, setError]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate(`../projects/${project?.name}`);
+      dispatch(resetCreateSuccess());
+    }
+  }, [dispatch, isSuccess, navigate, project]);
 
   return (
     <form className="mt-10" onSubmit={handleSubmit(onSubmit)}>

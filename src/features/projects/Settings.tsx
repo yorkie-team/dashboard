@@ -18,14 +18,20 @@ import React, { useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { selectProjectDetail, updateProjectAsync, ProjectUpdateFields, selectProjectUpdate } from './projectsSlice';
+import {
+  selectProjectDetail,
+  updateProjectAsync,
+  ProjectUpdateFields,
+  selectProjectUpdate,
+  resetUpdateSuccess,
+} from './projectsSlice';
 import { AUTH_WEBHOOK_METHODS } from 'api/types';
 
 export function Settings() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { project } = useAppSelector(selectProjectDetail);
-  const { error } = useAppSelector(selectProjectUpdate);
+  const { isSuccess, error } = useAppSelector(selectProjectUpdate);
   const {
     register,
     formState: { errors: formErrors },
@@ -41,22 +47,19 @@ export function Settings() {
   });
 
   const onSubmit = useCallback(
-    async (data: ProjectUpdateFields) => {
-      try {
-        const result = await dispatch(
-          updateProjectAsync({
-            id: project?.id!,
-            fields: {
-              name: data.projectName,
-              authWebhookURL: data.authWebhookURL,
-              authWebhookMethods: data.authWebhookMethods,
-            },
-          }),
-        ).unwrap();
-        navigate(`../projects/${result.name}/settings`);
-      } catch (err) {}
+    (data: ProjectUpdateFields) => {
+      dispatch(
+        updateProjectAsync({
+          id: project?.id!,
+          fields: {
+            name: data.projectName,
+            authWebhookURL: data.authWebhookURL,
+            authWebhookMethods: data.authWebhookMethods,
+          },
+        }),
+      );
     },
-    [dispatch, navigate, project?.id],
+    [dispatch, project?.id],
   );
 
   useEffect(() => {
@@ -71,6 +74,13 @@ export function Settings() {
       authWebhookMethods: project?.authWebhookMethods || [],
     });
   }, [reset, project]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate(`../projects/${project?.name}/settings`);
+      dispatch(resetUpdateSuccess());
+    }
+  }, [dispatch, isSuccess, navigate, project]);
 
   return (
     <form className="mt-6" onSubmit={handleSubmit(onSubmit)}>
