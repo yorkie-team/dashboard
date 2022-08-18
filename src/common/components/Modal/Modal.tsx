@@ -19,13 +19,14 @@ import React from 'react';
 type ModalProps = {
   title: string;
   message: string;
-  hasButton?: boolean;
-  buttonText?: string;
   onClose?: React.MouseEventHandler<HTMLButtonElement>;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  button?: {
+    buttonText: string;
+    onClick: React.MouseEventHandler<HTMLButtonElement>;
+  };
 };
 
-export function Modal({ title, message, onClose, onClick, hasButton, buttonText }: ModalProps) {
+export function Modal({ title, message, onClose, button }: ModalProps) {
   return (
     <>
       <div
@@ -73,13 +74,13 @@ export function Modal({ title, message, onClose, onClick, hasButton, buttonText 
               </svg>
               <h3 className="mb-2 text-lg font-normal text-gray-500">{title}</h3>
               <p className="mb-6 text-sm font-normal text-gray-500">{message}</p>
-              {hasButton && (
+              {button && (
                 <button
                   type="button"
                   className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10"
-                  onClick={onClick}
+                  onClick={button.onClick}
                 >
-                  {buttonText}
+                  {button.buttonText}
                 </button>
               )}
             </div>

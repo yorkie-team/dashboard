@@ -54,9 +54,10 @@ export function ErrorModal() {
         title={title!}
         message={message!}
         onClose={closeModal}
-        hasButton
-        buttonText={'Login Again'}
-        onClick={moveToLogin}
+        button={{
+          buttonText: 'Login Again',
+          onClick: moveToLogin,
+        }}
       />
     );
   }
