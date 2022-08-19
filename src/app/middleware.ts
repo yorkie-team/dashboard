@@ -16,7 +16,7 @@
 
 import type { Action, PayloadAction, SerializedError, MiddlewareAPI, Middleware } from '@reduxjs/toolkit';
 import { isRejectedWithValue } from '@reduxjs/toolkit';
-import { RPCStatusCode } from 'api/types';
+import { RPCStatusCode, APIErrorName } from 'api/types';
 import { setGlobalError } from 'features/globalError/globalErrorSlice';
 import { loginUser } from 'features/users/usersSlice';
 import { createProjectAsync, updateProjectAsync } from 'features/projects/projectsSlice';
@@ -64,9 +64,7 @@ function isHandledError(actionType: any, statusCode: RPCStatusCode): boolean {
 
 export const globalErrorHandler: Middleware = (store: MiddlewareAPI) => (next) => (action) => {
   next(action);
-
   if (!isRejectedAction(action) && !isRejectedWithValue(action)) return;
-  console.log('middleware', action);
 
   let { code: statusCode, message: errorMessage, name: errorName } = action.error;
   if (isRejectedWithValue(action)) {
@@ -76,7 +74,8 @@ export const globalErrorHandler: Middleware = (store: MiddlewareAPI) => (next) =
   }
   statusCode = Number(statusCode);
 
-  if (errorName !== 'RPCError') {
+  const apiErrorName: APIErrorName = 'RPCError';
+  if (errorName !== apiErrorName) {
     throw action.error;
   }
   if (isHandledError(action.type, statusCode)) return;

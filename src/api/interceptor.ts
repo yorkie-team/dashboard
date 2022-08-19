@@ -15,12 +15,12 @@
  */
 
 import * as errorDetails from 'grpc-web-error-details';
+import { APIErrorName } from './types';
 
 /**
- * `AuthUnaryInterceptor` is a unary interceptor to add the Authorization header for each
- * request.
+ * `DefaultUnaryInterceptor` is a unary interceptor.
  */
-export class AuthUnaryInterceptor {
+export class DefaultUnaryInterceptor {
   private token?: string;
 
   constructor(token?: string) {
@@ -36,13 +36,14 @@ export class AuthUnaryInterceptor {
   }
 
   /**
-   * `intercept` intercepts the request and adds the token and deadline to the metadata.
+   * `intercept` intercepts the request and adds the token and deadline to the metadata
+   * and returns RPCError if the request is rejected.
    */
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public intercept(request: any, invoker: any): any {
     const metadata = request.getMetadata();
     if (this.token) {
-      metadata['authorization'] = this.token;
+      metadata.authorization = this.token;
     }
     metadata.deadline = new Date().getTime() + 3000;
     return invoker(request).catch((err: any) => {
@@ -65,10 +66,9 @@ export class AuthUnaryInterceptor {
 }
 
 /**
- * `AuthStreamInterceptor` is a stream interceptor to add the Authorization header for each
- * request.
+ * `DefaultStreamInterceptor` is a stream interceptor.
  */
-export class AuthStreamInterceptor {
+export class DefaultStreamInterceptor {
   private token?: string;
 
   constructor(token?: string) {
@@ -84,13 +84,14 @@ export class AuthStreamInterceptor {
   }
 
   /**
-   * `intercept` intercepts the request and adds the token and deadline to the metadata.
+   * `intercept` intercepts the request and adds the token and deadline to the metadata
+   * and returns RPCError if the request is rejected.
    */
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public intercept(request: any, invoker: any): any {
     const metadata = request.getMetadata();
     if (this.token) {
-      metadata['authorization'] = this.token;
+      metadata.authorization = this.token;
     }
     metadata.deadline = new Date().getTime() + 3000;
     return invoker(request).catch((err: any) => {
@@ -113,7 +114,7 @@ export class AuthStreamInterceptor {
 }
 
 class RPCError extends Error {
-  name: string;
+  name: APIErrorName;
   code: string;
   message: string;
   details: Array<FieldViolation>;

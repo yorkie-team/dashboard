@@ -88,3 +88,5 @@ export enum RPCStatusCode {
   DATA_LOSS = 15,
   UNAUTHENTICATED = 16,
 }
+
+export type APIErrorName = 'RPCError';
