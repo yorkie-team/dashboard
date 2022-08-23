@@ -18,9 +18,11 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from 'api';
 import { User, RPCStatusCode } from 'api/types';
 import { RootState } from 'app/store';
+import jwt_decode from 'jwt-decode';
 
 export interface UsersState {
   token: string;
+  username: string;
   login: {
     isSuccess: boolean;
     status: 'idle' | 'loading' | 'failed';
@@ -46,8 +48,13 @@ export type SignupFields = {
   passwordConfirm: string;
 };
 
+type JWTPayload = {
+  username: string;
+};
+
 const initialState: UsersState = {
   token: localStorage.getItem('token') || '',
+  username: '',
   login: {
     isSuccess: false,
     status: 'idle',
@@ -61,6 +68,7 @@ const initialState: UsersState = {
 
 if (initialState.token) {
   api.setToken(initialState.token);
+  initialState.username = jwt_decode<JWTPayload>(initialState.token).username;
 }
 
 export const loginUser = createAsyncThunk<string, LoginFields>('users/login', async ({ username, password }) => {
@@ -80,6 +88,7 @@ export const usersSlice = createSlice({
     logoutUser: (state) => {
       localStorage.removeItem('token');
       state.token = '';
+      state.username = '';
       state.login.status = 'idle';
       state.login.isSuccess = false;
       state.login.error = null;
@@ -88,6 +97,7 @@ export const usersSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.token = action.payload;
+      state.username = jwt_decode<JWTPayload>(action.payload).username;
       state.login.status = 'idle';
       state.login.isSuccess = true;
     });
