@@ -14,74 +14,76 @@
  * limitations under the License.
  */
 
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { selectProjectDetail, updateProjectAsync } from './projectsSlice';
-import { AUTH_WEBHOOK_METHODS, AuthWebhookMethod } from 'api/types';
+import {
+  selectProjectDetail,
+  updateProjectAsync,
+  ProjectUpdateFields,
+  selectProjectUpdate,
+  resetUpdateSuccess,
+} from './projectsSlice';
+import { AUTH_WEBHOOK_METHODS } from 'api/types';
 
 export function Settings() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { project } = useAppSelector(selectProjectDetail);
-  const [name, SetName] = useState('');
-  const [authWebhookURL, SetAuthWebhookURL] = useState('');
-  const [authWebhookMethods, SetAuthWebhookMethods] = useState<Array<AuthWebhookMethod>>([]);
+  const { isSuccess, error } = useAppSelector(selectProjectUpdate);
+  const {
+    register,
+    formState: { errors: formErrors },
+    handleSubmit,
+    setError,
+    reset,
+  } = useForm<ProjectUpdateFields>({
+    defaultValues: {
+      projectName: '',
+      authWebhookURL: '',
+      authWebhookMethods: [],
+    },
+  });
 
-  const handleSubmit = useCallback(
-    async (e) => {
-      e.preventDefault();
-      const updatableFields = { name, authWebhookURL, authWebhookMethods };
-      await dispatch(
+  const onSubmit = useCallback(
+    (data: ProjectUpdateFields) => {
+      dispatch(
         updateProjectAsync({
           id: project?.id!,
-          fields: updatableFields,
+          fields: {
+            name: data.projectName,
+            authWebhookURL: data.authWebhookURL,
+            authWebhookMethods: data.authWebhookMethods,
+          },
         }),
-      )
-        .unwrap()
-        .then((result) => {
-          navigate(`../projects/${result.name}/settings`);
-        })
-        .catch((rejectedValue) => {
-          if (!rejectedValue.details) {
-            throw rejectedValue;
-          }
-
-          // TODO(DONGJIN SHIN): We need to pass below validation details to
-          // the component after implementing displaying errors to the component.
-          for (const d of rejectedValue.details) {
-            alert('invalid field: ' + d.field + '\ndescription: ' + d.description);
-            console.log('invalid field: ' + d.field + '\ndescription: ' + d.description);
-          }
-        });
+      );
     },
-    [navigate, dispatch, project?.id, name, authWebhookURL, authWebhookMethods],
+    [dispatch, project?.id],
   );
 
-  const handleChangeName = useCallback((e) => {
-    SetName(e.target.value);
-  }, []);
-
-  const handleChangeAuthWebhookUrl = useCallback((e) => {
-    SetAuthWebhookURL(e.target.value);
-  }, []);
-
-  const handleChangeAuthWebhookMethods = useCallback((e) => {
-    if (e.target.checked) {
-      SetAuthWebhookMethods((authWebhookMethods) => [...authWebhookMethods, e.target.value]);
-    } else {
-      SetAuthWebhookMethods((authWebhookMethods) => authWebhookMethods.filter((method) => method !== e.target.value));
-    }
-  }, []);
+  useEffect(() => {
+    if (!error) return;
+    setError(error.target, { type: 'custom', message: error.message }, { shouldFocus: true });
+  }, [error, setError]);
 
   useEffect(() => {
-    if (project?.name) SetName(project.name);
-    if (project?.authWebhookURL) SetAuthWebhookURL(project.authWebhookURL);
-    if (project?.authWebhookMethods) SetAuthWebhookMethods(project.authWebhookMethods);
-  }, [project]);
+    reset({
+      projectName: project?.name || '',
+      authWebhookURL: project?.authWebhookURL || '',
+      authWebhookMethods: project?.authWebhookMethods || [],
+    });
+  }, [reset, project]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate(`../projects/${project?.name}/settings`);
+      dispatch(resetUpdateSuccess());
+    }
+  }, [dispatch, isSuccess, navigate, project]);
 
   return (
-    <form className="mt-6" onSubmit={handleSubmit}>
+    <form className="mt-6" onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-6">
         <label htmlFor="projectName" className="block mb-2 font-medium">
           Project Name
@@ -91,11 +93,10 @@ export function Settings() {
             type="text"
             id="projectName"
             className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            value={name}
-            required
-            onChange={handleChangeName}
+            {...register('projectName', { required: 'The project name is required' })}
           />
         </div>
+        {formErrors.projectName && <p className="text-red-500 text-xs italic m-2">{formErrors.projectName.message}</p>}
       </div>
       <div className="mb-6">
         <label htmlFor="projectAuthWebhookUrl" className="block mb-2 font-medium">
@@ -106,10 +107,12 @@ export function Settings() {
             type="text"
             id="projectAuthWebhookUrl"
             className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            value={authWebhookURL}
-            onChange={handleChangeAuthWebhookUrl}
+            {...register('authWebhookURL')}
           />
         </div>
+        {formErrors.authWebhookURL && (
+          <p className="text-red-500 text-xs italic m-2">{formErrors.authWebhookURL.message}</p>
+        )}
       </div>
       <div className="mb-6">
         <span className="block mb-2 font-medium">AuthWebhookMethods</span>
@@ -119,9 +122,8 @@ export function Settings() {
               <input
                 id={method}
                 type="checkbox"
-                onChange={handleChangeAuthWebhookMethods}
+                {...register('authWebhookMethods')}
                 value={method}
-                checked={authWebhookMethods.includes(method)}
                 className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500"
               />
               <label htmlFor={method} className="ml-2 text-sm font-medium text-gray-900">
@@ -130,6 +132,9 @@ export function Settings() {
             </li>
           );
         })}
+        {formErrors.authWebhookMethods && (
+          <p className="text-red-500 text-xs italic m-2">{formErrors.authWebhookMethods.message}</p>
+        )}
       </div>
       <button
         type="submit"

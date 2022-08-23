@@ -14,37 +14,65 @@
  * limitations under the License.
  */
 
-import React, { useRef, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { createProject } from 'api';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
+import {
+  ProjectCreateFields,
+  createProjectAsync,
+  selectProjectCreate,
+  selectProjectDetail,
+  resetCreateSuccess,
+} from './projectsSlice';
 
 export function RegisterForm() {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const nameRef = useRef<HTMLInputElement | null>(null);
-  const handleSubmit = useCallback(
-    async (e) => {
-      e.preventDefault();
+  const {
+    register,
+    formState: { errors: formErrors },
+    handleSubmit,
+    setError,
+  } = useForm<ProjectCreateFields>();
+  const { isSuccess, error } = useAppSelector(selectProjectCreate);
+  const { project } = useAppSelector(selectProjectDetail);
 
-      const project = await createProject(nameRef.current?.value!);
-      navigate(`../projects/${project.name}`);
+  const onSubmit = useCallback(
+    (data: ProjectCreateFields) => {
+      dispatch(createProjectAsync(data));
     },
-    [navigate],
+    [dispatch],
   );
 
+  useEffect(() => {
+    if (!error) return;
+    setError(error.target, { type: 'custom', message: error.message }, { shouldFocus: true });
+  }, [error, setError]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate(`../projects/${project?.name}`);
+      dispatch(resetCreateSuccess());
+    }
+  }, [dispatch, isSuccess, navigate, project]);
+
   return (
-    <form className="mt-10" onSubmit={handleSubmit}>
+    <form className="mt-10" onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-6">
-        <label htmlFor="prjName" className="block mb-2 text-sm font-medium text-gray-900 ">
+        <label htmlFor="projectName" className="block mb-2 text-sm font-medium text-gray-900 ">
           Project name
         </label>
         <input
           type="text"
-          ref={nameRef}
-          id="prjName"
+          id="projectName"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-full"
-          required
+          autoComplete="off"
+          autoFocus
+          {...register('projectName', { required: 'The project name is required' })}
         />
       </div>
+      {formErrors.projectName && <p className="text-red-500 text-xs italic">{formErrors.projectName.message}</p>}
       <button
         type="submit"
         className="float-right mt-10 text-white bg-orange-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm w-full sm:w-auto px-5 py-2.5 text-center"

@@ -15,14 +15,22 @@
  */
 
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import { usersReducer, projectsReducer, documentsReducer } from 'features';
+import { usersReducer, projectsReducer, documentsReducer, globalErrorReducer } from 'features';
+import { globalErrorHandler } from './middleware';
 
 export const store = configureStore({
   reducer: {
     users: usersReducer,
     projects: projectsReducer,
     documents: documentsReducer,
+    globalError: globalErrorReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActionPaths: ['payload.error'],
+      },
+    }).concat(globalErrorHandler),
 });
 
 export type AppDispatch = typeof store.dispatch;

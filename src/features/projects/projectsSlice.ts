@@ -16,7 +16,8 @@
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from 'app/store';
-import { listProjects, getProject, updateProject, Project, UpdatableProjectFields } from 'api';
+import { listProjects, getProject, createProject, updateProject, Project, UpdatableProjectFields } from 'api';
+import { RPCStatusCode, AuthWebhookMethod } from 'api/types';
 
 export interface ProjectsState {
   list: {
@@ -26,9 +27,34 @@ export interface ProjectsState {
   detail: {
     project: Project | null;
     status: 'idle' | 'loading' | 'failed';
-    updateStatus: 'idle' | 'loading' | 'failed';
+  };
+  create: {
+    status: 'idle' | 'loading' | 'failed';
+    error: {
+      target: keyof ProjectCreateFields;
+      message: string;
+    } | null;
+    isSuccess: boolean;
+  };
+  update: {
+    status: 'idle' | 'loading' | 'failed';
+    error: {
+      target: keyof ProjectUpdateFields;
+      message: string;
+    } | null;
+    isSuccess: boolean;
   };
 }
+
+export type ProjectCreateFields = {
+  projectName: string;
+};
+
+export type ProjectUpdateFields = {
+  projectName: string;
+  authWebhookURL: string;
+  authWebhookMethods: Array<AuthWebhookMethod>;
+};
 
 const initialState: ProjectsState = {
   list: {
@@ -38,7 +64,16 @@ const initialState: ProjectsState = {
   detail: {
     project: null,
     status: 'idle',
-    updateStatus: 'idle',
+  },
+  create: {
+    status: 'idle',
+    error: null,
+    isSuccess: false,
+  },
+  update: {
+    status: 'idle',
+    error: null,
+    isSuccess: false,
   },
 };
 
@@ -52,6 +87,14 @@ export const getProjectAsync = createAsyncThunk('projects/getProject', async (na
   return project;
 });
 
+export const createProjectAsync = createAsyncThunk<Project, ProjectCreateFields>(
+  'projects/createProject',
+  async ({ projectName }) => {
+    const project = await createProject(projectName);
+    return project;
+  },
+);
+
 export const updateProjectAsync = createAsyncThunk<
   Project,
   { id: string; fields: UpdatableProjectFields },
@@ -61,14 +104,21 @@ export const updateProjectAsync = createAsyncThunk<
     const project = await updateProject(id, fields);
     return project;
   } catch (error) {
-    return rejectWithValue(error);
+    return rejectWithValue({ error });
   }
 });
 
 export const projectsSlice = createSlice({
   name: 'projects',
   initialState,
-  reducers: {},
+  reducers: {
+    resetCreateSuccess: (state) => {
+      state.create.isSuccess = false;
+    },
+    resetUpdateSuccess: (state) => {
+      state.update.isSuccess = false;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(listProjectsAsync.pending, (state) => {
       state.list.status = 'loading';
@@ -82,6 +132,7 @@ export const projectsSlice = createSlice({
     });
     builder.addCase(getProjectAsync.pending, (state) => {
       state.detail.status = 'loading';
+      state.detail.project = null;
     });
     builder.addCase(getProjectAsync.fulfilled, (state, action) => {
       state.detail.status = 'idle';
@@ -90,20 +141,68 @@ export const projectsSlice = createSlice({
     builder.addCase(getProjectAsync.rejected, (state) => {
       state.detail.status = 'failed';
     });
-    builder.addCase(updateProjectAsync.pending, (state) => {
-      state.detail.updateStatus = 'loading';
+    builder.addCase(createProjectAsync.pending, (state) => {
+      state.create.status = 'loading';
+      state.create.error = null;
     });
-    builder.addCase(updateProjectAsync.fulfilled, (state, action) => {
-      state.detail.updateStatus = 'idle';
+    builder.addCase(createProjectAsync.fulfilled, (state, action) => {
+      state.create.status = 'idle';
+      state.create.isSuccess = true;
       state.detail.project = action.payload;
     });
-    builder.addCase(updateProjectAsync.rejected, (state) => {
-      state.detail.updateStatus = 'failed';
+    builder.addCase(createProjectAsync.rejected, (state, action) => {
+      state.create.status = 'failed';
+      const statusCode = Number(action.error.code);
+      if (statusCode === RPCStatusCode.ALREADY_EXISTS) {
+        state.create.error = {
+          target: 'projectName',
+          message: 'The project name is already in use. Please try again.',
+        };
+      }
+    });
+    builder.addCase(updateProjectAsync.pending, (state) => {
+      state.update.status = 'loading';
+      state.update.error = null;
+    });
+    builder.addCase(updateProjectAsync.fulfilled, (state, action) => {
+      state.update.status = 'idle';
+      state.update.isSuccess = true;
+      state.detail.project = action.payload;
+    });
+    builder.addCase(updateProjectAsync.rejected, (state, action) => {
+      state.update.status = 'failed';
+
+      const statusCode = Number(action.payload.error.code);
+      if (statusCode === RPCStatusCode.ALREADY_EXISTS) {
+        state.update.error = {
+          target: 'projectName',
+          message: 'The project name is already in use. Please try again.',
+        };
+      } else if (statusCode === RPCStatusCode.INVALID_ARGUMENT) {
+        const errorDetails = action.payload.error.details;
+        for (const { field, description } of errorDetails) {
+          if (field === 'Name') {
+            state.update.error = {
+              target: 'projectName',
+              message: description,
+            };
+          } else if (field === 'AuthWebhookURL') {
+            state.update.error = {
+              target: 'authWebhookURL',
+              message: description,
+            };
+          }
+        }
+      }
     });
   },
 });
 
+export const { resetCreateSuccess, resetUpdateSuccess } = projectsSlice.actions;
+
 export const selectProjectList = (state: RootState) => state.projects.list;
 export const selectProjectDetail = (state: RootState) => state.projects.detail;
+export const selectProjectCreate = (state: RootState) => state.projects.create;
+export const selectProjectUpdate = (state: RootState) => state.projects.update;
 
 export default projectsSlice.reducer;

@@ -30,19 +30,18 @@ import {
   ListChangesRequest,
   GetSnapshotMetaRequest,
 } from './yorkie/v1/admin_pb';
-import * as errorDetails from 'grpc-web-error-details';
 import { UpdatableProjectFields as PbProjectFields } from './yorkie/v1/resources_pb';
 import * as PbWrappers from 'google-protobuf/google/protobuf/wrappers_pb';
 
-import { AuthUnaryInterceptor, AuthStreamInterceptor } from './auth_interceptor';
+import { DefaultUnaryInterceptor, DefaultStreamInterceptor } from './interceptor';
 import { User, Project, DocumentSummary, UpdatableProjectFields, DocumentHistory } from './types';
 import * as converter from './converter';
 
 export * from './types';
 
 // TODO(hackerwins): Consider combining these two interceptors into one.
-const unaryInterceptor = new AuthUnaryInterceptor();
-const streamInterceptor = new AuthStreamInterceptor();
+const unaryInterceptor = new DefaultUnaryInterceptor();
+const streamInterceptor = new DefaultStreamInterceptor();
 const client = new AdminServicePromiseClient(`${process.env.REACT_APP_ADMIN_ADDR}`, null, {
   unaryInterceptors: [unaryInterceptor],
   streamInterceptors: [streamInterceptor],
@@ -116,17 +115,8 @@ export async function updateProject(id: string, fields: UpdatableProjectFields):
   }
 
   req.setFields(pbFields);
-  try {
-    const res = await client.updateProject(req);
-    return converter.fromProject(res.getProject()!);
-  } catch (error) {
-    const [status, details] = errorDetails.statusFromError(error);
-    if (!status || !details) {
-      throw error;
-    }
-
-    throw converter.toErrorWithDetails(status, details);
-  }
+  const res = await client.updateProject(req);
+  return converter.fromProject(res.getProject()!);
 }
 
 // listDocuments fetches documents from the admin server.

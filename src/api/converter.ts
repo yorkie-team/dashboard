@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-import * as errorDetails from 'grpc-web-error-details';
 import { Timestamp as PbTimestamp } from 'google-protobuf/google/protobuf/timestamp_pb';
-import { User, Project, DocumentSummary, AuthWebhookMethod, ErrorWithDetails } from './types';
+import { User, Project, DocumentSummary, AuthWebhookMethod } from './types';
 import { Change, converter } from 'yorkie-js-sdk';
 import {
   User as PbUser,
@@ -82,19 +81,4 @@ export function fromDocumentSummaries(pbDocumentSummaries: Array<PbDocumentSumma
 
 export function fromChanges(pbChanges: Array<PbChange>): Array<Change> {
   return converter.fromChanges(pbChanges);
-}
-
-export function toErrorWithDetails(
-  status: errorDetails.Status,
-  details: Array<errorDetails.ErrorDetails>,
-): ErrorWithDetails {
-  const errorWithDetails: ErrorWithDetails = { message: status.getMessage(), code: status.getCode(), details: [] };
-  for (const d of details) {
-    if (d instanceof errorDetails.BadRequest) {
-      for (const v of d.getFieldViolationsList()) {
-        errorWithDetails.details.push({ field: v.getField(), description: v.getDescription() });
-      }
-    }
-  }
-  return errorWithDetails;
 }

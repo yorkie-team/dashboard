@@ -16,19 +16,25 @@
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from 'api';
-import { User } from 'api/types'
+import { User, RPCStatusCode } from 'api/types';
 import { RootState } from 'app/store';
+import jwt_decode from 'jwt-decode';
 
 export interface UsersState {
   token: string;
+  username: string;
   login: {
     isSuccess: boolean;
     status: 'idle' | 'loading' | 'failed';
-  },
+    error: {
+      target: keyof LoginFields;
+      message: string;
+    } | null;
+  };
   signup: {
     isSuccess: boolean;
     status: 'idle' | 'loading' | 'failed';
-  }
+  };
 }
 
 export type LoginFields = {
@@ -42,63 +48,72 @@ export type SignupFields = {
   passwordConfirm: string;
 };
 
+type JWTPayload = {
+  username: string;
+};
+
 const initialState: UsersState = {
   token: localStorage.getItem('token') || '',
+  username: '',
   login: {
     isSuccess: false,
     status: 'idle',
+    error: null,
   },
   signup: {
     isSuccess: false,
     status: 'idle',
-  }
-}
+  },
+};
 
 if (initialState.token) {
   api.setToken(initialState.token);
+  initialState.username = jwt_decode<JWTPayload>(initialState.token).username;
 }
 
-export const loginUser = createAsyncThunk<
-  string,
-  LoginFields,
-  { rejectValue: any }
->('users/login', async ({ username, password }, { rejectWithValue }) => {
-  try {
-    const token = await api.logIn(username, password);
-    localStorage.setItem('token', token);
-    return token;
-  } catch (error) {
-    return rejectWithValue(error);
-  }
+export const loginUser = createAsyncThunk<string, LoginFields>('users/login', async ({ username, password }) => {
+  const token = await api.logIn(username, password);
+  localStorage.setItem('token', token);
+  return token;
 });
 
-export const signupUser = createAsyncThunk<
-  User,
-  SignupFields,
-  { rejectValue: any }
->('users/signup', async ({ username, password }, { rejectWithValue }) => {
-  try {
-    return await api.signUp(username, password);
-  } catch (error) {
-    return rejectWithValue(error);
-  }
+export const signupUser = createAsyncThunk<User, SignupFields>('users/signup', async ({ username, password }) => {
+  return await api.signUp(username, password);
 });
 
 export const usersSlice = createSlice({
   name: 'users',
   initialState,
-  reducers: {},
+  reducers: {
+    logoutUser: (state) => {
+      localStorage.removeItem('token');
+      state.token = '';
+      state.username = '';
+      state.login.status = 'idle';
+      state.login.isSuccess = false;
+      state.login.error = null;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.token = action.payload;
+      state.username = jwt_decode<JWTPayload>(action.payload).username;
       state.login.status = 'idle';
       state.login.isSuccess = true;
     });
     builder.addCase(loginUser.pending, (state) => {
       state.login.status = 'loading';
+      state.login.error = null;
     });
-    builder.addCase(loginUser.rejected, (state) => {
+    builder.addCase(loginUser.rejected, (state, action) => {
       state.login.status = 'failed';
+      const statusCode = Number(action.error.code);
+      if (statusCode === RPCStatusCode.NOT_FOUND || statusCode === RPCStatusCode.UNAUTHENTICATED) {
+        state.login.error = {
+          target: 'username',
+          message: 'Incorrect username or password',
+        };
+      }
     });
     builder.addCase(signupUser.fulfilled, (state) => {
       state.signup.status = 'idle';
@@ -112,6 +127,8 @@ export const usersSlice = createSlice({
     });
   },
 });
+
+export const { logoutUser } = usersSlice.actions;
 
 export const selectUsers = (state: RootState) => state.users;
 

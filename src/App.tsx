@@ -26,12 +26,19 @@ import {
   Documents,
   ProjectSettings,
 } from 'routes';
-import { useAppSelector } from 'app/hooks';
+import { useAppSelector, useAppDispatch } from 'app/hooks';
+import { logoutUser } from './features/users/usersSlice';
+import { ErrorModal } from 'features/globalError/ErrorModal';
 
 function App() {
-  const { token } = useAppSelector((state) => state.users);
+  const { token, username } = useAppSelector((state) => state.users);
   const userDropdownRef = useRef<HTMLDivElement | null>(null);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
+
+  const dispatch = useAppDispatch();
+  const logout = useCallback(() => {
+    dispatch(logoutUser());
+  }, [dispatch]);
 
   const handleClickOutside = useCallback(
     (e) => {
@@ -105,10 +112,10 @@ function App() {
                 </ul>
                 <button
                   type="button"
-                  className="inline-flex items-center justify-center ml-3 w-6 h-6 rounded-full bg-orange-300"
+                  className="inline-flex items-center justify-center ml-3 w-6 h-6 rounded-full bg-orange-300 uppercase"
                   onClick={() => setIsUserDropdownOpen(true)}
                 >
-                  A
+                  {username.slice(0, 1)}
                 </button>
                 {isUserDropdownOpen && (
                   <div
@@ -116,11 +123,15 @@ function App() {
                     className="absolute z-10 top-12 right-0 bg-white rounded drop-shadow-lg py-1 min-w-[12rem]"
                   >
                     <div className="py-3 px-4 text-sm text-gray-900">
-                      <div className="font-medium">Admin</div>
+                      <div className="font-medium">{username}</div>
                     </div>
                     <ul className="border-t border-solid border-gray-200 py-1 text-sm text-gray-700">
                       <li>
-                        <button type="button" className="block w-full py-2 px-4 hover:bg-gray-100 text-left">
+                        <button
+                          type="button"
+                          onClick={logout}
+                          className="block w-full py-2 px-4 hover:bg-gray-100 text-left"
+                        >
                           Sign out
                         </button>
                       </li>
@@ -186,6 +197,7 @@ function App() {
           />
         </svg>
       </footer>
+      <ErrorModal />
     </Router>
   );
 }
