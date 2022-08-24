@@ -14,13 +14,20 @@
  * limitations under the License.
  */
 
-export * from './Login';
-export * from './Signup';
+import React from 'react';
+import { useParams, Outlet } from 'react-router-dom';
+import { ProjectPageTemplate } from 'pages';
+import { DocumentList } from 'features/documents';
 
-export * from './PrivateRoute';
-export * from './Projects';
-export * from './CreateProject';
-export * from './Project';
-export * from './ProjectAPIKeys';
-export * from './Documents';
-export * from './ProjectSettings';
+export function DocumentsPage() {
+  const documentKey = useParams().documentKey || '';
+
+  return (
+    <ProjectPageTemplate>
+      <div className="flex w-full mt-12">
+        <DocumentList isDetailOpen={documentKey !== ''} />
+        <Outlet />
+      </div>
+    </ProjectPageTemplate>
+  );
+}

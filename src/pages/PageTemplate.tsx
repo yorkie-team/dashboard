@@ -14,9 +14,23 @@
  * limitations under the License.
  */
 
-export * from './ProjectLists';
-export * from './Overview';
-export * from './RegisterForm';
-export * from './APIKeys';
-export * from './ProjectMenu';
-export * from './Settings';
+import React, { ReactNode } from 'react';
+
+import { Header } from './Header';
+import { Footer } from './Footer';
+import { ErrorModal } from 'features/globalError/ErrorModal';
+
+type PageTemplateProps = {
+  children: ReactNode;
+};
+
+export function PageTemplate({ children }: PageTemplateProps) {
+  return (
+    <>
+      <Header />
+      <div className="flex-1 py-16 max-w-5xl mx-auto px-2 sm:px-4 w-full">{children}</div>
+      <Footer />
+      <ErrorModal />
+    </>
+  );
+}

@@ -14,9 +14,15 @@
  * limitations under the License.
  */
 
-export * from './ProjectLists';
-export * from './Overview';
-export * from './RegisterForm';
-export * from './APIKeys';
-export * from './ProjectMenu';
-export * from './Settings';
+import React from 'react';
+
+import { LoginForm } from 'features/users/LoginForm';
+import { PageTemplate } from './PageTemplate';
+
+export function LoginPage() {
+  return (
+    <PageTemplate>
+      <LoginForm />
+    </PageTemplate>
+  );
+}

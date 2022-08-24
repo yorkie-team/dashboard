@@ -14,20 +14,17 @@
  * limitations under the License.
  */
 
-import React, { useEffect } from 'react';
-import { Outlet } from 'react-router-dom'
-import { useNavigate } from "react-router-dom";
+export * from './Header';
+export * from './Footer';
+export * from './PageTemplate';
+export * from './ProjectPageTemplate';
+export * from './PrivateRoute';
 
-import { useAppSelector } from 'app/hooks'
-
-export function PrivateRoute() {
-  const navigate = useNavigate();
-  const { token } = useAppSelector((state) => state.users)
-  useEffect(() => {
-    if (!token) {
-      navigate('/login');
-    }
-  }, [token, navigate]);
-
-  return <Outlet />
-}
+export * from './LoginPage';
+export * from './SignupPage';
+export * from './ProjectsPage';
+export * from './CreateProjectPage';
+export * from './DocumentsPage';
+export * from './ProjectOverviewPage';
+export * from './ProjectAPIKeysPage';
+export * from './ProjectSettingsPage';

@@ -19,7 +19,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectGlobalError, resetGlobalError } from './globalErrorSlice';
 import { logoutUser } from 'features/users/usersSlice';
-import { Modal } from 'common/components';
+import { Modal } from 'components';
 import { RPCStatusCode } from 'api/types';
 
 export function ErrorModal() {

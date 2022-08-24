@@ -14,14 +14,18 @@
  * limitations under the License.
  */
 
-import React from 'react';
-import { ProjectMenu, Overview } from 'features/projects';
+import React, { ReactNode } from 'react';
+import { ProjectMenu } from 'features/projects';
 
-export function Project() {
+type PageTemplateProps = {
+  children: ReactNode;
+};
+
+export function ProjectPageTemplate({ children }: PageTemplateProps) {
   return (
     <>
       <ProjectMenu />
-      <Overview />
+      {children}
     </>
   );
 }

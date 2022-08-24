@@ -15,11 +15,13 @@
  */
 
 import React from 'react';
+import { ProjectPageTemplate } from 'pages';
+import { APIKeys } from 'features/projects';
 
-import { SignupForm } from 'features/users/SignupForm';
-
-export function Signup() {
-  return <div>
-    <SignupForm />
-  </div>;
+export function ProjectAPIKeysPage() {
+  return (
+    <ProjectPageTemplate>
+      <APIKeys />
+    </ProjectPageTemplate>
+  );
 }

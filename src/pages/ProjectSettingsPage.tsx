@@ -15,13 +15,13 @@
  */
 
 import React from 'react';
-import { ProjectMenu, APIKeys } from 'features/projects';
+import { ProjectPageTemplate } from 'pages';
+import { Settings } from 'features/projects';
 
-export function ProjectAPIKeys() {
+export function ProjectSettingsPage() {
   return (
-    <>
-      <ProjectMenu />
-      <APIKeys />
-    </>
+    <ProjectPageTemplate>
+      <Settings />
+    </ProjectPageTemplate>
   );
 }
