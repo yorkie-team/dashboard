@@ -30,9 +30,6 @@ import {
 import { DocumentDetail } from 'features/documents';
 
 function App() {
-  // TODO(hackerwins): If the user is already logged in, redirect to the
-  // projects page.
-
   // TODO(hackerwins): For now, all user can access to all projects in the cluster.
   // After implementing the user-specific project role, let's open the signup here.
   // <Route path="/signup" element={<Signup />} />
