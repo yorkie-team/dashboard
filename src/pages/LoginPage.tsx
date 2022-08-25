@@ -14,14 +14,24 @@
  * limitations under the License.
  */
 
-import React from 'react';
-import { ProjectMenu, APIKeys } from 'features/projects';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from 'app/hooks';
+import { LoginForm } from 'features/users/LoginForm';
+import { PageTemplate } from './PageTemplate';
 
-export function ProjectAPIKeys() {
+export function LoginPage() {
+  const navigate = useNavigate();
+  const { token } = useAppSelector((state) => state.users);
+  useEffect(() => {
+    if (token) {
+      navigate('/projects');
+    }
+  }, [token, navigate]);
+
   return (
-    <>
-      <ProjectMenu />
-      <APIKeys />
-    </>
+    <PageTemplate>
+      <LoginForm />
+    </PageTemplate>
   );
 }

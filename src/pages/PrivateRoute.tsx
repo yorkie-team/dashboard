@@ -14,23 +14,24 @@
  * limitations under the License.
  */
 
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { RegisterForm } from 'features/projects';
+import React, { useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 
-export function CreateProject() {
+import { useAppSelector } from 'app/hooks';
+import { PageTemplate } from 'pages/PageTemplate';
+
+export function PrivateRoute() {
+  const navigate = useNavigate();
+  const { token } = useAppSelector((state) => state.users);
+  useEffect(() => {
+    if (!token) {
+      navigate('/login');
+    }
+  }, [token, navigate]);
+
   return (
-    <div className="max-w-2xl mx-auto">
-      <div className="flex justify-between items-center">
-        <h2 className="text-lg font-semibold">Create a new Project</h2>
-        <Link
-          to={'../'}
-          className="text-gray-700 border border-solid border-gray-300 rounded font-medium text-sm px-4 py-2 text-center inline-flex items-center"
-        >
-          cancel
-        </Link>
-      </div>
-      <RegisterForm />
-    </div>
+    <PageTemplate>
+      <Outlet />
+    </PageTemplate>
   );
 }

@@ -15,22 +15,13 @@
  */
 
 import React from 'react';
-import { Routes, Route, useParams } from 'react-router-dom';
-import { ProjectMenu } from 'features/projects';
-import { DocumentList, DocumentDetail } from 'features/documents';
+import { ProjectPageTemplate } from 'pages';
+import { Overview } from 'features/projects';
 
-export function Documents() {
-  const documentKey = useParams()['*'];
-
+export function ProjectOverviewPage() {
   return (
-    <>
-      <ProjectMenu />
-      <div className="flex w-full mt-12">
-        <DocumentList isDetailOpen={documentKey !== ''} />
-        <Routes>
-          <Route path=":documentKey" element={<DocumentDetail />} />
-        </Routes>
-      </div>
-    </>
+    <ProjectPageTemplate>
+      <Overview />
+    </ProjectPageTemplate>
   );
 }

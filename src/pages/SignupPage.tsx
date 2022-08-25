@@ -15,13 +15,9 @@
  */
 
 import React from 'react';
-import { ProjectMenu, Settings } from 'features/projects';
 
-export function ProjectSettings() {
-  return (
-    <>
-      <ProjectMenu />
-      <Settings />
-    </>
-  );
+import { SignupForm } from 'features/users/SignupForm';
+
+export function SignupPage() {
+  return <SignupForm />;
 }

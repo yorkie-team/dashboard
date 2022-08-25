@@ -27,10 +27,9 @@ type DocumentListProps = {
 
 export function DocumentList({ isDetailOpen }: DocumentListProps) {
   const dispatch = useAppDispatch();
-  const projectName = useParams().projectName!;
-  // NOTE(chacha912): DocumentList is outside of the dynamic params `<Route path=":documentKey">`.
-  // So we need to use `*` to get the `documentKey`.
-  const documentKey = useParams()['*'];
+  const params = useParams();
+  const projectName = params.projectName || '';
+  const documentKey = params.documentKey || '';
   const { type: queryType, totalCount, documents, hasPrevious, hasNext, status } = useAppSelector(selectDocumentList);
 
   const [query, SetQuery] = useState('');

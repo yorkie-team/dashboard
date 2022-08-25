@@ -36,8 +36,8 @@ export function DocumentDetail() {
   const { histories, status: historyStatus, hasNext, hasPrevious } = useAppSelector(selectDocumentHistory);
   const dispatch = useAppDispatch();
   const params = useParams();
-  const projectName = params.projectName!;
-  const documentKey = params.documentKey!;
+  const projectName = params.projectName || '';
+  const documentKey = params.documentKey || '';
   const documentJSON = document ? JSON.parse(document.snapshot) : {};
   const documentJSONStr = JSON.stringify(documentJSON, null, '\t');
   const [viewType, SetViewType] = useState('code');

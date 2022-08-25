@@ -18,7 +18,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ProjectList } from 'features/projects';
 
-export function Projects() {
+export function ProjectsPage() {
   return (
     <>
       <div className="border-b border-solid border-gray-200 mb-6">
