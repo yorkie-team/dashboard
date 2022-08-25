@@ -14,18 +14,8 @@
  * limitations under the License.
  */
 
-export * from './Header';
-export * from './Footer';
-export * from './PageTemplate';
-export * from './ProjectPageTemplate';
-export * from './PrivateRoute';
+import React from 'react';
 
-export * from './NotFoundPage';
-export * from './LoginPage';
-export * from './SignupPage';
-export * from './ProjectsPage';
-export * from './CreateProjectPage';
-export * from './DocumentsPage';
-export * from './ProjectOverviewPage';
-export * from './ProjectAPIKeysPage';
-export * from './ProjectSettingsPage';
+export function NotFoundPage() {
+  return <div>404 Not Found.</div>;
+}

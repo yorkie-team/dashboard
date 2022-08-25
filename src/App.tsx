@@ -25,6 +25,7 @@ import {
   ProjectOverviewPage,
   ProjectAPIKeysPage,
   ProjectSettingsPage,
+  NotFoundPage,
 } from 'pages';
 import { DocumentDetail } from 'features/documents';
 
@@ -35,7 +36,6 @@ function App() {
   // TODO(hackerwins): For now, all user can access to all projects in the cluster.
   // After implementing the user-specific project role, let's open the signup here.
   // <Route path="/signup" element={<Signup />} />
-  // TODO(hackerwins): Redirect to 404 page when accessing non-existent pages.
   return (
     <Router>
       <Routes>
@@ -50,6 +50,7 @@ function App() {
           <Route path="/projects/:projectName/documents" element={<DocumentsPage />}>
             <Route path=":documentKey" element={<DocumentDetail />} />
           </Route>
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </Router>
