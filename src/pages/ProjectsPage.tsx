@@ -16,7 +16,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ProjectLists } from 'features/projects';
+import { ProjectList } from 'features/projects';
 
 export function ProjectsPage() {
   return (
@@ -43,7 +43,7 @@ export function ProjectsPage() {
           </Link>
         </div>
       </div>
-      <ProjectLists />
+      <ProjectList />
     </>
   );
 }

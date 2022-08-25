@@ -21,8 +21,8 @@ import * as moment from 'moment';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectProjectList, listProjectsAsync } from './projectsSlice';
 
-// ProjectLists represents the list of projects in the application.
-export function ProjectLists() {
+// ProjectList represents the list of projects in the application.
+export function ProjectList() {
   const { projects, status } = useAppSelector(selectProjectList);
   const dispatch = useAppDispatch();
 
