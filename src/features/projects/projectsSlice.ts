@@ -87,11 +87,15 @@ export const getProjectAsync = createAsyncThunk('projects/getProject', async (na
   return project;
 });
 
-export const createProjectAsync = createAsyncThunk<Project, ProjectCreateFields>(
+export const createProjectAsync = createAsyncThunk<Project, ProjectCreateFields, { rejectValue: any }>(
   'projects/createProject',
-  async ({ projectName }) => {
-    const project = await createProject(projectName);
-    return project;
+  async ({ projectName }, { rejectWithValue }) => {
+    try {
+      const project = await createProject(projectName);
+      return project;
+    } catch (error) {
+      return rejectWithValue({ error });
+    }
   },
 );
 
@@ -152,12 +156,23 @@ export const projectsSlice = createSlice({
     });
     builder.addCase(createProjectAsync.rejected, (state, action) => {
       state.create.status = 'failed';
-      const statusCode = Number(action.error.code);
+
+      const statusCode = Number(action.payload.error.code);
       if (statusCode === RPCStatusCode.ALREADY_EXISTS) {
         state.create.error = {
           target: 'projectName',
-          message: 'The project name is already in use. Please try again.',
+          message: 'The project name is already in use.',
         };
+      } else if (statusCode === RPCStatusCode.INVALID_ARGUMENT) {
+        const errorDetails = action.payload.error.details;
+        for (const { field, description } of errorDetails) {
+          if (field === 'Name') {
+            state.create.error = {
+              target: 'projectName',
+              message: description,
+            };
+          }
+        }
       }
     });
     builder.addCase(updateProjectAsync.pending, (state) => {
@@ -176,7 +191,7 @@ export const projectsSlice = createSlice({
       if (statusCode === RPCStatusCode.ALREADY_EXISTS) {
         state.update.error = {
           target: 'projectName',
-          message: 'The project name is already in use. Please try again.',
+          message: 'The project name is already in use.',
         };
       } else if (statusCode === RPCStatusCode.INVALID_ARGUMENT) {
         const errorDetails = action.payload.error.details;

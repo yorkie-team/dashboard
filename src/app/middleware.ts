@@ -48,7 +48,10 @@ function isHandledError(actionType: any, statusCode: RPCStatusCode): boolean {
     return true;
   }
 
-  if (actionType === createProjectAsync.rejected.type && statusCode === RPCStatusCode.ALREADY_EXISTS) {
+  if (
+    actionType === createProjectAsync.rejected.type &&
+    (statusCode === RPCStatusCode.ALREADY_EXISTS || statusCode === RPCStatusCode.INVALID_ARGUMENT)
+  ) {
     return true;
   }
 
