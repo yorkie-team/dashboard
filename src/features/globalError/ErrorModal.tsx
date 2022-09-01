@@ -15,31 +15,19 @@
  */
 
 import React, { useState, useCallback, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectGlobalError, resetGlobalError } from './globalErrorSlice';
-import { logoutUser } from 'features/users/usersSlice';
 import { Modal } from 'components';
-import { RPCStatusCode } from 'api/types';
 
 export function ErrorModal() {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useAppDispatch();
   const { code, title, message } = useAppSelector(selectGlobalError);
-  const navigate = useNavigate();
-  const location = useLocation();
 
   const closeModal = useCallback(() => {
     setIsOpen(false);
     dispatch(resetGlobalError());
   }, [dispatch]);
-
-  const moveToLogin = useCallback(() => {
-    setIsOpen(false);
-    dispatch(logoutUser());
-    dispatch(resetGlobalError());
-    navigate('/login', { state: { from: location.pathname } });
-  }, [navigate, dispatch, location.pathname]);
 
   useEffect(() => {
     if (code) {
@@ -48,18 +36,5 @@ export function ErrorModal() {
   }, [code]);
 
   if (!isOpen) return null;
-  if (code === RPCStatusCode.UNAUTHENTICATED) {
-    return (
-      <Modal
-        title={title!}
-        message={message!}
-        onClose={closeModal}
-        button={{
-          buttonText: 'Login Again',
-          onClick: moveToLogin,
-        }}
-      />
-    );
-  }
   return <Modal title={title!} message={message!} onClose={closeModal} />;
 }

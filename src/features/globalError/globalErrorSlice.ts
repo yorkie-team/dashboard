@@ -43,8 +43,8 @@ export const globalErrorSlice = createSlice({
           state.message = 'This request takes too long to process.';
           break;
         case RPCStatusCode.UNAUTHENTICATED:
-          state.title = 'Session has expired';
-          state.message = 'Your session has timed out. Please log in again.';
+          state.title = 'Authentication failed';
+          state.message = 'You do not have permission to access or your session has timed out. Please sign in.';
           break;
         default:
           state.title = 'Error';

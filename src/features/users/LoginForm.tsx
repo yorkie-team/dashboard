@@ -52,8 +52,8 @@ export function LoginForm() {
   }, [error, setError]);
 
   useEffect(() => {
-    const { from } = (location.state as { from: string }) || { from: '/' };
     if (isSuccess) {
+      const { from } = (location.state as { from: string }) || { from: '/' };
       navigate(from);
     }
   }, [navigate, isSuccess, location]);
