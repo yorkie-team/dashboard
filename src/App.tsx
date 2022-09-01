@@ -47,8 +47,8 @@ function App() {
           <Route path="/projects/:projectName/documents" element={<DocumentsPage />}>
             <Route path=":documentKey" element={<DocumentDetail />} />
           </Route>
-          <Route path="*" element={<NotFoundPage />} />
         </Route>
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
   );

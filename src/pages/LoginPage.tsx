@@ -15,19 +15,21 @@
  */
 
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAppSelector } from 'app/hooks';
 import { LoginForm } from 'features/users/LoginForm';
 import { PageTemplate } from './PageTemplate';
 
 export function LoginPage() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { token } = useAppSelector((state) => state.users);
+
   useEffect(() => {
-    if (token) {
+    if (token && !location.state) {
       navigate('/projects');
     }
-  }, [token, navigate]);
+  }, [token, navigate, location]);
 
   return (
     <PageTemplate>
