@@ -83,8 +83,11 @@
             "uint",
             "dropdown",
             "mb",
+            "py",
             "rpc",
-            "serializable"
+            "serializable",
+            "cdn",
+            "yorkie"
           ],
           "skipIfMatch": [
             "TODO\\(.+\\):",
