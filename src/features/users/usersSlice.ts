@@ -68,7 +68,11 @@ const initialState: UsersState = {
 
 if (initialState.token) {
   api.setToken(initialState.token);
-  initialState.username = jwt_decode<JWTPayload>(initialState.token).username;
+  try {
+    initialState.username = jwt_decode<JWTPayload>(initialState.token).username;
+  } catch (error) {
+    console.error(`Invalid token format: ${initialState.token}`, error);
+  }
 }
 
 export const loginUser = createAsyncThunk<string, LoginFields>('users/login', async ({ username, password }) => {
@@ -87,6 +91,7 @@ export const usersSlice = createSlice({
   reducers: {
     logoutUser: (state) => {
       localStorage.removeItem('token');
+      api.setToken('');
       state.token = '';
       state.username = '';
       state.login.status = 'idle';

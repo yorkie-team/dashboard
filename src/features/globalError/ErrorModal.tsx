@@ -22,7 +22,7 @@ import { Modal } from 'components';
 export function ErrorModal() {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useAppDispatch();
-  const { code, title, message } = useAppSelector(selectGlobalError);
+  const { title, message } = useAppSelector(selectGlobalError);
 
   const closeModal = useCallback(() => {
     setIsOpen(false);
@@ -30,10 +30,10 @@ export function ErrorModal() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (code) {
+    if (message) {
       setIsOpen(true);
     }
-  }, [code]);
+  }, [message]);
 
   if (!isOpen) return null;
   return <Modal title={title!} message={message!} onClose={closeModal} />;
