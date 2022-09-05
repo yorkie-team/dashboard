@@ -83,8 +83,12 @@
             "uint",
             "dropdown",
             "mb",
+            "py",
             "rpc",
-            "serializable"
+            "serializable",
+            "cdn",
+            "yorkie",
+            "sdk"
           ],
           "skipIfMatch": [
             "TODO\\(.+\\):",
