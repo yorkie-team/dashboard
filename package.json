@@ -87,7 +87,8 @@
             "rpc",
             "serializable",
             "cdn",
-            "yorkie"
+            "yorkie",
+            "sdk"
           ],
           "skipIfMatch": [
             "TODO\\(.+\\):",

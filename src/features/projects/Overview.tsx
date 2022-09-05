@@ -30,7 +30,7 @@ export function Overview() {
     npm: `import yorkie from 'yorkie-js-sdk';
 
 async function main() {
-  const client = new yorkie.Client('https://api.yorkie.navercorp.com', {
+  const client = new yorkie.Client('${process.env.REACT_APP_API_ADDR}', {
     apiKey: '${project?.publicKey}',
   });
   await client.activate();
@@ -47,10 +47,10 @@ async function main() {
 }
 main();`,
     cdn: `<!-- include yorkie js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/yorkie-js-sdk/0.2.17/yorkie-js-sdk.js"></script>
+<script src="${process.env.REACT_APP_JS_SDK_URL}"></script>
 <script>
   async function main() {
-    const client = new yorkie.Client('https://api.yorkie.navercorp.com', {
+    const client = new yorkie.Client('${process.env.REACT_APP_API_ADDR}', {
       apiKey: '${project?.publicKey}',
     });
     await client.activate();
