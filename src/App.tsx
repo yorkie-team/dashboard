@@ -19,6 +19,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import {
   PrivateRoute,
   LoginPage,
+  SignupPage,
   ProjectsPage,
   CreateProjectPage,
   DocumentsPage,
@@ -30,13 +31,11 @@ import {
 import { DocumentDetail } from 'features/documents';
 
 function App() {
-  // TODO(hackerwins): For now, all user can access to all projects in the cluster.
-  // After implementing the user-specific project role, let's open the signup here.
-  // <Route path="/signup" element={<Signup />} />
   return (
     <Router>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
         <Route element={<PrivateRoute />}>
           <Route path="/" element={<Navigate to="/projects" />} />
           <Route path="/projects" element={<ProjectsPage />} />
