@@ -19,7 +19,7 @@ import { NavLink as Link, useParams } from 'react-router-dom';
 import { useAppDispatch } from 'app/hooks';
 import { getProjectAsync } from './projectsSlice';
 
-export function ProjectMenu() {
+export function ProjectTabMenu() {
   let { projectName } = useParams();
   const dispatch = useAppDispatch();
 
@@ -38,13 +38,6 @@ export function ProjectMenu() {
   return (
     <>
       <div className="border-b border-solid border-gray-200 mb-6">
-        <div className="flex justify-between items-center mb-6">
-          <div className="inline-flex">
-            <h2 className="text-lg font-semibold">
-              <Link to="/projects">{projectName}</Link>
-            </h2>
-          </div>
-        </div>
         <ul className="flex flex-wrap -mb-px text-xs font-medium text-center text-gray-500">
           <li className="mr-2">
             <Link

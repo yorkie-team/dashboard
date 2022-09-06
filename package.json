@@ -84,6 +84,7 @@
             "dropdown",
             "mb",
             "py",
+            "mx",
             "rpc",
             "serializable",
             "cdn",
