@@ -13,14 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import React, { useRef, useEffect, useState, useCallback } from 'react';
+import React, { useRef, useState, useCallback } from 'react';
 
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 import { logoutUser } from 'features/users/usersSlice';
+import { useOutsideClick } from 'hooks';
 
 export function AccountButton() {
   const { token, username } = useAppSelector((state) => state.users);
   const userDropdownRef = useRef<HTMLDivElement | null>(null);
+  const userDropdownButtonRef = useRef<HTMLButtonElement | null>(null);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -28,20 +30,13 @@ export function AccountButton() {
     dispatch(logoutUser());
   }, [dispatch]);
 
-  const handleClickOutside = useCallback(
-    (e) => {
-      if (!isUserDropdownOpen) return;
-      if (!userDropdownRef.current?.contains(e.target)) setIsUserDropdownOpen(false);
+  useOutsideClick(
+    userDropdownRef,
+    () => {
+      if (isUserDropdownOpen) setIsUserDropdownOpen(false);
     },
-    [isUserDropdownOpen],
+    userDropdownButtonRef,
   );
-
-  useEffect(() => {
-    document.addEventListener('click', handleClickOutside);
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, [handleClickOutside]);
 
   if (!token) {
     return null;
@@ -76,8 +71,9 @@ export function AccountButton() {
         </ul>
         <button
           type="button"
+          ref={userDropdownButtonRef}
           className="inline-flex items-center justify-center ml-3 w-6 h-6 rounded-full bg-orange-300 uppercase"
-          onClick={() => setIsUserDropdownOpen(true)}
+          onClick={() => setIsUserDropdownOpen((isOpen) => !isOpen)}
         >
           {username.slice(0, 1)}
         </button>
@@ -91,11 +87,7 @@ export function AccountButton() {
             </div>
             <ul className="border-t border-solid border-gray-200 py-1 text-sm text-gray-700">
               <li>
-                <button
-                  type="button"
-                  onClick={logout}
-                  className="block w-full py-2 px-4 hover:bg-gray-100 text-left"
-                >
+                <button type="button" onClick={logout} className="block w-full py-2 px-4 hover:bg-gray-100 text-left">
                   Sign out
                 </button>
               </li>

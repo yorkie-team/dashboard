@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { NavLink as Link, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { Project } from 'api/types';
 import { selectProjectList, listProjectsAsync } from './projectsSlice';
+import { useOutsideClick } from 'hooks';
 
 type ProjectDropdownProps = {
   size?: 'small' | 'large';
@@ -27,24 +28,18 @@ type ProjectDropdownProps = {
 export function ProjectDropdown({ size = 'small' }: ProjectDropdownProps) {
   const { projectName } = useParams();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const dropdownButtonRef = useRef<HTMLButtonElement | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { projects } = useAppSelector(selectProjectList);
   const dispatch = useAppDispatch();
 
-  const handleClickOutside = useCallback(
-    (e) => {
-      if (!isDropdownOpen) return;
-      if (!dropdownRef.current?.contains(e.target)) setIsDropdownOpen(false);
+  useOutsideClick(
+    dropdownRef,
+    () => {
+      if (isDropdownOpen) setIsDropdownOpen(false);
     },
-    [isDropdownOpen],
+    dropdownButtonRef,
   );
-
-  useEffect(() => {
-    document.addEventListener('click', handleClickOutside);
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, [handleClickOutside]);
 
   useEffect(() => {
     dispatch(listProjectsAsync());
@@ -59,8 +54,9 @@ export function ProjectDropdown({ size = 'small' }: ProjectDropdownProps) {
     <div className="relative">
       <button
         type="button"
+        ref={dropdownButtonRef}
         className={`inline-flex items-center justify-center ${size === 'large' ? 'text-lg font-semibold' : 'mx-3'}`}
-        onClick={() => setIsDropdownOpen(true)}
+        onClick={() => setIsDropdownOpen((isOpen) => !isOpen)}
       >
         {projectName}
       </button>
