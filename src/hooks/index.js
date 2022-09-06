@@ -14,25 +14,4 @@
  * limitations under the License.
  */
 
-import React, { ReactNode } from 'react';
-import { ProjectTabMenu, ProjectDropdown } from 'features/projects';
-
-type PageTemplateProps = {
-  children: ReactNode;
-};
-
-export function ProjectPageTemplate({ children }: PageTemplateProps) {
-  return (
-    <>
-      <div className="flex justify-between items-center mb-6">
-        <div className="inline-flex">
-          <h2 className="text-lg font-semibold">
-            <ProjectDropdown size="large" />
-          </h2>
-        </div>
-      </div>
-      <ProjectTabMenu />
-      {children}
-    </>
-  );
-}
+export * from './useOutsideClick';
