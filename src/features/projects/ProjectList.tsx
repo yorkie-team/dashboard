@@ -25,8 +25,27 @@ import { Project } from 'api/types';
 // TODO(chacha912): Extract to Cards component
 type ProjectCardsProps = {
   projects: Array<Project>;
+  totalProjectsCount: number;
 };
-function ProjectCards({ projects }: ProjectCardsProps) {
+function ProjectCards({ projects, totalProjectsCount }: ProjectCardsProps) {
+  if (totalProjectsCount === 0) {
+    return (
+      <Link
+        to={'/projects/new'}
+        className="flex flex-col items-center justify-center w-full h-44 bg-gray-50 text-lg leading-7 font-medium border-dashed border-2 border-gray-300 rounded"
+      >
+        Get started by
+        <span className="text-sky-500">creating a new project</span>
+      </Link>
+    );
+  }
+  if (projects.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center w-full h-44 bg-gray-50 text-lg leading-7 font-medium">
+        No matching result
+      </div>
+    );
+  }
   return (
     <ul className="flex flex-wrap">
       {projects.map(({ name, publicKey, createdAt }: Project) => (
@@ -102,7 +121,7 @@ export function ProjectList() {
       </form>
       {status === 'loading' && <div>Loading...</div>}
       {status === 'failed' && <div>Failed!</div>}
-      {status === 'idle' && <ProjectCards projects={projects} />}
+      {status === 'idle' && <ProjectCards projects={projects} totalProjectsCount={allProjects.length} />}
     </>
   );
 }
