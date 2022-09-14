@@ -55,7 +55,9 @@ export function ProjectDropdown({ size = 'small' }: ProjectDropdownProps) {
       <button
         type="button"
         ref={dropdownButtonRef}
-        className={`inline-flex items-center justify-center ${size === 'large' ? 'text-lg font-semibold' : 'mx-3'}`}
+        className={`inline-flex items-center justify-center ${
+          size === 'large' ? 'text-lg font-semibold' : 'mx-3 text-sm font-medium text-gray-700 hover:text-orange-500'
+        }`}
         onClick={() => setIsDropdownOpen((isOpen) => !isOpen)}
       >
         {projectName}
