@@ -14,21 +14,24 @@
  * limitations under the License.
  */
 import React, { useRef, useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { useAppSelector, useAppDispatch } from 'app/hooks';
-import { logoutUser } from 'features/users/usersSlice';
+import { logoutUser, selectUsers } from 'features/users/usersSlice';
 import { useOutsideClick } from 'hooks';
 
 export function AccountButton() {
-  const { token, username } = useAppSelector((state) => state.users);
+  const { username } = useAppSelector(selectUsers);
   const userDropdownRef = useRef<HTMLDivElement | null>(null);
   const userDropdownButtonRef = useRef<HTMLButtonElement | null>(null);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
 
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const logout = useCallback(() => {
     dispatch(logoutUser());
-  }, [dispatch]);
+    navigate('/login');
+  }, [dispatch, navigate]);
 
   useOutsideClick(
     userDropdownRef,
@@ -37,10 +40,6 @@ export function AccountButton() {
     },
     userDropdownButtonRef,
   );
-
-  if (!token) {
-    return null;
-  }
 
   return (
     <>

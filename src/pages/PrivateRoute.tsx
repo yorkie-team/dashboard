@@ -19,17 +19,18 @@ import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 
 import { useAppSelector } from 'app/hooks';
 import { PageTemplate } from 'pages/PageTemplate';
+import { selectUsers } from 'features/users/usersSlice';
 
 export function PrivateRoute() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { token } = useAppSelector((state) => state.users);
+  const { token, isValidToken } = useAppSelector(selectUsers);
 
   useEffect(() => {
-    if (!token) {
+    if (!token || !isValidToken) {
       navigate('/login', { state: { from: location.pathname } });
     }
-  }, [token, navigate, location]);
+  }, [token, navigate, location, isValidToken]);
 
   return (
     <PageTemplate>

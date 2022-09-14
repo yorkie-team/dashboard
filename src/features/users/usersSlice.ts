@@ -22,6 +22,7 @@ import jwt_decode from 'jwt-decode';
 
 export interface UsersState {
   token: string;
+  isValidToken: boolean;
   username: string;
   login: {
     isSuccess: boolean;
@@ -58,6 +59,7 @@ type JWTPayload = {
 
 const initialState: UsersState = {
   token: localStorage.getItem('token') || '',
+  isValidToken: false,
   username: '',
   login: {
     isSuccess: false,
@@ -73,6 +75,7 @@ const initialState: UsersState = {
 
 if (initialState.token) {
   api.setToken(initialState.token);
+  initialState.isValidToken = true;
   try {
     initialState.username = jwt_decode<JWTPayload>(initialState.token).username;
   } catch (error) {
@@ -98,15 +101,20 @@ export const usersSlice = createSlice({
       localStorage.removeItem('token');
       api.setToken('');
       state.token = '';
+      state.isValidToken = false;
       state.username = '';
       state.login.status = 'idle';
       state.login.isSuccess = false;
       state.login.error = null;
     },
+    setIsValidToken: (state, action) => {
+      state.isValidToken = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.token = action.payload;
+      state.isValidToken = true;
       state.username = jwt_decode<JWTPayload>(action.payload).username;
       state.login.status = 'idle';
       state.login.isSuccess = true;
@@ -145,7 +153,7 @@ export const usersSlice = createSlice({
   },
 });
 
-export const { logoutUser } = usersSlice.actions;
+export const { logoutUser, setIsValidToken } = usersSlice.actions;
 
 export const selectUsers = (state: RootState) => state.users;
 

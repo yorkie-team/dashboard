@@ -17,10 +17,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { useAppSelector } from 'app/hooks';
 import { AccountButton } from 'features/users/AccountButton';
 import { ProjectDropdown } from 'features/projects';
+import { selectUsers } from 'features/users/usersSlice';
 
 export function Header() {
+  const { token, isValidToken } = useAppSelector(selectUsers);
+
   return (
     <nav className="bg-white border-gray-200 py-1 px-2 sm:px-4 rounded">
       <div className="flex flex-wrap justify-between items-center mx-auto">
@@ -41,9 +45,9 @@ export function Header() {
               />
             </svg>
           </Link>
-          <ProjectDropdown />
+          {token && isValidToken && <ProjectDropdown />}
         </div>
-        <AccountButton />
+        {token && isValidToken && <AccountButton />}
       </div>
     </nav>
   );
