@@ -41,12 +41,14 @@ async function main() {
   client.subscribe((event) => {
     if (event.type === 'peers-changed') {
       const peers = event.value[doc.getKey()];
-      document.getElementById('peers_count').innerHTML = Object.entries(peers).length;
+      document.getElementById('peersCount').innerHTML = Object.entries(peers).length;
     }
   });
 }
 main();`,
-    cdn: `<!-- include yorkie js -->
+    cdn: `<div>There are currently <span id='peersCount'></span> peers!</div>
+
+<!-- include yorkie js -->
 <script src="${process.env.REACT_APP_JS_SDK_URL}"></script>
 <script>
   async function main() {
@@ -61,7 +63,7 @@ main();`,
     client.subscribe((event) => {
       if (event.type === 'peers-changed') {
         const peers = event.value[doc.getKey()];
-        document.getElementById('peers_count').innerHTML = Object.entries(peers).length;
+        document.getElementById('peersCount').innerHTML = Object.entries(peers).length;
       }
     });
   }
@@ -263,7 +265,7 @@ main();`,
           {snippetType === 'cdn' && (
             <>
               <p className="text-gray-400 text-sm my-4">
-                Copy and paste the following script into the &lt;head&gt; tag of your HTML.
+                Copy and paste the following script into the bottom of your &lt;body&gt; tag.
               </p>
               <div
                 className="relative bg-gray-50 py-4"
