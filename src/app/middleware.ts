@@ -18,7 +18,7 @@ import type { Action, PayloadAction, SerializedError, MiddlewareAPI, Middleware 
 import { isRejectedWithValue } from '@reduxjs/toolkit';
 import { RPCStatusCode, APIErrorName } from 'api/types';
 import { setGlobalError } from 'features/globalError/globalErrorSlice';
-import { loginUser, signupUser } from 'features/users/usersSlice';
+import { loginUser, signupUser, setIsValidToken } from 'features/users/usersSlice';
 import { createProjectAsync, updateProjectAsync } from 'features/projects/projectsSlice';
 
 type RejectedAction = PayloadAction<
@@ -86,5 +86,8 @@ export const globalErrorHandler: Middleware = (store: MiddlewareAPI) => (next) =
     throw action.error;
   }
   if (isHandledError(action.type, statusCode)) return;
+  if (statusCode === RPCStatusCode.UNAUTHENTICATED) {
+    store.dispatch(setIsValidToken(false));
+  }
   store.dispatch(setGlobalError({ statusCode, errorMessage }));
 };
