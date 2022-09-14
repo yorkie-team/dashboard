@@ -70,6 +70,7 @@ export function LoginForm() {
           id="username"
           className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded border border-solid border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-orange-600 peer"
           autoComplete="off"
+          placeholder=" "
           autoFocus
           {...register('username', { required: 'Username is required' })}
         />
@@ -87,6 +88,7 @@ export function LoginForm() {
           type="password"
           id="password"
           className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded border border-solid border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-orange-600 peer"
+          placeholder=" "
           {...register('password', { required: 'Password is required' })}
         />
         <label
@@ -98,7 +100,7 @@ export function LoginForm() {
       </div>
       {formErrors.password && <p className="text-red-500 text-xs italic">{formErrors.password.message}</p>}
       <button
-        className="w-full bg-orange-500 hover:bg-orange-400 text-white font-medium py-3 px-4 mt-8 rounded focus:outline-none focus:shadow-outline"
+        className="w-full bg-orange-500 hover:bg-orange-400 focus:bg-orange-400 text-white font-medium py-3 px-4 mt-8 rounded focus:outline-none focus:shadow-outline"
         type="submit"
         disabled={status === 'loading'}
       >
