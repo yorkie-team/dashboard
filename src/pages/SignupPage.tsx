@@ -15,9 +15,24 @@
  */
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { SignupForm } from 'features/users/SignupForm';
+import { PageTemplate } from './PageTemplate';
 
 export function SignupPage() {
-  return <SignupForm />;
+  return (
+    <PageTemplate>
+      <SignupForm />
+      <div className="max-w-md mx-auto p-4">
+        <hr className="pb-3" />
+        <Link
+          to="/login"
+          className="block py-2.5 w-full text-sm text-gray-500 font-medium text-center rounded border border-solid border-gray-300 focus:outline-none focus:border-orange-400 hover:border-orange-400"
+        >
+          Log in
+        </Link>
+      </div>
+    </PageTemplate>
+  );
 }

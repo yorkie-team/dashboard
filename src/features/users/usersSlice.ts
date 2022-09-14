@@ -34,6 +34,10 @@ export interface UsersState {
   signup: {
     isSuccess: boolean;
     status: 'idle' | 'loading' | 'failed';
+    error: {
+      target: keyof SignupFields;
+      message: string;
+    } | null;
   };
 }
 
@@ -45,7 +49,7 @@ export type LoginFields = {
 export type SignupFields = {
   username: string;
   password: string;
-  passwordConfirm: string;
+  confirmPassword: string;
 };
 
 type JWTPayload = {
@@ -63,6 +67,7 @@ const initialState: UsersState = {
   signup: {
     isSuccess: false,
     status: 'idle',
+    error: null,
   },
 };
 
@@ -127,8 +132,15 @@ export const usersSlice = createSlice({
     builder.addCase(signupUser.pending, (state) => {
       state.signup.status = 'loading';
     });
-    builder.addCase(signupUser.rejected, (state) => {
+    builder.addCase(signupUser.rejected, (state, action) => {
       state.signup.status = 'failed';
+      const statusCode = Number(action.error.code);
+      if (statusCode === RPCStatusCode.INTERNAL) {
+        state.signup.error = {
+          target: 'username',
+          message: 'Username already exists',
+        };
+      }
     });
   },
 });

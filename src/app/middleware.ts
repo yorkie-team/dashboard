@@ -18,7 +18,7 @@ import type { Action, PayloadAction, SerializedError, MiddlewareAPI, Middleware 
 import { isRejectedWithValue } from '@reduxjs/toolkit';
 import { RPCStatusCode, APIErrorName } from 'api/types';
 import { setGlobalError } from 'features/globalError/globalErrorSlice';
-import { loginUser } from 'features/users/usersSlice';
+import { loginUser, signupUser } from 'features/users/usersSlice';
 import { createProjectAsync, updateProjectAsync } from 'features/projects/projectsSlice';
 
 type RejectedAction = PayloadAction<
@@ -45,6 +45,10 @@ function isHandledError(actionType: any, statusCode: RPCStatusCode): boolean {
     actionType === loginUser.rejected.type &&
     (statusCode === RPCStatusCode.NOT_FOUND || statusCode === RPCStatusCode.UNAUTHENTICATED)
   ) {
+    return true;
+  }
+
+  if (actionType === signupUser.rejected.type && statusCode === RPCStatusCode.INTERNAL) {
     return true;
   }
 
