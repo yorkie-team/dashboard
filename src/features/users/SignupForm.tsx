@@ -70,7 +70,14 @@ export function SignupForm() {
           autoComplete="off"
           placeholder=" "
           autoFocus
-          {...register('username', { required: 'Username is required' })}
+          {...register('username', {
+            required: 'Username is required',
+            pattern: {
+              value: /^[a-zA-Z0-9\-._~]{2,30}$/,
+              message:
+                'Username can only contain 2 to 30 characters with alphabets, numbers, hyphen(-), period(.), underscore(_), and tilde(~)',
+            },
+          })}
         />
         <label
           htmlFor="username"
@@ -90,9 +97,11 @@ export function SignupForm() {
           autoComplete="off"
           {...register('password', {
             required: 'Password is required',
-            minLength: {
-              value: 6,
-              message: 'Password requires at least 6 characters',
+            pattern: {
+              value:
+                /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~`!?@#$%^&*()\-_+={}[\]|\\;:'"<>,./])(?:[a-zA-Z0-9~`!?@#$%^&*()\-_+={}[\]|\\;:'"<>,./]{8,30})$/,
+              message:
+                'Password must contain 8 to 30 characters with at least 1 alphabet, 1 number, and 1 special character',
             },
             onChange: async () => {
               await trigger(['password', 'confirmPassword']);
