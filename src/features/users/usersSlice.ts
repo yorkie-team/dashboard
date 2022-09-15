@@ -161,7 +161,6 @@ export const usersSlice = createSlice({
       } else if (statusCode === RPCStatusCode.INVALID_ARGUMENT) {
         const errorDetails = action.payload.error.details;
         for (const { field, description } of errorDetails) {
-          console.log(field, description);
           if (field === 'Username') {
             signupErrors.unshift({
               target: 'username',
