@@ -35,12 +35,14 @@ export interface UsersState {
   signup: {
     isSuccess: boolean;
     status: 'idle' | 'loading' | 'failed';
-    error: {
-      target: keyof SignupFields;
-      message: string;
-    } | null;
+    error: Array<ErrorDetails> | null;
   };
 }
+
+type ErrorDetails = {
+  target: keyof SignupFields;
+  message: string;
+};
 
 export type LoginFields = {
   username: string;
@@ -89,9 +91,16 @@ export const loginUser = createAsyncThunk<string, LoginFields>('users/login', as
   return token;
 });
 
-export const signupUser = createAsyncThunk<User, SignupFields>('users/signup', async ({ username, password }) => {
-  return await api.signUp(username, password);
-});
+export const signupUser = createAsyncThunk<User, SignupFields, { rejectValue: any }>(
+  'users/signup',
+  async ({ username, password }, { rejectWithValue }) => {
+    try {
+      return await api.signUp(username, password);
+    } catch (error) {
+      return rejectWithValue({ error });
+    }
+  },
+);
 
 export const usersSlice = createSlice({
   name: 'users',
@@ -142,13 +151,31 @@ export const usersSlice = createSlice({
     });
     builder.addCase(signupUser.rejected, (state, action) => {
       state.signup.status = 'failed';
-      const statusCode = Number(action.error.code);
+      const statusCode = Number(action.payload.error.code);
+      const signupErrors: Array<ErrorDetails> = [];
       if (statusCode === RPCStatusCode.INTERNAL) {
-        state.signup.error = {
+        signupErrors.unshift({
           target: 'username',
           message: 'Username already exists',
-        };
+        });
+      } else if (statusCode === RPCStatusCode.INVALID_ARGUMENT) {
+        const errorDetails = action.payload.error.details;
+        for (const { field, description } of errorDetails) {
+          console.log(field, description);
+          if (field === 'Username') {
+            signupErrors.unshift({
+              target: 'username',
+              message: description,
+            });
+          } else if (field === 'Password') {
+            signupErrors.unshift({
+              target: 'password',
+              message: description,
+            });
+          }
+        }
       }
+      state.signup.error = signupErrors;
     });
   },
 });

@@ -45,7 +45,9 @@ export function SignupForm() {
 
   useEffect(() => {
     if (!error) return;
-    setError(error.target, { type: 'custom', message: error.message }, { shouldFocus: true });
+    for (const { target, message } of error) {
+      setError(target, { type: 'custom', message: message }, { shouldFocus: true });
+    }
   }, [error, setError]);
 
   useEffect(() => {
