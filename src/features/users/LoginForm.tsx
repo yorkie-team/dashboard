@@ -124,13 +124,6 @@ export function LoginForm() {
           </>
         )}
       </button>
-
-      <div className="mt-5 text-sm font-medium text-gray-500">
-        Not registered?
-        <a href="/signup" className="text-orange-600 hover:underline ml-2">
-          Signup
-        </a>
-      </div>
     </form>
   );
 }
