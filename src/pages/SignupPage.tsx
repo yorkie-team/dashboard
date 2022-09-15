@@ -28,7 +28,7 @@ export function SignupPage() {
         <hr className="pb-3" />
         <Link
           to="/login"
-          className="block py-2.5 w-full text-sm text-gray-500 font-medium text-center rounded border border-solid border-gray-300 focus:outline-none focus:border-orange-400 hover:border-orange-400"
+          className="block py-2.5 w-full text-sm text-gray-500 font-medium text-center rounded border border-solid border-gray-300 focus:outline-none focus:bg-gray-100 hover:bg-gray-100"
         >
           Log in
         </Link>

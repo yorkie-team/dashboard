@@ -48,7 +48,10 @@ function isHandledError(actionType: any, statusCode: RPCStatusCode): boolean {
     return true;
   }
 
-  if (actionType === signupUser.rejected.type && statusCode === RPCStatusCode.INTERNAL) {
+  if (
+    actionType === signupUser.rejected.type &&
+    (statusCode === RPCStatusCode.INTERNAL || statusCode === RPCStatusCode.INVALID_ARGUMENT)
+  ) {
     return true;
   }
 
@@ -80,7 +83,6 @@ export const globalErrorHandler: Middleware = (store: MiddlewareAPI) => (next) =
     errorName = action.payload.error.name;
   }
   statusCode = Number(statusCode);
-
   const apiErrorName: APIErrorName = 'RPCError';
   if (errorName !== apiErrorName) {
     throw action.error;
