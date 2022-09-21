@@ -38,10 +38,7 @@ export interface ProjectsState {
   };
   update: {
     status: 'idle' | 'loading' | 'failed';
-    error: {
-      target: keyof ProjectUpdateFields;
-      message: string;
-    } | null;
+    error: ProjectUpdateError;
     isSuccess: boolean;
   };
 }
@@ -51,10 +48,15 @@ export type ProjectCreateFields = {
 };
 
 export type ProjectUpdateFields = {
-  projectName: string;
+  name: string;
   authWebhookURL: string;
   authWebhookMethods: Array<AuthWebhookMethod>;
 };
+
+export type ProjectUpdateError = {
+  target: keyof ProjectUpdateFields;
+  message: string;
+} | null;
 
 const initialState: ProjectsState = {
   list: {
@@ -190,7 +192,7 @@ export const projectsSlice = createSlice({
       const statusCode = Number(action.payload.error.code);
       if (statusCode === RPCStatusCode.ALREADY_EXISTS) {
         state.update.error = {
-          target: 'projectName',
+          target: 'name',
           message: 'The project name is already in use.',
         };
       } else if (statusCode === RPCStatusCode.INVALID_ARGUMENT) {
@@ -198,12 +200,17 @@ export const projectsSlice = createSlice({
         for (const { field, description } of errorDetails) {
           if (field === 'Name') {
             state.update.error = {
-              target: 'projectName',
+              target: 'name',
               message: description,
             };
           } else if (field === 'AuthWebhookURL') {
             state.update.error = {
               target: 'authWebhookURL',
+              message: description,
+            };
+          } else if (field === 'AuthWebhookMethods') {
+            state.update.error = {
+              target: 'authWebhookMethods',
               message: description,
             };
           }

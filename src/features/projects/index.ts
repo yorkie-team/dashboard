@@ -21,3 +21,4 @@ export * from './APIKeys';
 export * from './ProjectTabMenu';
 export * from './ProjectDropdown';
 export * from './Settings';
+export * from './SettingsAlertMessage';

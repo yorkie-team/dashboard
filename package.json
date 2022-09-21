@@ -89,7 +89,8 @@
             "serializable",
             "cdn",
             "yorkie",
-            "sdk"
+            "sdk",
+            "focusable"
           ],
           "skipIfMatch": [
             "TODO\\(.+\\):",
