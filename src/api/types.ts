@@ -56,8 +56,7 @@ export type AuthWebhookMethod =
   | 'AttachDocument'
   | 'DetachDocument'
   | 'PushPull'
-  | 'WatchDocuments'
-  | 'ListChangeSummaries';
+  | 'WatchDocuments';
 
 export const AUTH_WEBHOOK_METHODS: Array<AuthWebhookMethod> = [
   'ActivateClient',
@@ -66,7 +65,6 @@ export const AUTH_WEBHOOK_METHODS: Array<AuthWebhookMethod> = [
   'DetachDocument',
   'PushPull',
   'WatchDocuments',
-  'ListChangeSummaries',
 ];
 
 export enum RPCStatusCode {

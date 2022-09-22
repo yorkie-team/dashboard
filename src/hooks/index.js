@@ -15,3 +15,4 @@
  */
 
 export * from './useOutsideClick';
+export * from './useAreaBlur';
