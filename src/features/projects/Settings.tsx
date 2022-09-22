@@ -126,84 +126,91 @@ export function Settings() {
   }, [resetForm]);
 
   return (
-    <div className="mt-6">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="mb-10">
-          <h3 className="mb-4 font-medium">Project name</h3>
-          <InputTextField
-            name="name"
-            register={register}
-            reset={() => {
-              resetForm();
-              resetUpdateFieldInfo();
-            }}
-            validationRules={{ required: 'The project name is required' }}
-            onChange={(e) => {
-              setUpdateFieldInfo((info) => ({ ...info, target: 'name' }));
-              nameField.onChange(e.target.value);
-            }}
-          />
-          {updateFieldInfo.target === 'name' && updateFieldInfo.state !== null && (
-            <SettingsAlertMessage
-              state={updateFieldInfo.state}
-              message={updateFieldInfo.message}
-              onSuccessEnd={resetUpdateFieldInfo}
+    <div className="mt-6 flex">
+      <SideNavigation />
+      <form onSubmit={handleSubmit(onSubmit)} className="ml-12">
+        <section className="mb-20 section" id="sectionGeneral">
+          <h2 className="font-medium text-xl mb-8">General</h2>
+          <div className="mb-10">
+            <h3 className="mb-4 font-medium">Project name</h3>
+            <InputTextField
+              name="name"
+              register={register}
+              reset={() => {
+                resetForm();
+                resetUpdateFieldInfo();
+              }}
+              validationRules={{ required: 'The project name is required' }}
+              onChange={(e) => {
+                setUpdateFieldInfo((info) => ({ ...info, target: 'name' }));
+                nameField.onChange(e.target.value);
+              }}
             />
-          )}
-        </div>
-        <div className="mb-10">
-          <h3 className="mb-4 font-medium">Auth webhook URL</h3>
-          <InputTextField
-            name="authWebhookURL"
-            register={register}
-            reset={() => {
-              resetForm();
-              resetUpdateFieldInfo();
-            }}
-            onChange={(e) => {
-              setUpdateFieldInfo((info) => ({ ...info, target: 'authWebhookURL' }));
-              webhookURLField.onChange(e.target.value);
-            }}
-          />
-          {updateFieldInfo.target === 'authWebhookURL' && updateFieldInfo.state !== null && (
-            <SettingsAlertMessage
-              state={updateFieldInfo.state}
-              message={updateFieldInfo.message}
-              onSuccessEnd={resetUpdateFieldInfo}
+            {updateFieldInfo.target === 'name' && updateFieldInfo.state !== null && (
+              <SettingsAlertMessage
+                state={updateFieldInfo.state}
+                message={updateFieldInfo.message}
+                onSuccessEnd={resetUpdateFieldInfo}
+              />
+            )}
+          </div>
+        </section>
+        <section className="mb-10 section" id="sectionWebhook">
+          <h2 className="font-medium text-xl mb-8">Webhook</h2>
+          <div className="mb-10">
+            <h3 className="mb-4 font-medium">Auth webhook URL</h3>
+            <InputTextField
+              name="authWebhookURL"
+              register={register}
+              reset={() => {
+                resetForm();
+                resetUpdateFieldInfo();
+              }}
+              onChange={(e) => {
+                setUpdateFieldInfo((info) => ({ ...info, target: 'authWebhookURL' }));
+                webhookURLField.onChange(e.target.value);
+              }}
             />
-          )}
-        </div>
-        <div className="mb-10">
-          <h3 className="mb-4 font-mediu">Auth webhook methods</h3>
-          {AUTH_WEBHOOK_METHODS.map((method) => {
-            return (
-              <div className="flex mb-3 items-center" key={method}>
-                <InputToggle
-                  name={method}
-                  checked={webhookMethodField.value.includes(method)}
-                  onChange={(e) => {
-                    let valueCopy = [...webhookMethodField.value];
-                    if (e.target.checked) {
-                      valueCopy = valueCopy.includes(method) ? valueCopy : [...valueCopy, method];
-                    } else {
-                      valueCopy = valueCopy.filter((value) => value !== method);
-                    }
-                    webhookMethodField.onChange(valueCopy);
-                    setUpdateFieldInfo((info) => ({ ...info, target: method }));
-                    onSubmit({ authWebhookMethods: valueCopy });
-                  }}
-                />
-                {updateFieldInfo.target === method && updateFieldInfo.state !== null && (
-                  <SettingsAlertMessage
-                    state={updateFieldInfo.state}
-                    message={updateFieldInfo.message}
-                    onSuccessEnd={resetUpdateFieldInfo}
+            {updateFieldInfo.target === 'authWebhookURL' && updateFieldInfo.state !== null && (
+              <SettingsAlertMessage
+                state={updateFieldInfo.state}
+                message={updateFieldInfo.message}
+                onSuccessEnd={resetUpdateFieldInfo}
+              />
+            )}
+          </div>
+          <div className="mb-10">
+            <h3 className="mb-6 font-medium">Auth webhook methods</h3>
+            {AUTH_WEBHOOK_METHODS.map((method) => {
+              return (
+                <div className="flex mb-3 items-center" key={method}>
+                  <InputToggle
+                    name={method}
+                    checked={webhookMethodField.value.includes(method)}
+                    onChange={(e) => {
+                      let valueCopy = [...webhookMethodField.value];
+                      if (e.target.checked) {
+                        valueCopy = valueCopy.includes(method) ? valueCopy : [...valueCopy, method];
+                      } else {
+                        valueCopy = valueCopy.filter((value) => value !== method);
+                      }
+                      webhookMethodField.onChange(valueCopy);
+                      setUpdateFieldInfo((info) => ({ ...info, target: method }));
+                      onSubmit({ authWebhookMethods: valueCopy });
+                    }}
                   />
-                )}
-              </div>
-            );
-          })}
-        </div>
+                  {updateFieldInfo.target === method && updateFieldInfo.state !== null && (
+                    <SettingsAlertMessage
+                      state={updateFieldInfo.state}
+                      message={updateFieldInfo.message}
+                      onSuccessEnd={resetUpdateFieldInfo}
+                    />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </section>
       </form>
     </div>
   );
@@ -254,7 +261,7 @@ function InputTextField({ name, validationRules, register, reset, onChange }: In
   );
 
   return (
-    <div className="flex flex-wrap items-end" onKeyDown={onKeyDown}>
+    <div className="flex flex-wrap items-center" onKeyDown={onKeyDown}>
       <input
         type="text"
         autoComplete="off"
@@ -263,7 +270,7 @@ function InputTextField({ name, validationRules, register, reset, onChange }: In
           ref(e);
           firstRef.current = e;
         }}
-        className="border-0 border-b border-gray-300 text-gray-900 text-sm focus:outline-none focus:border-gray-400 block w-96 p-2.5"
+        className="border-0 border-b border-gray-300 text-gray-900 text-sm focus:outline-none focus:border-gray-400 block w-96 p-2.5 mb-2"
         onFocus={() => setIsFieldControlButtonsOpen(true)}
         onChange={onChange}
       />
@@ -318,3 +325,51 @@ function InputTextField({ name, validationRules, register, reset, onChange }: In
     </div>
   );
 }
+
+const SideNavigation = () => {
+  const [activeId, setActiveId] = useState<'sectionGeneral' | 'sectionWebhook'>('sectionGeneral');
+  const contentRef = useRef<any>({});
+
+  useEffect(() => {
+    const callback: IntersectionObserverCallback = (observedContent) => {
+      observedContent.forEach((content) => {
+        contentRef.current[content.target.id] = content;
+      });
+
+      const visibleContents = Object.values(contentRef.current).filter((content: any) => content.isIntersecting) as any;
+      setActiveId(visibleContents[0]?.target.id);
+    };
+
+    const observer = new IntersectionObserver(callback, {
+      rootMargin: '-20% 0px',
+    });
+
+    const contents = document.querySelectorAll('.section');
+    contents.forEach((content) => {
+      observer.observe(content);
+    });
+
+    return () => observer.disconnect();
+  }, [setActiveId]);
+
+  return (
+    <nav className="flex flex-col w-44 sticky top-1 h-4/5">
+      <a
+        href="#sectionGeneral"
+        className={`nav__items rounded px-4 py-3 mb-4 text-sm ${
+          activeId === 'sectionGeneral' ? 'active bg-orange-200' : ''
+        }`}
+      >
+        General
+      </a>
+      <a
+        href="#sectionWebhook"
+        className={`nav__items rounded px-4 py-3 mb-4 text-sm ${
+          activeId === 'sectionWebhook' ? 'active bg-orange-200' : ''
+        }`}
+      >
+        Webhook
+      </a>
+    </nav>
+  );
+};
