@@ -38,7 +38,10 @@ export interface ProjectsState {
   };
   update: {
     status: 'idle' | 'loading' | 'failed';
-    error: ProjectUpdateError;
+    error: {
+      target: keyof ProjectUpdateFields;
+      message: string;
+    } | null;
     isSuccess: boolean;
   };
 }
@@ -52,11 +55,6 @@ export type ProjectUpdateFields = {
   authWebhookURL: string;
   authWebhookMethods: Array<AuthWebhookMethod>;
 };
-
-export type ProjectUpdateError = {
-  target: keyof ProjectUpdateFields;
-  message: string;
-} | null;
 
 const initialState: ProjectsState = {
   list: {
