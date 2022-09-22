@@ -188,15 +188,17 @@ export function Settings() {
                     name={method}
                     checked={webhookMethodField.value.includes(method)}
                     onChange={(e) => {
-                      let valueCopy = [...webhookMethodField.value];
+                      let newWebhookMethods = [...project?.authWebhookMethods!];
                       if (e.target.checked) {
-                        valueCopy = valueCopy.includes(method) ? valueCopy : [...valueCopy, method];
+                        newWebhookMethods = newWebhookMethods.includes(method)
+                          ? newWebhookMethods
+                          : [...newWebhookMethods, method];
                       } else {
-                        valueCopy = valueCopy.filter((value) => value !== method);
+                        newWebhookMethods = newWebhookMethods.filter((newMethod) => newMethod !== method);
                       }
-                      webhookMethodField.onChange(valueCopy);
+                      webhookMethodField.onChange(newWebhookMethods);
                       setUpdateFieldInfo((info) => ({ ...info, target: method }));
-                      onSubmit({ authWebhookMethods: valueCopy });
+                      onSubmit({ authWebhookMethods: newWebhookMethods });
                     }}
                   />
                   {updateFieldInfo.target === method && updateFieldInfo.state !== null && (
