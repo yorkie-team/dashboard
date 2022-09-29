@@ -15,6 +15,7 @@
  */
 
 import React from 'react';
+import './app.scss';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import {
   PrivateRoute,

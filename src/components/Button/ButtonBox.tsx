@@ -14,14 +14,18 @@
  * limitations under the License.
  */
 
-import React from 'react';
-import './footer.scss';
-import { LogoHorizontalGrayIcon } from 'components';
+import React, { ReactNode } from 'react';
+import './button.scss';
+import classNames from 'classnames';
 
-export function Footer() {
-  return (
-    <footer className="footer">
-      <LogoHorizontalGrayIcon />
-    </footer>
-  );
+type ButtonBoxProps = {
+  fullWidth?: boolean;
+  children?: ReactNode;
+};
+
+export function ButtonBox({ fullWidth, children }: ButtonBoxProps) {
+  const buttonBoxClassName = classNames('btn_box', {
+    full_width: fullWidth,
+  });
+  return <div className={buttonBoxClassName}> {children}</div>;
 }

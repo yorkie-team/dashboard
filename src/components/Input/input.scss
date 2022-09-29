@@ -1,0 +1,578 @@
+@use 'assets/styles/global/mixins-lib';
+@use 'assets/styles/global/variables';
+
+.input {
+  $input: '.input';
+  display: inline-block;
+  width: 100%;
+  padding: 13px 15px;
+  box-sizing: border-box;
+  border: 1px solid var(--gray-400);
+  border-radius: 4px;
+  background-color: transparent;
+  @include mixins-lib.rfonts(14, 22);
+  color: var(--gray-900);
+  vertical-align: top;
+
+  &::placeholder {
+    color: var(--gray-500);
+  }
+
+  &:focus {
+    border-color: var(--blue-0);
+    caret-color: var(--blue-0);
+  }
+
+  &_box {
+    display: inline-block;
+    vertical-align: top;
+
+    &.is_disabled {
+      .label {
+        color: var(--gray-300);
+
+        &_in_box {
+          border-color: var(--gray-300);
+        }
+      }
+
+      #{$input} {
+        border-color: var(--gray-300);
+        color: var(--gray-300);
+
+        &::placeholder {
+          color: var(--gray-300);
+        }
+      }
+
+      .icon {
+        color: var(--gray-300);
+      }
+
+      #{$input}_guide {
+        color: var(--gray-300);
+      }
+    }
+
+    &.is_error {
+      #{$input} {
+        border-color: var(--red-dark);
+        caret-color: var(--red-dark);
+      }
+
+      #{$input}_guide {
+        color: var(--red-dark);
+
+        .icon {
+          path {
+            &:last-child {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    &.is_success {
+      #{$input} {
+        border-color: var(--green-dark);
+        caret-color: var(--green-dark);
+      }
+
+      #{$input}_guide {
+        color: var(--green-dark);
+
+        .icon {
+          path {
+            &:first-child {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &_guide {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 9px;
+
+    .icon {
+      margin-right: 9px;
+    }
+
+    &_desc {
+      @include mixins-lib.rfonts(12, 16, 300);
+      word-break: break-word;
+    }
+  }
+
+  &_inner_box {
+    display: block;
+    position: relative;
+
+    .icon {
+      position: absolute;
+      bottom: 18px;
+      right: 16px;
+
+      svg {
+        display: block;
+
+        path {
+          fill: currentColor;
+        }
+      }
+
+      ~ #{input} {
+        padding-right: 40px;
+      }
+    }
+  }
+}
+
+.label {
+  display: block;
+  position: relative;
+  @include mixins-lib.rfonts(12, 16);
+  word-break: break-all;
+
+  & ~ .input {
+    margin-top: 8px;
+  }
+
+  &_in {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    right: 16px;
+    @include mixins-lib.fonts(8, 10);
+
+    ~ .input {
+      margin-top: 0;
+      padding: 19px 15px 7px;
+    }
+  }
+}
+
+.input_field_box {
+  &.is_error {
+    .input {
+      border-color: var(--red-0);
+      color: var(--red-0);
+    }
+
+    .input_guide {
+      color: var(--red-0);
+
+      .icon {
+        path:last-child {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &.is_success {
+    .input {
+      border-color: var(--green-0);
+    }
+
+    .input_guide {
+      color: var(--green-0);
+
+      .icon {
+        path:first-child {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &.is_disabled {
+    .label {
+      color: var(--gray-300);
+    }
+
+    .input {
+      border-color: var(--gray-300);
+      color: var(--gray-300);
+
+      &::placeholder {
+        color: var(--gray-300);
+      }
+    }
+
+    .input_guide {
+      color: var(--gray-300);
+    }
+  }
+
+  .input_inner {
+    display: flex;
+    align-items: flex-end;
+
+    @include mixins-lib.mobileStart() {
+      display: block;
+    }
+
+    .btn_box {
+      @include mixins-lib.tabletStart() {
+        margin-left: 12px;
+      }
+
+      @include mixins-lib.mobileStart() {
+        margin-top: 16px;
+        margin-left: 0;
+      }
+    }
+  }
+
+  .label {
+    padding-left: 8px;
+    @include mixins-lib.fonts(14, 22, 500);
+
+    ~ .input_inner {
+      margin-top: 16px;
+    }
+  }
+
+  .input {
+    width: 511px;
+    margin-right: 12px;
+    padding: 0 0 7px 8px;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid var(--gray-400);
+    @include mixins-lib.rfonts(16, 24, 600);
+    color: var(--gray-800);
+
+    @include mixins-lib.tabletStart() {
+      width: 100%;
+      margin-right: 0;
+      padding-right: 8px;
+    }
+
+    &:focus {
+      caret-color: initial;
+    }
+  }
+
+  &_large {
+    &.is_success {
+      .input {
+        color: var(--green-0);
+      }
+    }
+
+    .input {
+      display: block;
+      width: 100%;
+      margin-right: 0;
+      padding: 0;
+      border-bottom: none;
+      @include mixins-lib.rfonts(24, 32, 600);
+      color: var(--gray-800);
+    }
+  }
+}
+
+.input_toggle_box {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &.is_reverse {
+    flex-direction: row-reverse;
+  }
+
+  input {
+    &:checked {
+      & ~ .toggle_ui {
+        border-color: var(--blue-0);
+
+        // background-color: var(--blue-alpha-light);
+
+        .track {
+          left: 0;
+        }
+
+        .ball {
+          transform: translateX(16px);
+          background-color: var(--blue-0);
+
+          svg {
+            transform: scale(1);
+            color: var(--gray-000);
+          }
+        }
+      }
+
+      & ~ .label {
+        color: var(--blue-dark);
+      }
+    }
+
+    &:disabled {
+      & ~ .toggle_ui {
+        border-color: var(--gray-300);
+        background-color: var(--gray-100);
+        cursor: default;
+
+        .track {
+          display: none;
+        }
+
+        .ball {
+          background-color: var(--gray-300);
+
+          svg {
+            color: var(--gray-300);
+          }
+        }
+      }
+
+      & ~ .label {
+        color: var(--gray-300);
+        cursor: default;
+      }
+    }
+
+    &:disabled:checked {
+      & ~ .toggle_ui {
+        .ball {
+          svg {
+            color: var(--gray-100);
+          }
+        }
+      }
+    }
+  }
+
+  .toggle_ui {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    width: 38px;
+    height: 22px;
+    border: 1px solid var(--gray-600);
+    border-radius: 20px;
+    vertical-align: top;
+    transition: border-color 0.2s 0.1s;
+    cursor: pointer;
+  }
+
+  .track {
+    position: absolute;
+    top: 0;
+    left: -38px;
+    width: 76px;
+    height: 22px;
+    border-radius: 11px;
+    background: linear-gradient(
+      90deg,
+      var(--blue-alpha-light) 0%,
+      var(--blue-alpha-light) 45%,
+      var(--gray-300) 55%,
+      var(--gray-300) 100%
+    );
+    transition: left 0.2s 0.2s;
+  }
+
+  .ball {
+    display: block;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    margin: 3px 0 0 3px;
+    border-radius: 50%;
+    background-color: var(--gray-600);
+    transition: transform cubic-bezier(0.98, 0.02, 0.3, 1.52) 0.3s, background-color 0.2s;
+
+    svg {
+      display: block;
+      width: 12px;
+      height: 12px;
+      padding: 2px;
+      color: var(--gray-600);
+      transform: scale(0.5);
+      transition: transform 0.3s 0.1s, color 0.3s 0.2s;
+
+      path {
+        fill: currentColor;
+      }
+    }
+  }
+
+  .label {
+    padding: 0 16px;
+    @include mixins-lib.rfonts(12, 16, 500);
+    color: var(--gray-800);
+    transition: color 0.2s;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+}
+
+.input_radio_box {
+  display: inline-flex;
+  align-items: center;
+
+  input {
+    &:checked {
+      & ~ .radio_ui {
+        border-color: var(--blue-0);
+
+        .ball {
+          transform: scale(1);
+        }
+      }
+
+      & ~ .label {
+        color: var(--blue-0);
+      }
+    }
+
+    &:disabled {
+      & ~ .radio_ui {
+        border-color: var(--gray-300);
+        cursor: default;
+
+        .ball {
+          background-color: var(--gray-300);
+        }
+      }
+
+      & ~ .label {
+        color: var(--gray-300);
+        cursor: default;
+      }
+    }
+  }
+
+  .radio_ui {
+    display: block;
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--gray-800);
+    border-radius: 50%;
+    transition: border 0.3s;
+    cursor: pointer;
+  }
+
+  .ball {
+    display: block;
+    width: 8px;
+    height: 8px;
+    margin: 3px 0 0 3px;
+    border-radius: 50%;
+    background-color: var(--blue-0);
+    transform: scale(0);
+    transition: transform cubic-bezier(0.98, 0.02, 0.3, 1.52) 0.3s;
+  }
+
+  .label {
+    padding-left: 8px;
+    @include mixins-lib.rfonts(12, 16, 500);
+    color: var(--gray-800);
+    transition: color 0.3s;
+    cursor: pointer;
+  }
+}
+
+.input_check_box {
+  display: inline-flex;
+  align-items: center;
+
+  &.is_large {
+    .checkbox_ui {
+      width: 18px;
+      height: 18px;
+
+      .check {
+        svg {
+          padding: 3px;
+        }
+      }
+    }
+
+    .label {
+      padding-left: 16px;
+    }
+  }
+
+  input {
+    &:checked {
+      & ~ .checkbox_ui {
+        border-color: var(--blue-0);
+
+        .check {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      & ~ .label {
+        color: var(--blue-0);
+      }
+    }
+
+    &:disabled {
+      & ~ .checkbox_ui {
+        border-color: var(--gray-300);
+        cursor: default;
+
+        .check {
+          background-color: var(--gray-300);
+        }
+      }
+
+      & ~ .label {
+        color: var(--gray-300);
+        cursor: default;
+      }
+    }
+  }
+
+  .checkbox_ui {
+    display: block;
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--gray-800);
+    border-radius: 4px;
+    transition: border 0.3s;
+    cursor: pointer;
+
+    .check {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: var(--blue-0);
+      transform: scale(0.7);
+      opacity: 0;
+      transition: transform cubic-bezier(0.98, 0.02, 0.3, 1.52) 0.2s 0.1s,
+        opacity cubic-bezier(0.98, 0.02, 0.3, 1.52) 0.2s 0.1s;
+
+      svg {
+        display: block;
+        width: 12px;
+        height: 12px;
+        padding: 1px;
+        color: var(--gray-000);
+
+        path {
+          fill: currentColor;
+        }
+      }
+    }
+  }
+
+  .label {
+    padding-left: 8px;
+    @include mixins-lib.rfonts(12, 16, 500);
+    color: var(--gray-800);
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+}
