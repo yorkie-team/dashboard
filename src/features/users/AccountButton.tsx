@@ -13,11 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import React, { useRef, useState, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useRef, useState } from 'react';
 
-import { useAppSelector, useAppDispatch } from 'app/hooks';
-import { logoutUser, selectUsers } from 'features/users/usersSlice';
+import { useAppSelector } from 'app/hooks';
+import { selectUsers } from 'features/users/usersSlice';
 import { useOutsideClick } from 'hooks';
 
 export function AccountButton() {
@@ -25,13 +24,6 @@ export function AccountButton() {
   const userDropdownRef = useRef<HTMLDivElement | null>(null);
   const userDropdownButtonRef = useRef<HTMLButtonElement | null>(null);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
-
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const logout = useCallback(() => {
-    dispatch(logoutUser());
-    navigate('/login');
-  }, [dispatch, navigate]);
 
   useOutsideClick(
     userDropdownRef,
@@ -43,31 +35,7 @@ export function AccountButton() {
 
   return (
     <>
-      <button
-        type="button"
-        className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-      >
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-          <path
-            fillRule="evenodd"
-            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-            clipRule="evenodd"
-          ></path>
-        </svg>
-      </button>
       <div className="hidden relative w-full items-center sm:flex sm:w-auto">
-        <ul className="inline-flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 sm:flex-row sm:space-x-8 sm:mt-0 sm:text-sm sm:font-medium sm:border-0 sm:bg-white">
-          <li>
-            <a
-              href="https://yorkie.dev/docs"
-              target="_blank"
-              rel="noreferrer"
-              className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 sm:hover:bg-transparent sm:border-0 sm:hover:text-orange-500 sm:p-0"
-            >
-              Docs
-            </a>
-          </li>
-        </ul>
         <button
           type="button"
           ref={userDropdownButtonRef}
@@ -86,7 +54,7 @@ export function AccountButton() {
             </div>
             <ul className="border-t border-solid border-gray-200 py-1 text-sm text-gray-700">
               <li>
-                <button type="button" onClick={logout} className="block w-full py-2 px-4 hover:bg-gray-100 text-left">
+                <button type="button" className="block w-full py-2 px-4 hover:bg-gray-100 text-left">
                   Sign out
                 </button>
               </li>

@@ -20,6 +20,7 @@ import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { Project } from 'api/types';
 import { selectProjectList, listProjectsAsync } from './projectsSlice';
 import { useOutsideClick } from 'hooks';
+import { AddIcon, ArrowUpDownIcon } from 'components';
 
 type ProjectDropdownProps = {
   size?: 'small' | 'large';
@@ -51,64 +52,60 @@ export function ProjectDropdown({ size = 'small' }: ProjectDropdownProps) {
 
   if (!projectName) return null;
   return (
-    <div className="relative">
+    <div className="shortcut_inner title_group">
       <button
         type="button"
         ref={dropdownButtonRef}
-        className={`inline-flex items-center justify-center ${
-          size === 'large' ? 'text-lg font-semibold' : 'mx-3 text-sm font-medium text-gray-700 hover:text-orange-500'
-        }`}
+        className={`${
+          size === 'large' ? 'inline-flex items-center justify-center text-lg font-semibold btn_title' : 'shortcut_item'
+        }
+        ${isDropdownOpen ? 'is_active' : ''}
+        `}
         onClick={() => setIsDropdownOpen((isOpen) => !isOpen)}
       >
-        {projectName}
+        <span className="shortcut_text">{projectName}</span>
+        <span className="icon">
+          <ArrowUpDownIcon />
+        </span>
       </button>
-      {isDropdownOpen && (
-        <div
-          ref={dropdownRef}
-          className={`absolute z-10 left-0 bg-white rounded drop-shadow-lg py-1 min-w-[12rem] border border-solid border-gray-200 ${
-            size === 'large' ? 'top-10' : 'top-6 '
-          }`}
-          style={{ width: `${size === 'large' ? '640px' : ''}` }}
+      <div
+        ref={dropdownRef}
+        className={`dropdown shadow_s ${
+          size === 'large'
+            ? 'absolute z-10 left-0 bg-white rounded drop-shadow-lg py-1 min-w-[12rem] border border-solid border-gray-200 top-10'
+            : ''
+        }`}
+        style={{ width: `${size === 'large' ? '640px' : ''}` }}
+      >
+        <ul
+          className={`dropdown_list ${size === 'large' ? 'py-1 text-sm text-gray-700 overflow-y-auto max-h-52' : ''}`}
         >
-          <ul className={`py-1 text-sm text-gray-700 overflow-y-auto ${size === 'large' ? 'max-h-52' : 'max-h-40'}`}>
-            {projects.map((project: Project) => (
-              <li key={project.id}>
-                <Link
-                  to={`/projects/${project.name}`}
-                  className={`block w-full py-2 px-4 hover:bg-gray-100 text-left ${
-                    size === 'large' ? 'text-lg font-semibold' : ''
-                  }`}
-                >
-                  {project.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="border-t border-solid border-gray-200 py-1">
-            <Link
-              to={`/projects/new`}
-              className="w-full py-2 px-4 hover:bg-gray-100 text-left text-sm flex items-center"
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="mr-2"
+          {projects.map((project: Project) => (
+            <li key={project.id} className="dropdown_item">
+              <Link
+                to={`/projects/${project.name}`}
+                className={`${
+                  size === 'large'
+                    ? 'block w-full py-2 px-4 hover:bg-gray-100 text-left text-lg font-semibold'
+                    : 'dropdown_menu'
+                } ${project.name === projectName ? 'is_active' : ''}`}
               >
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M7.99935 2.6665C8.36754 2.6665 8.66602 2.96498 8.66602 3.33317V7.33317H12.666C13.0342 7.33317 13.3327 7.63165 13.3327 7.99984C13.3327 8.36803 13.0342 8.6665 12.666 8.6665H8.66602V12.6665C8.66602 13.0347 8.36754 13.3332 7.99935 13.3332C7.63116 13.3332 7.33268 13.0347 7.33268 12.6665V8.6665H3.33268C2.96449 8.6665 2.66602 8.36803 2.66602 7.99984C2.66602 7.63165 2.96449 7.33317 3.33268 7.33317H7.33268V3.33317C7.33268 2.96498 7.63116 2.6665 7.99935 2.6665Z"
-                  fill="#514C49"
-                />
-              </svg>
-              Create new project
+                <span className="shortcut_text">{project.name}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <ul className="dropdown_list">
+          <li className="dropdown_item">
+            <Link to={`/projects/new`} className="dropdown_menu">
+              <span className="shortcut_thumb">
+                <AddIcon />
+              </span>
+              <span className="shortcut_text">Create new project</span>
             </Link>
-          </div>
-        </div>
-      )}
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }

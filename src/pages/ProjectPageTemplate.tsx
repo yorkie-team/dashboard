@@ -23,7 +23,7 @@ type PageTemplateProps = {
 
 export function ProjectPageTemplate({ children }: PageTemplateProps) {
   return (
-    <>
+    <div className="project_area">
       <div className="flex justify-between items-center mb-6">
         <div className="inline-flex">
           <h2 className="text-lg font-semibold">
@@ -33,6 +33,6 @@ export function ProjectPageTemplate({ children }: PageTemplateProps) {
       </div>
       <ProjectTabMenu />
       {children}
-    </>
+    </div>
   );
 }

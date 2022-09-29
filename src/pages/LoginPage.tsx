@@ -15,10 +15,12 @@
  */
 
 import React, { useEffect } from 'react';
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import './login.scss';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAppSelector } from 'app/hooks';
 import { LoginForm } from 'features/users/LoginForm';
 import { PageTemplate } from './PageTemplate';
+import { Logo3DMarkOnlyIcon, Button, ButtonBox } from 'components';
 
 export function LoginPage() {
   const navigate = useNavigate();
@@ -32,16 +34,18 @@ export function LoginPage() {
   }, [token, navigate, location]);
 
   return (
-    <PageTemplate>
+    <PageTemplate className="login_page">
+      <span className="icon_logo">
+        <Logo3DMarkOnlyIcon />
+      </span>
+      <h2 className="title">Log in to Yorkie</h2>
       <LoginForm />
-      <div className="max-w-md mx-auto p-4">
-        <hr className="pb-3" />
-        <Link
-          to="/signup"
-          className="block py-2.5 w-full text-sm text-gray-500 font-medium text-center rounded border border-solid border-gray-300 focus:outline-none focus:bg-gray-100 hover:bg-gray-100"
-        >
-          Sign up
-        </Link>
+      <div className="box_bottom">
+        <ButtonBox fullWidth={true}>
+          <Button as="link" href="/signup" outline={true}>
+            Sign up
+          </Button>
+        </ButtonBox>
       </div>
     </PageTemplate>
   );

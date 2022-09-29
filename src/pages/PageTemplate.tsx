@@ -21,16 +21,20 @@ import { Footer } from './Footer';
 import { ErrorModal } from 'features/globalError/ErrorModal';
 
 type PageTemplateProps = {
+  className?: string;
+  headerClassName?: string;
   children: ReactNode;
 };
 
-export function PageTemplate({ children }: PageTemplateProps) {
+export function PageTemplate({ className = '', headerClassName = '', children }: PageTemplateProps) {
   return (
-    <>
-      <Header />
-      <div className="flex-1 py-16 max-w-5xl mx-auto px-2 sm:px-4 w-full">{children}</div>
+    <div className={`wrap ${className}`}>
+      <Header className={headerClassName} />
+      <main className="container">
+        <div className="content">{children}</div>
+      </main>
       <Footer />
       <ErrorModal />
-    </>
+    </div>
   );
 }
