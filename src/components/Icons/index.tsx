@@ -23,3 +23,6 @@ export { ReactComponent as AddIcon } from 'assets/icons/icon_plus.svg';
 export { ReactComponent as CloseIcon } from 'assets/icons/icon_close.svg';
 export { ReactComponent as HamburgerIcon } from 'assets/icons/icon_gnb_menu.svg';
 export { ReactComponent as ArrowUpDownIcon } from 'assets/icons/icon_open_selector.svg';
+export { ReactComponent as GridViewIcon } from 'assets/icons/icon_view_grid.svg';
+export { ReactComponent as ListViewIcon } from 'assets/icons/icon_view_list.svg';
+export { ReactComponent as CircleIcon } from 'assets/icons/icon_circle.svg';
