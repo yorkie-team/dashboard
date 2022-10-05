@@ -1,0 +1,43 @@
+body {
+  padding: 40px;
+}
+
+nav ul {
+  display: flex;
+  margin-bottom: 40px;
+}
+
+nav ul li a {
+  margin-right: 4px;
+  padding: 2px 4px;
+  border-right: 1px solid lightgray;
+}
+
+nav ul li a.active {
+  font-weight: 500;
+  color: var(--orange-0);
+}
+
+.uio_group {
+  padding-bottom: 80px;
+}
+
+.uio_align_box {
+  font-size: 0;
+  line-height: normal;
+}
+
+.uio_box {
+  margin-top: 10px;
+}
+
+.uio_title {
+  display: block;
+  margin: 50px 0 30px;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.uio_title:first-of-type {
+  margin-top: 30px;
+}
