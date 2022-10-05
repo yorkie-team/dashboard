@@ -44,10 +44,16 @@ type ButtonProps = {
   outline?: boolean;
   color?: 'primary' | 'success' | 'danger' | 'toggle' | 'default';
   isActive?: boolean;
+  buttonRef?: any;
 } & AnchorHTMLAttributes<HTMLAnchorElement> &
   ButtonHTMLAttributes<HTMLButtonElement>;
 
-export function Button({
+export const Button = React.forwardRef((props: ButtonProps, ref) => {
+  return <ButtonInner {...props} buttonRef={ref} />;
+});
+Button.displayName = 'Button';
+
+function ButtonInner({
   as = 'button',
   type = 'button',
   href = '',
@@ -60,6 +66,7 @@ export function Button({
   outline,
   color = 'default',
   isActive,
+  buttonRef,
   ...restProps
 }: ButtonProps) {
   const buttonClassName = classNames('btn', className, ButtonStyle[size], ButtonStyle[color], {
@@ -70,7 +77,7 @@ export function Button({
 
   if (as === 'link') {
     return (
-      <Link to={href} className={buttonClassName} {...restProps}>
+      <Link to={href} className={buttonClassName} {...restProps} ref={buttonRef}>
         {icon && <span className="icon">{icon}</span>}
         {children && <span className={`${blindText ? 'blind' : 'text'}`}>{children}</span>}
       </Link>
@@ -78,14 +85,14 @@ export function Button({
   }
   if (as === 'a') {
     return (
-      <a href={href} className={buttonClassName} {...restProps}>
+      <a href={href} className={buttonClassName} {...restProps} ref={buttonRef}>
         {icon && <span className="icon">{icon}</span>}
         {children && <span className={`${blindText ? 'blind' : 'text'}`}>{children}</span>}
       </a>
     );
   }
   return (
-    <button className={buttonClassName} type={type} disabled={disabled} {...restProps}>
+    <button className={buttonClassName} type={type} disabled={disabled} {...restProps} ref={buttonRef}>
       {icon && <span className="icon">{icon}</span>}
       {children && <span className={`${blindText ? 'blind' : 'text'}`}>{children}</span>}
     </button>

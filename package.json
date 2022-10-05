@@ -94,7 +94,8 @@
             "yorkie",
             "sdk",
             "focusable",
-            "href"
+            "href",
+            "ctx"
           ],
           "skipIfMatch": [
             "TODO\\(.+\\):",
