@@ -95,7 +95,8 @@
             "sdk",
             "focusable",
             "href",
-            "ctx"
+            "ctx",
+            "mailto"
           ],
           "skipIfMatch": [
             "TODO\\(.+\\):",
