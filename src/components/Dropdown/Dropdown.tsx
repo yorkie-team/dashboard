@@ -66,6 +66,8 @@ function Menu({ children, onClick }: {
   onClick?: React.MouseEventHandler<HTMLAnchorElement>
 }) {
   return (
+    // TODO(hackerwins): Add a11y support.
+    // eslint-disable-next-line jsx-a11y/anchor-is-valid
     <a href="#" className="dropdown_menu" onClick={onClick}>
       {children}
     </a>
