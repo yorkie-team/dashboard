@@ -99,10 +99,10 @@ export function Header({ className }: HeaderProps) {
                           </Dropdown.List>
                           <ul className="terms_list">
                             <li className="terms_item">
-                              <a href="#" className="terms_menu">Privacy policy</a>
+                              <a href="/policy" className="terms_menu">Privacy policy</a>
                             </li>
                             <li className="terms_item">
-                              <a href="#" className="terms_menu">Terms of service</a>
+                              <a href="/terms" className="terms_menu">Terms of service</a>
                             </li>
                           </ul>
                         </Dropdown>

@@ -87,7 +87,6 @@
             "dropdown",
             "mb",
             "py",
-            "mx",
             "rpc",
             "serializable",
             "cdn",
@@ -96,7 +95,8 @@
             "focusable",
             "href",
             "ctx",
-            "mailto"
+            "mailto",
+            "jsx"
           ],
           "skipIfMatch": [
             "TODO\\(.+\\):",
