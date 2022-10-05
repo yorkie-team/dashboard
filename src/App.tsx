@@ -28,10 +28,10 @@ import {
   ProjectAPIKeysPage,
   ProjectSettingsPage,
   NotFoundPage,
-  ComponentPage,
+  TestPage,
 } from 'pages';
 import { DocumentDetail } from 'features/documents';
-import { ButtonView, PopoverView, MenuView } from 'component-view';
+import { ButtonView, PopoverView, DropdownView } from 'component-view';
 
 function App() {
   return (
@@ -39,11 +39,11 @@ function App() {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/test" element={<ComponentPage />}>
+        <Route path="/test" element={<TestPage />}>
           <Route path="/test" element={<Navigate to="./button" />} />
           <Route path="/test/button" element={<ButtonView />} />
-          <Route path="/test/select" element={<PopoverView />} />
-          <Route path="/test/menu" element={<MenuView />} />
+          <Route path="/test/popover" element={<PopoverView />} />
+          <Route path="/test/dropdown" element={<DropdownView />} />
         </Route>
         <Route element={<PrivateRoute />}>
           <Route path="/" element={<Navigate to="/projects" />} />

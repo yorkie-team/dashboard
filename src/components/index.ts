@@ -19,5 +19,5 @@ export * from './Button/Button';
 export * from './Button/ButtonBox';
 export * from './Input/InputBox';
 export * from './Popover/Popover';
-export * from './Menu/Menu';
+export * from './Dropdown/Dropdown';
 export * from './Modal/Modal';

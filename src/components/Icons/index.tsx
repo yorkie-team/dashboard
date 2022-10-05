@@ -14,7 +14,11 @@
  * limitations under the License.
  */
 
+import React from 'react';
 import './icon.scss';
+import { ReactComponent as CircleSVG } from 'assets/icons/icon_circle.svg';
+import { ReactComponent as CheckSVG } from 'assets/icons/icon_check.svg';
+
 export { ReactComponent as LogoHorizontalGrayIcon } from 'assets/icons/logo_horizontal_s_gray.svg';
 export { ReactComponent as LogoMarkOnlyIcon } from 'assets/icons/logo_no_text.svg';
 export { ReactComponent as Logo3DMarkOnlyIcon } from 'assets/icons/logo_3d_2.svg';
@@ -25,4 +29,12 @@ export { ReactComponent as HamburgerIcon } from 'assets/icons/icon_gnb_menu.svg'
 export { ReactComponent as ArrowUpDownIcon } from 'assets/icons/icon_open_selector.svg';
 export { ReactComponent as GridViewIcon } from 'assets/icons/icon_view_grid.svg';
 export { ReactComponent as ListViewIcon } from 'assets/icons/icon_view_list.svg';
-export { ReactComponent as CircleIcon } from 'assets/icons/icon_circle.svg';
+export { ReactComponent as CircleSVG } from 'assets/icons/icon_circle.svg';
+
+export function CircleIcon() {
+    return <span className="icon gray800"><CircleSVG /></span>;
+}
+
+export function CheckIcon() {
+    return <span className="icon orange_0"><CheckSVG /></span>;
+}

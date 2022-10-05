@@ -15,12 +15,12 @@
  */
 
 import React from 'react';
-import './component.scss';
+import './test.scss';
 import { NavLink as Link, Outlet } from 'react-router-dom';
 
-export function ComponentPage() {
+export function TestPage() {
   return (
-    <>
+    <div className='test'>
       <nav>
         <ul>
           <li>
@@ -34,13 +34,13 @@ export function ComponentPage() {
             </Link>
           </li>
           <li>
-            <Link to="./menu" className={({ isActive }) => (isActive ? 'active' : '')}>
-              Menu
+            <Link to="./dropdown" className={({ isActive }) => (isActive ? 'active' : '')}>
+              Dropdown
             </Link>
           </li>
         </ul>
       </nav>
       <Outlet />
-    </>
+    </div>
   );
 }

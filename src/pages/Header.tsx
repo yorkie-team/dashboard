@@ -14,15 +14,14 @@
  * limitations under the License.
  */
 
-import React, { useCallback, useState, useRef } from 'react';
+import React, { useCallback } from 'react';
 import './header.scss';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useAppSelector, useAppDispatch } from 'app/hooks';
-import { useOutsideClick } from 'hooks';
 import { ProjectDropdown } from 'features/projects';
 import { selectUsers, logoutUser } from 'features/users/usersSlice';
-import { LogoMarkOnlyIcon, HamburgerIcon, CloseIcon } from 'components';
+import { LogoMarkOnlyIcon, HamburgerIcon, CloseIcon, Dropdown, Popover } from 'components';
 
 type HeaderProps = {
   className?: string;
@@ -36,18 +35,6 @@ export function Header({ className }: HeaderProps) {
     dispatch(logoutUser());
     navigate('/login');
   }, [dispatch, navigate]);
-
-  const userDropdownRef = useRef<HTMLDivElement | null>(null);
-  const userDropdownButtonRef = useRef<HTMLButtonElement | null>(null);
-  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
-
-  useOutsideClick(
-    userDropdownRef,
-    () => {
-      if (isUserDropdownOpen) setIsUserDropdownOpen(false);
-    },
-    userDropdownButtonRef,
-  );
 
   return (
     <>
@@ -81,55 +68,49 @@ export function Header({ className }: HeaderProps) {
                     </a>
                   </li>
                   <li className="util_item">
-                    <button
-                      type="button"
-                      ref={userDropdownButtonRef}
-                      className={`util_menu user_profile ${isUserDropdownOpen ? 'is_active' : ''}`}
-                      onClick={() => setIsUserDropdownOpen((isOpen) => !isOpen)}
-                    >
-                      {username.slice(0, 1).toUpperCase()}
-                    </button>
-                    <div className="dropdown shadow_m" ref={userDropdownRef}>
-                      <dl className="user_account">
-                        <dt className="blind">Name</dt>
-                        <dd className="user_account_text">{username}</dd>
-                      </dl>
-                      <ul className="dropdown_list">
-                        <li className="dropdown_item">
-                          <button type="button" onClick={logout} className="dropdown_menu">
-                            <span className="dropdown_text highlight">Sign out</span>
-                          </button>
-                        </li>
-                      </ul>
-                    </div>
+                    <Popover>
+                      <Popover.Button className={`util_menu user_profile is_active`}>
+                        <span className="blind">User profile</span>
+                        <div className="profile">
+                          {username.slice(0, 1).toUpperCase()}
+                        </div>
+                      </Popover.Button>
+                      <Popover.Dropdown>
+                        <Dropdown shadow="m">
+                          <dl className="user_account">
+                            <dt className="blind">Name</dt>
+                            <dd className="user_account_text">{username}</dd>
+                            <dt className="blind">Mail</dt>
+                            <dd className="user_account_text">
+                              <a href={`mailto:${username}@yorkie.dev`} className="user_account_mail">
+                                {username}@yorkie.dev
+                              </a>
+                            </dd>
+                          </dl>
+                          <Dropdown.List>
+                            <Dropdown.Item border>
+                              <Dropdown.Menu>
+                                <Dropdown.Text>Settings</Dropdown.Text>
+                              </Dropdown.Menu>
+                              <Dropdown.Menu onClick={logout}>
+                                <Dropdown.Text highlight>Sign out</Dropdown.Text>
+                              </Dropdown.Menu>
+                            </Dropdown.Item>
+                          </Dropdown.List>
+                          <ul className="terms_list">
+                            <li className="terms_item">
+                              <a href="#" className="terms_menu">Privacy policy</a>
+                            </li>
+                            <li className="terms_item">
+                              <a href="#" className="terms_menu">Terms of service</a>
+                            </li>
+                          </ul>
+                        </Dropdown>
+                      </Popover.Dropdown>
+                    </Popover>
                   </li>
                 </ul>
               </nav>
-              <div className="util_list_mo dropdown">
-                <ul className="dropdown_list">
-                  <li className="dropdown_item">
-                    <a
-                      href="https://yorkie.dev/docs"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="dropdown_menu is_active"
-                    >
-                      <span className="dropdown_text">Docs</span>
-                    </a>
-                  </li>
-                </ul>
-                <ul className="dropdown_list">
-                  <li className="dropdown_item">
-                    <button type="button" onClick={logout} className="dropdown_menu">
-                      <span className="dropdown_text">Sign out</span>
-                    </button>
-                  </li>
-                </ul>
-                <dl className="user_account">
-                  <dt className="blind">Name</dt>
-                  <dd className="user_account_text">{username}</dd>
-                </dl>
-              </div>
             </>
           )}
         </div>
