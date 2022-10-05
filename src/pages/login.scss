@@ -52,6 +52,12 @@
 
     @include mixins-lib.tabletStart() {
       margin-top: 54px;
+      padding-left: 28px;
+      padding-right: 28px;
+    }
+
+    @include mixins-lib.mobileStart() {
+      padding: 0;
     }
 
     fieldset {
@@ -68,7 +74,7 @@
 
       &.is_error {
         & + .btn_box {
-          padding-top: 20px;
+          margin-top: 20px;
         }
       }
     }
@@ -245,36 +251,6 @@
     }
   }
 
-  .tooltip_box {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-
-    .title {
-      margin-top: 0;
-      @include mixins-lib.rfonts(14, 22, 500);
-    }
-
-    & + .input_box {
-      margin-top: variables.$spacing_16;
-    }
-  }
-
-  .btn_tooltip {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 3px;
-
-    .icon {
-      display: block;
-    }
-
-    svg path {
-      fill: inherit;
-    }
-  }
-
   .link_options {
     display: flex;
     align-items: center;
@@ -390,6 +366,7 @@
         @include mixins-lib.rfonts(16, 24, 600);
 
         &.orange_0 {
+          &.is_disabled,
           &:disabled {
             background-color: var(--gray-100);
             color: var(--gray-400);
