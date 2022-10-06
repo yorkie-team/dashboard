@@ -30,8 +30,10 @@ import { ReactComponent as HamburgerSVG } from 'assets/icons/icon_gnb_menu.svg';
 import { ReactComponent as ArrowUpDownSVG } from 'assets/icons/icon_open_selector.svg';
 import { ReactComponent as GridViewSVG } from 'assets/icons/icon_view_grid.svg';
 import { ReactComponent as ListViewSVG } from 'assets/icons/icon_view_list.svg';
+import { ReactComponent as ShortcutSVG } from 'assets/icons/icon_short_cut.svg';
 
-const svg = {
+const svgMap = {
+  shortcut: <ShortcutSVG />,
   circle: <CircleSVG />,
   square: <SquareSVG />,
   check: <CheckSVG />,
@@ -46,7 +48,7 @@ const svg = {
   viewGrid: <GridViewSVG />,
   viewList: <ListViewSVG />,
 };
-type SVGName = keyof typeof svg;
+type SVGType = keyof typeof svgMap;
 
 export function Icon({
   type,
@@ -54,10 +56,10 @@ export function Icon({
   className,
   fill,
 }: {
-  type: SVGName;
+  type: SVGType;
   color?: string;
   className?: string;
   fill?: boolean;
 }) {
-  return <span className={classNames({ icon: !fill }, className, color)}>{svg[type]}</span>;
+  return <span className={classNames({ icon: !fill }, className, color)}>{svgMap[type]}</span>;
 }
