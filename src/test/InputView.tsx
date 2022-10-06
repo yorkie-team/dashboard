@@ -15,21 +15,21 @@
  */
 
 import React from 'react';
-import { InputText, Icon } from 'components';
+import { InputTextBox, InputTextField, Icon } from 'components';
 
 export function InputView() {
   return (
     <div className="input_view">
       <em className="uio_title">Input Box</em>
       <div className="uio_align_box">
-        <InputText
+        <InputTextBox
           label="Label"
           placeholder=" "
           autoComplete="off"
           helperText="Helper Text"
           icon={<Icon type="square" />}
         />
-        <InputText
+        <InputTextBox
           label="Label (Error)"
           placeholder="placeholder"
           autoComplete="off"
@@ -37,7 +37,7 @@ export function InputView() {
           helperText="Helper Text"
           icon={<Icon type="square" />}
         />
-        <InputText
+        <InputTextBox
           label="Label (Success)"
           placeholder="placeholder"
           autoComplete="off"
@@ -45,7 +45,7 @@ export function InputView() {
           helperText="Helper Text"
           icon={<Icon type="square" />}
         />
-        <InputText
+        <InputTextBox
           label="Label (Disabled)"
           placeholder="placeholder"
           autoComplete="off"
@@ -56,27 +56,27 @@ export function InputView() {
       </div>
       <em className="uio_title">No Icon</em>
       <div className="uio_align_box">
-        <InputText
+        <InputTextBox
           label="Label"
           placeholder=" "
           autoComplete="off"
           helperText="Helper Text Helper Text Helper Text Helper Text Helper Text Helper Text"
         />
-        <InputText
+        <InputTextBox
           label="Label (Error)"
           placeholder="placeholder"
           autoComplete="off"
           state="error"
           helperText="Helper Text Helper Text Helper Text Helper Text Helper Text Helper Text"
         />
-        <InputText
+        <InputTextBox
           label="Label (Success)"
           placeholder="placeholder"
           autoComplete="off"
           state="success"
           helperText="Helper Text Helper Text Helper Text Helper Text Helper Text Helper Text"
         />
-        <InputText
+        <InputTextBox
           label="Label (Disabled)"
           placeholder="placeholder"
           autoComplete="off"
@@ -86,7 +86,7 @@ export function InputView() {
       </div>
       <em className="uio_title">No Label</em>
       <div className="uio_align_box">
-        <InputText
+        <InputTextBox
           label="Label"
           blindLabel
           placeholder="placeholder"
@@ -94,7 +94,7 @@ export function InputView() {
           helperText="Helper Text"
           icon={<Icon type="square" />}
         />
-        <InputText
+        <InputTextBox
           label="Label (Error)"
           blindLabel
           placeholder="placeholder"
@@ -103,7 +103,7 @@ export function InputView() {
           helperText="Helper Text"
           icon={<Icon type="square" />}
         />
-        <InputText
+        <InputTextBox
           label="Label (Success)"
           blindLabel
           placeholder="placeholder"
@@ -112,7 +112,7 @@ export function InputView() {
           helperText="Helper Text"
           icon={<Icon type="square" />}
         />
-        <InputText
+        <InputTextBox
           label="Label (Disabled)"
           blindLabel
           placeholder="placeholder"
@@ -124,7 +124,7 @@ export function InputView() {
       </div>
       <em className="uio_title">Label on Box</em>
       <div className="uio_align_box">
-        <InputText
+        <InputTextBox
           label="Label"
           floatingLabel
           placeholder=" "
@@ -132,7 +132,7 @@ export function InputView() {
           helperText="Helper Text"
           icon={<Icon type="square" />}
         />
-        <InputText
+        <InputTextBox
           label="Label (Error)"
           floatingLabel
           placeholder="placeholder"
@@ -141,7 +141,7 @@ export function InputView() {
           helperText="Helper Text"
           icon={<Icon type="square" />}
         />
-        <InputText
+        <InputTextBox
           label="Label (Success)"
           floatingLabel
           placeholder="placeholder"
@@ -150,7 +150,7 @@ export function InputView() {
           helperText="Helper Text"
           icon={<Icon type="square" />}
         />
-        <InputText
+        <InputTextBox
           label="Label (Disabled)"
           floatingLabel
           placeholder="placeholder"
@@ -158,6 +158,127 @@ export function InputView() {
           state="disabled"
           helperText="Helper Text"
           icon={<Icon type="square" />}
+        />
+      </div>
+      <em className="uio_title">Input Field</em>
+      <div className="uio_align_box">
+        <InputTextField
+          label="Disabled"
+          id="input1"
+          placeholder="Disabled"
+          autoComplete="off"
+          helperText="Helper Text"
+          state="disabled"
+        />
+        <InputTextField
+          label="Default(Editing)"
+          id="input2"
+          placeholder="Editing"
+          autoComplete="off"
+          helperText="Helper Text"
+          editing
+        />
+        <InputTextField
+          label="Error"
+          id="input3"
+          state="error"
+          placeholder="Error"
+          autoComplete="off"
+          helperText="Helper Text"
+          editing
+        />
+        <InputTextField
+          label="Success"
+          id="input4"
+          state="success"
+          placeholder="Success"
+          autoComplete="off"
+          helperText="Helper Text"
+        />
+      </div>
+      <em className="uio_title">Input Field (No Label)</em>
+      <div className="uio_align_box">
+        <InputTextField
+          label="Disabled"
+          id="input5"
+          placeholder="Disabled"
+          autoComplete="off"
+          helperText="Helper Text"
+          state="disabled"
+          blindLabel
+        />
+        <InputTextField
+          label="Default(Editing)"
+          id="input6"
+          placeholder="Editing"
+          autoComplete="off"
+          helperText="Helper Text"
+          editing
+          blindLabel
+        />
+        <InputTextField
+          label="Error"
+          id="input7"
+          state="error"
+          placeholder="Error"
+          autoComplete="off"
+          helperText="Helper Text"
+          editing
+          blindLabel
+        />
+        <InputTextField
+          label="Success"
+          id="input8"
+          state="success"
+          placeholder="Success"
+          autoComplete="off"
+          helperText="Helper Text"
+          blindLabel
+        />
+      </div>
+      <em className="uio_title">Input Field (No Helper)</em>
+      <div className="uio_align_box">
+        <InputTextField label="Disabled" id="input9" placeholder="Disabled" autoComplete="off" state="disabled" />
+        <InputTextField label="Default(Editing)" id="input10" placeholder="Editing" autoComplete="off" editing />
+        <InputTextField label="Error" id="input11" state="error" placeholder="Error" autoComplete="off" editing />
+        <InputTextField label="Success" id="input12" state="success" placeholder="Success" autoComplete="off" />
+      </div>
+      <em className="uio_title">Input Field Large</em>
+      <div className="uio_align_box">
+        <InputTextField
+          label="Disabled"
+          id="input13"
+          placeholder="Disabled"
+          autoComplete="off"
+          state="disabled"
+          large
+          helperText="Helper Text"
+        />
+        <InputTextField
+          label="Default(Editing)"
+          id="input14"
+          placeholder="Editing"
+          autoComplete="off"
+          large
+          helperText="Helper Text"
+        />
+        <InputTextField
+          label="Error"
+          id="input15"
+          state="error"
+          placeholder="Error"
+          autoComplete="off"
+          large
+          helperText="Helper Text"
+        />
+        <InputTextField
+          label="Success"
+          id="input16"
+          state="success"
+          placeholder="Success"
+          autoComplete="off"
+          large
+          helperText="Helper Text"
         />
       </div>
     </div>
