@@ -19,7 +19,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { LoginFields, selectUsers, loginUser } from './usersSlice';
-import { Button, ButtonBox, InputBox } from 'components';
+import { Button, ButtonBox, InputText } from 'components';
 
 export function LoginForm() {
   const dispatch = useAppDispatch();
@@ -64,34 +64,26 @@ export function LoginForm() {
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <fieldset>
         <legend className="blind">Login Form</legend>
-        <InputBox
-          label="username"
+        <InputText
+          label="Username"
           blindLabel={true}
-          focusFloatingLabel={true}
+          floatingLabel={true}
           placeholder="Username"
           {...register('username', { required: 'Username is required' })}
           autoComplete="off"
           autoFocus
-          helper={
-            formErrors.username && {
-              type: 'error',
-              message: formErrors.username.message || '',
-            }
-          }
+          state={formErrors.username ? 'error' : 'normal'}
+          helperText={(formErrors.username && formErrors.username.message) || ''}
         />
-        <InputBox
+        <InputText
           type="password"
-          label="password"
+          label="Password"
           blindLabel={true}
-          focusFloatingLabel={true}
+          floatingLabel={true}
           placeholder="Password"
           {...register('password', { required: 'Password is required' })}
-          helper={
-            formErrors.password && {
-              type: 'error',
-              message: formErrors.password.message || '',
-            }
-          }
+          state={formErrors.password ? 'error' : 'normal'}
+          helperText={(formErrors.password && formErrors.password.message) || ''}
         />
         <ButtonBox fullWidth={true}>
           <Button type="submit" disabled={status === 'loading'} color="primary">

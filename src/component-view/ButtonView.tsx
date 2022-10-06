@@ -15,7 +15,7 @@
  */
 
 import React from 'react';
-import { Button, ButtonBox, GridViewIcon, ListViewIcon, CircleIcon } from 'components';
+import { Button, ButtonBox, Icon } from 'components';
 
 export function ButtonView() {
   return (
@@ -261,7 +261,7 @@ export function ButtonView() {
                   text: 'Orange Alpha (Light)',
                 },
               ].map(({ className, text }) => (
-                <Button key={text} className={`${className}`} icon={<CircleIcon />}>
+                <Button key={text} className={`${className}`} icon={<Icon type="circle" />}>
                   {text}
                 </Button>
               ))}
@@ -272,16 +272,16 @@ export function ButtonView() {
         <div className="uio_align_box">
           <div className="uio_box">
             <ButtonBox>
-              <Button color="toggle" isActive={true} blindText={true} icon={<GridViewIcon />}>
+              <Button color="toggle" isActive={true} blindText={true} icon={<Icon type="viewGrid" />}>
                 2x2 layout
               </Button>
-              <Button color="toggle" blindText={true} icon={<GridViewIcon />}>
+              <Button color="toggle" blindText={true} icon={<Icon type="viewGrid" />}>
                 2x2 layout
               </Button>
-              <Button color="toggle" isActive={true} blindText={true} icon={<ListViewIcon />}>
+              <Button color="toggle" isActive={true} blindText={true} icon={<Icon type="viewList" />}>
                 1x2 layout
               </Button>
-              <Button color="toggle" blindText={true} icon={<ListViewIcon />}>
+              <Button color="toggle" blindText={true} icon={<Icon type="viewList" />}>
                 1x2 layout
               </Button>
             </ButtonBox>

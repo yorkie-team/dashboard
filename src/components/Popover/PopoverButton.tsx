@@ -16,7 +16,7 @@
 
 import React, { ReactNode } from 'react';
 import { usePopoverContext } from './Popover.context';
-import { Button } from 'components'
+import { Button } from 'components';
 
 export interface PopoverButtonProps {
   children: ReactNode;
@@ -29,7 +29,6 @@ export const PopoverButton = ({ className, children, onClick, ...restProps }: Po
   return (
     <Button
       onClick={() => {
-        console.log('hit');
         ctx.onToggle();
         onClick && onClick();
       }}

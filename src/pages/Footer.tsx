@@ -16,12 +16,12 @@
 
 import React from 'react';
 import './footer.scss';
-import { LogoHorizontalGrayIcon } from 'components';
+import { Icon } from 'components';
 
 export function Footer() {
   return (
     <footer className="footer">
-      <LogoHorizontalGrayIcon />
+      <Icon type="LogoHorizontalGray" fill />
     </footer>
   );
 }

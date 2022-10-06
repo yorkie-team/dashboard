@@ -15,7 +15,7 @@
  */
 
 import React from 'react';
-import { Dropdown, CircleIcon, CheckIcon } from 'components';
+import { Dropdown, Icon } from 'components';
 
 export function DropdownView() {
   return (
@@ -35,13 +35,13 @@ export function DropdownView() {
           </Dropdown.Item>
           <Dropdown.Item>
             <Dropdown.Menu>
-              <CircleIcon />
+              <Icon type="circle" color="gray800" />
               <Dropdown.Text>Menu 3</Dropdown.Text>
             </Dropdown.Menu>
           </Dropdown.Item>
           <Dropdown.Item>
             <Dropdown.Menu>
-              <CheckIcon />
+              <Icon type="check" color="orange_0" />
               <Dropdown.Text>item 2 item 2 item 2 item 2 item 2</Dropdown.Text>
             </Dropdown.Menu>
           </Dropdown.Item>
@@ -60,13 +60,13 @@ export function DropdownView() {
           </Dropdown.Item>
           <Dropdown.Item>
             <Dropdown.Menu>
-              <CircleIcon />
+              <Icon type="circle" color="gray800" />
               <Dropdown.Text>Menu 3</Dropdown.Text>
             </Dropdown.Menu>
           </Dropdown.Item>
           <Dropdown.Item>
             <Dropdown.Menu>
-              <CheckIcon />
+              <Icon type="check" color="orange_0" />
               <Dropdown.Text>item 2 item 2 item 2 item 2 item 2</Dropdown.Text>
             </Dropdown.Menu>
           </Dropdown.Item>
@@ -87,13 +87,13 @@ export function DropdownView() {
           </Dropdown.Item>
           <Dropdown.Item>
             <Dropdown.Menu>
-              <CircleIcon />
+              <Icon type="circle" color="gray800" />
               <Dropdown.Text>Menu 3</Dropdown.Text>
             </Dropdown.Menu>
           </Dropdown.Item>
           <Dropdown.Item>
             <Dropdown.Menu>
-              <CheckIcon />
+              <Icon type="check" color="orange_0" />
               <Dropdown.Text>item 2 item 2 item 2 item 2 item 2</Dropdown.Text>
             </Dropdown.Menu>
           </Dropdown.Item>

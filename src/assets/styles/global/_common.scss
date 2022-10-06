@@ -1,10 +1,10 @@
 @charset "utf-8";
-@use "../global/mixins-lib";
-@use "../global/variables";
-@use "../global/color";
-@use "../global/font";
-@use "sass:list";
-@use "sass:map";
+@use '../global/mixins-lib';
+@use '../global/variables';
+@use '../global/color';
+@use '../global/font';
+@use 'sass:list';
+@use 'sass:map';
 
 * {
   -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
@@ -44,15 +44,6 @@ select {
   padding: 0;
 }
 
-body,
-input,
-textarea,
-select,
-button,
-table {
-  outline: none !important;
-}
-
 html,
 body {
   height: 100%;
@@ -62,7 +53,7 @@ body {
 html {
   font-size: mixins-lib.$root-em * 1px;
 
-  @if (variables.$initial-line-height != "normal") {
+  @if (variables.$initial-line-height != 'normal') {
     line-height: mixins-lib.$root-em * 1px;
   }
 }
@@ -97,7 +88,6 @@ main {
 }
 
 pre {
-  white-space: pre-wrap;
   word-wrap: break-word;
 }
 
@@ -131,7 +121,7 @@ select,
 textarea {
   color: inherit;
 
-  @if (variables.$initial-line-height == "normal") {
+  @if (variables.$initial-line-height == 'normal') {
     line-height: normal;
   }
 }
@@ -140,6 +130,13 @@ button {
   border: transparent;
   background-color: transparent;
   cursor: pointer;
+}
+
+button,
+a {
+  &:focus-visible {
+    outline: 1px solid var(--orange-0);
+  }
 }
 
 legend,
@@ -154,66 +151,66 @@ legend {
 
 // color
 $palette: (
-  "gray": (
-    "900": var(--gray-900),
-    "800": var(--gray-800),
-    "700": var(--gray-700),
-    "600": var(--gray-600),
-    "500": var(--gray-500),
-    "400": var(--gray-400),
-    "300": var(--gray-300),
-    "200": var(--gray-200),
-    "50": var(--gray-50),
-    "000": var(--gray-000),
+  'gray': (
+    '900': var(--gray-900),
+    '800': var(--gray-800),
+    '700': var(--gray-700),
+    '600': var(--gray-600),
+    '500': var(--gray-500),
+    '400': var(--gray-400),
+    '300': var(--gray-300),
+    '200': var(--gray-200),
+    '50': var(--gray-50),
+    '000': var(--gray-000),
   ),
-  "orange": (
-    "dark": var(--orange-dark),
-    "0": var(--orange-0),
-    "light": var(--orange-light),
-    "alpha_dark": var(--orange-alpha-dark),
-    "alpha_0": var(--orange-alpha-0),
-    "alpha_light": var(--orange-alpha-light)
+  'orange': (
+    'dark': var(--orange-dark),
+    '0': var(--orange-0),
+    'light': var(--orange-light),
+    'alpha_dark': var(--orange-alpha-dark),
+    'alpha_0': var(--orange-alpha-0),
+    'alpha_light': var(--orange-alpha-light),
   ),
-  "yellow": (
-    "dark": var(--yellow-dark),
-    "0": var(--yellow-0),
-    "light": var(--yellow-light),
-    "alpha_dark": var(--yellow-alpha-dark),
-    "alpha_0": var(--yellow-alpha-0),
-    "alpha_light": var(--yellow-alpha-light)
+  'yellow': (
+    'dark': var(--yellow-dark),
+    '0': var(--yellow-0),
+    'light': var(--yellow-light),
+    'alpha_dark': var(--yellow-alpha-dark),
+    'alpha_0': var(--yellow-alpha-0),
+    'alpha_light': var(--yellow-alpha-light),
   ),
-  "green": (
-    "dark": var(--green-dark),
-    "0": var(--green-0),
-    "light": var(--green-light),
-    "alpha_dark": var(--green-alpha-dark),
-    "alpha_0": var(--green-alpha-0),
-    "alpha_light": var(--green-alpha-light)
+  'green': (
+    'dark': var(--green-dark),
+    '0': var(--green-0),
+    'light': var(--green-light),
+    'alpha_dark': var(--green-alpha-dark),
+    'alpha_0': var(--green-alpha-0),
+    'alpha_light': var(--green-alpha-light),
   ),
-  "blue": (
-    "dark": var(--blue-dark),
-    "0": var(--blue-0),
-    "light": var(--blue-light),
-    "alpha_dark": var(--blue-alpha-dark),
-    "alpha_0": var(--blue-alpha-0),
-    "alpha_light": var(--blue-alpha-light)
+  'blue': (
+    'dark': var(--blue-dark),
+    '0': var(--blue-0),
+    'light': var(--blue-light),
+    'alpha_dark': var(--blue-alpha-dark),
+    'alpha_0': var(--blue-alpha-0),
+    'alpha_light': var(--blue-alpha-light),
   ),
-  "red": (
-    "dark": var(--red-dark),
-    "0": var(--red-0),
-    "light": var(--red-light),
-    "alpha_dark": var(--red-alpha-dark),
-    "alpha_0": var(--red-alpha-0),
-    "alpha_light": var(--red-alpha-light)
+  'red': (
+    'dark': var(--red-dark),
+    '0': var(--red-0),
+    'light': var(--red-light),
+    'alpha_dark': var(--red-alpha-dark),
+    'alpha_0': var(--red-alpha-0),
+    'alpha_light': var(--red-alpha-light),
   ),
-  "purple": (
-    "dark": var(--purple-dark),
-    "0": var(--purple-0),
-    "light": var(--purple-light),
-    "alpha_dark": var(--purple-alpha-dark),
-    "alpha_0": var(--purple-alpha-0),
-    "alpha_light": var(--purple-alpha-light)
-  )
+  'purple': (
+    'dark': var(--purple-dark),
+    '0': var(--purple-0),
+    'light': var(--purple-light),
+    'alpha_dark': var(--purple-alpha-dark),
+    'alpha_0': var(--purple-alpha-0),
+    'alpha_light': var(--purple-alpha-light),
+  ),
 );
 
 @function map-deep-get($map, $keys...) {
@@ -231,7 +228,7 @@ $palette: (
   }
 }
 
-@each $name, $value in map-deep-get($palette, "gray") {
+@each $name, $value in map-deep-get($palette, 'gray') {
   .gray#{$name} {
     color: $value;
   }
@@ -239,7 +236,7 @@ $palette: (
     background-color: $value;
   }
 }
-@each $name, $value in map-deep-get($palette, "orange") {
+@each $name, $value in map-deep-get($palette, 'orange') {
   .orange_#{$name} {
     color: $value;
   }
@@ -247,7 +244,7 @@ $palette: (
     background-color: $value;
   }
 }
-@each $name, $value in map-deep-get($palette, "yellow") {
+@each $name, $value in map-deep-get($palette, 'yellow') {
   .yellow_#{$name} {
     color: $value;
   }
@@ -255,7 +252,7 @@ $palette: (
     background-color: $value;
   }
 }
-@each $name, $value in map-deep-get($palette, "green") {
+@each $name, $value in map-deep-get($palette, 'green') {
   .green_#{$name} {
     color: $value;
   }
@@ -263,7 +260,7 @@ $palette: (
     background-color: $value;
   }
 }
-@each $name, $value in map-deep-get($palette, "blue") {
+@each $name, $value in map-deep-get($palette, 'blue') {
   .blue_#{$name} {
     color: $value;
   }
@@ -271,7 +268,7 @@ $palette: (
     background-color: $value;
   }
 }
-@each $name, $value in map-deep-get($palette, "red") {
+@each $name, $value in map-deep-get($palette, 'red') {
   .red_#{$name} {
     color: $value;
   }
@@ -279,7 +276,7 @@ $palette: (
     background-color: $value;
   }
 }
-@each $name, $value in map-deep-get($palette, "purple") {
+@each $name, $value in map-deep-get($palette, 'purple') {
   .purple_#{$name} {
     color: $value;
   }
@@ -290,38 +287,38 @@ $palette: (
 
 // Gradient
 $gradient: (
-  "90deg": (
-    "yellow": variables.$gradient_90deg_yellow,
-    "orange": variables.$gradient_90deg_orange,
-    "red": variables.$gradient_90deg_red,
-    "purple": variables.$gradient_90deg_purple,
-    "blue": variables.$gradient_90deg_blue,
-    "green": variables.$gradient_90deg_green,
-    "gray1": variables.$gradient_90deg_gray1,
-    "gray2": variables.$gradient_90deg_gray2,
-    "gray3": variables.$gradient_90deg_gray3,
-    "gray4": variables.$gradient_90deg_gray4,
+  '90deg': (
+    'yellow': variables.$gradient_90deg_yellow,
+    'orange': variables.$gradient_90deg_orange,
+    'red': variables.$gradient_90deg_red,
+    'purple': variables.$gradient_90deg_purple,
+    'blue': variables.$gradient_90deg_blue,
+    'green': variables.$gradient_90deg_green,
+    'gray1': variables.$gradient_90deg_gray1,
+    'gray2': variables.$gradient_90deg_gray2,
+    'gray3': variables.$gradient_90deg_gray3,
+    'gray4': variables.$gradient_90deg_gray4,
   ),
-  "180deg": (
-    "yellow": variables.$gradient_180deg_yellow,
-    "orange": variables.$gradient_180deg_orange,
-    "red": variables.$gradient_180deg_red,
-    "purple": variables.$gradient_180deg_purple,
-    "blue": variables.$gradient_180deg_blue,
-    "green": variables.$gradient_180deg_green,
-    "gray1": variables.$gradient_180deg_gray1,
-    "gray2": variables.$gradient_180deg_gray2,
-    "gray3": variables.$gradient_180deg_gray3,
-    "gray4": variables.$gradient_180deg_gray4,
-  )
+  '180deg': (
+    'yellow': variables.$gradient_180deg_yellow,
+    'orange': variables.$gradient_180deg_orange,
+    'red': variables.$gradient_180deg_red,
+    'purple': variables.$gradient_180deg_purple,
+    'blue': variables.$gradient_180deg_blue,
+    'green': variables.$gradient_180deg_green,
+    'gray1': variables.$gradient_180deg_gray1,
+    'gray2': variables.$gradient_180deg_gray2,
+    'gray3': variables.$gradient_180deg_gray3,
+    'gray4': variables.$gradient_180deg_gray4,
+  ),
 );
 
-@each $color, $value in map-deep-get($gradient, "90deg") {
+@each $color, $value in map-deep-get($gradient, '90deg') {
   .gradient_90deg_#{$color} {
     background-image: $value;
   }
 }
-@each $color, $value in map-deep-get($gradient, "180deg") {
+@each $color, $value in map-deep-get($gradient, '180deg') {
   .gradient_180deg_#{$color} {
     background-image: $value;
   }
@@ -329,10 +326,10 @@ $gradient: (
 
 // Shadow
 $shadow: (
-  "xs": variables.$shadow_xs,
-  "s": variables.$shadow_s,
-  "m": variables.$shadow_m,
-  "l": variables.$shadow_l
+  'xs': variables.$shadow_xs,
+  's': variables.$shadow_s,
+  'm': variables.$shadow_m,
+  'l': variables.$shadow_l,
 );
 
 @each $size, $value in $shadow {
@@ -399,7 +396,7 @@ $shadow: (
   @include mixins-lib.tabletStart() {
     display: block;
     position: fixed;
-    bottom: 24px;
+    bottom: 72px;
     right: 24px;
     margin: 0;
     padding: 0;

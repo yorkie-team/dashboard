@@ -15,26 +15,49 @@
  */
 
 import React from 'react';
+import classNames from 'classnames';
 import './icon.scss';
 import { ReactComponent as CircleSVG } from 'assets/icons/icon_circle.svg';
+import { ReactComponent as SquareSVG } from 'assets/icons/icon_square.svg';
 import { ReactComponent as CheckSVG } from 'assets/icons/icon_check.svg';
+import { ReactComponent as LogoHorizontalGraySVG } from 'assets/icons/logo_horizontal_s_gray.svg';
+import { ReactComponent as LogoMarkOnlySVG } from 'assets/icons/logo_no_text.svg';
+import { ReactComponent as Logo3DMarkOnlySVG } from 'assets/icons/logo_3d_2.svg';
+import { ReactComponent as InputHelperSVG } from 'assets/icons/icon_input.svg';
+import { ReactComponent as AddSVG } from 'assets/icons/icon_plus.svg';
+import { ReactComponent as CloseSVG } from 'assets/icons/icon_close.svg';
+import { ReactComponent as HamburgerSVG } from 'assets/icons/icon_gnb_menu.svg';
+import { ReactComponent as ArrowUpDownSVG } from 'assets/icons/icon_open_selector.svg';
+import { ReactComponent as GridViewSVG } from 'assets/icons/icon_view_grid.svg';
+import { ReactComponent as ListViewSVG } from 'assets/icons/icon_view_list.svg';
 
-export { ReactComponent as LogoHorizontalGrayIcon } from 'assets/icons/logo_horizontal_s_gray.svg';
-export { ReactComponent as LogoMarkOnlyIcon } from 'assets/icons/logo_no_text.svg';
-export { ReactComponent as Logo3DMarkOnlyIcon } from 'assets/icons/logo_3d_2.svg';
-export { ReactComponent as InputHelperIcon } from 'assets/icons/icon_input.svg';
-export { ReactComponent as AddIcon } from 'assets/icons/icon_plus.svg';
-export { ReactComponent as CloseIcon } from 'assets/icons/icon_close.svg';
-export { ReactComponent as HamburgerIcon } from 'assets/icons/icon_gnb_menu.svg';
-export { ReactComponent as ArrowUpDownIcon } from 'assets/icons/icon_open_selector.svg';
-export { ReactComponent as GridViewIcon } from 'assets/icons/icon_view_grid.svg';
-export { ReactComponent as ListViewIcon } from 'assets/icons/icon_view_list.svg';
-export { ReactComponent as CircleSVG } from 'assets/icons/icon_circle.svg';
+const svg = {
+  circle: <CircleSVG />,
+  square: <SquareSVG />,
+  check: <CheckSVG />,
+  LogoHorizontalGray: <LogoHorizontalGraySVG />,
+  logoNoText: <LogoMarkOnlySVG />,
+  logo3d: <Logo3DMarkOnlySVG />,
+  input: <InputHelperSVG />,
+  plus: <AddSVG />,
+  close: <CloseSVG />,
+  gnbMenu: <HamburgerSVG />,
+  openSelector: <ArrowUpDownSVG />,
+  viewGrid: <GridViewSVG />,
+  viewList: <ListViewSVG />,
+};
+type SVGName = keyof typeof svg;
 
-export function CircleIcon() {
-    return <span className="icon gray800"><CircleSVG /></span>;
-}
-
-export function CheckIcon() {
-    return <span className="icon orange_0"><CheckSVG /></span>;
+export function Icon({
+  type,
+  color,
+  className,
+  fill,
+}: {
+  type: SVGName;
+  color?: string;
+  className?: string;
+  fill?: boolean;
+}) {
+  return <span className={classNames({ icon: !fill }, className, color)}>{svg[type]}</span>;
 }
