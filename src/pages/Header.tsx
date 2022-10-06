@@ -14,28 +14,22 @@
  * limitations under the License.
  */
 
-import React, { useCallback } from 'react';
-import './header.scss';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { useAppSelector, useAppDispatch } from 'app/hooks';
+import './header.scss';
+
+import { useAppSelector } from 'app/hooks';
 import { ProjectDropdown } from 'features/projects';
-import { selectUsers, logoutUser } from 'features/users/usersSlice';
-import { Icon, Dropdown, Popover } from 'components';
+import { AccountDropdown } from 'features/users';
+import { selectUsers } from 'features/users/usersSlice';
+import { Icon } from 'components';
 
 type HeaderProps = {
   className?: string;
 };
 export function Header({ className }: HeaderProps) {
-  const { token, isValidToken, username } = useAppSelector(selectUsers);
-
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const logout = useCallback(() => {
-    dispatch(logoutUser());
-    navigate('/login');
-  }, [dispatch, navigate]);
-
+  const { token, isValidToken } = useAppSelector(selectUsers);
   return (
     <>
       <header className={`header ${className}`}>
@@ -59,53 +53,18 @@ export function Header({ className }: HeaderProps) {
                 </button>
                 <ul className="util_list">
                   <li className="util_item">
+                    <a href="/feedback" className="util_menu">Feedback</a>
+                  </li>
+                  <li className="util_item">
+                    <a href="/support" className="util_menu">Support</a>
+                  </li>
+                  <li className="util_item">
                     <a href="https://yorkie.dev/docs" target="_blank" rel="noreferrer" className="util_menu">
                       Docs
                     </a>
                   </li>
                   <li className="util_item">
-                    <Popover>
-                      <Popover.Button className={`util_menu user_profile is_active`}>
-                        <span className="blind">User profile</span>
-                        <div className="profile">{username.slice(0, 1).toUpperCase()}</div>
-                      </Popover.Button>
-                      <Popover.Dropdown>
-                        <Dropdown shadow="m">
-                          <dl className="user_account">
-                            <dt className="blind">Name</dt>
-                            <dd className="user_account_text">{username}</dd>
-                            <dt className="blind">Mail</dt>
-                            <dd className="user_account_text">
-                              <a href={`mailto:${username}@yorkie.dev`} className="user_account_mail">
-                                {username}@yorkie.dev
-                              </a>
-                            </dd>
-                          </dl>
-                          <Dropdown.List>
-                            <Dropdown.Item border>
-                              <Dropdown.Menu>
-                                <Dropdown.Text>Settings</Dropdown.Text>
-                              </Dropdown.Menu>
-                              <Dropdown.Menu onClick={logout}>
-                                <Dropdown.Text highlight>Sign out</Dropdown.Text>
-                              </Dropdown.Menu>
-                            </Dropdown.Item>
-                          </Dropdown.List>
-                          <ul className="terms_list">
-                            <li className="terms_item">
-                              <a href="/policy" className="terms_menu">
-                                Privacy policy
-                              </a>
-                            </li>
-                            <li className="terms_item">
-                              <a href="/terms" className="terms_menu">
-                                Terms of service
-                              </a>
-                            </li>
-                          </ul>
-                        </Dropdown>
-                      </Popover.Dropdown>
-                    </Popover>
+                    <AccountDropdown />
                   </li>
                 </ul>
               </nav>

@@ -29,4 +29,3 @@ export * from './DocumentsPage';
 export * from './ProjectOverviewPage';
 export * from './ProjectAPIKeysPage';
 export * from './ProjectSettingsPage';
-export * from './TestPage';
