@@ -21,7 +21,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 import { ProjectDropdown } from 'features/projects';
 import { selectUsers, logoutUser } from 'features/users/usersSlice';
-import { LogoMarkOnlyIcon, HamburgerIcon, CloseIcon, Dropdown, Popover } from 'components';
+import { Icon, Dropdown, Popover } from 'components';
 
 type HeaderProps = {
   className?: string;
@@ -43,7 +43,7 @@ export function Header({ className }: HeaderProps) {
           <div className="shortcut">
             <h1 className="logo">
               <Link to="/" className="logo_menu">
-                <LogoMarkOnlyIcon />
+                <Icon type="logoNoText" fill />
               </Link>
               <span className="blind">Yorkie</span>
             </h1>
@@ -54,12 +54,8 @@ export function Header({ className }: HeaderProps) {
               <nav className="util_box">
                 <button type="button" className="btn_menu">
                   <span className="blind">Open menu</span>
-                  <span className="icon icon_menu">
-                    <HamburgerIcon />
-                  </span>
-                  <span className="icon icon_close">
-                    <CloseIcon />
-                  </span>
+                  <Icon type="gnbMenu" className="icon_menu" />
+                  <Icon type="close" className="icon_close" />
                 </button>
                 <ul className="util_list">
                   <li className="util_item">
@@ -71,9 +67,7 @@ export function Header({ className }: HeaderProps) {
                     <Popover>
                       <Popover.Button className={`util_menu user_profile is_active`}>
                         <span className="blind">User profile</span>
-                        <div className="profile">
-                          {username.slice(0, 1).toUpperCase()}
-                        </div>
+                        <div className="profile">{username.slice(0, 1).toUpperCase()}</div>
                       </Popover.Button>
                       <Popover.Dropdown>
                         <Dropdown shadow="m">
@@ -99,10 +93,14 @@ export function Header({ className }: HeaderProps) {
                           </Dropdown.List>
                           <ul className="terms_list">
                             <li className="terms_item">
-                              <a href="/policy" className="terms_menu">Privacy policy</a>
+                              <a href="/policy" className="terms_menu">
+                                Privacy policy
+                              </a>
                             </li>
                             <li className="terms_item">
-                              <a href="/terms" className="terms_menu">Terms of service</a>
+                              <a href="/terms" className="terms_menu">
+                                Terms of service
+                              </a>
                             </li>
                           </ul>
                         </Dropdown>

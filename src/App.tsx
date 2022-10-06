@@ -31,7 +31,7 @@ import {
   TestPage,
 } from 'pages';
 import { DocumentDetail } from 'features/documents';
-import { ButtonView, PopoverView, DropdownView } from 'component-view';
+import { ButtonView, PopoverView, DropdownView, InputView } from 'component-view';
 
 function App() {
   return (
@@ -44,6 +44,7 @@ function App() {
           <Route path="/test/button" element={<ButtonView />} />
           <Route path="/test/popover" element={<PopoverView />} />
           <Route path="/test/dropdown" element={<DropdownView />} />
+          <Route path="/test/input" element={<InputView />} />
         </Route>
         <Route element={<PrivateRoute />}>
           <Route path="/" element={<Navigate to="/projects" />} />

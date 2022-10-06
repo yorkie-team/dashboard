@@ -20,7 +20,7 @@ import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { Project } from 'api/types';
 import { selectProjectList, listProjectsAsync } from './projectsSlice';
 import { useOutsideClick } from 'hooks';
-import { AddIcon, ArrowUpDownIcon } from 'components';
+import { Icon } from 'components';
 
 type ProjectDropdownProps = {
   size?: 'small' | 'large';
@@ -64,9 +64,7 @@ export function ProjectDropdown({ size = 'small' }: ProjectDropdownProps) {
         onClick={() => setIsDropdownOpen((isOpen) => !isOpen)}
       >
         <span className="shortcut_text">{projectName}</span>
-        <span className="icon">
-          <ArrowUpDownIcon />
-        </span>
+        <Icon type="openSelector" />
       </button>
       <div
         ref={dropdownRef}
@@ -98,9 +96,7 @@ export function ProjectDropdown({ size = 'small' }: ProjectDropdownProps) {
         <ul className="dropdown_list">
           <li className="dropdown_item">
             <Link to={`/projects/new`} className="dropdown_menu">
-              <span className="shortcut_thumb">
-                <AddIcon />
-              </span>
+              <Icon type="plus" className="shortcut_thumb" />
               <span className="shortcut_text">Create new project</span>
             </Link>
           </li>

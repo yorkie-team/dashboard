@@ -20,7 +20,7 @@ import { NavLink as Link, Outlet } from 'react-router-dom';
 
 export function TestPage() {
   return (
-    <div className='test'>
+    <div className="test">
       <nav>
         <ul>
           <li>
@@ -36,6 +36,11 @@ export function TestPage() {
           <li>
             <Link to="./dropdown" className={({ isActive }) => (isActive ? 'active' : '')}>
               Dropdown
+            </Link>
+          </li>
+          <li>
+            <Link to="./input" className={({ isActive }) => (isActive ? 'active' : '')}>
+              Input
             </Link>
           </li>
         </ul>

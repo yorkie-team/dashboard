@@ -78,7 +78,7 @@ function ButtonInner({
   if (as === 'link') {
     return (
       <Link to={href} className={buttonClassName} {...restProps} ref={buttonRef}>
-        {icon && <span className="icon">{icon}</span>}
+        {icon && icon}
         {children && <span className={`${blindText ? 'blind' : 'text'}`}>{children}</span>}
       </Link>
     );
@@ -86,14 +86,14 @@ function ButtonInner({
   if (as === 'a') {
     return (
       <a href={href} className={buttonClassName} {...restProps} ref={buttonRef}>
-        {icon && <span className="icon">{icon}</span>}
+        {icon && icon}
         {children && <span className={`${blindText ? 'blind' : 'text'}`}>{children}</span>}
       </a>
     );
   }
   return (
     <button className={buttonClassName} type={type} disabled={disabled} {...restProps} ref={buttonRef}>
-      {icon && <span className="icon">{icon}</span>}
+      {icon && icon}
       {children && <span className={`${blindText ? 'blind' : 'text'}`}>{children}</span>}
     </button>
   );

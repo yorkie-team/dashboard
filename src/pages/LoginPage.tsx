@@ -20,7 +20,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useAppSelector } from 'app/hooks';
 import { LoginForm } from 'features/users/LoginForm';
 import { PageTemplate } from './PageTemplate';
-import { Logo3DMarkOnlyIcon, Button, ButtonBox } from 'components';
+import { Icon, Button, ButtonBox } from 'components';
 
 export function LoginPage() {
   const navigate = useNavigate();
@@ -35,9 +35,7 @@ export function LoginPage() {
 
   return (
     <PageTemplate className="login_page">
-      <span className="icon_logo">
-        <Logo3DMarkOnlyIcon />
-      </span>
+      <Icon type="logo3d" className="icon_logo" fill />
       <h2 className="title">Log in to Yorkie</h2>
       <LoginForm />
       <div className="box_bottom">

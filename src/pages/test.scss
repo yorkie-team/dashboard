@@ -30,15 +30,56 @@
     margin-top: 10px;
   }
 
-  .uio_title {
-    display: block;
-    margin: 50px 0 30px;
-    font-size: 30px;
-    font-weight: 800;
+  .input_view {
+    .container {
+      width: 1040px;
+      margin: 0 auto;
+    }
+    .uio_title {
+      display: block;
+      margin: 50px 0 15px;
+      padding: 5px 5px;
+      background-color: #e2dedb;
+      font-size: 30px;
+      font-weight: 800;
+    }
+    .uio_title:first-of-type {
+      margin-top: 0;
+    }
+    .uio_desc {
+      margin: 10px 0;
+    }
+    .uio_align_box {
+      display: flex;
+    }
+    .uio_align_box .input_box {
+      flex: 1 1 0;
+      padding: 0 7px;
+    }
+    .uio_align_box .input_box:first-child {
+      padding-left: 0;
+    }
+    .uio_align_box .input_box:last-child {
+      padding-right: 0;
+    }
+    .uio_align_box .input_field_box {
+      margin-top: 20px;
+    }
+    .uio_align_box + .uio_align_box {
+      margin-top: 15px;
+    }
+    .view_code {
+      display: block;
+      margin-top: 5px;
+      padding: 8px;
+      font-size: 15px;
+      color: #fff;
+      background-color: #ccc;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .view_code:hover {
+      background-color: #000;
+    }
   }
-
-  .uio_title:first-of-type {
-    margin-top: 30px;
-  }
-
 }

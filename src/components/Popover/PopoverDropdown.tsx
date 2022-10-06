@@ -23,7 +23,6 @@ export interface PopoverDropdownProps {
 
 export const PopoverDropdown = ({ children }: PopoverDropdownProps) => {
   const ctx = usePopoverContext();
-  console.log(ctx.open);
 
   return <>{ctx.open && children}</>;
 };

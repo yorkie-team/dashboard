@@ -18,9 +18,15 @@
     color: var(--gray-500);
   }
 
-  &:focus {
+  &:-webkit-autofill {
+    background-color: variables.$white;
+  }
+
+  &:focus,
+  &:focus-visible {
     border-color: var(--blue-0);
     caret-color: var(--blue-0);
+    outline: none;
   }
 
   &_box {
@@ -129,6 +135,30 @@
         padding-right: 40px;
       }
     }
+
+    .label_in_input {
+      padding: 19px 15px 7px;
+
+      &::placeholder {
+        color: transparent;
+      }
+
+      &:not(:placeholder-shown) {
+        & + .label_in {
+          @include mixins-lib.fonts(8, 10);
+          color: var(--gray-800);
+          transform: translateY(8px);
+        }
+      }
+    }
+
+    &:focus-within {
+      .label_in {
+        @include mixins-lib.fonts(8, 10);
+        color: var(--gray-800);
+        transform: translateY(8px);
+      }
+    }
   }
 }
 
@@ -136,6 +166,7 @@
   display: block;
   position: relative;
   @include mixins-lib.rfonts(12, 16);
+  color: var(--gray-800);
   word-break: break-all;
 
   & ~ .input {
@@ -144,15 +175,12 @@
 
   &_in {
     position: absolute;
-    top: 8px;
+    top: 0;
     left: 16px;
-    right: 16px;
-    @include mixins-lib.fonts(8, 10);
-
-    ~ .input {
-      margin-top: 0;
-      padding: 19px 15px 7px;
-    }
+    right: 40px;
+    @include mixins-lib.rfonts(14, 22);
+    transform: translateY(14px);
+    transition-duration: 300ms;
   }
 }
 
