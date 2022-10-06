@@ -74,6 +74,5 @@ export function AccountDropdown() {
         </Dropdown>
       </Popover.Dropdown>
     </Popover>
-
   );
-              }
+}

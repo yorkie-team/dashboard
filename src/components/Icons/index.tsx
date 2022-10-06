@@ -27,7 +27,6 @@ import { ReactComponent as InputHelperSVG } from 'assets/icons/icon_input.svg';
 import { ReactComponent as AddSVG } from 'assets/icons/icon_plus.svg';
 import { ReactComponent as CloseSVG } from 'assets/icons/icon_close.svg';
 import { ReactComponent as HamburgerSVG } from 'assets/icons/icon_gnb_menu.svg';
-import { ReactComponent as ArrowUpDownSVG } from 'assets/icons/icon_open_selector.svg';
 import { ReactComponent as GridViewSVG } from 'assets/icons/icon_view_grid.svg';
 import { ReactComponent as ListViewSVG } from 'assets/icons/icon_view_list.svg';
 import { ReactComponent as ShortcutSVG } from 'assets/icons/icon_short_cut.svg';

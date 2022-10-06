@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 import { NavLink as Link, useParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
@@ -28,8 +28,6 @@ type ProjectDropdownProps = {
 
 export function ProjectDropdown({ size = 'small' }: ProjectDropdownProps) {
   const { projectName } = useParams();
-  const dropdownRef = useRef<HTMLDivElement | null>(null);
-  const dropdownButtonRef = useRef<HTMLButtonElement | null>(null);
   const { projects } = useAppSelector(selectProjectList);
   const dispatch = useAppDispatch();
 

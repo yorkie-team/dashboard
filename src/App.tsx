@@ -28,10 +28,9 @@ import {
   ProjectAPIKeysPage,
   ProjectSettingsPage,
   NotFoundPage,
-  TestPage,
 } from 'pages';
 import { DocumentDetail } from 'features/documents';
-import { ButtonView, PopoverView, DropdownView, InputView, BreadcrumbView } from 'component-view';
+import { TestPage, ButtonView, PopoverView, DropdownView, InputView, BreadcrumbView } from 'test';
 
 function App() {
   return (
