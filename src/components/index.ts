@@ -21,3 +21,4 @@ export * from './Input/InputText';
 export * from './Popover/Popover';
 export * from './Dropdown/Dropdown';
 export * from './Modal/Modal';
+export * from './Breadcrumb/Breadcrumb';

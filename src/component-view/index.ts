@@ -18,3 +18,4 @@ export * from './ButtonView';
 export * from './PopoverView';
 export * from './DropdownView';
 export * from './InputView';
+export * from './BreadcrumbView';

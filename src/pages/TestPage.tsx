@@ -19,30 +19,23 @@ import './test.scss';
 import { NavLink as Link, Outlet } from 'react-router-dom';
 
 export function TestPage() {
+  const views = [
+    { name: 'Button', path: 'button', },
+    { name: 'Popover', path: 'popover' },
+    { name: 'Dropdown', path: 'dropdown' },
+    { name: 'Input', path: 'input' },
+    { name: 'Breadcrumb', path: 'breadcrumb' }
+  ];
+
   return (
     <div className="test">
       <nav>
         <ul>
-          <li>
-            <Link to="./button" className={({ isActive }) => (isActive ? 'active' : '')}>
-              Button
-            </Link>
-          </li>
-          <li>
-            <Link to="./popover" className={({ isActive }) => (isActive ? 'active' : '')}>
-              Popover
-            </Link>
-          </li>
-          <li>
-            <Link to="./dropdown" className={({ isActive }) => (isActive ? 'active' : '')}>
-              Dropdown
-            </Link>
-          </li>
-          <li>
-            <Link to="./input" className={({ isActive }) => (isActive ? 'active' : '')}>
-              Input
-            </Link>
-          </li>
+          {views.map((view) => (
+            <li key={view.path}>
+              <Link to={view.path} className={({ isActive }) => (isActive ? 'active' : '')}>{view.name}</Link>
+            </li>
+          ))}
         </ul>
       </nav>
       <Outlet />

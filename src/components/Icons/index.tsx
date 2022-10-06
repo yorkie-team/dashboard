@@ -31,6 +31,7 @@ import { ReactComponent as ArrowUpDownSVG } from 'assets/icons/icon_open_selecto
 import { ReactComponent as GridViewSVG } from 'assets/icons/icon_view_grid.svg';
 import { ReactComponent as ListViewSVG } from 'assets/icons/icon_view_list.svg';
 import { ReactComponent as ShortcutSVG } from 'assets/icons/icon_short_cut.svg';
+import { ReactComponent as OpenSelectorSVG } from 'assets/icons/icon_open_selector.svg';
 
 const svgMap = {
   shortcut: <ShortcutSVG />,
@@ -44,7 +45,7 @@ const svgMap = {
   plus: <AddSVG />,
   close: <CloseSVG />,
   gnbMenu: <HamburgerSVG />,
-  openSelector: <ArrowUpDownSVG />,
+  openSelector: <OpenSelectorSVG />,
   viewGrid: <GridViewSVG />,
   viewList: <ListViewSVG />,
 };
