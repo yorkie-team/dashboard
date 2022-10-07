@@ -1,0 +1,1 @@
+@charset "UTF-8";.document_list .link{display:block;padding:16px 32px;border-radius:4px;font-size:1.4rem;line-height:1.58;font-weight:500;color:var(--gray-800);word-break:break-all}.document_list .link.is_active,.document_list .link:hover{background:var(--gray-100)}

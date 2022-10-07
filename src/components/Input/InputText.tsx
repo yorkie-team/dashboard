@@ -15,7 +15,6 @@
  */
 
 import React, { ReactNode, InputHTMLAttributes } from 'react';
-import './input.scss';
 import classNames from 'classnames';
 import { Icon } from 'components';
 

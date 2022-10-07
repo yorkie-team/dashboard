@@ -17,8 +17,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './header.scss';
-
 import { useAppSelector } from 'app/hooks';
 import { ProjectDropdown } from 'features/projects';
 import { AccountDropdown } from 'features/users';
