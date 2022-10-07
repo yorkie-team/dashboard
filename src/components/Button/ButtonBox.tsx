@@ -15,7 +15,6 @@
  */
 
 import React, { ReactNode } from 'react';
-import './button.scss';
 import classNames from 'classnames';
 
 type ButtonBoxProps = {
