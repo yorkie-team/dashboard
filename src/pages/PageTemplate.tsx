@@ -20,13 +20,11 @@ import { Header } from './Header';
 import { Footer } from './Footer';
 import { ErrorModal } from 'features/globalError/ErrorModal';
 
-type PageTemplateProps = {
+export function PageTemplate({ className = '', headerClassName = '', children }: {
   className?: string;
   headerClassName?: string;
   children: ReactNode;
-};
-
-export function PageTemplate({ className = '', headerClassName = '', children }: PageTemplateProps) {
+}) {
   return (
     <div className={`wrap ${className}`}>
       <Header className={headerClassName} />

@@ -20,13 +20,17 @@ import { PopoverContextProvider } from './Popover.context';
 import { PopoverButton } from './PopoverButton';
 import { PopoverDropdown } from './PopoverDropdown';
 
-export type PopoverProps = {
+export function Popover({
+  children,
+  closeOnClickOutside = true,
+  excludedClickSelector,
+  onClose,
+}: {
   children: ReactNode;
   closeOnClickOutside?: boolean;
   excludedClickSelector?: string;
   onClose?: () => void;
-};
-export function Popover({ children, closeOnClickOutside = true, excludedClickSelector, onClose }: PopoverProps) {
+}) {
   const [open, setOpen] = useState(false);
   const targetRef = useRef<HTMLElement | null>(null);
 

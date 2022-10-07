@@ -21,26 +21,29 @@ import { useAppSelector } from 'app/hooks';
 import { ProjectDropdown } from 'features/projects';
 import { AccountDropdown } from 'features/users';
 import { selectUsers } from 'features/users/usersSlice';
-import { Icon } from 'components';
+import { Breadcrumb, Icon } from 'components';
 
-type HeaderProps = {
+export function Header({ className }: {
   className?: string;
-};
-export function Header({ className }: HeaderProps) {
+}) {
   const { token, isValidToken } = useAppSelector(selectUsers);
   return (
     <>
       <header className={`header ${className}`}>
         <div className="header_inner">
-          <div className="shortcut">
+          <Breadcrumb>
             <h1 className="logo">
-              <Link to="/" className="logo_menu">
-                <Icon type="logoNoText" fill />
-              </Link>
+              <Link to="/" className="logo_menu"><Icon type="logoNoText" fill /></Link>
               <span className="blind">Yorkie</span>
             </h1>
-            {token && isValidToken && <ProjectDropdown />}
-          </div>
+            {
+              token && isValidToken && (
+                <Breadcrumb.Inner>
+                  <ProjectDropdown />
+                </Breadcrumb.Inner>
+              )
+            }
+          </Breadcrumb>
           {token && isValidToken && (
             <>
               <nav className="util_box">

@@ -24,51 +24,35 @@ export function DropdownView() {
         <Dropdown.Title>Title</Dropdown.Title>
         <Dropdown.List>
           <Dropdown.Item>
-            <Dropdown.Menu>
-              <Dropdown.Text>Menu 1</Dropdown.Text>
-            </Dropdown.Menu>
+            <Dropdown.Text>Menu 1</Dropdown.Text>
           </Dropdown.Item>
           <Dropdown.Item>
-            <Dropdown.Menu>
-              <Dropdown.Text highlight>Menu 2</Dropdown.Text>
-            </Dropdown.Menu>
+            <Dropdown.Text highlight>Menu 2</Dropdown.Text>
           </Dropdown.Item>
           <Dropdown.Item>
-            <Dropdown.Menu>
-              <Icon type="circle" color="gray800" />
-              <Dropdown.Text>Menu 3</Dropdown.Text>
-            </Dropdown.Menu>
+            <Icon type="circle" color="gray800" />
+            <Dropdown.Text>Menu 3</Dropdown.Text>
           </Dropdown.Item>
           <Dropdown.Item>
-            <Dropdown.Menu>
-              <Icon type="check" color="orange_0" />
-              <Dropdown.Text>item 2 item 2 item 2 item 2 item 2</Dropdown.Text>
-            </Dropdown.Menu>
+            <Icon type="check" color="orange_0" />
+            <Dropdown.Text>item 2 item 2 item 2 item 2 item 2</Dropdown.Text>
           </Dropdown.Item>
         </Dropdown.List>
         <Dropdown.Title>Title</Dropdown.Title>
         <Dropdown.List>
           <Dropdown.Item>
-            <Dropdown.Menu>
-              <Dropdown.Text>Menu 1</Dropdown.Text>
-            </Dropdown.Menu>
+            <Dropdown.Text>Menu 1</Dropdown.Text>
           </Dropdown.Item>
           <Dropdown.Item>
-            <Dropdown.Menu>
-              <Dropdown.Text highlight>Menu 2</Dropdown.Text>
-            </Dropdown.Menu>
+            <Dropdown.Text highlight>Menu 2</Dropdown.Text>
           </Dropdown.Item>
           <Dropdown.Item>
-            <Dropdown.Menu>
-              <Icon type="circle" color="gray800" />
-              <Dropdown.Text>Menu 3</Dropdown.Text>
-            </Dropdown.Menu>
+            <Icon type="circle" color="gray800" />
+            <Dropdown.Text>Menu 3</Dropdown.Text>
           </Dropdown.Item>
           <Dropdown.Item>
-            <Dropdown.Menu>
-              <Icon type="check" color="orange_0" />
-              <Dropdown.Text>item 2 item 2 item 2 item 2 item 2</Dropdown.Text>
-            </Dropdown.Menu>
+            <Icon type="check" color="orange_0" />
+            <Dropdown.Text>item 2 item 2 item 2 item 2 item 2</Dropdown.Text>
           </Dropdown.Item>
         </Dropdown.List>
       </Dropdown>
@@ -76,26 +60,18 @@ export function DropdownView() {
         <Dropdown.Title>Title</Dropdown.Title>
         <Dropdown.List>
           <Dropdown.Item>
-            <Dropdown.Menu>
-              <Dropdown.Text>Menu 1</Dropdown.Text>
-            </Dropdown.Menu>
+            <Dropdown.Text>Menu 1</Dropdown.Text>
           </Dropdown.Item>
           <Dropdown.Item>
-            <Dropdown.Menu>
-              <Dropdown.Text highlight>Menu 2</Dropdown.Text>
-            </Dropdown.Menu>
+            <Dropdown.Text highlight>Menu 2</Dropdown.Text>
           </Dropdown.Item>
           <Dropdown.Item>
-            <Dropdown.Menu>
-              <Icon type="circle" color="gray800" />
-              <Dropdown.Text>Menu 3</Dropdown.Text>
-            </Dropdown.Menu>
+            <Icon type="circle" color="gray800" />
+            <Dropdown.Text>Menu 3</Dropdown.Text>
           </Dropdown.Item>
           <Dropdown.Item>
-            <Dropdown.Menu>
-              <Icon type="check" color="orange_0" />
-              <Dropdown.Text>item 2 item 2 item 2 item 2 item 2</Dropdown.Text>
-            </Dropdown.Menu>
+            <Icon type="check" color="orange_0" />
+            <Dropdown.Text>item 2 item 2 item 2 item 2 item 2</Dropdown.Text>
           </Dropdown.Item>
         </Dropdown.List>
       </Dropdown>
