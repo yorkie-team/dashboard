@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-git clone git@github.com:yorkie-team/yorkie-ui.git temp
+git clone https://github.com/yorkie-team/yorkie-house.git temp
 cd temp
 npm install
 npm run build
