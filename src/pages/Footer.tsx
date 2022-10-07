@@ -15,7 +15,6 @@
  */
 
 import React from 'react';
-import './footer.scss';
 import { Icon } from 'components';
 
 export function Footer() {

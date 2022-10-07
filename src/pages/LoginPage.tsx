@@ -15,7 +15,6 @@
  */
 
 import React, { useEffect } from 'react';
-import './login.scss';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAppSelector } from 'app/hooks';
 import { LoginForm } from 'features/users/LoginForm';

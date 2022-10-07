@@ -16,7 +16,6 @@
 
 import React from 'react';
 import classNames from 'classnames';
-import './icon.scss';
 import { ReactComponent as CircleSVG } from 'assets/icons/icon_circle.svg';
 import { ReactComponent as SquareSVG } from 'assets/icons/icon_square.svg';
 import { ReactComponent as CheckSVG } from 'assets/icons/icon_check.svg';
@@ -61,5 +60,9 @@ export function Icon({
   className?: string;
   fill?: boolean;
 }) {
-  return <span className={classNames({ icon: !fill }, className, color)}>{svgMap[type]}</span>;
+  return (
+    <span className={classNames({ icon: !fill }, className, color)}>
+      {svgMap[type]}
+    </span>
+  );
 }

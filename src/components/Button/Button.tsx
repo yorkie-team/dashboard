@@ -15,7 +15,6 @@
  */
 
 import React, { ReactNode, AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
-import './button.scss';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 

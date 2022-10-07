@@ -17,9 +17,6 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 
-import './dropdown.scss';
-import './titlebar.scss';
-
 type ShadowSize = 'xs' | 's' | 'm' | 'l';
 
 export function Dropdown({ children, large, shadow }: {
