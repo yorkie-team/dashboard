@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-export * from './Icons';
+export * from './Icons/Icon';
 export * from './Button/Button';
 export * from './Button/ButtonBox';
-export * from './Input/InputText';
+export * from './Input/InputTextBox';
+export * from './Input/InputTextField';
 export * from './Popover/Popover';
 export * from './Dropdown/Dropdown';
 export * from './Modal/Modal';

@@ -19,7 +19,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { LoginFields, selectUsers, loginUser } from './usersSlice';
-import { Button, ButtonBox, InputText } from 'components';
+import { Button, ButtonBox, InputTextBox } from 'components';
 
 export function LoginForm() {
   const dispatch = useAppDispatch();
@@ -64,7 +64,7 @@ export function LoginForm() {
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <fieldset>
         <legend className="blind">Login Form</legend>
-        <InputText
+        <InputTextBox
           label="Username"
           blindLabel={true}
           floatingLabel={true}
@@ -75,7 +75,7 @@ export function LoginForm() {
           state={formErrors.username ? 'error' : 'normal'}
           helperText={(formErrors.username && formErrors.username.message) || ''}
         />
-        <InputText
+        <InputTextBox
           type="password"
           label="Password"
           blindLabel={true}

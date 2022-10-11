@@ -14,70 +14,81 @@
  * limitations under the License.
  */
 
-import React, { ReactNode, InputHTMLAttributes } from 'react';
+import React, { InputHTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { Icon } from 'components';
+import { Icon, ButtonBox, Button } from 'components';
 
-type InputTextProps = {
+type InputTextFieldProps = {
   type?: 'text' | 'password' | 'email';
   label: string;
+  id: string;
   blindLabel?: boolean;
-  floatingLabel?: boolean;
-  icon?: ReactNode;
   state?: 'error' | 'success' | 'normal' | 'disabled';
+  editing?: boolean;
   helperText?: string;
   placeholder?: string;
   inputRef?: any;
+  large?: boolean;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-export const InputText = React.forwardRef((props: InputTextProps, ref) => {
-  return <InputTextInner {...props} inputRef={ref} />;
+export const InputTextField = React.forwardRef((props: InputTextFieldProps, ref) => {
+  return <InputTextFieldInner {...props} inputRef={ref} />;
 });
-InputText.displayName = 'InputText';
+InputTextField.displayName = 'InputTextField';
 
-function InputTextInner({
+function InputTextFieldInner({
   type = 'text',
   label,
+  id,
   blindLabel,
-  floatingLabel,
-  icon,
   state = 'normal',
+  editing,
   helperText,
   placeholder,
   inputRef,
+  large,
   ...restProps
-}: InputTextProps) {
-  const inputTextClassName = classNames('input_box', {
+}: InputTextFieldProps) {
+  const inputTextFieldClassName = classNames('input_field_box', {
     is_disabled: state === 'disabled',
     is_error: state === 'error',
     is_success: state === 'success',
+    input_field_box_large: large,
   });
 
   return (
-    <div className={inputTextClassName}>
-      <label className="input_inner_box">
-        {!floatingLabel && (
-          <span
-            className={classNames('label', {
-              blind: blindLabel,
-            })}
-          >
-            {label}
-          </span>
-        )}
-        {icon && icon}
+    <div className={inputTextFieldClassName}>
+      {!large && (
+        <label htmlFor={id} className={classNames('label', { blind: blindLabel })}>
+          {label}
+        </label>
+      )}
+      <div className="input_inner">
         <input
           type={type}
-          className={classNames('input', {
-            label_in_input: floatingLabel,
-          })}
+          id={id}
+          className="input"
           placeholder={placeholder}
           disabled={state === 'disabled'}
           ref={inputRef}
           {...restProps}
         />
-        {floatingLabel && <span className="label label_in">{label}</span>}
-      </label>
+        {editing && (
+          <ButtonBox>
+            <Button size="sm" outline={true} icon={<Icon type="close" />}>
+              Cancel
+            </Button>
+            <Button
+              className={classNames('green_0', { is_disabled: state === 'error' })}
+              size="sm"
+              outline={true}
+              icon={<Icon type="check" />}
+            >
+              Save
+            </Button>
+          </ButtonBox>
+        )}
+      </div>
       {helperText && (
         <div className="input_guide">
           {(state === 'error' || state === 'success') && <Icon type="input" />}
