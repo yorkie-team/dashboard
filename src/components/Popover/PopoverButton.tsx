@@ -15,12 +15,20 @@
  */
 
 import React, { ReactNode } from 'react';
+import classNames from 'classnames';
 import { usePopoverContext } from './Popover.context';
 import { Button } from 'components';
 
-export const PopoverButton = ({ className, children, onClick, ...restProps }: {
+export const PopoverButton = ({
+  className,
+  openClassName = '',
+  children,
+  onClick,
+  ...restProps
+}: {
   children: ReactNode;
   className?: string;
+  openClassName?: string;
   onClick?: () => void;
 }) => {
   const ctx = usePopoverContext();
@@ -32,7 +40,7 @@ export const PopoverButton = ({ className, children, onClick, ...restProps }: {
         onClick && onClick();
       }}
       ref={ctx.targetRef}
-      className={className}
+      className={classNames(className, { [openClassName]: ctx.open })}
       {...restProps}
     >
       {children}
