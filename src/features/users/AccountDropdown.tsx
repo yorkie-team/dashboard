@@ -15,7 +15,7 @@
  */
 
 import React, { useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 import { selectUsers, logoutUser } from './usersSlice';
@@ -51,24 +51,20 @@ export function AccountDropdown() {
           </dl>
           <Dropdown.List>
             <Dropdown.Item border>
-              <Dropdown.Menu>
-                <Dropdown.Text>Settings</Dropdown.Text>
-              </Dropdown.Menu>
-              <Dropdown.Menu onClick={logout}>
+              <Dropdown.Text>Settings</Dropdown.Text>
+            </Dropdown.Item>
+            <Dropdown.Item>
+              <button onClick={logout}>
                 <Dropdown.Text highlight>Sign out</Dropdown.Text>
-              </Dropdown.Menu>
+              </button>
             </Dropdown.Item>
           </Dropdown.List>
           <ul className="terms_list">
             <li className="terms_item">
-              <a href="/policy" className="terms_menu">
-                Privacy policy
-              </a>
+              <Link to="/policy" className="terms_menu">Privacy policy</Link>
             </li>
             <li className="terms_item">
-              <a href="/terms" className="terms_menu">
-                Terms of service
-              </a>
+              <Link to="/terms" className="terms_menu">Terms of service</Link>
             </li>
           </ul>
         </Dropdown>

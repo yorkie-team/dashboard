@@ -17,11 +17,9 @@
 import React, { ReactNode } from 'react';
 import { ProjectTabMenu, ProjectDropdown } from 'features/projects';
 
-type PageTemplateProps = {
+export function ProjectPageTemplate({ children }: {
   children: ReactNode;
-};
-
-export function ProjectPageTemplate({ children }: PageTemplateProps) {
+}) {
   return (
     <div className="project_area">
       <div className="flex justify-between items-center mb-6">

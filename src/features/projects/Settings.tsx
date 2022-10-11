@@ -218,12 +218,11 @@ export function Settings() {
   );
 }
 
-type InputToggleProps = {
+function InputToggle({ name, checked, onChange }: {
   name: AuthWebhookMethod;
   checked: boolean;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
-};
-function InputToggle({ name, checked, onChange }: InputToggleProps) {
+}) {
   return (
     <div className="inline-block w-60">
       <label htmlFor={name} className="inline-flex relative items-center cursor-pointer">
@@ -235,14 +234,13 @@ function InputToggle({ name, checked, onChange }: InputToggleProps) {
   );
 }
 
-type InputTextFieldProps = {
+function InputTextField({ name, validationRules, register, reset, onChange }: {
   name: keyof UpdatableProjectFields;
   validationRules?: RegisterOptions;
   register: UseFormRegister<ProjectUpdateFields>;
   reset: (fieldName?: keyof UpdatableProjectFields) => void;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
-};
-function InputTextField({ name, validationRules, register, reset, onChange }: InputTextFieldProps) {
+}) {
   const { ref, ...rest } = { ...register(name, validationRules) };
 
   const cancelInput = useCallback(() => {
@@ -358,17 +356,15 @@ const SideNavigation = () => {
     <nav className="flex flex-col w-44 sticky top-1 h-4/5">
       <a
         href="#sectionGeneral"
-        className={`nav__items rounded px-4 py-3 mb-4 text-sm ${
-          activeId === 'sectionGeneral' ? 'active bg-orange-200' : ''
-        }`}
+        className={`nav__items rounded px-4 py-3 mb-4 text-sm ${activeId === 'sectionGeneral' ? 'active bg-orange-200' : ''
+          }`}
       >
         General
       </a>
       <a
         href="#sectionWebhook"
-        className={`nav__items rounded px-4 py-3 mb-4 text-sm ${
-          activeId === 'sectionWebhook' ? 'active bg-orange-200' : ''
-        }`}
+        className={`nav__items rounded px-4 py-3 mb-4 text-sm ${activeId === 'sectionWebhook' ? 'active bg-orange-200' : ''
+          }`}
       >
         Webhook
       </a>

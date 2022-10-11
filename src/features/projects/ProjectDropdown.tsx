@@ -19,14 +19,12 @@ import { NavLink as Link, useParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { Project } from 'api/types';
-import { Popover, Dropdown, Icon } from 'components';
+import { Popover, Dropdown, Icon, Breadcrumb } from 'components';
 import { selectProjectList, listProjectsAsync } from './projectsSlice';
 
-type ProjectDropdownProps = {
+export function ProjectDropdown({ size = 'small' }: {
   size?: 'small' | 'large';
-};
-
-export function ProjectDropdown({ size = 'small' }: ProjectDropdownProps) {
+}) {
   const { projectName } = useParams();
   const { projects } = useAppSelector(selectProjectList);
   const dispatch = useAppDispatch();
@@ -40,8 +38,8 @@ export function ProjectDropdown({ size = 'small' }: ProjectDropdownProps) {
   return (
     <>
       <Popover>
-        <Popover.Button className={`util_menu user_profile is_active`}>
-          <span className="shortcut_text">{projectName}</span>
+        <Popover.Button className="shortcut_item">
+          <Breadcrumb.Text>{projectName}</Breadcrumb.Text>
           <Icon type="openSelector" />
         </Popover.Button>
         <Popover.Dropdown>
@@ -49,20 +47,18 @@ export function ProjectDropdown({ size = 'small' }: ProjectDropdownProps) {
             <Dropdown.List>
               {projects.map((project: Project) => (
                 <Dropdown.Item key={project.id}>
-                  <Dropdown.Menu>
-                    <span className="shortcut_text">{project.name}</span>
-                  </Dropdown.Menu>
+                  <Link to={`/projects/${project.name}`}>
+                    <Breadcrumb.Text>{project.name}</Breadcrumb.Text>
+                  </Link>
                 </Dropdown.Item>
               ))}
             </Dropdown.List>
             <Dropdown.List>
               <Dropdown.Item>
-                <Dropdown.Menu>
-                  <Link to="/projects/new" className="shortcut_text">
-                    <Icon type="plus" className="shortcut_thumb" />
-                    <span className="shortcut_text">Create new project</span>
-                  </Link>
-                </Dropdown.Menu>
+                <Link to="/projects/new" className="shortcut_text">
+                  <Icon type="plus" className="shortcut_thumb" />
+                  <Breadcrumb.Text>Create New Project</Breadcrumb.Text>
+                </Link>
               </Dropdown.Item>
             </Dropdown.List>
           </Dropdown>

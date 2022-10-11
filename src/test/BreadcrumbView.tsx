@@ -43,12 +43,10 @@ export function BreadcrumbView() {
             <Dropdown shadow="s">
               <Dropdown.List>
                 <Dropdown.Item>
-                  <Dropdown.Menu>
-                    <Link to="/team">
-                      <Breadcrumb.Thumb src="../assets/images/@tmp/sample_team.svg" />
-                      <Breadcrumb.Text>Wooseok’s Yorkie House</Breadcrumb.Text>
-                    </Link>
-                  </Dropdown.Menu>
+                  <Link to="/team">
+                    <Breadcrumb.Thumb src="../assets/images/@tmp/sample_team.svg" />
+                    <Breadcrumb.Text>Wooseok’s Yorkie House</Breadcrumb.Text>
+                  </Link>
                 </Dropdown.Item>
               </Dropdown.List>
             </Dropdown>
@@ -63,12 +61,10 @@ export function BreadcrumbView() {
         <Dropdown shadow="s">
           <Dropdown.List>
             <Dropdown.Item>
-              <Dropdown.Menu>
-                <Link to="/team">
-                  <Breadcrumb.Thumb src="../assets/images/@tmp/sample_team.svg" />
-                  <Breadcrumb.Text>Wooseok’s Yorkie House</Breadcrumb.Text>
-                </Link>
-              </Dropdown.Menu>
+              <Link to="/team">
+                <Breadcrumb.Thumb src="../assets/images/@tmp/sample_team.svg" />
+                <Breadcrumb.Text>Wooseok’s Yorkie House</Breadcrumb.Text>
+              </Link>
             </Dropdown.Item>
           </Dropdown.List>
         </Dropdown>

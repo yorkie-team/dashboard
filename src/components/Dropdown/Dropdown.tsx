@@ -53,21 +53,10 @@ function Item({ border, children }: {
     <li className={classNames('dropdown_item', {
       has_border: border,
     })}>
-      {children}
+      <span className="dropdown_menu">
+        {children}
+      </span>
     </li>
-  );
-}
-
-function Menu({ children, onClick }: {
-  children: ReactNode;
-  onClick?: React.MouseEventHandler<HTMLAnchorElement>
-}) {
-  return (
-    // TODO(hackerwins): Add a11y support.
-    // eslint-disable-next-line jsx-a11y/anchor-is-valid
-    <a href="#" className="dropdown_menu" onClick={onClick}>
-      {children}
-    </a>
   );
 }
 
@@ -94,6 +83,5 @@ function Title({ children }: {
 
 Dropdown.List = List;
 Dropdown.Item = Item;
-Dropdown.Menu = Menu;
 Dropdown.Text = Text;
 Dropdown.Title = Title;

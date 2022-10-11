@@ -23,11 +23,10 @@ import { selectProjectList, listProjectsAsync } from './projectsSlice';
 import { Project } from 'api/types';
 
 // TODO(chacha912): Extract to Cards component
-type ProjectCardsProps = {
+function ProjectCards({ projects, totalProjectsCount }: {
   projects: Array<Project>;
   totalProjectsCount: number;
-};
-function ProjectCards({ projects, totalProjectsCount }: ProjectCardsProps) {
+}) {
   if (totalProjectsCount === 0) {
     return (
       <Link

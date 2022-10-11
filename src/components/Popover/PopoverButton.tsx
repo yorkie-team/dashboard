@@ -18,14 +18,13 @@ import React, { ReactNode } from 'react';
 import { usePopoverContext } from './Popover.context';
 import { Button } from 'components';
 
-export interface PopoverButtonProps {
+export const PopoverButton = ({ className, children, onClick, ...restProps }: {
   children: ReactNode;
   className?: string;
   onClick?: () => void;
-}
-
-export const PopoverButton = ({ className, children, onClick, ...restProps }: PopoverButtonProps) => {
+}) => {
   const ctx = usePopoverContext();
+  // TODO(hackerwins): We can use `element` to make the button more customizable.
   return (
     <Button
       onClick={() => {

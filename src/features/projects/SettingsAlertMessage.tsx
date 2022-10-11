@@ -16,13 +16,11 @@
 
 import React, { useState, useEffect } from 'react';
 
-type SettingsAlertMessageProps = {
+export function SettingsAlertMessage({ state, message, onSuccessEnd }: {
   state: 'success' | 'error';
   message: string;
   onSuccessEnd?: () => void;
-};
-
-export function SettingsAlertMessage({ state, message, onSuccessEnd }: SettingsAlertMessageProps) {
+}) {
   const [alert, setAlert] = useState(true);
 
   useEffect(() => {
