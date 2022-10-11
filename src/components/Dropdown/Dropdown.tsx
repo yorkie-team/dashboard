@@ -19,66 +19,61 @@ import classNames from 'classnames';
 
 type ShadowSize = 'xs' | 's' | 'm' | 'l';
 
-export function Dropdown({ children, large, shadow }: {
+export function Dropdown({
+  children,
+  large,
+  shadow,
+  className,
+}: {
   large?: boolean;
   shadow?: ShadowSize;
+  className?: string;
   children: ReactNode;
 }) {
   const shadowClass = shadow ? `shadow_${shadow}` : '';
 
   return (
-    <div className={classNames('dropdown', shadowClass, {
-      dropdown_l: large
-    })} >
+    <div
+      className={classNames('dropdown', className, shadowClass, {
+        dropdown_l: large,
+      })}
+    >
       {children}
     </div>
   );
 }
 
-function List({ children }: {
-  children: ReactNode;
-}) {
-  return (
-    <ul className="dropdown_list">
-      {children}
-    </ul>
-  );
+function List({ children }: { children: ReactNode }) {
+  return <ul className="dropdown_list">{children}</ul>;
 }
 
-function Item({ border, children }: {
+function Item({
+  border,
+  onClick,
+  children,
+}: {
   children: ReactNode;
   border?: boolean;
+  onClick?: React.MouseEventHandler<HTMLLIElement>;
 }) {
   return (
-    <li className={classNames('dropdown_item', {
-      has_border: border,
-    })}>
-      <span className="dropdown_menu">
-        {children}
-      </span>
+    <li
+      className={classNames('dropdown_item', {
+        has_border: border,
+      })}
+      onClick={onClick}
+    >
+      <span className="dropdown_menu">{children}</span>
     </li>
   );
 }
 
-function Text({ children, highlight }: {
-  children: ReactNode;
-  highlight?: boolean;
-}) {
-  return (
-    <span className={classNames('dropdown_text', { highlight })}>
-      {children}
-    </span>
-  );
+function Text({ children, highlight }: { children: ReactNode; highlight?: boolean }) {
+  return <span className={classNames('dropdown_text', { highlight })}>{children}</span>;
 }
 
-function Title({ children }: {
-  children: ReactNode;
-}) {
-  return (
-    <strong className="dropdown_title">
-      {children}
-    </strong>
-  );
+function Title({ children }: { children: ReactNode }) {
+  return <strong className="dropdown_title">{children}</strong>;
 }
 
 Dropdown.List = List;

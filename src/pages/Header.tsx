@@ -19,7 +19,7 @@ import { Link } from 'react-router-dom';
 
 import { useAppSelector } from 'app/hooks';
 import { ProjectDropdown } from 'features/projects';
-import { AccountDropdown } from 'features/users';
+import { AccountDropdown, MobileGnbDropdown } from 'features/users';
 import { selectUsers } from 'features/users/usersSlice';
 import { Breadcrumb, Icon } from 'components';
 
@@ -47,17 +47,16 @@ export function Header({ className }: {
           {token && isValidToken && (
             <>
               <nav className="util_box">
-                <button type="button" className="btn_menu">
-                  <span className="blind">Open menu</span>
-                  <Icon type="gnbMenu" className="icon_menu" />
-                  <Icon type="close" className="icon_close" />
-                </button>
                 <ul className="util_list">
                   <li className="util_item">
-                    <a href="/feedback" className="util_menu">Feedback</a>
+                    <a href="/feedback" className="util_menu">
+                      Feedback
+                    </a>
                   </li>
                   <li className="util_item">
-                    <a href="/support" className="util_menu">Support</a>
+                    <a href="/support" className="util_menu">
+                      Support
+                    </a>
                   </li>
                   <li className="util_item">
                     <a href="https://yorkie.dev/docs" target="_blank" rel="noreferrer" className="util_menu">
@@ -68,6 +67,7 @@ export function Header({ className }: {
                     <AccountDropdown />
                   </li>
                 </ul>
+                <MobileGnbDropdown />
               </nav>
             </>
           )}
