@@ -14,36 +14,41 @@
  * limitations under the License.
  */
 
-import React, { ReactNode } from 'react';
-import classNames from 'classnames';
+import React, { cloneElement } from 'react';
 import { usePopoverContext } from './Popover.context';
-import { Button } from 'components';
 
-export const PopoverButton = ({
-  className,
-  openClassName = '',
-  children,
-  onClick,
-  ...restProps
-}: {
-  children: ReactNode;
-  className?: string;
-  openClassName?: string;
-  onClick?: () => void;
-}) => {
+export function isElement(value: any): value is React.ReactElement {
+  if (Array.isArray(value) || value === null) {
+    return false;
+  }
+
+  if (typeof value === 'object') {
+    if (value.type === React.Fragment) {
+      return false;
+    }
+
+    return true;
+  }
+
+  return false;
+}
+
+export interface PopoverTargetProps {
+  children: React.ReactNode;
+}
+
+export const PopoverTarget = ({ children, ...others }: PopoverTargetProps) => {
+  if (!isElement(children)) {
+    throw new Error('PopoverTarget must have a single child element.');
+  }
+
   const ctx = usePopoverContext();
-  // TODO(hackerwins): We can use `element` to make the button more customizable.
-  return (
-    <Button
-      onClick={() => {
-        ctx.onToggle();
-        onClick && onClick();
-      }}
-      ref={ctx.targetRef}
-      className={classNames(className, { [openClassName]: ctx.open })}
-      {...restProps}
-    >
-      {children}
-    </Button>
-  );
-};
+  return cloneElement(children, {
+    ...others,
+    onClick: () => {
+      ctx.onToggle();
+    }
+  });
+}
+
+PopoverTarget.displayName = 'PopoverTarget';

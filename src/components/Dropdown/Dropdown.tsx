@@ -15,6 +15,7 @@
  */
 
 import React, { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
 type ShadowSize = 'xs' | 's' | 'm' | 'l';
@@ -34,9 +35,12 @@ export function Dropdown({
 
   return (
     <div
-      className={classNames('dropdown', className, shadowClass, {
-        dropdown_l: large,
-      })}
+      className={classNames(
+        'dropdown',
+        className,
+        shadowClass,
+        { dropdown_l: large },
+      )}
     >
       {children}
     </div>
@@ -48,22 +52,27 @@ function List({ children }: { children: ReactNode }) {
 }
 
 function Item({
+  children,
+  to,
   border,
   onClick,
-  children,
 }: {
   children: ReactNode;
+  to?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   border?: boolean;
-  onClick?: React.MouseEventHandler<HTMLLIElement>;
 }) {
   return (
     <li
       className={classNames('dropdown_item', {
         has_border: border,
-      })}
-      onClick={onClick}
+      })} style={{ display: 'block' }}
     >
-      <span className="dropdown_menu">{children}</span>
+      {
+        onClick ?
+          <button onClick={onClick} className="dropdown_menu">{children}</button> :
+          <Link to={to || ''} className="dropdown_menu">{children}</Link>
+      }
     </li>
   );
 }
