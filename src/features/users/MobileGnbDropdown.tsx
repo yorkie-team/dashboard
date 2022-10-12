@@ -33,11 +33,13 @@ export function MobileGnbDropdown() {
 
   return (
     <Popover>
-      <Popover.Button className="btn_menu" openClassName="is_active">
-        <span className="blind">Open menu</span>
-        <Icon type="gnbMenu" className="icon_menu" />
-        <Icon type="close" className="icon_close" />
-      </Popover.Button>
+      <Popover.Target>
+        <button className="btn_menu is_active">
+          <span className="blind">Open menu</span>
+          <Icon type="gnbMenu" className="icon_menu" />
+          <Icon type="close" className="icon_close" />
+        </button>
+      </Popover.Target>
       <Popover.Dropdown>
         <Dropdown className="util_list_mo is_active">
           <Dropdown.List>

@@ -20,7 +20,9 @@ import { Popover } from 'components';
 export function PopoverView() {
   return (
     <Popover excludedClickSelector=".popover-dropdown">
-      <Popover.Button>Button</Popover.Button>
+      <Popover.Target>
+        <button>Button</button>
+      </Popover.Target>
       <Popover.Dropdown>
         <ul
           className="popover-dropdown"

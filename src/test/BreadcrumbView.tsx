@@ -15,7 +15,6 @@
  */
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Breadcrumb, Dropdown, Popover } from 'components';
 
 export function BreadcrumbView() {
@@ -33,20 +32,18 @@ export function BreadcrumbView() {
       </h1>
       <Breadcrumb.Inner>
         <Popover>
-          <Popover.Button className="is_active">
+          <Popover.Target>
             <Breadcrumb.Item>
               <Breadcrumb.Thumb src="../assets/images/@tmp/sample_team.svg" />
               <Breadcrumb.Text>Wooseok’s Yorkie House</Breadcrumb.Text>
             </Breadcrumb.Item>
-          </Popover.Button>
+          </Popover.Target>
           <Popover.Dropdown>
             <Dropdown shadow="s">
               <Dropdown.List>
-                <Dropdown.Item>
-                  <Link to="/team">
-                    <Breadcrumb.Thumb src="../assets/images/@tmp/sample_team.svg" />
-                    <Breadcrumb.Text>Wooseok’s Yorkie House</Breadcrumb.Text>
-                  </Link>
+                <Dropdown.Item to="/team">
+                  <Breadcrumb.Thumb src="../assets/images/@tmp/sample_team.svg" />
+                  <Breadcrumb.Text>Wooseok’s Yorkie House</Breadcrumb.Text>
                 </Dropdown.Item>
               </Dropdown.List>
             </Dropdown>
@@ -54,20 +51,24 @@ export function BreadcrumbView() {
         </Popover>
       </Breadcrumb.Inner>
       <Breadcrumb.Inner>
-        <Breadcrumb.Item>
-          <Breadcrumb.Thumb src="../assets/images/@tmp/sample_team.svg" />
-          <Breadcrumb.Text>CodePair</Breadcrumb.Text>
-        </Breadcrumb.Item>
-        <Dropdown shadow="s">
-          <Dropdown.List>
-            <Dropdown.Item>
-              <Link to="/team">
-                <Breadcrumb.Thumb src="../assets/images/@tmp/sample_team.svg" />
-                <Breadcrumb.Text>Wooseok’s Yorkie House</Breadcrumb.Text>
-              </Link>
-            </Dropdown.Item>
-          </Dropdown.List>
-        </Dropdown>
+        <Popover>
+          <Popover.Target>
+            <Breadcrumb.Item>
+              <Breadcrumb.Thumb src="../assets/images/@tmp/sample_team.svg" />
+              <Breadcrumb.Text>CodePair</Breadcrumb.Text>
+            </Breadcrumb.Item>
+          </Popover.Target>
+          <Popover.Dropdown>
+            <Dropdown shadow="s">
+              <Dropdown.List>
+                <Dropdown.Item to="/team">
+                  <Breadcrumb.Thumb src="../assets/images/@tmp/sample_team.svg" />
+                  <Breadcrumb.Text>Wooseok’s Yorkie House</Breadcrumb.Text>
+                </Dropdown.Item>
+              </Dropdown.List>
+            </Dropdown>
+          </Popover.Dropdown>
+        </Popover>
       </Breadcrumb.Inner>
     </Breadcrumb>
   );

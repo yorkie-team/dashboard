@@ -33,10 +33,12 @@ export function AccountDropdown() {
 
   return (
     <Popover>
-      <Popover.Button className={`util_menu user_profile is_active`}>
-        <span className="blind">User profile</span>
-        <div className="profile">{username.slice(0, 1).toUpperCase()}</div>
-      </Popover.Button>
+      <Popover.Target>
+        <button className="util_menu user_profile is_active">
+          <span className="blind">User profile</span>
+          <div className="profile">{username.slice(0, 1).toUpperCase()}</div>
+        </button>
+      </Popover.Target>
       <Popover.Dropdown>
         <Dropdown shadow="m">
           <dl className="user_account">
@@ -53,10 +55,8 @@ export function AccountDropdown() {
             <Dropdown.Item border>
               <Dropdown.Text>Settings</Dropdown.Text>
             </Dropdown.Item>
-            <Dropdown.Item>
-              <button onClick={logout}>
-                <Dropdown.Text highlight>Sign out</Dropdown.Text>
-              </button>
+            <Dropdown.Item onClick={logout}>
+              <Dropdown.Text highlight>Sign out</Dropdown.Text>
             </Dropdown.Item>
           </Dropdown.List>
           <ul className="terms_list">

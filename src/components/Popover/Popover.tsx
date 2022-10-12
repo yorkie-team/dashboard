@@ -15,9 +15,8 @@
  */
 
 import React, { ReactNode, useRef, useState } from 'react';
-import { useOutsideClick } from 'hooks';
 import { PopoverContextProvider } from './Popover.context';
-import { PopoverButton } from './PopoverButton';
+import { PopoverTarget } from './PopoverButton';
 import { PopoverDropdown } from './PopoverDropdown';
 
 export function Popover({
@@ -34,16 +33,17 @@ export function Popover({
   const [open, setOpen] = useState(false);
   const targetRef = useRef<HTMLElement | null>(null);
 
-  useOutsideClick(
-    targetRef,
-    () => {
-      if (closeOnClickOutside) {
-        setOpen(false);
-        onClose && onClose();
-      }
-    },
-    excludedClickSelector,
-  );
+  // TODO(chacha912): Uncomment the following code when the useOutsideClick hook is fixed.
+  // useOutsideClick(
+  //   targetRef,
+  //   () => {
+  //     if (closeOnClickOutside) {
+  //       setOpen(false);
+  //       onClose && onClose();
+  //     }
+  //   },
+  //   excludedClickSelector,
+  // );
 
   return (
     <PopoverContextProvider
@@ -60,6 +60,6 @@ export function Popover({
   );
 }
 
-Popover.Button = PopoverButton;
+Popover.Target = PopoverTarget;
 Popover.Dropdown = PopoverDropdown;
 Popover.displayName = 'Popover';

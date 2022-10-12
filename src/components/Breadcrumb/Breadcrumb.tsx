@@ -18,33 +18,36 @@ import React, { ReactNode } from 'react';
 
 export function Breadcrumb({ children }: { children: ReactNode }) {
   return (
-    <div className="shortcut team_view">{children}</div>
+    <div className="breadcrumb team_view">{children}</div>
   );
 }
 
 export function Inner({ children }: { children: ReactNode }) {
   return (
-    <div className="shortcut_inner">{children}</div>
+    <div className="breadcrumb_inner">{children}</div>
   )
 }
 
-export function Item({ children }: { children: ReactNode }) {
+export function Item({ children, onClick }: {
+  children: ReactNode,
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
+}) {
   return (
-    <button type="button" className="shortcut_item">{children}</button>
+    <button type="button" className="breadcrumb_item" onClick={onClick}>{children}</button>
   )
 }
 
 export function Thumb({ src }: { src: string }) {
   return (
-    <div className="shortcut_thumb">
+    <span className="breadcrumb_thumb">
       <img src={src} alt="" />
-    </div>
+    </span>
   )
 }
 
 export function Text({ children }: { children: ReactNode }) {
   return (
-    <div className="shortcut_text">{children}</div>
+    <span className="breadcrumb_text">{children}</span>
   )
 }
 

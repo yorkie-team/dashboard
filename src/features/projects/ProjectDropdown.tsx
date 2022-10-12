@@ -15,7 +15,7 @@
  */
 
 import React, { useEffect } from 'react';
-import { NavLink as Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { Project } from 'api/types';
@@ -38,27 +38,25 @@ export function ProjectDropdown({ size = 'small' }: {
   return (
     <>
       <Popover>
-        <Popover.Button className="shortcut_item">
-          <Breadcrumb.Text>{projectName}</Breadcrumb.Text>
-          <Icon type="openSelector" />
-        </Popover.Button>
+        <Popover.Target>
+          <Breadcrumb.Item>
+            <Breadcrumb.Text>{projectName}</Breadcrumb.Text>
+            <Icon type="openSelector" />
+          </Breadcrumb.Item>
+        </Popover.Target>
         <Popover.Dropdown>
           <Dropdown shadow="s">
             <Dropdown.List>
               {projects.map((project: Project) => (
-                <Dropdown.Item key={project.id}>
-                  <Link to={`/projects/${project.name}`}>
-                    <Breadcrumb.Text>{project.name}</Breadcrumb.Text>
-                  </Link>
+                <Dropdown.Item key={project.id} to={`/projects/${project.name}`}>
+                  <Breadcrumb.Text>{project.name}</Breadcrumb.Text>
                 </Dropdown.Item>
               ))}
             </Dropdown.List>
             <Dropdown.List>
-              <Dropdown.Item>
-                <Link to="/projects/new" className="shortcut_text">
-                  <Icon type="plus" className="shortcut_thumb" />
-                  <Breadcrumb.Text>Create New Project</Breadcrumb.Text>
-                </Link>
+              <Dropdown.Item to="/projects/new">
+                <Icon type="plus" className="shortcut_thumb" />
+                <Breadcrumb.Text>Create New Project</Breadcrumb.Text>
               </Dropdown.Item>
             </Dropdown.List>
           </Dropdown>
