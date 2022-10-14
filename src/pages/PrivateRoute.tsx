@@ -18,7 +18,6 @@ import React, { useEffect } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 
 import { useAppSelector } from 'app/hooks';
-import { PageTemplate } from 'pages/PageTemplate';
 import { selectUsers } from 'features/users/usersSlice';
 
 export function PrivateRoute() {
@@ -33,8 +32,6 @@ export function PrivateRoute() {
   }, [token, navigate, location, isValidToken]);
 
   return (
-    <PageTemplate>
-      <Outlet />
-    </PageTemplate>
+    <Outlet />
   );
 }

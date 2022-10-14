@@ -35,13 +35,12 @@ export function ProjectDropdown({ size = 'small' }: {
 
   if (!projectName) return null;
 
-  return (
-    <>
+  if (size === 'small') {
+    return (
       <Popover>
         <Popover.Target>
           <Breadcrumb.Item>
             <Breadcrumb.Text>{projectName}</Breadcrumb.Text>
-            <Icon type="openSelector" />
           </Breadcrumb.Item>
         </Popover.Target>
         <Popover.Dropdown>
@@ -62,6 +61,28 @@ export function ProjectDropdown({ size = 'small' }: {
           </Dropdown>
         </Popover.Dropdown>
       </Popover>
-    </>
+    );
+  }
+
+  return (
+    <Popover>
+      <Popover.Target>
+        <button type="button" className="btn_title">
+          <strong className="title">{projectName}</strong>
+          <Icon type="openSelector" className="title_icon" />
+        </button>
+      </Popover.Target>
+      <Popover.Dropdown>
+        <Dropdown shadow="s">
+          <Dropdown.List>
+            {projects.map((project: Project) => (
+              <Dropdown.Item key={project.id} to={`/projects/${project.name}`}>
+                <Breadcrumb.Text>{project.name}</Breadcrumb.Text>
+              </Dropdown.Item>
+            ))}
+          </Dropdown.List>
+        </Dropdown>
+      </Popover.Dropdown>
+    </Popover>
   );
 }
