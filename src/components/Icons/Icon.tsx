@@ -32,6 +32,9 @@ import { ReactComponent as ShortcutSVG } from 'assets/icons/icon_short_cut.svg';
 import { ReactComponent as OpenSelectorSVG } from 'assets/icons/icon_open_selector.svg';
 import { ReactComponent as StarSVG } from 'assets/icons/icon_star.svg';
 import { ReactComponent as StarFullSVG } from 'assets/icons/icon_star_full.svg';
+import { ReactComponent as ChartSVG } from 'assets/icons/icon_chart.svg';
+import { ReactComponent as KeynoteSVG } from 'assets/icons/icon_keynote.svg';
+import { ReactComponent as KeySVG } from 'assets/icons/icon_key.svg';
 
 const svgMap = {
   shortcut: <ShortcutSVG />,
@@ -49,7 +52,10 @@ const svgMap = {
   viewGrid: <GridViewSVG />,
   viewList: <ListViewSVG />,
   star: <StarSVG />,
-  starFull: <StarFullSVG />
+  starFull: <StarFullSVG />,
+  chart: <ChartSVG />,
+  keynote: <KeynoteSVG />,
+  key: <KeySVG />,
 };
 type SVGType = keyof typeof svgMap;
 

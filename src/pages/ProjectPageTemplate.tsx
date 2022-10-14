@@ -15,22 +15,26 @@
  */
 
 import React, { ReactNode } from 'react';
-import { ProjectTabMenu, ProjectDropdown } from 'features/projects';
+import { ProjectTabList, ProjectDropdown } from 'features/projects';
+import { Icon, Button } from 'components';
 
 export function ProjectPageTemplate({ children }: {
   children: ReactNode;
 }) {
   return (
-    <div className="project_area">
-      <div className="flex justify-between items-center mb-6">
-        <div className="inline-flex">
-          <h2 className="text-lg font-semibold">
-            <ProjectDropdown size="large" />
-          </h2>
+    <>
+      <div className="project_area">
+        <div className="title_group">
+          <ProjectDropdown size="large" />
+          <Button.Box>
+            <Button size="sm" toggle>Test mode</Button>
+            <Button size="sm" toggle>Live mode</Button>
+            <Button icon={<Icon type="star" />} />
+          </Button.Box>
         </div>
+        <ProjectTabList />
       </div>
-      <ProjectTabMenu />
       {children}
-    </div>
+    </>
   );
 }

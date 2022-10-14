@@ -35,6 +35,7 @@ export function ProjectDropdown({ size = 'small' }: {
 
   if (!projectName) return null;
 
+  // TODO(hackerwins): Style large size.
   return (
     <>
       <Popover>
