@@ -30,6 +30,8 @@ import { ReactComponent as GridViewSVG } from 'assets/icons/icon_view_grid.svg';
 import { ReactComponent as ListViewSVG } from 'assets/icons/icon_view_list.svg';
 import { ReactComponent as ShortcutSVG } from 'assets/icons/icon_short_cut.svg';
 import { ReactComponent as OpenSelectorSVG } from 'assets/icons/icon_open_selector.svg';
+import { ReactComponent as StarSVG } from 'assets/icons/icon_star.svg';
+import { ReactComponent as StarFullSVG } from 'assets/icons/icon_star_full.svg';
 
 const svgMap = {
   shortcut: <ShortcutSVG />,
@@ -46,6 +48,8 @@ const svgMap = {
   openSelector: <OpenSelectorSVG />,
   viewGrid: <GridViewSVG />,
   viewList: <ListViewSVG />,
+  star: <StarSVG />,
+  starFull: <StarFullSVG />
 };
 type SVGType = keyof typeof svgMap;
 

@@ -17,12 +17,10 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 
-type ButtonBoxProps = {
+export function ButtonBox({ fullWidth, children }: {
   fullWidth?: boolean;
   children?: ReactNode;
-};
-
-export function ButtonBox({ fullWidth, children }: ButtonBoxProps) {
+}) {
   const buttonBoxClassName = classNames('btn_box', {
     full_width: fullWidth,
   });

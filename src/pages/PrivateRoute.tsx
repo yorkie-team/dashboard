@@ -33,7 +33,7 @@ export function PrivateRoute() {
   }, [token, navigate, location, isValidToken]);
 
   return (
-    <PageTemplate>
+    <PageTemplate className="team_overview_page">
       <Outlet />
     </PageTemplate>
   );

@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-import React, { ReactNode, AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
+import React, { forwardRef, ReactNode, AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
+import { ButtonBox } from './ButtonBox';
 
 const ButtonStyle = {
   sm: 'btn_small',
@@ -46,11 +47,6 @@ type ButtonProps = {
   buttonRef?: any;
 } & AnchorHTMLAttributes<HTMLAnchorElement> &
   ButtonHTMLAttributes<HTMLButtonElement>;
-
-export const Button = React.forwardRef((props: ButtonProps, ref) => {
-  return <ButtonInner {...props} buttonRef={ref} />;
-});
-Button.displayName = 'Button';
 
 function ButtonInner({
   as = 'button',
@@ -96,4 +92,11 @@ function ButtonInner({
       {children && <span className={`${blindText ? 'blind' : 'text'}`}>{children}</span>}
     </button>
   );
-}
+};
+
+export const Button = forwardRef((props: ButtonProps, ref) => {
+  return <ButtonInner {...props} buttonRef={ref} />;
+}) as any;
+
+Button.displayName = 'Button';
+Button.Box = ButtonBox;
