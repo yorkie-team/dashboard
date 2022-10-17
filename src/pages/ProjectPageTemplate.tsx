@@ -19,11 +19,12 @@ import { ProjectTabList, ProjectDropdown } from 'features/projects';
 import { Icon, Button } from 'components';
 import { PageTemplate } from './PageTemplate';
 
-export function ProjectPageTemplate({ children }: {
+export function ProjectPageTemplate({ className, children }: {
+  className: string;
   children: ReactNode;
 }) {
   return (
-    <PageTemplate className="project_init_page">
+    <PageTemplate className={className}>
       <div className="project_area">
         <div className="title_group">
           <ProjectDropdown size="large" />

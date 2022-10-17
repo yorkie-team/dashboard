@@ -37,6 +37,14 @@ import { ReactComponent as KeynoteSVG } from 'assets/icons/icon_keynote.svg';
 import { ReactComponent as KeySVG } from 'assets/icons/icon_key.svg';
 import { ReactComponent as MessageSmileSVG } from 'assets/icons/icon_message_smile.svg';
 import { ReactComponent as RouteSVG } from 'assets/icons/icon_route.svg';
+import { ReactComponent as SearchSVG } from 'assets/icons/icon_search.svg';
+import { ReactComponent as TrashSVG } from 'assets/icons/icon_trash.svg';
+import { ReactComponent as ArrowBackSVG } from 'assets/icons/icon_arrow_back.svg';
+import { ReactComponent as CodeSnippetSVG } from 'assets/icons/icon_code_snippet.svg';
+import { ReactComponent as PlaySVG } from 'assets/icons/icon_play.svg';
+import { ReactComponent as BranchSVG } from 'assets/icons/icon_branch.svg';
+import { ReactComponent as CopySVG } from 'assets/icons/icon_copy.svg';
+import { ReactComponent as LockSmallSVG } from 'assets/icons/icon_lock_small.svg';
 
 const svgMap = {
   shortcut: <ShortcutSVG />,
@@ -60,6 +68,14 @@ const svgMap = {
   key: <KeySVG />,
   messageSmile: <MessageSmileSVG />,
   route: <RouteSVG />,
+  search: <SearchSVG />,
+  trash: <TrashSVG />,
+  arrowBack: <ArrowBackSVG />,
+  codeSnippet: <CodeSnippetSVG />,
+  play: <PlaySVG />,
+  branch: <BranchSVG />,
+  copy: <CopySVG />,
+  lockSmall: <LockSmallSVG />,
 };
 type SVGType = keyof typeof svgMap;
 
