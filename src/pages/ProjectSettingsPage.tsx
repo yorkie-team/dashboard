@@ -20,7 +20,7 @@ import { Settings } from 'features/projects';
 
 export function ProjectSettingsPage() {
   return (
-    <ProjectPageTemplate>
+    <ProjectPageTemplate className="setting_project_page">
       <Settings />
     </ProjectPageTemplate>
   );

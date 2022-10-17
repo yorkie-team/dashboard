@@ -20,7 +20,7 @@ import { Overview } from 'features/projects';
 
 export function ProjectOverviewPage() {
   return (
-    <ProjectPageTemplate>
+    <ProjectPageTemplate className="project_init_page">
       <Overview />
     </ProjectPageTemplate>
   );

@@ -20,7 +20,7 @@ import { APIKeys } from 'features/projects';
 
 export function ProjectAPIKeysPage() {
   return (
-    <ProjectPageTemplate>
+    <ProjectPageTemplate className="project_api_page">
       <APIKeys />
     </ProjectPageTemplate>
   );
