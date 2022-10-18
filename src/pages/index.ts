@@ -23,6 +23,7 @@ export * from './PrivateRoute';
 export * from './NotFoundPage';
 export * from './LoginPage';
 export * from './SignupPage';
+export * from './SettingsPage';
 export * from './ProjectsPage';
 export * from './CreateProjectPage';
 export * from './DocumentsPage';

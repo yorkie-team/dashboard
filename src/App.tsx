@@ -21,6 +21,7 @@ import {
   PrivateRoute,
   LoginPage,
   SignupPage,
+  SettingsPage,
   ProjectsPage,
   CreateProjectPage,
   DocumentsPage,
@@ -56,6 +57,7 @@ function App() {
           <Route path="/projects/:projectName/documents" element={<DocumentsPage />}>
             <Route path=":documentKey" element={<DocumentDetail />} />
           </Route>
+          <Route path="/settings" element={<SettingsPage />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

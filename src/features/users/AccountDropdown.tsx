@@ -52,7 +52,10 @@ export function AccountDropdown() {
             </dd>
           </dl>
           <Dropdown.List>
-            <Dropdown.Item onClick={logout} border>
+            <Dropdown.Item to="/settings" border>
+              <Dropdown.Text>Settings</Dropdown.Text>
+            </Dropdown.Item>
+            <Dropdown.Item onClick={logout}>
               <Dropdown.Text highlight>Sign out</Dropdown.Text>
             </Dropdown.Item>
           </Dropdown.List>
