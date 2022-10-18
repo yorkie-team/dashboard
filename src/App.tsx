@@ -36,6 +36,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/test" element={<TestPage />}>
@@ -47,7 +48,6 @@ function App() {
           <Route path="/test/breadcrumb" element={<BreadcrumbView />} />
         </Route>
         <Route element={<PrivateRoute />}>
-          <Route path="/" element={<Navigate to="/projects" />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/projects/new" element={<CreateProjectPage />} />
           <Route path="/projects/:projectName" element={<ProjectOverviewPage />} />

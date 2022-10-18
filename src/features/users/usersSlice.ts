@@ -119,6 +119,11 @@ export const usersSlice = createSlice({
     setIsValidToken: (state, action) => {
       state.isValidToken = action.payload;
     },
+    resetSignupState: (state) => {
+      state.signup.isSuccess = false;
+      state.signup.status = 'idle';
+      state.signup.error = null;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(loginUser.fulfilled, (state, action) => {
@@ -179,7 +184,7 @@ export const usersSlice = createSlice({
   },
 });
 
-export const { logoutUser, setIsValidToken } = usersSlice.actions;
+export const { logoutUser, setIsValidToken, resetSignupState } = usersSlice.actions;
 
 export const selectUsers = (state: RootState) => state.users;
 
