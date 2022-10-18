@@ -49,11 +49,6 @@ export function Header({ className }: {
               <nav className="util_box">
                 <ul className="util_list">
                   <li className="util_item">
-                    <a href="/feedback" className="util_menu">
-                      Feedback
-                    </a>
-                  </li>
-                  <li className="util_item">
                     <a href="/support" className="util_menu">
                       Support
                     </a>

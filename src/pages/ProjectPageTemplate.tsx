@@ -16,7 +16,6 @@
 
 import React, { ReactNode } from 'react';
 import { ProjectTabList, ProjectDropdown } from 'features/projects';
-import { Icon, Button } from 'components';
 import { PageTemplate } from './PageTemplate';
 
 export function ProjectPageTemplate({ className, children }: {
@@ -28,11 +27,6 @@ export function ProjectPageTemplate({ className, children }: {
       <div className="project_area">
         <div className="title_group">
           <ProjectDropdown size="large" />
-          <Button.Box>
-            <Button size="sm" color="toggle">Test mode</Button>
-            <Button size="sm" color="toggle">Live mode</Button>
-            <Button icon={<Icon type="star" />} className="btn_star" />
-          </Button.Box>
         </div>
         <ProjectTabList />
       </div>
