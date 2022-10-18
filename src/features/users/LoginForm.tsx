@@ -19,7 +19,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { LoginFields, selectUsers, loginUser } from './usersSlice';
-import { Button, ButtonBox, InputTextBox } from 'components';
+import { Button, InputTextBox } from 'components';
 
 export function LoginForm() {
   const dispatch = useAppDispatch();
@@ -85,12 +85,12 @@ export function LoginForm() {
           state={formErrors.password ? 'error' : 'normal'}
           helperText={(formErrors.password && formErrors.password.message) || ''}
         />
-        <ButtonBox fullWidth={true}>
+        <Button.Box fullWidth={true}>
           <Button type="submit" disabled={status === 'loading'} color="primary">
             {status !== 'loading' && 'Log in'}
             {status === 'loading' && 'Loading...'}
           </Button>
-        </ButtonBox>
+        </Button.Box>
       </fieldset>
     </form>
   );

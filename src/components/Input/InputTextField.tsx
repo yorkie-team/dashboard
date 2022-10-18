@@ -16,7 +16,7 @@
 
 import React, { InputHTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { Icon, ButtonBox, Button } from 'components';
+import { Icon, Button } from 'components';
 
 type InputTextFieldProps = {
   type?: 'text' | 'password' | 'email';
@@ -74,7 +74,7 @@ function InputTextFieldInner({
           {...restProps}
         />
         {editing && (
-          <ButtonBox>
+          <Button.Box>
             <Button size="sm" outline={true} icon={<Icon type="close" />}>
               Cancel
             </Button>
@@ -86,7 +86,7 @@ function InputTextFieldInner({
             >
               Save
             </Button>
-          </ButtonBox>
+          </Button.Box>
         )}
       </div>
       {helperText && (

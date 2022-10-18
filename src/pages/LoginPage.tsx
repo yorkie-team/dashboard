@@ -19,7 +19,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useAppSelector } from 'app/hooks';
 import { LoginForm } from 'features/users/LoginForm';
 import { PageTemplate } from './PageTemplate';
-import { Icon, Button, ButtonBox } from 'components';
+import { Icon, Button } from 'components';
 
 export function LoginPage() {
   const navigate = useNavigate();
@@ -38,11 +38,11 @@ export function LoginPage() {
       <h2 className="title">Log in to Yorkie</h2>
       <LoginForm />
       <div className="box_bottom">
-        <ButtonBox fullWidth={true}>
+        <Button.Box fullWidth={true}>
           <Button as="link" href="/signup" outline={true}>
             Sign up
           </Button>
-        </ButtonBox>
+        </Button.Box>
       </div>
       <div className="guide">
         <span className="guide_text">By signing in to Yorkie, you agree to our</span>
