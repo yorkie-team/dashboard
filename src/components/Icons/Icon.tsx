@@ -45,6 +45,7 @@ import { ReactComponent as PlaySVG } from 'assets/icons/icon_play.svg';
 import { ReactComponent as BranchSVG } from 'assets/icons/icon_branch.svg';
 import { ReactComponent as CopySVG } from 'assets/icons/icon_copy.svg';
 import { ReactComponent as LockSmallSVG } from 'assets/icons/icon_lock_small.svg';
+import { ReactComponent as Arrow2SVG } from 'assets/icons/icon_arrow2.svg';
 
 const svgMap = {
   shortcut: <ShortcutSVG />,
@@ -76,6 +77,7 @@ const svgMap = {
   branch: <BranchSVG />,
   copy: <CopySVG />,
   lockSmall: <LockSmallSVG />,
+  arrow2: <Arrow2SVG />,
 };
 type SVGType = keyof typeof svgMap;
 
