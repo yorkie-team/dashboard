@@ -16,7 +16,6 @@
 
 export * from './Icons/Icon';
 export * from './Button/Button';
-export * from './Button/ButtonBox';
 export * from './Input/InputTextBox';
 export * from './Input/InputTextField';
 export * from './Popover/Popover';

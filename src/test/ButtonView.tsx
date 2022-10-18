@@ -15,7 +15,7 @@
  */
 
 import React from 'react';
-import { Button, ButtonBox, Icon } from 'components';
+import { Button, Icon } from 'components';
 
 export function ButtonView() {
   return (
@@ -271,7 +271,7 @@ export function ButtonView() {
         <em className="uio_title">Only Icon</em>
         <div className="uio_align_box">
           <div className="uio_box">
-            <ButtonBox>
+            <Button.Box>
               <Button color="toggle" isActive={true} blindText={true} icon={<Icon type="viewGrid" />}>
                 2x2 layout
               </Button>
@@ -284,21 +284,21 @@ export function ButtonView() {
               <Button color="toggle" blindText={true} icon={<Icon type="viewList" />}>
                 1x2 layout
               </Button>
-            </ButtonBox>
+            </Button.Box>
           </div>
         </div>
         <em className="uio_title">Multiple Button (Box & Full Width)</em>
         <div className="uio_align_box">
           <div className="uio_box">
-            <ButtonBox fullWidth={true}>
+            <Button.Box fullWidth={true}>
               <Button color="primary">Send</Button>
-            </ButtonBox>
+            </Button.Box>
           </div>
           <div className="uio_box">
-            <ButtonBox fullWidth={true}>
+            <Button.Box fullWidth={true}>
               <Button outline={true}>Cancel</Button>
               <Button color="success">Confirm</Button>
-            </ButtonBox>
+            </Button.Box>
           </div>
         </div>
         <em className="uio_title">Tag as</em>

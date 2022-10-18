@@ -25,6 +25,7 @@ import {
   selectProjectDetail,
   resetCreateSuccess,
 } from './projectsSlice';
+import { InputTextField, Button } from 'components';
 
 export function RegisterForm() {
   const dispatch = useAppDispatch();
@@ -38,12 +39,9 @@ export function RegisterForm() {
   const { isSuccess, error } = useAppSelector(selectProjectCreate);
   const { project } = useAppSelector(selectProjectDetail);
 
-  const onSubmit = useCallback(
-    (data: ProjectCreateFields) => {
-      dispatch(createProjectAsync(data));
-    },
-    [dispatch],
-  );
+  const onSubmit = useCallback((data: ProjectCreateFields) => {
+    dispatch(createProjectAsync(data));
+  }, [dispatch]);
 
   useEffect(() => {
     if (!error) return;
@@ -58,27 +56,28 @@ export function RegisterForm() {
   }, [dispatch, isSuccess, navigate, project]);
 
   return (
-    <form className="mt-10" onSubmit={handleSubmit(onSubmit)}>
-      <div className="mb-6">
-        <label htmlFor="projectName" className="block mb-2 text-sm font-medium text-gray-900 ">
-          Project name
-        </label>
-        <input
-          type="text"
-          id="projectName"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-full"
-          autoComplete="off"
-          autoFocus
-          {...register('projectName', { required: 'The project name is required' })}
-        />
-      </div>
-      {formErrors.projectName && <p className="text-red-500 text-xs italic">{formErrors.projectName.message}</p>}
-      <button
-        type="submit"
-        className="float-right mt-10 text-white bg-orange-500 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm w-full sm:w-auto px-5 py-2.5 text-center"
-      >
-        Create Project
-      </button>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <fieldset>
+        <div className="create_project">
+          <div className="setting_name">
+            <InputTextField
+              id="projectName"
+              label="Project Name"
+              blindLabel={true}
+              placeholder="Project Name"
+              {...register('projectName', { required: 'Project Name is required' })}
+              autoComplete="off"
+              autoFocus
+              state={formErrors.projectName ? 'error' : 'normal'}
+              helperText={(formErrors.projectName && formErrors.projectName.message) || ''}
+              large
+            />
+          </div>
+        </div>
+        <Button.Box>
+          <Button type="submit" className="orange_0">Create</Button>
+        </Button.Box>
+      </fieldset>
     </form>
   );
 }
