@@ -60,16 +60,6 @@ export function DocumentDetail() {
             <span className="date">{moment.unix(document?.updatedAt!).format('YYYY-MM-DD')}</span>
           </div>
         </div>
-        <dl className="info_list">
-          <div className="info_item">
-            <dt className="info_title">Max. Simultaneous connections</dt>
-            <dd className="info_desc">1,232</dd>
-          </div>
-          <div className="info_item">
-            <dt className="info_title">Size</dt>
-            <dd className="info_desc">3 KB</dd>
-          </div>
-        </dl>
       </div>
       <div className="codeblock_header">
         <div className="box_left">

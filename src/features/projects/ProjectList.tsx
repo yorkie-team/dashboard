@@ -16,6 +16,7 @@
 
 import React, { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
+import * as moment from 'moment';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectProjectList, listProjectsAsync } from './projectsSlice';
@@ -54,21 +55,13 @@ function ProjectCards({ projects, totalProjectsCount }: {
           <li key={name} className="card_item shadow_xs is_large">
             <Link to={`./${name}`} className="link">
               <div className="title">
-                <span className="title_thumbnail emoji">
-                  <img src="../assets/images/@tmp/sample_project.png" alt="" />
-                </span>
                 <strong className="title_text">{name}</strong>
               </div>
               <dl className="info_list">
-                <dt className="info_title">Connections</dt>
-                <dd className="info_desc">4,645 peak</dd>
-                <dt className="info_title">Storage</dt>
-                <dd className="info_desc">8.2 GB</dd>
-                <dt className="info_title">Load</dt>
-                <dd className="info_desc">45% peak</dd>
+                <dt className="info_title">Created at</dt>
+                <dd className="info_desc">{moment.unix(createdAt).format('YYYY-MM-DD')}</dd>
               </dl>
             </Link>
-            <Button icon={<Icon type="star" />} className="btn_favorite_full" />
           </li>
         ))}
       </ul>
