@@ -22,7 +22,7 @@ import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectProjectList, listProjectsAsync } from './projectsSlice';
 import { Project } from 'api/types';
-import { Button, Icon, InputTextField } from 'components';
+import { Button, Icon, InputTextField, Popover, Dropdown } from 'components';
 
 // TODO(chacha912): Extract to Cards component
 function ProjectCards({
@@ -93,6 +93,10 @@ function ProjectCards({
   );
 }
 
+const SORT_OPTION = {
+  alphabet: 'Alphabetical',
+  createdAt: 'Date created',
+};
 // ProjectList represents the list of projects in the application.
 export function ProjectList() {
   const dispatch = useAppDispatch();
@@ -100,6 +104,8 @@ export function ProjectList() {
   const { projects: allProjects, status } = useAppSelector(selectProjectList);
   const [query, setQuery] = useState('');
   const [viewType, setViewType] = useState<'list' | 'card'>('card');
+  const [sortOpened, setSortOpened] = useState(false);
+  const [sortOption, setSortOption] = useState<typeof SORT_OPTION[keyof typeof SORT_OPTION]>(SORT_OPTION.createdAt);
 
   const handleChangeQuery = useCallback((e) => {
     setQuery(e.target.value);
@@ -113,61 +119,127 @@ export function ProjectList() {
     [query, allProjects],
   );
 
+  const handleSort = useCallback(
+    (option) => {
+      if (option === SORT_OPTION.alphabet) {
+        setProjects([...allProjects].sort((p1, p2) => (p1.name > p2.name ? 1 : -1)));
+      } else if (option === SORT_OPTION.createdAt) {
+        setProjects([...allProjects].sort((p1, p2) => p2.createdAt - p1.createdAt));
+      }
+    },
+    [allProjects],
+  );
+
   useEffect(() => {
     dispatch(listProjectsAsync());
   }, [dispatch]);
 
   useEffect(() => {
-    setProjects(allProjects);
-  }, [allProjects]);
+    handleSort(SORT_OPTION.createdAt);
+  }, [handleSort]);
+
+  useEffect(() => {
+    return () => {
+      setSortOpened(false);
+    };
+  }, []);
 
   // TODO(hackerwins): Add Search Icon
   // NOTE(hackerwins): Remove style(marginTop) after implementing team feature.
   return (
     <>
       <div className="project_area">
-        <form className="border-b border-solid border-gray-200 mb-6" onSubmit={handleSearch}>
-          <div className="title_group">
-            <strong className="title">Projects</strong>
-            <Button.Box>
-              <Button
-                color="toggle"
-                isActive={viewType === 'card'}
-                blindText
-                icon={<Icon type="viewGrid" />}
-                onClick={() => {
-                  setViewType('card');
-                }}
-              >
-                grid layout
-              </Button>
-              <Button
-                color="toggle"
-                isActive={viewType === 'list'}
-                blindText
-                icon={<Icon type="viewList" />}
-                onClick={() => {
-                  setViewType('list');
-                }}
-              >
-                list layout
-              </Button>
-              <Button as="link" href="/projects/new" className="btn_plus" icon={<Icon type="plus" />}>
-                New Project
-              </Button>
-            </Button.Box>
-          </div>
+        <div className="title_group">
+          <strong className="title">Projects</strong>
+          <Button.Box>
+            <Button
+              color="toggle"
+              isActive={viewType === 'card'}
+              blindText
+              icon={<Icon type="viewGrid" />}
+              onClick={() => {
+                setViewType('card');
+              }}
+            >
+              grid layout
+            </Button>
+            <Button
+              color="toggle"
+              isActive={viewType === 'list'}
+              blindText
+              icon={<Icon type="viewList" />}
+              onClick={() => {
+                setViewType('list');
+              }}
+            >
+              list layout
+            </Button>
+            <Button as="link" href="/projects/new" className="btn_plus" icon={<Icon type="plus" />}>
+              New Project
+            </Button>
+          </Button.Box>
+        </div>
+        <div className="search_area">
           <div className="search">
-            <InputTextField
-              id="input10"
-              placeholder="Search Projects"
-              autoComplete="off"
-              label=""
-              blindLabel
-              onChange={handleChangeQuery}
-            />
+            <form onSubmit={handleSearch}>
+              <InputTextField
+                id="searchProject"
+                placeholder="Search Projects"
+                autoComplete="off"
+                label=""
+                blindLabel
+                onChange={handleChangeQuery}
+              />
+            </form>
           </div>
-        </form>
+          <div className="filter">
+            <ul className="filter_list">
+              <li className="filter_item">
+                <Popover opened={sortOpened} onChange={setSortOpened}>
+                  <Popover.Target>
+                    <button
+                      type="button"
+                      className="btn btn_small filter_desc"
+                      onClick={() => {
+                        setSortOpened((opened) => !opened);
+                      }}
+                    >
+                      <span className="filter_title">Sort:</span>
+                      <span className="text">{sortOption}</span>
+                      <Icon type="arrow" className="icon_arrow" />
+                    </button>
+                  </Popover.Target>
+                  <Popover.Dropdown>
+                    <Dropdown>
+                      <Dropdown.List>
+                        <Dropdown.Item
+                          onClick={() => {
+                            setSortOption(SORT_OPTION.alphabet);
+                            handleSort(SORT_OPTION.alphabet);
+                            setSortOpened(false);
+                          }}
+                        >
+                          {sortOption === SORT_OPTION.alphabet && <Icon type="check" color="orange_0" />}
+                          <Dropdown.Text>{SORT_OPTION.alphabet}</Dropdown.Text>
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          onClick={() => {
+                            setSortOption(SORT_OPTION.createdAt);
+                            handleSort(SORT_OPTION.createdAt);
+                            setSortOpened(false);
+                          }}
+                        >
+                          {sortOption === SORT_OPTION.createdAt && <Icon type="check" color="orange_0" />}
+                          <Dropdown.Text>{SORT_OPTION.createdAt}</Dropdown.Text>
+                        </Dropdown.Item>
+                      </Dropdown.List>
+                    </Dropdown>
+                  </Popover.Dropdown>
+                </Popover>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
       {status === 'loading' && <div>Loading...</div>}
       {status === 'failed' && <div>Failed!</div>}

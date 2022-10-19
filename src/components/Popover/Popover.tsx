@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { ReactNode, useRef } from 'react';
+import React, { ReactNode, useRef, useEffect } from 'react';
 import { useUncontrolled, useOutsideClick } from 'hooks';
 import { PopoverContextProvider } from './Popover.context';
 import { PopoverTarget } from './PopoverTarget';

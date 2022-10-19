@@ -32,6 +32,12 @@ export function ProjectDropdown({ size = 'small' }: { size?: 'small' | 'large' }
     dispatch(listProjectsAsync());
   }, [dispatch, size]);
 
+  useEffect(() => {
+    return () => {
+      setOpened(false);
+    };
+  }, []);
+
   if (!projectName) return null;
 
   if (size === 'small') {
