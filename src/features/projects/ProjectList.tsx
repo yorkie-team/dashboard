@@ -17,6 +17,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import * as moment from 'moment';
+import classNames from 'classnames';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectProjectList, listProjectsAsync } from './projectsSlice';
@@ -24,7 +25,15 @@ import { Project } from 'api/types';
 import { Button, Icon, InputTextField } from 'components';
 
 // TODO(chacha912): Extract to Cards component
-function ProjectCards({ projects, totalProjectsCount }: { projects: Array<Project>; totalProjectsCount: number }) {
+function ProjectCards({
+  projects,
+  totalProjectsCount,
+  viewType,
+}: {
+  projects: Array<Project>;
+  totalProjectsCount: number;
+  viewType: 'list' | 'card';
+}) {
   if (totalProjectsCount === 0) {
     return (
       <Link to={'/projects/new'} className="placeholder_box">
@@ -46,23 +55,41 @@ function ProjectCards({ projects, totalProjectsCount }: { projects: Array<Projec
 
   // TODO(hackerwins): implement information(Connections, Storage, Load) of project
   return (
-    <div className="card">
-      <ul className="card_list">
-        {projects.map(({ name, createdAt }: Project) => (
-          <li key={name} className="card_item shadow_xs is_large">
-            <Link to={`./${name}`} className="link">
-              <div className="title">
-                <strong className="title_text">{name}</strong>
-              </div>
-              <dl className="info_list">
-                <dt className="info_title">Created at</dt>
-                <dd className="info_desc">{moment.unix(createdAt).format('YYYY-MM-DD')}</dd>
-              </dl>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <div className={classNames('project_table', { is_active: viewType === 'list' })}>
+        <div className="thead">
+          <span className="th title">Project title</span>
+          <span className="th">Created At</span>
+        </div>
+        <ul className="tbody_list">
+          {projects.map(({ name, createdAt }: Project) => (
+            <li key={name} className="tbody_item">
+              <Link to={`./${name}`} className="link">
+                <span className="td title">{name}</span>
+                <span className="td">{moment.unix(createdAt).format('YYYY-MM-DD')}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className={classNames('card', { is_active: viewType === 'card' })}>
+        <ul className="card_list">
+          {projects.map(({ name, createdAt }: Project) => (
+            <li key={name} className="card_item shadow_xs is_large">
+              <Link to={`./${name}`} className="link">
+                <div className="title">
+                  <strong className="title_text">{name}</strong>
+                </div>
+                <dl className="info_list">
+                  <dt className="info_title">Created At</dt>
+                  <dd className="info_desc">{moment.unix(createdAt).format('YYYY-MM-DD')}</dd>
+                </dl>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 }
 
@@ -72,6 +99,7 @@ export function ProjectList() {
   const [projects, setProjects] = useState<Array<Project>>([]);
   const { projects: allProjects, status } = useAppSelector(selectProjectList);
   const [query, setQuery] = useState('');
+  const [viewType, setViewType] = useState<'list' | 'card'>('card');
 
   const handleChangeQuery = useCallback((e) => {
     setQuery(e.target.value);
@@ -102,10 +130,26 @@ export function ProjectList() {
           <div className="title_group">
             <strong className="title">Projects</strong>
             <Button.Box>
-              <Button color="toggle" isActive blindText icon={<Icon type="viewGrid" />}>
+              <Button
+                color="toggle"
+                isActive={viewType === 'card'}
+                blindText
+                icon={<Icon type="viewGrid" />}
+                onClick={() => {
+                  setViewType('card');
+                }}
+              >
                 grid layout
               </Button>
-              <Button color="toggle" blindText icon={<Icon type="viewList" />}>
+              <Button
+                color="toggle"
+                isActive={viewType === 'list'}
+                blindText
+                icon={<Icon type="viewList" />}
+                onClick={() => {
+                  setViewType('list');
+                }}
+              >
                 list layout
               </Button>
               <Button as="link" href="/projects/new" className="btn_plus" icon={<Icon type="plus" />}>
@@ -127,7 +171,9 @@ export function ProjectList() {
       </div>
       {status === 'loading' && <div>Loading...</div>}
       {status === 'failed' && <div>Failed!</div>}
-      {status === 'idle' && <ProjectCards projects={projects} totalProjectsCount={allProjects.length} />}
+      {status === 'idle' && (
+        <ProjectCards projects={projects} totalProjectsCount={allProjects.length} viewType={viewType} />
+      )}
     </>
   );
 }
