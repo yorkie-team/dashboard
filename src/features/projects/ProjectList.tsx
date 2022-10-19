@@ -34,8 +34,9 @@ function ProjectCards({ projects, totalProjectsCount }: {
         to={'/projects/new'}
         className="flex flex-col items-center justify-center w-full h-44 bg-gray-50 text-lg leading-7 font-medium border-dashed border-2 border-gray-300 rounded"
       >
-        Get started by
-        <span className="text-sky-500">creating a new project</span>
+        <div className="placeholder_box ">
+          <p className="desc">Get started by<br /><span className="blue_dark">creating a new project</span></p>
+        </div>
       </Link>
     );
   }
