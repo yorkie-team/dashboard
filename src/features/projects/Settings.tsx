@@ -15,9 +15,9 @@
  */
 
 import React, { useCallback, useEffect, useState, useRef } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 import { useForm, useController, RegisterOptions, UseFormRegister } from 'react-hook-form';
+import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { useOutsideClick, useAreaBlur } from 'hooks';
 import {
@@ -29,6 +29,7 @@ import {
 } from './projectsSlice';
 import { AUTH_WEBHOOK_METHODS, UpdatableProjectFields, AuthWebhookMethod } from 'api/types';
 import { SettingsAlertMessage } from 'features/projects';
+import { Button, Icon } from 'components';
 
 export type UpdateFieldInfo = {
   target: keyof UpdatableProjectFields | AuthWebhookMethod | null;
@@ -126,82 +127,39 @@ export function Settings() {
   }, [resetForm]);
 
   return (
-    <div className="mt-6 flex">
+    <div className="setting_group">
       <SideNavigation />
-      <form onSubmit={handleSubmit(onSubmit)} className="ml-12">
-        <section className="mb-20 section" id="sectionGeneral">
-          <h2 className="font-medium text-xl mb-8">General</h2>
-          <div className="mb-10">
-            <h3 className="mb-4 font-medium">Project name</h3>
-            <InputTextField
-              name="name"
-              register={register}
-              reset={() => {
-                resetForm();
-                resetUpdateFieldInfo();
-              }}
-              validationRules={{ required: 'The project name is required' }}
-              onChange={(e) => {
-                setUpdateFieldInfo((info) => ({ ...info, target: 'name' }));
-                nameField.onChange(e.target.value);
-              }}
-            />
-            {updateFieldInfo.target === 'name' && updateFieldInfo.state !== null && (
-              <SettingsAlertMessage
-                state={updateFieldInfo.state}
-                message={updateFieldInfo.message}
-                onSuccessEnd={resetUpdateFieldInfo}
-              />
-            )}
-          </div>
-        </section>
-        <section className="mb-10 section" id="sectionWebhook">
-          <h2 className="font-medium text-xl mb-8">Webhook</h2>
-          <div className="mb-10">
-            <h3 className="mb-4 font-medium">Auth webhook URL</h3>
-            <InputTextField
-              name="authWebhookURL"
-              register={register}
-              reset={() => {
-                resetForm();
-                resetUpdateFieldInfo();
-              }}
-              onChange={(e) => {
-                setUpdateFieldInfo((info) => ({ ...info, target: 'authWebhookURL' }));
-                webhookURLField.onChange(e.target.value);
-              }}
-            />
-            {updateFieldInfo.target === 'authWebhookURL' && updateFieldInfo.state !== null && (
-              <SettingsAlertMessage
-                state={updateFieldInfo.state}
-                message={updateFieldInfo.message}
-                onSuccessEnd={resetUpdateFieldInfo}
-              />
-            )}
-          </div>
-          <div className="mb-10">
-            <h3 className="mb-6 font-medium">Auth webhook methods</h3>
-            {AUTH_WEBHOOK_METHODS.map((method) => {
-              return (
-                <div className="flex mb-3 items-center" key={method}>
-                  <InputToggle
-                    name={method}
-                    checked={webhookMethodField.value.includes(method)}
+      <div className="box_right">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="section setting_box" id="sectionGeneral">
+            <div className="setting_title">
+              <strong className="text">General</strong>
+            </div>
+            <dl className="sub_info">
+              <dt className="sub_title">Project name</dt>
+              <dd className="sub_desc">
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: updateFieldInfo.target === 'name' && updateFieldInfo.state === 'error',
+                    is_success: updateFieldInfo.target === 'name' && updateFieldInfo.state === 'success',
+                  })}
+                >
+                  <InputTextField
+                    name="name"
+                    register={register}
+                    reset={() => {
+                      resetForm();
+                      resetUpdateFieldInfo();
+                    }}
+                    validationRules={{
+                      required: 'The project name is required',
+                    }}
                     onChange={(e) => {
-                      let newWebhookMethods = [...project?.authWebhookMethods!];
-                      if (e.target.checked) {
-                        newWebhookMethods = newWebhookMethods.includes(method)
-                          ? newWebhookMethods
-                          : [...newWebhookMethods, method];
-                      } else {
-                        newWebhookMethods = newWebhookMethods.filter((newMethod) => newMethod !== method);
-                      }
-                      webhookMethodField.onChange(newWebhookMethods);
-                      setUpdateFieldInfo((info) => ({ ...info, target: method }));
-                      onSubmit({ authWebhookMethods: newWebhookMethods });
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'name' }));
+                      nameField.onChange(e.target.value);
                     }}
                   />
-                  {updateFieldInfo.target === method && updateFieldInfo.state !== null && (
+                  {updateFieldInfo.target === 'name' && updateFieldInfo.state !== null && (
                     <SettingsAlertMessage
                       state={updateFieldInfo.state}
                       message={updateFieldInfo.message}
@@ -209,32 +167,118 @@ export function Settings() {
                     />
                   )}
                 </div>
-              );
-            })}
+              </dd>
+            </dl>
           </div>
-        </section>
-      </form>
+          <div className="section setting_box webhook" id="sectionWebhook">
+            <div className="setting_title">
+              <strong className="text">Webhook</strong>
+            </div>
+            <dl className="sub_info">
+              <dt className="sub_title">Auth webhook URL</dt>
+              <dd className="sub_desc">
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: updateFieldInfo.target === 'authWebhookURL' && updateFieldInfo.state === 'error',
+                    is_success: updateFieldInfo.target === 'authWebhookURL' && updateFieldInfo.state === 'success',
+                  })}
+                >
+                  <InputTextField
+                    name="authWebhookURL"
+                    register={register}
+                    reset={() => {
+                      resetForm();
+                      resetUpdateFieldInfo();
+                    }}
+                    onChange={(e) => {
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'authWebhookURL' }));
+                      webhookURLField.onChange(e.target.value);
+                    }}
+                  />
+                  {updateFieldInfo.target === 'authWebhookURL' && updateFieldInfo.state !== null && (
+                    <SettingsAlertMessage
+                      state={updateFieldInfo.state}
+                      message={updateFieldInfo.message}
+                      onSuccessEnd={resetUpdateFieldInfo}
+                    />
+                  )}
+                </div>
+              </dd>
+              <dt className="sub_title">Auth webhook methods</dt>
+              <dd className="sub_desc">
+                {AUTH_WEBHOOK_METHODS.map((method) => {
+                  return (
+                    <div
+                      className={classNames('input_group', {
+                        is_error: updateFieldInfo.target === method && updateFieldInfo.state === 'error',
+                        is_success: updateFieldInfo.target === method && updateFieldInfo.state === 'success',
+                      })}
+                      key={method}
+                    >
+                      <InputToggle
+                        name={method}
+                        checked={webhookMethodField.value.includes(method)}
+                        onChange={(e) => {
+                          let newWebhookMethods = [...project?.authWebhookMethods!];
+                          if (e.target.checked) {
+                            newWebhookMethods = newWebhookMethods.includes(method)
+                              ? newWebhookMethods
+                              : [...newWebhookMethods, method];
+                          } else {
+                            newWebhookMethods = newWebhookMethods.filter((newMethod) => newMethod !== method);
+                          }
+                          webhookMethodField.onChange(newWebhookMethods);
+                          setUpdateFieldInfo((info) => ({ ...info, target: method }));
+                          onSubmit({ authWebhookMethods: newWebhookMethods });
+                        }}
+                      />
+                      {updateFieldInfo.target === method && updateFieldInfo.state !== null && (
+                        <SettingsAlertMessage
+                          state={updateFieldInfo.state}
+                          message={updateFieldInfo.message}
+                          onSuccessEnd={resetUpdateFieldInfo}
+                        />
+                      )}
+                    </div>
+                  );
+                })}
+              </dd>
+            </dl>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
 
-function InputToggle({ name, checked, onChange }: {
+function InputToggle({
+  name,
+  checked,
+  onChange,
+}: {
   name: AuthWebhookMethod;
   checked: boolean;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 }) {
   return (
-    <div className="inline-block w-60">
-      <label htmlFor={name} className="inline-flex relative items-center cursor-pointer">
-        <input type="checkbox" id={name} value={name} className="sr-only peer" checked={checked} onChange={onChange} />
-        <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-        <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">{name}</span>
-      </label>
-    </div>
+    <label htmlFor={name} className="input_toggle_box">
+      <input type="checkbox" id={name} value={name} className="blind" checked={checked} onChange={onChange} />
+      <em className="toggle_ui">
+        <span className="track"></span>
+        <Icon type="check" className="ball" />
+      </em>
+      <span className="label">{name}</span>
+    </label>
   );
 }
 
-function InputTextField({ name, validationRules, register, reset, onChange }: {
+function InputTextField({
+  name,
+  validationRules,
+  register,
+  reset,
+  onChange,
+}: {
   name: keyof UpdatableProjectFields;
   validationRules?: RegisterOptions;
   register: UseFormRegister<ProjectUpdateFields>;
@@ -261,7 +305,7 @@ function InputTextField({ name, validationRules, register, reset, onChange }: {
   );
 
   return (
-    <div className="flex flex-wrap items-center" onKeyDown={onKeyDown}>
+    <div className="input_inner" onKeyDown={onKeyDown}>
       <input
         type="text"
         autoComplete="off"
@@ -270,57 +314,19 @@ function InputTextField({ name, validationRules, register, reset, onChange }: {
           ref(e);
           firstRef.current = e;
         }}
-        className="border-0 border-b border-gray-300 text-gray-900 text-sm focus:outline-none focus:border-gray-400 block w-96 p-2.5 mb-2"
         onFocus={() => setIsFieldControlButtonsOpen(true)}
         onChange={onChange}
+        className="input"
       />
       {isFieldControlButtonsOpen && (
-        <div ref={fieldControlRef} className="flex ml-3">
-          <button
-            type="button"
-            onClick={cancelInput}
-            className="flex items-center mr-2 px-3 py-2 border border-solid border-gray-300 hover:bg-gray-200 rounded text-xs text-gray-500 font-medium "
-          >
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 12 12"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="mr-1"
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M3.14645 3.14645C3.34171 2.95118 3.65829 2.95118 3.85355 3.14645L6 5.29289L8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645C9.04882 3.34171 9.04882 3.65829 8.85355 3.85355L6.70711 6L8.85355 8.14645C9.04882 8.34171 9.04882 8.65829 8.85355 8.85355C8.65829 9.04882 8.34171 9.04882 8.14645 8.85355L6 6.70711L3.85355 8.85355C3.65829 9.04882 3.34171 9.04882 3.14645 8.85355C2.95118 8.65829 2.95118 8.34171 3.14645 8.14645L5.29289 6L3.14645 3.85355C2.95118 3.65829 2.95118 3.34171 3.14645 3.14645Z"
-                fill="#807B78"
-              />
-            </svg>
+        <Button.Box ref={fieldControlRef}>
+          <Button type="button" onClick={cancelInput} outline size="sm" icon={<Icon type="closeSmall" />}>
             Cancel
-          </button>
-          <button
-            type="submit"
-            ref={lastRef}
-            className="flex items-center mr-2 px-3 py-2 border border-solid border-emerald-300 hover:bg-emerald-100 rounded text-xs text-emerald-500 font-medium "
-          >
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 12 12"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="mr-1"
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M10.3536 2.64645C10.5488 2.84171 10.5488 3.15829 10.3536 3.35355L4.85355 8.85355C4.65829 9.04882 4.34171 9.04882 4.14645 8.85355L1.64645 6.35355C1.45118 6.15829 1.45118 5.84171 1.64645 5.64645C1.84171 5.45118 2.15829 5.45118 2.35355 5.64645L4.5 7.79289L9.64645 2.64645C9.84171 2.45118 10.1583 2.45118 10.3536 2.64645Z"
-                fill="#23C176"
-              />
-            </svg>
+          </Button>
+          <Button type="submit" ref={lastRef} outline size="sm" color="success" icon={<Icon type="check" />}>
             Save
-          </button>
-        </div>
+          </Button>
+        </Button.Box>
       )}
     </div>
   );
@@ -353,21 +359,19 @@ const SideNavigation = () => {
   }, [setActiveId]);
 
   return (
-    <nav className="flex flex-col w-44 sticky top-1 h-4/5">
-      <a
-        href="#sectionGeneral"
-        className={`nav__items rounded px-4 py-3 mb-4 text-sm ${activeId === 'sectionGeneral' ? 'active bg-orange-200' : ''
-          }`}
-      >
-        General
-      </a>
-      <a
-        href="#sectionWebhook"
-        className={`nav__items rounded px-4 py-3 mb-4 text-sm ${activeId === 'sectionWebhook' ? 'active bg-orange-200' : ''
-          }`}
-      >
-        Webhook
-      </a>
+    <nav className="navigator">
+      <ul className="navigator_list">
+        <li className={classNames('navigator_group', { is_active: activeId === 'sectionGeneral' })}>
+          <a href="#sectionGeneral" className="navigator_item">
+            General
+          </a>
+        </li>
+        <li className={classNames('navigator_group', { is_active: activeId === 'sectionWebhook' })}>
+          <a href="#sectionWebhook" className="navigator_item">
+            Webhook
+          </a>
+        </li>
+      </ul>
     </nav>
   );
 };

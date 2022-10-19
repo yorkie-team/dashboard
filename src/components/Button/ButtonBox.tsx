@@ -17,12 +17,20 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 
-export function ButtonBox({ fullWidth, children }: {
-  fullWidth?: boolean;
-  children?: ReactNode;
-}) {
+export const ButtonBox = React.forwardRef<
+  HTMLDivElement,
+  {
+    fullWidth?: boolean;
+    children?: ReactNode;
+  }
+>(({ children, fullWidth }, ref) => {
   const buttonBoxClassName = classNames('btn_box', {
     full_width: fullWidth,
   });
-  return <div className={buttonBoxClassName}> {children}</div>;
-}
+  return (
+    <div ref={ref} className={buttonBoxClassName}>
+      {children}
+    </div>
+  );
+});
+ButtonBox.displayName = 'Button.Box';
