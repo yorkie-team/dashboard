@@ -46,6 +46,7 @@ import { ReactComponent as BranchSVG } from 'assets/icons/icon_branch.svg';
 import { ReactComponent as CopySVG } from 'assets/icons/icon_copy.svg';
 import { ReactComponent as LockSmallSVG } from 'assets/icons/icon_lock_small.svg';
 import { ReactComponent as Arrow2SVG } from 'assets/icons/icon_arrow2.svg';
+import { ReactComponent as ArrowSVG } from 'assets/icons/icon_arrow.svg';
 
 const svgMap = {
   shortcut: <ShortcutSVG />,
@@ -78,6 +79,7 @@ const svgMap = {
   copy: <CopySVG />,
   lockSmall: <LockSmallSVG />,
   arrow2: <Arrow2SVG />,
+  arrow: <ArrowSVG />,
 };
 type SVGType = keyof typeof svgMap;
 
@@ -92,9 +94,5 @@ export function Icon({
   className?: string;
   fill?: boolean;
 }) {
-  return (
-    <span className={classNames({ icon: !fill }, className, color)}>
-      {svgMap[type]}
-    </span>
-  );
+  return <span className={classNames({ icon: !fill }, className, color)}>{svgMap[type]}</span>;
 }

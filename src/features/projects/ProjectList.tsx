@@ -17,112 +17,235 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import * as moment from 'moment';
+import classNames from 'classnames';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectProjectList, listProjectsAsync } from './projectsSlice';
 import { Project } from 'api/types';
-import { Button, Icon, InputTextField } from 'components';
+import { Button, Icon, InputTextField, Popover, Dropdown } from 'components';
 
 // TODO(chacha912): Extract to Cards component
-function ProjectCards({ projects, totalProjectsCount }: {
+function ProjectCards({
+  projects,
+  totalProjectsCount,
+  viewType,
+}: {
   projects: Array<Project>;
   totalProjectsCount: number;
+  viewType: 'list' | 'card';
 }) {
   if (totalProjectsCount === 0) {
     return (
-      <Link
-        to={'/projects/new'}
-        className="flex flex-col items-center justify-center w-full h-44 bg-gray-50 text-lg leading-7 font-medium border-dashed border-2 border-gray-300 rounded"
-      >
-        <div className="placeholder_box ">
-          <p className="desc">Get started by<br /><span className="blue_dark">creating a new project</span></p>
-        </div>
+      <Link to={'/projects/new'} className="placeholder_box">
+        <p className="desc">
+          Get started by
+          <br />
+          <span className="blue_dark">creating a new project</span>
+        </p>
       </Link>
     );
   }
   if (projects.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center w-full h-44 bg-gray-50 text-lg leading-7 font-medium">
-        No matching result
+      <div className="placeholder_box">
+        <p className="desc">No matching result</p>
       </div>
     );
   }
 
   // TODO(hackerwins): implement information(Connections, Storage, Load) of project
   return (
-    <div className="card">
-      <ul className="card_list">
-        {projects.map(({ name, publicKey, createdAt }: Project) => (
-          <li key={name} className="card_item shadow_xs is_large">
-            <Link to={`./${name}`} className="link">
-              <div className="title">
-                <strong className="title_text">{name}</strong>
-              </div>
-              <dl className="info_list">
-                <dt className="info_title">Created at</dt>
-                <dd className="info_desc">{moment.unix(createdAt).format('YYYY-MM-DD')}</dd>
-              </dl>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <div className={classNames('project_table', { is_active: viewType === 'list' })}>
+        <div className="thead">
+          <span className="th title">Project title</span>
+          <span className="th">Created At</span>
+        </div>
+        <ul className="tbody_list">
+          {projects.map(({ name, createdAt }: Project) => (
+            <li key={name} className="tbody_item">
+              <Link to={`./${name}`} className="link">
+                <span className="td title">{name}</span>
+                <span className="td">{moment.unix(createdAt).format('YYYY-MM-DD')}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className={classNames('card', { is_active: viewType === 'card' })}>
+        <ul className="card_list">
+          {projects.map(({ name, createdAt }: Project) => (
+            <li key={name} className="card_item shadow_xs is_large">
+              <Link to={`./${name}`} className="link">
+                <div className="title">
+                  <strong className="title_text">{name}</strong>
+                </div>
+                <dl className="info_list">
+                  <dt className="info_title">Created At</dt>
+                  <dd className="info_desc">{moment.unix(createdAt).format('YYYY-MM-DD')}</dd>
+                </dl>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 }
 
+const SORT_OPTION = {
+  alphabet: 'Alphabetical',
+  createdAt: 'Date created',
+};
 // ProjectList represents the list of projects in the application.
 export function ProjectList() {
   const dispatch = useAppDispatch();
   const [projects, setProjects] = useState<Array<Project>>([]);
   const { projects: allProjects, status } = useAppSelector(selectProjectList);
   const [query, setQuery] = useState('');
+  const [viewType, setViewType] = useState<'list' | 'card'>('card');
+  const [sortOpened, setSortOpened] = useState(false);
+  const [sortOption, setSortOption] = useState<typeof SORT_OPTION[keyof typeof SORT_OPTION]>(SORT_OPTION.createdAt);
 
   const handleChangeQuery = useCallback((e) => {
     setQuery(e.target.value);
   }, []);
 
-  const handleSearch = useCallback((e) => {
-    e.preventDefault();
-    setProjects(allProjects.filter((project) => project.name.includes(query)));
-  }, [query, allProjects]);
+  const handleSearch = useCallback(
+    (e) => {
+      e.preventDefault();
+      setProjects(allProjects.filter((project) => project.name.includes(query)));
+    },
+    [query, allProjects],
+  );
+
+  const handleSort = useCallback(
+    (option) => {
+      if (option === SORT_OPTION.alphabet) {
+        setProjects([...allProjects].sort((p1, p2) => (p1.name > p2.name ? 1 : -1)));
+      } else if (option === SORT_OPTION.createdAt) {
+        setProjects([...allProjects].sort((p1, p2) => p2.createdAt - p1.createdAt));
+      }
+    },
+    [allProjects],
+  );
 
   useEffect(() => {
     dispatch(listProjectsAsync());
   }, [dispatch]);
 
   useEffect(() => {
-    setProjects(allProjects);
-  }, [allProjects]);
+    handleSort(SORT_OPTION.createdAt);
+  }, [handleSort]);
+
+  useEffect(() => {
+    return () => {
+      setSortOpened(false);
+    };
+  }, []);
 
   // TODO(hackerwins): Add Search Icon
   // NOTE(hackerwins): Remove style(marginTop) after implementing team feature.
   return (
     <>
       <div className="project_area">
-        <form className="border-b border-solid border-gray-200 mb-6" onSubmit={handleSearch}>
-          <div className="title_group">
-            <strong className="title">Projects</strong>
-            <Button.Box>
-              <Button color="toggle" isActive blindText icon={<Icon type="viewGrid" />}>grid layout</Button>
-              <Button color="toggle" blindText icon={<Icon type="viewList" />}>list layout</Button>
-              <Button as="link" href="./new" className="btn btn_plus" icon={<Icon type="plus" />}>New Project</Button>
-            </Button.Box>
-          </div>
+        <div className="title_group">
+          <strong className="title">Projects</strong>
+          <Button.Box>
+            <Button
+              color="toggle"
+              isActive={viewType === 'card'}
+              blindText
+              icon={<Icon type="viewGrid" />}
+              onClick={() => {
+                setViewType('card');
+              }}
+            >
+              grid layout
+            </Button>
+            <Button
+              color="toggle"
+              isActive={viewType === 'list'}
+              blindText
+              icon={<Icon type="viewList" />}
+              onClick={() => {
+                setViewType('list');
+              }}
+            >
+              list layout
+            </Button>
+            <Button as="link" href="/projects/new" className="btn_plus" icon={<Icon type="plus" />}>
+              New Project
+            </Button>
+          </Button.Box>
+        </div>
+        <div className="search_area">
           <div className="search">
-            <InputTextField
-              id="input10"
-              placeholder="Search Projects"
-              autoComplete="off"
-              label=""
-              blindLabel
-              onChange={handleChangeQuery}
-            />
+            <form onSubmit={handleSearch}>
+              <InputTextField
+                id="searchProject"
+                placeholder="Search Projects"
+                autoComplete="off"
+                label=""
+                blindLabel
+                onChange={handleChangeQuery}
+              />
+            </form>
           </div>
-        </form>
+          <div className="filter">
+            <ul className="filter_list">
+              <li className="filter_item">
+                <Popover opened={sortOpened} onChange={setSortOpened}>
+                  <Popover.Target>
+                    <button
+                      type="button"
+                      className="btn btn_small filter_desc"
+                      onClick={() => {
+                        setSortOpened((opened) => !opened);
+                      }}
+                    >
+                      <span className="filter_title">Sort:</span>
+                      <span className="text">{sortOption}</span>
+                      <Icon type="arrow" className="icon_arrow" />
+                    </button>
+                  </Popover.Target>
+                  <Popover.Dropdown>
+                    <Dropdown>
+                      <Dropdown.List>
+                        <Dropdown.Item
+                          onClick={() => {
+                            setSortOption(SORT_OPTION.alphabet);
+                            handleSort(SORT_OPTION.alphabet);
+                            setSortOpened(false);
+                          }}
+                        >
+                          {sortOption === SORT_OPTION.alphabet && <Icon type="check" color="orange_0" />}
+                          <Dropdown.Text>{SORT_OPTION.alphabet}</Dropdown.Text>
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          onClick={() => {
+                            setSortOption(SORT_OPTION.createdAt);
+                            handleSort(SORT_OPTION.createdAt);
+                            setSortOpened(false);
+                          }}
+                        >
+                          {sortOption === SORT_OPTION.createdAt && <Icon type="check" color="orange_0" />}
+                          <Dropdown.Text>{SORT_OPTION.createdAt}</Dropdown.Text>
+                        </Dropdown.Item>
+                      </Dropdown.List>
+                    </Dropdown>
+                  </Popover.Dropdown>
+                </Popover>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
       {status === 'loading' && <div>Loading...</div>}
       {status === 'failed' && <div>Failed!</div>}
-      {status === 'idle' && <ProjectCards projects={projects} totalProjectsCount={allProjects.length} />}
+      {status === 'idle' && (
+        <ProjectCards projects={projects} totalProjectsCount={allProjects.length} viewType={viewType} />
+      )}
     </>
   );
 }

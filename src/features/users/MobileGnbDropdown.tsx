@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppSelector, useAppDispatch } from 'app/hooks';
@@ -31,6 +31,12 @@ export function MobileGnbDropdown() {
     dispatch(logoutUser());
     navigate('/login');
   }, [dispatch, navigate]);
+
+  useEffect(() => {
+    return () => {
+      setOpened(false);
+    };
+  }, []);
 
   return (
     <Popover opened={opened} onChange={setOpened}>
