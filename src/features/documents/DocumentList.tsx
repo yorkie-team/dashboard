@@ -22,9 +22,7 @@ import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectDocumentList, listDocumentsAsync, searchDocumentsAsync } from './documentsSlice';
 import { Icon } from 'components';
 
-export function DocumentList({ isDetailOpen }: {
-  isDetailOpen: boolean;
-}) {
+export function DocumentList({ isDetailOpen }: { isDetailOpen: boolean }) {
   const dispatch = useAppDispatch();
   const params = useParams();
   const projectName = params.projectName || '';
@@ -35,20 +33,23 @@ export function DocumentList({ isDetailOpen }: {
     SetQuery(e.target.value);
   }, []);
 
-  const handleSearch = useCallback((e) => {
-    e.preventDefault();
-    if (query === '') {
-      dispatch(listDocumentsAsync({ projectName, isForward: false }));
-      return;
-    }
+  const handleSearch = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (query === '') {
+        dispatch(listDocumentsAsync({ projectName, isForward: false }));
+        return;
+      }
 
-    dispatch(
-      searchDocumentsAsync({
-        projectName,
-        documentQuery: query,
-      }),
-    );
-  }, [dispatch, projectName, query]);
+      dispatch(
+        searchDocumentsAsync({
+          projectName,
+          documentQuery: query,
+        }),
+      );
+    },
+    [dispatch, projectName, query],
+  );
 
   useEffect(() => {
     dispatch(listDocumentsAsync({ projectName, isForward: false }));
@@ -60,13 +61,21 @@ export function DocumentList({ isDetailOpen }: {
     <>
       <form onSubmit={handleSearch}>
         <div className="search">
-          <div className="input_field_box" >
+          <div className="input_field_box">
             <div className="input_inner"></div>
             <Icon type="search" className="icon_search" />
-            <input type="text" id="search_editing" className="input" placeholder="Search projects" value={query} onChange={handleChangeQuery} style={{ width: "100%" }} />
+            <input
+              type="text"
+              id="search_editing"
+              className="input"
+              placeholder="Search projects"
+              value={query}
+              onChange={handleChangeQuery}
+              style={{ width: '100%' }}
+            />
           </div>
         </div>
-      </form >
+      </form>
       <div className="document_table is_edit">
         <div className="thead">
           <span className="th id">Document ID</span>
@@ -115,7 +124,15 @@ export function DocumentList({ isDetailOpen }: {
             </div>
           </div>
         )}
-        {status === 'failed' && <div>Failed!</div>}
+        {status === 'failed' && (
+          <div className="placeholder_box no_bg">
+            <p className="desc">
+              Search failed.
+              <br />
+              Please try refreshing the page.
+            </p>
+          </div>
+        )}
         {status === 'idle' && (
           <ul className="tbody_list">
             {documents.map((document) => {
@@ -133,7 +150,12 @@ export function DocumentList({ isDetailOpen }: {
             })}
           </ul>
         )}
-      </div >
+        {status === 'idle' && documents.length === 0 && (
+          <div className="placeholder_box no_bg">
+            <p className="desc">No Document Found</p>
+          </div>
+        )}
+      </div>
     </>
   );
 }
