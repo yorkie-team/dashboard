@@ -26,12 +26,14 @@ export function CreateProjectPage() {
         <h2 className="blind">Create new Project</h2>
         <div className="title_box">
           <strong className="title">Create new project</strong>
-          <Button as="a" href="../" className="btn_line">Cancel</Button>
+          <Button as="link" href="../" className="btn_line">
+            Cancel
+          </Button>
         </div>
         <div className="create_project_area">
           <RegisterForm />
         </div>
       </div>
-    </PageTemplate >
+    </PageTemplate>
   );
 }

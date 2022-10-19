@@ -14,20 +14,19 @@
  * limitations under the License.
  */
 
-import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { Project } from 'api/types';
 import { Popover, Dropdown, Icon, Breadcrumb } from 'components';
 import { selectProjectList, listProjectsAsync } from './projectsSlice';
 
-export function ProjectDropdown({ size = 'small' }: {
-  size?: 'small' | 'large';
-}) {
+export function ProjectDropdown({ size = 'small' }: { size?: 'small' | 'large' }) {
   const { projectName } = useParams();
   const { projects } = useAppSelector(selectProjectList);
   const dispatch = useAppDispatch();
+  const [opened, setOpened] = useState(false);
 
   useEffect(() => {
     dispatch(listProjectsAsync());
@@ -37,17 +36,28 @@ export function ProjectDropdown({ size = 'small' }: {
 
   if (size === 'small') {
     return (
-      <Popover>
+      <Popover opened={opened} onChange={setOpened}>
         <Popover.Target>
-          <Breadcrumb.Item>
+          <Breadcrumb.Item
+            onClick={() => {
+              setOpened((opened) => !opened);
+            }}
+          >
             <Breadcrumb.Text>{projectName}</Breadcrumb.Text>
+            <Icon type="openSelector" />
           </Breadcrumb.Item>
         </Popover.Target>
         <Popover.Dropdown>
           <Dropdown shadow="s">
             <Dropdown.List>
               {projects.map((project: Project) => (
-                <Dropdown.Item key={project.id} to={`/projects/${project.name}`}>
+                <Dropdown.Item
+                  key={project.id}
+                  to={`/projects/${project.name}`}
+                  onClick={() => {
+                    setOpened(false);
+                  }}
+                >
                   <Breadcrumb.Text>{project.name}</Breadcrumb.Text>
                 </Dropdown.Item>
               ))}
@@ -65,18 +75,36 @@ export function ProjectDropdown({ size = 'small' }: {
   }
 
   return (
-    <Popover>
+    <Popover opened={opened} onChange={setOpened}>
       <Popover.Target>
-        <button type="button" className="btn_title">
+        <button
+          type="button"
+          className="btn_title"
+          onClick={() => {
+            setOpened((opened) => !opened);
+          }}
+        >
           <strong className="title">{projectName}</strong>
           <Icon type="openSelector" className="title_icon" />
         </button>
       </Popover.Target>
       <Popover.Dropdown>
         <Dropdown shadow="s">
+          <Dropdown.Title>
+            <Link to="/projects/new" className="btn">
+              <Icon type="plus" />
+              <span className="text">Create new project</span>
+            </Link>
+          </Dropdown.Title>
           <Dropdown.List>
             {projects.map((project: Project) => (
-              <Dropdown.Item key={project.id} to={`/projects/${project.name}`}>
+              <Dropdown.Item
+                key={project.id}
+                to={`/projects/${project.name}`}
+                onClick={() => {
+                  setOpened(false);
+                }}
+              >
                 <Breadcrumb.Text>{project.name}</Breadcrumb.Text>
               </Dropdown.Item>
             ))}

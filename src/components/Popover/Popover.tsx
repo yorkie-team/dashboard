@@ -14,45 +14,78 @@
  * limitations under the License.
  */
 
-import React, { ReactNode, useRef, useState } from 'react';
+import React, { ReactNode, useRef } from 'react';
+import { useUncontrolled, useOutsideClick } from 'hooks';
 import { PopoverContextProvider } from './Popover.context';
-import { PopoverTarget } from './PopoverButton';
+import { PopoverTarget } from './PopoverTarget';
 import { PopoverDropdown } from './PopoverDropdown';
 
 export function Popover({
+  opened,
+  defaultOpened,
   children,
   closeOnClickOutside = true,
-  excludedClickSelector,
+  onChange,
+  onOpen,
   onClose,
 }: {
+  opened?: boolean;
+  defaultOpened?: boolean;
   children: ReactNode;
   closeOnClickOutside?: boolean;
-  excludedClickSelector?: string;
+  onChange?(opened: boolean): void;
+  onOpen?: () => void;
   onClose?: () => void;
 }) {
-  const [open, setOpen] = useState(false);
-  const targetRef = useRef<HTMLElement | null>(null);
+  const [_opened, setOpened] = useUncontrolled({
+    value: opened,
+    defaultValue: defaultOpened,
+    finalValue: false,
+    onChange,
+  });
 
-  // TODO(chacha912): Uncomment the following code when the useOutsideClick hook is fixed.
-  // useOutsideClick(
-  //   targetRef,
-  //   () => {
-  //     if (closeOnClickOutside) {
-  //       setOpen(false);
-  //       onClose && onClose();
-  //     }
-  //   },
-  //   excludedClickSelector,
-  // );
+  const _onOpen = () => {
+    onOpen && onOpen();
+    setOpened(true);
+  };
+
+  const _onClose = () => {
+    onClose && onClose();
+    setOpened(false);
+  };
+
+  const _onToggle = () => {
+    if (_opened) {
+      onClose && onClose();
+      setOpened(false);
+    } else {
+      onOpen && onOpen();
+      setOpened(true);
+    }
+  };
+
+  const targetRef = useRef<HTMLElement | null>(null);
+  const dropdownRef = useRef<HTMLElement | null>(null);
+
+  useOutsideClick(
+    targetRef,
+    () => {
+      if (closeOnClickOutside) {
+        _onClose();
+      }
+    },
+    dropdownRef,
+  );
 
   return (
     <PopoverContextProvider
       value={{
-        open,
+        opened: _opened,
         targetRef,
-        onToggle: () => setOpen((open) => !open),
-        onOpen: () => setOpen(true),
-        onClose: onClose,
+        dropdownRef,
+        onToggle: _onToggle,
+        onOpen: _onOpen,
+        onClose: _onClose,
       }}
     >
       {children}

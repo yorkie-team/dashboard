@@ -14,15 +14,25 @@
  * limitations under the License.
  */
 
-import React, { ReactNode } from 'react';
+import React, { ReactNode, cloneElement } from 'react';
+import { isElement } from 'utils';
 import { usePopoverContext } from './Popover.context';
 
 export interface PopoverDropdownProps {
   children: ReactNode;
 }
 
-export const PopoverDropdown = ({ children }: PopoverDropdownProps) => {
-  const ctx = usePopoverContext();
+export const PopoverDropdown = ({ children, ...others }: PopoverDropdownProps) => {
+  if (!isElement(children)) {
+    throw new Error('PopoverDropdown must have a single child element.');
+  }
 
-  return <>{ctx.open && children}</>;
+  const ctx = usePopoverContext();
+  if (!ctx.opened) {
+    return null;
+  }
+  return cloneElement(children, {
+    ...others,
+    ref: ctx.dropdownRef,
+  });
 };
