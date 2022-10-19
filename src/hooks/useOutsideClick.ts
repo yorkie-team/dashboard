@@ -4,9 +4,9 @@ import { useEffect, useRef } from 'react';
  * It calls the callback function when the user clicks outside of the ref element
  * @param {any} ref - The ref of the element you want to detect clicks outside of.
  * @param callback - The function to call when the user clicks outside of the element.
- * @param {any[]} excludedElems - The refs of the elements or selectors you want to exclude from the callback.
+ * @param {any[]} excludedRefs - The refs of the elements you want to exclude from the callback.
  */
-export const useOutsideClick = (ref: any, callback: (event: MouseEvent) => void, ...excludedElems: any[]): void => {
+export const useOutsideClick = (ref: any, callback: (event: MouseEvent) => void, ...excludedRefs: any[]): void => {
   const callBackRef = useRef<(event: MouseEvent) => void>();
   callBackRef.current = callback;
 
@@ -16,14 +16,8 @@ export const useOutsideClick = (ref: any, callback: (event: MouseEvent) => void,
       if (ref.current?.contains(target)) {
         return;
       }
-      for (const excludedElem of excludedElems) {
-        if (!excludedElem) continue;
-        if (typeof excludedElem === 'string') {
-          if (target.closest(excludedElem)) {
-            return;
-          }
-        }
-        if (excludedElem.current?.contains(target)) {
+      for (const excludedRef of excludedRefs) {
+        if (excludedRef.current?.contains(target)) {
           return;
         }
       }
@@ -36,5 +30,5 @@ export const useOutsideClick = (ref: any, callback: (event: MouseEvent) => void,
     return (): void => {
       document.removeEventListener('click', handleClickOutside);
     };
-  }, [ref, callback, excludedElems]);
+  }, [ref, callback, excludedRefs]);
 };

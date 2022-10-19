@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppSelector, useAppDispatch } from 'app/hooks';
@@ -23,6 +23,7 @@ import { Popover, Dropdown, Icon } from 'components';
 
 export function MobileGnbDropdown() {
   const { username } = useAppSelector(selectUsers);
+  const [opened, setOpened] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -32,16 +33,21 @@ export function MobileGnbDropdown() {
   }, [dispatch, navigate]);
 
   return (
-    <Popover>
+    <Popover opened={opened} onChange={setOpened}>
       <Popover.Target>
-        <button className="btn_menu is_active">
+        <button
+          className="btn_menu"
+          onClick={() => {
+            setOpened((opened) => !opened);
+          }}
+        >
           <span className="blind">Open menu</span>
-          <Icon type="gnbMenu" className="icon_menu" />
-          <Icon type="close" className="icon_close" />
+          {!opened && <Icon type="gnbMenu" className="icon_menu" />}
+          {opened && <Icon type="close" className="icon_close" />}
         </button>
       </Popover.Target>
       <Popover.Dropdown>
-        <Dropdown className="util_list_mo is_active">
+        <Dropdown className="util_list_mo">
           <Dropdown.List>
             <Dropdown.Item>
               <Dropdown.Text>Feedback</Dropdown.Text>
@@ -66,9 +72,7 @@ export function MobileGnbDropdown() {
             <dd className="user_account_text">{username}</dd>
             <dt className="blind">Mail</dt>
             <dd className="user_account_text">
-              <a href={`mailto:${username}@yorkie.dev`} className="user_account_mail">
-                {username}@yorkie.dev
-              </a>
+              <span className="user_account_mail">{username}@yorkie.dev</span>
             </dd>
           </dl>
         </Dropdown>

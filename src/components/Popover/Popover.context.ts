@@ -2,8 +2,9 @@ import { createSafeContext } from 'utils';
 import { POPOVER_ERRORS } from './Popover.errors';
 
 type PopoverContext = {
-  open: boolean;
+  opened: boolean;
   targetRef: React.RefObject<HTMLElement>;
+  dropdownRef: React.RefObject<HTMLElement>;
   onToggle: () => void;
   onOpen: () => void;
   onClose?: () => void;

@@ -1,1 +1,2 @@
-export { createSafeContext } from './create-safe-context';
+export * from './create-safe-context';
+export * from './is-element';

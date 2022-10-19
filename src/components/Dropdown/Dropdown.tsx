@@ -20,32 +20,24 @@ import classNames from 'classnames';
 
 type ShadowSize = 'xs' | 's' | 'm' | 'l';
 
-export function Dropdown({
-  children,
-  large,
-  shadow,
-  className,
-}: {
+type DropdownProps = {
   large?: boolean;
   shadow?: ShadowSize;
   className?: string;
   children: ReactNode;
-}) {
+};
+type DropdownRef = HTMLDivElement;
+
+export const Dropdown = React.forwardRef<DropdownRef, DropdownProps>(({ children, large, shadow, className }, ref) => {
   const shadowClass = shadow ? `shadow_${shadow}` : '';
 
   return (
-    <div
-      className={classNames(
-        'dropdown',
-        className,
-        shadowClass,
-        { dropdown_l: large },
-      )}
-    >
+    <div ref={ref} className={classNames('dropdown', className, shadowClass, { dropdown_l: large })}>
       {children}
     </div>
   );
-}
+}) as any;
+Dropdown.displayName = 'Dropdown';
 
 function List({ children }: { children: ReactNode }) {
   return <ul className="dropdown_list">{children}</ul>;
@@ -59,20 +51,25 @@ function Item({
 }: {
   children: ReactNode;
   to?: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
   border?: boolean;
 }) {
   return (
     <li
       className={classNames('dropdown_item', {
         has_border: border,
-      })} style={{ display: 'block' }}
+      })}
+      style={{ display: 'block' }}
     >
-      {
-        onClick ?
-          <button onClick={onClick} className="dropdown_menu">{children}</button> :
-          <Link to={to || ''} className="dropdown_menu">{children}</Link>
-      }
+      {to ? (
+        <Link to={to || ''} className="dropdown_menu" onClick={onClick}>
+          {children}
+        </Link>
+      ) : (
+        <button onClick={onClick} className="dropdown_menu">
+          {children}
+        </button>
+      )}
     </li>
   );
 }
@@ -82,7 +79,7 @@ function Text({ children, highlight }: { children: ReactNode; highlight?: boolea
 }
 
 function Title({ children }: { children: ReactNode }) {
-  return <strong className="dropdown_title">{children}</strong>;
+  return <div className="dropdown_title">{children}</div>;
 }
 
 Dropdown.List = List;
