@@ -34,7 +34,7 @@ const Item = React.forwardRef<
     </button>
   );
 });
-Item.displayName = 'Dropdown';
+Item.displayName = 'Breadcrumb.Item';
 
 function Thumb({ src }: { src: string }) {
   return (
