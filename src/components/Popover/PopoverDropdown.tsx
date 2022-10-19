@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-import React, { ReactNode, cloneElement } from 'react';
+import React, { cloneElement } from 'react';
 import { isElement } from 'utils';
 import { usePopoverContext } from './Popover.context';
 
 export interface PopoverDropdownProps {
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 export const PopoverDropdown = ({ children, ...others }: PopoverDropdownProps) => {
@@ -36,3 +36,5 @@ export const PopoverDropdown = ({ children, ...others }: PopoverDropdownProps) =
     ref: ctx.dropdownRef,
   });
 };
+
+PopoverDropdown.displayName = 'PopoverDropdown';
