@@ -16,12 +16,9 @@
 
 import React, { useState } from 'react';
 import classNames from 'classnames';
-// TODO(chacha912): Extract to CodeBlock component
-import Highlight, { defaultProps } from 'prism-react-renderer';
-import theme from '../documents/prismThemeLight';
 import { useAppSelector } from 'app/hooks';
 import { selectProjectDetail } from './projectsSlice';
-import { Icon } from 'components';
+import { Icon, CodeBlock } from 'components';
 
 type Snippet = 'npm' | 'cdn';
 
@@ -89,93 +86,55 @@ main();`,
         </div>
       </div>
       <div className="codeblock_navigator">
-        <button className={classNames('item', {
-          is_active: snippetType === 'npm'
-        })} onClick={() => setSnippetType('npm')}>Use npm</button>
-        <button className={classNames('item', {
-          is_active: snippetType === 'cdn'
-        })} onClick={() => setSnippetType('cdn')}>Use a &lt;script&gt; tag</button>
+        <button
+          className={classNames('item', {
+            is_active: snippetType === 'npm',
+          })}
+          onClick={() => setSnippetType('npm')}
+        >
+          Use npm
+        </button>
+        <button
+          className={classNames('item', {
+            is_active: snippetType === 'cdn',
+          })}
+          onClick={() => setSnippetType('cdn')}
+        >
+          Use a &lt;script&gt; tag
+        </button>
       </div>
-      {
-        snippetType === 'npm' && (
-          <div className="init_content">
-            <div className="init_box">
-              <div className="title_box title_box_s">
-                <strong className="title">Use npm</strong>
-              </div>
-              <p className="title_desc">Your project is now ready to use with its own APIs.</p>
+      {snippetType === 'npm' && (
+        <div className="init_content">
+          <div className="init_box">
+            <div className="title_box title_box_s">
+              <strong className="title">Use npm</strong>
             </div>
-            <div className="codeblock_box">
-              <Highlight {...defaultProps} code={`$ npm install yorkie-js-sdk`} theme={theme} language='bash'>
-                {({ className, tokens, getLineProps, getTokenProps }) => (
-                  <pre className={className}>
-                    {tokens.map((line, i) => (
-                      <div key={i} {...getLineProps({ line, key: i })}>
-                        <span className='line-content'>
-                          {line.map((token, key) => (
-                            <span key={key} {...getTokenProps({ token, key })} />
-                          ))}
-                        </span>
-                      </div>
-                    ))}
-                  </pre>
-                )}
-              </Highlight>
-            </div>
-            <div className="init_box">
-              <p className="title_desc">Then, import yorkie and begin using the SDKs.</p>
-            </div>
-            <div className="codeblock_box">
-              <Highlight {...defaultProps} code={snippet.npm} theme={theme} language='javascript'>
-                {({ className, tokens, getLineProps, getTokenProps }) => (
-                  <pre className={className}>
-                    {tokens.map((line, i) => (
-                      <div key={i} {...getLineProps({ line, key: i })}>
-                        <span className='line-number'>{i + 1}</span>
-                        <span className='line-content'>
-                          {line.map((token, key) => (
-                            <span key={key} {...getTokenProps({ token, key })} />
-                          ))}
-                        </span>
-                      </div>
-                    ))}
-                  </pre>
-                )}
-              </Highlight>
-            </div>
+            <p className="title_desc">Your project is now ready to use with its own APIs.</p>
           </div>
-        )
-      }
-      {
-        snippetType === 'cdn' && (
-          <div className="init_content">
-            <div className="init_box">
-              <div className="title_box title_box_s">
-                <strong className="title">Use CDN</strong>
-              </div>
-              <p className="title_desc">Copy and paste the following script into the bottom of your &lt;body&gt; tag.</p>
-            </div>
-            <div className="codeblock_box">
-              <Highlight {...defaultProps} code={snippet.cdn} theme={theme} language='javascript'>
-                {({ className, tokens, getLineProps, getTokenProps }) => (
-                  <pre className={className}>
-                    {tokens.map((line, i) => (
-                      <div key={i} {...getLineProps({ line, key: i })}>
-                        <span className='line-number'>{i + 1}</span>
-                        <span className='line-content'>
-                          {line.map((token, key) => (
-                            <span key={key} {...getTokenProps({ token, key })} />
-                          ))}
-                        </span>
-                      </div>
-                    ))}
-                  </pre>
-                )}
-              </Highlight>
-            </div>
+          <div className="codeblock_box">
+            <CodeBlock.Code code={`$ npm install yorkie-js-sdk`} language="bash" />
           </div>
-        )
-      }
+          <div className="init_box">
+            <p className="title_desc">Then, import yorkie and begin using the SDKs.</p>
+          </div>
+          <div className="codeblock_box">
+            <CodeBlock.Code code={snippet.npm} language="javascript" withLineNumbers />
+          </div>
+        </div>
+      )}
+      {snippetType === 'cdn' && (
+        <div className="init_content">
+          <div className="init_box">
+            <div className="title_box title_box_s">
+              <strong className="title">Use a &lt;script&gt; tag</strong>
+            </div>
+            <p className="title_desc">Copy and paste the following script into the bottom of your &lt;body&gt; tag.</p>
+          </div>
+          <div className="codeblock_box">
+            <CodeBlock.Code code={snippet.cdn} language="markup" withLineNumbers />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
