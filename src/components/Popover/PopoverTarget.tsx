@@ -15,23 +15,8 @@
  */
 
 import React, { cloneElement } from 'react';
+import { isElement } from 'utils';
 import { usePopoverContext } from './Popover.context';
-
-export function isElement(value: any): value is React.ReactElement {
-  if (Array.isArray(value) || value === null) {
-    return false;
-  }
-
-  if (typeof value === 'object') {
-    if (value.type === React.Fragment) {
-      return false;
-    }
-
-    return true;
-  }
-
-  return false;
-}
 
 export interface PopoverTargetProps {
   children: React.ReactNode;
@@ -47,8 +32,9 @@ export const PopoverTarget = ({ children, ...others }: PopoverTargetProps) => {
     ...others,
     onClick: () => {
       ctx.onToggle();
-    }
+    },
+    ref: ctx.targetRef,
   });
-}
+};
 
 PopoverTarget.displayName = 'PopoverTarget';

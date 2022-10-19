@@ -17,38 +17,35 @@
 import React, { ReactNode } from 'react';
 
 export function Breadcrumb({ children }: { children: ReactNode }) {
+  return <div className="breadcrumb team_view">{children}</div>;
+}
+
+function Inner({ children }: { children: ReactNode }) {
+  return <div className="breadcrumb_inner">{children}</div>;
+}
+
+const Item = React.forwardRef<
+  HTMLButtonElement,
+  { children: ReactNode; onClick?: React.MouseEventHandler<HTMLButtonElement> }
+>(({ children, onClick }, ref) => {
   return (
-    <div className="breadcrumb team_view">{children}</div>
+    <button type="button" ref={ref} className="breadcrumb_item" onClick={onClick}>
+      {children}
+    </button>
   );
-}
+});
+Item.displayName = 'Breadcrumb.Item';
 
-export function Inner({ children }: { children: ReactNode }) {
-  return (
-    <div className="breadcrumb_inner">{children}</div>
-  )
-}
-
-export function Item({ children, onClick }: {
-  children: ReactNode,
-  onClick?: React.MouseEventHandler<HTMLButtonElement>
-}) {
-  return (
-    <button type="button" className="breadcrumb_item" onClick={onClick}>{children}</button>
-  )
-}
-
-export function Thumb({ src }: { src: string }) {
+function Thumb({ src }: { src: string }) {
   return (
     <span className="breadcrumb_thumb">
       <img src={src} alt="" />
     </span>
-  )
+  );
 }
 
-export function Text({ children }: { children: ReactNode }) {
-  return (
-    <span className="breadcrumb_text">{children}</span>
-  )
+function Text({ children }: { children: ReactNode }) {
+  return <span className="breadcrumb_text">{children}</span>;
 }
 
 Breadcrumb.Item = Item;
