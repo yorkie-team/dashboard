@@ -14,36 +14,51 @@
  * limitations under the License.
  */
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import bannerImg from 'assets/images/@tmp/sample_banner_icon.png';
 import { ProjectList } from 'features/projects';
 import { Button, Icon } from 'components';
 import { PageTemplate } from './PageTemplate';
 
 export function ProjectsPage() {
+  const [showBanner, setShowBanner] = useState(localStorage.getItem('banner') === 'N' ? false : true);
   return (
     <PageTemplate className="team_overview_page">
-      <div className="banner_box" style={{ marginTop: 0 }}>
-        <strong className="guide">Welcome to Yorkie</strong>
-        <ul className="banner_list">
-          <li className="banner_item ">
-            <Link to="/demo" className="banner gradient_180deg_yellow">
-              <strong className="banner_title gray900">View demo project</strong>
-              <p className="banner_desc gray900">Check out our demo projects and be inspired!</p>
-            </Link>
-          </li>
-          <li className="banner_item ">
-            <Link to="/examples" className="banner gray900_bg">
-              <strong className="banner_title gray000">Browse Yorkie examples</strong>
-              <p className="banner_desc gray000">Browse all examples</p>
-              <span className="img_box">
-                <img src="../assets/images/@tmp/sample_banner_icon.png" alt="" />
-              </span>
-            </Link>
-          </li>
-        </ul>
-        <Button icon={<Icon type="close" />} className="btn_close" />
-      </div>
+      {showBanner && (
+        <div className="banner_box">
+          <strong className="guide">Welcome to Yorkie</strong>
+          <ul className="banner_list">
+            <li className="banner_item">
+              <a
+                href="https://yorkie.dev/demos"
+                target="_blank"
+                rel="noreferrer"
+                className="banner gradient_180deg_yellow"
+              >
+                <strong className="banner_title gray900">View demo project</strong>
+                <p className="banner_desc gray900">Check out our demo projects and be inspired!</p>
+              </a>
+            </li>
+            <li className="banner_item">
+              <a href="https://yorkie.dev/docs/examples" target="_blank" rel="noreferrer" className="banner gray900_bg">
+                <strong className="banner_title gray000">Browse Yorkie examples</strong>
+                <p className="banner_desc gray000">Browse all examples</p>
+                <span className="img_box">
+                  <img src={bannerImg} alt="" />
+                </span>
+              </a>
+            </li>
+          </ul>
+          <Button
+            icon={<Icon type="close" />}
+            className="btn_close"
+            onClick={() => {
+              setShowBanner(false);
+              localStorage.setItem('banner', 'N');
+            }}
+          />
+        </div>
+      )}
       <ProjectList />
     </PageTemplate>
   );
