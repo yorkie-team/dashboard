@@ -24,26 +24,22 @@ import { Project } from 'api/types';
 import { Button, Icon, InputTextField } from 'components';
 
 // TODO(chacha912): Extract to Cards component
-function ProjectCards({ projects, totalProjectsCount }: {
-  projects: Array<Project>;
-  totalProjectsCount: number;
-}) {
+function ProjectCards({ projects, totalProjectsCount }: { projects: Array<Project>; totalProjectsCount: number }) {
   if (totalProjectsCount === 0) {
     return (
-      <Link
-        to={'/projects/new'}
-        className="flex flex-col items-center justify-center w-full h-44 bg-gray-50 text-lg leading-7 font-medium border-dashed border-2 border-gray-300 rounded"
-      >
-        <div className="placeholder_box ">
-          <p className="desc">Get started by<br /><span className="blue_dark">creating a new project</span></p>
-        </div>
+      <Link to={'/projects/new'} className="placeholder_box">
+        <p className="desc">
+          Get started by
+          <br />
+          <span className="blue_dark">creating a new project</span>
+        </p>
       </Link>
     );
   }
   if (projects.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center w-full h-44 bg-gray-50 text-lg leading-7 font-medium">
-        No matching result
+      <div className="placeholder_box">
+        <p className="desc">No matching result</p>
       </div>
     );
   }
@@ -52,7 +48,7 @@ function ProjectCards({ projects, totalProjectsCount }: {
   return (
     <div className="card">
       <ul className="card_list">
-        {projects.map(({ name, publicKey, createdAt }: Project) => (
+        {projects.map(({ name, createdAt }: Project) => (
           <li key={name} className="card_item shadow_xs is_large">
             <Link to={`./${name}`} className="link">
               <div className="title">
@@ -81,10 +77,13 @@ export function ProjectList() {
     setQuery(e.target.value);
   }, []);
 
-  const handleSearch = useCallback((e) => {
-    e.preventDefault();
-    setProjects(allProjects.filter((project) => project.name.includes(query)));
-  }, [query, allProjects]);
+  const handleSearch = useCallback(
+    (e) => {
+      e.preventDefault();
+      setProjects(allProjects.filter((project) => project.name.includes(query)));
+    },
+    [query, allProjects],
+  );
 
   useEffect(() => {
     dispatch(listProjectsAsync());
@@ -103,9 +102,15 @@ export function ProjectList() {
           <div className="title_group">
             <strong className="title">Projects</strong>
             <Button.Box>
-              <Button color="toggle" isActive blindText icon={<Icon type="viewGrid" />}>grid layout</Button>
-              <Button color="toggle" blindText icon={<Icon type="viewList" />}>list layout</Button>
-              <Button as="link" href="./new" className="btn btn_plus" icon={<Icon type="plus" />}>New Project</Button>
+              <Button color="toggle" isActive blindText icon={<Icon type="viewGrid" />}>
+                grid layout
+              </Button>
+              <Button color="toggle" blindText icon={<Icon type="viewList" />}>
+                list layout
+              </Button>
+              <Button as="link" href="/projects/new" className="btn_plus" icon={<Icon type="plus" />}>
+                New Project
+              </Button>
             </Button.Box>
           </div>
           <div className="search">
