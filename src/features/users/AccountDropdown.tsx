@@ -34,9 +34,13 @@ export function AccountDropdown() {
   return (
     <Popover>
       <Popover.Target>
-        <button className="util_menu user_profile is_active">
+        <button className="util_menu user_profile">
           <span className="blind">User profile</span>
-          <div className="profile">{username.slice(0, 1).toUpperCase()}</div>
+          <span className="profile">
+            <span className="img_box gradient_180deg_yellow">
+              <span className="name">{username.slice(0, 1).toUpperCase()}</span>
+            </span>
+          </span>
         </button>
       </Popover.Target>
       <Popover.Dropdown>
@@ -46,9 +50,7 @@ export function AccountDropdown() {
             <dd className="user_account_text">{username}</dd>
             <dt className="blind">Mail</dt>
             <dd className="user_account_text">
-              <a href={`mailto:${username}@yorkie.dev`} className="user_account_mail">
-                {username}@yorkie.dev
-              </a>
+              <span className="user_account_mail">{username}@yorkie.dev</span>
             </dd>
           </dl>
           <Dropdown.List>
@@ -61,10 +63,14 @@ export function AccountDropdown() {
           </Dropdown.List>
           <ul className="terms_list">
             <li className="terms_item">
-              <Link to="/policy" className="terms_menu">Privacy policy</Link>
+              <Link to="/policy" className="terms_menu">
+                Privacy policy
+              </Link>
             </li>
             <li className="terms_item">
-              <Link to="/terms" className="terms_menu">Terms of service</Link>
+              <Link to="/terms" className="terms_menu">
+                Terms of service
+              </Link>
             </li>
           </ul>
         </Dropdown>
