@@ -17,17 +17,10 @@
 import React, { useEffect, useState } from 'react';
 import * as moment from 'moment';
 import { useParams } from 'react-router-dom';
-import ReactJson from 'react-json-view';
-import Highlight, { defaultProps } from 'prism-react-renderer';
-import theme from './prismThemeLight';
 import './rc-slider.css';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import {
-  selectDocumentDetail,
-  getDocumentAsync,
-  resetHistory,
-} from './documentsSlice';
-import { Icon, Button } from 'components';
+import { selectDocumentDetail, getDocumentAsync, resetHistory } from './documentsSlice';
+import { Icon, Button, CodeBlock } from 'components';
 
 export function DocumentDetail() {
   const { document } = useAppSelector(selectDocumentDetail);
@@ -63,74 +56,52 @@ export function DocumentDetail() {
       </div>
       <div className="codeblock_header">
         <div className="box_left">
-          <Button className="gray50" outline icon={<Icon type="play" />} >
+          <Button className="gray50" outline icon={<Icon type="play" />}>
             <span className="text">History</span>
           </Button>
         </div>
         <div className="box_right">
-          <Button icon={<Icon type="codeSnippet" />} color="toggle" onClick={() => SetViewType('code')} className={viewType === 'code' ? 'is_active' : ''} />
-          <Button icon={<Icon type="branch" />} color="toggle" onClick={() => SetViewType('tree')} className={viewType === 'tree' ? 'is_active' : ''} />
-          <Button icon={<Icon type="copy" />} color="toggle" className="btn_line gray50" onClick={() => {
-            // TODO(hackerwins): Extract clipboard module to the common.
-            navigator.clipboard
-              .writeText(document?.snapshot || '')
-              .then(() => {
-                // TODO(chacha912): Replace `alert()` with alert component
-                alert('Copied!');
-              })
-              .catch(() => {
-                alert('Copy failed! Please try again.');
-              });
-          }} />
+          <Button
+            icon={<Icon type="codeSnippet" />}
+            color="toggle"
+            onClick={() => SetViewType('code')}
+            className={viewType === 'code' ? 'is_active' : ''}
+          />
+          <Button
+            icon={<Icon type="branch" />}
+            color="toggle"
+            onClick={() => SetViewType('tree')}
+            className={viewType === 'tree' ? 'is_active' : ''}
+          />
+          <Button
+            icon={<Icon type="copy" />}
+            color="toggle"
+            className="btn_line gray50"
+            onClick={() => {
+              // TODO(hackerwins): Extract clipboard module to the common.
+              navigator.clipboard
+                .writeText(document?.snapshot || '')
+                .then(() => {
+                  // TODO(chacha912): Replace `alert()` with alert component
+                  alert('Copied!');
+                })
+                .catch(() => {
+                  alert('Copy failed! Please try again.');
+                });
+            }}
+          />
         </div>
       </div>
       {viewType === 'code' && (
         <div className="codeblock_box">
-          <Highlight {...defaultProps} code={documentJSONStr} theme={theme} language='json'>
-            {({ className, tokens, getLineProps, getTokenProps }) => (
-              <pre className={className}>
-                {tokens.map((line, i) => (
-                  <div key={i} {...getLineProps({ line, key: i })}>
-                    <span className='line-number'>{i + 1}</span>
-                    <span className='line-content'>
-                      {line.map((token, key) => (
-                        <span key={key} {...getTokenProps({ token, key })} />
-                      ))}
-                    </span>
-                  </div>
-                ))}
-              </pre>
-            )}
-          </Highlight>
+          <CodeBlock.Code code={documentJSONStr} language="json" withLineNumbers />
         </div>
       )}
       {viewType === 'tree' && (
         <div className="codeblock_tree_box">
-          <ReactJson
-            src={documentJSON}
-            displayObjectSize={false}
-            displayDataTypes={false}
-            theme={{
-              base00: 'null',
-              base01: 'null',
-              base02: 'null',
-              base03: 'null',
-              base04: 'null',
-              base05: 'null',
-              base06: 'null',
-              base07: 'null',
-              base08: 'null',
-              base09: 'null',
-              base0A: 'null',
-              base0B: 'null',
-              base0C: 'null',
-              base0D: 'null',
-              base0E: 'null',
-              base0F: 'null',
-            }}
-          />
+          <CodeBlock.Tree code={documentJSON} />
         </div>
       )}
     </div>
-  )
+  );
 }
