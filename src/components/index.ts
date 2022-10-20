@@ -25,3 +25,4 @@ export * from './Modal/Modal';
 export * from './Breadcrumb/Breadcrumb';
 export * from './TabList/TabList';
 export * from './CodeBlock/CodeBlock';
+export * from './Navigator/Navigator';

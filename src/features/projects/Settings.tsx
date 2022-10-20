@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useCallback, useEffect, useState, useRef } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm, useController } from 'react-hook-form';
 import classNames from 'classnames';
@@ -27,7 +27,7 @@ import {
   resetUpdateSuccess,
 } from './projectsSlice';
 import { AUTH_WEBHOOK_METHODS, UpdatableProjectFields, AuthWebhookMethod } from 'api/types';
-import { Icon, InputHelperText, InputTextField } from 'components';
+import { Icon, InputHelperText, InputTextField, Navigator } from 'components';
 
 export type UpdateFieldInfo = {
   target: keyof UpdatableProjectFields | AuthWebhookMethod | null;
@@ -140,7 +140,12 @@ export function Settings() {
 
   return (
     <div className="setting_group">
-      <SideNavigation />
+      <Navigator
+        navList={[
+          { name: 'General', id: 'sectionGeneral' },
+          { name: 'Webhook', id: 'sectionWebhook' },
+        ]}
+      />
       <div className="box_right">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="section setting_box" id="sectionGeneral">
@@ -308,47 +313,3 @@ function InputToggle({
     </label>
   );
 }
-
-const SideNavigation = () => {
-  const [activeId, setActiveId] = useState<'sectionGeneral' | 'sectionWebhook'>('sectionGeneral');
-  const contentRef = useRef<any>({});
-
-  useEffect(() => {
-    const callback: IntersectionObserverCallback = (observedContent) => {
-      observedContent.forEach((content) => {
-        contentRef.current[content.target.id] = content;
-      });
-
-      const visibleContents = Object.values(contentRef.current).filter((content: any) => content.isIntersecting) as any;
-      setActiveId(visibleContents[0]?.target.id);
-    };
-
-    const observer = new IntersectionObserver(callback, {
-      rootMargin: '-20% 0px',
-    });
-
-    const contents = document.querySelectorAll('.section');
-    contents.forEach((content) => {
-      observer.observe(content);
-    });
-
-    return () => observer.disconnect();
-  }, [setActiveId]);
-
-  return (
-    <nav className="navigator">
-      <ul className="navigator_list">
-        <li className={classNames('navigator_group', { is_active: activeId === 'sectionGeneral' })}>
-          <a href="#sectionGeneral" className="navigator_item">
-            General
-          </a>
-        </li>
-        <li className={classNames('navigator_group', { is_active: activeId === 'sectionWebhook' })}>
-          <a href="#sectionWebhook" className="navigator_item">
-            Webhook
-          </a>
-        </li>
-      </ul>
-    </nav>
-  );
-};
