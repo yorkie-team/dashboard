@@ -16,10 +16,9 @@
 
 import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useForm, useController, RegisterOptions, UseFormRegister } from 'react-hook-form';
+import { useForm, useController } from 'react-hook-form';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { useOutsideClick, useAreaBlur } from 'hooks';
 import {
   selectProjectDetail,
   updateProjectAsync,
@@ -28,8 +27,7 @@ import {
   resetUpdateSuccess,
 } from './projectsSlice';
 import { AUTH_WEBHOOK_METHODS, UpdatableProjectFields, AuthWebhookMethod } from 'api/types';
-import { SettingsAlertMessage } from 'features/projects';
-import { Button, Icon } from 'components';
+import { Icon, InputHelperText, InputTextField } from 'components';
 
 export type UpdateFieldInfo = {
   target: keyof UpdatableProjectFields | AuthWebhookMethod | null;
@@ -48,6 +46,7 @@ export function Settings() {
     handleSubmit,
     setError,
     reset,
+    trigger,
     control,
   } = useForm<ProjectUpdateFields>({
     defaultValues: {
@@ -66,10 +65,15 @@ export function Settings() {
     control,
     name: 'authWebhookMethods',
   });
-
-  const resetUpdateFieldInfo = () => {
+  const checkFieldState = useCallback(
+    (fieldName: keyof UpdatableProjectFields | AuthWebhookMethod, state: 'success' | 'error'): boolean => {
+      return updateFieldInfo.target === fieldName && updateFieldInfo.state === state;
+    },
+    [updateFieldInfo],
+  );
+  const resetUpdateFieldInfo = useCallback(() => {
     setUpdateFieldInfo({ target: null, state: null, message: '' });
-  };
+  }, []);
 
   const resetForm = useCallback(() => {
     reset({
@@ -98,13 +102,21 @@ export function Settings() {
   );
 
   useEffect(() => {
-    if (!nameFieldState.error && !webhookURLFieldState.error) return;
-    setUpdateFieldInfo((info) => ({
-      ...info,
-      state: 'error',
-      message: formErrors[updateFieldInfo.target as keyof UpdatableProjectFields]?.message || '',
-    }));
-  }, [formErrors, updateFieldInfo.target, nameFieldState.error, webhookURLFieldState.error]);
+    if (updateFieldInfo.state !== 'success' && !nameFieldState.error && !webhookURLFieldState.error) {
+      setUpdateFieldInfo((info) => ({
+        ...info,
+        state: null,
+      }));
+      return;
+    }
+    if (nameFieldState.error || webhookURLFieldState.error) {
+      setUpdateFieldInfo((info) => ({
+        ...info,
+        state: 'error',
+        message: formErrors[updateFieldInfo.target as keyof UpdatableProjectFields]?.message || '',
+      }));
+    }
+  }, [formErrors, updateFieldInfo.state, updateFieldInfo.target, nameFieldState.error, webhookURLFieldState.error]);
 
   useEffect(() => {
     if (isSuccess) {
@@ -140,32 +152,48 @@ export function Settings() {
               <dd className="sub_desc">
                 <div
                   className={classNames('input_field_box', {
-                    is_error: updateFieldInfo.target === 'name' && updateFieldInfo.state === 'error',
-                    is_success: updateFieldInfo.target === 'name' && updateFieldInfo.state === 'success',
+                    is_error: checkFieldState('name', 'error'),
+                    is_success: checkFieldState('name', 'success'),
                   })}
                 >
                   <InputTextField
-                    name="name"
-                    register={register}
                     reset={() => {
                       resetForm();
                       resetUpdateFieldInfo();
                     }}
-                    validationRules={{
+                    {...register('name', {
                       required: 'The project name is required',
-                    }}
+                      pattern: {
+                        value: /^[a-zA-Z0-9\-._~]{2,30}$/,
+                        message:
+                          'Project name should only contain 2 to 30 characters with alphabets, numbers, hyphen(-), period(.), underscore(_), and tilde(~)',
+                      },
+                      onChange: async () => {
+                        await trigger('name');
+                      },
+                    })}
                     onChange={(e) => {
                       setUpdateFieldInfo((info) => ({ ...info, target: 'name' }));
                       nameField.onChange(e.target.value);
                     }}
+                    id="name"
+                    label="Project name"
+                    blindLabel={true}
+                    fieldUtil={true}
+                    state={
+                      checkFieldState('name', 'success')
+                        ? 'success'
+                        : checkFieldState('name', 'error')
+                        ? 'error'
+                        : undefined
+                    }
+                    helperText={
+                      updateFieldInfo.target === 'name' && updateFieldInfo.state !== null
+                        ? updateFieldInfo.message
+                        : undefined
+                    }
+                    onSuccessEnd={resetUpdateFieldInfo}
                   />
-                  {updateFieldInfo.target === 'name' && updateFieldInfo.state !== null && (
-                    <SettingsAlertMessage
-                      state={updateFieldInfo.state}
-                      message={updateFieldInfo.message}
-                      onSuccessEnd={resetUpdateFieldInfo}
-                    />
-                  )}
                 </div>
               </dd>
             </dl>
@@ -179,29 +207,38 @@ export function Settings() {
               <dd className="sub_desc">
                 <div
                   className={classNames('input_field_box', {
-                    is_error: updateFieldInfo.target === 'authWebhookURL' && updateFieldInfo.state === 'error',
-                    is_success: updateFieldInfo.target === 'authWebhookURL' && updateFieldInfo.state === 'success',
+                    is_error: checkFieldState('authWebhookURL', 'error'),
+                    is_success: checkFieldState('authWebhookURL', 'success'),
                   })}
                 >
                   <InputTextField
-                    name="authWebhookURL"
-                    register={register}
                     reset={() => {
                       resetForm();
                       resetUpdateFieldInfo();
                     }}
+                    {...register('authWebhookURL')}
                     onChange={(e) => {
                       setUpdateFieldInfo((info) => ({ ...info, target: 'authWebhookURL' }));
                       webhookURLField.onChange(e.target.value);
                     }}
+                    id="authWebhookURL"
+                    label="authWebhookURL"
+                    blindLabel={true}
+                    fieldUtil={true}
+                    state={
+                      checkFieldState('authWebhookURL', 'success')
+                        ? 'success'
+                        : checkFieldState('authWebhookURL', 'error')
+                        ? 'error'
+                        : undefined
+                    }
+                    helperText={
+                      updateFieldInfo.target === 'authWebhookURL' && updateFieldInfo.state !== null
+                        ? updateFieldInfo.message
+                        : undefined
+                    }
+                    onSuccessEnd={resetUpdateFieldInfo}
                   />
-                  {updateFieldInfo.target === 'authWebhookURL' && updateFieldInfo.state !== null && (
-                    <SettingsAlertMessage
-                      state={updateFieldInfo.state}
-                      message={updateFieldInfo.message}
-                      onSuccessEnd={resetUpdateFieldInfo}
-                    />
-                  )}
                 </div>
               </dd>
               <dt className="sub_title">Auth webhook methods</dt>
@@ -210,8 +247,8 @@ export function Settings() {
                   return (
                     <div
                       className={classNames('input_group', {
-                        is_error: updateFieldInfo.target === method && updateFieldInfo.state === 'error',
-                        is_success: updateFieldInfo.target === method && updateFieldInfo.state === 'success',
+                        is_error: checkFieldState(method, 'error'),
+                        is_success: checkFieldState(method, 'success'),
                       })}
                       key={method}
                     >
@@ -233,7 +270,7 @@ export function Settings() {
                         }}
                       />
                       {updateFieldInfo.target === method && updateFieldInfo.state !== null && (
-                        <SettingsAlertMessage
+                        <InputHelperText
                           state={updateFieldInfo.state}
                           message={updateFieldInfo.message}
                           onSuccessEnd={resetUpdateFieldInfo}
@@ -269,66 +306,6 @@ function InputToggle({
       </em>
       <span className="label">{name}</span>
     </label>
-  );
-}
-
-function InputTextField({
-  name,
-  validationRules,
-  register,
-  reset,
-  onChange,
-}: {
-  name: keyof UpdatableProjectFields;
-  validationRules?: RegisterOptions;
-  register: UseFormRegister<ProjectUpdateFields>;
-  reset: (fieldName?: keyof UpdatableProjectFields) => void;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-}) {
-  const { ref, ...rest } = { ...register(name, validationRules) };
-
-  const cancelInput = useCallback(() => {
-    reset();
-    setIsFieldControlButtonsOpen(false);
-  }, [reset]);
-
-  const fieldControlRef = useRef<HTMLDivElement | null>(null);
-  const [isFieldControlButtonsOpen, setIsFieldControlButtonsOpen] = useState(false);
-  const [firstRef, lastRef, onKeyDown] = useAreaBlur(cancelInput);
-
-  useOutsideClick(
-    firstRef,
-    () => {
-      if (isFieldControlButtonsOpen) setIsFieldControlButtonsOpen(false);
-    },
-    fieldControlRef,
-  );
-
-  return (
-    <div className="input_inner" onKeyDown={onKeyDown}>
-      <input
-        type="text"
-        autoComplete="off"
-        {...rest}
-        ref={(e) => {
-          ref(e);
-          firstRef.current = e;
-        }}
-        onFocus={() => setIsFieldControlButtonsOpen(true)}
-        onChange={onChange}
-        className="input"
-      />
-      {isFieldControlButtonsOpen && (
-        <Button.Box ref={fieldControlRef}>
-          <Button type="button" onClick={cancelInput} outline size="sm" icon={<Icon type="closeSmall" />}>
-            Cancel
-          </Button>
-          <Button type="submit" ref={lastRef} outline size="sm" color="success" icon={<Icon type="check" />}>
-            Save
-          </Button>
-        </Button.Box>
-      )}
-    </div>
   );
 }
 

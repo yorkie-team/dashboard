@@ -71,7 +71,7 @@ export function SignupForm() {
             pattern: {
               value: /^[a-zA-Z0-9\-._~]{2,30}$/,
               message:
-                'Username can only contain 2 to 30 characters with alphabets, numbers, hyphen(-), period(.), underscore(_), and tilde(~)',
+                'Username should only contain 2 to 30 characters with alphabets, numbers, hyphen(-), period(.), underscore(_), and tilde(~)',
             },
           })}
           autoComplete="off"

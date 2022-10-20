@@ -14,87 +14,117 @@
  * limitations under the License.
  */
 
-import React, { InputHTMLAttributes } from 'react';
+import React, { InputHTMLAttributes, useCallback, useRef, useState } from 'react';
 import classNames from 'classnames';
-import { Icon, Button } from 'components';
+import { Icon, Button, InputHelperText } from 'components';
+import { useOutsideClick, useAreaBlur } from 'hooks';
+import { mergeRefs } from 'utils';
 
 type InputTextFieldProps = {
   type?: 'text' | 'password' | 'email';
   label: string;
+  reset?: (fieldName?: any) => void;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   id: string;
   blindLabel?: boolean;
   state?: 'error' | 'success' | 'normal' | 'disabled';
-  editing?: boolean;
   helperText?: string;
   placeholder?: string;
-  inputRef?: any;
   large?: boolean;
+  fieldUtil?: boolean;
+  onSuccessEnd?: () => void;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-export const InputTextField = React.forwardRef((props: InputTextFieldProps, ref) => {
-  return <InputTextFieldInner {...props} inputRef={ref} />;
-});
-InputTextField.displayName = 'InputTextField';
+export const InputTextField = React.forwardRef<HTMLInputElement, InputTextFieldProps>(
+  (
+    {
+      type = 'text',
+      label,
+      reset,
+      onChange,
+      id,
+      blindLabel,
+      state = 'normal',
+      helperText,
+      placeholder,
+      large,
+      fieldUtil,
+      onSuccessEnd,
+      ...restProps
+    },
+    ref,
+  ) => {
+    const inputTextFieldClassName = classNames('input_field_box', {
+      is_disabled: state === 'disabled',
+      is_error: state === 'error',
+      is_success: state === 'success',
+      input_field_box_large: large,
+    });
 
-function InputTextFieldInner({
-  type = 'text',
-  label,
-  id,
-  blindLabel,
-  state = 'normal',
-  editing,
-  helperText,
-  placeholder,
-  inputRef,
-  large,
-  ...restProps
-}: InputTextFieldProps) {
-  const inputTextFieldClassName = classNames('input_field_box', {
-    is_disabled: state === 'disabled',
-    is_error: state === 'error',
-    is_success: state === 'success',
-    input_field_box_large: large,
-  });
+    const cancelInput = useCallback(() => {
+      reset && reset();
+      setIsFieldControlButtonsOpen(false);
+    }, [reset]);
 
-  return (
-    <div className={inputTextFieldClassName}>
-      {!large && (
-        <label htmlFor={id} className={classNames('label', { blind: blindLabel })}>
-          {label}
-        </label>
-      )}
-      <div className="input_inner">
-        <input
-          type={type}
-          id={id}
-          className="input"
-          placeholder={placeholder}
-          disabled={state === 'disabled'}
-          ref={inputRef}
-          {...restProps}
-        />
-        {editing && (
-          <Button.Box>
-            <Button size="sm" outline={true} icon={<Icon type="close" />}>
-              Cancel
-            </Button>
-            <Button
-              className={classNames('green_0', { is_disabled: state === 'error' })}
-              size="sm"
-              outline={true}
-              icon={<Icon type="check" />}
-            >
-              Save
-            </Button>
-          </Button.Box>
+    const fieldControlRef = useRef<HTMLDivElement | null>(null);
+    const [isFieldControlButtonsOpen, setIsFieldControlButtonsOpen] = useState(false);
+    const [firstRef, lastRef, onKeyDown] = useAreaBlur(cancelInput);
+
+    useOutsideClick(
+      firstRef,
+      () => {
+        if (isFieldControlButtonsOpen) setIsFieldControlButtonsOpen(false);
+      },
+      fieldControlRef,
+    );
+
+    return (
+      <div className={inputTextFieldClassName}>
+        {!large && (
+          <label htmlFor={id} className={classNames('label', { blind: blindLabel })}>
+            {label}
+          </label>
+        )}
+        <div className="input_inner" onKeyDown={onKeyDown}>
+          <input
+            type={type}
+            id={id}
+            className="input"
+            placeholder={placeholder}
+            disabled={state === 'disabled'}
+            ref={mergeRefs(ref, firstRef)}
+            autoComplete="off"
+            onFocus={() => setIsFieldControlButtonsOpen(true)}
+            onChange={onChange}
+            {...restProps}
+          />
+          {fieldUtil && isFieldControlButtonsOpen && (
+            <Button.Box ref={fieldControlRef}>
+              <Button onClick={cancelInput} size="sm" outline={true} icon={<Icon type="closeSmall" />}>
+                Cancel
+              </Button>
+              <Button
+                className={classNames('green_0', { is_disabled: state === 'error' })}
+                size="sm"
+                outline={true}
+                icon={<Icon type="check" />}
+                type="submit"
+                ref={lastRef}
+              >
+                Save
+              </Button>
+            </Button.Box>
+          )}
+        </div>
+        {helperText && (
+          <InputHelperText
+            state={state === 'disabled' || state === 'normal' ? undefined : state}
+            message={helperText}
+            onSuccessEnd={onSuccessEnd}
+          />
         )}
       </div>
-      {helperText && (
-        <div className="input_guide">
-          {(state === 'error' || state === 'success') && <Icon type="input" />}
-          <p className="input_guide_desc">{helperText}</p>
-        </div>
-      )}
-    </div>
-  );
-}
+    );
+  },
+);
+InputTextField.displayName = 'InputTextField';

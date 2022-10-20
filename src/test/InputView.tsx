@@ -176,7 +176,6 @@ export function InputView() {
           placeholder="Editing"
           autoComplete="off"
           helperText="Helper Text"
-          editing
         />
         <InputTextField
           label="Error"
@@ -185,7 +184,6 @@ export function InputView() {
           placeholder="Error"
           autoComplete="off"
           helperText="Helper Text"
-          editing
         />
         <InputTextField
           label="Success"
@@ -213,7 +211,6 @@ export function InputView() {
           placeholder="Editing"
           autoComplete="off"
           helperText="Helper Text"
-          editing
           blindLabel
         />
         <InputTextField
@@ -223,7 +220,6 @@ export function InputView() {
           placeholder="Error"
           autoComplete="off"
           helperText="Helper Text"
-          editing
           blindLabel
         />
         <InputTextField
@@ -239,8 +235,8 @@ export function InputView() {
       <em className="uio_title">Input Field (No Helper)</em>
       <div className="uio_align_box">
         <InputTextField label="Disabled" id="input9" placeholder="Disabled" autoComplete="off" state="disabled" />
-        <InputTextField label="Default(Editing)" id="input10" placeholder="Editing" autoComplete="off" editing />
-        <InputTextField label="Error" id="input11" state="error" placeholder="Error" autoComplete="off" editing />
+        <InputTextField label="Default(Editing)" id="input10" placeholder="Editing" autoComplete="off" />
+        <InputTextField label="Error" id="input11" state="error" placeholder="Error" autoComplete="off" />
         <InputTextField label="Success" id="input12" state="success" placeholder="Success" autoComplete="off" />
       </div>
       <em className="uio_title">Input Field Large</em>
