@@ -15,8 +15,13 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import { Icon } from 'components';
 
-export function SettingsAlertMessage({ state, message, onSuccessEnd }: {
+export function SettingsAlertMessage({
+  state,
+  message,
+  onSuccessEnd,
+}: {
   state: 'success' | 'error';
   message: string;
   onSuccessEnd?: () => void;
@@ -40,8 +45,9 @@ export function SettingsAlertMessage({ state, message, onSuccessEnd }: {
   }
 
   return (
-    <span className={`${state === 'success' ? 'text-green-500' : 'text-red-500 italic'} text-xs font-medium m-2`}>
-      {message}
-    </span>
+    <div className="input_guide">
+      <Icon type="input" />
+      <p className="input_guide_desc">{message}</p>
+    </div>
   );
 }
