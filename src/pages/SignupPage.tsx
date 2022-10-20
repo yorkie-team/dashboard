@@ -16,7 +16,7 @@
 
 import React from 'react';
 
-import { SignupForm } from 'features/users/SignupForm';
+import { SignupForm } from 'features/users';
 import { PageTemplate } from './PageTemplate';
 import { Icon, Button } from 'components';
 

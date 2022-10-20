@@ -14,5 +14,7 @@
  * limitations under the License.
  */
 
+export * from './LoginForm';
+export * from './SignupForm';
 export * from './AccountDropdown';
 export * from './MobileGnbDropdown';
