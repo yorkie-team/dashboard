@@ -17,12 +17,12 @@
 import React, { useState, useEffect } from 'react';
 import { Icon } from 'components';
 
-export function SettingsAlertMessage({
+export function InputHelperText({
   state,
   message,
   onSuccessEnd,
 }: {
-  state: 'success' | 'error';
+  state: 'success' | 'error' | null;
   message: string;
   onSuccessEnd?: () => void;
 }) {
@@ -46,7 +46,7 @@ export function SettingsAlertMessage({
 
   return (
     <div className="input_guide">
-      <Icon type="input" />
+      {state && <Icon type="input" />}
       <p className="input_guide_desc">{message}</p>
     </div>
   );

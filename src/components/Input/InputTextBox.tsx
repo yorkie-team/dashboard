@@ -16,7 +16,7 @@
 
 import React, { ReactNode, InputHTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { Icon } from 'components';
+import { InputHelperText } from './InputHelperText';
 
 type InputTextBoxProps = {
   type?: 'text' | 'password' | 'email';
@@ -79,10 +79,7 @@ function InputTextBoxInner({
         {floatingLabel && <span className="label label_in">{label}</span>}
       </label>
       {helperText && (
-        <div className="input_guide">
-          {(state === 'error' || state === 'success') && <Icon type="input" />}
-          <p className="input_guide_desc">{helperText}</p>
-        </div>
+        <InputHelperText state={state === 'disabled' || state === 'normal' ? null : state} message={helperText} />
       )}
     </div>
   );

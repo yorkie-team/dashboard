@@ -15,7 +15,7 @@
  */
 
 import React from 'react';
-import { InputTextBox, InputTextField, Icon } from 'components';
+import { InputTextBox, InputTextField, Icon, InputToggle } from 'components';
 
 export function InputView() {
   return (
@@ -176,7 +176,6 @@ export function InputView() {
           placeholder="Editing"
           autoComplete="off"
           helperText="Helper Text"
-          editing
         />
         <InputTextField
           label="Error"
@@ -185,7 +184,6 @@ export function InputView() {
           placeholder="Error"
           autoComplete="off"
           helperText="Helper Text"
-          editing
         />
         <InputTextField
           label="Success"
@@ -213,7 +211,6 @@ export function InputView() {
           placeholder="Editing"
           autoComplete="off"
           helperText="Helper Text"
-          editing
           blindLabel
         />
         <InputTextField
@@ -223,7 +220,6 @@ export function InputView() {
           placeholder="Error"
           autoComplete="off"
           helperText="Helper Text"
-          editing
           blindLabel
         />
         <InputTextField
@@ -239,8 +235,8 @@ export function InputView() {
       <em className="uio_title">Input Field (No Helper)</em>
       <div className="uio_align_box">
         <InputTextField label="Disabled" id="input9" placeholder="Disabled" autoComplete="off" state="disabled" />
-        <InputTextField label="Default(Editing)" id="input10" placeholder="Editing" autoComplete="off" editing />
-        <InputTextField label="Error" id="input11" state="error" placeholder="Error" autoComplete="off" editing />
+        <InputTextField label="Default(Editing)" id="input10" placeholder="Editing" autoComplete="off" />
+        <InputTextField label="Error" id="input11" state="error" placeholder="Error" autoComplete="off" />
         <InputTextField label="Success" id="input12" state="success" placeholder="Success" autoComplete="off" />
       </div>
       <em className="uio_title">Input Field Large</em>
@@ -281,6 +277,30 @@ export function InputView() {
           helperText="Helper Text"
         />
       </div>
+      <em className="uio_title">Input Toggle</em>
+      <InputToggle id="label1" label="label" blindLabel />
+      <br />
+      <InputToggle id="label2" label="label" />
+      <br />
+      <InputToggle id="label3" label="label" reverse />
+      <br />
+      <InputToggle id="label1" label="label" blindLabel checked />
+      <br />
+      <InputToggle id="label2" label="label" checked />
+      <br />
+      <InputToggle id="label3" label="label" reverse checked />
+      <br />
+      <InputToggle id="label1" label="label" blindLabel disabled />
+      <br />
+      <InputToggle id="label2" label="label" disabled />
+      <br />
+      <InputToggle id="label3" label="label" reverse disabled />
+      <br />
+      <InputToggle id="label1" label="label" blindLabel disabled checked />
+      <br />
+      <InputToggle id="label2" label="label" disabled checked />
+      <br />
+      <InputToggle id="label3" label="label" reverse disabled checked />
     </div>
   );
 }

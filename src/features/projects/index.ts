@@ -21,4 +21,3 @@ export * from './APIKeys';
 export * from './ProjectTabList';
 export * from './ProjectDropdown';
 export * from './Settings';
-export * from './SettingsAlertMessage';

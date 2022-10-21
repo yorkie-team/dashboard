@@ -17,7 +17,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAppSelector } from 'app/hooks';
-import { LoginForm } from 'features/users/LoginForm';
+import { LoginForm } from 'features/users';
 import { PageTemplate } from './PageTemplate';
 import { Icon, Button } from 'components';
 
