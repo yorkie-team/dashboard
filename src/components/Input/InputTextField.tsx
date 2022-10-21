@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { InputHTMLAttributes, useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { Icon, Button, InputHelperText } from 'components';
 import { useOutsideClick, useAreaBlur } from 'hooks';
@@ -33,7 +33,7 @@ type InputTextFieldProps = {
   large?: boolean;
   fieldUtil?: boolean;
   onSuccessEnd?: () => void;
-} & InputHTMLAttributes<HTMLInputElement>;
+} & React.InputHTMLAttributes<HTMLInputElement>;
 
 export const InputTextField = React.forwardRef<HTMLInputElement, InputTextFieldProps>(
   (

@@ -15,7 +15,7 @@
  */
 
 import React from 'react';
-import { InputTextBox, InputTextField, Icon, InputToggle } from 'components';
+import { InputTextBox, InputTextField, Icon, InputToggle, SearchBar } from 'components';
 
 export function InputView() {
   return (
@@ -301,6 +301,8 @@ export function InputView() {
       <InputToggle id="label2" label="label" disabled checked />
       <br />
       <InputToggle id="label3" label="label" reverse disabled checked />
+      <em className="uio_title">Search Bar</em>
+      <SearchBar placeholder="Search 12 projects" />
     </div>
   );
 }

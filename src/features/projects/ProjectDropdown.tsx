@@ -30,7 +30,7 @@ export function ProjectDropdown({ size = 'small' }: { size?: 'small' | 'large' }
 
   useEffect(() => {
     dispatch(listProjectsAsync());
-  }, [dispatch, size]);
+  }, [dispatch]);
 
   useEffect(() => {
     return () => {
@@ -111,7 +111,7 @@ export function ProjectDropdown({ size = 'small' }: { size?: 'small' | 'large' }
                   setOpened(false);
                 }}
               >
-                <Breadcrumb.Text>{project.name}</Breadcrumb.Text>
+                <Dropdown.Text>{project.name}</Dropdown.Text>
               </Dropdown.Item>
             ))}
           </Dropdown.List>

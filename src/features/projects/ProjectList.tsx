@@ -22,7 +22,7 @@ import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectProjectList, listProjectsAsync } from './projectsSlice';
 import { Project } from 'api/types';
-import { Button, Icon, InputTextField, Popover, Dropdown } from 'components';
+import { Button, Icon, Popover, Dropdown, SearchBar } from 'components';
 
 // TODO(chacha912): Extract to Cards component
 function ProjectCards({
@@ -107,6 +107,14 @@ export function ProjectList() {
   const [sortOpened, setSortOpened] = useState(false);
   const [sortOption, setSortOption] = useState<typeof SORT_OPTION[keyof typeof SORT_OPTION]>(SORT_OPTION.createdAt);
 
+  const handleProjectSort = useCallback((projects, option) => {
+    if (option === SORT_OPTION.alphabet) {
+      setProjects([...projects].sort((p1, p2) => (p1.name > p2.name ? 1 : -1)));
+    } else if (option === SORT_OPTION.createdAt) {
+      setProjects([...projects].sort((p1, p2) => p2.createdAt - p1.createdAt));
+    }
+  }, []);
+
   const handleChangeQuery = useCallback((e) => {
     setQuery(e.target.value);
   }, []);
@@ -114,20 +122,10 @@ export function ProjectList() {
   const handleSearch = useCallback(
     (e) => {
       e.preventDefault();
-      setProjects(allProjects.filter((project) => project.name.includes(query)));
+      const results = allProjects.filter((project) => project.name.includes(query));
+      handleProjectSort(results, sortOption);
     },
-    [query, allProjects],
-  );
-
-  const handleSort = useCallback(
-    (option) => {
-      if (option === SORT_OPTION.alphabet) {
-        setProjects([...allProjects].sort((p1, p2) => (p1.name > p2.name ? 1 : -1)));
-      } else if (option === SORT_OPTION.createdAt) {
-        setProjects([...allProjects].sort((p1, p2) => p2.createdAt - p1.createdAt));
-      }
-    },
-    [allProjects],
+    [query, allProjects, handleProjectSort, sortOption],
   );
 
   useEffect(() => {
@@ -135,8 +133,8 @@ export function ProjectList() {
   }, [dispatch]);
 
   useEffect(() => {
-    handleSort(SORT_OPTION.createdAt);
-  }, [handleSort]);
+    handleProjectSort(allProjects, SORT_OPTION.createdAt);
+  }, [handleProjectSort, allProjects]);
 
   useEffect(() => {
     return () => {
@@ -180,18 +178,13 @@ export function ProjectList() {
           </Button.Box>
         </div>
         <div className="search_area">
-          <div className="search">
-            <form onSubmit={handleSearch}>
-              <InputTextField
-                id="searchProject"
-                placeholder="Search Projects"
-                autoComplete="off"
-                label=""
-                blindLabel
-                onChange={handleChangeQuery}
-              />
-            </form>
-          </div>
+          <SearchBar
+            placeholder="Search Projects"
+            autoComplete="off"
+            onChange={handleChangeQuery}
+            value={query}
+            onSubmit={handleSearch}
+          />
           <div className="filter">
             <ul className="filter_list">
               <li className="filter_item">
@@ -215,7 +208,7 @@ export function ProjectList() {
                         <Dropdown.Item
                           onClick={() => {
                             setSortOption(SORT_OPTION.alphabet);
-                            handleSort(SORT_OPTION.alphabet);
+                            handleProjectSort(projects, SORT_OPTION.alphabet);
                             setSortOpened(false);
                           }}
                         >
@@ -225,7 +218,7 @@ export function ProjectList() {
                         <Dropdown.Item
                           onClick={() => {
                             setSortOption(SORT_OPTION.createdAt);
-                            handleSort(SORT_OPTION.createdAt);
+                            handleProjectSort(projects, SORT_OPTION.createdAt);
                             setSortOpened(false);
                           }}
                         >
