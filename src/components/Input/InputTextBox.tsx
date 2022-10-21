@@ -79,7 +79,7 @@ function InputTextBoxInner({
         {floatingLabel && <span className="label label_in">{label}</span>}
       </label>
       {helperText && (
-        <InputHelperText state={state === 'disabled' || state === 'normal' ? undefined : state} message={helperText} />
+        <InputHelperText state={state === 'disabled' || state === 'normal' ? null : state} message={helperText} />
       )}
     </div>
   );

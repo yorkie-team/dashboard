@@ -22,7 +22,7 @@ export function InputHelperText({
   message,
   onSuccessEnd,
 }: {
-  state?: 'success' | 'error';
+  state: 'success' | 'error' | null;
   message: string;
   onSuccessEnd?: () => void;
 }) {

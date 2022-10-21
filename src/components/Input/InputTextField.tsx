@@ -118,7 +118,7 @@ export const InputTextField = React.forwardRef<HTMLInputElement, InputTextFieldP
         </div>
         {helperText && (
           <InputHelperText
-            state={state === 'disabled' || state === 'normal' ? undefined : state}
+            state={state === 'disabled' || state === 'normal' ? null : state}
             message={helperText}
             onSuccessEnd={onSuccessEnd}
           />
