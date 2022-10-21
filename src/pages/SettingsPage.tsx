@@ -16,7 +16,7 @@
 
 import React, { useCallback } from 'react';
 import { PageTemplate } from './PageTemplate';
-import { Button, Icon, Navigator } from 'components';
+import { Button, Icon, Navigator, InputToggle } from 'components';
 import { useNavigate } from 'react-router-dom';
 
 export function SettingsPage() {
@@ -41,23 +41,7 @@ export function SettingsPage() {
               <dl className="sub_info">
                 <dt className="sub_title">Theme</dt>
                 <dd className="sub_desc">
-                  <label className="input_toggle_box">
-                    <input type="checkbox" className="blind" id="theme_checkbox" />
-                    <em className="toggle_ui">
-                      <span className="track"></span>
-                      <span className="ball">
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M10.3536 2.64645C10.5488 2.84171 10.5488 3.15829 10.3536 3.35355L4.85355 8.85355C4.65829 9.04882 4.34171 9.04882 4.14645 8.85355L1.64645 6.35355C1.45118 6.15829 1.45118 5.84171 1.64645 5.64645C1.84171 5.45118 2.15829 5.45118 2.35355 5.64645L4.5 7.79289L9.64645 2.64645C9.84171 2.45118 10.1583 2.45118 10.3536 2.64645Z"
-                            fill="#23C176"
-                          ></path>
-                        </svg>
-                      </span>
-                    </em>
-                    <span className="label">Sync with system settings</span>
-                  </label>
+                  <InputToggle id="theme" label="Sync with system settings" />
                   <div className="input_group setting_theme">
                     <label className="input_radio_box">
                       <input type="radio" className="blind" name="theme" id="theme_dark" />
@@ -77,23 +61,7 @@ export function SettingsPage() {
                 </dd>
                 <dt className="sub_title">Times</dt>
                 <dd className="sub_desc">
-                  <label className="input_toggle_box">
-                    <input type="checkbox" className="blind" id="times_checkbox" />
-                    <em className="toggle_ui">
-                      <span className="track"></span>
-                      <span className="ball">
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M10.3536 2.64645C10.5488 2.84171 10.5488 3.15829 10.3536 3.35355L4.85355 8.85355C4.65829 9.04882 4.34171 9.04882 4.14645 8.85355L1.64645 6.35355C1.45118 6.15829 1.45118 5.84171 1.64645 5.64645C1.84171 5.45118 2.15829 5.45118 2.35355 5.64645L4.5 7.79289L9.64645 2.64645C9.84171 2.45118 10.1583 2.45118 10.3536 2.64645Z"
-                            fill="#23C176"
-                          ></path>
-                        </svg>
-                      </span>
-                    </em>
-                    <span className="label">Use a 24-hour clock</span>
-                  </label>
+                  <InputToggle id="times" label="Use a 24-hour clock" />
                   <span className="time">01:00:00 PM</span>
                 </dd>
               </dl>

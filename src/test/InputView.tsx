@@ -15,7 +15,7 @@
  */
 
 import React from 'react';
-import { InputTextBox, InputTextField, Icon } from 'components';
+import { InputTextBox, InputTextField, Icon, InputToggle } from 'components';
 
 export function InputView() {
   return (
@@ -277,6 +277,30 @@ export function InputView() {
           helperText="Helper Text"
         />
       </div>
+      <em className="uio_title">Input Toggle</em>
+      <InputToggle id="label1" label="label" blindLabel />
+      <br />
+      <InputToggle id="label2" label="label" />
+      <br />
+      <InputToggle id="label3" label="label" reverse />
+      <br />
+      <InputToggle id="label1" label="label" blindLabel checked />
+      <br />
+      <InputToggle id="label2" label="label" checked />
+      <br />
+      <InputToggle id="label3" label="label" reverse checked />
+      <br />
+      <InputToggle id="label1" label="label" blindLabel disabled />
+      <br />
+      <InputToggle id="label2" label="label" disabled />
+      <br />
+      <InputToggle id="label3" label="label" reverse disabled />
+      <br />
+      <InputToggle id="label1" label="label" blindLabel disabled checked />
+      <br />
+      <InputToggle id="label2" label="label" disabled checked />
+      <br />
+      <InputToggle id="label3" label="label" reverse disabled checked />
     </div>
   );
 }

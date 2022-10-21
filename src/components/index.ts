@@ -19,6 +19,7 @@ export * from './Button/Button';
 export * from './Input/InputTextBox';
 export * from './Input/InputTextField';
 export * from './Input/InputHelperText';
+export * from './Input/InputToggle';
 export * from './Popover/Popover';
 export * from './Dropdown/Dropdown';
 export * from './Modal/Modal';

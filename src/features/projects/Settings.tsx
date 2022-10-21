@@ -27,7 +27,7 @@ import {
   resetUpdateSuccess,
 } from './projectsSlice';
 import { AUTH_WEBHOOK_METHODS, UpdatableProjectFields, AuthWebhookMethod } from 'api/types';
-import { Icon, InputHelperText, InputTextField, Navigator } from 'components';
+import { InputToggle, InputHelperText, InputTextField, Navigator } from 'components';
 
 export type UpdateFieldInfo = {
   target: keyof UpdatableProjectFields | AuthWebhookMethod | null;
@@ -258,7 +258,8 @@ export function Settings() {
                       key={method}
                     >
                       <InputToggle
-                        name={method}
+                        id={method}
+                        label={method}
                         checked={webhookMethodField.value.includes(method)}
                         onChange={(e) => {
                           let newWebhookMethods = [...project?.authWebhookMethods!];
@@ -290,26 +291,5 @@ export function Settings() {
         </form>
       </div>
     </div>
-  );
-}
-
-function InputToggle({
-  name,
-  checked,
-  onChange,
-}: {
-  name: AuthWebhookMethod;
-  checked: boolean;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-}) {
-  return (
-    <label htmlFor={name} className="input_toggle_box">
-      <input type="checkbox" id={name} value={name} className="blind" checked={checked} onChange={onChange} />
-      <em className="toggle_ui">
-        <span className="track"></span>
-        <Icon type="check" className="ball" />
-      </em>
-      <span className="label">{name}</span>
-    </label>
   );
 }
