@@ -25,6 +25,7 @@ import {
   ProjectUpdateFields,
   selectProjectUpdate,
   resetUpdateSuccess,
+  listProjectsAsync,
 } from './projectsSlice';
 import { AUTH_WEBHOOK_METHODS, UpdatableProjectFields, AuthWebhookMethod } from 'api/types';
 import { InputToggle, InputHelperText, InputTextField, Navigator } from 'components';
@@ -121,7 +122,8 @@ export function Settings() {
   useEffect(() => {
     if (isSuccess) {
       setUpdateFieldInfo((info) => ({ ...info, state: 'success', message: 'Success' }));
-      navigate(`../projects/${project?.name}/settings`);
+      navigate(`../projects/${project?.name}/settings`, { replace: true });
+      dispatch(listProjectsAsync());
       dispatch(resetUpdateSuccess());
     }
     if (error) {

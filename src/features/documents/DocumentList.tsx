@@ -20,7 +20,7 @@ import * as moment from 'moment';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectDocumentList, listDocumentsAsync, searchDocumentsAsync } from './documentsSlice';
-import { Icon } from 'components';
+import { SearchBar } from 'components';
 
 export function DocumentList({ isDetailOpen }: { isDetailOpen: boolean }) {
   const dispatch = useAppDispatch();
@@ -59,23 +59,13 @@ export function DocumentList({ isDetailOpen }: { isDetailOpen: boolean }) {
   // TODO(hackerwins): Adjust the style of input with form.
   return (
     <>
-      <form onSubmit={handleSearch}>
-        <div className="search">
-          <div className="input_field_box">
-            <div className="input_inner"></div>
-            <Icon type="search" className="icon_search" />
-            <input
-              type="text"
-              id="search_editing"
-              className="input"
-              placeholder="Search projects"
-              value={query}
-              onChange={handleChangeQuery}
-              style={{ width: '100%' }}
-            />
-          </div>
-        </div>
-      </form>
+      <SearchBar
+        placeholder="Search Documents"
+        autoComplete="off"
+        onChange={handleChangeQuery}
+        value={query}
+        onSubmit={handleSearch}
+      />
       <div className="document_table is_edit">
         <div className="thead">
           <span className="th id">Document ID</span>
