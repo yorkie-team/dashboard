@@ -15,9 +15,10 @@
  */
 
 import React, { useCallback } from 'react';
-import { PageTemplate } from './PageTemplate';
-import { Button, Icon, Navigator, InputToggle } from 'components';
 import { useNavigate } from 'react-router-dom';
+import { PageTemplate } from './PageTemplate';
+import { Button, Icon, Navigator } from 'components';
+import { Preferences } from 'features/users/Preferences';
 
 export function SettingsPage() {
   const navigate = useNavigate();
@@ -28,45 +29,10 @@ export function SettingsPage() {
   return (
     <PageTemplate className="setting_account_page">
       <div className="content">
-        <h2 className="page_title">
-          <span className="text">User Settings</span>
-        </h2>
+        <h2 className="page_title"><span className="text">Settings</span></h2>
         <div className="setting_group">
           <Navigator navList={[{ name: 'Preferences', id: 'sectionPreferences' }]} />
-          <div className="box_right">
-            <div className="setting_box">
-              <div className="setting_title">
-                <strong className="text">Preferences</strong>
-              </div>
-              <dl className="sub_info">
-                <dt className="sub_title">Theme</dt>
-                <dd className="sub_desc">
-                  <InputToggle id="theme" label="Sync with system settings" />
-                  <div className="input_group setting_theme">
-                    <label className="input_radio_box">
-                      <input type="radio" className="blind" name="theme" id="theme_dark" />
-                      <em className="radio_ui">
-                        <span className="ball"></span>
-                      </em>
-                      <span className="label">Dark</span>
-                    </label>
-                    <label className="input_radio_box">
-                      <input type="radio" className="blind" name="theme" id="theme_light" />
-                      <em className="radio_ui">
-                        <span className="ball"></span>
-                      </em>
-                      <span className="label">Light</span>
-                    </label>
-                  </div>
-                </dd>
-                <dt className="sub_title">Times</dt>
-                <dd className="sub_desc">
-                  <InputToggle id="times" label="Use a 24-hour clock" />
-                  <span className="time">01:00:00 PM</span>
-                </dd>
-              </dl>
-            </div>
-          </div>
+          <Preferences />
         </div>
         <Button icon={<Icon type="close" />} className="btn_close" onClick={handleCloseBtn}>
           <span className="blind">Go back</span>

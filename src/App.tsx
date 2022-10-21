@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import './app.scss';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import {
@@ -30,10 +30,17 @@ import {
   ProjectSettingsPage,
   NotFoundPage,
 } from 'pages';
+import { useAppSelector } from 'app/hooks';
 import { DocumentDetail } from 'features/documents';
+import { selectPreferences } from 'features/users/usersSlice';
 import { TestPage, ButtonView, PopoverView, DropdownView, InputView, BreadcrumbView } from 'test';
 
 function App() {
+  const { theme } = useAppSelector(selectPreferences);
+  useEffect(() => {
+    document.body.classList.toggle('darkmode', theme.darkMode);
+  }, [theme.darkMode]);
+
   return (
     <Router>
       <Routes>
