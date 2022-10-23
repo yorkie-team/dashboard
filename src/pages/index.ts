@@ -20,9 +20,9 @@ export * from './PageTemplate';
 export * from './ProjectPageTemplate';
 export * from './PrivateRoute';
 
-export * from './NotFoundPage';
 export * from './LoginPage';
 export * from './SignupPage';
+
 export * from './SettingsPage';
 export * from './ProjectsPage';
 export * from './CreateProjectPage';
@@ -30,3 +30,6 @@ export * from './DocumentsPage';
 export * from './ProjectOverviewPage';
 export * from './ProjectAPIKeysPage';
 export * from './ProjectSettingsPage';
+
+export * from './CommunityPage';
+export * from './NotFoundPage';

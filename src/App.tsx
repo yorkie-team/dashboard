@@ -28,6 +28,7 @@ import {
   ProjectOverviewPage,
   ProjectAPIKeysPage,
   ProjectSettingsPage,
+  CommunityPage,
   NotFoundPage,
 } from 'pages';
 import { useAppSelector } from 'app/hooks';
@@ -47,14 +48,6 @@ function App() {
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/test" element={<TestPage />}>
-          <Route path="/test" element={<Navigate to="./button" />} />
-          <Route path="/test/button" element={<ButtonView />} />
-          <Route path="/test/popover" element={<PopoverView />} />
-          <Route path="/test/dropdown" element={<DropdownView />} />
-          <Route path="/test/input" element={<InputView />} />
-          <Route path="/test/breadcrumb" element={<BreadcrumbView />} />
-        </Route>
         <Route element={<PrivateRoute />}>
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/projects/new" element={<CreateProjectPage />} />
@@ -65,6 +58,15 @@ function App() {
             <Route path=":documentKey" element={<DocumentDetail />} />
           </Route>
           <Route path="/settings" element={<SettingsPage />} />
+        </Route>
+        <Route path="/community" element={<CommunityPage />} />
+        <Route path="/test" element={<TestPage />}>
+          <Route path="/test" element={<Navigate to="./button" />} />
+          <Route path="/test/button" element={<ButtonView />} />
+          <Route path="/test/popover" element={<PopoverView />} />
+          <Route path="/test/dropdown" element={<DropdownView />} />
+          <Route path="/test/input" element={<InputView />} />
+          <Route path="/test/breadcrumb" element={<BreadcrumbView />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
