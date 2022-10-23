@@ -15,7 +15,27 @@
  */
 
 import React from 'react';
+import { PageTemplate } from './PageTemplate';
+import { ReactComponent as NotFoundSVG } from 'assets/icons/error_404.svg';
+import { Button, Icon } from 'components';
 
 export function NotFoundPage() {
-  return <div>404 Not Found.</div>;
+  return (
+    <PageTemplate className="error_page">
+      <div className="error">
+        <div className="img_box">
+          <NotFoundSVG />
+        </div>
+        <div className="error_info">
+          <h2 className="error_title">Oops! Wait a minute... <br />Yorkie ate your request</h2>
+          <p className="error_desc">The page you are looking for might be removed or is temporarily unavailable.</p>
+          <Button.Box>
+            <Button icon={<Icon type="backHome" />} href="/" className="orange_0" as="a">Back to Home</Button>
+            <Button icon={<Icon type="slack" />} href="https://communityinviter.com/apps/dev-yorkie/yorkie" className="gray50" as="a" outline>Slack</Button>
+            <Button icon={<Icon type="github" />} href="https://github.com/yorkie-team/yorkie-house/issues" className="gray50" as="a" outline>GitHub</Button>
+          </Button.Box>
+        </div>
+      </div>
+    </PageTemplate>
+  );
 }

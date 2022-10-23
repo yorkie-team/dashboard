@@ -48,6 +48,9 @@ import { ReactComponent as LockSmallSVG } from 'assets/icons/icon_lock_small.svg
 import { ReactComponent as Arrow2SVG } from 'assets/icons/icon_arrow2.svg';
 import { ReactComponent as ArrowSVG } from 'assets/icons/icon_arrow.svg';
 import { ReactComponent as CloseSmallSVG } from 'assets/icons/icon_close_small.svg';
+import { ReactComponent as SlackSVG } from 'assets/icons/icon_slack.svg';
+import { ReactComponent as GitHubSVG } from 'assets/icons/icon_github.svg';
+import { ReactComponent as BackHomeSVG } from 'assets/icons/icon_back_home.svg';
 
 const svgMap = {
   shortcut: <ShortcutSVG />,
@@ -82,6 +85,9 @@ const svgMap = {
   arrow2: <Arrow2SVG />,
   arrow: <ArrowSVG />,
   closeSmall: <CloseSmallSVG />,
+  slack: <SlackSVG />,
+  github: <GitHubSVG />,
+  backHome: <BackHomeSVG />,
 };
 type SVGType = keyof typeof svgMap;
 
