@@ -14,14 +14,15 @@
  * limitations under the License.
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useAppSelector } from 'app/hooks';
 import { selectProjectDetail } from './projectsSlice';
-import { Icon, Button } from 'components'
+import { Icon, Button, CopyButton } from 'components';
 
 export function APIKeys() {
   const { project } = useAppSelector(selectProjectDetail);
+  const [revealSecretKey, setRevealSecretKey] = useState(false);
 
   return (
     <section className="api_area">
@@ -32,50 +33,71 @@ export function APIKeys() {
       <div className="api_title">
         <div className="title_box">
           <strong className="title">Public key</strong>
-          <label className="input_toggle_box ">
-            <input type="checkbox" className="blind" id="iptt-5" checked />
-          </label>
         </div>
-        <p className="desc">Description</p>
+        <p className="desc">
+          The public key allows you to use Yorkie without implementing your own authentication endpoint.
+        </p>
       </div>
       <div className="connect_api_box">
         <div className="input_area">
-          <input className="input" type="text" value={project?.publicKey} readOnly />
+          <span className="input">{project?.publicKey}</span>
         </div>
-        <div className="btn_area">
-          <Button outline icon={<Icon type="copy" />}>
-            Copy
-          </Button>
-          <div className="toast_box shadow_l">
-            <Icon type="check" />
-            Copied
-          </div>
-        </div>
+        <CopyButton value={project?.publicKey!} timeout={1000}>
+          {({ copied, copy }) => (
+            <div className="btn_area">
+              <Button outline icon={<Icon type="copy" />} onClick={copy}>
+                Copy
+              </Button>
+              {copied && (
+                <div className="toast_box shadow_l">
+                  <Icon type="check" />
+                  Copied
+                </div>
+              )}
+            </div>
+          )}
+        </CopyButton>
       </div>
       <div className="api_title">
         <div className="title_box">
           <strong className="title">Secret key</strong>
         </div>
-        <p className="desc">Description</p>
+        <p className="desc">
+          The secret key allows you to authenticate your API requests on your own backend endpoint.
+        </p>
       </div>
       <div className="connect_api_box">
         <div className="input_area">
-          <button className="btn_cover">
-            <Icon type="lockSmall" />
-            Click to reveal secret key
-          </button>
-          <input className="input" type="text" value={project?.secretKey} readOnly />
+          {!revealSecretKey && (
+            <button
+              type="button"
+              className="btn_cover"
+              onClick={() => {
+                setRevealSecretKey(true);
+              }}
+            >
+              <Icon type="lockSmall" />
+              Click to reveal secret key
+            </button>
+          )}
+          {revealSecretKey && <span className="input">{project?.secretKey}</span>}
         </div>
-        <div className="btn_area">
-          <Button outline icon={<Icon type="copy" />}>
-            Copy
-          </Button>
-          <div className="toast_box shadow_l" style={{ display: 'none' }}>
-            <Icon type="check" />
-            Copied
-          </div>
-        </div>
+        <CopyButton value={project?.secretKey!} timeout={1000}>
+          {({ copied, copy }) => (
+            <div className="btn_area">
+              <Button outline icon={<Icon type="copy" />} onClick={copy}>
+                Copy
+              </Button>
+              {copied && (
+                <div className="toast_box shadow_l">
+                  <Icon type="check" />
+                  Copied
+                </div>
+              )}
+            </div>
+          )}
+        </CopyButton>
       </div>
-    </section >
+    </section>
   );
 }

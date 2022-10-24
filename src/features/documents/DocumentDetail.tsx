@@ -20,7 +20,7 @@ import { useParams } from 'react-router-dom';
 import './rc-slider.css';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectDocumentDetail, getDocumentAsync, resetHistory } from './documentsSlice';
-import { Icon, Button, CodeBlock } from 'components';
+import { Icon, Button, CodeBlock, CopyButton } from 'components';
 
 export function DocumentDetail() {
   const { document } = useAppSelector(selectDocumentDetail);
@@ -73,23 +73,19 @@ export function DocumentDetail() {
             onClick={() => SetViewType('tree')}
             className={viewType === 'tree' ? 'is_active' : ''}
           />
-          <Button
-            icon={<Icon type="copy" />}
-            color="toggle"
-            className="btn_line gray50"
-            onClick={() => {
-              // TODO(hackerwins): Extract clipboard module to the common.
-              navigator.clipboard
-                .writeText(document?.snapshot || '')
-                .then(() => {
-                  // TODO(chacha912): Replace `alert()` with alert component
-                  alert('Copied!');
-                })
-                .catch(() => {
-                  alert('Copy failed! Please try again.');
-                });
-            }}
-          />
+          <CopyButton value={document?.snapshot || ''} timeout={1000}>
+            {({ copied, copy }) => (
+              <>
+                <Button icon={<Icon type="copy" />} color="toggle" outline onClick={copy} />
+                {copied && (
+                  <div className="toast_box shadow_l">
+                    <Icon type="check" />
+                    Copied
+                  </div>
+                )}
+              </>
+            )}
+          </CopyButton>
         </div>
       </div>
       {viewType === 'code' && (
