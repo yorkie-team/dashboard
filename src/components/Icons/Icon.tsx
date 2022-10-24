@@ -54,7 +54,9 @@ import { ReactComponent as BackHomeSVG } from 'assets/icons/icon_back_home.svg';
 import { ReactComponent as AlertSVG } from 'assets/icons/icon_alert.svg';
 import { ReactComponent as AddMemberSVG } from 'assets/icons/icon_add_member.svg';
 import { ReactComponent as MemberEmailSVG } from 'assets/icons/icon_member_email.svg';
-import { ReactComponent as SettingSVG } from 'assets/icons/icon_setting.svg'
+import { ReactComponent as SettingSVG } from 'assets/icons/icon_setting.svg';
+import { ReactComponent as PreviousSVG } from 'assets/icons/icon_previous.svg';
+import { ReactComponent as NextSVG } from 'assets/icons/icon_next.svg';
 
 const svgMap = {
   shortcut: <ShortcutSVG />,
@@ -96,6 +98,8 @@ const svgMap = {
   addMember: <AddMemberSVG />,
   memberEmail: <MemberEmailSVG />,
   setting: <SettingSVG />,
+  previous: <PreviousSVG />,
+  next: <NextSVG />,
 };
 type SVGType = keyof typeof svgMap;
 

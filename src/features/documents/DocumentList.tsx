@@ -20,18 +20,39 @@ import * as moment from 'moment';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectDocumentList, listDocumentsAsync, searchDocumentsAsync } from './documentsSlice';
-import { SearchBar } from 'components';
+import { Button, SearchBar, Icon } from 'components';
 
 export function DocumentList({ isDetailOpen }: { isDetailOpen: boolean }) {
   const dispatch = useAppDispatch();
   const params = useParams();
   const projectName = params.projectName || '';
-  const { documents, status } = useAppSelector(selectDocumentList);
+  const { type: queryType, documents, hasPrevious, hasNext, status } = useAppSelector(selectDocumentList);
 
   const [query, SetQuery] = useState('');
   const handleChangeQuery = useCallback((e) => {
     SetQuery(e.target.value);
   }, []);
+
+  const handlePrevBtnClicked = useCallback(() => {
+    dispatch(
+      listDocumentsAsync({
+        projectName,
+        isForward: true,
+        previousID: documents[0].id,
+      }),
+    );
+  }, [dispatch, projectName, documents]);
+
+  const handleNextBtnClicked = useCallback(() => {
+    const lastDocument = documents[documents.length - 1];
+    dispatch(
+      listDocumentsAsync({
+        projectName,
+        isForward: false,
+        previousID: lastDocument.id,
+      }),
+    );
+  }, [dispatch, projectName, documents]);
 
   const handleSearch = useCallback(
     (e) => {
@@ -55,7 +76,6 @@ export function DocumentList({ isDetailOpen }: { isDetailOpen: boolean }) {
     dispatch(listDocumentsAsync({ projectName, isForward: false }));
   }, [dispatch, projectName]);
 
-  // TODO(hackerwins): Implment infinite scroll or pagination.
   // TODO(hackerwins): Adjust the style of input with form.
   return (
     <>
@@ -143,6 +163,16 @@ export function DocumentList({ isDetailOpen }: { isDetailOpen: boolean }) {
         {status === 'idle' && documents.length === 0 && (
           <div className="placeholder_box no_bg">
             <p className="desc">No Document Found</p>
+          </div>
+        )}
+        {queryType === 'all' && (
+          <div style={{ marginTop: 20 }}>
+            <Button onClick={handlePrevBtnClicked} disabled={!hasPrevious} outline icon={<Icon type="previous" />}>
+              Previous
+            </Button>
+            <Button onClick={handleNextBtnClicked} disabled={!hasNext} outline icon={<Icon type="next" />}>
+              Next
+            </Button>
           </div>
         )}
       </div>
