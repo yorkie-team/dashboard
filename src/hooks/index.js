@@ -17,3 +17,4 @@
 export * from './useOutsideClick';
 export * from './useAreaBlur';
 export * from './useUncontrolled';
+export * from './useClipboard';
