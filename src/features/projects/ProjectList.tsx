@@ -142,8 +142,6 @@ export function ProjectList() {
     };
   }, []);
 
-  // TODO(hackerwins): Add Search Icon
-  // NOTE(hackerwins): Remove style(marginTop) after implementing team feature.
   return (
     <>
       <div className="project_area">

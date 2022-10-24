@@ -27,10 +27,9 @@ function Item({
   isActive?: boolean,
   to: string,
 }) {
-  // TODO(hackerwins): move `is_active` class to the child element.
   return (
     <li className={classNames({ is_active: isActive }, 'tab_item')}>
-      <Link to={to} className={({ isActive }) => classNames({ is_active: isActive }, 'tab_menu')}>
+      <Link to={to} className={({ isActive }) => classNames({ is_active: isActive }, 'tab_menu')} end>
         {children}
       </Link>
     </li >
