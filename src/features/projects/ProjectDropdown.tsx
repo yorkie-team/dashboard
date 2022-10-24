@@ -44,11 +44,7 @@ export function ProjectDropdown({ size = 'small' }: { size?: 'small' | 'large' }
     return (
       <Popover opened={opened} onChange={setOpened}>
         <Popover.Target>
-          <Breadcrumb.Item
-            onClick={() => {
-              setOpened((opened) => !opened);
-            }}
-          >
+          <Breadcrumb.Item>
             <Breadcrumb.Text>{projectName}</Breadcrumb.Text>
             <Icon type="openSelector" />
           </Breadcrumb.Item>
@@ -59,7 +55,8 @@ export function ProjectDropdown({ size = 'small' }: { size?: 'small' | 'large' }
               {projects.map((project: Project) => (
                 <Dropdown.Item
                   key={project.id}
-                  to={`/projects/${project.name}`}
+                  as="link"
+                  href={`/projects/${project.name}`}
                   onClick={() => {
                     setOpened(false);
                   }}
@@ -69,7 +66,7 @@ export function ProjectDropdown({ size = 'small' }: { size?: 'small' | 'large' }
               ))}
             </Dropdown.List>
             <Dropdown.List>
-              <Dropdown.Item to="/projects/new">
+              <Dropdown.Item as="link" href="/projects/new">
                 <Icon type="plus" className="shortcut_thumb" />
                 <Breadcrumb.Text>Create New Project</Breadcrumb.Text>
               </Dropdown.Item>
@@ -83,13 +80,7 @@ export function ProjectDropdown({ size = 'small' }: { size?: 'small' | 'large' }
   return (
     <Popover opened={opened} onChange={setOpened}>
       <Popover.Target>
-        <button
-          type="button"
-          className="btn_title"
-          onClick={() => {
-            setOpened((opened) => !opened);
-          }}
-        >
+        <button type="button" className="btn_title">
           <strong className="title">{projectName}</strong>
           <Icon type="openSelector" className="title_icon" />
         </button>
@@ -106,7 +97,8 @@ export function ProjectDropdown({ size = 'small' }: { size?: 'small' | 'large' }
             {projects.map((project: Project) => (
               <Dropdown.Item
                 key={project.id}
-                to={`/projects/${project.name}`}
+                as="link"
+                href={`/projects/${project.name}`}
                 onClick={() => {
                   setOpened(false);
                 }}

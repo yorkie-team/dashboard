@@ -23,30 +23,41 @@ import { AccountDropdown, MobileGnbDropdown } from 'features/users';
 import { selectUsers } from 'features/users/usersSlice';
 import { Breadcrumb, Icon } from 'components';
 
-export function Header({ className }: {
-  className?: string;
-}) {
+export function Header({ className }: { className?: string }) {
   const { token, isValidToken } = useAppSelector(selectUsers);
+
   return (
     <header className={`header ${className}`}>
       <div className="header_inner">
         <Breadcrumb>
           <h1 className="logo">
-            <Link to="/" className="logo_menu"><Icon type="logoNoText" fill /></Link>
+            <Link to="/" className="logo_menu">
+              <Icon type="logoNoText" fill />
+            </Link>
             <span className="blind">Yorkie</span>
           </h1>
-          {
-            token && isValidToken && (
-              <Breadcrumb.Inner><ProjectDropdown /></Breadcrumb.Inner>
-            )
-          }
+          {token && isValidToken && (
+            <Breadcrumb.Inner>
+              <ProjectDropdown />
+            </Breadcrumb.Inner>
+          )}
         </Breadcrumb>
         {token && isValidToken && (
           <nav className="util_box">
             <ul className="util_list">
-              <li className="util_item"><a href="https://yorkie.dev/docs" target="_blank" rel="noreferrer" className="util_menu">Docs</a></li>
-              <li className="util_item"><a href="/community" className="util_menu">Feedback</a></li>
-              <li className="util_item"><AccountDropdown /></li>
+              <li className="util_item">
+                <a href="https://yorkie.dev/docs" target="_blank" rel="noreferrer" className="util_menu">
+                  Docs
+                </a>
+              </li>
+              <li className="util_item">
+                <Link to="/community" className="util_menu">
+                  Feedback
+                </Link>
+              </li>
+              <li className="util_item">
+                <AccountDropdown />
+              </li>
             </ul>
             <MobileGnbDropdown />
           </nav>

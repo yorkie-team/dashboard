@@ -27,12 +27,37 @@ export function NotFoundPage() {
           <NotFoundSVG />
         </div>
         <div className="error_info">
-          <h2 className="error_title">Oops! Wait a minute... <br />Yorkie ate your request</h2>
+          <h2 className="error_title">
+            Oops! Wait a minute... <br />
+            Yorkie ate your request
+          </h2>
           <p className="error_desc">The page you are looking for might be removed or is temporarily unavailable.</p>
           <Button.Box>
-            <Button icon={<Icon type="backHome" />} href="/" className="orange_0" as="a">Back to Home</Button>
-            <Button icon={<Icon type="slack" />} href="https://communityinviter.com/apps/dev-yorkie/yorkie" className="gray50" as="a" outline>Slack</Button>
-            <Button icon={<Icon type="github" />} href="https://github.com/yorkie-team/yorkie-house/issues" className="gray50" as="a" outline>GitHub</Button>
+            <Button icon={<Icon type="backHome" />} href="/" className="orange_0" as="link">
+              Back to Home
+            </Button>
+            <Button
+              icon={<Icon type="slack" />}
+              href="https://communityinviter.com/apps/dev-yorkie/yorkie"
+              className="gray50"
+              as="a"
+              outline
+              target="_blank"
+              rel="noreferrer"
+            >
+              Slack
+            </Button>
+            <Button
+              icon={<Icon type="github" />}
+              href="https://github.com/yorkie-team/yorkie-house/issues"
+              className="gray50"
+              as="a"
+              outline
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub
+            </Button>
           </Button.Box>
         </div>
       </div>

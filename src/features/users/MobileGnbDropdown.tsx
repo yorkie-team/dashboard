@@ -16,7 +16,7 @@
 
 import React, { useCallback, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import classNames from 'classnames';
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 import { selectUsers, logoutUser } from './usersSlice';
 import { Popover, Dropdown, Icon } from 'components';
@@ -48,25 +48,22 @@ export function MobileGnbDropdown() {
           }}
         >
           <span className="blind">Open menu</span>
-          {!opened && <Icon type="gnbMenu" className="icon_menu" />}
-          {opened && <Icon type="close" className="icon_close" />}
+          <Icon type="gnbMenu" className={classNames('icon_menu', { is_active: !opened })} />
+          <Icon type="close" className={classNames('icon_close', { is_active: opened })} />
         </button>
       </Popover.Target>
       <Popover.Dropdown>
         <Dropdown className="util_list_mo">
           <Dropdown.List>
-            <Dropdown.Item>
+            <Dropdown.Item as="link" href="/community">
               <Dropdown.Text>Feedback</Dropdown.Text>
             </Dropdown.Item>
-            <Dropdown.Item>
-              <Dropdown.Text>Support</Dropdown.Text>
-            </Dropdown.Item>
-            <Dropdown.Item>
+            <Dropdown.Item as="a" href="https://yorkie.dev/docs">
               <Dropdown.Text>Docs</Dropdown.Text>
             </Dropdown.Item>
           </Dropdown.List>
           <Dropdown.List>
-            <Dropdown.Item>
+            <Dropdown.Item as="link" href="/settings">
               <Dropdown.Text>User setting</Dropdown.Text>
             </Dropdown.Item>
             <Dropdown.Item onClick={logout}>

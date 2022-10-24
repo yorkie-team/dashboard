@@ -188,13 +188,7 @@ export function ProjectList() {
               <li className="filter_item">
                 <Popover opened={sortOpened} onChange={setSortOpened}>
                   <Popover.Target>
-                    <button
-                      type="button"
-                      className="btn btn_small filter_desc"
-                      onClick={() => {
-                        setSortOpened((opened) => !opened);
-                      }}
-                    >
+                    <button type="button" className="btn btn_small filter_desc">
                       <span className="filter_title">Sort:</span>
                       <span className="text">{sortOption}</span>
                       <Icon type="arrow" className="icon_arrow" />

@@ -19,7 +19,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { SignupFields, selectUsers, signupUser, resetSignupState } from './usersSlice';
-import { Button, Icon, InputTextBox } from 'components';
+import { Button, InputTextBox } from 'components';
 
 export function SignupForm() {
   const dispatch = useDispatch();
@@ -120,18 +120,6 @@ export function SignupForm() {
           state={formErrors.confirmPassword ? 'error' : 'normal'}
           helperText={(formErrors.confirmPassword && formErrors.confirmPassword.message) || ''}
         />
-        <div className="guide">
-          <span className="guide_text">By clicking sign up, you agree to our</span>
-          <a href="/terms" className="terms">
-            <span className="terms_text">Terms of service</span>
-            <Icon type="shortcut" color="blue_0" />
-          </a>
-          <span className="guide_text">and</span>
-          <a href="/privacy" className="terms">
-            <span className="terms_text">Privacy policy</span>
-            <Icon type="shortcut" color="blue_0" />
-          </a>
-        </div>
         <Button.Box fullWidth={true}>
           <Button type="submit" disabled={status === 'loading'} color="primary">
             {status !== 'loading' && 'Sign up'}

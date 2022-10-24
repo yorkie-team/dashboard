@@ -44,13 +44,6 @@ export function LoginPage() {
           </Button>
         </Button.Box>
       </div>
-      <div className="guide">
-        <span className="guide_text">By signing in to Yorkie, you agree to our</span>
-        <a href="/terms" className="terms">
-          <span className="terms_text">Terms of service</span>
-          <Icon type="shortcut" color="blue_0" />
-        </a>
-      </div>
     </PageTemplate>
   );
 }

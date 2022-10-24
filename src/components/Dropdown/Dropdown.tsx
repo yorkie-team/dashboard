@@ -45,12 +45,14 @@ function List({ children }: { children: ReactNode }) {
 
 function Item({
   children,
-  to,
+  as = 'button',
+  href = '',
   border,
   onClick,
 }: {
   children: ReactNode;
-  to?: string;
+  as?: 'button' | 'a' | 'link';
+  href?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
   border?: boolean;
 }) {
@@ -61,11 +63,17 @@ function Item({
       })}
       style={{ display: 'block' }}
     >
-      {to ? (
-        <Link to={to || ''} className="dropdown_menu" onClick={onClick}>
+      {as === 'a' && (
+        <a href={href} className="dropdown_menu" target="_blank" rel="noreferrer">
+          {children}
+        </a>
+      )}
+      {as === 'link' && (
+        <Link to={href} className="dropdown_menu" onClick={onClick}>
           {children}
         </Link>
-      ) : (
+      )}
+      {as === 'button' && (
         <button onClick={onClick} className="dropdown_menu">
           {children}
         </button>

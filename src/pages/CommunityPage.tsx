@@ -25,13 +25,38 @@ export function CommunityPage() {
       <div className="community">
         <div className="community_info">
           <h2 className="community_title">Join our community</h2>
-          <p className="community_desc">If you have any questions along the way, please don’t hesitate to ask us through our<br /> channels. You can sign up for our slack or raise GitHub issues.</p>
+          <p className="community_desc">
+            If you have any questions along the way, please don’t hesitate to ask us through our
+            <br /> channels. You can sign up for our slack or raise GitHub issues.
+          </p>
           <Button.Box>
-            <Button icon={<Icon type="slack" />} href="https://communityinviter.com/apps/dev-yorkie/yorkie" className="gray50" as="a" outline>Slack</Button>
-            <Button icon={<Icon type="github" />} href="https://github.com/yorkie-team/yorkie-house/issues" className="gray50" as="a" outline>GitHub</Button>
+            <Button
+              icon={<Icon type="slack" />}
+              href="https://communityinviter.com/apps/dev-yorkie/yorkie"
+              className="gray50"
+              as="a"
+              outline
+              target="_blank"
+              rel="noreferrer"
+            >
+              Slack
+            </Button>
+            <Button
+              icon={<Icon type="github" />}
+              href="https://github.com/yorkie-team/yorkie-house/issues"
+              className="gray50"
+              as="a"
+              outline
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub
+            </Button>
           </Button.Box>
         </div>
-        <div className="img_box"><CommunitySVG /></div>
+        <div className="img_box">
+          <CommunitySVG />
+        </div>
       </div>
     </PageTemplate>
   );
