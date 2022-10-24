@@ -34,7 +34,9 @@ export function APIKeys() {
         <div className="title_box">
           <strong className="title">Public key</strong>
         </div>
-        <p className="desc">Description</p>
+        <p className="desc">
+          The public key allows you to use Yorkie without implementing your own authentication endpoint.
+        </p>
       </div>
       <div className="connect_api_box">
         <div className="input_area">
@@ -60,7 +62,9 @@ export function APIKeys() {
         <div className="title_box">
           <strong className="title">Secret key</strong>
         </div>
-        <p className="desc">Description</p>
+        <p className="desc">
+          The secret key allows you to authenticate your API requests on your own backend endpoint.
+        </p>
       </div>
       <div className="connect_api_box">
         <div className="input_area">
