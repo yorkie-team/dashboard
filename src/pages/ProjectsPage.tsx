@@ -15,8 +15,8 @@
  */
 
 import React, { useState } from 'react';
-import bannerImg from 'assets/images/@tmp/sample_banner_icon.png';
 import { ProjectList } from 'features/projects';
+import { ReactComponent as BannerSVG } from 'assets/images/@tmp/sample_banner_icon.svg';
 import { Button, Icon } from 'components';
 import { PageTemplate } from './PageTemplate';
 
@@ -44,7 +44,7 @@ export function ProjectsPage() {
                 <strong className="banner_title gray000">Browse Yorkie examples</strong>
                 <p className="banner_desc gray000">Browse all examples</p>
                 <span className="img_box">
-                  <img src={bannerImg} alt="" />
+                  <BannerSVG />
                 </span>
               </a>
             </li>

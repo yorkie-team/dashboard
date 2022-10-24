@@ -47,7 +47,7 @@ export function ProjectTabList() {
         <TabList.Text>API</TabList.Text>
       </TabList.Item>
       <TabList.Item to={`/projects/${projectName}/settings`}>
-        <Icon type="key" />
+        <Icon type="setting" />
         <TabList.Text>Settings</TabList.Text>
       </TabList.Item>
     </TabList>

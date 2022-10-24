@@ -35,9 +35,7 @@ export function SettingsPage() {
         <Navigator navList={[{ name: 'Preferences', id: 'preferences' }]} />
         <Preferences />
       </div>
-      <Button icon={<Icon type="close" />} className="btn_close" onClick={handleCloseBtn}>
-        <span className="blind">Go back</span>
-      </Button>
+      <Button icon={<Icon type="close" />} className="btn_close" onClick={handleCloseBtn} blindText>Go back</Button>
     </PageTemplate>
   );
 }

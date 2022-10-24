@@ -26,13 +26,11 @@ export function SearchBar({
   onSubmit?: React.FormEventHandler<HTMLFormElement>;
 } & React.InputHTMLAttributes<HTMLInputElement>) {
   return (
-    <form onSubmit={onSubmit}>
-      <div className="search">
-        <div className="input_field_box">
-          <div className="input_inner">
-            <Icon type="search" className="icon_search" />
-            <input type="text" className="input" placeholder={placeholder} {...restProps} />
-          </div>
+    <form onSubmit={onSubmit} className="search">
+      <div className="input_field_box">
+        <div className="input_inner">
+          <Icon type="search" className="icon_search" />
+          <input type="search" className="input" placeholder={placeholder} {...restProps} />
         </div>
       </div>
     </form>

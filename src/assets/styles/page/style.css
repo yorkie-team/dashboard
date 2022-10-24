@@ -1719,6 +1719,10 @@
   font-family: RobotoMono, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif
 }
 
+.prism-code .token {
+  color: var(--gray-900)
+}
+
 .prism-code .token-line {
   display: table-row
 }
@@ -1735,6 +1739,22 @@
   background: var(--yellow-alpha-light)
 }
 
+.prism-code .string {
+  white-space: normal
+}
+
+.prism-code .keyword {
+  color: var(--blue-0)
+}
+
+.prism-code .comment,
+.prism-code .dom,
+.prism-code .function,
+.prism-code .operator,
+.prism-code .punctuation {
+  color: var(--gray-500)
+}
+
 .prism-code .line-content,
 .prism-code .line-number {
   display: table-cell;
@@ -1746,10 +1766,17 @@
   line-height: 2;
   font-weight: 400;
   color: var(--gray-500);
-  text-align: right
+  text-align: right;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none
 }
 
 .prism-code .line-content {
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
   font-size: 1.4rem;
   line-height: 1.72;
   font-weight: 400
@@ -1833,10 +1860,6 @@
   align-items: center
 }
 
-.codeblock_tree_box .object-key-val .icon-container~span {
-  font-size: 0
-}
-
 .codeblock_tree_box .object-key-val .variable-row,
 .codeblock_tree_box .object-key-val>span:first-child {
   display: inline-block;
@@ -1878,11 +1901,6 @@
   font-size: 1.2rem;
   line-height: 1.34;
   font-weight: 500
-}
-
-.codeblock_tree_box .object-key-val .array-key~span,
-.codeblock_tree_box .object-key-val .object-key~span {
-  display: none !important
 }
 
 .codeblock_tree_box .object-key-val .object-key-val,
@@ -1963,6 +1981,10 @@
 
 .codeblock_tree_box .object-key-val .object-meta-data {
   position: absolute
+}
+
+.codeblock_tree_box .node-ellipsis {
+  margin-left: 4px
 }
 
 @charset "UTF-8";
@@ -2678,6 +2700,10 @@
     top: 0;
     right: 0
   }
+}
+
+.document_header .btn_more .icon svg path {
+  stroke: var(--gray-800)
 }
 
 .document_header .title {
@@ -3893,8 +3919,14 @@
 }
 
 .history_header .btn_back {
+  padding: 0;
+  border: none
+}
+
+.history_header .btn_back .icon {
   width: 24px;
-  height: 24px
+  height: 24px;
+  color: var(--gray-800)
 }
 
 .history_header .title {
@@ -4452,7 +4484,8 @@
 
 .input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px #fff inset;
-  box-shadow: 0 0 0 1000px #fff inset
+  box-shadow: 0 0 0 1000px #fff inset;
+  -webkit-text-fill-color: var(--gray-900)
 }
 
 .input:focus,
@@ -4554,6 +4587,7 @@
   font-size: 1.2rem;
   line-height: 1.34;
   font-weight: 300;
+  color: var(--gray-800);
   word-break: break-word
 }
 
@@ -4698,6 +4732,10 @@
   display: none
 }
 
+.input_field_box.is_error .input_guide_desc {
+  color: var(--red-dark)
+}
+
 .input_field_box.is_success .input {
   border-color: var(--green-0)
 }
@@ -4708,6 +4746,10 @@
 
 .input_field_box.is_success .input_guide .icon path:first-child {
   display: none
+}
+
+.input_field_box.is_success .input_guide_desc {
+  color: var(--green-0)
 }
 
 .input_field_box.is_disabled .label {
@@ -4857,6 +4899,8 @@
 }
 
 .input_toggle_box input:checked~.toggle_ui .ball svg {
+  width: 12px;
+  height: 12px;
   -webkit-transform: scale(1);
   transform: scale(1);
   color: var(--gray-000)
@@ -5133,6 +5177,11 @@
   cursor: pointer;
   -webkit-transition: color .3s;
   transition: color .3s
+}
+
+.darkmode .input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--gray-000) inset;
+  box-shadow: 0 0 0 1000px var(--gray-000) inset
 }
 
 @charset "UTF-8";
@@ -5835,7 +5884,8 @@
 }
 
 .member_item .dropdown_title .icon {
-  display: block
+  display: block;
+  color: var(--gray-800)
 }
 
 .member_item .dropdown_title .icon svg {
@@ -6745,13 +6795,14 @@
 
 .navigator_item {
   padding: 9px 16px;
+  border-radius: 4px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   font-size: 1.4rem;
   line-height: 1.58;
   font-weight: 500;
-  word-break: break-all;
-  border-radius: 4px;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box
+  color: var(--gray-800);
+  word-break: break-all
 }
 
 .navigator_menu {
@@ -7375,6 +7426,10 @@
   color: var(--gray-800)
 }
 
+.tab_item:hover .tab_menu.is_active {
+  border-bottom-color: var(--orange-0)
+}
+
 .tab_item:hover .tab_text {
   color: var(--gray-800)
 }
@@ -7783,9 +7838,9 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -7837,7 +7892,8 @@
 
 .project_area .title_group .dropdown .icon {
   width: 32px;
-  height: 32px
+  height: 32px;
+  color: var(--gray-900)
 }
 
 .project_area .title_group .dropdown .icon svg {
@@ -8001,7 +8057,8 @@
   margin-top: 0;
   font-size: 1.4rem;
   line-height: 1.58;
-  font-weight: 500
+  font-weight: 500;
+  color: var(--gray-900)
 }
 
 .tooltip_inner {
@@ -8032,7 +8089,8 @@
 }
 
 .tooltip_inner .btn_tooltip svg path {
-  fill: inherit
+  fill: inherit;
+  stroke: var(--gray-900)
 }
 
 .tooltip_title_box {
@@ -8261,6 +8319,7 @@
   height: 16px;
   margin-top: 3px;
   margin-left: 9px;
+  color: var(--gray-900);
   -webkit-transform: rotate(-90deg);
   transform: rotate(-90deg)
 }
@@ -8701,11 +8760,7 @@ legend {
 }
 
 :not(input):not(textarea) {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none
+  -webkit-touch-callout: none
 }
 
 body,
@@ -8738,8 +8793,7 @@ ul {
 
 body,
 html {
-  height: 100%;
-  background-color: var(--gray-000)
+  height: 100%
 }
 
 html {
@@ -8748,16 +8802,11 @@ html {
 
 body {
   -webkit-overflow-scrolling: touch;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   font-size: 1.5rem;
   line-height: normal;
   font-weight: 400;
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  overflow: overlay;
-  background-color: var(--gray-000)
+  overflow: overlay
 }
 
 body,
@@ -9344,7 +9393,8 @@ legend {
   flex: 1 1 auto;
   width: 100%;
   min-width: 320px;
-  min-height: 100%
+  min-height: 100%;
+  background-color: var(--gray-000)
 }
 
 @media screen and (max-width:1023px) {
@@ -9480,7 +9530,7 @@ legend {
 }
 
 .community_page .btn_box .btn:last-child path {
-  fill: #01111a
+  fill: initial
 }
 
 .community_page .btn_box .btn+.btn {
@@ -9908,11 +9958,7 @@ legend {
 }
 
 :not(input):not(textarea) {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none
+  -webkit-touch-callout: none
 }
 
 body,
@@ -9945,8 +9991,7 @@ ul {
 
 body,
 html {
-  height: 100%;
-  background-color: var(--gray-000)
+  height: 100%
 }
 
 html {
@@ -9955,16 +10000,11 @@ html {
 
 body {
   -webkit-overflow-scrolling: touch;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   font-size: 1.5rem;
   line-height: normal;
   font-weight: 400;
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  overflow: overlay;
-  background-color: var(--gray-000)
+  overflow: overlay
 }
 
 body,
@@ -10551,7 +10591,8 @@ legend {
   flex: 1 1 auto;
   width: 100%;
   min-width: 320px;
-  min-height: 100%
+  min-height: 100%;
+  background-color: var(--gray-000)
 }
 
 @media screen and (max-width:1023px) {
@@ -10620,26 +10661,25 @@ legend {
 }
 
 .error_page .container {
-  max-width: 1120px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  max-width: 1024px;
   margin: 0 auto;
-  padding: 231px 40px 328px;
+  padding: 100px 40px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box
 }
 
-@media screen and (max-width:1023px) {
-  .error_page .container {
-    max-width: none;
-    padding: 0
-  }
+.error_page .content {
+  width: 100%
 }
 
 .error_page .header_service {
   background-color: var(--gray-000)
-}
-
-.error_page .error_info {
-  padding-left: 89px
 }
 
 .error_page .error {
@@ -10652,6 +10692,14 @@ legend {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center
+}
+
+.error_page .error.error404 .error_info {
+  padding-left: 55px
+}
+
+.error_page .error_info {
+  padding-left: 89px
 }
 
 .error_page .error_title {
@@ -10692,7 +10740,7 @@ legend {
 }
 
 .error_page .btn_box .btn:last-child path {
-  fill: #01111a
+  fill: initial
 }
 
 .error_page .btn_box .btn+.btn {
@@ -11119,11 +11167,7 @@ legend {
 }
 
 :not(input):not(textarea) {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none
+  -webkit-touch-callout: none
 }
 
 body,
@@ -11156,8 +11200,7 @@ ul {
 
 body,
 html {
-  height: 100%;
-  background-color: var(--gray-000)
+  height: 100%
 }
 
 html {
@@ -11166,16 +11209,11 @@ html {
 
 body {
   -webkit-overflow-scrolling: touch;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   font-size: 1.5rem;
   line-height: normal;
   font-weight: 400;
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  overflow: overlay;
-  background-color: var(--gray-000)
+  overflow: overlay
 }
 
 body,
@@ -11762,7 +11800,8 @@ legend {
   flex: 1 1 auto;
   width: 100%;
   min-width: 320px;
-  min-height: 100%
+  min-height: 100%;
+  background-color: var(--gray-000)
 }
 
 @media screen and (max-width:1023px) {
@@ -12388,11 +12427,7 @@ legend {
 }
 
 :not(input):not(textarea) {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none
+  -webkit-touch-callout: none
 }
 
 body,
@@ -12425,8 +12460,7 @@ ul {
 
 body,
 html {
-  height: 100%;
-  background-color: var(--gray-000)
+  height: 100%
 }
 
 html {
@@ -12435,16 +12469,11 @@ html {
 
 body {
   -webkit-overflow-scrolling: touch;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   font-size: 1.5rem;
   line-height: normal;
   font-weight: 400;
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  overflow: overlay;
-  background-color: var(--gray-000)
+  overflow: overlay
 }
 
 body,
@@ -13031,7 +13060,8 @@ legend {
   flex: 1 1 auto;
   width: 100%;
   min-width: 320px;
-  min-height: 100%
+  min-height: 100%;
+  background-color: var(--gray-000)
 }
 
 @media screen and (max-width:1023px) {
@@ -13349,6 +13379,7 @@ legend {
   font-size: 1.2rem;
   line-height: 1.34;
   font-weight: 500;
+  color: var(--gray-900);
   vertical-align: top
 }
 
@@ -13672,6 +13703,7 @@ legend {
   font-size: 1.2rem;
   line-height: 1.34;
   font-weight: 500;
+  color: var(--gray-900);
   vertical-align: top
 }
 
@@ -13769,6 +13801,7 @@ legend {
   font-size: 1.4rem;
   line-height: 1.58;
   font-weight: 500;
+  color: var(--gray-900);
   text-align: center
 }
 
@@ -14198,11 +14231,7 @@ legend {
 }
 
 :not(input):not(textarea) {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none
+  -webkit-touch-callout: none
 }
 
 body,
@@ -14235,8 +14264,7 @@ ul {
 
 body,
 html {
-  height: 100%;
-  background-color: var(--gray-000)
+  height: 100%
 }
 
 html {
@@ -14245,16 +14273,11 @@ html {
 
 body {
   -webkit-overflow-scrolling: touch;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   font-size: 1.5rem;
   line-height: normal;
   font-weight: 400;
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  overflow: overlay;
-  background-color: var(--gray-000)
+  overflow: overlay
 }
 
 body,
@@ -14841,7 +14864,8 @@ legend {
   flex: 1 1 auto;
   width: 100%;
   min-width: 320px;
-  min-height: 100%
+  min-height: 100%;
+  background-color: var(--gray-000)
 }
 
 @media screen and (max-width:1023px) {
@@ -15318,11 +15342,7 @@ legend {
 }
 
 :not(input):not(textarea) {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none
+  -webkit-touch-callout: none
 }
 
 body,
@@ -15355,8 +15375,7 @@ ul {
 
 body,
 html {
-  height: 100%;
-  background-color: var(--gray-000)
+  height: 100%
 }
 
 html {
@@ -15365,16 +15384,11 @@ html {
 
 body {
   -webkit-overflow-scrolling: touch;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   font-size: 1.5rem;
   line-height: normal;
   font-weight: 400;
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  overflow: overlay;
-  background-color: var(--gray-000)
+  overflow: overlay
 }
 
 body,
@@ -15961,7 +15975,8 @@ legend {
   flex: 1 1 auto;
   width: 100%;
   min-width: 320px;
-  min-height: 100%
+  min-height: 100%;
+  background-color: var(--gray-000)
 }
 
 @media screen and (max-width:1023px) {
@@ -16499,11 +16514,7 @@ legend {
 }
 
 :not(input):not(textarea) {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none
+  -webkit-touch-callout: none
 }
 
 body,
@@ -16536,8 +16547,7 @@ ul {
 
 body,
 html {
-  height: 100%;
-  background-color: var(--gray-000)
+  height: 100%
 }
 
 html {
@@ -16546,16 +16556,11 @@ html {
 
 body {
   -webkit-overflow-scrolling: touch;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   font-size: 1.5rem;
   line-height: normal;
   font-weight: 400;
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  overflow: overlay;
-  background-color: var(--gray-000)
+  overflow: overlay
 }
 
 body,
@@ -17142,7 +17147,8 @@ legend {
   flex: 1 1 auto;
   width: 100%;
   min-width: 320px;
-  min-height: 100%
+  min-height: 100%;
+  background-color: var(--gray-000)
 }
 
 @media screen and (max-width:1023px) {
@@ -17263,7 +17269,8 @@ legend {
   display: block;
   font-size: 2.4rem;
   line-height: 1.34;
-  font-weight: 600
+  font-weight: 600;
+  color: var(--gray-900)
 }
 
 .project_create_page .title_box {
@@ -17713,11 +17720,7 @@ legend {
 }
 
 :not(input):not(textarea) {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none
+  -webkit-touch-callout: none
 }
 
 body,
@@ -17750,8 +17753,7 @@ ul {
 
 body,
 html {
-  height: 100%;
-  background-color: var(--gray-000)
+  height: 100%
 }
 
 html {
@@ -17760,16 +17762,11 @@ html {
 
 body {
   -webkit-overflow-scrolling: touch;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   font-size: 1.5rem;
   line-height: normal;
   font-weight: 400;
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  overflow: overlay;
-  background-color: var(--gray-000)
+  overflow: overlay
 }
 
 body,
@@ -18356,7 +18353,8 @@ legend {
   flex: 1 1 auto;
   width: 100%;
   min-width: 320px;
-  min-height: 100%
+  min-height: 100%;
+  background-color: var(--gray-000)
 }
 
 @media screen and (max-width:1023px) {
@@ -18963,11 +18961,7 @@ legend {
 }
 
 :not(input):not(textarea) {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none
+  -webkit-touch-callout: none
 }
 
 body,
@@ -19000,8 +18994,7 @@ ul {
 
 body,
 html {
-  height: 100%;
-  background-color: var(--gray-000)
+  height: 100%
 }
 
 html {
@@ -19010,16 +19003,11 @@ html {
 
 body {
   -webkit-overflow-scrolling: touch;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   font-size: 1.5rem;
   line-height: normal;
   font-weight: 400;
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  overflow: overlay;
-  background-color: var(--gray-000)
+  overflow: overlay
 }
 
 body,
@@ -19606,7 +19594,8 @@ legend {
   flex: 1 1 auto;
   width: 100%;
   min-width: 320px;
-  min-height: 100%
+  min-height: 100%;
+  background-color: var(--gray-000)
 }
 
 @media screen and (max-width:1023px) {
@@ -20160,11 +20149,7 @@ legend {
 }
 
 :not(input):not(textarea) {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none
+  -webkit-touch-callout: none
 }
 
 body,
@@ -20197,8 +20182,7 @@ ul {
 
 body,
 html {
-  height: 100%;
-  background-color: var(--gray-000)
+  height: 100%
 }
 
 html {
@@ -20207,16 +20191,11 @@ html {
 
 body {
   -webkit-overflow-scrolling: touch;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   font-size: 1.5rem;
   line-height: normal;
   font-weight: 400;
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  overflow: overlay;
-  background-color: var(--gray-000)
+  overflow: overlay
 }
 
 body,
@@ -20803,7 +20782,8 @@ legend {
   flex: 1 1 auto;
   width: 100%;
   min-width: 320px;
-  min-height: 100%
+  min-height: 100%;
+  background-color: var(--gray-000)
 }
 
 @media screen and (max-width:1023px) {
@@ -21388,11 +21368,7 @@ legend {
 }
 
 :not(input):not(textarea) {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none
+  -webkit-touch-callout: none
 }
 
 body,
@@ -21425,8 +21401,7 @@ ul {
 
 body,
 html {
-  height: 100%;
-  background-color: var(--gray-000)
+  height: 100%
 }
 
 html {
@@ -21435,16 +21410,11 @@ html {
 
 body {
   -webkit-overflow-scrolling: touch;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   font-size: 1.5rem;
   line-height: normal;
   font-weight: 400;
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  overflow: overlay;
-  background-color: var(--gray-000)
+  overflow: overlay
 }
 
 body,
@@ -22031,7 +22001,8 @@ legend {
   flex: 1 1 auto;
   width: 100%;
   min-width: 320px;
-  min-height: 100%
+  min-height: 100%;
+  background-color: var(--gray-000)
 }
 
 @media screen and (max-width:1023px) {
@@ -22551,11 +22522,7 @@ legend {
 }
 
 :not(input):not(textarea) {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none
+  -webkit-touch-callout: none
 }
 
 body,
@@ -22588,8 +22555,7 @@ ul {
 
 body,
 html {
-  height: 100%;
-  background-color: var(--gray-000)
+  height: 100%
 }
 
 html {
@@ -22598,16 +22564,11 @@ html {
 
 body {
   -webkit-overflow-scrolling: touch;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   font-size: 1.5rem;
   line-height: normal;
   font-weight: 400;
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  overflow: overlay;
-  background-color: var(--gray-000)
+  overflow: overlay
 }
 
 body,
@@ -23194,7 +23155,8 @@ legend {
   flex: 1 1 auto;
   width: 100%;
   min-width: 320px;
-  min-height: 100%
+  min-height: 100%;
+  background-color: var(--gray-000)
 }
 
 @media screen and (max-width:1023px) {
@@ -24052,11 +24014,7 @@ legend {
 }
 
 :not(input):not(textarea) {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none
+  -webkit-touch-callout: none
 }
 
 body,
@@ -24089,8 +24047,7 @@ ul {
 
 body,
 html {
-  height: 100%;
-  background-color: var(--gray-000)
+  height: 100%
 }
 
 html {
@@ -24099,16 +24056,11 @@ html {
 
 body {
   -webkit-overflow-scrolling: touch;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   font-size: 1.5rem;
   line-height: normal;
   font-weight: 400;
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  overflow: overlay;
-  background-color: var(--gray-000)
+  overflow: overlay
 }
 
 body,
@@ -24695,7 +24647,8 @@ legend {
   flex: 1 1 auto;
   width: 100%;
   min-width: 320px;
-  min-height: 100%
+  min-height: 100%;
+  background-color: var(--gray-000)
 }
 
 @media screen and (max-width:1023px) {
@@ -25742,11 +25695,7 @@ legend {
 }
 
 :not(input):not(textarea) {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none
+  -webkit-touch-callout: none
 }
 
 body,
@@ -25779,8 +25728,7 @@ ul {
 
 body,
 html {
-  height: 100%;
-  background-color: var(--gray-000)
+  height: 100%
 }
 
 html {
@@ -25789,16 +25737,11 @@ html {
 
 body {
   -webkit-overflow-scrolling: touch;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   font-size: 1.5rem;
   line-height: normal;
   font-weight: 400;
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  overflow: overlay;
-  background-color: var(--gray-000)
+  overflow: overlay
 }
 
 body,
@@ -26385,7 +26328,8 @@ legend {
   flex: 1 1 auto;
   width: 100%;
   min-width: 320px;
-  min-height: 100%
+  min-height: 100%;
+  background-color: var(--gray-000)
 }
 
 @media screen and (max-width:1023px) {
@@ -27189,11 +27133,7 @@ legend {
 }
 
 :not(input):not(textarea) {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none
+  -webkit-touch-callout: none
 }
 
 body,
@@ -27226,8 +27166,7 @@ ul {
 
 body,
 html {
-  height: 100%;
-  background-color: var(--gray-000)
+  height: 100%
 }
 
 html {
@@ -27236,16 +27175,11 @@ html {
 
 body {
   -webkit-overflow-scrolling: touch;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   font-size: 1.5rem;
   line-height: normal;
   font-weight: 400;
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  overflow: overlay;
-  background-color: var(--gray-000)
+  overflow: overlay
 }
 
 body,
@@ -27832,7 +27766,8 @@ legend {
   flex: 1 1 auto;
   width: 100%;
   min-width: 320px;
-  min-height: 100%
+  min-height: 100%;
+  background-color: var(--gray-000)
 }
 
 @media screen and (max-width:1023px) {
@@ -27920,6 +27855,9 @@ legend {
 }
 
 .setting_project_page .navigator {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 64px;
   width: 100%;
   max-width: 160px;
   padding-right: 104px
@@ -28086,11 +28024,6 @@ legend {
   height: 16px
 }
 
-.setting_project_page .input_group .icon svg {
-  width: 100%;
-  height: 100%
-}
-
 .setting_project_page .input_group .guide {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -28112,6 +28045,11 @@ legend {
   font-size: 1.2rem;
   line-height: 1.34;
   font-weight: 500
+}
+
+.setting_project_page .input_group .guide .icon svg {
+  width: 100%;
+  height: 100%
 }
 
 .setting_project_page .input_radio_box {
@@ -28630,11 +28568,7 @@ legend {
 }
 
 :not(input):not(textarea) {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none
+  -webkit-touch-callout: none
 }
 
 body,
@@ -28667,8 +28601,7 @@ ul {
 
 body,
 html {
-  height: 100%;
-  background-color: var(--gray-000)
+  height: 100%
 }
 
 html {
@@ -28677,16 +28610,11 @@ html {
 
 body {
   -webkit-overflow-scrolling: touch;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   font-size: 1.5rem;
   line-height: normal;
   font-weight: 400;
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  overflow: overlay;
-  background-color: var(--gray-000)
+  overflow: overlay
 }
 
 body,
@@ -29273,7 +29201,8 @@ legend {
   flex: 1 1 auto;
   width: 100%;
   min-width: 320px;
-  min-height: 100%
+  min-height: 100%;
+  background-color: var(--gray-000)
 }
 
 @media screen and (max-width:1023px) {
@@ -29423,7 +29352,8 @@ legend {
   margin-top: 48px;
   font-size: 1.4rem;
   line-height: 1.58;
-  font-weight: 500
+  font-weight: 500;
+  color: var(--gray-800)
 }
 
 .setting_team_page .sub_title:first-of-type {
@@ -29880,11 +29810,7 @@ legend {
 }
 
 :not(input):not(textarea) {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none
+  -webkit-touch-callout: none
 }
 
 body,
@@ -29917,8 +29843,7 @@ ul {
 
 body,
 html {
-  height: 100%;
-  background-color: var(--gray-000)
+  height: 100%
 }
 
 html {
@@ -29927,16 +29852,11 @@ html {
 
 body {
   -webkit-overflow-scrolling: touch;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   font-size: 1.5rem;
   line-height: normal;
   font-weight: 400;
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  overflow: overlay;
-  background-color: var(--gray-000)
+  overflow: overlay
 }
 
 body,
@@ -30523,7 +30443,8 @@ legend {
   flex: 1 1 auto;
   width: 100%;
   min-width: 320px;
-  min-height: 100%
+  min-height: 100%;
+  background-color: var(--gray-000)
 }
 
 @media screen and (max-width:1023px) {
@@ -31043,11 +30964,7 @@ legend {
 }
 
 :not(input):not(textarea) {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none
+  -webkit-touch-callout: none
 }
 
 body,
@@ -31080,8 +30997,7 @@ ul {
 
 body,
 html {
-  height: 100%;
-  background-color: var(--gray-000)
+  height: 100%
 }
 
 html {
@@ -31090,16 +31006,11 @@ html {
 
 body {
   -webkit-overflow-scrolling: touch;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   font-size: 1.5rem;
   line-height: normal;
   font-weight: 400;
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  overflow: overlay;
-  background-color: var(--gray-000)
+  overflow: overlay
 }
 
 body,
@@ -31686,7 +31597,8 @@ legend {
   flex: 1 1 auto;
   width: 100%;
   min-width: 320px;
-  min-height: 100%
+  min-height: 100%;
+  background-color: var(--gray-000)
 }
 
 @media screen and (max-width:1023px) {
@@ -31818,6 +31730,7 @@ legend {
 }
 
 .team_overview_page .card {
+  display: none;
   margin-top: 25px
 }
 
@@ -31827,8 +31740,29 @@ legend {
   }
 }
 
+@media screen and (max-width:1023px) {
+  .team_overview_page .card {
+    display: block
+  }
+}
+
+.team_overview_page .card.is_active {
+  display: block
+}
+
 .team_overview_page .project_table {
+  display: none;
   margin-top: 24px
+}
+
+.team_overview_page .project_table.is_active {
+  display: block
+}
+
+@media screen and (max-width:1023px) {
+  .team_overview_page .project_table.is_active {
+    display: none
+  }
 }
 
 .team_overview_page .usage {

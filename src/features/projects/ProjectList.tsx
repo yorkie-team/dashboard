@@ -75,7 +75,7 @@ function ProjectCards({
       <div className={classNames('card', { is_active: viewType === 'card' })}>
         <ul className="card_list">
           {projects.map(({ name, createdAt }: Project) => (
-            <li key={name} className="card_item shadow_xs is_large">
+            <li key={name} className="card_item shadow_xs">
               <Link to={`./${name}`} className="link">
                 <div className="title">
                   <strong className="title_text">{name}</strong>

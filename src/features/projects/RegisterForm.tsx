@@ -55,11 +55,12 @@ export function RegisterForm() {
     }
   }, [dispatch, isSuccess, navigate, project]);
 
+  // TODO(hackerwins): Remove margin-top when other features are implemented.
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <fieldset>
         <div className="create_project">
-          <div className="setting_name">
+          <div className="setting_name" style={{ marginTop: 20 }}>
             <InputTextField
               id="projectName"
               label="Project Name"
