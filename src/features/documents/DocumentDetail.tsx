@@ -40,7 +40,6 @@ export function DocumentDetail() {
     );
   }, [dispatch, projectName, documentKey]);
 
-  // TODO(hackerwins): Remove user-select: none from the code block.
   return (
     <div className="detail_content">
       <div className="document_header">
@@ -48,7 +47,7 @@ export function DocumentDetail() {
           <Button href="../" className="btn_back" icon={<Icon type="arrowBack" />} as="link" />
           <div className="title_inner">
             <strong className="title">{document?.key}</strong>
-            <span className="date">{moment.unix(document?.updatedAt!).format('YYYY-MM-DD')}</span>
+            <span className="date">{moment.unix(document?.updatedAt!).format('MMM D, H:mm')}</span>
           </div>
         </div>
       </div>

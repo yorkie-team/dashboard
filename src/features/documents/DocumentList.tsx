@@ -131,7 +131,7 @@ export function DocumentList({ isDetailOpen }: { isDetailOpen: boolean }) {
                 <li key={key} className="tbody_item">
                   <Link to={`./${key}`} className="link">
                     <span className="td id">{key}</span>
-                    <span className="td updated">{moment.unix(updatedAt).format('YYYY-MM-DD')}</span>
+                    <span className="td updated">{moment.unix(updatedAt).format('MMM D, H:mm')}</span>
                     <span className="td connections">11</span>
                     <span className="td size">3 KB</span>
                   </Link>
