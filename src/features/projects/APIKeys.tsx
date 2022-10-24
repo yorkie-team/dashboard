@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useAppSelector } from 'app/hooks';
 import { selectProjectDetail } from './projectsSlice';
@@ -22,6 +22,7 @@ import { Icon, Button, CopyButton } from 'components';
 
 export function APIKeys() {
   const { project } = useAppSelector(selectProjectDetail);
+  const [revealSecretKey, setRevealSecretKey] = useState(false);
 
   return (
     <section className="api_area">
@@ -63,11 +64,19 @@ export function APIKeys() {
       </div>
       <div className="connect_api_box">
         <div className="input_area">
-          <button className="btn_cover">
-            <Icon type="lockSmall" />
-            Click to reveal secret key
-          </button>
-          <span className="input">{project?.secretKey}</span>
+          {!revealSecretKey && (
+            <button
+              type="button"
+              className="btn_cover"
+              onClick={() => {
+                setRevealSecretKey(true);
+              }}
+            >
+              <Icon type="lockSmall" />
+              Click to reveal secret key
+            </button>
+          )}
+          {revealSecretKey && <span className="input">{project?.secretKey}</span>}
         </div>
         <CopyButton value={project?.secretKey!} timeout={1000}>
           {({ copied, copy }) => (
