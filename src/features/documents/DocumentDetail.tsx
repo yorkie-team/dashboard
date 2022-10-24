@@ -17,9 +17,8 @@
 import React, { useEffect, useState } from 'react';
 import * as moment from 'moment';
 import { useParams } from 'react-router-dom';
-import './rc-slider.css';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { selectDocumentDetail, getDocumentAsync, resetHistory } from './documentsSlice';
+import { selectDocumentDetail, getDocumentAsync } from './documentsSlice';
 import { Icon, Button, CodeBlock, CopyButton } from 'components';
 
 export function DocumentDetail() {
@@ -39,7 +38,6 @@ export function DocumentDetail() {
         documentKey,
       }),
     );
-    dispatch(resetHistory());
   }, [dispatch, projectName, documentKey]);
 
   // TODO(hackerwins): Remove user-select: none from the code block.
@@ -55,11 +53,7 @@ export function DocumentDetail() {
         </div>
       </div>
       <div className="codeblock_header">
-        <div className="box_left">
-          <Button className="gray50" outline icon={<Icon type="play" />}>
-            <span className="text">History</span>
-          </Button>
-        </div>
+        <div className="box_left"></div>
         <div className="box_right">
           <Button
             icon={<Icon type="codeSnippet" />}
