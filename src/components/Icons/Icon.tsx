@@ -51,6 +51,9 @@ import { ReactComponent as CloseSmallSVG } from 'assets/icons/icon_close_small.s
 import { ReactComponent as SlackSVG } from 'assets/icons/icon_slack.svg';
 import { ReactComponent as GitHubSVG } from 'assets/icons/icon_github.svg';
 import { ReactComponent as BackHomeSVG } from 'assets/icons/icon_back_home.svg';
+import { ReactComponent as AlertSVG } from 'assets/icons/icon_alert.svg';
+import { ReactComponent as AddMemberSVG } from 'assets/icons/icon_add_member.svg';
+import { ReactComponent as MemberEmailSVG } from 'assets/icons/icon_member_email.svg';
 
 const svgMap = {
   shortcut: <ShortcutSVG />,
@@ -88,6 +91,9 @@ const svgMap = {
   slack: <SlackSVG />,
   github: <GitHubSVG />,
   backHome: <BackHomeSVG />,
+  alert: <AlertSVG />,
+  addMember: <AddMemberSVG />,
+  memberEmail: <MemberEmailSVG />,
 };
 type SVGType = keyof typeof svgMap;
 

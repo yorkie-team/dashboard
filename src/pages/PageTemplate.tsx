@@ -20,7 +20,11 @@ import { Header } from './Header';
 import { Footer } from './Footer';
 import { ErrorModal } from 'features/globalError/ErrorModal';
 
-export function PageTemplate({ className = '', headerClassName = '', children }: {
+export function PageTemplate({
+  className = '',
+  headerClassName = '',
+  children,
+}: {
   className?: string;
   headerClassName?: string;
   children: ReactNode;
@@ -30,9 +34,9 @@ export function PageTemplate({ className = '', headerClassName = '', children }:
       <Header className={headerClassName} />
       <main className="container">
         <div className="content">{children}</div>
+        <ErrorModal />
       </main>
       <Footer />
-      <ErrorModal />
     </div>
   );
 }
