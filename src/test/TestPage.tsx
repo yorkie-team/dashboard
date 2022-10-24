@@ -20,11 +20,12 @@ import { NavLink as Link, Outlet } from 'react-router-dom';
 
 export function TestPage() {
   const views = [
-    { name: 'Button', path: 'button', },
+    { name: 'Button', path: 'button' },
     { name: 'Popover', path: 'popover' },
     { name: 'Dropdown', path: 'dropdown' },
     { name: 'Input', path: 'input' },
-    { name: 'Breadcrumb', path: 'breadcrumb' }
+    { name: 'Breadcrumb', path: 'breadcrumb' },
+    { name: 'Modal', path: 'modal' },
   ];
 
   return (
@@ -33,7 +34,9 @@ export function TestPage() {
         <ul>
           {views.map((view) => (
             <li key={view.path}>
-              <Link to={view.path} className={({ isActive }) => (isActive ? 'active' : '')}>{view.name}</Link>
+              <Link to={view.path} className={({ isActive }) => (isActive ? 'active' : '')}>
+                {view.name}
+              </Link>
             </li>
           ))}
         </ul>

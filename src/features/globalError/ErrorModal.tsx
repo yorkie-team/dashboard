@@ -17,7 +17,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectGlobalError, resetGlobalError } from './globalErrorSlice';
-import { Modal } from 'components';
+import { Modal, Icon } from 'components';
 
 export function ErrorModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,5 +36,16 @@ export function ErrorModal() {
   }, [message]);
 
   if (!isOpen) return null;
-  return <Modal title={title!} message={message!} onClose={closeModal} />;
+  return (
+    <Modal>
+      <Modal.Top>
+        <Icon type="alert" className="red_0" />
+      </Modal.Top>
+      <Modal.Content>
+        <Modal.Title>{title}</Modal.Title>
+        <Modal.Description>{message}</Modal.Description>
+      </Modal.Content>
+      <Modal.CloseButton onClick={closeModal} />
+    </Modal>
+  );
 }

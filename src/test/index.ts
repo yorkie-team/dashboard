@@ -19,4 +19,5 @@ export * from './PopoverView';
 export * from './DropdownView';
 export * from './InputView';
 export * from './BreadcrumbView';
+export * from './ModalView';
 export * from './TestPage';
