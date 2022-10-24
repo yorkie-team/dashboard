@@ -92,7 +92,7 @@ function ButtonInner({
       {children && <span className={`${blindText ? 'blind' : 'text'}`}>{children}</span>}
     </button>
   );
-};
+}
 
 export const Button = forwardRef((props: ButtonProps, ref) => {
   return <ButtonInner {...props} buttonRef={ref} />;

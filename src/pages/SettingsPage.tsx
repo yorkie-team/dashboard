@@ -28,16 +28,16 @@ export function SettingsPage() {
 
   return (
     <PageTemplate className="setting_account_page">
-      <div className="content">
-        <h2 className="page_title"><span className="text">Settings</span></h2>
-        <div className="setting_group">
-          <Navigator navList={[{ name: 'Preferences', id: 'sectionPreferences' }]} />
-          <Preferences />
-        </div>
-        <Button icon={<Icon type="close" />} className="btn_close" onClick={handleCloseBtn}>
-          <span className="blind">Go back</span>
-        </Button>
+      <h2 className="page_title">
+        <span className="text">Settings</span>
+      </h2>
+      <div className="setting_group">
+        <Navigator navList={[{ name: 'Preferences', id: 'sectionPreferences' }]} />
+        <Preferences />
       </div>
+      <Button icon={<Icon type="close" />} className="btn_close" onClick={handleCloseBtn}>
+        <span className="blind">Go back</span>
+      </Button>
     </PageTemplate>
   );
 }
