@@ -31,7 +31,7 @@ export function SettingsPage() {
       <div className="content">
         <h2 className="page_title"><span className="text">Settings</span></h2>
         <div className="setting_group">
-          <Navigator navList={[{ name: 'Preferences', id: 'sectionPreferences' }]} />
+          <Navigator navList={[{ name: 'Preferences', id: 'preferences' }]} />
           <Preferences />
         </div>
         <Button icon={<Icon type="close" />} className="btn_close" onClick={handleCloseBtn}>

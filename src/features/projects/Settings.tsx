@@ -144,13 +144,13 @@ export function Settings() {
     <div className="setting_group">
       <Navigator
         navList={[
-          { name: 'General', id: 'sectionGeneral' },
-          { name: 'Webhook', id: 'sectionWebhook' },
+          { name: 'General', id: 'general' },
+          { name: 'Webhook', id: 'webhook' },
         ]}
       />
       <div className="box_right">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="section setting_box" id="sectionGeneral">
+          <div className="section setting_box" id="general">
             <div className="setting_title">
               <strong className="text">General</strong>
             </div>
@@ -191,8 +191,8 @@ export function Settings() {
                       checkFieldState('name', 'success')
                         ? 'success'
                         : checkFieldState('name', 'error')
-                        ? 'error'
-                        : undefined
+                          ? 'error'
+                          : undefined
                     }
                     helperText={
                       updateFieldInfo.target === 'name' && updateFieldInfo.state !== null
@@ -205,7 +205,7 @@ export function Settings() {
               </dd>
             </dl>
           </div>
-          <div className="section setting_box webhook" id="sectionWebhook">
+          <div className="section setting_box webhook" id="webhook">
             <div className="setting_title">
               <strong className="text">Webhook</strong>
             </div>
@@ -236,8 +236,8 @@ export function Settings() {
                       checkFieldState('authWebhookURL', 'success')
                         ? 'success'
                         : checkFieldState('authWebhookURL', 'error')
-                        ? 'error'
-                        : undefined
+                          ? 'error'
+                          : undefined
                     }
                     helperText={
                       updateFieldInfo.target === 'authWebhookURL' && updateFieldInfo.state !== null
