@@ -19,6 +19,7 @@ export * from './Footer';
 export * from './PageTemplate';
 export * from './ProjectPageTemplate';
 export * from './PrivateRoute';
+export * from './PublicRoute';
 
 export * from './LoginPage';
 export * from './SignupPage';

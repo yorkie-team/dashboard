@@ -31,7 +31,7 @@ export function Header({ className }: { className?: string }) {
       <div className="header_inner">
         <Breadcrumb>
           <h1 className="logo">
-            <Link to="/" className="logo_menu">
+            <Link to={token && isValidToken ? '/projects' : '/'} className="logo_menu">
               <Icon type="logoNoText" fill />
             </Link>
             <span className="blind">Yorkie</span>

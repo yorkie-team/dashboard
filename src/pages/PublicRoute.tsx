@@ -15,23 +15,23 @@
  */
 
 import React, { useEffect } from 'react';
-import { LoginForm } from 'features/users';
-import { PageTemplate } from './PageTemplate';
-import { Icon, Button } from 'components';
+import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 
-export function LoginPage() {
+import { useAppSelector } from 'app/hooks';
+import { selectUsers } from 'features/users/usersSlice';
+
+export function PublicRoute() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { token } = useAppSelector(selectUsers);
+
+  useEffect(() => {
+    if (token && !location.state) {
+      navigate('/projects');
+    }
+  }, [token, navigate, location]);
+
   return (
-    <PageTemplate className="login_page">
-      <Icon type="logo3d" className="icon_logo" fill />
-      <h2 className="title">Log in to Yorkie</h2>
-      <LoginForm />
-      <div className="box_bottom">
-        <Button.Box fullWidth={true}>
-          <Button as="link" href="/signup" outline={true}>
-            Sign up
-          </Button>
-        </Button.Box>
-      </div>
-    </PageTemplate>
+    <Outlet />
   );
 }

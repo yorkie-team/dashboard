@@ -18,6 +18,7 @@ import React, { useEffect } from 'react';
 import './app.scss';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import {
+  PublicRoute,
   PrivateRoute,
   LoginPage,
   SignupPage,
@@ -46,8 +47,10 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
+        <Route element={<PublicRoute />} >
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+        </Route>
         <Route element={<PrivateRoute />}>
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/projects/new" element={<CreateProjectPage />} />
