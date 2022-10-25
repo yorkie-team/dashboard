@@ -60,15 +60,19 @@ function App() {
           <Route path="/settings" element={<SettingsPage />} />
         </Route>
         <Route path="/community" element={<CommunityPage />} />
-        <Route path="/test" element={<TestPage />}>
-          <Route path="/test" element={<Navigate to="./button" />} />
-          <Route path="/test/button" element={<ButtonView />} />
-          <Route path="/test/popover" element={<PopoverView />} />
-          <Route path="/test/dropdown" element={<DropdownView />} />
-          <Route path="/test/input" element={<InputView />} />
-          <Route path="/test/breadcrumb" element={<BreadcrumbView />} />
-          <Route path="/test/modal" element={<ModalView />} />
-        </Route>
+        {
+          process.env.NODE_ENV === 'development' && (
+            <Route path="/test" element={<TestPage />}>
+              <Route path="/test" element={<Navigate to="./button" />} />
+              <Route path="/test/button" element={<ButtonView />} />
+              <Route path="/test/popover" element={<PopoverView />} />
+              <Route path="/test/dropdown" element={<DropdownView />} />
+              <Route path="/test/input" element={<InputView />} />
+              <Route path="/test/breadcrumb" element={<BreadcrumbView />} />
+              <Route path="/test/modal" element={<ModalView />} />
+            </Route>
+          )
+        }
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>

@@ -165,7 +165,7 @@ export function DocumentList({ isDetailOpen }: { isDetailOpen: boolean }) {
             <p className="desc">No Document Found</p>
           </div>
         )}
-        {queryType === 'all' && (
+        {documents.length > 0 && queryType === 'all' && (
           <div style={{ marginTop: 20 }}>
             <Button onClick={handlePrevBtnClicked} disabled={!hasPrevious} outline icon={<Icon type="previous" />}>
               Previous
