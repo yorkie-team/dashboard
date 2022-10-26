@@ -23,9 +23,11 @@ export function DocumentsPage() {
   const documentKey = useParams().documentKey || '';
 
   return (
-    <ProjectPageTemplate>
-      <div className="flex w-full mt-12">
-        <DocumentList isDetailOpen={documentKey !== ''} />
+    <ProjectPageTemplate className="project_document_page">
+      <div className={documentKey ? "document_detail_area" : "document_list_area"}>
+        <div className={documentKey ? "sidebar" : ''}>
+          <DocumentList isDetailOpen={documentKey !== ''} />
+        </div>
         <Outlet />
       </div>
     </ProjectPageTemplate>

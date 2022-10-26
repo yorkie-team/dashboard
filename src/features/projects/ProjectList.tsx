@@ -17,65 +17,104 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import * as moment from 'moment';
+import classNames from 'classnames';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectProjectList, listProjectsAsync } from './projectsSlice';
 import { Project } from 'api/types';
+import { Button, Icon, Popover, Dropdown, SearchBar } from 'components';
 
 // TODO(chacha912): Extract to Cards component
-type ProjectCardsProps = {
+function ProjectCards({
+  projects,
+  totalProjectsCount,
+  viewType,
+}: {
   projects: Array<Project>;
   totalProjectsCount: number;
-};
-function ProjectCards({ projects, totalProjectsCount }: ProjectCardsProps) {
+  viewType: 'list' | 'card';
+}) {
   if (totalProjectsCount === 0) {
     return (
-      <Link
-        to={'/projects/new'}
-        className="flex flex-col items-center justify-center w-full h-44 bg-gray-50 text-lg leading-7 font-medium border-dashed border-2 border-gray-300 rounded"
-      >
-        Get started by
-        <span className="text-sky-500">creating a new project</span>
+      <Link to={'/projects/new'} className="placeholder_box">
+        <p className="desc">
+          Get started by
+          <br />
+          <span className="blue_dark">creating a new project</span>
+        </p>
       </Link>
     );
   }
   if (projects.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center w-full h-44 bg-gray-50 text-lg leading-7 font-medium">
-        No matching result
+      <div className="placeholder_box">
+        <p className="desc">No matching result</p>
       </div>
     );
   }
+
+  // TODO(hackerwins): implement information(Connections, Storage, Load) of project
   return (
-    <ul className="flex flex-wrap">
-      {projects.map(({ name, publicKey, createdAt }: Project) => (
-        <li key={name} className="mr-4 mb-4 bg-white rounded border border-solid border-gray-200 hover:bg-gray-100">
-          <Link to={`./${name}`} className="block p-6">
-            <h5 className="mb-4 text-2xl font-bold tracking-tight text-gray-900 break-words">{name}</h5>
-            <div className="flex gap-8">
-              <div className="flex flex-col w-28">
-                <span className="text-gray-400 text-xs mb-1">Public Key</span>
-                <span className="truncate text-sm">{publicKey}</span>
-              </div>
-              <div className="flex flex-col w-28">
-                <span className="text-gray-400 text-xs mb-1">Created At</span>
-                <span className="truncate text-sm">{moment.unix(createdAt).format('YYYY-MM-DD')}</span>
-              </div>
-            </div>
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <>
+      <div className={classNames('project_table', { is_active: viewType === 'list' })}>
+        <div className="thead">
+          <span className="th title">Project title</span>
+          <span className="th">Created At</span>
+        </div>
+        <ul className="tbody_list">
+          {projects.map(({ name, createdAt }: Project) => (
+            <li key={name} className="tbody_item">
+              <Link to={`./${name}`} className="link">
+                <span className="td title">{name}</span>
+                <span className="td">{moment.unix(createdAt).format('YYYY-MM-DD')}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className={classNames('card', { is_active: viewType === 'card' })}>
+        <ul className="card_list">
+          {projects.map(({ name, createdAt }: Project) => (
+            <li key={name} className="card_item shadow_xs">
+              <Link to={`./${name}`} className="link">
+                <div className="title">
+                  <strong className="title_text">{name}</strong>
+                </div>
+                <dl className="info_list">
+                  <dt className="info_title">Created At</dt>
+                  <dd className="info_desc">{moment.unix(createdAt).format('YYYY-MM-DD')}</dd>
+                </dl>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 }
 
+const SORT_OPTION = {
+  alphabet: 'Alphabetical',
+  createdAt: 'Date created',
+};
 // ProjectList represents the list of projects in the application.
 export function ProjectList() {
+  const dispatch = useAppDispatch();
   const [projects, setProjects] = useState<Array<Project>>([]);
   const { projects: allProjects, status } = useAppSelector(selectProjectList);
-  const dispatch = useAppDispatch();
-
   const [query, setQuery] = useState('');
+  const [viewType, setViewType] = useState<'list' | 'card'>('card');
+  const [sortOpened, setSortOpened] = useState(false);
+  const [sortOption, setSortOption] = useState<typeof SORT_OPTION[keyof typeof SORT_OPTION]>(SORT_OPTION.createdAt);
+
+  const handleProjectSort = useCallback((projects, option) => {
+    if (option === SORT_OPTION.alphabet) {
+      setProjects([...projects].sort((p1, p2) => (p1.name > p2.name ? 1 : -1)));
+    } else if (option === SORT_OPTION.createdAt) {
+      setProjects([...projects].sort((p1, p2) => p2.createdAt - p1.createdAt));
+    }
+  }, []);
+
   const handleChangeQuery = useCallback((e) => {
     setQuery(e.target.value);
   }, []);
@@ -83,9 +122,10 @@ export function ProjectList() {
   const handleSearch = useCallback(
     (e) => {
       e.preventDefault();
-      setProjects(allProjects.filter((project) => project.name.includes(query)));
+      const results = allProjects.filter((project) => project.name.includes(query));
+      handleProjectSort(results, sortOption);
     },
-    [query, allProjects],
+    [query, allProjects, handleProjectSort, sortOption],
   );
 
   useEffect(() => {
@@ -93,35 +133,104 @@ export function ProjectList() {
   }, [dispatch]);
 
   useEffect(() => {
-    setProjects(allProjects);
-  }, [allProjects]);
+    handleProjectSort(allProjects, SORT_OPTION.createdAt);
+  }, [handleProjectSort, allProjects]);
+
+  useEffect(() => {
+    return () => {
+      setSortOpened(false);
+    };
+  }, []);
 
   return (
     <>
-      <form className="border-b border-solid border-gray-200 mb-6" onSubmit={handleSearch}>
-        <div className="relative">
-          <input
-            type="text"
-            className="text-gray-900 text-sm p-2.5 pl-10 w-full"
-            value={query}
-            onChange={handleChangeQuery}
-            placeholder="Search projects"
-          />
-          <button type="submit" className="absolute top-0 left-0 flex items-center justify-center w-8 h-10">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M7.3335 2.66659C4.75617 2.66659 2.66683 4.75592 2.66683 7.33325C2.66683 9.91058 4.75617 11.9999 7.3335 11.9999C8.59079 11.9999 9.73196 11.5027 10.5711 10.6942C10.5886 10.6714 10.6079 10.6494 10.6288 10.6285C10.6497 10.6076 10.6716 10.5884 10.6944 10.5708C11.5029 9.73172 12.0002 8.59055 12.0002 7.33325C12.0002 4.75592 9.91083 2.66659 7.3335 2.66659ZM12.0214 11.0784C12.8425 10.0519 13.3335 8.74993 13.3335 7.33325C13.3335 4.01954 10.6472 1.33325 7.3335 1.33325C4.01979 1.33325 1.3335 4.01954 1.3335 7.33325C1.3335 10.647 4.01979 13.3333 7.3335 13.3333C8.75017 13.3333 10.0522 12.8423 11.0786 12.0212L13.5288 14.4713C13.7891 14.7317 14.2112 14.7317 14.4716 14.4713C14.7319 14.211 14.7319 13.7889 14.4716 13.5285L12.0214 11.0784Z"
-                fill="#514C49"
-              />
-            </svg>
-          </button>
+      <div className="project_area">
+        <div className="title_group">
+          <strong className="title">Projects</strong>
+          <Button.Box>
+            <Button
+              color="toggle"
+              isActive={viewType === 'card'}
+              blindText
+              icon={<Icon type="viewGrid" />}
+              onClick={() => {
+                setViewType('card');
+              }}
+            >
+              grid layout
+            </Button>
+            <Button
+              color="toggle"
+              isActive={viewType === 'list'}
+              blindText
+              icon={<Icon type="viewList" />}
+              onClick={() => {
+                setViewType('list');
+              }}
+            >
+              list layout
+            </Button>
+            <Button as="link" href="/projects/new" className="btn_plus" icon={<Icon type="plus" />}>
+              New Project
+            </Button>
+          </Button.Box>
         </div>
-      </form>
+        <div className="search_area">
+          <SearchBar
+            placeholder="Search Projects"
+            autoComplete="off"
+            onChange={handleChangeQuery}
+            value={query}
+            onSubmit={handleSearch}
+          />
+          <div className="filter">
+            <ul className="filter_list">
+              <li className="filter_item">
+                <Popover opened={sortOpened} onChange={setSortOpened}>
+                  <Popover.Target>
+                    <button type="button" className="btn btn_small filter_desc">
+                      <span className="filter_title">Sort:</span>
+                      <span className="text">{sortOption}</span>
+                      <Icon type="arrow" className="icon_arrow" />
+                    </button>
+                  </Popover.Target>
+                  <Popover.Dropdown>
+                    <Dropdown>
+                      <Dropdown.List>
+                        <Dropdown.Item
+                          onClick={() => {
+                            setSortOption(SORT_OPTION.alphabet);
+                            handleProjectSort(projects, SORT_OPTION.alphabet);
+                            setSortOpened(false);
+                          }}
+                        >
+                          {sortOption === SORT_OPTION.alphabet && <Icon type="check" color="orange_0" />}
+                          <Dropdown.Text>{SORT_OPTION.alphabet}</Dropdown.Text>
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          onClick={() => {
+                            setSortOption(SORT_OPTION.createdAt);
+                            handleProjectSort(projects, SORT_OPTION.createdAt);
+                            setSortOpened(false);
+                          }}
+                        >
+                          {sortOption === SORT_OPTION.createdAt && <Icon type="check" color="orange_0" />}
+                          <Dropdown.Text>{SORT_OPTION.createdAt}</Dropdown.Text>
+                        </Dropdown.Item>
+                      </Dropdown.List>
+                    </Dropdown>
+                  </Popover.Dropdown>
+                </Popover>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
       {status === 'loading' && <div>Loading...</div>}
       {status === 'failed' && <div>Failed!</div>}
-      {status === 'idle' && <ProjectCards projects={projects} totalProjectsCount={allProjects.length} />}
+      {status === 'idle' && (
+        <ProjectCards projects={projects} totalProjectsCount={allProjects.length} viewType={viewType} />
+      )}
     </>
   );
 }

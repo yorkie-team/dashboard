@@ -15,24 +15,22 @@
  */
 
 import React, { ReactNode } from 'react';
-import { ProjectTabMenu, ProjectDropdown } from 'features/projects';
+import { ProjectTabList, ProjectDropdown } from 'features/projects';
+import { PageTemplate } from './PageTemplate';
 
-type PageTemplateProps = {
+export function ProjectPageTemplate({ className, children }: {
+  className: string;
   children: ReactNode;
-};
-
-export function ProjectPageTemplate({ children }: PageTemplateProps) {
+}) {
   return (
-    <>
-      <div className="flex justify-between items-center mb-6">
-        <div className="inline-flex">
-          <h2 className="text-lg font-semibold">
-            <ProjectDropdown size="large" />
-          </h2>
+    <PageTemplate className={className}>
+      <div className="project_area">
+        <div className="title_group">
+          <ProjectDropdown size="large" />
         </div>
+        <ProjectTabList />
       </div>
-      <ProjectTabMenu />
       {children}
-    </>
+    </PageTemplate>
   );
 }

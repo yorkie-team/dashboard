@@ -12,11 +12,12 @@ export const useOutsideClick = (ref: any, callback: (event: MouseEvent) => void,
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (ref.current?.contains(event.target)) {
+      const target = event.target as HTMLElement;
+      if (ref.current?.contains(target)) {
         return;
       }
       for (const excludedRef of excludedRefs) {
-        if (excludedRef.current?.contains(event.target)) {
+        if (excludedRef.current?.contains(target)) {
           return;
         }
       }

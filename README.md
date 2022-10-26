@@ -21,6 +21,7 @@ For more details: https://grpc.io/blog/state-of-grpc-web/
 ### Building Yorkie House
 
 For building yorkie-house, You'll first need Node.js installed(Node.js version 16+ and npm version 7.10+ are required).
+
 ```
 # install packages
 npm install
@@ -31,16 +32,19 @@ npm run build
 
 For generating proto messages and the service client stub classes with protoc and the protoc-gen-grpc-web.
 How to install protoc-gen-grpc-web: [https://github.com/grpc/grpc-web#code-generator-plugin](https://github.com/grpc/grpc-web#code-generator-plugin)
+
 ```
 # generate proto messages and the service client stub classes
 npm run build:proto
 ```
+
 > Primary "source of truth" location of protobuf message is in [yorkie](https://github.com/yorkie-team/yorkie/tree/main/api). We manage the messages in the repository.
 
 ### Running Yorkie House
 
 Yorkie House needs backend servers like Yorkie and Envoy. We can simply run them using `docker-compose`.
 To start Yorkie and Envoy proxy in a terminal:
+
 ```
 $ docker-compose -f docker/docker-compose.yml up --build -d
 ```
@@ -51,7 +55,7 @@ In the project directory, you can run:
 $ npm start
 ```
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template and [Tailwind CSS](https://tailwindcss.com/docs/guides/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 <details>
 

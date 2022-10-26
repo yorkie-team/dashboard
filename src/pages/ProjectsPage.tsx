@@ -14,34 +14,52 @@
  * limitations under the License.
  */
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import { ProjectList } from 'features/projects';
+import { ReactComponent as BannerSVG } from 'assets/images/@tmp/sample_banner_icon.svg';
+import { Button, Icon } from 'components';
+import { PageTemplate } from './PageTemplate';
 
 export function ProjectsPage() {
+  const [showBanner, setShowBanner] = useState(localStorage.getItem('banner') === 'N' ? false : true);
   return (
-    <>
-      <div className="flex justify-between items-center mb-6">
-        <div className="inline-flex">
-          <h2 className="text-lg font-semibold">Projects</h2>
+    <PageTemplate className="team_overview_page">
+      {showBanner && (
+        <div className="banner_box">
+          <strong className="guide">Welcome to Yorkie</strong>
+          <ul className="banner_list">
+            <li className="banner_item">
+              <a
+                href="https://yorkie.dev/demos"
+                target="_blank"
+                rel="noreferrer"
+                className="banner gradient_180deg_yellow"
+              >
+                <strong className="banner_title gray900">View demo project</strong>
+                <p className="banner_desc gray900">Check out our demo projects and be inspired!</p>
+              </a>
+            </li>
+            <li className="banner_item">
+              <a href="https://yorkie.dev/docs/examples" target="_blank" rel="noreferrer" className="banner gray900_bg">
+                <strong className="banner_title gray000">Browse Yorkie examples</strong>
+                <p className="banner_desc gray000">Browse all examples</p>
+                <span className="img_box">
+                  <BannerSVG />
+                </span>
+              </a>
+            </li>
+          </ul>
+          <Button
+            icon={<Icon type="close" />}
+            className="btn_close"
+            onClick={() => {
+              setShowBanner(false);
+              localStorage.setItem('banner', 'N');
+            }}
+          />
         </div>
-        <Link
-          to={'./new'}
-          className="inline-flex items-center justify-center text-center py-1.5 px-3 bg-blue-500 hover:bg-blue-600 rounded focus:outline-no
-        ne focus-visible:ring-4 focus-visible:ring-gray-200 font-medium text-slate-50 text-sm"
-        >
-          <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M4 0C4.27614 0 4.5 0.223858 4.5 0.5V3.5H7.5C7.77614 3.5 8 3.72386 8 4C8 4.27614 7.77614 4.5 7.5 4.5H4.5V7.5C4.5 7.77614 4.27614 8 4 8C3.72386 8 3.5 7.77614 3.5 7.5V4.5H0.5C0.223858 4.5 0 4.27614 0 4C0 3.72386 0.223858 3.5 0.5 3.5H3.5V0.5C3.5 0.223858 3.72386 0 4 0Z"
-              fill="#FEFDFB"
-            />
-          </svg>
-          <span className="ml-1">New Project</span>
-        </Link>
-      </div>
+      )}
       <ProjectList />
-    </>
+    </PageTemplate>
   );
 }

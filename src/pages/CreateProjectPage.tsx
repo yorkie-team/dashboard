@@ -15,22 +15,23 @@
  */
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { RegisterForm } from 'features/projects';
+import { PageTemplate } from 'pages';
+import { Button } from 'components';
 
 export function CreateProjectPage() {
   return (
-    <div className="max-w-2xl mx-auto">
-      <div className="flex justify-between items-center">
-        <h2 className="text-lg font-semibold">Create a new Project</h2>
-        <Link
-          to={'../'}
-          className="text-gray-700 border border-solid border-gray-300 rounded font-medium text-sm px-4 py-2 text-center inline-flex items-center"
-        >
-          cancel
-        </Link>
+    <PageTemplate className="project_create_page">
+      <h2 className="blind">Create new Project</h2>
+      <div className="title_box">
+        <strong className="title">Create new project</strong>
+        <Button as="link" href="../" className="btn_line">
+          Cancel
+        </Button>
       </div>
-      <RegisterForm />
-    </div>
+      <div className="create_project_area">
+        <RegisterForm />
+      </div>
+    </PageTemplate>
   );
 }

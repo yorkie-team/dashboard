@@ -15,23 +15,23 @@
  */
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-import { SignupForm } from 'features/users/SignupForm';
+import { SignupForm } from 'features/users';
 import { PageTemplate } from './PageTemplate';
+import { Icon, Button } from 'components';
 
 export function SignupPage() {
   return (
-    <PageTemplate>
+    <PageTemplate className="join_page">
+      <Icon type="logo3d" className="icon_logo" fill />
+      <h2 className="title">Create an account</h2>
       <SignupForm />
-      <div className="max-w-md mx-auto p-4">
-        <hr className="pb-3" />
-        <Link
-          to="/login"
-          className="block py-2.5 w-full text-sm text-gray-500 font-medium text-center rounded border border-solid border-gray-300 focus:outline-none focus:bg-gray-100 hover:bg-gray-100"
-        >
-          Log in
-        </Link>
+      <div className="box_bottom">
+        <Button.Box fullWidth={true}>
+          <Button as="link" href="/login" outline={true}>
+            Log in
+          </Button>
+        </Button.Box>
       </div>
     </PageTemplate>
   );

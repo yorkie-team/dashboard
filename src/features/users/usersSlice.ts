@@ -37,6 +37,18 @@ export interface UsersState {
     status: 'idle' | 'loading' | 'failed';
     error: Array<ErrorDetails> | null;
   };
+  preferences: {
+    theme: {
+      useSystem: boolean;
+      darkMode: boolean;
+    }
+    use24HourClock: boolean;
+  };
+}
+
+function isDarkMode(): boolean {
+  return window.matchMedia &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches;
 }
 
 type ErrorDetails = {
@@ -72,6 +84,13 @@ const initialState: UsersState = {
     isSuccess: false,
     status: 'idle',
     error: null,
+  },
+  preferences: {
+    theme: {
+      useSystem: localStorage.getItem('theme') === 'system',
+      darkMode: (localStorage.getItem('theme') === 'system' && isDarkMode()) || localStorage.getItem('theme') === 'dark',
+    },
+    use24HourClock: localStorage.getItem('clock') === '24',
   },
 };
 
@@ -118,6 +137,37 @@ export const usersSlice = createSlice({
     },
     setIsValidToken: (state, action) => {
       state.isValidToken = action.payload;
+    },
+    resetSignupState: (state) => {
+      state.signup.isSuccess = false;
+      state.signup.status = 'idle';
+      state.signup.error = null;
+    },
+    toggleUseSystemTheme: (state) => {
+      if (state.preferences.theme.useSystem) {
+        state.preferences.theme.useSystem = false;
+        state.preferences.theme.darkMode = isDarkMode();
+        localStorage.setItem('theme', isDarkMode() ? 'dark' : 'light');
+        return;
+      }
+
+      state.preferences.theme.useSystem = true;
+      state.preferences.theme.darkMode = isDarkMode();
+      localStorage.setItem('theme', 'system');
+    },
+    toggleUseDarkTheme: (state) => {
+      if (state.preferences.theme.darkMode) {
+        state.preferences.theme.darkMode = false;
+        localStorage.setItem('theme', 'light');
+        return;
+      }
+
+      state.preferences.theme.darkMode = true;
+      localStorage.setItem('theme', 'dark');
+    },
+    toggleUse24HourClock: (state) => {
+      state.preferences.use24HourClock = !state.preferences.use24HourClock;
+      localStorage.setItem('clock', state.preferences.use24HourClock ? '24' : '12');
     },
   },
   extraReducers: (builder) => {
@@ -179,8 +229,16 @@ export const usersSlice = createSlice({
   },
 });
 
-export const { logoutUser, setIsValidToken } = usersSlice.actions;
+export const {
+  logoutUser,
+  setIsValidToken,
+  resetSignupState,
+  toggleUseSystemTheme,
+  toggleUseDarkTheme,
+  toggleUse24HourClock,
+} = usersSlice.actions;
 
 export const selectUsers = (state: RootState) => state.users;
+export const selectPreferences = (state: RootState) => state.users.preferences;
 
 export default usersSlice.reducer;

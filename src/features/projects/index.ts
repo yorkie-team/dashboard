@@ -18,7 +18,6 @@ export * from './ProjectList';
 export * from './Overview';
 export * from './RegisterForm';
 export * from './APIKeys';
-export * from './ProjectTabMenu';
+export * from './ProjectTabList';
 export * from './ProjectDropdown';
 export * from './Settings';
-export * from './SettingsAlertMessage';

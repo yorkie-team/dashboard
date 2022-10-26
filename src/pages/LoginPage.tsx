@@ -14,34 +14,23 @@
  * limitations under the License.
  */
 
-import React, { useEffect } from 'react';
-import { useNavigate, useLocation, Link } from 'react-router-dom';
-import { useAppSelector } from 'app/hooks';
-import { LoginForm } from 'features/users/LoginForm';
+import React from 'react';
+import { LoginForm } from 'features/users';
 import { PageTemplate } from './PageTemplate';
+import { Icon, Button } from 'components';
 
 export function LoginPage() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { token } = useAppSelector((state) => state.users);
-
-  useEffect(() => {
-    if (token && !location.state) {
-      navigate('/projects');
-    }
-  }, [token, navigate, location]);
-
   return (
-    <PageTemplate>
+    <PageTemplate className="login_page">
+      <Icon type="logo3d" className="icon_logo" fill />
+      <h2 className="title">Log in to Yorkie</h2>
       <LoginForm />
-      <div className="max-w-md mx-auto p-4">
-        <hr className="pb-3" />
-        <Link
-          to="/signup"
-          className="block py-2.5 w-full text-sm text-gray-500 font-medium text-center rounded border border-solid border-gray-300 focus:outline-none focus:bg-gray-100 hover:bg-gray-100"
-        >
-          Sign up
-        </Link>
+      <div className="box_bottom">
+        <Button.Box fullWidth={true}>
+          <Button as="link" href="/signup" outline={true}>
+            Sign up
+          </Button>
+        </Button.Box>
       </div>
     </PageTemplate>
   );

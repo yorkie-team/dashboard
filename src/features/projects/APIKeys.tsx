@@ -14,50 +14,90 @@
  * limitations under the License.
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useAppSelector } from 'app/hooks';
 import { selectProjectDetail } from './projectsSlice';
+import { Icon, Button, CopyButton } from 'components';
 
 export function APIKeys() {
-  const { project, status } = useAppSelector(selectProjectDetail);
+  const { project } = useAppSelector(selectProjectDetail);
+  const [revealSecretKey, setRevealSecretKey] = useState(false);
 
   return (
-    <div>
-      {status === 'loading' && <div>Loading...</div>}
-      {status === 'failed' && <div>Failed!</div>}
-      {status === 'idle' && (
-        <form className="mt-6">
-          <div className="mb-6">
-            <label htmlFor="public-key-icon" className="block mb-2 font-medium">
-              Public Key
-            </label>
-            <div className="relative">
-              <input
-                type="text"
-                id="public-key-icon"
-                className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                value={project?.publicKey}
-                readOnly
-              />
+    <section className="api_area">
+      <h2 className="blind">Project API Key</h2>
+      <div className="title_box">
+        <strong className="title">API</strong>
+      </div>
+      <div className="api_title">
+        <div className="title_box">
+          <strong className="title">Public key</strong>
+        </div>
+        <p className="desc">
+          The public key allows you to use Yorkie without implementing your own authentication endpoint.
+        </p>
+      </div>
+      <div className="connect_api_box">
+        <div className="input_area">
+          <span className="input">{project?.publicKey}</span>
+        </div>
+        <CopyButton value={project?.publicKey!} timeout={1000}>
+          {({ copied, copy }) => (
+            <div className="btn_area">
+              <Button outline icon={<Icon type="copy" />} onClick={copy}>
+                Copy
+              </Button>
+              {copied && (
+                <div className="toast_box shadow_l">
+                  <Icon type="check" />
+                  Copied
+                </div>
+              )}
             </div>
-          </div>
-          <div className="mb-6">
-            <label htmlFor="secret-key-icon" className="block mb-2 font-medium">
-              Secret Key
-            </label>
-            <div className="relative">
-              <input
-                type="text"
-                id="secret-key-icon"
-                className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                value={project?.secretKey}
-                readOnly
-              />
+          )}
+        </CopyButton>
+      </div>
+      <div className="api_title">
+        <div className="title_box">
+          <strong className="title">Secret key</strong>
+        </div>
+        <p className="desc">
+          The secret key allows you to authenticate your API requests on your own backend endpoint.
+        </p>
+      </div>
+      <div className="connect_api_box">
+        <div className="input_area">
+          {!revealSecretKey && (
+            <button
+              type="button"
+              className="btn_cover"
+              onClick={() => {
+                setRevealSecretKey(true);
+              }}
+            >
+              <Icon type="lockSmall" />
+              Click to reveal secret key
+            </button>
+          )}
+          {revealSecretKey && <span className="input">{project?.secretKey}</span>}
+        </div>
+        <CopyButton value={project?.secretKey!} timeout={1000}>
+          {({ copied, copy }) => (
+            <div className="btn_area">
+              <Button outline icon={<Icon type="copy" />} onClick={copy}>
+                Copy
+              </Button>
+              {copied && (
+                <div className="toast_box shadow_l">
+                  <Icon type="check" />
+                  Copied
+                </div>
+              )}
             </div>
-          </div>
-        </form>
-      )}
-    </div>
+          )}
+        </CopyButton>
+      </div>
+    </section>
   );
 }
