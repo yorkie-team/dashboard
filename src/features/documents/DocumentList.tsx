@@ -76,7 +76,6 @@ export function DocumentList({ isDetailOpen }: { isDetailOpen: boolean }) {
     dispatch(listDocumentsAsync({ projectName, isForward: false }));
   }, [dispatch, projectName]);
 
-  // TODO(hackerwins): Adjust the style of input with form.
   return (
     <>
       <SearchBar
@@ -86,13 +85,13 @@ export function DocumentList({ isDetailOpen }: { isDetailOpen: boolean }) {
         value={query}
         onSubmit={handleSearch}
       />
-      <div className="document_table is_edit">
-        <div className="thead">
-          <span className="th id">Document ID</span>
-          <span className="th updated">Last updated</span>
-          <span className="th connections">Max. Simultaneous connections</span>
-          <span className="th size">Size</span>
-        </div>
+      <div className="document_table">
+        {!isDetailOpen && (
+          <div className="thead">
+            <span className="th id">Document ID</span>
+            <span className="th updated">Last updated</span>
+          </div>
+        )}
         {status === 'loading' && (
           <div className="box_skeleton">
             <p className="blind">Loading</p>
@@ -151,9 +150,9 @@ export function DocumentList({ isDetailOpen }: { isDetailOpen: boolean }) {
                 <li key={key} className="tbody_item">
                   <Link to={`./${key}`} className="link">
                     <span className="td id">{key}</span>
-                    <span className="td updated">{moment.unix(updatedAt).format('MMM D, H:mm')}</span>
-                    <span className="td connections">11</span>
-                    <span className="td size">3 KB</span>
+                    {!isDetailOpen && (
+                      <span className="td updated">{moment.unix(updatedAt).format('MMM D, H:mm')}</span>
+                    )}
                   </Link>
                 </li>
               );

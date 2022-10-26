@@ -191,8 +191,8 @@ export function Settings() {
                       checkFieldState('name', 'success')
                         ? 'success'
                         : checkFieldState('name', 'error')
-                          ? 'error'
-                          : undefined
+                        ? 'error'
+                        : undefined
                     }
                     helperText={
                       updateFieldInfo.target === 'name' && updateFieldInfo.state !== null
@@ -236,8 +236,8 @@ export function Settings() {
                       checkFieldState('authWebhookURL', 'success')
                         ? 'success'
                         : checkFieldState('authWebhookURL', 'error')
-                          ? 'error'
-                          : undefined
+                        ? 'error'
+                        : undefined
                     }
                     helperText={
                       updateFieldInfo.target === 'authWebhookURL' && updateFieldInfo.state !== null

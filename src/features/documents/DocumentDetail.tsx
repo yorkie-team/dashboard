@@ -66,23 +66,25 @@ export function DocumentDetail() {
             onClick={() => SetViewType('tree')}
             className={viewType === 'tree' ? 'is_active' : ''}
           />
-          <CopyButton value={document?.snapshot || ''} timeout={1000}>
-            {({ copied, copy }) => (
-              <>
-                <Button icon={<Icon type="copy" />} color="toggle" outline onClick={copy} />
-                {copied && (
-                  <div className="toast_box shadow_l">
-                    <Icon type="check" />
-                    Copied
-                  </div>
-                )}
-              </>
-            )}
-          </CopyButton>
+          <div className="btn_area">
+            <CopyButton value={document?.snapshot || ''} timeout={1000}>
+              {({ copied, copy }) => (
+                <>
+                  <Button icon={<Icon type="copy" />} color="toggle" outline onClick={copy} />
+                  {copied && (
+                    <div className="toast_box shadow_l">
+                      <Icon type="check" />
+                      Copied
+                    </div>
+                  )}
+                </>
+              )}
+            </CopyButton>
+          </div>
         </div>
       </div>
       {viewType === 'code' && (
-        <div className="codeblock_box">
+        <div className="codeblock">
           <CodeBlock.Code code={documentJSONStr} language="json" withLineNumbers />
         </div>
       )}

@@ -18,7 +18,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import { useAppSelector } from 'app/hooks';
 import { selectProjectDetail } from './projectsSlice';
-import { Icon, CodeBlock } from 'components';
+import { Icon, CodeBlock, CopyButton, Button } from 'components';
 
 type Snippet = 'npm' | 'cdn';
 
@@ -112,13 +112,47 @@ main();`,
             <p className="title_desc">Your project is now ready to use with its own APIs.</p>
           </div>
           <div className="codeblock_box">
-            <CodeBlock.Code code={`$ npm install yorkie-js-sdk`} language="bash" />
+            <div className="codeblock">
+              <CodeBlock.Code code="$ npm install yorkie-js-sdk" language="bash" />
+            </div>
+            <div className="btn_area">
+              <CopyButton value="npm install yorkie-js-sdk" timeout={1000}>
+                {({ copied, copy }) => (
+                  <>
+                    <Button icon={<Icon type="copy" />} outline onClick={copy} />
+                    {copied && (
+                      <div className="toast_box shadow_l">
+                        <Icon type="check" />
+                        Copied
+                      </div>
+                    )}
+                  </>
+                )}
+              </CopyButton>
+            </div>
           </div>
           <div className="init_box">
             <p className="title_desc">Then, import yorkie and begin using the SDKs.</p>
           </div>
           <div className="codeblock_box">
-            <CodeBlock.Code code={snippet.npm} language="javascript" withLineNumbers />
+            <div className="codeblock">
+              <CodeBlock.Code code={snippet.npm} language="javascript" withLineNumbers />
+            </div>
+            <div className="btn_area">
+              <CopyButton value={snippet.npm} timeout={1000}>
+                {({ copied, copy }) => (
+                  <>
+                    <Button icon={<Icon type="copy" />} outline onClick={copy} />
+                    {copied && (
+                      <div className="toast_box shadow_l">
+                        <Icon type="check" />
+                        Copied
+                      </div>
+                    )}
+                  </>
+                )}
+              </CopyButton>
+            </div>
           </div>
         </div>
       )}
@@ -131,7 +165,24 @@ main();`,
             <p className="title_desc">Copy and paste the following script into the bottom of your &lt;body&gt; tag.</p>
           </div>
           <div className="codeblock_box">
-            <CodeBlock.Code code={snippet.cdn} language="markup" withLineNumbers />
+            <div className="codeblock">
+              <CodeBlock.Code code={snippet.cdn} language="markup" withLineNumbers />
+            </div>
+            <div className="btn_area">
+              <CopyButton value={snippet.cdn} timeout={1000}>
+                {({ copied, copy }) => (
+                  <>
+                    <Button icon={<Icon type="copy" />} outline onClick={copy} />
+                    {copied && (
+                      <div className="toast_box shadow_l">
+                        <Icon type="check" />
+                        Copied
+                      </div>
+                    )}
+                  </>
+                )}
+              </CopyButton>
+            </div>
           </div>
         </div>
       )}
