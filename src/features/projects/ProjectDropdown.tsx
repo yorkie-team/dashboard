@@ -40,6 +40,7 @@ export function ProjectDropdown({ size = 'small' }: { size?: 'small' | 'large' }
 
   if (!projectName) return null;
 
+  // TODO(hackerwins): remove breadcrumb_thumb class after refactoring.
   if (size === 'small') {
     return (
       <Popover opened={opened} onChange={setOpened}>
@@ -67,7 +68,7 @@ export function ProjectDropdown({ size = 'small' }: { size?: 'small' | 'large' }
             </Dropdown.List>
             <Dropdown.List>
               <Dropdown.Item as="link" href="/projects/new">
-                <Icon type="plus" className="shortcut_thumb" />
+                <Icon type="plus" className="breadcrumb_thumb" />
                 <Breadcrumb.Text>Create New Project</Breadcrumb.Text>
               </Dropdown.Item>
             </Dropdown.List>

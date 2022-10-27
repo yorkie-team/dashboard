@@ -9,5 +9,4 @@ cd ..
 rm -rf src/assets
 mkdir -p src/assets
 cp -R ./temp/dist/assets/* src/assets 
-cp -R ./temp/dist/components src/assets/styles
 rm -rf temp

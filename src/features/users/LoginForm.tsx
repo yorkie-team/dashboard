@@ -87,7 +87,7 @@ export function LoginForm() {
         />
         <Button.Box fullWidth={true}>
           <Button type="submit" disabled={status === 'loading'} color="primary">
-            {status !== 'loading' && 'Log in'}
+            {status !== 'loading' && 'Sign in'}
             {status === 'loading' && 'Loading...'}
           </Button>
         </Button.Box>
