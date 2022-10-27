@@ -3,7 +3,7 @@
 git clone https://github.com/yorkie-team/yorkie-ui.git temp
 cd temp
 npm install
-npm run build
+npm run build-admin
 
 cd ..
 rm -rf src/assets

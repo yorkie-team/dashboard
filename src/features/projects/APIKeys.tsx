@@ -39,8 +39,8 @@ export function APIKeys() {
         </p>
       </div>
       <div className="connect_api_box">
-        <div className="input_area">
-          <span className="input">{project?.publicKey}</span>
+        <div className="api">
+          <span className="value">{project?.publicKey}</span>
         </div>
         <CopyButton value={project?.publicKey!} timeout={1000}>
           {({ copied, copy }) => (
@@ -67,7 +67,7 @@ export function APIKeys() {
         </p>
       </div>
       <div className="connect_api_box">
-        <div className="input_area">
+        <div className="api">
           {!revealSecretKey && (
             <button
               type="button"
@@ -80,7 +80,7 @@ export function APIKeys() {
               Click to reveal secret key
             </button>
           )}
-          {revealSecretKey && <span className="input">{project?.secretKey}</span>}
+          {revealSecretKey && <span className="value">{project?.secretKey}</span>}
         </div>
         <CopyButton value={project?.secretKey!} timeout={1000}>
           {({ copied, copy }) => (
