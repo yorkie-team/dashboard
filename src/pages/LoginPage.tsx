@@ -23,7 +23,7 @@ export function LoginPage() {
   return (
     <PageTemplate className="login_page">
       <Icon type="logo3d" className="icon_logo" fill />
-      <h2 className="title">Log in to Yorkie</h2>
+      <h2 className="title">Sign in to Yorkie</h2>
       <LoginForm />
       <div className="box_bottom">
         <Button.Box fullWidth={true}>
