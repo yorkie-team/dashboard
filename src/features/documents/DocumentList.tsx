@@ -164,17 +164,19 @@ export function DocumentList({ isDetailOpen }: { isDetailOpen: boolean }) {
             <p className="desc">No Document Found</p>
           </div>
         )}
-        {documents.length > 0 && queryType === 'all' && (
-          <div style={{ marginTop: 20 }}>
+      </div>
+      {documents.length > 0 && queryType === 'all' && (
+        <div className="pagination">
+          <Button.Box>
             <Button onClick={handlePrevBtnClicked} disabled={!hasPrevious} outline icon={<Icon type="previous" />}>
-              Previous
+              Prev
             </Button>
             <Button onClick={handleNextBtnClicked} disabled={!hasNext} outline icon={<Icon type="next" />}>
               Next
             </Button>
-          </div>
-        )}
-      </div>
+          </Button.Box>
+        </div>
+      )}
     </>
   );
 }

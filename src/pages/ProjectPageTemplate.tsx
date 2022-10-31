@@ -24,10 +24,14 @@ export function ProjectPageTemplate({ className, children }: {
 }) {
   return (
     <PageTemplate className={className}>
-      <div className="project_area">
-        <div className="title_group">
-          <ProjectDropdown size="large" />
+      <div className="box_top">
+        <div className="project_area">
+          <div className="title_group">
+            <ProjectDropdown size="large" />
+          </div>
         </div>
+      </div>
+      <div className="box_tab">
         <ProjectTabList />
       </div>
       {children}

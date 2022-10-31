@@ -39,8 +39,10 @@ export function APIKeys() {
         </p>
       </div>
       <div className="connect_api_box">
-        <div className="api">
-          <span className="value">{project?.publicKey}</span>
+        <div className="api_box">
+          <div className="api">
+            <span className="value">{project?.publicKey}</span>
+          </div>
         </div>
         <CopyButton value={project?.publicKey!} timeout={1000}>
           {({ copied, copy }) => (
@@ -67,20 +69,22 @@ export function APIKeys() {
         </p>
       </div>
       <div className="connect_api_box">
-        <div className="api">
-          {!revealSecretKey && (
-            <button
-              type="button"
-              className="btn_cover"
-              onClick={() => {
-                setRevealSecretKey(true);
-              }}
-            >
-              <Icon type="lockSmall" />
-              Click to reveal secret key
-            </button>
-          )}
-          {revealSecretKey && <span className="value">{project?.secretKey}</span>}
+        <div className="api_box">
+          <div className="api">
+            {!revealSecretKey && (
+              <button
+                type="button"
+                className="btn_cover"
+                onClick={() => {
+                  setRevealSecretKey(true);
+                }}
+              >
+                <Icon type="lockSmall" />
+                Click to reveal secret key
+              </button>
+            )}
+            {revealSecretKey && <span className="value">{project?.secretKey}</span>}
+          </div>
         </div>
         <CopyButton value={project?.secretKey!} timeout={1000}>
           {({ copied, copy }) => (
