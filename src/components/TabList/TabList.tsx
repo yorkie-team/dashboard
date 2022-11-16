@@ -14,25 +14,17 @@
  * limitations under the License.
  */
 
-import React, { ReactNode } from "react";
-import { NavLink as Link } from "react-router-dom";
-import classNames from "classnames";
+import React, { ReactNode } from 'react';
+import { NavLink as Link } from 'react-router-dom';
+import classNames from 'classnames';
 
-function Item({
-  children,
-  isActive,
-  to,
-}: {
-  children: ReactNode,
-  isActive?: boolean,
-  to: string,
-}) {
+function Item({ children, end, to }: { children: ReactNode; end?: boolean; to: string }) {
   return (
-    <li className={classNames({ is_active: isActive }, 'tab_item')}>
-      <Link to={to} className={({ isActive }) => classNames({ is_active: isActive }, 'tab_menu')} end>
+    <li className="tab_item">
+      <Link to={to} className={({ isActive }) => classNames({ is_active: isActive }, 'tab_menu')} end={end}>
         {children}
       </Link>
-    </li >
+    </li>
   );
 }
 
@@ -40,12 +32,8 @@ function Text({ children }: { children: ReactNode }) {
   return <span className="tab_text">{children}</span>;
 }
 
-export function TabList({ children }: { children: ReactNode; }) {
-  return (
-    <ul className="tab_list">
-      {children}
-    </ul>
-  );
+export function TabList({ children }: { children: ReactNode }) {
+  return <ul className="tab_list">{children}</ul>;
 }
 
 TabList.Item = Item;

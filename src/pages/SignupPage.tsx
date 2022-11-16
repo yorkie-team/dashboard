@@ -29,7 +29,7 @@ export function SignupPage() {
       <div className="box_bottom">
         <Button.Box fullWidth={true}>
           <Button as="link" href="/login" outline={true}>
-            Log in
+            Sign in
           </Button>
         </Button.Box>
       </div>

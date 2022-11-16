@@ -34,7 +34,7 @@ export function ProjectTabList() {
 
   return (
     <TabList>
-      <TabList.Item to={`/projects/${projectName}`}>
+      <TabList.Item to={`/projects/${projectName}`} end>
         <Icon type="chart" />
         <TabList.Text>Project overview</TabList.Text>
       </TabList.Item>
