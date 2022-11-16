@@ -17,7 +17,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import * as moment from 'moment';
-
+import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectDocumentList, listDocumentsAsync, searchDocumentsAsync } from './documentsSlice';
 import { Button, SearchBar, Icon } from 'components';
@@ -26,6 +26,7 @@ export function DocumentList({ isDetailOpen }: { isDetailOpen: boolean }) {
   const dispatch = useAppDispatch();
   const params = useParams();
   const projectName = params.projectName || '';
+  const documentKey = params.documentKey || '';
   const { type: queryType, documents, hasPrevious, hasNext, status } = useAppSelector(selectDocumentList);
 
   const [query, SetQuery] = useState('');
@@ -148,7 +149,7 @@ export function DocumentList({ isDetailOpen }: { isDetailOpen: boolean }) {
               const { key, updatedAt } = document;
               return (
                 <li key={key} className="tbody_item">
-                  <Link to={`./${key}`} className="link">
+                  <Link to={`./${key}`} className={classNames('link', { is_active: key === documentKey })}>
                     <span className="td id">{key}</span>
                     {!isDetailOpen && (
                       <span className="td updated">{moment.unix(updatedAt).format('MMM D, H:mm')}</span>
