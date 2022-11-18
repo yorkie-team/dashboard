@@ -23,15 +23,13 @@ import { selectUsers } from 'features/users/usersSlice';
 export function PublicRoute() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { token } = useAppSelector(selectUsers);
+  const { token, isValidToken } = useAppSelector(selectUsers);
 
   useEffect(() => {
-    if (token && !location.state) {
+    if (token && isValidToken && !location.state) {
       navigate('/projects');
     }
-  }, [token, navigate, location]);
+  }, [token, isValidToken, navigate, location]);
 
-  return (
-    <Outlet />
-  );
+  return <Outlet />;
 }

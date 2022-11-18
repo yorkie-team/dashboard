@@ -90,6 +90,7 @@ export const globalErrorHandler: Middleware = (store: MiddlewareAPI) => (next) =
   if (isHandledError(action.type, statusCode)) return;
   if (statusCode === RPCStatusCode.UNAUTHENTICATED) {
     store.dispatch(setIsValidToken(false));
+    return;
   }
   store.dispatch(setGlobalError({ statusCode, errorMessage }));
 };
