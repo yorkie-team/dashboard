@@ -21,46 +21,44 @@ import { Button, Icon } from 'components';
 
 export function NotFoundPage() {
   return (
-    <PageTemplate className="error_page">
-      <div className="error">
-        <div className="img_box">
-          <NotFoundSVG />
-        </div>
-        <div className="error_info">
-          <h2 className="error_title">
-            Oops! Wait a minute... <br />
-            Yorkie ate your request
-          </h2>
-          <p className="error_desc">The page you are looking for might be removed or is temporarily unavailable.</p>
-          <Button.Box>
-            <Button icon={<Icon type="backHome" />} href="/" className="orange_0" as="link">
-              Back to Home
-            </Button>
-            <Button
-              icon={<Icon type="slack" />}
-              href="https://communityinviter.com/apps/dev-yorkie/yorkie"
-              className="gray50"
-              as="a"
-              outline
-              target="_blank"
-              rel="noreferrer"
-            >
-              Slack
-            </Button>
-            <Button
-              icon={<Icon type="github" />}
-              href="https://github.com/yorkie-team/yorkie-house/issues"
-              className="gray50"
-              as="a"
-              outline
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub
-            </Button>
-          </Button.Box>
-        </div>
+    <PageTemplate className="error_page" contentClassName="error_404">
+      <div className="img_box">
+        <NotFoundSVG />
       </div>
+      <h2 className="title">
+        Oops! Wait a minute... <br />
+        Yorkie ate your request
+      </h2>
+      <p className="desc">
+        The page you are looking for might be<br className="br_mo" /> removed or is temporarily unavailable.
+      </p>
+      <Button.Box>
+        <Button icon={<Icon type="backHome" />} href="/" className="orange_0" as="link">
+          Back to Home
+        </Button>
+        <Button
+          icon={<Icon type="slack" />}
+          href="https://communityinviter.com/apps/dev-yorkie/yorkie"
+          className="gray50"
+          as="a"
+          outline
+          target="_blank"
+          rel="noreferrer"
+        >
+          Slack
+        </Button>
+        <Button
+          icon={<Icon type="github" />}
+          href="https://github.com/yorkie-team/yorkie-house/issues"
+          className="gray50"
+          as="a"
+          outline
+          target="_blank"
+          rel="noreferrer"
+        >
+          GitHub
+        </Button>
+      </Button.Box>
     </PageTemplate>
   );
 }

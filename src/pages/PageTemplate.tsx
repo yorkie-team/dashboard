@@ -23,17 +23,19 @@ import { ErrorModal } from 'features/globalError/ErrorModal';
 export function PageTemplate({
   className = '',
   headerClassName = '',
+  contentClassName = '',
   children,
 }: {
   className?: string;
   headerClassName?: string;
+  contentClassName?: string;
   children: ReactNode;
 }) {
   return (
     <div className={`wrap ${className}`}>
       <Header className={headerClassName} />
       <main className="container">
-        <div className="content">{children}</div>
+        <div className={contentClassName ? `content ${contentClassName}` : 'content'}>{children}</div>
         <ErrorModal />
       </main>
       <Footer />
