@@ -25,9 +25,11 @@ export function DocumentsPage() {
   return (
     <ProjectPageTemplate className="project_document_page">
       <div className={documentKey ? "document_detail_area" : "document_list_area"}>
-        <div className={documentKey ? "sidebar" : ''}>
-          <DocumentList isDetailOpen={documentKey !== ''} />
-        </div>
+        {
+          documentKey ? (
+            <div className="sidebar"><DocumentList isDetailOpen /></div>
+          ) : <DocumentList />
+        }
         <Outlet />
       </div>
     </ProjectPageTemplate>
