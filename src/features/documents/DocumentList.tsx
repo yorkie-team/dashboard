@@ -22,7 +22,7 @@ import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectDocumentList, listDocumentsAsync, searchDocumentsAsync } from './documentsSlice';
 import { Button, SearchBar, Icon } from 'components';
 
-export function DocumentList({ isDetailOpen }: { isDetailOpen: boolean }) {
+export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean }) {
   const dispatch = useAppDispatch();
   const params = useParams();
   const projectName = params.projectName || '';
