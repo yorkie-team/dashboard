@@ -1,10 +1,10 @@
-# Yorkie House
+# Dashboard
 
-Yorkie House is an admin dashboard that allows managing projects and documents.
+Dashboard is an administrative tool that allows users to manage projects and documents.
 
-## How Yorkie House works
+## How Dashboard works
 
-Yorkie House uses gRPC-web for communicating with Yorkie agent built on gRPC.
+Dashboard uses gRPC-web for communicating with Yorkie agent built on gRPC.
 
 ```
  +--Browser--+           +--Envoy---------+         +--Yorkie------+
@@ -16,11 +16,11 @@ Yorkie House uses gRPC-web for communicating with Yorkie agent built on gRPC.
 
 For more details: https://grpc.io/blog/state-of-grpc-web/
 
-## Developing Yorkie House
+## Developing Dashboard
 
-### Building Yorkie House
+### Building Dashboard
 
-For building yorkie-house, You'll first need Node.js installed(Node.js version 16+ and npm version 7.10+ are required).
+For building dashboard, You'll first need Node.js installed(Node.js version 16+ and npm version 7.10+ are required).
 
 ```
 # install packages
@@ -40,9 +40,9 @@ npm run build:proto
 
 > Primary "source of truth" location of protobuf message is in [yorkie](https://github.com/yorkie-team/yorkie/tree/main/api). We manage the messages in the repository.
 
-### Running Yorkie House
+### Running Dashboard
 
-Yorkie House needs backend servers like Yorkie and Envoy. We can simply run them using `docker-compose`.
+Dashboard needs backend servers like Yorkie and Envoy. We can simply run them using `docker-compose`.
 To start Yorkie and Envoy proxy in a terminal:
 
 ```

@@ -44,7 +44,7 @@ function App() {
   }, [theme.darkMode]);
 
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
         <Route element={<PublicRoute />} >

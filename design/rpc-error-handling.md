@@ -18,9 +18,9 @@ We only handle RPC errors here. Any rendering errors in components can be handle
 
 ## Proposal Details
 
-#### Yorkie House Layered Architecture
+#### Dashboard Layered Architecture
 
-Yorkie House layered architecture pattern looks like:
+Dashboard layered architecture pattern looks like:
 
 - `RC`(presentation): Display that information on a screen in a particular format
 - `xxSlice`(business): Perform business logic against the data
@@ -28,8 +28,8 @@ Yorkie House layered architecture pattern looks like:
 
 As a request moves from layer to layer in the layered architecture, it must go through the layer right below it to get to the next layer below that one.
 
-| Yorkie House architecture | Layered architecture |
-| :--: | :--: |
+|                               Dashboard architecture                                |                                                                                                                                      Layered architecture                                                                                                                                       |
+| :---------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | <img width="540" alt="layered-architecture" src="./media/layered-architecture.png"> | <img width="300" alt="Layered Architecture" src="https://www.oreilly.com/library/view/software-architecture-patterns/9781491971437/assets/sapr_0102.png"> [Image - Software Architecture Patterns](https://www.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch01.html) |
 
 #### RPC Error Handling

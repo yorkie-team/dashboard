@@ -17,7 +17,7 @@ Keeping related logic together makes it easier to find and update that code.
 
 ## Proposal Details
 
-Yorkie House folder structure looks like:
+Dashboard folder structure looks like:
 
 ```bash
 /src

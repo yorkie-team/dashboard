@@ -44,7 +44,7 @@ export function BreadcrumbView() {
           <Popover.Target>
             <Breadcrumb.Item>
               <Breadcrumb.Thumb src="../assets/images/@tmp/sample_team.svg" />
-              <Breadcrumb.Text>Wooseok’s Yorkie House</Breadcrumb.Text>
+              <Breadcrumb.Text>Wooseok’s Dashboard</Breadcrumb.Text>
             </Breadcrumb.Item>
           </Popover.Target>
           <Popover.Dropdown>
@@ -52,7 +52,7 @@ export function BreadcrumbView() {
               <Dropdown.List>
                 <Dropdown.Item as="link" href="/team">
                   <Breadcrumb.Thumb src="../assets/images/@tmp/sample_team.svg" />
-                  <Breadcrumb.Text>Wooseok’s Yorkie House</Breadcrumb.Text>
+                  <Breadcrumb.Text>Wooseok’s Dashboard</Breadcrumb.Text>
                 </Dropdown.Item>
               </Dropdown.List>
             </Dropdown>
@@ -72,7 +72,7 @@ export function BreadcrumbView() {
               <Dropdown.List>
                 <Dropdown.Item as="link" href="/team">
                   <Breadcrumb.Thumb src="../assets/images/@tmp/sample_team.svg" />
-                  <Breadcrumb.Text>Wooseok’s Yorkie House</Breadcrumb.Text>
+                  <Breadcrumb.Text>Wooseok’s Dashboard</Breadcrumb.Text>
                 </Dropdown.Item>
               </Dropdown.List>
             </Dropdown>

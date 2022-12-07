@@ -49,7 +49,7 @@ export function NotFoundPage() {
         </Button>
         <Button
           icon={<Icon type="github" />}
-          href="https://github.com/yorkie-team/yorkie-house/issues"
+          href="https://github.com/yorkie-team/dashboard/issues"
           className="gray50"
           as="a"
           outline
