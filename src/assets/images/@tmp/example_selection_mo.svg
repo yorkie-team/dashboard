@@ -1,7 +1,7 @@
 <svg width="328" height="206" viewBox="0 0 328 206" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g clip-path="url(#clip0_6004_261381)">
 <path d="M0 4C0 1.79087 1.79086 0 4 0H323.999C326.208 0 327.999 1.79086 327.999 4V205.714H0V4Z" fill="white"/>
-<rect x="-210" y="-203" width="1512" height="981.174" fill="url(#pattern0)"/>
+<rect x="-210" y="-203" width="1512" height="981.174" fill="url(#pattern1)"/>
 <rect x="309.504" y="85.9639" width="63.3924" height="63.3924" rx="4.22616" fill="#FDC433"/>
 <rect x="309.504" y="-40.8203" width="63.3924" height="63.3924" rx="4.22616" fill="#23C176"/>
 <rect x="182.719" y="85.9639" width="63.3924" height="63.3924" rx="4.22616" fill="#FC8539"/>
@@ -20,7 +20,7 @@
 </g>
 <path d="M0.25 4C0.25 1.92894 1.92893 0.25 4 0.25H323.999C326.07 0.25 327.749 1.92893 327.749 4V205.464H0.25V4Z" stroke="#C2BDBA" stroke-width="0.5"/>
 <defs>
-<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+<pattern id="pattern1" patternContentUnits="objectBoundingBox" width="1" height="1">
 <use xlink:href="#image0_6004_261381" transform="scale(0.000330469 0.000509257)"/>
 </pattern>
 <linearGradient id="paint0_linear_6004_261381" x1="87.6294" y1="81.7373" x2="87.6294" y2="153.582" gradientUnits="userSpaceOnUse">

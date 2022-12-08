@@ -106,6 +106,8 @@ if (initialState.token) {
 
 export const loginUser = createAsyncThunk<string, LoginFields>('users/login', async ({ username, password }) => {
   const token = await api.logIn(username, password);
+  // TODO(hackerwins): For security, we need to change the token to be stored in the cookie.
+  // For more information, see https://github.com/yorkie-team/dashboard/issues/42.
   localStorage.setItem('token', token);
   return token;
 });

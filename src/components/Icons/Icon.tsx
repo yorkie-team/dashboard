@@ -57,6 +57,7 @@ import { ReactComponent as MemberEmailSVG } from 'assets/icons/icon_member_email
 import { ReactComponent as SettingSVG } from 'assets/icons/icon_setting.svg';
 import { ReactComponent as PreviousSVG } from 'assets/icons/icon_previous.svg';
 import { ReactComponent as NextSVG } from 'assets/icons/icon_next.svg';
+import { ReactComponent as DiscordSVG } from 'assets/icons/icon_discord.svg';
 
 const svgMap = {
   shortcut: <ShortcutSVG />,
@@ -100,6 +101,7 @@ const svgMap = {
   setting: <SettingSVG />,
   previous: <PreviousSVG />,
   next: <NextSVG />,
+  discord: <DiscordSVG />,
 };
 type SVGType = keyof typeof svgMap;
 

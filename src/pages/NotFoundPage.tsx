@@ -37,15 +37,15 @@ export function NotFoundPage() {
           Back to Home
         </Button>
         <Button
-          icon={<Icon type="slack" />}
-          href="https://communityinviter.com/apps/dev-yorkie/yorkie"
+          icon={<Icon type="discord" />}
+          href="https://discord.gg/MVEAwz9sBy"
           className="gray50"
           as="a"
           outline
           target="_blank"
           rel="noreferrer"
         >
-          Slack
+          Discord
         </Button>
         <Button
           icon={<Icon type="github" />}
