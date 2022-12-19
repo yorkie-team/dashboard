@@ -15,6 +15,7 @@
  */
 
 import React, { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 
 export function Breadcrumb({ children }: { children: ReactNode }) {
   return <div className="breadcrumb team_view">{children}</div>;
@@ -24,16 +25,40 @@ function Inner({ children }: { children: ReactNode }) {
   return <div className="breadcrumb_inner">{children}</div>;
 }
 
-const Item = React.forwardRef<
-  HTMLButtonElement,
-  { children: ReactNode; onClick?: React.MouseEventHandler<HTMLButtonElement> }
->(({ children, onClick }, ref) => {
-  return (
-    <button type="button" ref={ref} className="breadcrumb_item" onClick={onClick}>
-      {children}
-    </button>
-  );
-});
+const Item = React.forwardRef(
+  (
+    {
+      as = 'button',
+      href = '',
+      children,
+      ...restProps
+    }: {
+      as?: 'button' | 'a' | 'link';
+      href?: string;
+      children?: ReactNode;
+    } & React.AnchorHTMLAttributes<HTMLAnchorElement> &
+      React.ButtonHTMLAttributes<HTMLButtonElement>,
+    ref,
+  ) => {
+    if (as === 'link') {
+      return (
+        <Link to={href} ref={ref as React.ForwardedRef<HTMLAnchorElement>} className="breadcrumb_item" {...restProps}>
+          {children}
+        </Link>
+      );
+    }
+    return (
+      <button
+        type="button"
+        ref={ref as React.ForwardedRef<HTMLButtonElement>}
+        className="breadcrumb_item"
+        {...restProps}
+      >
+        {children}
+      </button>
+    );
+  },
+);
 Item.displayName = 'Breadcrumb.Item';
 
 function Thumb({ src }: { src: string }) {

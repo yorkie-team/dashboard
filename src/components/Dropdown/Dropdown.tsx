@@ -64,7 +64,7 @@ function Item({
       style={{ display: 'block' }}
     >
       {as === 'a' && (
-        <a href={href} className="dropdown_menu" target="_blank" rel="noreferrer">
+        <a href={href} className="dropdown_menu">
           {children}
         </a>
       )}

@@ -14,25 +14,33 @@
  * limitations under the License.
  */
 
-import React, { useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
-
+import React, { useCallback, useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 import { selectUsers, logoutUser } from './usersSlice';
 import { Popover, Dropdown } from 'components';
 
 export function AccountDropdown() {
   const { username } = useAppSelector(selectUsers);
+  const [opened, setOpened] = useState(false);
 
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const logout = useCallback(() => {
     dispatch(logoutUser());
-    navigate('/login');
-  }, [dispatch, navigate]);
+  }, [dispatch]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const PC_WIDTH = 1024;
+      if (window.innerWidth < PC_WIDTH) {
+        setOpened(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
-    <Popover>
+    <Popover opened={opened} onChange={setOpened}>
       <Popover.Target>
         <button className="util_menu user_profile">
           <span className="blind">User profile</span>

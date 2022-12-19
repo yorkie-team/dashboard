@@ -32,6 +32,9 @@ export interface UsersState {
       message: string;
     } | null;
   };
+  logout: {
+    isSuccess: boolean;
+  };
   signup: {
     isSuccess: boolean;
     status: 'idle' | 'loading' | 'failed';
@@ -41,14 +44,13 @@ export interface UsersState {
     theme: {
       useSystem: boolean;
       darkMode: boolean;
-    }
+    };
     use24HourClock: boolean;
   };
 }
 
 function isDarkMode(): boolean {
-  return window.matchMedia &&
-    window.matchMedia('(prefers-color-scheme: dark)').matches;
+  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 }
 
 type ErrorDetails = {
@@ -80,6 +82,9 @@ const initialState: UsersState = {
     status: 'idle',
     error: null,
   },
+  logout: {
+    isSuccess: false,
+  },
   signup: {
     isSuccess: false,
     status: 'idle',
@@ -88,7 +93,8 @@ const initialState: UsersState = {
   preferences: {
     theme: {
       useSystem: localStorage.getItem('theme') === 'system',
-      darkMode: (localStorage.getItem('theme') === 'system' && isDarkMode()) || localStorage.getItem('theme') === 'dark',
+      darkMode:
+        (localStorage.getItem('theme') === 'system' && isDarkMode()) || localStorage.getItem('theme') === 'dark',
     },
     use24HourClock: localStorage.getItem('clock') === '24',
   },
@@ -134,6 +140,7 @@ export const usersSlice = createSlice({
       state.login.status = 'idle';
       state.login.isSuccess = false;
       state.login.error = null;
+      state.logout.isSuccess = true;
     },
     setIsValidToken: (state, action) => {
       state.isValidToken = action.payload;

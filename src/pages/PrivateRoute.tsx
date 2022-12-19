@@ -17,21 +17,22 @@
 import React, { useEffect } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 
-import { useAppSelector } from 'app/hooks';
+import { useAppSelector, useAppDispatch } from 'app/hooks';
 import { selectUsers } from 'features/users/usersSlice';
 
 export function PrivateRoute() {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const location = useLocation();
-  const { token, isValidToken } = useAppSelector(selectUsers);
+  const { token, isValidToken, logout } = useAppSelector(selectUsers);
 
   useEffect(() => {
-    if (!token || !isValidToken) {
+    if (logout.isSuccess) {
+      window.location.href = `${process.env.REACT_APP_SERVICE_URL}`;
+    } else if (!token || !isValidToken) {
       navigate('/login', { state: { from: location.pathname } });
     }
-  }, [token, navigate, location, isValidToken]);
+  }, [token, navigate, location, isValidToken, logout, dispatch]);
 
-  return (
-    <Outlet />
-  );
+  return <Outlet />;
 }

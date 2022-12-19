@@ -15,7 +15,6 @@
  */
 
 import React, { useCallback, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 import { selectUsers, logoutUser } from './usersSlice';
@@ -25,28 +24,26 @@ export function MobileGnbDropdown() {
   const { username } = useAppSelector(selectUsers);
   const [opened, setOpened] = useState(false);
 
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const logout = useCallback(() => {
     dispatch(logoutUser());
-    navigate('/login');
-  }, [dispatch, navigate]);
+  }, [dispatch]);
 
   useEffect(() => {
-    return () => {
-      setOpened(false);
+    const handleResize = () => {
+      const PC_WIDTH = 1024;
+      if (window.innerWidth >= PC_WIDTH) {
+        setOpened(false);
+      }
     };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
     <Popover opened={opened} onChange={setOpened}>
       <Popover.Target>
-        <button
-          className="btn_menu"
-          onClick={() => {
-            setOpened((opened) => !opened);
-          }}
-        >
+        <button className="btn_menu">
           <span className="blind">Open menu</span>
           <Icon type="gnbMenu" className={classNames('icon_menu', { is_active: !opened })} />
           <Icon type="close" className={classNames('icon_close', { is_active: opened })} />
@@ -55,11 +52,17 @@ export function MobileGnbDropdown() {
       <Popover.Dropdown>
         <Dropdown className="util_list_mo">
           <Dropdown.List>
+            <Dropdown.Item as="a" href={`${process.env.REACT_APP_SERVICE_URL}`}>
+              <Dropdown.Text>Home</Dropdown.Text>
+            </Dropdown.Item>
+            <Dropdown.Item as="link" href="/projects">
+              <Dropdown.Text>Dashboard</Dropdown.Text>
+            </Dropdown.Item>
+            <Dropdown.Item as="a" href={`${process.env.REACT_APP_SERVICE_URL}/docs`}>
+              <Dropdown.Text>Documentation</Dropdown.Text>
+            </Dropdown.Item>
             <Dropdown.Item as="link" href="/community">
               <Dropdown.Text>Feedback</Dropdown.Text>
-            </Dropdown.Item>
-            <Dropdown.Item as="a" href="https://yorkie.dev/docs">
-              <Dropdown.Text>Docs</Dropdown.Text>
             </Dropdown.Item>
           </Dropdown.List>
           <Dropdown.List>
