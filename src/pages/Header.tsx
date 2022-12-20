@@ -31,22 +31,29 @@ export function Header({ className }: { className?: string }) {
       <div className="header_inner">
         <Breadcrumb>
           <h1 className="logo">
-            <Link to={token && isValidToken ? '/projects' : '/'} className="logo_menu">
+            <a href={`${process.env.REACT_APP_SERVICE_URL}`} className="logo_menu">
               <Icon type="logoNoText" fill />
-            </Link>
+            </a>
             <span className="blind">Yorkie</span>
           </h1>
           {token && isValidToken && (
-            <Breadcrumb.Inner>
-              <ProjectDropdown />
-            </Breadcrumb.Inner>
+            <>
+              <Breadcrumb.Inner>
+                <Breadcrumb.Item as="link" href="/projects">
+                  <Breadcrumb.Text>Dashboard</Breadcrumb.Text>
+                </Breadcrumb.Item>
+              </Breadcrumb.Inner>
+              <Breadcrumb.Inner>
+                <ProjectDropdown />
+              </Breadcrumb.Inner>
+            </>
           )}
         </Breadcrumb>
         {token && isValidToken && (
           <nav className="util_box">
             <ul className="util_list">
               <li className="util_item">
-                <a href="https://yorkie.dev/docs" target="_blank" rel="noreferrer" className="util_menu">
+                <a href={`${process.env.REACT_APP_SERVICE_URL}/docs`} className="util_menu">
                   Docs
                 </a>
               </li>

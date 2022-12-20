@@ -100,7 +100,8 @@
             "mailto",
             "jsx",
             "svg",
-            "gnb"
+            "gnb",
+            "resize"
           ],
           "skipIfMatch": [
             "TODO\\(.+\\):",

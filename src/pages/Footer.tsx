@@ -20,7 +20,9 @@ import { Icon } from 'components';
 export function Footer() {
   return (
     <footer className="footer">
-      <Icon type="LogoHorizontalGray" fill />
+      <a href={`${process.env.REACT_APP_SERVICE_URL}`}>
+        <Icon type="LogoHorizontalGray" fill />
+      </a>
     </footer>
   );
 }
