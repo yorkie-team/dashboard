@@ -62,7 +62,7 @@ export function MobileGnbDropdown() {
               <Dropdown.Text>Documentation</Dropdown.Text>
             </Dropdown.Item>
             <Dropdown.Item as="link" href="/community">
-              <Dropdown.Text>Feedback</Dropdown.Text>
+              <Dropdown.Text>Community</Dropdown.Text>
             </Dropdown.Item>
           </Dropdown.List>
           <Dropdown.List>

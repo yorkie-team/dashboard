@@ -59,7 +59,7 @@ export function Header({ className }: { className?: string }) {
               </li>
               <li className="util_item">
                 <Link to="/community" className="util_menu">
-                  Feedback
+                  Community
                 </Link>
               </li>
               <li className="util_item">
