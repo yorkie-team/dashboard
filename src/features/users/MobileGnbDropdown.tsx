@@ -52,9 +52,6 @@ export function MobileGnbDropdown() {
       <Popover.Dropdown>
         <Dropdown className="util_list_mo">
           <Dropdown.List>
-            <Dropdown.Item as="a" href={`${process.env.REACT_APP_SERVICE_URL}`}>
-              <Dropdown.Text>Home</Dropdown.Text>
-            </Dropdown.Item>
             <Dropdown.Item as="link" href="/projects">
               <Dropdown.Text>Dashboard</Dropdown.Text>
             </Dropdown.Item>
