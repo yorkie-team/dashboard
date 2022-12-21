@@ -46,7 +46,7 @@ function App() {
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/" element={<Navigate to="/login" replace />} />
         <Route element={<PublicRoute />} >
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
