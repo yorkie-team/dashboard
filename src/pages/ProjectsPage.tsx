@@ -30,19 +30,19 @@ export function ProjectsPage() {
           <ul className="banner_list">
             <li className="banner_item">
               <a
-                href="https://yorkie.dev/demos"
+                href={`${process.env.REACT_APP_SERVICE_URL}/docs`}
                 target="_blank"
                 rel="noreferrer"
                 className="banner gradient_180deg_yellow"
               >
-                <strong className="banner_title gray900">View demo project</strong>
-                <p className="banner_desc gray900">Check out our demo projects and be inspired!</p>
+                <strong className="banner_title gray900">Check out Documentation</strong>
+                <p className="banner_desc gray900">Check out how to use SDKs and API</p>
               </a>
             </li>
             <li className="banner_item">
-              <a href="https://yorkie.dev/docs/examples" target="_blank" rel="noreferrer" className="banner gray900_bg">
-                <strong className="banner_title gray000">Browse Yorkie examples</strong>
-                <p className="banner_desc gray000">Browse all examples</p>
+              <a href={`${process.env.REACT_APP_SERVICE_URL}/examples`} target="_blank" rel="noreferrer" className="banner gray900_bg">
+                <strong className="banner_title gray000">Browse Examples</strong>
+                <p className="banner_desc gray000">See how Yorkie can help you bring your products to the next level of collaboration.</p>
                 <span className="img_box">
                   <BannerSVG />
                 </span>
