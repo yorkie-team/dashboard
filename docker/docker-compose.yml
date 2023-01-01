@@ -23,7 +23,7 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
   yorkie:
-    image: 'yorkieteam/yorkie:0.2.18'
+    image: 'yorkieteam/yorkie:0.2.20'
     container_name: 'yorkie'
     command: [
       'server',
