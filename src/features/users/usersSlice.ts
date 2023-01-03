@@ -19,6 +19,7 @@ import * as api from 'api';
 import { User, RPCStatusCode } from 'api/types';
 import { RootState } from 'app/store';
 import jwt_decode from 'jwt-decode';
+import * as util from 'utils';
 
 export interface UsersState {
   token: string;
@@ -74,7 +75,7 @@ type JWTPayload = {
 };
 
 const initialState: UsersState = {
-  token: api.getCookie('token'),
+  token: util.getCookie('token') || '',
   isValidToken: false,
   username: '',
   login: {
@@ -114,7 +115,7 @@ export const loginUser = createAsyncThunk<string, LoginFields>('users/login', as
   const token = await api.logIn(username, password);
   // TODO(hackerwins): For security, we need to change the token to be stored in the cookie.
   // For more information, see https://github.com/yorkie-team/dashboard/issues/42.
-  api.setCookie('token', token);
+  util.setCookie('token', token, window.location.hostname);
   return token;
 });
 
@@ -134,7 +135,7 @@ export const usersSlice = createSlice({
   initialState,
   reducers: {
     logoutUser: (state) => {
-      api.setCookie('token', '');
+      util.deleteCookie('token', window.location.hostname);
       api.setToken('');
       state.token = '';
       state.isValidToken = false;
