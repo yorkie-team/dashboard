@@ -39,6 +39,23 @@ import * as converter from './converter';
 
 export * from './types';
 
+// setCookie sets new cookie key-value pair.
+export function setCookie(key: string, value: string) {
+  document.cookie = `${key}=${value}`;
+}
+
+// getCookie returns corresponding value to key parameter.
+export function getCookie(key: string): string {
+  if (document.cookie === '') {
+    return '';
+  }
+  const cookies = document.cookie.split(';').map(pair =>
+    pair.split('=').map(value => value.trim())
+  );
+  const cookie = cookies.find(cookie => cookie[0] === key);
+  return cookie ? cookie[1] : '';
+}
+
 // TODO(hackerwins): Consider combining these two interceptors into one.
 const unaryInterceptor = new DefaultUnaryInterceptor();
 const streamInterceptor = new DefaultStreamInterceptor();

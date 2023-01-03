@@ -74,7 +74,7 @@ type JWTPayload = {
 };
 
 const initialState: UsersState = {
-  token: localStorage.getItem('token') || '',
+  token: api.getCookie('token'),
   isValidToken: false,
   username: '',
   login: {
@@ -114,7 +114,7 @@ export const loginUser = createAsyncThunk<string, LoginFields>('users/login', as
   const token = await api.logIn(username, password);
   // TODO(hackerwins): For security, we need to change the token to be stored in the cookie.
   // For more information, see https://github.com/yorkie-team/dashboard/issues/42.
-  localStorage.setItem('token', token);
+  api.setCookie('token', token);
   return token;
 });
 
@@ -134,7 +134,7 @@ export const usersSlice = createSlice({
   initialState,
   reducers: {
     logoutUser: (state) => {
-      localStorage.removeItem('token');
+      api.setCookie('token', '');
       api.setToken('');
       state.token = '';
       state.isValidToken = false;
