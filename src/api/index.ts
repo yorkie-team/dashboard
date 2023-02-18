@@ -113,6 +113,10 @@ export async function updateProject(id: string, fields: UpdatableProjectFields):
     const authWebhookMethods = new PbProjectFields.AuthWebhookMethods().setMethodsList(fields.authWebhookMethods);
     pbFields.setAuthWebhookMethods(authWebhookMethods);
   }
+  if (fields.clientDeactivateThreshold) {
+    const clientDeactivateThreshold = new PbWrappers.StringValue().setValue(fields.clientDeactivateThreshold);
+    pbFields.setClientDeactivateThreshold(clientDeactivateThreshold);
+  }
 
   req.setFields(pbFields);
   const res = await client.updateProject(req);

@@ -8275,6 +8275,7 @@ proto.yorkie.v1.Project.toObject = function(includeInstance, msg) {
     secretKey: jspb.Message.getFieldWithDefault(msg, 4, ""),
     authWebhookUrl: jspb.Message.getFieldWithDefault(msg, 5, ""),
     authWebhookMethodsList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f,
+    clientDeactivateThreshold: jspb.Message.getFieldWithDefault(msg, 7, ""),
     createdAt: (f = msg.getCreatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     updatedAt: (f = msg.getUpdatedAt()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
@@ -8338,11 +8339,15 @@ proto.yorkie.v1.Project.deserializeBinaryFromReader = function(msg, reader) {
       msg.addAuthWebhookMethods(value);
       break;
     case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setClientDeactivateThreshold(value);
+      break;
+    case 8:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setCreatedAt(value);
       break;
-    case 8:
+    case 9:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setUpdatedAt(value);
@@ -8418,10 +8423,17 @@ proto.yorkie.v1.Project.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getClientDeactivateThreshold();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
+    );
+  }
   f = message.getCreatedAt();
   if (f != null) {
     writer.writeMessage(
-      7,
+      8,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -8429,7 +8441,7 @@ proto.yorkie.v1.Project.serializeBinaryToWriter = function(message, writer) {
   f = message.getUpdatedAt();
   if (f != null) {
     writer.writeMessage(
-      8,
+      9,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
@@ -8565,12 +8577,30 @@ proto.yorkie.v1.Project.prototype.clearAuthWebhookMethodsList = function() {
 
 
 /**
- * optional google.protobuf.Timestamp created_at = 7;
+ * optional string client_deactivate_threshold = 7;
+ * @return {string}
+ */
+proto.yorkie.v1.Project.prototype.getClientDeactivateThreshold = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.yorkie.v1.Project} returns this
+ */
+proto.yorkie.v1.Project.prototype.setClientDeactivateThreshold = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp created_at = 8;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.yorkie.v1.Project.prototype.getCreatedAt = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 7));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 8));
 };
 
 
@@ -8579,7 +8609,7 @@ proto.yorkie.v1.Project.prototype.getCreatedAt = function() {
  * @return {!proto.yorkie.v1.Project} returns this
 */
 proto.yorkie.v1.Project.prototype.setCreatedAt = function(value) {
-  return jspb.Message.setWrapperField(this, 7, value);
+  return jspb.Message.setWrapperField(this, 8, value);
 };
 
 
@@ -8597,17 +8627,17 @@ proto.yorkie.v1.Project.prototype.clearCreatedAt = function() {
  * @return {boolean}
  */
 proto.yorkie.v1.Project.prototype.hasCreatedAt = function() {
-  return jspb.Message.getField(this, 7) != null;
+  return jspb.Message.getField(this, 8) != null;
 };
 
 
 /**
- * optional google.protobuf.Timestamp updated_at = 8;
+ * optional google.protobuf.Timestamp updated_at = 9;
  * @return {?proto.google.protobuf.Timestamp}
  */
 proto.yorkie.v1.Project.prototype.getUpdatedAt = function() {
   return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 8));
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 9));
 };
 
 
@@ -8616,7 +8646,7 @@ proto.yorkie.v1.Project.prototype.getUpdatedAt = function() {
  * @return {!proto.yorkie.v1.Project} returns this
 */
 proto.yorkie.v1.Project.prototype.setUpdatedAt = function(value) {
-  return jspb.Message.setWrapperField(this, 8, value);
+  return jspb.Message.setWrapperField(this, 9, value);
 };
 
 
@@ -8634,7 +8664,7 @@ proto.yorkie.v1.Project.prototype.clearUpdatedAt = function() {
  * @return {boolean}
  */
 proto.yorkie.v1.Project.prototype.hasUpdatedAt = function() {
-  return jspb.Message.getField(this, 8) != null;
+  return jspb.Message.getField(this, 9) != null;
 };
 
 
@@ -8672,7 +8702,8 @@ proto.yorkie.v1.UpdatableProjectFields.toObject = function(includeInstance, msg)
   var f, obj = {
     name: (f = msg.getName()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
     authWebhookUrl: (f = msg.getAuthWebhookUrl()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f),
-    authWebhookMethods: (f = msg.getAuthWebhookMethods()) && proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods.toObject(includeInstance, f)
+    authWebhookMethods: (f = msg.getAuthWebhookMethods()) && proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods.toObject(includeInstance, f),
+    clientDeactivateThreshold: (f = msg.getClientDeactivateThreshold()) && google_protobuf_wrappers_pb.StringValue.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -8723,6 +8754,11 @@ proto.yorkie.v1.UpdatableProjectFields.deserializeBinaryFromReader = function(ms
       var value = new proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods;
       reader.readMessage(value,proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods.deserializeBinaryFromReader);
       msg.setAuthWebhookMethods(value);
+      break;
+    case 4:
+      var value = new google_protobuf_wrappers_pb.StringValue;
+      reader.readMessage(value,google_protobuf_wrappers_pb.StringValue.deserializeBinaryFromReader);
+      msg.setClientDeactivateThreshold(value);
       break;
     default:
       reader.skipField();
@@ -8775,6 +8811,14 @@ proto.yorkie.v1.UpdatableProjectFields.serializeBinaryToWriter = function(messag
       3,
       f,
       proto.yorkie.v1.UpdatableProjectFields.AuthWebhookMethods.serializeBinaryToWriter
+    );
+  }
+  f = message.getClientDeactivateThreshold();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      google_protobuf_wrappers_pb.StringValue.serializeBinaryToWriter
     );
   }
 };
@@ -9044,6 +9088,43 @@ proto.yorkie.v1.UpdatableProjectFields.prototype.clearAuthWebhookMethods = funct
  */
 proto.yorkie.v1.UpdatableProjectFields.prototype.hasAuthWebhookMethods = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional google.protobuf.StringValue client_deactivate_threshold = 4;
+ * @return {?proto.google.protobuf.StringValue}
+ */
+proto.yorkie.v1.UpdatableProjectFields.prototype.getClientDeactivateThreshold = function() {
+  return /** @type{?proto.google.protobuf.StringValue} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_wrappers_pb.StringValue, 4));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.StringValue|undefined} value
+ * @return {!proto.yorkie.v1.UpdatableProjectFields} returns this
+*/
+proto.yorkie.v1.UpdatableProjectFields.prototype.setClientDeactivateThreshold = function(value) {
+  return jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.yorkie.v1.UpdatableProjectFields} returns this
+ */
+proto.yorkie.v1.UpdatableProjectFields.prototype.clearClientDeactivateThreshold = function() {
+  return this.setClientDeactivateThreshold(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.yorkie.v1.UpdatableProjectFields.prototype.hasClientDeactivateThreshold = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 

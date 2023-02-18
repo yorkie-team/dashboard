@@ -54,6 +54,7 @@ export type ProjectUpdateFields = {
   name: string;
   authWebhookURL: string;
   authWebhookMethods: Array<AuthWebhookMethod>;
+  clientDeactivateThreshold: string;
 };
 
 const initialState: ProjectsState = {
@@ -209,6 +210,11 @@ export const projectsSlice = createSlice({
           } else if (field === 'AuthWebhookMethods') {
             state.update.error = {
               target: 'authWebhookMethods',
+              message: description,
+            };
+          } else if (field === 'ClientDeactivateThreshold') {
+            state.update.error = {
+              target: 'clientDeactivateThreshold',
               message: description,
             };
           }

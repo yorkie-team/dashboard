@@ -54,6 +54,7 @@ export function Settings() {
       name: '',
       authWebhookURL: '',
       authWebhookMethods: [],
+      clientDeactivateThreshold: '',
     },
   });
 
@@ -66,6 +67,10 @@ export function Settings() {
     control,
     name: 'authWebhookMethods',
   });
+  const { field: clientDeactivateThreshold, fieldState: clientDeactivateThresholdState } = useController({ 
+    control, 
+    name: 'clientDeactivateThreshold',
+   });
   const checkFieldState = useCallback(
     (fieldName: keyof UpdatableProjectFields | AuthWebhookMethod, state: 'success' | 'error'): boolean => {
       return updateFieldInfo.target === fieldName && updateFieldInfo.state === state;
@@ -81,6 +86,7 @@ export function Settings() {
       name: project?.name || '',
       authWebhookURL: project?.authWebhookURL || '',
       authWebhookMethods: project?.authWebhookMethods || [],
+      clientDeactivateThreshold: project?.clientDeactivateThreshold || '',
     });
   }, [reset, project]);
 
@@ -103,21 +109,21 @@ export function Settings() {
   );
 
   useEffect(() => {
-    if (updateFieldInfo.state !== 'success' && !nameFieldState.error && !webhookURLFieldState.error) {
+    if (updateFieldInfo.state !== 'success' && !nameFieldState.error && !webhookURLFieldState.error && !clientDeactivateThresholdState.error) {
       setUpdateFieldInfo((info) => ({
         ...info,
         state: null,
       }));
       return;
     }
-    if (nameFieldState.error || webhookURLFieldState.error) {
+    if (nameFieldState.error || webhookURLFieldState.error || clientDeactivateThresholdState.error) {
       setUpdateFieldInfo((info) => ({
         ...info,
         state: 'error',
         message: formErrors[updateFieldInfo.target as keyof UpdatableProjectFields]?.message || '',
       }));
     }
-  }, [formErrors, updateFieldInfo.state, updateFieldInfo.target, nameFieldState.error, webhookURLFieldState.error]);
+  }, [formErrors, updateFieldInfo.state, updateFieldInfo.target, nameFieldState.error, webhookURLFieldState.error, clientDeactivateThresholdState.error]);
 
   useEffect(() => {
     if (isSuccess) {
@@ -146,6 +152,7 @@ export function Settings() {
         navList={[
           { name: 'General', id: 'general' },
           { name: 'Webhook', id: 'webhook' },
+          { name: 'Advanced', id: 'advanced' },
         ]}
       />
       <div className="box_right">
@@ -287,6 +294,62 @@ export function Settings() {
                     </div>
                   );
                 })}
+              </dd>
+            </dl>
+          </div>
+          <div className="section setting_box" id="advanced">
+            <div className="setting_title">
+              <strong className="text">Advanced</strong>
+            </div>
+            <dl className="sub_info">
+              <dt className="sub_title">Client Deactivate Threshold</dt>
+              <dd className="sub_desc">
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: checkFieldState('clientDeactivateThreshold', 'error'),
+                    is_success: checkFieldState('clientDeactivateThreshold', 'success'),
+                  })}
+                >
+                  <InputTextField
+                    reset={() => {
+                      resetForm();
+                      resetUpdateFieldInfo();
+                    }}
+                    {...register('clientDeactivateThreshold', {
+                      required: 'Client Deactivate Threshold is required',
+                      pattern: {
+                        value: /^(\d{1,2}h\s?)?(\d{1,2}m\s?)?(\d{1,2}s)?$/,
+                        message:
+                        'Client Deactivate Threshold should be a signed sequence of decimal numbers, each with a unit suffix, such as "23h30m10s" or "2h45m"',
+                      },
+                      onChange: async () => {
+                        await trigger('clientDeactivateThreshold');
+                      },
+                    })}
+                    onChange={(e) => {
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'clientDeactivateThreshold' }));
+                      clientDeactivateThreshold.onChange(e.target.value);
+                    }}
+                    id="clientDeactivateThreshold"
+                    label="clientDeactivateThreshold"
+                    blindLabel={true}
+                    fieldUtil={true}
+                    placeholder={'24h00m00s'}
+                    state={
+                      checkFieldState('clientDeactivateThreshold', 'success')
+                        ? 'success'
+                        : checkFieldState('clientDeactivateThreshold', 'error')
+                        ? 'error'
+                        : undefined
+                    }
+                    helperText={
+                      updateFieldInfo.target === 'clientDeactivateThreshold' && updateFieldInfo.state !== null
+                        ? updateFieldInfo.message
+                        : undefined
+                    }
+                    onSuccessEnd={resetUpdateFieldInfo}
+                  />
+                </div>
               </dd>
             </dl>
           </div>
