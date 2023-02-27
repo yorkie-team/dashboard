@@ -39,6 +39,7 @@ export type Project = {
   name: string;
   authWebhookURL: string;
   authWebhookMethods: Array<AuthWebhookMethod>;
+  clientDeactivateThreshold: string;
   publicKey: string;
   secretKey: string;
   createdAt: number;
@@ -48,6 +49,7 @@ export type UpdatableProjectFields = {
   name?: string;
   authWebhookURL?: string;
   authWebhookMethods?: Array<AuthWebhookMethod>;
+  clientDeactivateThreshold?: string;
 };
 
 export type AuthWebhookMethod =

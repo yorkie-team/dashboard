@@ -45,6 +45,7 @@ export function fromProject(pbProject: PbProject): Project {
     createdAt: fromTimestamp(pbProject.getCreatedAt()!),
     authWebhookURL: pbProject.getAuthWebhookUrl(),
     authWebhookMethods: pbProject.getAuthWebhookMethodsList() as Array<AuthWebhookMethod>,
+    clientDeactivateThreshold: pbProject.getClientDeactivateThreshold(),
   };
 }
 
