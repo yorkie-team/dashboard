@@ -102,7 +102,7 @@ export function ProjectList() {
   const dispatch = useAppDispatch();
   const [projects, setProjects] = useState<Array<Project>>([]);
   const { projects: allProjects, status } = useAppSelector(selectProjectList);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState<string | null>(null);
   const [viewType, setViewType] = useState<'list' | 'card'>('card');
   const [sortOpened, setSortOpened] = useState(false);
   const [sortOption, setSortOption] = useState<typeof SORT_OPTION[keyof typeof SORT_OPTION]>(SORT_OPTION.createdAt);
@@ -122,8 +122,9 @@ export function ProjectList() {
   const handleSearch = useCallback(
     (e) => {
       e.preventDefault();
-      const results = allProjects.filter((project) => project.name.includes(query));
+      const results = allProjects.filter((project) => project.name.includes(query ?? ''));
       handleProjectSort(results, sortOption);
+      setQuery('');
     },
     [query, allProjects, handleProjectSort, sortOption],
   );
@@ -177,10 +178,10 @@ export function ProjectList() {
         </div>
         <div className="search_area">
           <SearchBar
-            placeholder="Search Projects"
+            placeholder={`Search ${query === null ? 'Projects' : projects.length + ' projects'}`}
             autoComplete="off"
             onChange={handleChangeQuery}
-            value={query}
+            value={query ?? ''}
             onSubmit={handleSearch}
           />
           <div className="filter">

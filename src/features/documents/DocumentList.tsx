@@ -29,7 +29,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
   const documentKey = params.documentKey || '';
   const { type: queryType, documents, hasPrevious, hasNext, status } = useAppSelector(selectDocumentList);
 
-  const [query, SetQuery] = useState('');
+  const [query, SetQuery] = useState<string | null>(null);
   const handleChangeQuery = useCallback((e) => {
     SetQuery(e.target.value);
   }, []);
@@ -58,7 +58,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
   const handleSearch = useCallback(
     (e) => {
       e.preventDefault();
-      if (query === '') {
+      if (query === null || query === '') {
         dispatch(listDocumentsAsync({ projectName, isForward: false }));
         return;
       }
@@ -69,6 +69,8 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
           documentQuery: query,
         }),
       );
+
+      SetQuery('');
     },
     [dispatch, projectName, query],
   );
@@ -80,10 +82,10 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
   return (
     <>
       <SearchBar
-        placeholder="Search Documents"
+        placeholder={`Search ${query === null ? 'Documents' : documents.length + ' documents'}`}
         autoComplete="off"
         onChange={handleChangeQuery}
-        value={query}
+        value={query ?? ''}
         onSubmit={handleSearch}
       />
       <div className="document_table">
