@@ -15,7 +15,7 @@
  */
 
 import React, { useState, useCallback, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import * as moment from 'moment';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
@@ -28,6 +28,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
   const projectName = params.projectName || '';
   const documentKey = params.documentKey || '';
   const { type: queryType, documents, hasPrevious, hasNext, status } = useAppSelector(selectDocumentList);
+  const previouseProjectName = useLocation().state?.previousProjectName;
 
   const [query, SetQuery] = useState<string | null>(null);
   const handleChangeQuery = useCallback((e) => {
@@ -76,8 +77,10 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
   );
 
   useEffect(() => {
+    if (previouseProjectName === projectName) return;
+
     dispatch(listDocumentsAsync({ projectName, isForward: false }));
-  }, [dispatch, projectName]);
+  }, [dispatch, previouseProjectName, projectName]);
 
   return (
     <>
@@ -151,7 +154,11 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
               const { key, updatedAt } = document;
               return (
                 <li key={key} className="tbody_item">
-                  <Link to={`./${key}`} className={classNames('link', { is_active: key === documentKey })}>
+                  <Link
+                    to={`./${key}`}
+                    state={{ previousProjectName: projectName }}
+                    className={classNames('link', { is_active: key === documentKey })}
+                  >
                     <span className="td id">{key}</span>
                     {!isDetailOpen && (
                       <span className="td updated">{moment.unix(updatedAt).format('MMM D, H:mm')}</span>

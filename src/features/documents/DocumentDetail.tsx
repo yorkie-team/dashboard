@@ -16,7 +16,7 @@
 
 import React, { useEffect, useState } from 'react';
 import * as moment from 'moment';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectDocumentDetail, getDocumentAsync } from './documentsSlice';
 import { Icon, Button, CodeBlock, CopyButton } from 'components';
@@ -44,7 +44,9 @@ export function DocumentDetail() {
     <div className="detail_content">
       <div className="document_header">
         <div className="title_box">
-          <Button href="../" className="btn_back" icon={<Icon type="arrowBack" />} as="link" />
+          <Link to="../" state={{ previousProjectName: projectName }} className="btn_back">
+            <Icon type="arrowBack" />
+          </Link>
           <div className="title_inner">
             <strong className="title">{document?.key}</strong>
             <span className="date">{moment.unix(document?.updatedAt!).format('MMM D, H:mm')}</span>
