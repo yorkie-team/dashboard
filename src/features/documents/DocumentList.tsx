@@ -28,7 +28,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
   const projectName = params.projectName || '';
   const documentKey = params.documentKey || '';
   const { type: queryType, documents, hasPrevious, hasNext, status } = useAppSelector(selectDocumentList);
-  const previouseProjectName = useLocation().state?.previousProjectName;
+  const previousProjectName = useLocation().state?.previousProjectName;
 
   const [query, SetQuery] = useState<string | null>(null);
   const handleChangeQuery = useCallback((e) => {
@@ -77,10 +77,10 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
   );
 
   useEffect(() => {
-    if (previouseProjectName === projectName) return;
+    if (previousProjectName === projectName) return;
 
     dispatch(listDocumentsAsync({ projectName, isForward: false }));
-  }, [dispatch, previouseProjectName, projectName]);
+  }, [dispatch, previousProjectName, projectName]);
 
   return (
     <>
