@@ -93,7 +93,7 @@ export function Preferences() {
             onChange={handleClockInputChanged}
           />
           <span className="time">
-            {use24HourClock ? '01:00:00 PM' : '13:00:00'}
+            {use24HourClock ? '13:00:00': '01:00:00 PM'}
           </span>
         </dd>
       </dl>
