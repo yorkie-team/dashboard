@@ -163,7 +163,9 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
                   >
                     <span className="td id">{key}</span>
                     {!isDetailOpen && (
-                      <span className="td updated">{moment.unix(updatedAt).format(`${use24HourClock ? 'MMM D, H:mm' : 'MMM D, h:mm'}`)}</span>
+                      <span className="td updated">
+                        {moment.unix(updatedAt).format(`${use24HourClock ? 'MMM D, H:mm' : 'MMM D, h:mm A'}`)}
+                      </span>
                     )}
                   </Link>
                 </li>
