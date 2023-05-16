@@ -17,12 +17,7 @@
 import React, { useCallback } from 'react';
 import { InputToggle } from 'components';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import {
-  selectPreferences,
-  toggleUseSystemTheme,
-  toggleUseDarkTheme,
-  toggleUse24HourClock,
-} from './usersSlice';
+import { selectPreferences, toggleUseSystemTheme, toggleUseDarkTheme, toggleUse24HourClock } from './usersSlice';
 
 export function Preferences() {
   const dispatch = useAppDispatch();
@@ -92,9 +87,7 @@ export function Preferences() {
             checked={use24HourClock}
             onChange={handleClockInputChanged}
           />
-          <span className="time">
-            {use24HourClock ? '13:00:00': '01:00:00 PM'}
-          </span>
+          <span className="time">{use24HourClock ? '13:00' : '1:00 PM'}</span>
         </dd>
       </dl>
     </div>
