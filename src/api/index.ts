@@ -42,7 +42,7 @@ export * from './types';
 // TODO(hackerwins): Consider combining these two interceptors into one.
 const unaryInterceptor = new DefaultUnaryInterceptor();
 const streamInterceptor = new DefaultStreamInterceptor();
-const client = new AdminServicePromiseClient(`${process.env.REACT_APP_ADMIN_ADDR}`, null, {
+const client = new AdminServicePromiseClient(`${process.env.REACT_APP_API_ADDR}`, null, {
   unaryInterceptors: [unaryInterceptor],
   streamInterceptors: [streamInterceptor],
 });
