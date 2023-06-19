@@ -64,6 +64,13 @@ export class AdminServiceClient {
                response: yorkie_v1_admin_pb.GetDocumentResponse) => void
   ): grpcWeb.ClientReadableStream<yorkie_v1_admin_pb.GetDocumentResponse>;
 
+  removeDocumentByAdmin(
+    request: yorkie_v1_admin_pb.RemoveDocumentByAdminRequest,
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.RpcError,
+               response: yorkie_v1_admin_pb.RemoveDocumentByAdminResponse) => void
+  ): grpcWeb.ClientReadableStream<yorkie_v1_admin_pb.RemoveDocumentByAdminResponse>;
+
   getSnapshotMeta(
     request: yorkie_v1_admin_pb.GetSnapshotMetaRequest,
     metadata: grpcWeb.Metadata | undefined,
@@ -131,6 +138,11 @@ export class AdminServicePromiseClient {
     request: yorkie_v1_admin_pb.GetDocumentRequest,
     metadata?: grpcWeb.Metadata
   ): Promise<yorkie_v1_admin_pb.GetDocumentResponse>;
+
+  removeDocumentByAdmin(
+    request: yorkie_v1_admin_pb.RemoveDocumentByAdminRequest,
+    metadata?: grpcWeb.Metadata
+  ): Promise<yorkie_v1_admin_pb.RemoveDocumentByAdminResponse>;
 
   getSnapshotMeta(
     request: yorkie_v1_admin_pb.GetSnapshotMetaRequest,
