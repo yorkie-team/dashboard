@@ -19,7 +19,7 @@ import { Link, useLocation, useParams } from 'react-router-dom';
 import * as moment from 'moment';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { selectDocumentList, listDocumentsAsync, searchDocumentsAsync } from './documentsSlice';
+import { selectDocumentList, listDocumentsAsync, searchDocumentsAsync, removeDocumentByAdminAsync } from './documentsSlice';
 import { Button, SearchBar, Icon } from 'components';
 import { selectPreferences } from 'features/users/usersSlice';
 
@@ -78,6 +78,16 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
     [dispatch, projectName, query],
   );
 
+  const handleRemoveBtnClicked = useCallback(
+    (e, documentKey: string) => {
+      e.preventDefault();
+      const forceRemoveIfAttached = false;
+      dispatch(removeDocumentByAdminAsync({ projectName, documentKey, forceRemoveIfAttached }));
+
+      window.location.reload();
+
+  },[dispatch, projectName]);
+
   useEffect(() => {
     if (previousProjectName === projectName) return;
 
@@ -98,6 +108,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
           <div className="thead">
             <span className="th id">Document ID</span>
             <span className="th updated">Last updated</span>
+            <span className="th"></span>
           </div>
         )}
         {status === 'loading' && (
@@ -168,6 +179,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
                       </span>
                     )}
                   </Link>
+                  <Button onClick={(e:Event) => {handleRemoveBtnClicked(e, key)}} icon={<Icon type="trash" />}></Button>
                 </li>
               );
             })}

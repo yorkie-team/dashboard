@@ -29,6 +29,7 @@ import {
   SearchDocumentsRequest,
   ListChangesRequest,
   GetSnapshotMetaRequest,
+  RemoveDocumentByAdminRequest,
 } from './yorkie/v1/admin_pb';
 import { UpdatableProjectFields as PbProjectFields } from './yorkie/v1/resources_pb';
 import * as PbWrappers from 'google-protobuf/google/protobuf/wrappers_pb';
@@ -212,4 +213,17 @@ export async function listDocumentHistories(
     });
   }
   return histories;
+}
+
+// removeDocumentByAdmin removes the document of the given document.
+export async function removeDocumentByAdmin(
+  projectName: string, 
+  documentKey: string,
+  forceRemoveIfAttached: boolean,
+): Promise<void> {
+  const req = new RemoveDocumentByAdminRequest();
+  req.setProjectName(projectName);
+  req.setDocumentKey(documentKey);
+  req.setForceRemoveIfAttached(false);
+  await client.removeDocumentByAdmin(req);
 }

@@ -690,6 +690,67 @@ proto.yorkie.v1.AdminServicePromiseClient.prototype.searchDocuments =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
+ *   !proto.yorkie.v1.RemoveDocumentByAdminRequest,
+ *   !proto.yorkie.v1.RemoveDocumentByAdminResponse>}
+ */
+const methodDescriptor_AdminService_RemoveDocumentByAdmin = new grpc.web.MethodDescriptor(
+  '/yorkie.v1.AdminService/RemoveDocumentByAdmin',
+  grpc.web.MethodType.UNARY,
+  proto.yorkie.v1.RemoveDocumentByAdminRequest,
+  proto.yorkie.v1.RemoveDocumentByAdminResponse,
+  /**
+   * @param {!proto.yorkie.v1.RemoveDocumentByAdminRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.yorkie.v1.RemoveDocumentByAdminResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.yorkie.v1.RemoveDocumentByAdminRequest} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.yorkie.v1.RemoveDocumentByAdminResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.yorkie.v1.RemoveDocumentByAdminResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.yorkie.v1.AdminServiceClient.prototype.removeDocumentByAdmin =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/yorkie.v1.AdminService/RemoveDocumentByAdmin',
+      request,
+      metadata || {},
+      methodDescriptor_AdminService_RemoveDocumentByAdmin,
+      callback);
+};
+
+
+/**
+ * @param {!proto.yorkie.v1.RemoveDocumentByAdminRequest} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.yorkie.v1.RemoveDocumentByAdminResponse>}
+ *     Promise that resolves to the response
+ */
+proto.yorkie.v1.AdminServicePromiseClient.prototype.removeDocumentByAdmin =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/yorkie.v1.AdminService/RemoveDocumentByAdmin',
+      request,
+      metadata || {},
+      methodDescriptor_AdminService_RemoveDocumentByAdmin);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
  *   !proto.yorkie.v1.ListChangesRequest,
  *   !proto.yorkie.v1.ListChangesResponse>}
  */

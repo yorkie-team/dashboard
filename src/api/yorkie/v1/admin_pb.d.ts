@@ -331,6 +331,46 @@ export namespace GetDocumentResponse {
   }
 }
 
+export class RemoveDocumentByAdminRequest extends jspb.Message {
+  getProjectName(): string;
+  setProjectName(value: string): RemoveDocumentByAdminRequest;
+
+  getDocumentKey(): string;
+  setDocumentKey(value: string): RemoveDocumentByAdminRequest;
+
+  getForceRemoveIfAttached(): boolean;
+  setForceRemoveIfAttached(value: boolean): RemoveDocumentByAdminRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoveDocumentByAdminRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveDocumentByAdminRequest): RemoveDocumentByAdminRequest.AsObject;
+  static serializeBinaryToWriter(message: RemoveDocumentByAdminRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveDocumentByAdminRequest;
+  static deserializeBinaryFromReader(message: RemoveDocumentByAdminRequest, reader: jspb.BinaryReader): RemoveDocumentByAdminRequest;
+}
+
+export namespace RemoveDocumentByAdminRequest {
+  export type AsObject = {
+    projectName: string,
+    documentKey: string,
+    forceRemoveIfAttached: boolean,
+  }
+}
+
+export class RemoveDocumentByAdminResponse extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoveDocumentByAdminResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveDocumentByAdminResponse): RemoveDocumentByAdminResponse.AsObject;
+  static serializeBinaryToWriter(message: RemoveDocumentByAdminResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveDocumentByAdminResponse;
+  static deserializeBinaryFromReader(message: RemoveDocumentByAdminResponse, reader: jspb.BinaryReader): RemoveDocumentByAdminResponse;
+}
+
+export namespace RemoveDocumentByAdminResponse {
+  export type AsObject = {
+  }
+}
+
 export class GetSnapshotMetaRequest extends jspb.Message {
   getProjectName(): string;
   setProjectName(value: string): GetSnapshotMetaRequest;
