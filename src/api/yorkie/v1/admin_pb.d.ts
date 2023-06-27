@@ -338,6 +338,9 @@ export class RemoveDocumentByAdminRequest extends jspb.Message {
   getDocumentKey(): string;
   setDocumentKey(value: string): RemoveDocumentByAdminRequest;
 
+  getForce(): boolean;
+  setForce(value: boolean): RemoveDocumentByAdminRequest;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RemoveDocumentByAdminRequest.AsObject;
   static toObject(includeInstance: boolean, msg: RemoveDocumentByAdminRequest): RemoveDocumentByAdminRequest.AsObject;
@@ -350,6 +353,7 @@ export namespace RemoveDocumentByAdminRequest {
   export type AsObject = {
     projectName: string,
     documentKey: string,
+    force: boolean,
   }
 }
 
