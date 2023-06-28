@@ -150,13 +150,9 @@ export const listDocumentHistoriesAsync = createAsyncThunk(
 
 export const removeDocumentByAdminAsync = createAsyncThunk(
   'documents/removeDocumentByAdmin',
-  async (params: { 
-    projectName: string; 
-    documentKey: string;
-    force: boolean;
-  }): Promise<void> => {
+  async (params: { projectName: string; documentKey: string; force: boolean }): Promise<void> => {
     const { projectName, documentKey, force } = params;
-    await removeDocumentByAdmin(projectName, documentKey, force);  
+    await removeDocumentByAdmin(projectName, documentKey, force);
   },
 );
 

@@ -217,13 +217,13 @@ export async function listDocumentHistories(
 
 // removeDocumentByAdmin removes the document of the given document.
 export async function removeDocumentByAdmin(
-  projectName: string, 
+  projectName: string,
   documentKey: string,
   forceRemoveIfAttached: boolean,
 ): Promise<void> {
   const req = new RemoveDocumentByAdminRequest();
   req.setProjectName(projectName);
   req.setDocumentKey(documentKey);
-  req.setForce(false);
+  req.setForce(true);
   await client.removeDocumentByAdmin(req);
 }

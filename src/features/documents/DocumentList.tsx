@@ -19,8 +19,13 @@ import { Link, useLocation, useParams } from 'react-router-dom';
 import * as moment from 'moment';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { selectDocumentList, listDocumentsAsync, searchDocumentsAsync, removeDocumentByAdminAsync } from './documentsSlice';
-import { Button, SearchBar, Icon } from 'components';
+import {
+  selectDocumentList,
+  listDocumentsAsync,
+  searchDocumentsAsync,
+  removeDocumentByAdminAsync,
+} from './documentsSlice';
+import { Button, SearchBar, Icon, Checkbox } from 'components';
 import { selectPreferences } from 'features/users/usersSlice';
 
 export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean }) {
@@ -31,6 +36,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
   const { type: queryType, documents, hasPrevious, hasNext, status } = useAppSelector(selectDocumentList);
   const { use24HourClock } = useAppSelector(selectPreferences);
   const previousProjectName = useLocation().state?.previousProjectName;
+  const [selectedDocKeys, setSelectedDocKeys] = useState<Array<string>>([]);
 
   const [query, SetQuery] = useState<string | null>(null);
   const handleChangeQuery = useCallback((e) => {
@@ -78,16 +84,6 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
     [dispatch, projectName, query],
   );
 
-  const handleRemoveBtnClicked = useCallback(
-    (e, documentKey: string) => {
-      e.preventDefault();
-      const force = false;
-      dispatch(removeDocumentByAdminAsync({ projectName, documentKey, force }));
-
-      window.location.reload();
-
-  },[dispatch, projectName]);
-
   useEffect(() => {
     if (previousProjectName === projectName) return;
 
@@ -102,13 +98,52 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
         onChange={handleChangeQuery}
         value={query ?? ''}
         onSubmit={handleSearch}
-      />
-      <div className="document_table">
+      >
+        {selectedDocKeys.length && (
+          <Button.Box>
+            <Button
+              icon={<Icon type="trash" />}
+              outline={false}
+              size="sm"
+              onClick={async () => {
+                await Promise.all(
+                  selectedDocKeys.map((docKey) =>
+                    dispatch(removeDocumentByAdminAsync({ projectName, documentKey: docKey, force: false })),
+                  ),
+                );
+                setSelectedDocKeys([]);
+                // TODO(hackerwins): need to keep the current page after deleting documents.
+                dispatch(listDocumentsAsync({ projectName, isForward: false }));
+              }}
+            >
+              Delete
+            </Button>
+            <Button icon={<Icon type="close" />} outline={false} size="sm" onClick={() => setSelectedDocKeys([])}>
+              Cancel
+            </Button>
+          </Button.Box>
+        )}
+      </SearchBar>
+      <div className="document_table is_edit">
         {!isDetailOpen && (
           <div className="thead">
-            <span className="th id">Document ID</span>
-            <span className="th updated">Last updated</span>
-            <span className="th"></span>
+            <span className="th id">Document Key</span>
+            <span className="th updated">Last Updated</span>
+            <span className="th select">
+              <button
+                className="btn_all_check"
+                onClick={() => {
+                  if (selectedDocKeys.length === documents.length) {
+                    setSelectedDocKeys([]);
+                    return;
+                  }
+
+                  setSelectedDocKeys(documents.map((doc) => doc.key));
+                }}
+              >
+                {documents.length ? 'Select All' : ''}
+              </button>
+            </span>
           </div>
         )}
         {status === 'loading' && (
@@ -179,7 +214,22 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
                       </span>
                     )}
                   </Link>
-                  <Button onClick={(e:Event) => {handleRemoveBtnClicked(e, key)}} icon={<Icon type="trash" />}></Button>
+                  {!isDetailOpen && (
+                    <span className="td select">
+                      <Checkbox
+                        id={key}
+                        onChange={() => {
+                          setSelectedDocKeys((prev) => {
+                            if (prev.includes(key)) {
+                              return prev.filter((item) => item !== key);
+                            }
+                            return [...prev, key];
+                          });
+                        }}
+                        checked={selectedDocKeys.includes(key)}
+                      />
+                    </span>
+                  )}
                 </li>
               );
             })}
