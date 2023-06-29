@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 The Yorkie Authors. All rights reserved.
+ * Copyright 2023 The Yorkie Authors. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,24 +17,26 @@
 import React from 'react';
 import { Icon } from 'components';
 
-export function SearchBar({
-  placeholder,
-  onSubmit,
-  children,
+export function Checkbox({
+  id,
+  checked,
+  onChange,
+  className,
   ...restProps
 }: {
-  placeholder: string;
-  onSubmit?: React.FormEventHandler<HTMLFormElement>;
+  id: string;
+  checked: boolean;
+  className?: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
 } & React.InputHTMLAttributes<HTMLInputElement>) {
   return (
-    <form onSubmit={onSubmit} className="search">
-      <div className="input_field_box">
-        <div className="input_inner">
-          <Icon type="search" className="icon_search" />
-          <input type="search" className="input" placeholder={placeholder} {...restProps} />
-          {children}
-        </div>
-      </div>
-    </form>
+    <label className="input_check_box is_large">
+      <input type="checkbox" className="blind" id={id} onChange={onChange} checked={checked} />
+      <em className="checkbox_ui">
+        <span className="check">
+          <Icon type="check" />
+        </span>
+      </em>
+    </label>
   );
 }

@@ -3025,7 +3025,8 @@ proto.yorkie.v1.RemoveDocumentByAdminRequest.prototype.toObject = function(opt_i
 proto.yorkie.v1.RemoveDocumentByAdminRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     projectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    documentKey: jspb.Message.getFieldWithDefault(msg, 2, "")
+    documentKey: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    force: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -3070,6 +3071,10 @@ proto.yorkie.v1.RemoveDocumentByAdminRequest.deserializeBinaryFromReader = funct
       var value = /** @type {string} */ (reader.readString());
       msg.setDocumentKey(value);
       break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setForce(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -3113,6 +3118,13 @@ proto.yorkie.v1.RemoveDocumentByAdminRequest.serializeBinaryToWriter = function(
       f
     );
   }
+  f = message.getForce();
+  if (f) {
+    writer.writeBool(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -3149,6 +3161,24 @@ proto.yorkie.v1.RemoveDocumentByAdminRequest.prototype.getDocumentKey = function
  */
 proto.yorkie.v1.RemoveDocumentByAdminRequest.prototype.setDocumentKey = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional bool force = 3;
+ * @return {boolean}
+ */
+proto.yorkie.v1.RemoveDocumentByAdminRequest.prototype.getForce = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.yorkie.v1.RemoveDocumentByAdminRequest} returns this
+ */
+proto.yorkie.v1.RemoveDocumentByAdminRequest.prototype.setForce = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 

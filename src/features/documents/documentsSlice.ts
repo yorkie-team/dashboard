@@ -23,6 +23,7 @@ import {
   searchDocuments,
   listDocumentHistories,
   DocumentHistory,
+  removeDocumentByAdmin,
 } from 'api';
 
 export interface DocumentsState {
@@ -144,6 +145,14 @@ export const listDocumentHistoriesAsync = createAsyncThunk(
       pageSize: HISTORIES_LIMIT,
       reverse: true,
     });
+  },
+);
+
+export const removeDocumentByAdminAsync = createAsyncThunk(
+  'documents/removeDocumentByAdmin',
+  async (params: { projectName: string; documentKey: string; force: boolean }): Promise<void> => {
+    const { projectName, documentKey, force } = params;
+    await removeDocumentByAdmin(projectName, documentKey, force);
   },
 );
 

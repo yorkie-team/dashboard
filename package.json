@@ -68,6 +68,7 @@
         {
           "strings": false,
           "skipWords": [
+            "checkbox",
             "req",
             "pb",
             "nanos",
