@@ -18,8 +18,8 @@ import React, { useEffect, useState } from 'react';
 import * as moment from 'moment';
 import { Link, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { selectDocumentDetail, getDocumentAsync } from './documentsSlice';
-import { Icon, Button, CodeBlock, CopyButton } from 'components';
+import { selectDocumentDetail, getDocumentAsync, removeDocumentByAdminAsync } from './documentsSlice';
+import { Icon, Button, CodeBlock, CopyButton, Popover, Dropdown } from 'components';
 
 export function DocumentDetail() {
   const { document } = useAppSelector(selectDocumentDetail);
@@ -30,6 +30,7 @@ export function DocumentDetail() {
   const documentJSON = document ? JSON.parse(document.snapshot) : {};
   const documentJSONStr = JSON.stringify(documentJSON, null, '\t');
   const [viewType, SetViewType] = useState('code');
+  const [opened, setOpened] = useState(false);
 
   useEffect(() => {
     dispatch(
@@ -51,6 +52,36 @@ export function DocumentDetail() {
             <strong className="title">{document?.key}</strong>
             <span className="date">{moment.unix(document?.updatedAt!).format('MMM D, H:mm')}</span>
           </div>
+
+          <Popover opened={opened} onChange={setOpened}>
+            <Popover.Target>
+              <button type="button" className="btn_title">
+                <Icon type="gnbMenu"/>
+              </button>
+            </Popover.Target>
+            <Popover.Dropdown>
+              <Dropdown>
+                <Dropdown.Title>More Options</Dropdown.Title>
+                <Dropdown.List>
+                  <Dropdown.Item as="link" href={`/projects/${projectName}/documents`}>
+                    <Button.Box>
+                      <Button
+                        icon={<Icon type="trash" />}
+                        outline={false}
+                        size="sm"
+                        onClick={async () => {
+                          await dispatch(removeDocumentByAdminAsync({ projectName, documentKey: documentKey, force: false }))
+                        }}
+                      >
+                        Delete
+                      </Button>
+                    </Button.Box>
+                  </Dropdown.Item>
+                </Dropdown.List>
+              </Dropdown>
+            </Popover.Dropdown>
+          </Popover>
+
         </div>
       </div>
       <div className="codeblock_header">
