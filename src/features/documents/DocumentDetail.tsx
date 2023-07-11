@@ -16,12 +16,13 @@
 
 import React, { useEffect, useState } from 'react';
 import * as moment from 'moment';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { selectDocumentDetail, getDocumentAsync } from './documentsSlice';
-import { Icon, Button, CodeBlock, CopyButton } from 'components';
+import { selectDocumentDetail, getDocumentAsync, removeDocumentByAdminAsync } from './documentsSlice';
+import { Icon, Button, CodeBlock, CopyButton, Popover, Dropdown } from 'components';
 
 export function DocumentDetail() {
+  const navigate = useNavigate();
   const { document } = useAppSelector(selectDocumentDetail);
   const dispatch = useAppDispatch();
   const params = useParams();
@@ -30,6 +31,7 @@ export function DocumentDetail() {
   const documentJSON = document ? JSON.parse(document.snapshot) : {};
   const documentJSONStr = JSON.stringify(documentJSON, null, '\t');
   const [viewType, SetViewType] = useState('code');
+  const [opened, setOpened] = useState(false);
 
   useEffect(() => {
     dispatch(
@@ -51,6 +53,31 @@ export function DocumentDetail() {
             <strong className="title">{document?.key}</strong>
             <span className="date">{moment.unix(document?.updatedAt!).format('MMM D, H:mm')}</span>
           </div>
+
+          <Popover opened={opened} onChange={setOpened}>
+            <Popover.Target>
+              <button type="button" className="btn btn_more">
+                <Icon type="moreLarge" />
+              </button>
+            </Popover.Target>
+            <Popover.Dropdown>
+              <Dropdown>
+                <Dropdown.Title>More Options</Dropdown.Title>
+                <Dropdown.List>
+                  <Dropdown.Item
+                    onClick={async () => {
+                      await dispatch(
+                        removeDocumentByAdminAsync({ projectName, documentKey: documentKey, force: false }),
+                      );
+                      navigate(`..`, { replace: true });
+                    }}
+                  >
+                    <Dropdown.Text highlight>Delete Document</Dropdown.Text>
+                  </Dropdown.Item>
+                </Dropdown.List>
+              </Dropdown>
+            </Popover.Dropdown>
+          </Popover>
         </div>
       </div>
       <div className="codeblock_header">
