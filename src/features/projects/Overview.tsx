@@ -33,16 +33,14 @@ async function main() {
     apiKey: '${project?.publicKey}',
   });
   await client.activate();
-  client.subscribe((event) => {
-    if (event.type === 'peers-changed') {
-      const peers = client.getPeersByDocKey(doc.getKey());
-      // Add element to HTML as shown below:
-      // <div>There are currently <span id='peersCount'></span> peers!</div>
-      document.getElementById('peersCount').innerHTML = peers.length;
-    }
-  });
 
   const doc = new yorkie.Document('my-first-document');
+  doc.subscribe('presence', (event) => {
+    const peers = doc.getPresences();
+    // Add element to HTML as shown below:
+    // <div>There are currently <span id='peersCount'></span> peers!</div>
+    document.getElementById('peersCount').innerHTML = peers.length;
+  })
   await client.attach(doc);
 }
 main();`,
@@ -56,14 +54,12 @@ main();`,
       apiKey: '${project?.publicKey}',
     });
     await client.activate();
-    client.subscribe((event) => {
-      if (event.type === 'peers-changed') {
-        const peers = client.getPeersByDocKey(doc.getKey());
-        document.getElementById('peersCount').innerHTML = peers.length;
-      }
-    });
 
     const doc = new yorkie.Document('my-first-document');
+    doc.subscribe('presence', (event) => {
+      const peers = doc.getPresences();
+      document.getElementById('peersCount').innerHTML = peers.length;
+    })
     await client.attach(doc);
   }
   main();
