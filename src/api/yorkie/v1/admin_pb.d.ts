@@ -252,6 +252,9 @@ export class ListDocumentsRequest extends jspb.Message {
   getIsForward(): boolean;
   setIsForward(value: boolean): ListDocumentsRequest;
 
+  getIncludeSnapshot(): boolean;
+  setIncludeSnapshot(value: boolean): ListDocumentsRequest;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListDocumentsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListDocumentsRequest): ListDocumentsRequest.AsObject;
@@ -266,6 +269,7 @@ export namespace ListDocumentsRequest {
     previousId: string,
     pageSize: number,
     isForward: boolean,
+    includeSnapshot: boolean,
   }
 }
 

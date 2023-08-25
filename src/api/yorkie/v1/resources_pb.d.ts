@@ -4,6 +4,30 @@ import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/t
 import * as google_protobuf_wrappers_pb from 'google-protobuf/google/protobuf/wrappers_pb';
 
 
+export class Snapshot extends jspb.Message {
+  getRoot(): JSONElement | undefined;
+  setRoot(value?: JSONElement): Snapshot;
+  hasRoot(): boolean;
+  clearRoot(): Snapshot;
+
+  getPresencesMap(): jspb.Map<string, Presence>;
+  clearPresencesMap(): Snapshot;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Snapshot.AsObject;
+  static toObject(includeInstance: boolean, msg: Snapshot): Snapshot.AsObject;
+  static serializeBinaryToWriter(message: Snapshot, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Snapshot;
+  static deserializeBinaryFromReader(message: Snapshot, reader: jspb.BinaryReader): Snapshot;
+}
+
+export namespace Snapshot {
+  export type AsObject = {
+    root?: JSONElement.AsObject,
+    presencesMap: Array<[string, Presence.AsObject]>,
+  }
+}
+
 export class ChangePack extends jspb.Message {
   getDocumentKey(): string;
   setDocumentKey(value: string): ChangePack;
@@ -64,6 +88,11 @@ export class Change extends jspb.Message {
   clearOperationsList(): Change;
   addOperations(value?: Operation, index?: number): Operation;
 
+  getPresenceChange(): PresenceChange | undefined;
+  setPresenceChange(value?: PresenceChange): Change;
+  hasPresenceChange(): boolean;
+  clearPresenceChange(): Change;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Change.AsObject;
   static toObject(includeInstance: boolean, msg: Change): Change.AsObject;
@@ -77,6 +106,7 @@ export namespace Change {
     id?: ChangeID.AsObject,
     message: string,
     operationsList: Array<Operation.AsObject>,
+    presenceChange?: PresenceChange.AsObject,
   }
 }
 
@@ -517,10 +547,13 @@ export namespace Operation {
     hasTo(): boolean;
     clearTo(): TreeEdit;
 
-    getContentList(): Array<TreeNode>;
-    setContentList(value: Array<TreeNode>): TreeEdit;
-    clearContentList(): TreeEdit;
-    addContent(value?: TreeNode, index?: number): TreeNode;
+    getCreatedAtMapByActorMap(): jspb.Map<string, TimeTicket>;
+    clearCreatedAtMapByActorMap(): TreeEdit;
+
+    getContentsList(): Array<TreeNodes>;
+    setContentsList(value: Array<TreeNodes>): TreeEdit;
+    clearContentsList(): TreeEdit;
+    addContents(value?: TreeNodes, index?: number): TreeNodes;
 
     getExecutedAt(): TimeTicket | undefined;
     setExecutedAt(value?: TimeTicket): TreeEdit;
@@ -540,7 +573,8 @@ export namespace Operation {
       parentCreatedAt?: TimeTicket.AsObject,
       from?: TreePos.AsObject,
       to?: TreePos.AsObject,
-      contentList: Array<TreeNode.AsObject>,
+      createdAtMapByActorMap: Array<[string, TimeTicket.AsObject]>,
+      contentsList: Array<TreeNodes.AsObject>,
       executedAt?: TimeTicket.AsObject,
     }
   }
@@ -1089,10 +1123,10 @@ export namespace TextNodeID {
 }
 
 export class TreeNode extends jspb.Message {
-  getPos(): TreePos | undefined;
-  setPos(value?: TreePos): TreeNode;
-  hasPos(): boolean;
-  clearPos(): TreeNode;
+  getId(): TreeNodeID | undefined;
+  setId(value?: TreeNodeID): TreeNode;
+  hasId(): boolean;
+  clearId(): TreeNode;
 
   getType(): string;
   setType(value: string): TreeNode;
@@ -1105,10 +1139,15 @@ export class TreeNode extends jspb.Message {
   hasRemovedAt(): boolean;
   clearRemovedAt(): TreeNode;
 
-  getInsPrevPos(): TreePos | undefined;
-  setInsPrevPos(value?: TreePos): TreeNode;
-  hasInsPrevPos(): boolean;
-  clearInsPrevPos(): TreeNode;
+  getInsPrevId(): TreeNodeID | undefined;
+  setInsPrevId(value?: TreeNodeID): TreeNode;
+  hasInsPrevId(): boolean;
+  clearInsPrevId(): TreeNode;
+
+  getInsNextId(): TreeNodeID | undefined;
+  setInsNextId(value?: TreeNodeID): TreeNode;
+  hasInsNextId(): boolean;
+  clearInsNextId(): TreeNode;
 
   getDepth(): number;
   setDepth(value: number): TreeNode;
@@ -1126,24 +1165,71 @@ export class TreeNode extends jspb.Message {
 
 export namespace TreeNode {
   export type AsObject = {
-    pos?: TreePos.AsObject,
+    id?: TreeNodeID.AsObject,
     type: string,
     value: string,
     removedAt?: TimeTicket.AsObject,
-    insPrevPos?: TreePos.AsObject,
+    insPrevId?: TreeNodeID.AsObject,
+    insNextId?: TreeNodeID.AsObject,
     depth: number,
     attributesMap: Array<[string, NodeAttr.AsObject]>,
   }
 }
 
-export class TreePos extends jspb.Message {
+export class TreeNodes extends jspb.Message {
+  getContentList(): Array<TreeNode>;
+  setContentList(value: Array<TreeNode>): TreeNodes;
+  clearContentList(): TreeNodes;
+  addContent(value?: TreeNode, index?: number): TreeNode;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TreeNodes.AsObject;
+  static toObject(includeInstance: boolean, msg: TreeNodes): TreeNodes.AsObject;
+  static serializeBinaryToWriter(message: TreeNodes, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TreeNodes;
+  static deserializeBinaryFromReader(message: TreeNodes, reader: jspb.BinaryReader): TreeNodes;
+}
+
+export namespace TreeNodes {
+  export type AsObject = {
+    contentList: Array<TreeNode.AsObject>,
+  }
+}
+
+export class TreeNodeID extends jspb.Message {
   getCreatedAt(): TimeTicket | undefined;
-  setCreatedAt(value?: TimeTicket): TreePos;
+  setCreatedAt(value?: TimeTicket): TreeNodeID;
   hasCreatedAt(): boolean;
-  clearCreatedAt(): TreePos;
+  clearCreatedAt(): TreeNodeID;
 
   getOffset(): number;
-  setOffset(value: number): TreePos;
+  setOffset(value: number): TreeNodeID;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TreeNodeID.AsObject;
+  static toObject(includeInstance: boolean, msg: TreeNodeID): TreeNodeID.AsObject;
+  static serializeBinaryToWriter(message: TreeNodeID, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TreeNodeID;
+  static deserializeBinaryFromReader(message: TreeNodeID, reader: jspb.BinaryReader): TreeNodeID;
+}
+
+export namespace TreeNodeID {
+  export type AsObject = {
+    createdAt?: TimeTicket.AsObject,
+    offset: number,
+  }
+}
+
+export class TreePos extends jspb.Message {
+  getParentId(): TreeNodeID | undefined;
+  setParentId(value?: TreeNodeID): TreePos;
+  hasParentId(): boolean;
+  clearParentId(): TreePos;
+
+  getLeftSiblingId(): TreeNodeID | undefined;
+  setLeftSiblingId(value?: TreeNodeID): TreePos;
+  hasLeftSiblingId(): boolean;
+  clearLeftSiblingId(): TreePos;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TreePos.AsObject;
@@ -1155,8 +1241,8 @@ export class TreePos extends jspb.Message {
 
 export namespace TreePos {
   export type AsObject = {
-    createdAt?: TimeTicket.AsObject,
-    offset: number,
+    parentId?: TreeNodeID.AsObject,
+    leftSiblingId?: TreeNodeID.AsObject,
   }
 }
 
@@ -1347,10 +1433,38 @@ export namespace DocumentSummary {
   }
 }
 
-export class Presence extends jspb.Message {
-  getClock(): number;
-  setClock(value: number): Presence;
+export class PresenceChange extends jspb.Message {
+  getType(): PresenceChange.ChangeType;
+  setType(value: PresenceChange.ChangeType): PresenceChange;
 
+  getPresence(): Presence | undefined;
+  setPresence(value?: Presence): PresenceChange;
+  hasPresence(): boolean;
+  clearPresence(): PresenceChange;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PresenceChange.AsObject;
+  static toObject(includeInstance: boolean, msg: PresenceChange): PresenceChange.AsObject;
+  static serializeBinaryToWriter(message: PresenceChange, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PresenceChange;
+  static deserializeBinaryFromReader(message: PresenceChange, reader: jspb.BinaryReader): PresenceChange;
+}
+
+export namespace PresenceChange {
+  export type AsObject = {
+    type: PresenceChange.ChangeType,
+    presence?: Presence.AsObject,
+  }
+
+  export enum ChangeType { 
+    CHANGE_TYPE_UNSPECIFIED = 0,
+    CHANGE_TYPE_PUT = 1,
+    CHANGE_TYPE_DELETE = 2,
+    CHANGE_TYPE_CLEAR = 3,
+  }
+}
+
+export class Presence extends jspb.Message {
   getDataMap(): jspb.Map<string, string>;
   clearDataMap(): Presence;
 
@@ -1364,34 +1478,7 @@ export class Presence extends jspb.Message {
 
 export namespace Presence {
   export type AsObject = {
-    clock: number,
     dataMap: Array<[string, string]>,
-  }
-}
-
-export class Client extends jspb.Message {
-  getId(): Uint8Array | string;
-  getId_asU8(): Uint8Array;
-  getId_asB64(): string;
-  setId(value: Uint8Array | string): Client;
-
-  getPresence(): Presence | undefined;
-  setPresence(value?: Presence): Client;
-  hasPresence(): boolean;
-  clearPresence(): Client;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Client.AsObject;
-  static toObject(includeInstance: boolean, msg: Client): Client.AsObject;
-  static serializeBinaryToWriter(message: Client, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Client;
-  static deserializeBinaryFromReader(message: Client, reader: jspb.BinaryReader): Client;
-}
-
-export namespace Client {
-  export type AsObject = {
-    id: Uint8Array | string,
-    presence?: Presence.AsObject,
   }
 }
 
@@ -1477,13 +1564,8 @@ export class DocEvent extends jspb.Message {
   getType(): DocEventType;
   setType(value: DocEventType): DocEvent;
 
-  getPublisher(): Client | undefined;
-  setPublisher(value?: Client): DocEvent;
-  hasPublisher(): boolean;
-  clearPublisher(): DocEvent;
-
-  getDocumentId(): string;
-  setDocumentId(value: string): DocEvent;
+  getPublisher(): string;
+  setPublisher(value: string): DocEvent;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DocEvent.AsObject;
@@ -1496,8 +1578,7 @@ export class DocEvent extends jspb.Message {
 export namespace DocEvent {
   export type AsObject = {
     type: DocEventType,
-    publisher?: Client.AsObject,
-    documentId: string,
+    publisher: string,
   }
 }
 
@@ -1518,8 +1599,7 @@ export enum ValueType {
   VALUE_TYPE_TREE = 13,
 }
 export enum DocEventType { 
-  DOC_EVENT_TYPE_DOCUMENTS_CHANGED = 0,
-  DOC_EVENT_TYPE_DOCUMENTS_WATCHED = 1,
-  DOC_EVENT_TYPE_DOCUMENTS_UNWATCHED = 2,
-  DOC_EVENT_TYPE_PRESENCE_CHANGED = 3,
+  DOC_EVENT_TYPE_DOCUMENT_CHANGED = 0,
+  DOC_EVENT_TYPE_DOCUMENT_WATCHED = 1,
+  DOC_EVENT_TYPE_DOCUMENT_UNWATCHED = 2,
 }

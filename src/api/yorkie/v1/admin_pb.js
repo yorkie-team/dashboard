@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
+var global =
+    (typeof globalThis !== 'undefined' && globalThis) ||
+    (typeof window !== 'undefined' && window) ||
+    (typeof global !== 'undefined' && global) ||
+    (typeof self !== 'undefined' && self) ||
+    (function () { return this; }).call(null) ||
+    Function('return this')();
 
 var yorkie_v1_resources_pb = require('../../yorkie/v1/resources_pb.js');
 goog.object.extend(proto, yorkie_v1_resources_pb);
@@ -2336,7 +2342,8 @@ proto.yorkie.v1.ListDocumentsRequest.toObject = function(includeInstance, msg) {
     projectName: jspb.Message.getFieldWithDefault(msg, 1, ""),
     previousId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     pageSize: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    isForward: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
+    isForward: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+    includeSnapshot: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
   };
 
   if (includeInstance) {
@@ -2388,6 +2395,10 @@ proto.yorkie.v1.ListDocumentsRequest.deserializeBinaryFromReader = function(msg,
     case 4:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setIsForward(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIncludeSnapshot(value);
       break;
     default:
       reader.skipField();
@@ -2443,6 +2454,13 @@ proto.yorkie.v1.ListDocumentsRequest.serializeBinaryToWriter = function(message,
   if (f) {
     writer.writeBool(
       4,
+      f
+    );
+  }
+  f = message.getIncludeSnapshot();
+  if (f) {
+    writer.writeBool(
+      5,
       f
     );
   }
@@ -2518,6 +2536,24 @@ proto.yorkie.v1.ListDocumentsRequest.prototype.getIsForward = function() {
  */
 proto.yorkie.v1.ListDocumentsRequest.prototype.setIsForward = function(value) {
   return jspb.Message.setProto3BooleanField(this, 4, value);
+};
+
+
+/**
+ * optional bool include_snapshot = 5;
+ * @return {boolean}
+ */
+proto.yorkie.v1.ListDocumentsRequest.prototype.getIncludeSnapshot = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.yorkie.v1.ListDocumentsRequest} returns this
+ */
+proto.yorkie.v1.ListDocumentsRequest.prototype.setIncludeSnapshot = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 

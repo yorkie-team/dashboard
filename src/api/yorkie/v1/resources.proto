@@ -26,6 +26,14 @@ option java_multiple_files = true;
 option java_package = "dev.yorkie.api.v1";
 
 /////////////////////////////////////////
+// Messages for Snapshot               //
+/////////////////////////////////////////
+message Snapshot {
+  JSONElement root = 1;
+  map<string, Presence> presences = 2;
+}
+
+/////////////////////////////////////////
 // Messages for ChangePack             //
 /////////////////////////////////////////
 
@@ -44,6 +52,7 @@ message Change {
   ChangeID id = 1;
   string message = 2;
   repeated Operation operations = 3;
+  PresenceChange presence_change = 4;
 }
 
 message ChangeID {
@@ -86,6 +95,10 @@ message Operation {
     TimeTicket executed_at = 6;
     map<string, string> attributes = 7;
   }
+  // NOTE(hackerwins): Select Operation is not used in the current version.
+  // In the previous version, it was used to represent selection of Text.
+  // However, it has been replaced by Presence now. It is retained for backward
+  // compatibility purposes.
   message Select {
     TimeTicket parent_created_at = 1;
     TextNodePos from = 2;
@@ -108,8 +121,9 @@ message Operation {
     TimeTicket parent_created_at = 1;
     TreePos from = 2;
     TreePos to = 3;
-    repeated TreeNode content = 4;
-    TimeTicket executed_at = 5;
+    map<string, TimeTicket> created_at_map_by_actor = 4;
+    repeated TreeNodes contents = 5;
+    TimeTicket executed_at = 6;
   }
   message TreeStyle {
     TimeTicket parent_created_at = 1;
@@ -224,18 +238,28 @@ message TextNodeID {
 }
 
 message TreeNode {
-  TreePos pos = 1;
+  TreeNodeID id = 1;
   string type = 2;
   string value = 3;
   TimeTicket removed_at = 4;
-  TreePos ins_prev_pos = 5;
-  int32 depth = 6;
-  map<string, NodeAttr> attributes = 7;
+  TreeNodeID ins_prev_id = 5;
+  TreeNodeID ins_next_id = 6;
+  int32 depth = 7;
+  map<string, NodeAttr> attributes = 8;
+}
+
+message TreeNodes {
+  repeated TreeNode content = 1;
+}
+
+message TreeNodeID {
+  TimeTicket created_at = 1;
+  int32 offset = 2;
 }
 
 message TreePos {
-  TimeTicket created_at = 1;
-  int32 offset = 2;
+  TreeNodeID parent_id = 1;
+  TreeNodeID left_sibling_id = 2;
 }
 
 /////////////////////////////////////////
@@ -280,14 +304,19 @@ message DocumentSummary {
   google.protobuf.Timestamp updated_at = 6;
 }
 
-message Presence {
-  int32 clock = 1;
-  map<string, string> data = 2;
+message PresenceChange {
+  enum ChangeType {
+    CHANGE_TYPE_UNSPECIFIED = 0;
+    CHANGE_TYPE_PUT = 1;
+    CHANGE_TYPE_DELETE = 2;
+    CHANGE_TYPE_CLEAR = 3;
+  }
+  ChangeType type = 1;
+  Presence presence = 2;
 }
 
-message Client {
-  bytes id = 1;
-  Presence presence = 2;
+message Presence {
+  map<string, string> data = 1;
 }
 
 message Checkpoint {
@@ -325,14 +354,12 @@ enum ValueType {
 }
 
 enum DocEventType {
-  DOC_EVENT_TYPE_DOCUMENTS_CHANGED = 0;
-  DOC_EVENT_TYPE_DOCUMENTS_WATCHED = 1;
-  DOC_EVENT_TYPE_DOCUMENTS_UNWATCHED = 2;
-  DOC_EVENT_TYPE_PRESENCE_CHANGED = 3;
+  DOC_EVENT_TYPE_DOCUMENT_CHANGED = 0;
+  DOC_EVENT_TYPE_DOCUMENT_WATCHED = 1;
+  DOC_EVENT_TYPE_DOCUMENT_UNWATCHED = 2;
 }
 
 message DocEvent {
   DocEventType type = 1;
-  Client publisher = 2;
-  string document_id = 3;
+  string publisher = 2;
 }

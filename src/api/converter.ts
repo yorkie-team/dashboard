@@ -16,7 +16,7 @@
 
 import { Timestamp as PbTimestamp } from 'google-protobuf/google/protobuf/timestamp_pb';
 import { User, Project, DocumentSummary, AuthWebhookMethod } from './types';
-import { Change, converter } from 'yorkie-js-sdk';
+import { Change, converter, Indexable } from 'yorkie-js-sdk';
 import {
   User as PbUser,
   Project as PbProject,
@@ -80,6 +80,6 @@ export function fromDocumentSummaries(pbDocumentSummaries: Array<PbDocumentSumma
   return documentSummaries;
 }
 
-export function fromChanges(pbChanges: Array<PbChange>): Array<Change> {
+export function fromChanges(pbChanges: Array<PbChange>): Array<Change<Indexable>> {
   return converter.fromChanges(pbChanges);
 }
