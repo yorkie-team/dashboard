@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/dashboard/static/css/main.afa917e6.css",
-    "main.js": "/dashboard/static/js/main.71ada8f0.js",
+    "main.js": "/dashboard/static/js/main.fb243d07.js",
     "static/media/Pretendard-ExtraBold.woff": "/dashboard/static/media/Pretendard-ExtraBold.69ab983acb828900ec58.woff",
     "static/media/Pretendard-SemiBold.woff": "/dashboard/static/media/Pretendard-SemiBold.a0c72d6162af72df37ec.woff",
     "static/media/Pretendard-Medium.woff": "/dashboard/static/media/Pretendard-Medium.f902522b86842449110e.woff",
@@ -57,10 +57,10 @@
     "static/media/icon_previous.svg": "/dashboard/static/media/icon_previous.f53841e9546e5c808ca1e43db3fecac7.svg",
     "static/media/icon_next.svg": "/dashboard/static/media/icon_next.86f1436281d2648c94d1566b2ed958ad.svg",
     "main.afa917e6.css.map": "/dashboard/static/css/main.afa917e6.css.map",
-    "main.71ada8f0.js.map": "/dashboard/static/js/main.71ada8f0.js.map"
+    "main.fb243d07.js.map": "/dashboard/static/js/main.fb243d07.js.map"
   },
   "entrypoints": [
     "static/css/main.afa917e6.css",
-    "static/js/main.71ada8f0.js"
+    "static/js/main.fb243d07.js"
   ]
 }
