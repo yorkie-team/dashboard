@@ -4,6 +4,9 @@
   "private": true,
   "homepage": "https://yorkie.dev/dashboard",
   "dependencies": {
+    "@bufbuild/protobuf": "^1.6.0",
+    "@connectrpc/connect": "^1.2.0",
+    "@connectrpc/connect-web": "^1.2.0",
     "@reduxjs/toolkit": "^1.8.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -51,7 +54,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:proto": "protoc -I=./src/api --js_out=import_style=commonjs:./src/api --grpc-web_out=import_style=commonjs+dts,mode=grpcwebtext:./src/api ./src/api/yorkie/v1/*.proto",
+    "build:proto": "npx buf generate",
     "fetch:ui": "./scripts/fetch-ui.sh"
   },
   "eslintConfig": {
@@ -126,6 +129,9 @@
     ]
   },
   "devDependencies": {
+    "@bufbuild/buf": "^1.28.1",
+    "@bufbuild/protoc-gen-es": "^1.6.0",
+    "@connectrpc/protoc-gen-connect-es": "^1.2.0",
     "@types/google-protobuf": "^3.15.6",
     "autoprefixer": "^10.4.4",
     "eslint-plugin-spellcheck": "^0.0.19",
