@@ -83,7 +83,7 @@ export const globalErrorHandler: Middleware = (store: MiddlewareAPI) => (next) =
     errorName = action.payload.error.name;
   }
   statusCode = Number(statusCode);
-  const apiErrorName: APIErrorName = 'RPCError';
+  const apiErrorName: APIErrorName = 'ConnectError';
   if (errorName !== apiErrorName) {
     throw action.error;
   }

@@ -89,4 +89,9 @@ export enum RPCStatusCode {
   UNAUTHENTICATED = 16,
 }
 
-export type APIErrorName = 'RPCError';
+export type APIErrorName = 'ConnectError';
+
+export type FieldViolation = {
+  field: string;
+  description: string;
+};

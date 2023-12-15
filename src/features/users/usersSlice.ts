@@ -19,6 +19,8 @@ import * as api from 'api';
 import { User, RPCStatusCode } from 'api/types';
 import { RootState } from 'app/store';
 import jwt_decode from 'jwt-decode';
+import { ConnectError } from '@connectrpc/connect';
+import { fromErrorDetails } from 'api/converter';
 
 export interface UsersState {
   token: string;
@@ -118,13 +120,13 @@ export const loginUser = createAsyncThunk<string, LoginFields>('users/login', as
   return token;
 });
 
-export const signupUser = createAsyncThunk<User, SignupFields, { rejectValue: any }>(
+export const signupUser = createAsyncThunk<User, SignupFields, { rejectValue: any; rejectedMeta: any }>(
   'users/signup',
   async ({ username, password }, { rejectWithValue }) => {
     try {
       return await api.signUp(username, password);
     } catch (error) {
-      return rejectWithValue({ error });
+      return rejectWithValue({ error }, { errorDetails: fromErrorDetails(error as ConnectError) });
     }
   },
 );
@@ -218,7 +220,7 @@ export const usersSlice = createSlice({
           message: 'Username already exists',
         });
       } else if (statusCode === RPCStatusCode.INVALID_ARGUMENT) {
-        const errorDetails = action.payload.error.details;
+        const errorDetails = action.meta.errorDetails;
         for (const { field, description } of errorDetails) {
           if (field === 'Username') {
             signupErrors.unshift({

@@ -18,6 +18,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from 'app/store';
 import { listProjects, getProject, createProject, updateProject, Project, UpdatableProjectFields } from 'api';
 import { RPCStatusCode, AuthWebhookMethod } from 'api/types';
+import { ConnectError } from '@connectrpc/connect';
+import { fromErrorDetails } from 'api/converter';
 
 export interface ProjectsState {
   list: {
@@ -88,28 +90,29 @@ export const getProjectAsync = createAsyncThunk('projects/getProject', async (na
   return project;
 });
 
-export const createProjectAsync = createAsyncThunk<Project, ProjectCreateFields, { rejectValue: any }>(
-  'projects/createProject',
-  async ({ projectName }, { rejectWithValue }) => {
-    try {
-      const project = await createProject(projectName);
-      return project;
-    } catch (error) {
-      return rejectWithValue({ error });
-    }
-  },
-);
+export const createProjectAsync = createAsyncThunk<
+  Project,
+  ProjectCreateFields,
+  { rejectValue: any; rejectedMeta: any }
+>('projects/createProject', async ({ projectName }, { rejectWithValue }) => {
+  try {
+    const project = await createProject(projectName);
+    return project;
+  } catch (error) {
+    return rejectWithValue({ error }, { errorDetails: fromErrorDetails(error as ConnectError) });
+  }
+});
 
 export const updateProjectAsync = createAsyncThunk<
   Project,
   { id: string; fields: UpdatableProjectFields },
-  { rejectValue: any }
+  { rejectValue: any; rejectedMeta: any }
 >('projects/updateProject', async ({ id, fields }, { rejectWithValue }) => {
   try {
     const project = await updateProject(id, fields);
     return project;
   } catch (error) {
-    return rejectWithValue({ error });
+    return rejectWithValue({ error }, { errorDetails: fromErrorDetails(error as ConnectError) });
   }
 });
 
@@ -165,7 +168,7 @@ export const projectsSlice = createSlice({
           message: 'The project name is already in use.',
         };
       } else if (statusCode === RPCStatusCode.INVALID_ARGUMENT) {
-        const errorDetails = action.payload.error.details;
+        const errorDetails = action.meta.errorDetails;
         for (const { field, description } of errorDetails) {
           if (field === 'Name') {
             state.create.error = {
@@ -195,7 +198,7 @@ export const projectsSlice = createSlice({
           message: 'The project name is already in use.',
         };
       } else if (statusCode === RPCStatusCode.INVALID_ARGUMENT) {
-        const errorDetails = action.payload.error.details;
+        const errorDetails = action.meta.errorDetails;
         for (const { field, description } of errorDetails) {
           if (field === 'Name') {
             state.update.error = {
