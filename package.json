@@ -36,7 +36,7 @@
     "react-scripts": "5.0.0",
     "sass": "^1.55.0",
     "typescript": "~4.1.5",
-    "yorkie-js-sdk": "yorkie-team/yorkie-js-sdk#connectrpc"
+    "yorkie-js-sdk": "yorkie-team/yorkie-js-sdk#main"
   },
   "husky": {
     "hooks": {
