@@ -86,6 +86,10 @@ export function fromChanges(pbChanges: Array<PbChange>): Array<Change<Indexable>
   return converter.fromChanges(pbChanges as any);
 }
 
+/**
+ * `fromErrorDetails` converts the error details to the array of FieldViolation.
+ * See https://connectrpc.com/docs/web/errors/#error-details for more details.
+ */
 export function fromErrorDetails(error: ConnectError) {
   const pbDetails = error.findDetails(BadRequest);
   const details: Array<FieldViolation> = [];
