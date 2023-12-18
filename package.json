@@ -4,7 +4,6 @@
   "private": true,
   "homepage": "https://yorkie.dev/dashboard",
   "dependencies": {
-    "@buf/googleapis_googleapis.connectrpc_es": "^1.2.0-20231130202535-b30c5775bfb3.1",
     "@bufbuild/protobuf": "^1.6.0",
     "@connectrpc/connect": "^1.2.0",
     "@connectrpc/connect-web": "^1.2.0",
