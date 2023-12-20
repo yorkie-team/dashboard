@@ -2,20 +2,6 @@
 
 Dashboard is an administrative tool that allows users to manage projects and documents.
 
-## How Dashboard works
-
-Dashboard uses gRPC-web for communicating with Yorkie agent built on gRPC.
-
-```
- +--Browser--+           +--Envoy---------+         +--Yorkie------+
- |           |           |                |         |              |
- | gRPC-web  <- HTTP1.1 -> gRPC-web proxy <- HTTP2 -> Admin server |
- |           |           |                |         |              |
- +-----------+           +----------------+         +--------------+
-```
-
-For more details: https://grpc.io/blog/state-of-grpc-web/
-
 ## Developing Dashboard
 
 ### Building Dashboard
