@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import { createAppThunk } from 'app/appThunk';
 import { RootState } from 'app/store';
 import {
   getDocument,
@@ -71,7 +72,7 @@ const initialState: DocumentsState = {
 const DOCUMENTS_LIMIT = 15;
 const HISTORIES_LIMIT = 20;
 
-export const listDocumentsAsync = createAsyncThunk(
+export const listDocumentsAsync = createAppThunk(
   'documents/listDocuments',
   async (params: {
     projectName: string;
@@ -89,7 +90,7 @@ export const listDocumentsAsync = createAsyncThunk(
   },
 );
 
-export const getDocumentAsync = createAsyncThunk(
+export const getDocumentAsync = createAppThunk(
   'documents/getDocument',
   async (params: { projectName: string; documentKey: string }): Promise<DocumentSummary> => {
     const { projectName, documentKey } = params;
@@ -98,7 +99,7 @@ export const getDocumentAsync = createAsyncThunk(
   },
 );
 
-export const searchDocumentsAsync = createAsyncThunk(
+export const searchDocumentsAsync = createAppThunk(
   'documents/searchDocuments',
   async (params: {
     projectName: string;
@@ -117,7 +118,7 @@ export const searchDocumentsAsync = createAsyncThunk(
   },
 );
 
-export const listDocumentHistoriesAsync = createAsyncThunk(
+export const listDocumentHistoriesAsync = createAppThunk(
   'documents/listDocumentHistories',
   async (params: {
     projectName: string;
@@ -148,7 +149,7 @@ export const listDocumentHistoriesAsync = createAsyncThunk(
   },
 );
 
-export const removeDocumentByAdminAsync = createAsyncThunk(
+export const removeDocumentByAdminAsync = createAppThunk(
   'documents/removeDocumentByAdmin',
   async (params: { projectName: string; documentKey: string; force: boolean }): Promise<void> => {
     const { projectName, documentKey, force } = params;

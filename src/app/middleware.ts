@@ -50,7 +50,7 @@ function isHandledError(actionType: any, statusCode: RPCStatusCode): boolean {
 
   if (
     actionType === signupUser.rejected.type &&
-    (statusCode === RPCStatusCode.INTERNAL || statusCode === RPCStatusCode.INVALID_ARGUMENT)
+    (statusCode === RPCStatusCode.ALREADY_EXISTS || statusCode === RPCStatusCode.INVALID_ARGUMENT)
   ) {
     return true;
   }
@@ -76,20 +76,19 @@ export const globalErrorHandler: Middleware = (store: MiddlewareAPI) => (next) =
   next(action);
   if (!isRejectedAction(action) && !isRejectedWithValue(action)) return;
 
-  let { code: statusCode, message: errorMessage, name: errorName } = action.error;
+  let { code: statusCode, message: errorMessage } = action.error;
   if (isRejectedWithValue(action)) {
     statusCode = action.payload.error.code;
     errorMessage = action.payload.error.message;
-    errorName = action.payload.error.name;
   }
   statusCode = Number(statusCode);
-  const apiErrorName: APIErrorName = 'ConnectError';
-  if (errorName !== apiErrorName) {
-    throw action.error;
+
+  if (isHandledError(action.type, statusCode)) {
+    return;
   }
-  if (isHandledError(action.type, statusCode)) return;
   if (statusCode === RPCStatusCode.UNAUTHENTICATED) {
     store.dispatch(setIsValidToken(false));
+    store.dispatch(setGlobalError({ statusCode, errorMessage }));
     return;
   }
   store.dispatch(setGlobalError({ statusCode, errorMessage }));
