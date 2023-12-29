@@ -12,7 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// See https://buf.build/googleapis/googleapis/file/main:google/rpc/error_details.proto for original source.
+// NOTE(chacha912): This code is based on the protobuf definitions from the file located at:
+// https://buf.build/googleapis/googleapis/file/main:google/rpc/error_details.proto.
+// The protobuf definitions are compiled into an SDK, which can be installed via npm.
+// (SDK Source: https://buf.build/googleapis/googleapis/sdks/main)
+//
+// However, during testing, we encountered an error due to the use of ESM import/export syntax.
+// To address this issue, we use the 'js_import_style=legacy_commonjs' option and manually build
+// the protobuf, rather than using the SDK directly.
+// (For more details, refer to: https://github.com/bufbuild/protobuf-es/issues/587)
 
 syntax = "proto3";
 
