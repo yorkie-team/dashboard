@@ -17,6 +17,7 @@ type AsyncThunkConfig = {
 
 type AppThunkConfig = {
   rejectValue: { error: RPCError | Error };
+  rejectedMeta: { isHandledError: boolean };
 };
 
 /**
@@ -36,7 +37,7 @@ export const createAppThunk = <Returned, ThunkArg, ThunkApiConfig extends AsyncT
       return await payloadCreator(arg, thunkAPI);
     } catch (error: unknown) {
       if (!(error instanceof ConnectError)) {
-        return thunkAPI.rejectWithValue({ error });
+        return thunkAPI.rejectWithValue({ error }, { isHandledError: false });
       }
 
       const errorDetails = fromErrorDetails(error);
@@ -45,9 +46,12 @@ export const createAppThunk = <Returned, ThunkArg, ThunkApiConfig extends AsyncT
       // the error.code to string.
       // See https://redux-toolkit.js.org/api/createAsyncThunk#handling-thunk-errors for more details.
       const rpcError = new RPCError(JSON.stringify(error.code), error.message, errorDetails);
-      return thunkAPI.rejectWithValue({
-        error: rpcError,
-      });
+      return thunkAPI.rejectWithValue(
+        {
+          error: rpcError,
+        },
+        { isHandledError: false },
+      );
     }
   });
 };

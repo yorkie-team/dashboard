@@ -165,6 +165,7 @@ export const projectsSlice = createSlice({
           target: 'projectName',
           message: 'The project name is already in use.',
         };
+        action.meta.isHandledError = true;
         return;
       } else if (statusCode === RPCStatusCode.INVALID_ARGUMENT) {
         for (const { field, description } of error.details!) {
@@ -175,6 +176,7 @@ export const projectsSlice = createSlice({
             };
           }
         }
+        action.meta.isHandledError = true;
         return;
       }
     });
@@ -199,6 +201,8 @@ export const projectsSlice = createSlice({
           target: 'name',
           message: 'The project name is already in use.',
         };
+        action.meta.isHandledError = true;
+        return;
       } else if (statusCode === RPCStatusCode.INVALID_ARGUMENT) {
         for (const { field, description } of error.details!) {
           if (field === 'Name') {
@@ -223,6 +227,8 @@ export const projectsSlice = createSlice({
             };
           }
         }
+        action.meta.isHandledError = true;
+        return;
       }
     });
   },

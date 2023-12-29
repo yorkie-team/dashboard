@@ -18,8 +18,7 @@ import type { Action, PayloadAction, SerializedError, MiddlewareAPI, Middleware 
 import { isRejectedWithValue } from '@reduxjs/toolkit';
 import { RPCStatusCode } from 'api/types';
 import { setGlobalError } from 'features/globalError/globalErrorSlice';
-import { loginUser, signupUser, setIsValidToken } from 'features/users/usersSlice';
-import { createProjectAsync, updateProjectAsync } from 'features/projects/projectsSlice';
+import { setIsValidToken } from 'features/users/usersSlice';
 
 type RejectedAction = PayloadAction<
   {
@@ -40,41 +39,12 @@ function isRejectedAction(action: Action): action is RejectedAction {
   return action.type.endsWith('/rejected');
 }
 
-function isHandledError(actionType: any, statusCode: RPCStatusCode): boolean {
-  if (
-    actionType === loginUser.rejected.type &&
-    (statusCode === RPCStatusCode.NOT_FOUND || statusCode === RPCStatusCode.UNAUTHENTICATED)
-  ) {
-    return true;
-  }
-
-  if (
-    actionType === signupUser.rejected.type &&
-    (statusCode === RPCStatusCode.ALREADY_EXISTS || statusCode === RPCStatusCode.INVALID_ARGUMENT)
-  ) {
-    return true;
-  }
-
-  if (
-    actionType === createProjectAsync.rejected.type &&
-    (statusCode === RPCStatusCode.ALREADY_EXISTS || statusCode === RPCStatusCode.INVALID_ARGUMENT)
-  ) {
-    return true;
-  }
-
-  if (
-    actionType === updateProjectAsync.rejected.type &&
-    (statusCode === RPCStatusCode.ALREADY_EXISTS || statusCode === RPCStatusCode.INVALID_ARGUMENT)
-  ) {
-    return true;
-  }
-
-  return false;
-}
-
 export const globalErrorHandler: Middleware = (store: MiddlewareAPI) => (next) => (action) => {
-  next(action);
-  if (!isRejectedAction(action) && !isRejectedWithValue(action)) return;
+  const result = next(action);
+
+  // finish dispatching the action
+  if (!isRejectedAction(action) && !isRejectedWithValue(action)) return result;
+  if (action.meta.isHandledError) return result;
 
   let { code: statusCode, message: errorMessage } = action.error;
   if (isRejectedWithValue(action)) {
@@ -83,13 +53,11 @@ export const globalErrorHandler: Middleware = (store: MiddlewareAPI) => (next) =
   }
   statusCode = Number(statusCode);
 
-  if (isHandledError(action.type, statusCode)) {
-    return;
-  }
   if (statusCode === RPCStatusCode.UNAUTHENTICATED) {
     store.dispatch(setIsValidToken(false));
     store.dispatch(setGlobalError({ statusCode, errorMessage }));
-    return;
+    return result;
   }
   store.dispatch(setGlobalError({ statusCode, errorMessage }));
+  return result;
 };

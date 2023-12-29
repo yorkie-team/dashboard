@@ -197,6 +197,7 @@ export const usersSlice = createSlice({
           target: 'username',
           message: 'Incorrect username or password',
         };
+        action.meta.isHandledError = true;
       }
     });
     builder.addCase(signupUser.fulfilled, (state) => {
@@ -213,13 +214,17 @@ export const usersSlice = createSlice({
         return;
       }
       const statusCode = Number(error.code);
-      const signupErrors: Array<ErrorDetails> = [];
       if (statusCode === RPCStatusCode.ALREADY_EXISTS) {
-        signupErrors.unshift({
-          target: 'username',
-          message: 'Username already exists',
-        });
+        state.signup.error = [
+          {
+            target: 'username',
+            message: 'Username already exists',
+          },
+        ];
+        action.meta.isHandledError = true;
+        return;
       } else if (statusCode === RPCStatusCode.INVALID_ARGUMENT) {
+        const signupErrors: Array<ErrorDetails> = [];
         for (const { field, description } of error.details!) {
           if (field === 'Username') {
             signupErrors.unshift({
@@ -233,8 +238,9 @@ export const usersSlice = createSlice({
             });
           }
         }
+        state.signup.error = signupErrors;
+        action.meta.isHandledError = true;
       }
-      state.signup.error = signupErrors;
     });
   },
 });
