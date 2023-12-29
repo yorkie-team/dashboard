@@ -16,7 +16,7 @@
 
 import type { Action, PayloadAction, SerializedError, MiddlewareAPI, Middleware } from '@reduxjs/toolkit';
 import { isRejectedWithValue } from '@reduxjs/toolkit';
-import { RPCStatusCode, APIErrorName } from 'api/types';
+import { RPCStatusCode } from 'api/types';
 import { setGlobalError } from 'features/globalError/globalErrorSlice';
 import { loginUser, signupUser, setIsValidToken } from 'features/users/usersSlice';
 import { createProjectAsync, updateProjectAsync } from 'features/projects/projectsSlice';
