@@ -6,7 +6,7 @@ title: rpc-error-handling
 
 ## Summary
 
-When the RPC request fails, we throw a custom RPCError. Then common RPCErrors are handled by setting the global error state in the Redux middleware, and specific RPCErrors are handled by setting an error state in the reducer.
+We implement a custom thunk to handle errors commonly encountered during asynchronous actions. In the `extraReducers` section, we address specific errors for each action, while common errors or other exceptions are managed by the Redux middleware.
 
 ### Goals
 
@@ -14,7 +14,7 @@ We handle RPC errors appropriately depending on the situation.
 
 ### Non-Goals
 
-We only handle RPC errors here. Any rendering errors in components can be handled using error-boundary, etc.
+This document focuses exclusively on RPC error handling. Rendering errors in components can be handled using error-boundaries or other suitable approaches.
 
 ## Proposal Details
 
@@ -28,59 +28,76 @@ Dashboard layered architecture pattern looks like:
 
 As a request moves from layer to layer in the layered architecture, it must go through the layer right below it to get to the next layer below that one.
 
-|                               Dashboard architecture                                |                                                                                                                                      Layered architecture                                                                                                                                       |
-| :---------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| <img width="540" alt="layered-architecture" src="./media/layered-architecture.png"> | <img width="300" alt="Layered Architecture" src="https://www.oreilly.com/library/view/software-architecture-patterns/9781491971437/assets/sapr_0102.png"> [Image - Software Architecture Patterns](https://www.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch01.html) |
+|                               Dashboard architecture                                |                                                                                                                                         Layered architecture                                                                                                                                         |
+| :---------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img width="540" alt="layered-architecture" src="./media/layered-architecture.png"> | <img width="300" alt="Layered Architecture" src="https://www.oreilly.com/library/view/software-architecture-patterns/9781491971437/assets/sapr_0102.png"><br/> [Image - Software Architecture Patterns](https://www.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch01.html) |
 
 #### RPC Error Handling
 
-We handle RPC errors according to the following steps.
+We manage RPC errors through the following steps:
 
 ![rpc-error-handling](./media/rpc-error-handling.png)
 
-1. Throw custom RPCError with code, message, and details using [RPC interceptor](https://grpc.io/blog/grpc-web-interceptor/).
+1. When an RPC request fails, all RPC errors are represented as [ConnectError](https://connectrpc.com/docs/web/errors). We create a custom thunk to handle errors commonly for asynchronous actions. In the code snippet below, when an error occurs, we [handle it using `rejectWithValue`](https://redux-toolkit.js.org/api/createAsyncThunk#handling-thunk-errors). If it's a `ConnectError`, we convert its error code to a string and [decode error details](https://connectrpc.com/docs/web/errors/#error-details).
 
 ```ts
-// api/interceptor.ts
-
-public intercept(request: any, invoker: any): any {
-    // ...setting metadata
-
-    return invoker(request).catch((err: any) => {
-      const [, pbDetails] = errorDetails.statusFromError(err);
-      if (pbDetails && pbDetails.length > 0) {
-        const details: Array<FieldViolation> = [];
-        for (const pbDetail of pbDetails) {
-          if (pbDetail instanceof errorDetails.BadRequest) {
-            for (const v of pbDetail.getFieldViolationsList()) {
-              details.push({ field: v.getField(), description: v.getDescription() });
-            }
-          }
-        }
-        throw new RPCError(err.code, err.message, details);
+// Custom thunk for error handling
+export const createAppThunk = <Returned, ThunkArg, ThunkApiConfig extends AsyncThunkConfig = AppThunkConfig>(
+  type: string,
+  payloadCreator: AsyncThunkPayloadCreator<Returned, ThunkArg>,
+): AsyncThunk<Returned, ThunkArg, ThunkApiConfig> => {
+  return createAsyncThunk<Returned, ThunkArg, ThunkApiConfig>(type, async (arg: ThunkArg, thunkAPI: any) => {
+    try {
+      return await payloadCreator(arg, thunkAPI);
+    } catch (error: unknown) {
+      if (!(error instanceof ConnectError)) {
+        return thunkAPI.rejectWithValue({ error }, { isHandledError: false });
       }
 
-      throw new RPCError(err.code, err.message);
-    });
-  }
-}
-
-class RPCError extends Error {
-  name: APIErrorName;
-  code: string;
-  message: string;
-  details: Array<FieldViolation>;
-  constructor(code: number, message: string, details?: Array<FieldViolation>) {
-    super(message);
-    this.name = 'RPCError';
-    this.code = String(code);
-    this.message = message;
-    this.details = details || [];
-  }
-}
+      const errorDetails = fromErrorDetails(error);
+      // NOTE(chacha912): When handling errors in Redux Toolkit, everything that does not match
+      // the SerializedError interface will have been removed from it. So, we need to convert
+      // the error.code to string.
+      // See https://redux-toolkit.js.org/api/createAsyncThunk#handling-thunk-errors for more details.
+      const rpcError = new RPCError(JSON.stringify(error.code), error.message, errorDetails);
+      return thunkAPI.rejectWithValue({ error: rpcError }, { isHandledError: false });
+    }
+  });
+};
 ```
 
-2. Handle common RPCError like request timeout, session expired, and so on in Redux middleware.
+2. Specific RPCErrors are handled by updating the error state in the reducer. Since we handle errors using `rejectWithValue` as described in the first step, you can access the error through `action.payload`. Additionally, we indicate that the error has been handled by setting `action.meta.isHandledError` to true.
+
+```ts
+// src/features/users/usersSlice.ts
+export const usersSlice = createSlice({
+  name: 'users',
+  initialState,
+  reducers: { ... },
+  extraReducers: (builder) => {
+    // rejected case
+    builder.addCase(loginUser.rejected, (state, action) => {
+      state.login.status = 'failed';
+      const error = action.payload!.error;
+      if (!(error instanceof RPCError)) {
+        return;
+      }
+
+      const statusCode = Number(error.code);
+      if (statusCode === RPCStatusCode.NOT_FOUND || statusCode === RPCStatusCode.UNAUTHENTICATED) {
+        // set specific error state
+        state.login.error = {
+          target: 'username',
+          message: 'Incorrect username or password',
+        };
+        // notify middleware that the error has been handled
+        action.meta.isHandledError = true;
+      }
+  },
+});
+```
+
+3. Common RPCErrors, such as request timeouts or session expirations, are handled in Redux middleware. By checking `action.meta.isHandledError`, we can skip processing errors that have already been handled in reducers.
 
 ```ts
 // app/store.ts
@@ -102,49 +119,29 @@ export const store = configureStore({
 // app/middleware.ts
 
 export const globalErrorHandler: Middleware = (store: MiddlewareAPI) => (next) => (action) => {
-  next(action);
-  if (!isRejectedAction(action) && !isRejectedWithValue(action)) return;
+  const result = next(action);
 
-  let { code: statusCode, message: errorMessage, name: errorName } = action.error;
+  // finish dispatching the action
+  if (!isRejectedWithValue(action)) return result;
+  // skip specific RPCError
+  if (action.meta.isHandledError) return result;
+
+  // handle common error
+  let { code: statusCode, message: errorMessage } = action.payload.error;
   statusCode = Number(statusCode);
 
-  const apiErrorName: APIErrorName = 'RPCError';
-  if (errorName !== apiErrorName) {
-    throw action.error; // handle only RPCError
+  if (statusCode === RPCStatusCode.UNAUTHENTICATED) {
+    store.dispatch(setIsValidToken(false));
+    store.dispatch(setGlobalError({ statusCode, errorMessage }));
+    return result;
   }
-  if (isHandledError(action.type, statusCode)) return; // except specific RPCError
-  store.dispatch(setGlobalError({ statusCode, errorMessage })); // handle common RPCError
+  store.dispatch(setGlobalError({ statusCode, errorMessage }));
+  return result;
 };
 ```
 
-3. Handle specific RPCError by setting the error state in the reducer.
+4. Display the UI according to the error state. For example, global errors can be shown using an error modal, while specific errors can be highlighted as errors for particular input fields.
 
-```ts
-export const usersSlice = createSlice({
-  name: 'users',
-  initialState,
-  reducers: { },
-  extraReducers: (builder) => {
-    // rejected case
-    builder.addCase(loginUser.rejected, (state, action) => {
-      state.login.status = 'failed';
-      // `action.error` has a serialized version of the error value
-      const statusCode = Number(action.error.code);
-      if (statusCode === RPCStatusCode.NOT_FOUND || statusCode === RPCStatusCode.UNAUTHENTICATED) {
-        // set specific error state
-        state.login.error = {
-          target: 'username',
-          message: 'Incorrect username or password',
-        };
-      }
-  },
-});
-```
-
-4. Show UI according to the error state.
-
-##### Redux Middleware
-
-Redux uses middleware to let us customize the dispatch function. Redux middleware provides a third-party extension point between dispatching an action, and the moment it reaches the reducer. [(redux fundamentals)](https://redux.js.org/tutorials/fundamentals/part-4-store#middleware)
-
-<img width="450" alt="image" src="http://blog.hwahae.co.kr/wp-content/uploads/2021/09/210927_fin_05-1.jpg"> [Image - hwahae blog](http://blog.hwahae.co.kr/all/tech/tech-tech/6946/)
+|                  Specific Error UI                  |                 Global Error UI                 |
+| :-------------------------------------------------: | :---------------------------------------------: |
+| ![specific-error-ui](./media/specific-error-ui.png) | ![global-error-ui](./media/global-error-ui.png) |

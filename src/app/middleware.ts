@@ -14,43 +14,21 @@
  * limitations under the License.
  */
 
-import type { Action, PayloadAction, SerializedError, MiddlewareAPI, Middleware } from '@reduxjs/toolkit';
+import type { MiddlewareAPI, Middleware } from '@reduxjs/toolkit';
 import { isRejectedWithValue } from '@reduxjs/toolkit';
 import { RPCStatusCode } from 'api/types';
 import { setGlobalError } from 'features/globalError/globalErrorSlice';
 import { setIsValidToken } from 'features/users/usersSlice';
 
-type RejectedAction = PayloadAction<
-  {
-    code: number;
-    message: string;
-  },
-  string,
-  {
-    arg: any;
-    requestId: string;
-    aborted: boolean;
-    condition: boolean;
-  },
-  SerializedError
->;
-
-function isRejectedAction(action: Action): action is RejectedAction {
-  return action.type.endsWith('/rejected');
-}
-
 export const globalErrorHandler: Middleware = (store: MiddlewareAPI) => (next) => (action) => {
   const result = next(action);
 
-  // finish dispatching the action
-  if (!isRejectedAction(action) && !isRejectedWithValue(action)) return result;
+  if (!isRejectedWithValue(action)) return result;
+  // skip errors that have already been handled in reducers
   if (action.meta.isHandledError) return result;
 
-  let { code: statusCode, message: errorMessage } = action.error;
-  if (isRejectedWithValue(action)) {
-    statusCode = action.payload.error.code;
-    errorMessage = action.payload.error.message;
-  }
+  // handle common error
+  let { code: statusCode, message: errorMessage } = action.payload.error;
   statusCode = Number(statusCode);
 
   if (statusCode === RPCStatusCode.UNAUTHENTICATED) {
