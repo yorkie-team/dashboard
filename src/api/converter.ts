@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import { Timestamp as PbTimestamp } from 'google-protobuf/google/protobuf/timestamp_pb';
-import { User, Project, DocumentSummary, AuthWebhookMethod } from './types';
+import { Timestamp as PbTimestamp } from '@bufbuild/protobuf';
+import { User, Project, DocumentSummary, AuthWebhookMethod, FieldViolation } from './types';
 import { Change, converter, Indexable } from 'yorkie-js-sdk';
 import {
   User as PbUser,
@@ -23,29 +23,31 @@ import {
   DocumentSummary as PbDocumentSummary,
   Change as PbChange,
 } from './yorkie/v1/resources_pb';
+import { ConnectError } from '@connectrpc/connect';
+import { BadRequest } from './yorkie/v1/error_details_pb';
 
 export function fromTimestamp(pbTimestamp: PbTimestamp): number {
-  return pbTimestamp.getSeconds() + pbTimestamp.getNanos() / 1e9;
+  return pbTimestamp.toDate().getTime() / 1000;
 }
 
 export function fromUser(pbUser: PbUser): User {
   return {
-    id: pbUser.getId(),
-    username: pbUser.getUsername(),
-    createdAt: fromTimestamp(pbUser.getCreatedAt()!),
+    id: pbUser.id,
+    username: pbUser.username,
+    createdAt: fromTimestamp(pbUser.createdAt!),
   };
 }
 
 export function fromProject(pbProject: PbProject): Project {
   return {
-    id: pbProject.getId(),
-    name: pbProject.getName(),
-    publicKey: pbProject.getPublicKey(),
-    secretKey: pbProject.getSecretKey(),
-    createdAt: fromTimestamp(pbProject.getCreatedAt()!),
-    authWebhookURL: pbProject.getAuthWebhookUrl(),
-    authWebhookMethods: pbProject.getAuthWebhookMethodsList() as Array<AuthWebhookMethod>,
-    clientDeactivateThreshold: pbProject.getClientDeactivateThreshold(),
+    id: pbProject.id,
+    name: pbProject.name,
+    publicKey: pbProject.publicKey,
+    secretKey: pbProject.secretKey,
+    createdAt: fromTimestamp(pbProject.createdAt!),
+    authWebhookURL: pbProject.authWebhookUrl,
+    authWebhookMethods: pbProject.authWebhookMethods as Array<AuthWebhookMethod>,
+    clientDeactivateThreshold: pbProject.clientDeactivateThreshold,
   };
 }
 
@@ -61,12 +63,12 @@ export function fromProjects(pbProjects: Array<PbProject>): Array<Project> {
 
 export function fromDocumentSummary(pbDocumentSummary: PbDocumentSummary): DocumentSummary {
   return {
-    id: pbDocumentSummary.getId(),
-    key: pbDocumentSummary.getKey()!,
-    snapshot: pbDocumentSummary.getSnapshot(),
-    createdAt: fromTimestamp(pbDocumentSummary.getCreatedAt()!),
-    accessedAt: fromTimestamp(pbDocumentSummary.getAccessedAt()!),
-    updatedAt: fromTimestamp(pbDocumentSummary.getUpdatedAt()!),
+    id: pbDocumentSummary.id,
+    key: pbDocumentSummary.key,
+    snapshot: pbDocumentSummary.snapshot,
+    createdAt: fromTimestamp(pbDocumentSummary.createdAt!),
+    accessedAt: fromTimestamp(pbDocumentSummary.accessedAt!),
+    updatedAt: fromTimestamp(pbDocumentSummary.updatedAt!),
   };
 }
 
@@ -81,5 +83,20 @@ export function fromDocumentSummaries(pbDocumentSummaries: Array<PbDocumentSumma
 }
 
 export function fromChanges(pbChanges: Array<PbChange>): Array<Change<Indexable>> {
-  return converter.fromChanges(pbChanges);
+  return converter.fromChanges(pbChanges as any);
+}
+
+/**
+ * `fromErrorDetails` converts the error details to the array of FieldViolation.
+ * See https://connectrpc.com/docs/web/errors/#error-details for more details.
+ */
+export function fromErrorDetails(error: ConnectError) {
+  const pbDetails = error.findDetails(BadRequest);
+  const details: Array<FieldViolation> = [];
+  for (const pbDetail of pbDetails) {
+    for (const { field, description } of pbDetail.fieldViolations) {
+      details.push({ field, description });
+    }
+  }
+  return details;
 }

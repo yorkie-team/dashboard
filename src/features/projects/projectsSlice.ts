@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import { createAppThunk } from 'app/appThunk';
 import { RootState } from 'app/store';
 import { listProjects, getProject, createProject, updateProject, Project, UpdatableProjectFields } from 'api';
-import { RPCStatusCode, AuthWebhookMethod } from 'api/types';
+import { RPCStatusCode, AuthWebhookMethod, RPCError } from 'api/types';
 
 export interface ProjectsState {
   list: {
@@ -78,40 +79,37 @@ const initialState: ProjectsState = {
   },
 };
 
-export const listProjectsAsync = createAsyncThunk('projects/listDocuments', async (): Promise<Array<Project>> => {
-  const projects = await listProjects();
-  return projects;
-});
-
-export const getProjectAsync = createAsyncThunk('projects/getProject', async (name: string): Promise<Project> => {
-  const project = await getProject(name);
-  return project;
-});
-
-export const createProjectAsync = createAsyncThunk<Project, ProjectCreateFields, { rejectValue: any }>(
-  'projects/createProject',
-  async ({ projectName }, { rejectWithValue }) => {
-    try {
-      const project = await createProject(projectName);
-      return project;
-    } catch (error) {
-      return rejectWithValue({ error });
-    }
+export const listProjectsAsync = createAppThunk<Array<Project>, void>(
+  'projects/listDocuments',
+  async (): Promise<Array<Project>> => {
+    const projects = await listProjects();
+    return projects;
   },
 );
 
-export const updateProjectAsync = createAsyncThunk<
-  Project,
-  { id: string; fields: UpdatableProjectFields },
-  { rejectValue: any }
->('projects/updateProject', async ({ id, fields }, { rejectWithValue }) => {
-  try {
+export const getProjectAsync = createAppThunk<Project, string>(
+  'projects/getProject',
+  async (name): Promise<Project> => {
+    const project = await getProject(name);
+    return project;
+  },
+);
+
+export const createProjectAsync = createAppThunk<Project, ProjectCreateFields>(
+  'projects/createProject',
+  async ({ projectName }) => {
+    const project = await createProject(projectName);
+    return project;
+  },
+);
+
+export const updateProjectAsync = createAppThunk<Project, { id: string; fields: UpdatableProjectFields }>(
+  'projects/updateProject',
+  async ({ id, fields }) => {
     const project = await updateProject(id, fields);
     return project;
-  } catch (error) {
-    return rejectWithValue({ error });
-  }
-});
+  },
+);
 
 export const projectsSlice = createSlice({
   name: 'projects',
@@ -157,16 +155,20 @@ export const projectsSlice = createSlice({
     });
     builder.addCase(createProjectAsync.rejected, (state, action) => {
       state.create.status = 'failed';
-
-      const statusCode = Number(action.payload.error.code);
+      const error = action.payload!.error;
+      if (!(error instanceof RPCError)) {
+        return;
+      }
+      const statusCode = Number(error.code);
       if (statusCode === RPCStatusCode.ALREADY_EXISTS) {
         state.create.error = {
           target: 'projectName',
           message: 'The project name is already in use.',
         };
+        action.meta.isHandledError = true;
+        return;
       } else if (statusCode === RPCStatusCode.INVALID_ARGUMENT) {
-        const errorDetails = action.payload.error.details;
-        for (const { field, description } of errorDetails) {
+        for (const { field, description } of error.details!) {
           if (field === 'Name') {
             state.create.error = {
               target: 'projectName',
@@ -174,6 +176,8 @@ export const projectsSlice = createSlice({
             };
           }
         }
+        action.meta.isHandledError = true;
+        return;
       }
     });
     builder.addCase(updateProjectAsync.pending, (state) => {
@@ -187,16 +191,20 @@ export const projectsSlice = createSlice({
     });
     builder.addCase(updateProjectAsync.rejected, (state, action) => {
       state.update.status = 'failed';
-
-      const statusCode = Number(action.payload.error.code);
+      const error = action.payload!.error;
+      if (!(error instanceof RPCError)) {
+        return;
+      }
+      const statusCode = Number(error.code);
       if (statusCode === RPCStatusCode.ALREADY_EXISTS) {
         state.update.error = {
           target: 'name',
           message: 'The project name is already in use.',
         };
+        action.meta.isHandledError = true;
+        return;
       } else if (statusCode === RPCStatusCode.INVALID_ARGUMENT) {
-        const errorDetails = action.payload.error.details;
-        for (const { field, description } of errorDetails) {
+        for (const { field, description } of error.details!) {
           if (field === 'Name') {
             state.update.error = {
               target: 'name',
@@ -219,6 +227,8 @@ export const projectsSlice = createSlice({
             };
           }
         }
+        action.meta.isHandledError = true;
+        return;
       }
     });
   },

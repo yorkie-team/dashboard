@@ -2,20 +2,6 @@
 
 Dashboard is an administrative tool that allows users to manage projects and documents.
 
-## How Dashboard works
-
-Dashboard uses gRPC-web for communicating with Yorkie agent built on gRPC.
-
-```
- +--Browser--+           +--Envoy---------+         +--Yorkie------+
- |           |           |                |         |              |
- | gRPC-web  <- HTTP1.1 -> gRPC-web proxy <- HTTP2 -> Admin server |
- |           |           |                |         |              |
- +-----------+           +----------------+         +--------------+
-```
-
-For more details: https://grpc.io/blog/state-of-grpc-web/
-
 ## Developing Dashboard
 
 ### Building Dashboard
@@ -30,11 +16,12 @@ npm install
 npm run build
 ```
 
-For generating proto messages and the service client stub classes with protoc and the protoc-gen-grpc-web.
-How to install protoc-gen-grpc-web: [https://github.com/grpc/grpc-web#code-generator-plugin](https://github.com/grpc/grpc-web#code-generator-plugin)
+To generate proto messages, we use `protoc-gen-connect-es`, which is a code generator plugin for Protocol Buffer compilers, like buf and protoc. It generates both clients and server definitions from Protocol Buffer schema.
+
+For more details, see [@connectrpc/protoc-gen-connect-es](https://github.com/connectrpc/connect-es/tree/main/packages/protoc-gen-connect-es).
 
 ```
-# generate proto messages and the service client stub classes
+# To generate code for all protobuf files within the project
 npm run build:proto
 ```
 
@@ -42,8 +29,8 @@ npm run build:proto
 
 ### Running Dashboard
 
-Dashboard needs backend servers like Yorkie and Envoy. We can simply run them using `docker-compose`.
-To start Yorkie and Envoy proxy in a terminal:
+Dashboard needs Yorkie server. We can simply run them using `docker-compose`.
+To start Yorkie in a terminal:
 
 ```
 $ docker-compose -f docker/docker-compose.yml up --build -d

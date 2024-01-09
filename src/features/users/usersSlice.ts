@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import { createAppThunk } from 'app/appThunk';
 import * as api from 'api';
-import { User, RPCStatusCode } from 'api/types';
+import { User, RPCStatusCode, RPCError } from 'api/types';
 import { RootState } from 'app/store';
 import jwt_decode from 'jwt-decode';
 
@@ -110,7 +111,7 @@ if (initialState.token) {
   }
 }
 
-export const loginUser = createAsyncThunk<string, LoginFields>('users/login', async ({ username, password }) => {
+export const loginUser = createAppThunk<string, LoginFields>('users/login', async ({ username, password }) => {
   const token = await api.logIn(username, password);
   // TODO(hackerwins): For security, we need to change the token to be stored in the cookie.
   // For more information, see https://github.com/yorkie-team/dashboard/issues/42.
@@ -118,16 +119,9 @@ export const loginUser = createAsyncThunk<string, LoginFields>('users/login', as
   return token;
 });
 
-export const signupUser = createAsyncThunk<User, SignupFields, { rejectValue: any }>(
-  'users/signup',
-  async ({ username, password }, { rejectWithValue }) => {
-    try {
-      return await api.signUp(username, password);
-    } catch (error) {
-      return rejectWithValue({ error });
-    }
-  },
-);
+export const signupUser = createAppThunk<User, SignupFields>('users/signup', async ({ username, password }) => {
+  return await api.signUp(username, password);
+});
 
 export const usersSlice = createSlice({
   name: 'users',
@@ -193,12 +187,17 @@ export const usersSlice = createSlice({
     });
     builder.addCase(loginUser.rejected, (state, action) => {
       state.login.status = 'failed';
-      const statusCode = Number(action.error.code);
+      const error = action.payload!.error;
+      if (!(error instanceof RPCError)) {
+        return;
+      }
+      const statusCode = Number(error.code);
       if (statusCode === RPCStatusCode.NOT_FOUND || statusCode === RPCStatusCode.UNAUTHENTICATED) {
         state.login.error = {
           target: 'username',
           message: 'Incorrect username or password',
         };
+        action.meta.isHandledError = true;
       }
     });
     builder.addCase(signupUser.fulfilled, (state) => {
@@ -210,16 +209,23 @@ export const usersSlice = createSlice({
     });
     builder.addCase(signupUser.rejected, (state, action) => {
       state.signup.status = 'failed';
-      const statusCode = Number(action.payload.error.code);
-      const signupErrors: Array<ErrorDetails> = [];
-      if (statusCode === RPCStatusCode.INTERNAL) {
-        signupErrors.unshift({
-          target: 'username',
-          message: 'Username already exists',
-        });
+      const error = action.payload!.error;
+      if (!(error instanceof RPCError)) {
+        return;
+      }
+      const statusCode = Number(error.code);
+      if (statusCode === RPCStatusCode.ALREADY_EXISTS) {
+        state.signup.error = [
+          {
+            target: 'username',
+            message: 'Username already exists',
+          },
+        ];
+        action.meta.isHandledError = true;
+        return;
       } else if (statusCode === RPCStatusCode.INVALID_ARGUMENT) {
-        const errorDetails = action.payload.error.details;
-        for (const { field, description } of errorDetails) {
+        const signupErrors: Array<ErrorDetails> = [];
+        for (const { field, description } of error.details!) {
           if (field === 'Username') {
             signupErrors.unshift({
               target: 'username',
@@ -232,8 +238,9 @@ export const usersSlice = createSlice({
             });
           }
         }
+        state.signup.error = signupErrors;
+        action.meta.isHandledError = true;
       }
-      state.signup.error = signupErrors;
     });
   },
 });

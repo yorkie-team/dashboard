@@ -14,13 +14,9 @@
  * limitations under the License.
  */
 
-import * as errorDetails from 'grpc-web-error-details';
-import { APIErrorName } from './types';
+import { Interceptor } from '@connectrpc/connect';
 
-/**
- * `DefaultUnaryInterceptor` is a unary interceptor.
- */
-export class DefaultUnaryInterceptor {
+export class InterceptorBuilder {
   private token?: string;
 
   constructor(token?: string) {
@@ -28,106 +24,19 @@ export class DefaultUnaryInterceptor {
   }
 
   /**
-   * `setToken` sets the token to the interceptor.
+   * `setToken` sets the token to the interceptor builder.
    * @param token The token to set.
    */
   public setToken(token: string) {
     this.token = token;
   }
 
-  /**
-   * `intercept` intercepts the request and adds the token and deadline to the metadata
-   * and returns RPCError if the request is rejected.
-   */
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  public intercept(request: any, invoker: any): any {
-    const metadata = request.getMetadata();
-    if (this.token) {
-      metadata.authorization = this.token;
-    }
-    metadata.deadline = new Date().getTime() + 3000;
-    return invoker(request).catch((err: any) => {
-      const [, pbDetails] = errorDetails.statusFromError(err);
-      if (pbDetails && pbDetails.length > 0) {
-        const details: Array<FieldViolation> = [];
-        for (const pbDetail of pbDetails) {
-          if (pbDetail instanceof errorDetails.BadRequest) {
-            for (const v of pbDetail.getFieldViolationsList()) {
-              details.push({ field: v.getField(), description: v.getDescription() });
-            }
-          }
-        }
-        throw new RPCError(err.code, err.message, details);
+  public createAuthInterceptor(): Interceptor {
+    return (next) => async (req) => {
+      if (this.token) {
+        req.header.set('authorization', this.token);
       }
-
-      throw new RPCError(err.code, err.message);
-    });
+      return await next(req);
+    };
   }
 }
-
-/**
- * `DefaultStreamInterceptor` is a stream interceptor.
- */
-export class DefaultStreamInterceptor {
-  private token?: string;
-
-  constructor(token?: string) {
-    this.token = token;
-  }
-
-  /**
-   * `setToken` sets the token to the interceptor.
-   * @param token The token to set.
-   */
-  public setToken(token: string) {
-    this.token = token;
-  }
-
-  /**
-   * `intercept` intercepts the request and adds the token and deadline to the metadata
-   * and returns RPCError if the request is rejected.
-   */
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  public intercept(request: any, invoker: any): any {
-    const metadata = request.getMetadata();
-    if (this.token) {
-      metadata.authorization = this.token;
-    }
-    metadata.deadline = new Date().getTime() + 3000;
-    return invoker(request).catch((err: any) => {
-      const [, pbDetails] = errorDetails.statusFromError(err);
-      if (pbDetails && pbDetails.length > 0) {
-        const details: Array<FieldViolation> = [];
-        for (const pbDetail of pbDetails) {
-          if (pbDetail instanceof errorDetails.BadRequest) {
-            for (const v of pbDetail.getFieldViolationsList()) {
-              details.push({ field: v.getField(), description: v.getDescription() });
-            }
-          }
-        }
-        throw new RPCError(err.code, err.message, details);
-      }
-
-      throw new RPCError(err.code, err.message);
-    });
-  }
-}
-
-class RPCError extends Error {
-  name: APIErrorName;
-  code: string;
-  message: string;
-  details: Array<FieldViolation>;
-  constructor(code: number, message: string, details?: Array<FieldViolation>) {
-    super(message);
-    this.name = 'RPCError';
-    this.code = String(code);
-    this.message = message;
-    this.details = details || [];
-  }
-}
-
-type FieldViolation = {
-  field: string;
-  description: string;
-};

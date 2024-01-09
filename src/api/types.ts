@@ -90,3 +90,20 @@ export enum RPCStatusCode {
 }
 
 export type APIErrorName = 'RPCError';
+export type FieldViolation = {
+  field: string;
+  description: string;
+};
+export class RPCError extends Error {
+  readonly name: APIErrorName;
+  readonly code: string;
+  readonly message: string;
+  readonly details?: Array<FieldViolation>;
+  constructor(code: string, message: string, details?: Array<FieldViolation>) {
+    super(message);
+    this.name = 'RPCError';
+    this.code = code;
+    this.message = message;
+    if (details) this.details = details;
+  }
+}

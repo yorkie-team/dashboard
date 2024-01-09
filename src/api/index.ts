@@ -16,112 +16,72 @@
 
 import Long from 'long';
 import { Document } from 'yorkie-js-sdk';
-import { AdminServicePromiseClient } from './yorkie/v1/admin_grpc_web_pb';
-import {
-  LogInRequest,
-  SignUpRequest,
-  ListProjectsRequest,
-  ListDocumentsRequest,
-  GetProjectRequest,
-  GetDocumentRequest,
-  CreateProjectRequest,
-  UpdateProjectRequest,
-  SearchDocumentsRequest,
-  ListChangesRequest,
-  GetSnapshotMetaRequest,
-  RemoveDocumentByAdminRequest,
-} from './yorkie/v1/admin_pb';
-import { UpdatableProjectFields as PbProjectFields } from './yorkie/v1/resources_pb';
-import * as PbWrappers from 'google-protobuf/google/protobuf/wrappers_pb';
-
-import { DefaultUnaryInterceptor, DefaultStreamInterceptor } from './interceptor';
+import { createPromiseClient } from '@connectrpc/connect';
+import { createGrpcWebTransport } from '@connectrpc/connect-web';
+import { AdminService } from './yorkie/v1/admin_connect';
+import { UpdatableProjectFields_AuthWebhookMethods as PbProjectFields_AuthWebhookMethods } from './yorkie/v1/resources_pb';
+import { InterceptorBuilder } from './interceptor';
 import { User, Project, DocumentSummary, UpdatableProjectFields, DocumentHistory } from './types';
 import * as converter from './converter';
 
 export * from './types';
 
-// TODO(hackerwins): Consider combining these two interceptors into one.
-const unaryInterceptor = new DefaultUnaryInterceptor();
-const streamInterceptor = new DefaultStreamInterceptor();
-const client = new AdminServicePromiseClient(`${process.env.REACT_APP_API_ADDR}`, null, {
-  unaryInterceptors: [unaryInterceptor],
-  streamInterceptors: [streamInterceptor],
+const interceptor = new InterceptorBuilder();
+const transport = createGrpcWebTransport({
+  baseUrl: process.env.REACT_APP_API_ADDR!,
+  interceptors: [interceptor.createAuthInterceptor()],
+  defaultTimeoutMs: 3000,
 });
+const client = createPromiseClient(AdminService, transport);
 
 // setToken sets the token for the current user.
 export function setToken(token: string) {
-  unaryInterceptor.setToken(token);
-  streamInterceptor.setToken(token);
+  interceptor.setToken(token);
 }
 
 // logIn logs in the user and returns a token.
 export async function logIn(username: string, password: string): Promise<string> {
-  const req = new LogInRequest();
-  req.setUsername(username);
-  req.setPassword(password);
-  const res = await client.logIn(req);
-  const token = res.getToken();
-  setToken(token);
-  return token;
+  const res = await client.logIn({ username, password });
+  setToken(res.token);
+  return res.token;
 }
 
 // signUp signs up the user and returns a user.
 export async function signUp(username: string, password: string): Promise<User> {
-  const req = new SignUpRequest();
-  req.setUsername(username);
-  req.setPassword(password);
-  const res = await client.signUp(req);
-  return converter.fromUser(res.getUser()!);
+  const res = await client.signUp({ username, password });
+  return converter.fromUser(res.user!);
 }
 
 // createProject creates a new project.
 export async function createProject(name: string): Promise<Project> {
-  const req = new CreateProjectRequest();
-  req.setName(name);
-  const res = await client.createProject(req);
-  return converter.fromProject(res.getProject()!);
+  const res = await client.createProject({ name });
+  return converter.fromProject(res.project!);
 }
 
 // listProjects fetches projects from the admin server.
 export async function listProjects(): Promise<Array<Project>> {
-  const req = new ListProjectsRequest();
-  const res = await client.listProjects(req);
-  return converter.fromProjects(res.getProjectsList());
+  const res = await client.listProjects({});
+  return converter.fromProjects(res.projects);
 }
 
 // getProject fetch project from the admin server.
 export async function getProject(name: string): Promise<Project> {
-  const req = new GetProjectRequest();
-  req.setName(name);
-  const res = await client.getProject(req);
-  return converter.fromProject(res.getProject()!);
+  const res = await client.getProject({ name });
+  return converter.fromProject(res.project!);
 }
 
 // UpdateProject updates a project info.
 export async function updateProject(id: string, fields: UpdatableProjectFields): Promise<Project> {
-  const req = new UpdateProjectRequest();
-  req.setId(id);
-  const pbFields = new PbProjectFields();
-  if (fields.name) {
-    const name = new PbWrappers.StringValue().setValue(fields.name);
-    pbFields.setName(name);
-  }
-  if (fields.authWebhookURL !== undefined) {
-    const authWebhookURL = new PbWrappers.StringValue().setValue(fields.authWebhookURL);
-    pbFields.setAuthWebhookUrl(authWebhookURL);
-  }
-  if (fields.authWebhookMethods) {
-    const authWebhookMethods = new PbProjectFields.AuthWebhookMethods().setMethodsList(fields.authWebhookMethods);
-    pbFields.setAuthWebhookMethods(authWebhookMethods);
-  }
-  if (fields.clientDeactivateThreshold) {
-    const clientDeactivateThreshold = new PbWrappers.StringValue().setValue(fields.clientDeactivateThreshold);
-    pbFields.setClientDeactivateThreshold(clientDeactivateThreshold);
-  }
-
-  req.setFields(pbFields);
-  const res = await client.updateProject(req);
-  return converter.fromProject(res.getProject()!);
+  const pbFields = {
+    name: fields.name,
+    authWebhookUrl: fields.authWebhookURL,
+    authWebhookMethods: fields.authWebhookMethods
+      ? new PbProjectFields_AuthWebhookMethods({ methods: fields.authWebhookMethods })
+      : undefined,
+    clientDeactivateThreshold: fields.clientDeactivateThreshold,
+  };
+  const res = await client.updateProject({ id, fields: pbFields });
+  return converter.fromProject(res.project!);
 }
 
 // listDocuments fetches documents from the admin server.
@@ -131,13 +91,13 @@ export async function listDocuments(
   pageSize: number,
   isForward: boolean,
 ): Promise<Array<DocumentSummary>> {
-  const req = new ListDocumentsRequest();
-  req.setProjectName(projectName);
-  req.setPreviousId(previousID);
-  req.setPageSize(pageSize);
-  req.setIsForward(isForward);
-  const res = await client.listDocuments(req);
-  const summaries = converter.fromDocumentSummaries(res.getDocumentsList());
+  const res = await client.listDocuments({
+    projectName,
+    previousId: previousID,
+    pageSize,
+    isForward,
+  });
+  const summaries = converter.fromDocumentSummaries(res.documents);
   if (isForward) {
     summaries.reverse();
   }
@@ -146,13 +106,8 @@ export async function listDocuments(
 
 // getDocument fetches a document of the given ID from the admin server.
 export async function getDocument(projectName: string, documentKey: string): Promise<DocumentSummary> {
-  const req = new GetDocumentRequest();
-  req.setProjectName(projectName);
-  req.setDocumentKey(documentKey);
-  const res = await client.getDocument(req);
-
-  const document = res.getDocument();
-  return converter.fromDocumentSummary(document!);
+  const res = await client.getDocument({ projectName, documentKey });
+  return converter.fromDocumentSummary(res.document!);
 }
 
 // searchDocuments fetches documents that match the query parameters.
@@ -164,14 +119,10 @@ export async function searchDocuments(
   totalCount: number;
   documents: Array<DocumentSummary>;
 }> {
-  const req = new SearchDocumentsRequest();
-  req.setProjectName(projectName);
-  req.setQuery(documentQuery);
-  req.setPageSize(pageSize);
-  const res = await client.searchDocuments(req);
-  const summaries = converter.fromDocumentSummaries(res.getDocumentsList());
+  const res = await client.searchDocuments({ projectName, query: documentQuery, pageSize });
+  const summaries = converter.fromDocumentSummaries(res.documents);
   return {
-    totalCount: res.getTotalCount(),
+    totalCount: res.totalCount,
     documents: summaries,
   };
 }
@@ -184,31 +135,31 @@ export async function listDocumentHistories(
   pageSize: number,
   isForward: boolean,
 ): Promise<Array<DocumentHistory>> {
-  const req = new ListChangesRequest();
-  req.setProjectName(projectName);
-  req.setDocumentKey(documentKey);
-  req.setPreviousSeq(previousSeq);
-  req.setPageSize(pageSize);
-  req.setIsForward(isForward);
-  const response = await client.listChanges(req);
-  const pbChanges = response.getChangesList();
+  const res = await client.listChanges({
+    projectName,
+    documentKey,
+    previousSeq,
+    pageSize,
+    isForward,
+  });
+  const pbChanges = res.changes;
   const changes = converter.fromChanges(pbChanges);
 
-  const seq = Long.fromString(pbChanges[0].getId()!.getServerSeq()).add(-1);
-  const metaReq = new GetSnapshotMetaRequest();
-  metaReq.setProjectName(projectName);
-  metaReq.setDocumentKey(documentKey);
-  metaReq.setServerSeq(seq.toString());
-  const snapshotMeta = await client.getSnapshotMeta(metaReq);
+  const seq = Long.fromString(pbChanges[0].id!.serverSeq).add(-1);
+  const snapshotMeta = await client.getSnapshotMeta({
+    projectName,
+    documentKey,
+    serverSeq: seq.toString(),
+  });
 
   const document = new Document(documentKey);
-  document.applySnapshot(seq, snapshotMeta.getSnapshot() as Uint8Array);
+  document.applySnapshot(seq, snapshotMeta.snapshot);
 
   const histories: Array<DocumentHistory> = [];
   for (let i = 0; i < changes.length; i++) {
     document.applyChanges([changes[i]]);
     histories.push({
-      serverSeq: pbChanges[i].getId()!.getServerSeq(),
+      serverSeq: pbChanges[i].id!.serverSeq,
       snapshot: document.toJSON(),
     });
   }
@@ -219,11 +170,11 @@ export async function listDocumentHistories(
 export async function removeDocumentByAdmin(
   projectName: string,
   documentKey: string,
-  forceRemoveIfAttached: boolean,
+  forceRemoveIfAttached: boolean = true,
 ): Promise<void> {
-  const req = new RemoveDocumentByAdminRequest();
-  req.setProjectName(projectName);
-  req.setDocumentKey(documentKey);
-  req.setForce(true);
-  await client.removeDocumentByAdmin(req);
+  await client.removeDocumentByAdmin({
+    projectName,
+    documentKey,
+    force: forceRemoveIfAttached,
+  });
 }

@@ -14,83 +14,28 @@
  * limitations under the License.
  */
 
-import type { Action, PayloadAction, SerializedError, MiddlewareAPI, Middleware } from '@reduxjs/toolkit';
+import type { MiddlewareAPI, Middleware } from '@reduxjs/toolkit';
 import { isRejectedWithValue } from '@reduxjs/toolkit';
-import { RPCStatusCode, APIErrorName } from 'api/types';
+import { RPCStatusCode } from 'api/types';
 import { setGlobalError } from 'features/globalError/globalErrorSlice';
-import { loginUser, signupUser, setIsValidToken } from 'features/users/usersSlice';
-import { createProjectAsync, updateProjectAsync } from 'features/projects/projectsSlice';
-
-type RejectedAction = PayloadAction<
-  {
-    code: number;
-    message: string;
-  },
-  string,
-  {
-    arg: any;
-    requestId: string;
-    aborted: boolean;
-    condition: boolean;
-  },
-  SerializedError
->;
-
-function isRejectedAction(action: Action): action is RejectedAction {
-  return action.type.endsWith('/rejected');
-}
-
-function isHandledError(actionType: any, statusCode: RPCStatusCode): boolean {
-  if (
-    actionType === loginUser.rejected.type &&
-    (statusCode === RPCStatusCode.NOT_FOUND || statusCode === RPCStatusCode.UNAUTHENTICATED)
-  ) {
-    return true;
-  }
-
-  if (
-    actionType === signupUser.rejected.type &&
-    (statusCode === RPCStatusCode.INTERNAL || statusCode === RPCStatusCode.INVALID_ARGUMENT)
-  ) {
-    return true;
-  }
-
-  if (
-    actionType === createProjectAsync.rejected.type &&
-    (statusCode === RPCStatusCode.ALREADY_EXISTS || statusCode === RPCStatusCode.INVALID_ARGUMENT)
-  ) {
-    return true;
-  }
-
-  if (
-    actionType === updateProjectAsync.rejected.type &&
-    (statusCode === RPCStatusCode.ALREADY_EXISTS || statusCode === RPCStatusCode.INVALID_ARGUMENT)
-  ) {
-    return true;
-  }
-
-  return false;
-}
+import { setIsValidToken } from 'features/users/usersSlice';
 
 export const globalErrorHandler: Middleware = (store: MiddlewareAPI) => (next) => (action) => {
-  next(action);
-  if (!isRejectedAction(action) && !isRejectedWithValue(action)) return;
+  const result = next(action);
 
-  let { code: statusCode, message: errorMessage, name: errorName } = action.error;
-  if (isRejectedWithValue(action)) {
-    statusCode = action.payload.error.code;
-    errorMessage = action.payload.error.message;
-    errorName = action.payload.error.name;
-  }
+  if (!isRejectedWithValue(action)) return result;
+  // skip errors that have already been handled in reducers
+  if (action.meta.isHandledError) return result;
+
+  // handle common error
+  let { code: statusCode, message: errorMessage } = action.payload.error;
   statusCode = Number(statusCode);
-  const apiErrorName: APIErrorName = 'RPCError';
-  if (errorName !== apiErrorName) {
-    throw action.error;
-  }
-  if (isHandledError(action.type, statusCode)) return;
+
   if (statusCode === RPCStatusCode.UNAUTHENTICATED) {
     store.dispatch(setIsValidToken(false));
-    return;
+    store.dispatch(setGlobalError({ statusCode, errorMessage }));
+    return result;
   }
   store.dispatch(setGlobalError({ statusCode, errorMessage }));
+  return result;
 };
