@@ -16,7 +16,7 @@
 
 import React, { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import * as moment from 'moment';
+import { fromUnixTime, format } from 'date-fns';
 import classNames from 'classnames';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
@@ -66,7 +66,7 @@ function ProjectCards({
             <li key={name} className="tbody_item">
               <Link to={`./${name}`} className="link">
                 <span className="td title">{name}</span>
-                <span className="td">{moment.unix(createdAt).format('YYYY-MM-DD')}</span>
+                <span className="td"> {format(fromUnixTime(createdAt), 'yyyy-MM-dd')} </span>
               </Link>
             </li>
           ))}
@@ -82,7 +82,7 @@ function ProjectCards({
                 </div>
                 <dl className="info_list">
                   <dt className="info_title">Created At</dt>
-                  <dd className="info_desc">{moment.unix(createdAt).format('YYYY-MM-DD')}</dd>
+                  <dd className="info_desc">{format(fromUnixTime(createdAt), 'yyyy-MM-dd')}</dd>
                 </dl>
               </Link>
             </li>
@@ -105,7 +105,7 @@ export function ProjectList() {
   const [query, setQuery] = useState<string | null>(null);
   const [viewType, setViewType] = useState<'list' | 'card'>('card');
   const [sortOpened, setSortOpened] = useState(false);
-  const [sortOption, setSortOption] = useState<typeof SORT_OPTION[keyof typeof SORT_OPTION]>(SORT_OPTION.createdAt);
+  const [sortOption, setSortOption] = useState<(typeof SORT_OPTION)[keyof typeof SORT_OPTION]>(SORT_OPTION.createdAt);
 
   const handleProjectSort = useCallback((projects, option) => {
     if (option === SORT_OPTION.alphabet) {

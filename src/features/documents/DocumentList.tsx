@@ -16,7 +16,7 @@
 
 import React, { useState, useCallback, useEffect } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
-import * as moment from 'moment';
+import { fromUnixTime, format } from 'date-fns';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import {
@@ -210,7 +210,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
                     <span className="td id">{key}</span>
                     {!isDetailOpen && (
                       <span className="td updated">
-                        {moment.unix(updatedAt).format(`${use24HourClock ? 'MMM D, H:mm' : 'MMM D, h:mm A'}`)}
+                        {format(fromUnixTime(updatedAt), `${use24HourClock ? 'MMM d, h:mm' : 'MMM d, h:mm A'}`)}
                       </span>
                     )}
                   </Link>
