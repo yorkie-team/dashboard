@@ -15,7 +15,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import * as moment from 'moment';
+import { fromUnixTime, format } from 'date-fns';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectDocumentDetail, getDocumentAsync, removeDocumentByAdminAsync } from './documentsSlice';
@@ -42,6 +42,10 @@ export function DocumentDetail() {
     );
   }, [dispatch, projectName, documentKey]);
 
+  if (!document) {
+    return null;
+  }
+
   return (
     <div className="detail_content">
       <div className="document_header">
@@ -51,7 +55,7 @@ export function DocumentDetail() {
           </Link>
           <div className="title_inner">
             <strong className="title">{document?.key}</strong>
-            <span className="date">{moment.unix(document?.updatedAt!).format('MMM D, H:mm')}</span>
+            <span className="date">{format(fromUnixTime(document?.updatedAt!), 'MMM d, h:mm')}</span>
           </div>
 
           <Popover opened={opened} onChange={setOpened}>
