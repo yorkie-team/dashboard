@@ -210,7 +210,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
                     <span className="td id">{key}</span>
                     {!isDetailOpen && (
                       <span className="td updated">
-                        {format(fromUnixTime(updatedAt), `${use24HourClock ? 'MMM d, h:mm' : 'MMM d, h:mm A'}`)}
+                        {format(fromUnixTime(updatedAt), `${use24HourClock ? 'MMM d, h:mm' : 'MMM d, h:mm aa'}`)}
                       </span>
                     )}
                   </Link>

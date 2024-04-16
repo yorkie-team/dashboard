@@ -51,7 +51,7 @@ export function DocumentDetail() {
           </Link>
           <div className="title_inner">
             <strong className="title">{document?.key}</strong>
-            <span className="date">{format(fromUnixTime(document?.updatedAt!), 'MMM D, H:mm')}</span>
+            <span className="date">{format(fromUnixTime(document?.updatedAt!), 'MMM d, h:mm')}</span>
           </div>
 
           <Popover opened={opened} onChange={setOpened}>
