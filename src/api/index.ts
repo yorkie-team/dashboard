@@ -157,7 +157,8 @@ export async function listDocumentHistories(
 
   const histories: Array<DocumentHistory> = [];
   for (let i = 0; i < changes.length; i++) {
-    document.applyChanges([changes[i]]);
+    // TODO(hackerwins): We need to extract OpSource from JS SDK.
+    document.applyChanges([changes[i]], 'Remote' as any);
     histories.push({
       serverSeq: pbChanges[i].id!.serverSeq,
       snapshot: document.toJSON(),
