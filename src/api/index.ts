@@ -15,7 +15,7 @@
  */
 
 import Long from 'long';
-import { Document } from 'yorkie-js-sdk';
+import { Document, OpSource } from 'yorkie-js-sdk';
 import { createPromiseClient } from '@connectrpc/connect';
 import { createGrpcWebTransport } from '@connectrpc/connect-web';
 import { AdminService } from './yorkie/v1/admin_connect';
@@ -157,8 +157,7 @@ export async function listDocumentHistories(
 
   const histories: Array<DocumentHistory> = [];
   for (let i = 0; i < changes.length; i++) {
-    // TODO(hackerwins): We need to extract OpSource from JS SDK.
-    document.applyChanges([changes[i]], 'Remote' as any);
+    document.applyChanges([changes[i]], OpSource.Remote);
     histories.push({
       serverSeq: pbChanges[i].id!.serverSeq,
       snapshot: document.toJSON(),
