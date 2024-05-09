@@ -135,35 +135,46 @@ export async function listDocumentHistories(
   pageSize: number,
   isForward: boolean,
 ): Promise<Array<DocumentHistory>> {
+  // const res = await client.listChanges({
+  //   projectName,
+  //   documentKey,
+  //   previousSeq,
+  //   pageSize,
+  //   isForward,
+  // });
+  // 전체 changes 받아오기
   const res = await client.listChanges({
     projectName,
     documentKey,
-    previousSeq,
-    pageSize,
-    isForward,
   });
   const pbChanges = res.changes;
-  const changes = converter.fromChanges(pbChanges);
+  try {
+    const changes = converter.fromChanges(pbChanges);
+    console.log('changes', changes);
 
-  const seq = Long.fromString(pbChanges[0].id!.serverSeq).add(-1);
-  const snapshotMeta = await client.getSnapshotMeta({
-    projectName,
-    documentKey,
-    serverSeq: seq.toString(),
-  });
+    const document = new Document(documentKey);
+    // document.applySnapshot(seq, snapshotMeta.snapshot);
 
-  const document = new Document(documentKey);
-  document.applySnapshot(seq, snapshotMeta.snapshot);
+    const histories: Array<DocumentHistory> = [];
+    for (let i = 0; i < changes.length; i++) {
+      if (changes[i].hasOperations()) {
+        console.log('===================');
+        console.log('✅change', i, changes[i]);
+        // TODO(hackerwins): We need to extract OpSource from JS SDK.
+        document.applyChanges([changes[i]], 'Remote' as any);
+        console.log('document', (document.getValueByPath('$.text') as any).toJSInfoForTest());
 
-  const histories: Array<DocumentHistory> = [];
-  for (let i = 0; i < changes.length; i++) {
-    document.applyChanges([changes[i]], OpSource.Remote);
-    histories.push({
-      serverSeq: pbChanges[i].id!.serverSeq,
-      snapshot: document.toJSON(),
-    });
+        histories.push({
+          serverSeq: pbChanges[i].id!.serverSeq,
+          snapshot: document.toJSON(),
+        });
+      }
+    }
+    return histories;
+  } catch (err) {
+    console.log(err);
   }
-  return histories;
+  return [];
 }
 
 // removeDocumentByAdmin removes the document of the given document.

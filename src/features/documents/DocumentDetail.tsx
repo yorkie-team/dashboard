@@ -14,11 +14,17 @@
  * limitations under the License.
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { fromUnixTime, format } from 'date-fns';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { selectDocumentDetail, getDocumentAsync, removeDocumentByAdminAsync } from './documentsSlice';
+import {
+  selectDocumentDetail,
+  selectDocumentHistory,
+  getDocumentAsync,
+  removeDocumentByAdminAsync,
+  listDocumentHistoriesAsync,
+} from './documentsSlice';
 import { Icon, Button, CodeBlock, CopyButton, Popover, Dropdown } from 'components';
 
 export function DocumentDetail() {
@@ -32,14 +38,30 @@ export function DocumentDetail() {
   const documentJSONStr = JSON.stringify(documentJSON, null, '\t');
   const [viewType, SetViewType] = useState('code');
   const [opened, setOpened] = useState(false);
+  const { histories, status: historyStatus, } = useAppSelector(selectDocumentHistory);
 
   useEffect(() => {
     dispatch(
-      getDocumentAsync({
+      listDocumentHistoriesAsync({
         projectName,
         documentKey,
+        isForward: true,
+        previousSeq: '0',
       }),
     );
+  }, []);
+
+  useEffect(() => {
+    console.log('history', historyStatus, histories);
+  }, [historyStatus, histories]);
+
+  useEffect(() => {
+    // dispatch(
+    //   getDocumentAsync({
+    //     projectName,
+    //     documentKey,
+    //   }),
+    // );
   }, [dispatch, projectName, documentKey]);
 
   if (!document) {

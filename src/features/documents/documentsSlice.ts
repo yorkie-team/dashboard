@@ -241,7 +241,7 @@ export const documentSlice = createSlice({
       const { data, hasPrevious, hasNext } = action.payload;
       state.history.status = 'idle';
       state.history.histories = data;
-      state.detail.document!.snapshot = data[data.length - 1].snapshot;
+      // state.detail.document!.snapshot = data[data.length - 1].snapshot;
       state.history.hasNext = hasNext;
       state.history.hasPrevious = hasPrevious;
     });
