@@ -15,7 +15,8 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { Icon } from 'components';
+import { Flex, Text, Icon } from 'yorkie-ui';
+import { svgMap } from 'components';
 
 export function InputHelperText({
   state,
@@ -45,9 +46,9 @@ export function InputHelperText({
   }
 
   return (
-    <div className="input_guide">
-      {state && <Icon type="input" />}
-      <p className="input_guide_desc">{message}</p>
-    </div>
+    <Flex alignItems="center" marginTop="3" color="orange.10">
+      {state && <Icon icon={svgMap['inputFail']} size="sm" marginRight="0.5" />}
+      <Text>{message}</Text>
+    </Flex>
   );
 }

@@ -17,21 +17,24 @@
 import React from 'react';
 import { LoginForm } from 'features/users';
 import { PageTemplate } from './PageTemplate';
-import { Icon, Button } from 'components';
+import { svgMap } from 'components';
+import { Button, Container, Heading, Icon, Flex } from 'yorkie-ui';
 
 export function LoginPage() {
   return (
     <PageTemplate className="login_page">
-      <Icon type="logo3d" className="icon_logo" fill />
-      <h2 className="title">Sign in to Yorkie</h2>
-      <LoginForm />
-      <div className="box_bottom">
-        <Button.Box fullWidth={true}>
-          <Button as="link" href="/signup" outline={true}>
-            Sign up
-          </Button>
-        </Button.Box>
-      </div>
+      <Container paddingInline={{ base: '6', lg: '0' }} margin="auto" width={{ sm: 'lg' }}>
+        <Flex justifyContent="center">
+          <Icon icon={svgMap['logo3d']} color="black.a1" size="2xl" />
+        </Flex>
+        <Heading as="h2" fontSize={{ base: '2xl', lg: '4xl' }} align="center" marginBottom="14">
+          Sign in to Yorkie
+        </Heading>
+        <LoginForm />
+        <Button as="link" variant="outline" width="100w" wLink="100w" href="signup" marginTop="36" size="xl">
+          Sign Up
+        </Button>
+      </Container>
     </PageTemplate>
   );
 }

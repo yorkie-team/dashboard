@@ -59,8 +59,9 @@ import { ReactComponent as PreviousSVG } from 'assets/icons/icon_previous.svg';
 import { ReactComponent as NextSVG } from 'assets/icons/icon_next.svg';
 import { ReactComponent as DiscordSVG } from 'assets/icons/icon_discord.svg';
 import { ReactComponent as MoreLargeSVG } from 'assets/icons/icon_more_large.svg';
+import { ReactComponent as InputFailHelperSVG } from 'assets/icons/icon_input_fail.svg';
 
-const svgMap = {
+export const svgMap = {
   shortcut: <ShortcutSVG />,
   circle: <CircleSVG />,
   square: <SquareSVG />,
@@ -69,6 +70,7 @@ const svgMap = {
   logoNoText: <LogoMarkOnlySVG />,
   logo3d: <Logo3DMarkOnlySVG />,
   input: <InputHelperSVG />,
+  inputFail: <InputFailHelperSVG />,
   plus: <AddSVG />,
   close: <CloseSVG />,
   gnbMenu: <HamburgerSVG />,

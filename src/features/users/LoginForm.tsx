@@ -19,7 +19,8 @@ import { useForm } from 'react-hook-form';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { LoginFields, selectUsers, loginUser } from './usersSlice';
-import { Button, InputTextBox } from 'components';
+import { InputTextBox } from 'components';
+import { Button, Flex } from 'yorkie-ui';
 
 export function LoginForm() {
   const dispatch = useAppDispatch();
@@ -61,13 +62,11 @@ export function LoginForm() {
   }, [navigate, isSuccess, location]);
 
   return (
-    <form className="form" onSubmit={handleSubmit(onSubmit)}>
-      <fieldset>
-        <legend className="blind">Login Form</legend>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Flex gap="6" flexDirection="column">
+        <legend>Login Form</legend>
         <InputTextBox
-          label="Username"
-          blindLabel={true}
-          floatingLabel={true}
+          width="100w"
           placeholder="Username"
           {...register('username', { required: 'Username is required' })}
           autoComplete="off"
@@ -77,21 +76,16 @@ export function LoginForm() {
         />
         <InputTextBox
           type="password"
-          label="Password"
-          blindLabel={true}
-          floatingLabel={true}
           placeholder="Password"
           {...register('password', { required: 'Password is required' })}
           state={formErrors.password ? 'error' : 'normal'}
           helperText={(formErrors.password && formErrors.password.message) || ''}
         />
-        <Button.Box fullWidth={true}>
-          <Button type="submit" disabled={status === 'loading'} color="primary">
-            {status !== 'loading' && 'Sign in'}
-            {status === 'loading' && 'Loading...'}
-          </Button>
-        </Button.Box>
-      </fieldset>
+        <Button disabled={status === 'loading'} width="100w" marginTop="36" size="xl">
+          {status !== 'loading' && 'Sign in'}
+          {status === 'loading' && 'Loading...'}
+        </Button>
+      </Flex>
     </form>
   );
 }

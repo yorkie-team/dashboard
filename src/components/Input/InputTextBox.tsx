@@ -17,13 +17,10 @@
 import React, { ReactNode, InputHTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { InputHelperText } from './InputHelperText';
+import { Input, Flex, InputProps } from 'yorkie-ui';
 
 type InputTextBoxProps = {
   type?: 'text' | 'password' | 'email';
-  label: string;
-  blindLabel?: boolean;
-  floatingLabel?: boolean;
-  icon?: ReactNode;
   state?: 'error' | 'success' | 'normal' | 'disabled';
   helperText?: string;
   placeholder?: string;
@@ -36,48 +33,17 @@ export const InputTextBox = React.forwardRef((props: InputTextBoxProps, ref) => 
 InputTextBox.displayName = 'InputTextBox';
 
 function InputTextBoxInner({
-  type = 'text',
-  label,
-  blindLabel,
-  floatingLabel,
-  icon,
   state = 'normal',
   helperText,
   placeholder,
   inputRef,
   ...restProps
-}: InputTextBoxProps) {
-  const inputTextBoxClassName = classNames('input_box', {
-    is_disabled: state === 'disabled',
-    is_error: state === 'error',
-    is_success: state === 'success',
-  });
-
+}: InputTextBoxProps & InputProps) {
   return (
-    <div className={inputTextBoxClassName}>
-      <label className="input_inner_box">
-        {!floatingLabel && (
-          <span
-            className={classNames('label', {
-              blind: blindLabel,
-            })}
-          >
-            {label}
-          </span>
-        )}
-        {icon && icon}
-        <input
-          type={type}
-          className={classNames('input', {
-            label_in_input: floatingLabel,
-          })}
-          placeholder={placeholder}
-          disabled={state === 'disabled'}
-          ref={inputRef}
-          {...restProps}
-        />
-        {floatingLabel && <span className="label label_in">{label}</span>}
-      </label>
+    <div>
+      <Flex className="input_inner_box">
+        <Input size="xl" width="100w" placeholder={placeholder} ref={inputRef} {...restProps} />
+      </Flex>
       {helperText && (
         <InputHelperText state={state === 'disabled' || state === 'normal' ? null : state} message={helperText} />
       )}
