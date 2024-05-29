@@ -19,7 +19,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { SignupFields, selectUsers, signupUser, resetSignupState } from './usersSlice';
-import { Button, InputTextBox } from 'components';
+import { InputTextBox } from 'components';
+import { Button, Flex } from 'yorkie-ui';
 
 export function SignupForm() {
   const dispatch = useDispatch();
@@ -58,13 +59,10 @@ export function SignupForm() {
   }, [dispatch, navigate, isSuccess]);
 
   return (
-    <form className="form" onSubmit={handleSubmit(onSubmit)}>
-      <fieldset>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Flex gap="6" flexDirection="column">
         <legend className="blind">Signup Form</legend>
         <InputTextBox
-          label="Username"
-          blindLabel={true}
-          floatingLabel={true}
           placeholder="Username"
           {...register('username', {
             required: 'Username is required',
@@ -81,9 +79,6 @@ export function SignupForm() {
         />
         <InputTextBox
           type="password"
-          label="Password"
-          blindLabel={true}
-          floatingLabel={true}
           placeholder="Password"
           autoComplete="off"
           {...register('password', {
@@ -103,10 +98,7 @@ export function SignupForm() {
         />
         <InputTextBox
           type="password"
-          label="Confirm Password"
-          blindLabel={true}
-          floatingLabel={true}
-          placeholder="ConfirmPassword"
+          placeholder="Confirm Password"
           autoComplete="off"
           {...register('confirmPassword', {
             required: 'Confirm password is required',
@@ -120,13 +112,11 @@ export function SignupForm() {
           state={formErrors.confirmPassword ? 'error' : 'normal'}
           helperText={(formErrors.confirmPassword && formErrors.confirmPassword.message) || ''}
         />
-        <Button.Box fullWidth={true}>
-          <Button type="submit" disabled={status === 'loading'} color="primary">
-            {status !== 'loading' && 'Sign up'}
-            {status === 'loading' && 'Loading...'}
-          </Button>
-        </Button.Box>
-      </fieldset>
+        <Button disabled={status === 'loading'} width="100w" marginTop="36" size="xl">
+          {status !== 'loading' && 'Sign up'}
+          {status === 'loading' && 'Loading...'}
+        </Button>
+      </Flex>
     </form>
   );
 }

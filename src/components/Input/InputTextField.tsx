@@ -16,9 +16,10 @@
 
 import React, { useCallback, useRef, useState } from 'react';
 import classNames from 'classnames';
-import { Icon, Button, InputHelperText } from 'components';
+import { Icon, InputHelperText } from 'components';
 import { useOutsideClick, useAreaBlur } from 'hooks';
 import { mergeRefs } from 'utils';
+import { Button, Input, InputProps, Flex, Box, Link, Text, Grid, Menu } from 'yorkie-ui';
 
 type InputTextFieldProps = {
   type?: 'text' | 'password' | 'email';
@@ -33,7 +34,8 @@ type InputTextFieldProps = {
   large?: boolean;
   fieldUtil?: boolean;
   onSuccessEnd?: () => void;
-} & React.InputHTMLAttributes<HTMLInputElement>;
+} & React.InputHTMLAttributes<HTMLInputElement> &
+  InputProps;
 
 export const InputTextField = React.forwardRef<HTMLInputElement, InputTextFieldProps>(
   (
@@ -77,7 +79,7 @@ export const InputTextField = React.forwardRef<HTMLInputElement, InputTextFieldP
       },
       fieldControlRef,
     );
-
+    console.log({ ...restProps });
     return (
       <div className={inputTextFieldClassName}>
         {!large && (
@@ -86,10 +88,9 @@ export const InputTextField = React.forwardRef<HTMLInputElement, InputTextFieldP
           </label>
         )}
         <div className="input_inner" onKeyDown={onKeyDown}>
-          <input
+          <Input
             type={type}
             id={id}
-            className="input"
             placeholder={placeholder}
             disabled={state === 'disabled'}
             ref={mergeRefs(ref, firstRef)}
@@ -99,21 +100,21 @@ export const InputTextField = React.forwardRef<HTMLInputElement, InputTextFieldP
             {...restProps}
           />
           {fieldUtil && isFieldControlButtonsOpen && (
-            <Button.Box ref={fieldControlRef}>
-              <Button onClick={cancelInput} size="sm" outline={true} icon={<Icon type="closeSmall" />}>
+            <Box ref={fieldControlRef}>
+              <Button onClick={cancelInput} size="sm" variant="outline" icon={<Icon type="closeSmall" />}>
                 Cancel
               </Button>
               <Button
                 className={classNames('green_0', { is_disabled: state === 'error' })}
                 size="sm"
-                outline={true}
+                variant="outline"
                 icon={<Icon type="check" />}
                 type="submit"
                 ref={lastRef}
               >
                 Save
               </Button>
-            </Button.Box>
+            </Box>
           )}
         </div>
         {helperText && (

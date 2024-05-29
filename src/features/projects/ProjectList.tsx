@@ -15,14 +15,15 @@
  */
 
 import React, { useEffect, useState, useCallback } from 'react';
-import { Link } from 'react-router-dom';
 import { fromUnixTime, format } from 'date-fns';
 import classNames from 'classnames';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectProjectList, listProjectsAsync } from './projectsSlice';
 import { Project } from 'api/types';
-import { Button, Icon, Popover, Dropdown, SearchBar } from 'components';
+import { Icon, Popover, Dropdown, SearchBar } from 'components';
+import { Button, Container, Heading, Flex, Box, Link, Text, Grid, Menu } from 'yorkie-ui';
+import { SSG_FALLBACK_EXPORT_ERROR } from 'next/dist/lib/constants';
 
 // TODO(chacha912): Extract to Cards component
 function ProjectCards({
@@ -34,62 +35,91 @@ function ProjectCards({
   totalProjectsCount: number;
   viewType: 'list' | 'card';
 }) {
+  const viewsType = viewType === 'card';
   if (totalProjectsCount === 0) {
     return (
-      <Link to={'/projects/new'} className="placeholder_box">
-        <p className="desc">
-          Get started by
-          <br />
-          <span className="blue_dark">creating a new project</span>
-        </p>
+      <Link
+        href={'projects/new'}
+        paddingBlock="10"
+        width="100w"
+        borderWidth="xs"
+        borderRadius="xl"
+        borderStyle="dashed"
+        background="gray.2"
+      >
+        <Flex alignItems="center" flexDirection="column" justifyContent="center" width="100w" lineHeight="normal">
+          <Text fontSize="lg">Get started by</Text>
+          <Text fontSize="lg" color="orange.text">
+            creating a new project
+          </Text>
+        </Flex>
       </Link>
     );
   }
   if (projects.length === 0) {
     return (
-      <div className="placeholder_box">
-        <p className="desc">No matching result</p>
-      </div>
+      <Box paddingBlock="10" width="100w" borderWidth="xs" borderRadius="xl" borderStyle="dashed" background="gray.2">
+        <Text align="center" fontSize="xl" fontWeight="semibold" color="black.a9">
+          No matching result
+        </Text>
+      </Box>
     );
   }
 
   // TODO(hackerwins): implement information(Connections, Storage, Load) of project
   return (
-    <>
-      <div className={classNames('project_table', { is_active: viewType === 'list' })}>
-        <div className="thead">
+    <Flex flexDirection={viewsType ? 'row' : 'column'}>
+      {viewType === 'list' && (
+        <Flex justifyContent="space-between" marginBottom="8">
           <span className="th title">Project title</span>
           <span className="th">Created At</span>
-        </div>
-        <ul className="tbody_list">
-          {projects.map(({ name, createdAt }: Project) => (
-            <li key={name} className="tbody_item">
-              <Link to={`./${name}`} className="link">
-                <span className="td title">{name}</span>
-                <span className="td"> {format(fromUnixTime(createdAt), 'yyyy-MM-dd')} </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className={classNames('card', { is_active: viewType === 'card' })}>
-        <ul className="card_list">
-          {projects.map(({ name, createdAt }: Project) => (
-            <li key={name} className="card_item shadow_xs">
-              <Link to={`./${name}`} className="link">
-                <div className="title">
-                  <strong className="title_text">{name}</strong>
-                </div>
-                <dl className="info_list">
-                  <dt className="info_title">Created At</dt>
-                  <dd className="info_desc">{format(fromUnixTime(createdAt), 'yyyy-MM-dd')}</dd>
-                </dl>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </>
+        </Flex>
+      )}
+      <Grid gridTemplateColumns={viewsType ? { base: '1', lg: '3' } : { lg: '1' }} width="100w" gap="6">
+        {projects.map(({ name, createdAt }: Project) => (
+          <Flex position="relative" key={name}>
+            <Link
+              padding={viewsType ? '10' : '4'}
+              width="100w"
+              display={{ base: 'block', lg: 'flex' }}
+              borderRadius="xl"
+              borderWidth={viewsType ? '1px' : '0'}
+              alignItems="center"
+              target="_blank"
+              rel="noreferrer"
+              href={`projects/${name}`}
+            >
+              <Box
+                position="relative"
+                zIndex="xs"
+                display="flex"
+                flexDirection={viewsType ? 'column' : 'row'}
+                justifyContent="space-between"
+                width="100w"
+              >
+                <Text fontWeight="semibold" fontSize="lg">
+                  {name}
+                </Text>
+                <Box>
+                  <Text
+                    color="gray.a9"
+                    fontSize="sm"
+                    marginBottom={viewsType ? '2' : '0'}
+                    marginTop={viewsType ? '10' : '0'}
+                    display={viewsType ? 'block' : 'none'}
+                  >
+                    Created At
+                  </Text>
+                  <Text color="gray.a12" fontSize="sm" fontWeight="semibold">
+                    {format(fromUnixTime(createdAt), 'yyyy-MM-dd')}
+                  </Text>
+                </Box>
+              </Box>
+            </Link>
+          </Flex>
+        ))}
+      </Grid>
+    </Flex>
   );
 }
 
@@ -107,7 +137,7 @@ export function ProjectList() {
   const [sortOpened, setSortOpened] = useState(false);
   const [sortOption, setSortOption] = useState<(typeof SORT_OPTION)[keyof typeof SORT_OPTION]>(SORT_OPTION.createdAt);
 
-  const handleProjectSort = useCallback((projects, option) => {
+  const handleProjectSort = useCallback((projects: any, option: string) => {
     if (option === SORT_OPTION.alphabet) {
       setProjects([...projects].sort((p1, p2) => (p1.name > p2.name ? 1 : -1)));
     } else if (option === SORT_OPTION.createdAt) {
@@ -115,12 +145,12 @@ export function ProjectList() {
     }
   }, []);
 
-  const handleChangeQuery = useCallback((e) => {
+  const handleChangeQuery = useCallback((e: any) => {
     setQuery(e.target.value);
   }, []);
 
   const handleSearch = useCallback(
-    (e) => {
+    (e: any) => {
       e.preventDefault();
       const results = allProjects.filter((project) => project.name.includes(query ?? ''));
       handleProjectSort(results, sortOption);
@@ -145,88 +175,90 @@ export function ProjectList() {
 
   return (
     <>
-      <div className="project_area">
-        <div className="title_group">
-          <strong className="title">Projects</strong>
-          <Button.Box>
-            <Button
-              color="toggle"
-              isActive={viewType === 'card'}
-              blindText
-              icon={<Icon type="viewGrid" />}
-              onClick={() => {
-                setViewType('card');
-              }}
-            >
-              grid layout
-            </Button>
-            <Button
-              color="toggle"
-              isActive={viewType === 'list'}
-              blindText
-              icon={<Icon type="viewList" />}
-              onClick={() => {
-                setViewType('list');
-              }}
-            >
-              list layout
-            </Button>
-            <Button as="link" href="/projects/new" className="btn_plus" icon={<Icon type="plus" />}>
-              New Project
-            </Button>
-          </Button.Box>
-        </div>
-        <div className="search_area">
-          <SearchBar
-            placeholder={`Search ${query === null ? 'Projects' : projects.length + ' projects'}`}
-            autoComplete="off"
-            onChange={handleChangeQuery}
-            value={query ?? ''}
-            onSubmit={handleSearch}
-          />
-          <div className="filter">
-            <ul className="filter_list">
-              <li className="filter_item">
-                <Popover opened={sortOpened} onChange={setSortOpened}>
-                  <Popover.Target>
-                    <button type="button" className="btn btn_small filter_desc">
-                      <span className="filter_title">Sort:</span>
-                      <span className="text">{sortOption}</span>
-                      <Icon type="arrow" className="icon_arrow" />
-                    </button>
-                  </Popover.Target>
-                  <Popover.Dropdown>
-                    <Dropdown>
-                      <Dropdown.List>
-                        <Dropdown.Item
-                          onClick={() => {
-                            setSortOption(SORT_OPTION.alphabet);
-                            handleProjectSort(projects, SORT_OPTION.alphabet);
-                            setSortOpened(false);
-                          }}
-                        >
-                          {sortOption === SORT_OPTION.alphabet && <Icon type="check" color="orange_0" />}
-                          <Dropdown.Text>{SORT_OPTION.alphabet}</Dropdown.Text>
-                        </Dropdown.Item>
-                        <Dropdown.Item
-                          onClick={() => {
-                            setSortOption(SORT_OPTION.createdAt);
-                            handleProjectSort(projects, SORT_OPTION.createdAt);
-                            setSortOpened(false);
-                          }}
-                        >
-                          {sortOption === SORT_OPTION.createdAt && <Icon type="check" color="orange_0" />}
-                          <Dropdown.Text>{SORT_OPTION.createdAt}</Dropdown.Text>
-                        </Dropdown.Item>
-                      </Dropdown.List>
-                    </Dropdown>
-                  </Popover.Dropdown>
-                </Popover>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <Flex marginTop="16" justifyContent="space-between">
+        <Heading as="h2" fontSize="3xl">
+          Project
+        </Heading>
+        <Flex>
+          <Button
+            color="toggle"
+            variant={viewType === 'card' ? 'outline' : 'ghost'}
+            icon={<Icon type="viewGrid" />}
+            onClick={() => {
+              setViewType('card');
+            }}
+          >
+            grid layout
+          </Button>
+          <Button
+            color="toggle"
+            variant={viewType === 'list' ? 'solid' : 'ghost'}
+            icon={<Icon type="viewList" />}
+            onClick={() => {
+              setViewType('list');
+            }}
+          >
+            list layout
+          </Button>
+          <Button as="link" href="projects/new" background="orange.dark.a10" icon={<Icon type="plus" />} marginLeft="4">
+            New Project
+          </Button>
+        </Flex>
+      </Flex>
+      <Box marginBlock="10" position="relative">
+        <SearchBar
+          placeholder={`Search ${query === null ? 'Projects' : projects.length + ' projects'}`}
+          autoComplete="off"
+          onChange={handleChangeQuery}
+          value={query ?? ''}
+          onSubmit={handleSearch}
+        />
+        <Box position="absolute" right="0" bottom="0" paddingBottom="1" marginBlock="auto">
+          <Menu.Root>
+            <Menu.Trigger>
+              <Flex cursor="pointer" alignItems="center">
+                <Text color="black.a7" fontSize="md" marginRight="4">
+                  Sort:
+                </Text>
+                <Text marginRight="2" fontSize="md">
+                  {sortOption}
+                </Text>
+                <Icon type="arrow" />
+              </Flex>
+            </Menu.Trigger>
+            <Menu.Positioner>
+              <Menu.Content>
+                <Menu.Item
+                  id="search"
+                  onClick={() => {
+                    setSortOption(SORT_OPTION.alphabet);
+                    handleProjectSort(projects, SORT_OPTION.alphabet);
+                    setSortOpened(false);
+                  }}
+                >
+                  <Box visibility={sortOption === SORT_OPTION.alphabet ? 'visible' : 'hidden'}>
+                    <Icon type="check" color="orange_0" />
+                  </Box>
+                  <Text marginLeft="2">{SORT_OPTION.alphabet}</Text>
+                </Menu.Item>
+                <Menu.Item
+                  id="undo"
+                  onClick={() => {
+                    setSortOption(SORT_OPTION.createdAt);
+                    handleProjectSort(projects, SORT_OPTION.createdAt);
+                    setSortOpened(false);
+                  }}
+                >
+                  <Box visibility={sortOption === SORT_OPTION.createdAt ? 'visible' : 'hidden'}>
+                    <Icon type="check" color="orange_0" />
+                  </Box>
+                  <Text marginLeft="2">{SORT_OPTION.createdAt}</Text>
+                </Menu.Item>
+              </Menu.Content>
+            </Menu.Positioner>
+          </Menu.Root>
+        </Box>
+      </Box>
       {status === 'loading' && <div>Loading...</div>}
       {status === 'failed' && <div>Failed!</div>}
       {status === 'idle' && (

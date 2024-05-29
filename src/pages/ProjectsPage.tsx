@@ -17,49 +17,96 @@
 import React, { useState } from 'react';
 import { ProjectList } from 'features/projects';
 import { ReactComponent as BannerSVG } from 'assets/images/@tmp/sample_banner_icon.svg';
-import { Button, Icon } from 'components';
+import { Icon } from 'components';
 import { PageTemplate } from './PageTemplate';
+import { Button, Container, Heading, Flex, Box, Link, Text, Grid } from 'yorkie-ui';
 
 export function ProjectsPage() {
   const [showBanner, setShowBanner] = useState(localStorage.getItem('banner') === 'N' ? false : true);
   return (
     <PageTemplate className="team_overview_page">
-      {showBanner && (
-        <div className="banner_box">
-          <strong className="guide">Welcome to Yorkie</strong>
-          <ul className="banner_list">
-            <li className="banner_item">
-              <a
-                href={`${process.env.REACT_APP_SERVICE_URL}/docs`}
-                target="_blank"
-                rel="noreferrer"
-                className="banner gradient_180deg_yellow"
-              >
-                <strong className="banner_title gray900">Check out Documentation</strong>
-                <p className="banner_desc gray900">Check out how to use SDKs and API</p>
-              </a>
-            </li>
-            <li className="banner_item">
-              <a href={`${process.env.REACT_APP_SERVICE_URL}/examples`} target="_blank" rel="noreferrer" className="banner gray900_bg">
-                <strong className="banner_title gray000">Browse Examples</strong>
-                <p className="banner_desc gray000">See how Yorkie can help you bring your products to the next level of collaboration.</p>
-                <span className="img_box">
+      <Container
+        paddingBlock={{ base: '6', lg: '20' }}
+        margin="auto"
+        paddingInline={{ base: '6', lg: '0' }}
+        width={{
+          sm: 'breakpoint-sm',
+          md: 'breakpoint-md',
+          lg: 'breakpoint-lg',
+          xl: 'breakpoint-xl',
+        }}
+      >
+        {showBanner && (
+          <Box>
+            <Flex justifyContent="space-between" marginBottom="10">
+              <Heading as="h2" fontSize="3xl">
+                Welcome to Yorkie
+              </Heading>
+              <Button
+                icon={<Icon type="close" />}
+                variant="ghost"
+                position="start"
+                size="md"
+                color="#fff"
+                onClick={() => {
+                  setShowBanner(false);
+                  localStorage.setItem('banner', 'N');
+                }}
+              />
+            </Flex>
+            <Grid gridTemplateColumns={{ base: 1, lg: 2 }}>
+              <Flex position="relative">
+                <Link
+                  background="orange.default"
+                  padding="10"
+                  width="100w"
+                  display={{ base: 'block', lg: 'flex' }}
+                  borderRadius="xl"
+                  alignItems="center"
+                  target="_blank"
+                  rel="noreferrer"
+                  href={`${process.env.REACT_APP_SERVICE_URL}/docs`}
+                >
+                  <Box position="relative" zIndex="xs" display="block" color="white">
+                    <Text fontWeight="semibold" fontSize="2xl">
+                      Check out Documentation
+                    </Text>
+                    <Text fontSize="md" marginTop="6" lineHeight="normal">
+                      Check out how to use SDKs and API
+                    </Text>
+                  </Box>
+                </Link>
+              </Flex>
+              <Flex position="relative">
+                <Link
+                  background="black.a10"
+                  padding="10"
+                  display={{ base: 'block', lg: 'flex' }}
+                  borderRadius="xl"
+                  alignItems="center"
+                  target="_blank"
+                  rel="noreferrer"
+                  href={`${process.env.REACT_APP_SERVICE_URL}/examples`}
+                >
+                  <Box position="relative" zIndex="xs" display="block" color="white">
+                    <Text fontWeight="semibold" fontSize="2xl">
+                      Browse Examples
+                    </Text>
+                    <Text fontSize="md" marginTop="6" lineHeight="normal">
+                      See how Yorkie can help you bring your products to the next level of collaboration.
+                    </Text>
+                  </Box>
+                </Link>
+
+                <Box position="absolute" bottom="0" right="0">
                   <BannerSVG />
-                </span>
-              </a>
-            </li>
-          </ul>
-          <Button
-            icon={<Icon type="close" />}
-            className="btn_close"
-            onClick={() => {
-              setShowBanner(false);
-              localStorage.setItem('banner', 'N');
-            }}
-          />
-        </div>
-      )}
-      <ProjectList />
+                </Box>
+              </Flex>
+            </Grid>
+          </Box>
+        )}
+        <ProjectList />
+      </Container>
     </PageTemplate>
   );
 }

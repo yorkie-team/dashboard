@@ -17,9 +17,11 @@
 import React, { ReactNode, InputHTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { InputHelperText } from './InputHelperText';
-import { Input, Flex, InputProps } from 'yorkie-ui';
+import { Input, Flex, Label, InputProps } from 'yorkie-ui';
 
 type InputTextBoxProps = {
+  label?: string;
+  icon?: ReactNode;
   type?: 'text' | 'password' | 'email';
   state?: 'error' | 'success' | 'normal' | 'disabled';
   helperText?: string;
@@ -27,21 +29,25 @@ type InputTextBoxProps = {
   inputRef?: any;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-export const InputTextBox = React.forwardRef((props: InputTextBoxProps, ref) => {
+export type InputProp = InputTextBoxProps & InputProps;
+export const InputTextBox = React.forwardRef((props: InputProp, ref) => {
   return <InputTextBoxInner {...props} inputRef={ref} />;
 });
 InputTextBox.displayName = 'InputTextBox';
 
 function InputTextBoxInner({
+  label,
+  icon,
   state = 'normal',
   helperText,
   placeholder,
   inputRef,
   ...restProps
-}: InputTextBoxProps & InputProps) {
+}: InputProp) {
   return (
     <div>
       <Flex className="input_inner_box">
+        <Label>{label}</Label>
         <Input size="xl" width="100w" placeholder={placeholder} ref={inputRef} {...restProps} />
       </Flex>
       {helperText && (

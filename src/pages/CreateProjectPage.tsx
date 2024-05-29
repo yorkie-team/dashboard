@@ -17,21 +17,32 @@
 import React from 'react';
 import { RegisterForm } from 'features/projects';
 import { PageTemplate } from 'pages';
-import { Button } from 'components';
+import { Button, Container, Heading, Flex, Box, Link, Text, Grid, Menu } from 'yorkie-ui';
 
 export function CreateProjectPage() {
   return (
     <PageTemplate className="project_create_page">
-      <h2 className="blind">Create new Project</h2>
-      <div className="title_box">
-        <strong className="title">Create new project</strong>
-        <Button as="link" href="../" className="btn_line">
-          Cancel
-        </Button>
-      </div>
-      <div className="create_project_area">
-        <RegisterForm />
-      </div>
+      <Container
+        paddingBlock={{ base: '6', lg: '20' }}
+        margin="auto"
+        paddingInline={{ base: '6', lg: '0' }}
+        width={{
+          sm: 'breakpoint-sm',
+          md: 'breakpoint-md',
+        }}
+      >
+        <Flex justifyContent="space-between">
+          <Heading as="h2" fontSize="2xl">
+            Create new Project
+          </Heading>
+          <Button as="link" variant="outline" href="../">
+            Cancel
+          </Button>
+        </Flex>
+        <Box marginTop="10">
+          <RegisterForm />
+        </Box>
+      </Container>
     </PageTemplate>
   );
 }

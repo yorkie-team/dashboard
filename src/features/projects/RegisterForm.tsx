@@ -25,7 +25,9 @@ import {
   selectProjectDetail,
   resetCreateSuccess,
 } from './projectsSlice';
-import { InputTextField, Button } from 'components';
+
+import { Button, Box } from 'yorkie-ui';
+import { InputTextField } from 'components';
 
 export function RegisterForm() {
   const dispatch = useAppDispatch();
@@ -39,9 +41,12 @@ export function RegisterForm() {
   const { isSuccess, error } = useAppSelector(selectProjectCreate);
   const { project } = useAppSelector(selectProjectDetail);
 
-  const onSubmit = useCallback((data: ProjectCreateFields) => {
-    dispatch(createProjectAsync(data));
-  }, [dispatch]);
+  const onSubmit = useCallback(
+    (data: ProjectCreateFields) => {
+      dispatch(createProjectAsync(data));
+    },
+    [dispatch],
+  );
 
   useEffect(() => {
     if (!error) return;
@@ -59,25 +64,25 @@ export function RegisterForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <fieldset>
-        <div className="create_project">
-          <div className="setting_name" style={{ marginTop: 20 }}>
-            <InputTextField
-              id="projectName"
-              label="Project Name"
-              blindLabel={true}
-              placeholder="Project Name"
-              {...register('projectName', { required: 'Project Name is required' })}
-              autoComplete="off"
-              autoFocus
-              state={formErrors.projectName ? 'error' : 'normal'}
-              helperText={(formErrors.projectName && formErrors.projectName.message) || ''}
-              large
-            />
-          </div>
-        </div>
-        <Button.Box>
-          <Button type="submit" className="orange_0">Create</Button>
-        </Button.Box>
+        <Box paddingInline="10" paddingBlock="14" borderWidth="xs" borderRadius="xl">
+          <InputTextField
+            id="projectName"
+            label="Project Name"
+            blindLabel={true}
+            border="none"
+            boxShadow="none"
+            placeholder="Project Name"
+            {...register('projectName', { required: 'Project Name is required' })}
+            autoComplete="off"
+            autoFocus
+            state={formErrors.projectName ? 'error' : 'normal'}
+            helperText={(formErrors.projectName && formErrors.projectName.message) || ''}
+            large
+          />
+        </Box>
+        <Button float="right" marginTop="10" size="xl" width={{ base: '100w', lg: 'fit' }}>
+          Create
+        </Button>
       </fieldset>
     </form>
   );
