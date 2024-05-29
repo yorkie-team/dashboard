@@ -19,6 +19,7 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'app/hooks';
 import { getProjectAsync } from './projectsSlice';
 import { Icon, TabList } from 'components';
+import { Tabs } from 'yorkie-ui';
 
 export function ProjectTabList() {
   let { projectName } = useParams();

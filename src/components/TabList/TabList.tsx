@@ -17,6 +17,7 @@
 import React, { ReactNode } from 'react';
 import { NavLink as Link } from 'react-router-dom';
 import classNames from 'classnames';
+import { Button, Container, Heading, Flex, Box, Text, Grid, Menu } from 'yorkie-ui';
 
 function Item({ children, end, to }: { children: ReactNode; end?: boolean; to: string }) {
   return (
@@ -28,8 +29,8 @@ function Item({ children, end, to }: { children: ReactNode; end?: boolean; to: s
   );
 }
 
-function Text({ children }: { children: ReactNode }) {
-  return <span className="tab_text">{children}</span>;
+function Texts({ children }: { children: ReactNode }) {
+  return <Text fontSize="sm">{children}</Text>;
 }
 
 export function TabList({ children }: { children: ReactNode }) {
@@ -37,4 +38,4 @@ export function TabList({ children }: { children: ReactNode }) {
 }
 
 TabList.Item = Item;
-TabList.Text = Text;
+TabList.Text = Texts;

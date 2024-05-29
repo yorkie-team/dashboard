@@ -18,7 +18,8 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import { useAppSelector } from 'app/hooks';
 import { selectProjectDetail } from './projectsSlice';
-import { Icon, CodeBlock, CopyButton, Button } from 'components';
+import { Icon, CodeBlock, CopyButton } from 'components';
+import { Button, Container, Heading, Flex, Box, Link, Text, Tooltip } from 'yorkie-ui';
 
 type Snippet = 'npm' | 'cdn';
 
@@ -67,99 +68,122 @@ main();`,
   };
 
   return (
-    <div className="init_area">
-      <div className="init_box">
-        <div className="title_box ">
+    <Container
+      paddingBlock={{ base: '6', lg: '10' }}
+      margin="auto"
+      paddingInline={{ base: '6', lg: '0' }}
+      width={{
+        sm: 'breakpoint-sm',
+        md: 'breakpoint-md',
+        lg: 'breakpoint-lg',
+        xl: 'breakpoint-xl',
+      }}
+    >
+      <Box>
+        <Flex alignItems="center" color="black.a8">
           <Icon type="messageSmile" />
-          <strong className="title">Your project is ready!</strong>
-        </div>
-        <p className="title_desc">Your project is now ready to use with its own APIs.</p>
-      </div>
-      <div className="init_box">
-        <div className="title_box ">
-          <Icon type="route" />
-          <strong className="title">Add Yorkie SDK in your app</strong>
-        </div>
-      </div>
-      <div className="codeblock_navigator">
-        <button
-          className={classNames('item', {
-            is_active: snippetType === 'npm',
-          })}
-          onClick={() => setSnippetType('npm')}
-        >
+          <Heading as="h2" fontSize="2xl" marginLeft="1">
+            Your project is ready!
+          </Heading>
+        </Flex>
+        <Text color="black.a8" fontSize="xs" marginTop="4">
+          Your project is now ready to use with its own APIs.
+        </Text>
+      </Box>
+      <Flex alignItems="center" color="black.a8" marginBlock="16">
+        <Icon type="route" />
+        <Heading as="h2" fontSize="2xl" marginLeft="1">
+          Add Yorkie SDK in your app
+        </Heading>
+      </Flex>
+      <Flex gap="6" marginBottom="6">
+        <Button variant={snippetType === 'npm' ? 'solid' : 'ghost'} onClick={() => setSnippetType('npm')}>
           Use npm
-        </button>
-        <button
-          className={classNames('item', {
-            is_active: snippetType === 'cdn',
-          })}
-          onClick={() => setSnippetType('cdn')}
-        >
+        </Button>
+        <Button variant={snippetType === 'cdn' ? 'solid' : 'ghost'} onClick={() => setSnippetType('cdn')}>
           Use a &lt;script&gt; tag
-        </button>
-      </div>
+        </Button>
+      </Flex>
+      <Box borderWidth="1px" />
       {snippetType === 'npm' && (
-        <div className="init_content">
-          <div className="init_box">
-            <div className="title_box title_box_s">
-              <strong className="title">Use npm</strong>
-            </div>
-            <p className="title_desc">Your project is now ready to use with its own APIs.</p>
-          </div>
-          <div className="codeblock_box">
+        <Box marginTop="6">
+          <Box alignItems="center" color="black.a8" marginBlock="10">
+            <Heading as="h2" fontSize="2xl" marginLeft="1">
+              Use npm
+            </Heading>
+            <Text color="black.a8" fontSize="xs" marginTop="4">
+              Your project is now ready to use with its own APIs.
+            </Text>
+          </Box>
+          <Box position="relative">
             <div className="codeblock">
               <CodeBlock.Code code="$ npm install yorkie-js-sdk" language="bash" />
             </div>
-            <div className="btn_area">
+            <Box position="absolute" right="2" bottom="0" top="0" margin="auto" height="fit">
               <CopyButton value="npm install yorkie-js-sdk" timeout={1000}>
                 {({ copied, copy }) => (
-                  <>
-                    <Button icon={<Icon type="copy" />} outline onClick={copy} />
-                    {copied && (
-                      <div className="toast_box shadow_l">
-                        <Icon type="check" />
-                        Copied
-                      </div>
-                    )}
-                  </>
+                  <Box>
+                    <Tooltip.Root open={copied}>
+                      <Tooltip.Trigger>
+                        <Button variant="outline" onClick={copy}>
+                          Copy
+                        </Button>
+                      </Tooltip.Trigger>
+                      <Tooltip.Positioner>
+                        <Tooltip.Content>
+                          <Flex alignItems="center" gap="0.5">
+                            <Icon type="check" /> <Text>Copied</Text>
+                          </Flex>
+                        </Tooltip.Content>
+                      </Tooltip.Positioner>
+                    </Tooltip.Root>
+                  </Box>
                 )}
               </CopyButton>
-            </div>
-          </div>
-          <div className="init_box">
-            <p className="title_desc">Then, import yorkie and begin using the SDKs.</p>
-          </div>
+            </Box>
+          </Box>
+          <Text color="black.a8" fontSize="xs" marginBlock="6">
+            Then, import yorkie and begin using the SDKs.
+          </Text>
           <div className="codeblock_box">
-            <div className="codeblock">
+            <Box fontSize="sm">
               <CodeBlock.Code code={snippet.npm} language="javascript" withLineNumbers />
-            </div>
-            <div className="btn_area">
+            </Box>
+            <Box position="absolute" right="2" top="2" height="fit">
               <CopyButton value={snippet.npm} timeout={1000}>
                 {({ copied, copy }) => (
-                  <>
-                    <Button icon={<Icon type="copy" />} outline onClick={copy} />
-                    {copied && (
-                      <div className="toast_box shadow_l">
-                        <Icon type="check" />
-                        Copied
-                      </div>
-                    )}
-                  </>
+                  <Box>
+                    <Tooltip.Root open={copied}>
+                      <Tooltip.Trigger>
+                        <Button variant="outline" onClick={copy}>
+                          Copy
+                        </Button>
+                      </Tooltip.Trigger>
+                      <Tooltip.Positioner>
+                        <Tooltip.Content>
+                          <Flex alignItems="center" gap="0.5">
+                            <Icon type="check" /> <Text>Copied</Text>
+                          </Flex>
+                        </Tooltip.Content>
+                      </Tooltip.Positioner>
+                    </Tooltip.Root>
+                  </Box>
                 )}
               </CopyButton>
-            </div>
+            </Box>
           </div>
-        </div>
+        </Box>
       )}
       {snippetType === 'cdn' && (
-        <div className="init_content">
-          <div className="init_box">
-            <div className="title_box title_box_s">
-              <strong className="title">Use a &lt;script&gt; tag</strong>
-            </div>
-            <p className="title_desc">Copy and paste the following script into the bottom of your &lt;body&gt; tag.</p>
-          </div>
+        <Box>
+          <Box alignItems="center" color="black.a8" marginBlock="10">
+            <Heading as="h2" fontSize="2xl" marginLeft="1">
+              Use a &lt;script&gt; tag
+            </Heading>
+            <Text color="black.a8" fontSize="xs" marginTop="4">
+              Copy and paste the following script into the bottom of your &lt;body&gt; tag.
+            </Text>
+          </Box>
           <div className="codeblock_box">
             <div className="codeblock">
               <CodeBlock.Code code={snippet.cdn} language="markup" withLineNumbers />
@@ -167,21 +191,28 @@ main();`,
             <div className="btn_area">
               <CopyButton value={snippet.cdn} timeout={1000}>
                 {({ copied, copy }) => (
-                  <>
-                    <Button icon={<Icon type="copy" />} outline onClick={copy} />
-                    {copied && (
-                      <div className="toast_box shadow_l">
-                        <Icon type="check" />
-                        Copied
-                      </div>
-                    )}
-                  </>
+                  <Box>
+                    <Tooltip.Root open={copied}>
+                      <Tooltip.Trigger>
+                        <Button variant="outline" onClick={copy}>
+                          Copy
+                        </Button>
+                      </Tooltip.Trigger>
+                      <Tooltip.Positioner>
+                        <Tooltip.Content>
+                          <Flex alignItems="center" gap="0.5">
+                            <Icon type="check" /> <Text>Copied</Text>
+                          </Flex>
+                        </Tooltip.Content>
+                      </Tooltip.Positioner>
+                    </Tooltip.Root>
+                  </Box>
                 )}
               </CopyButton>
             </div>
           </div>
-        </div>
+        </Box>
       )}
-    </div>
+    </Container>
   );
 }

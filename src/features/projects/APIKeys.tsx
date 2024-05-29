@@ -18,90 +18,105 @@ import React, { useState } from 'react';
 
 import { useAppSelector } from 'app/hooks';
 import { selectProjectDetail } from './projectsSlice';
-import { Icon, Button, CopyButton } from 'components';
+import { Icon, CopyButton } from 'components';
+import { Button, Container, Heading, Flex, Box, Link, Text, Tooltip } from 'yorkie-ui';
 
 export function APIKeys() {
   const { project } = useAppSelector(selectProjectDetail);
   const [revealSecretKey, setRevealSecretKey] = useState(false);
-
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <section className="api_area">
-      <h2 className="blind">Project API Key</h2>
-      <div className="title_box">
-        <strong className="title">API</strong>
-      </div>
-      <div className="api_title">
-        <div className="title_box">
-          <strong className="title">Public key</strong>
-        </div>
-        <p className="desc">
+    <Box paddingBlock="10">
+      <Heading as="h2" fontSize="2xl" marginLeft="1" display="none">
+        Project API Key
+      </Heading>
+      <Text fontSize="2xl" fontWeight="semibold" marginLeft="1" marginBottom="4.5">
+        API
+      </Text>
+      <Box>
+        <Flex alignItems="center" color="black.a8">
+          <Heading as="h2" fontSize="2xl" marginLeft="1">
+            Public key
+          </Heading>
+        </Flex>
+        <Text color="black.a8" fontSize="xs" marginTop="4">
           The public key allows you to use Yorkie without implementing your own authentication endpoint.
-        </p>
-      </div>
-      <div className="connect_api_box">
-        <div className="api_box">
-          <div className="api">
-            <span className="value">{project?.publicKey}</span>
-          </div>
-        </div>
+        </Text>
+      </Box>
+      <Flex gap="6" alignItems="center" marginTop="4">
+        <Box padding="3" borderRadius="sm" borderWidth="xs" width="100w">
+          <span className="value">{project?.publicKey}</span>
+        </Box>
         <CopyButton value={project?.publicKey!} timeout={1000}>
           {({ copied, copy }) => (
-            <div className="btn_area">
-              <Button outline icon={<Icon type="copy" />} onClick={copy}>
-                Copy
-              </Button>
-              {copied && (
-                <div className="toast_box shadow_l">
-                  <Icon type="check" />
-                  Copied
-                </div>
-              )}
-            </div>
+            <Box>
+              <Tooltip.Root open={copied}>
+                <Tooltip.Trigger>
+                  <Button variant="outline" onClick={copy}>
+                    Copy
+                  </Button>
+                </Tooltip.Trigger>
+                <Tooltip.Positioner>
+                  <Tooltip.Content>
+                    <Flex alignItems="center" gap="0.5">
+                      <Icon type="check" /> <Text>Copied</Text>
+                    </Flex>
+                  </Tooltip.Content>
+                </Tooltip.Positioner>
+              </Tooltip.Root>
+            </Box>
           )}
         </CopyButton>
-      </div>
-      <div className="api_title">
-        <div className="title_box">
-          <strong className="title">Secret key</strong>
-        </div>
-        <p className="desc">
+      </Flex>
+      <Box marginTop="16">
+        <Flex alignItems="center" color="black.a8">
+          <Heading as="h2" fontSize="2xl" marginLeft="1">
+            Secret key
+          </Heading>
+        </Flex>
+        <Text color="black.a8" fontSize="xs" marginTop="4">
           The secret key allows you to authenticate your API requests on your own backend endpoint.
-        </p>
-      </div>
-      <div className="connect_api_box">
-        <div className="api_box">
-          <div className="api">
+        </Text>
+      </Box>
+      <Flex marginTop="6" gap="6" alignItems="center">
+        <Box background="gray.a6" padding="1" borderRadius="lg" width="100w">
+          <Flex>
             {!revealSecretKey && (
-              <button
-                type="button"
-                className="btn_cover"
+              <Button
+                color="gray.a11"
+                variant="ghost"
                 onClick={() => {
                   setRevealSecretKey(true);
                 }}
               >
                 <Icon type="lockSmall" />
                 Click to reveal secret key
-              </button>
+              </Button>
             )}
-            {revealSecretKey && <span className="value">{project?.secretKey}</span>}
-          </div>
-        </div>
+            {revealSecretKey && <Text padding="2">{project?.secretKey}</Text>}
+          </Flex>
+        </Box>
         <CopyButton value={project?.secretKey!} timeout={1000}>
           {({ copied, copy }) => (
-            <div className="btn_area">
-              <Button outline icon={<Icon type="copy" />} onClick={copy}>
-                Copy
-              </Button>
-              {copied && (
-                <div className="toast_box shadow_l">
-                  <Icon type="check" />
-                  Copied
-                </div>
-              )}
-            </div>
+            <Box>
+              <Tooltip.Root open={copied}>
+                <Tooltip.Trigger>
+                  <Button variant="outline" onClick={copy}>
+                    Copy
+                  </Button>
+                </Tooltip.Trigger>
+                <Tooltip.Positioner>
+                  <Tooltip.Content>
+                    <Flex alignItems="center" gap="0.5">
+                      <Icon type="check" /> <Text>Copied</Text>
+                    </Flex>
+                  </Tooltip.Content>
+                </Tooltip.Positioner>
+              </Tooltip.Root>
+            </Box>
           )}
         </CopyButton>
-      </div>
-    </section>
+      </Flex>
+    </Box>
   );
 }

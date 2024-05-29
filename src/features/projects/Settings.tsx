@@ -67,10 +67,10 @@ export function Settings() {
     control,
     name: 'authWebhookMethods',
   });
-  const { field: clientDeactivateThreshold, fieldState: clientDeactivateThresholdState } = useController({ 
-    control, 
+  const { field: clientDeactivateThreshold, fieldState: clientDeactivateThresholdState } = useController({
+    control,
     name: 'clientDeactivateThreshold',
-   });
+  });
   const checkFieldState = useCallback(
     (fieldName: keyof UpdatableProjectFields | AuthWebhookMethod, state: 'success' | 'error'): boolean => {
       return updateFieldInfo.target === fieldName && updateFieldInfo.state === state;
@@ -109,7 +109,12 @@ export function Settings() {
   );
 
   useEffect(() => {
-    if (updateFieldInfo.state !== 'success' && !nameFieldState.error && !webhookURLFieldState.error && !clientDeactivateThresholdState.error) {
+    if (
+      updateFieldInfo.state !== 'success' &&
+      !nameFieldState.error &&
+      !webhookURLFieldState.error &&
+      !clientDeactivateThresholdState.error
+    ) {
       setUpdateFieldInfo((info) => ({
         ...info,
         state: null,
@@ -123,7 +128,14 @@ export function Settings() {
         message: formErrors[updateFieldInfo.target as keyof UpdatableProjectFields]?.message || '',
       }));
     }
-  }, [formErrors, updateFieldInfo.state, updateFieldInfo.target, nameFieldState.error, webhookURLFieldState.error, clientDeactivateThresholdState.error]);
+  }, [
+    formErrors,
+    updateFieldInfo.state,
+    updateFieldInfo.target,
+    nameFieldState.error,
+    webhookURLFieldState.error,
+    clientDeactivateThresholdState.error,
+  ]);
 
   useEffect(() => {
     if (isSuccess) {
@@ -320,7 +332,7 @@ export function Settings() {
                       pattern: {
                         value: /^(\d{1,2}h\s?)?(\d{1,2}m\s?)?(\d{1,2}s)?$/,
                         message:
-                        'Client Deactivate Threshold should be a signed sequence of decimal numbers, each with a unit suffix, such as "23h30m10s" or "2h45m"',
+                          'Client Deactivate Threshold should be a signed sequence of decimal numbers, each with a unit suffix, such as "23h30m10s" or "2h45m"',
                       },
                       onChange: async () => {
                         await trigger('clientDeactivateThreshold');

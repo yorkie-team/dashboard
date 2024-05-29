@@ -17,24 +17,30 @@
 import React, { ReactNode } from 'react';
 import { ProjectTabList, ProjectDropdown } from 'features/projects';
 import { PageTemplate } from './PageTemplate';
+import { Container, Box } from 'yorkie-ui';
 
-export function ProjectPageTemplate({ className, children }: {
-  className: string;
-  children: ReactNode;
-}) {
+export function ProjectPageTemplate({ className, children }: { className: string; children: ReactNode }) {
   return (
     <PageTemplate className={className}>
-      <div className="box_top">
-        <div className="project_area">
-          <div className="title_group">
-            <ProjectDropdown size="large" />
-          </div>
-        </div>
-      </div>
-      <div className="box_tab">
-        <ProjectTabList />
-      </div>
-      {children}
+      <Container
+        paddingBlock={{ base: '6', lg: '20' }}
+        margin="auto"
+        paddingInline={{ base: '6', lg: '0' }}
+        width={{
+          sm: 'breakpoint-sm',
+          md: 'breakpoint-md',
+          lg: 'breakpoint-lg',
+          xl: 'breakpoint-xl',
+        }}
+      >
+        <Box fontSize="3xl">
+          <ProjectDropdown size="large" />
+        </Box>
+        <Box marginTop="12">
+          <ProjectTabList />
+        </Box>
+        {children}
+      </Container>
     </PageTemplate>
   );
 }

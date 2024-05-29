@@ -25,8 +25,9 @@ import {
   searchDocumentsAsync,
   removeDocumentByAdminAsync,
 } from './documentsSlice';
-import { Button, SearchBar, Icon, Checkbox } from 'components';
+import { SearchBar, Icon, Checkbox } from 'components';
 import { selectPreferences } from 'features/users/usersSlice';
+import { Button, Container, Heading, Flex, Box, Text, Grid, Menu } from 'yorkie-ui';
 
 export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean }) {
   const dispatch = useAppDispatch();
@@ -91,7 +92,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
   }, [dispatch, previousProjectName, projectName]);
 
   return (
-    <>
+    <Box paddingBlock="10">
       <SearchBar
         placeholder={`Search ${query === null ? 'Documents' : documents.length + ' documents'}`}
         autoComplete="off"
@@ -100,10 +101,9 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
         onSubmit={handleSearch}
       >
         {selectedDocKeys.length && (
-          <Button.Box>
+          <Box>
             <Button
               icon={<Icon type="trash" />}
-              outline={false}
               size="sm"
               onClick={async () => {
                 await Promise.all(
@@ -118,33 +118,41 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
             >
               Delete
             </Button>
-            <Button icon={<Icon type="close" />} outline={false} size="sm" onClick={() => setSelectedDocKeys([])}>
+            <Button icon={<Icon type="close" />} size="sm" onClick={() => setSelectedDocKeys([])}>
               Cancel
             </Button>
-          </Button.Box>
+          </Box>
         )}
       </SearchBar>
       <div className="document_table is_edit">
         {!isDetailOpen && (
-          <div className="thead">
-            <span className="th id">Document Key</span>
-            <span className="th updated">Last Updated</span>
-            <span className="th select">
-              <button
-                className="btn_all_check"
-                onClick={() => {
-                  if (selectedDocKeys.length === documents.length) {
-                    setSelectedDocKeys([]);
-                    return;
-                  }
+          <Box>
+            <Flex justifyContent="space-between" marginTop="8">
+              <Text fontSize="sm" fontWeight="semibold" color="black.a7">
+                Document Key
+              </Text>
+              <Text fontSize="sm" fontWeight="semibold" color="black.a7">
+                Last Updated
+              </Text>
+            </Flex>
+            <Box>
+              {documents.length > 0 && (
+                <Button
+                  className="btn_all_check"
+                  onClick={() => {
+                    if (selectedDocKeys.length === documents.length) {
+                      setSelectedDocKeys([]);
+                      return;
+                    }
 
-                  setSelectedDocKeys(documents.map((doc) => doc.key));
-                }}
-              >
-                {documents.length ? 'Select All' : ''}
-              </button>
-            </span>
-          </div>
+                    setSelectedDocKeys(documents.map((doc) => doc.key));
+                  }}
+                >
+                  {documents.length ? 'Select All' : ''}
+                </Button>
+              )}
+            </Box>
+          </Box>
         )}
         {status === 'loading' && (
           <div className="box_skeleton">
@@ -236,23 +244,28 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
           </ul>
         )}
         {status === 'idle' && documents.length === 0 && (
-          <div className="placeholder_box no_bg">
-            <p className="desc">No Document Found</p>
-          </div>
+          <Box paddingBlock="20">
+            <Text align="center" fontWeight="semibold" fontSize="xl">
+              No Document Found
+            </Text>
+          </Box>
         )}
       </div>
       {documents.length > 0 && queryType === 'all' && (
-        <div className="pagination">
-          <Button.Box>
-            <Button onClick={handlePrevBtnClicked} disabled={!hasPrevious} outline icon={<Icon type="previous" />}>
-              Prev
-            </Button>
-            <Button onClick={handleNextBtnClicked} disabled={!hasNext} outline icon={<Icon type="next" />}>
-              Next
-            </Button>
-          </Button.Box>
-        </div>
+        <Flex gap="10">
+          <Button
+            onClick={handlePrevBtnClicked}
+            disabled={!hasPrevious}
+            variant="outline"
+            icon={<Icon type="previous" />}
+          >
+            Prev
+          </Button>
+          <Button onClick={handleNextBtnClicked} disabled={!hasNext} variant="outline" icon={<Icon type="next" />}>
+            Next
+          </Button>
+        </Flex>
       )}
-    </>
+    </Box>
   );
 }
