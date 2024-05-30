@@ -34,7 +34,7 @@ export function ProjectPageTemplate({ className, children }: { className: string
         }}
       >
         <Box fontSize="3xl">
-          <ProjectDropdown size="large" />
+          <ProjectDropdown size="large" icon={true} />
         </Box>
         <Box marginTop="12">
           <ProjectTabList />

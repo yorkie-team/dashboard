@@ -27,8 +27,8 @@ export function Header({ className }: { className?: string }) {
   const { token, isValidToken } = useAppSelector(selectUsers);
 
   return (
-    <header className={`header ${className}`}>
-      <Flex justifyContent="space-between" paddingInline="6">
+    <Box position="sticky" className={`${className}`} width="100w" background="white">
+      <Flex justifyContent="space-between" paddingInline="6" alignItems="center">
         <Breadcrumb>
           <Heading as="h1">
             <Link href={`${process.env.REACT_APP_SERVICE_URL}`}>
@@ -39,7 +39,7 @@ export function Header({ className }: { className?: string }) {
           {token && isValidToken && (
             <>
               <Breadcrumb.Inner>
-                <Breadcrumb.Item as="link" href="/projects">
+                <Breadcrumb.Item as="link" href="../projects">
                   <Breadcrumb.Text>Dashboard</Breadcrumb.Text>
                 </Breadcrumb.Item>
               </Breadcrumb.Inner>
@@ -50,26 +50,20 @@ export function Header({ className }: { className?: string }) {
           )}
         </Breadcrumb>
         {token && isValidToken && (
-          <nav className="util_box">
-            <ul className="util_list">
-              <li className="util_item">
-                <a href={`${process.env.REACT_APP_SERVICE_URL}/docs`} className="util_menu">
-                  Docs
-                </a>
-              </li>
-              <li className="util_item">
-                <Link href="/community" className="util_menu">
-                  Community
-                </Link>
-              </li>
-              <li className="util_item">
-                <AccountDropdown />
-              </li>
-            </ul>
+          <Box>
+            <Flex display={{ base: 'none', lg: 'flex' }} gap="4">
+              <Link href={`${process.env.REACT_APP_SERVICE_URL}/docs`} className="util_menu">
+                Docs
+              </Link>
+              <Link href="/community" className="util_menu">
+                Community
+              </Link>
+              <AccountDropdown />
+            </Flex>
             <MobileGnbDropdown />
-          </nav>
+          </Box>
         )}
       </Flex>
-    </header>
+    </Box>
   );
 }

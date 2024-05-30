@@ -88,8 +88,10 @@ export function ProjectDropdown({ size = 'small', icon = false }: { size?: 'smal
   return (
     <Popover.Root>
       <Popover.Trigger>
-        <Button variant="subtle">{projectName}</Button>
-        {icon && <Icon type="openSelector" className="title_icon" />}
+        <Flex alignItems="center">
+          <Button variant="subtle">{projectName}</Button>
+          {icon && <Icon type="openSelector" className="title_icon" />}
+        </Flex>
       </Popover.Trigger>
       <Popover.Positioner>
         <Popover.Content>

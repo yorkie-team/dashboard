@@ -17,7 +17,7 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 import { selectUsers, logoutUser } from './usersSlice';
-import { Popover, Dropdown } from 'components';
+import { Button, Popover, Heading, Flex, Box, Text, Grid, GridItem, Switch, Link, Menu } from 'yorkie-ui';
 
 export function AccountDropdown() {
   const { username } = useAppSelector(selectUsers);
@@ -40,37 +40,29 @@ export function AccountDropdown() {
   }, []);
 
   return (
-    <Popover opened={opened} onChange={setOpened}>
-      <Popover.Target>
-        <button className="util_menu user_profile">
-          <span className="blind">User profile</span>
-          <span className="profile">
-            <span className="img_box gradient_180deg_yellow">
-              <span className="name">{username.slice(0, 1).toUpperCase()}</span>
-            </span>
-          </span>
-        </button>
-      </Popover.Target>
-      <Popover.Dropdown>
-        <Dropdown shadow="m">
-          <dl className="user_account">
-            <dt className="blind">Name</dt>
-            <dd className="user_account_text">{username}</dd>
-            <dt className="blind">Mail</dt>
-            <dd className="user_account_text">
-              <span className="user_account_mail">{username}@yorkie.dev</span>
-            </dd>
-          </dl>
-          <Dropdown.List>
-            <Dropdown.Item as="link" href="/settings" border>
-              <Dropdown.Text>Settings</Dropdown.Text>
-            </Dropdown.Item>
-            <Dropdown.Item onClick={logout}>
-              <Dropdown.Text highlight>Sign out</Dropdown.Text>
-            </Dropdown.Item>
-          </Dropdown.List>
-        </Dropdown>
-      </Popover.Dropdown>
-    </Popover>
+    <Popover.Root>
+      <Popover.Trigger>
+        <Flex alignItems="center">
+          <Button onClick={() => setOpened(!opened)}>{username.slice(0, 1).toUpperCase()}</Button>
+        </Flex>
+      </Popover.Trigger>
+      <Popover.Positioner>
+        <Popover.Content width="md">
+          <Box padding="4" fontSize="xs" color="gray.a9">
+            <Text>{username}</Text>
+            <Text display="block">{username}@yorkie.dev</Text>
+          </Box>
+          <Menu.Separator />
+          <Link padding="4" href="/settings">
+            <Text>Settings</Text>
+          </Link>
+          <Link onClick={logout} padding="4">
+            <Text fontSize="lg" color="orange.default">
+              Sign out
+            </Text>
+          </Link>
+        </Popover.Content>
+      </Popover.Positioner>
+    </Popover.Root>
   );
 }
