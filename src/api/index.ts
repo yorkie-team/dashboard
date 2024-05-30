@@ -158,12 +158,16 @@ export async function listDocumentHistories(
     const histories: Array<DocumentHistory> = [];
     for (let i = 0; i < changes.length; i++) {
       if (changes[i].hasOperations()) {
-        console.log('===================');
-        console.log('✅change', i, changes[i]);
-        // TODO(hackerwins): We need to extract OpSource from JS SDK.
         document.applyChanges([changes[i]], 'Remote' as any);
-        console.log('document', (document.getValueByPath('$.text') as any).toJSInfoForTest());
 
+        changes[i].getOperations().forEach((op) => {
+          // if ((op as any)?.fromPos?.parentID?.toTestString() === '2:cf:2/0') {
+          if ((op as any)?.fromPos?.leftSiblingID?.toTestString() === '6992:a9:2/5') {
+            console.log('✅change', i, changes[i]);
+            console.log('op', op);
+            console.log('document', (document.getValueByPath('$.text') as any).toJSInfoForTest());
+          }
+        });
         histories.push({
           serverSeq: pbChanges[i].id!.serverSeq,
           snapshot: document.toJSON(),
