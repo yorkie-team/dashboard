@@ -50,7 +50,7 @@ export function Header({ className }: { className?: string }) {
           )}
         </Breadcrumb>
         {token && isValidToken && (
-          <Box>
+          <Box height="fit">
             <Flex display={{ base: 'none', lg: 'flex' }} gap="4">
               <Link href={`${process.env.REACT_APP_SERVICE_URL}/docs`} className="util_menu">
                 Docs

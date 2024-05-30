@@ -25,7 +25,6 @@ export function ProjectPageTemplate({ className, children }: { className: string
       <Container
         paddingBlock={{ base: '6', lg: '20' }}
         margin="auto"
-        paddingInline={{ base: '6', lg: '0' }}
         width={{
           sm: 'breakpoint-sm',
           md: 'breakpoint-md',
@@ -36,7 +35,13 @@ export function ProjectPageTemplate({ className, children }: { className: string
         <Box fontSize="3xl">
           <ProjectDropdown size="large" icon={true} />
         </Box>
-        <Box marginTop="12">
+        <Box
+          marginTop="12"
+          overflowInline="scroll"
+          whiteSpace="nowrap"
+          paddingBottom={{ base: 2, lg: 0 }}
+          paddingTop={{ base: 1, lg: 0 }}
+        >
           <ProjectTabList />
         </Box>
         {children}

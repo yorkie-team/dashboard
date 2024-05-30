@@ -119,14 +119,23 @@ main();`,
             <div className="codeblock">
               <CodeBlock.Code code="$ npm install yorkie-js-sdk" language="bash" />
             </div>
-            <Box position="absolute" right="2" bottom="0" top="0" margin="auto" height="fit">
+            <Box
+              position="absolute"
+              right="2"
+              bottom="0"
+              top="0"
+              margin="auto"
+              height="fit"
+              zIndex="xs"
+              background="white"
+            >
               <CopyButton value="npm install yorkie-js-sdk" timeout={1000}>
                 {({ copied, copy }) => (
                   <Box>
                     <Tooltip.Root open={copied}>
                       <Tooltip.Trigger>
-                        <Button variant="outline" onClick={copy}>
-                          Copy
+                        <Button variant="outline" onClick={copy} fontSize="xs" size="xs" color="gray.a8">
+                          <Icon type="copy" />
                         </Button>
                       </Tooltip.Trigger>
                       <Tooltip.Positioner>
@@ -145,18 +154,18 @@ main();`,
           <Text color="black.a8" fontSize="xs" marginBlock="6">
             Then, import yorkie and begin using the SDKs.
           </Text>
-          <Box borderWidth="xs" borderRadius="xl" paddingBlock="6">
-            <Box fontSize="sm">
+          <Box borderWidth="xs" borderRadius="xl" paddingBlock="6" position="relative">
+            <Box fontSize="sm" overflow="scroll">
               <CodeBlock.Code code={snippet.npm} language="javascript" withLineNumbers />
             </Box>
-            <Box position="absolute" right="2" top="2" height="fit">
+            <Box position="absolute" right="2" top="2" height="fit" zIndex="xs" background="white">
               <CopyButton value={snippet.npm} timeout={1000}>
                 {({ copied, copy }) => (
                   <Box>
                     <Tooltip.Root open={copied}>
                       <Tooltip.Trigger>
-                        <Button variant="outline" onClick={copy}>
-                          Copy
+                        <Button variant="outline" onClick={copy} size="xs" color="gray.a8">
+                          <Icon type="copy" />
                         </Button>
                       </Tooltip.Trigger>
                       <Tooltip.Positioner>
@@ -184,18 +193,18 @@ main();`,
               Copy and paste the following script into the bottom of your &lt;body&gt; tag.
             </Text>
           </Box>
-          <div className="codeblock_box">
-            <div className="codeblock">
+          <Box borderWidth="xs" borderRadius="xl" paddingBlock="6" position="relative">
+            <Box fontSize="sm" overflow="scroll">
               <CodeBlock.Code code={snippet.cdn} language="markup" withLineNumbers />
-            </div>
-            <div className="btn_area">
+            </Box>
+            <Box position="absolute" right="2" top="2" height="fit" zIndex="xs" background="white">
               <CopyButton value={snippet.cdn} timeout={1000}>
                 {({ copied, copy }) => (
                   <Box>
                     <Tooltip.Root open={copied}>
                       <Tooltip.Trigger>
-                        <Button variant="outline" onClick={copy}>
-                          Copy
+                        <Button variant="outline" onClick={copy} color="gray.a8" size="xs">
+                          <Icon type="copy" />
                         </Button>
                       </Tooltip.Trigger>
                       <Tooltip.Positioner>
@@ -209,8 +218,8 @@ main();`,
                   </Box>
                 )}
               </CopyButton>
-            </div>
-          </div>
+            </Box>
+          </Box>
         </Box>
       )}
     </Container>

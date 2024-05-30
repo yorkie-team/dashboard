@@ -26,7 +26,17 @@ export function APIKeys() {
   const [revealSecretKey, setRevealSecretKey] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <Box paddingBlock="10">
+    <Container
+      paddingBlock={{ base: '6', lg: '10' }}
+      margin="auto"
+      paddingInline={{ base: '6', lg: '0' }}
+      width={{
+        sm: 'breakpoint-sm',
+        md: 'breakpoint-md',
+        lg: 'breakpoint-lg',
+        xl: 'breakpoint-xl',
+      }}
+    >
       <Heading as="h2" fontSize="2xl" marginLeft="1" display="none">
         Project API Key
       </Heading>
@@ -117,6 +127,6 @@ export function APIKeys() {
           )}
         </CopyButton>
       </Flex>
-    </Box>
+    </Container>
   );
 }

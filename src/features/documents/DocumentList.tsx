@@ -92,7 +92,17 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
   }, [dispatch, previousProjectName, projectName]);
 
   return (
-    <Box paddingBlock="10">
+    <Container
+      paddingBlock={{ base: '6', lg: '10' }}
+      margin="auto"
+      paddingInline={{ base: '6', lg: '0' }}
+      width={{
+        sm: 'breakpoint-sm',
+        md: 'breakpoint-md',
+        lg: 'breakpoint-lg',
+        xl: 'breakpoint-xl',
+      }}
+    >
       <SearchBar
         placeholder={`Search ${query === null ? 'Documents' : documents.length + ' documents'}`}
         autoComplete="off"
@@ -266,6 +276,6 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
           </Button>
         </Flex>
       )}
-    </Box>
+    </Container>
   );
 }

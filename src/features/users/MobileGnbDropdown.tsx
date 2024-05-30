@@ -43,8 +43,8 @@ export function MobileGnbDropdown() {
 
   return (
     <Menu.Root>
-      <Menu.Trigger>
-        <Button variant="ghost" position="start" display={{ base: 'block', lg: 'none' }} paddingRight="0">
+      <Menu.Trigger display={{ base: 'block', lg: 'none' }}>
+        <Button variant="ghost" position="start" paddingRight="0">
           <Icon type={opened ? 'close' : 'gnbMenu'} />
         </Button>
       </Menu.Trigger>

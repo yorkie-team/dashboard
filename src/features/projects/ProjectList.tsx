@@ -175,30 +175,30 @@ export function ProjectList() {
 
   return (
     <>
-      <Flex marginTop="16" justifyContent="space-between">
+      <Flex display={{ base: 'block', lg: 'flex' }} marginTop="16" justifyContent="space-between">
         <Heading as="h2" fontSize="3xl">
           Project
         </Heading>
-        <Flex>
+        <Flex marginTop={{ base: '6', lg: '0' }} alignItems="center">
           <Button
-            color="toggle"
             variant={viewType === 'card' ? 'outline' : 'ghost'}
-            icon={<Icon type="viewGrid" />}
+            size="xs"
+            color="gray.a8"
             onClick={() => {
               setViewType('card');
             }}
           >
-            grid layout
+            <Icon type="viewGrid" />
           </Button>
           <Button
-            color="toggle"
-            variant={viewType === 'list' ? 'solid' : 'ghost'}
-            icon={<Icon type="viewList" />}
+            size="xs"
+            color="gray.a8"
+            variant={viewType === 'list' ? 'outline' : 'ghost'}
             onClick={() => {
               setViewType('list');
             }}
           >
-            list layout
+            <Icon type="viewList" />
           </Button>
           <Button as="link" href="projects/new" background="orange.dark.a10" icon={<Icon type="plus" />} marginLeft="4">
             New Project
