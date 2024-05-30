@@ -23,7 +23,7 @@ import { Button, Input, InputProps, Flex, Box, Link, Text, Grid, Menu } from 'yo
 
 type InputTextFieldProps = {
   type?: 'text' | 'password' | 'email';
-  label: string;
+  label?: string;
   reset?: (fieldName?: any) => void;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   id: string;
@@ -79,7 +79,6 @@ export const InputTextField = React.forwardRef<HTMLInputElement, InputTextFieldP
       },
       fieldControlRef,
     );
-    console.log({ ...restProps });
     return (
       <div className={inputTextFieldClassName}>
         {!large && (
@@ -100,7 +99,7 @@ export const InputTextField = React.forwardRef<HTMLInputElement, InputTextFieldP
             {...restProps}
           />
           {fieldUtil && isFieldControlButtonsOpen && (
-            <Box ref={fieldControlRef}>
+            <Flex ref={fieldControlRef} gap="4" marginLeft="4">
               <Button onClick={cancelInput} size="sm" variant="outline" icon={<Icon type="closeSmall" />}>
                 Cancel
               </Button>
@@ -114,7 +113,7 @@ export const InputTextField = React.forwardRef<HTMLInputElement, InputTextFieldP
               >
                 Save
               </Button>
-            </Box>
+            </Flex>
           )}
         </div>
         {helperText && (

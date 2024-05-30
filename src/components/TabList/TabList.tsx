@@ -17,7 +17,7 @@
 import React, { ReactNode } from 'react';
 import { NavLink as Link } from 'react-router-dom';
 import classNames from 'classnames';
-import { Button, Container, Heading, Flex, Box, Text, Grid, Menu } from 'yorkie-ui';
+import { Text } from 'yorkie-ui';
 
 function Item({ children, end, to }: { children: ReactNode; end?: boolean; to: string }) {
   return (

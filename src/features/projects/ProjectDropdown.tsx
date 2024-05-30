@@ -19,10 +19,10 @@ import { useParams, Link } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { Project } from 'api/types';
-import { Popover, Dropdown, Icon, Breadcrumb } from 'components';
+import { Icon, Breadcrumb } from 'components';
 import { selectProjectList, listProjectsAsync } from './projectsSlice';
-
-export function ProjectDropdown({ size = 'small' }: { size?: 'small' | 'large' }) {
+import { Button, Popover, Box, Flex, Text, Menu } from 'yorkie-ui';
+export function ProjectDropdown({ size = 'small', icon = false }: { size?: 'small' | 'large'; icon?: boolean }) {
   const { projectName } = useParams();
   const { projects } = useAppSelector(selectProjectList);
   const dispatch = useAppDispatch();
@@ -43,73 +43,85 @@ export function ProjectDropdown({ size = 'small' }: { size?: 'small' | 'large' }
   // TODO(hackerwins): remove breadcrumb_thumb class after refactoring.
   if (size === 'small') {
     return (
-      <Popover opened={opened} onChange={setOpened}>
-        <Popover.Target>
-          <Breadcrumb.Item>
-            <Breadcrumb.Text>{projectName}</Breadcrumb.Text>
-            <Icon type="openSelector" />
-          </Breadcrumb.Item>
-        </Popover.Target>
-        <Popover.Dropdown>
-          <Dropdown shadow="s">
-            <Dropdown.List>
+      <Popover.Root>
+        <Popover.Trigger>
+          <Button size="sm" height="fit" variant="subtle">
+            {projectName}
+          </Button>
+          {icon && <Icon type="openSelector" className="title_icon" />}
+        </Popover.Trigger>
+        <Popover.Positioner>
+          <Popover.Content>
+            <Popover.Description>
               {projects.map((project: Project) => (
-                <Dropdown.Item
-                  key={project.id}
-                  as="link"
-                  href={`/projects/${project.name}`}
-                  onClick={() => {
-                    setOpened(false);
-                  }}
-                >
-                  <Breadcrumb.Text>{project.name}</Breadcrumb.Text>
-                </Dropdown.Item>
+                <Box width="100w" key={project.id}>
+                  <Button
+                    display="ruby"
+                    variant="ghost"
+                    wLink="100w"
+                    width="100w"
+                    as="link"
+                    href={`../projects/${project.name}`}
+                    onClick={() => {
+                      setOpened(false);
+                    }}
+                  >
+                    {project.name}
+                  </Button>
+                </Box>
               ))}
-            </Dropdown.List>
-            <Dropdown.List>
-              <Dropdown.Item as="link" href="/projects/new">
-                <Icon type="plus" className="breadcrumb_thumb" />
-                <Breadcrumb.Text>Create New Project</Breadcrumb.Text>
-              </Dropdown.Item>
-            </Dropdown.List>
-          </Dropdown>
-        </Popover.Dropdown>
-      </Popover>
+            </Popover.Description>
+            <Menu.Separator />
+            <Popover.Title>
+              {' '}
+              <Link to="../projects/new" className="btn">
+                <Icon type="plus" />
+                <Text fontSize="sm">Create new project</Text>
+              </Link>
+            </Popover.Title>
+          </Popover.Content>
+        </Popover.Positioner>
+      </Popover.Root>
     );
   }
 
   return (
-    <Popover opened={opened} onChange={setOpened}>
-      <Popover.Target>
-        <button type="button" className="btn_title">
-          <strong className="title">{projectName}</strong>
-          <Icon type="openSelector" className="title_icon" />
-        </button>
-      </Popover.Target>
-      <Popover.Dropdown>
-        <Dropdown shadow="s">
-          <Dropdown.Title>
-            <Link to="/projects/new" className="btn">
+    <Popover.Root>
+      <Popover.Trigger>
+        <Button variant="subtle">{projectName}</Button>
+        {icon && <Icon type="openSelector" className="title_icon" />}
+      </Popover.Trigger>
+      <Popover.Positioner>
+        <Popover.Content>
+          <Popover.Title>
+            {' '}
+            <Link to="../projects/new" className="btn">
               <Icon type="plus" />
-              <span className="text">Create new project</span>
+              <Text fontSize="sm">Create new project</Text>
             </Link>
-          </Dropdown.Title>
-          <Dropdown.List>
+          </Popover.Title>
+          <Menu.Separator />
+          <Popover.Description>
             {projects.map((project: Project) => (
-              <Dropdown.Item
-                key={project.id}
-                as="link"
-                href={`/projects/${project.name}`}
-                onClick={() => {
-                  setOpened(false);
-                }}
-              >
-                <Dropdown.Text>{project.name}</Dropdown.Text>
-              </Dropdown.Item>
+              <Box width="100w" key={project.id}>
+                <Button
+                  display="ruby"
+                  variant="ghost"
+                  wLink="100w"
+                  width="100w"
+                  as="link"
+                  href={`../projects/${project.name}`}
+                  onClick={() => {
+                    setOpened(false);
+                  }}
+                >
+                  {project.name}
+                </Button>
+              </Box>
             ))}
-          </Dropdown.List>
-        </Dropdown>
-      </Popover.Dropdown>
-    </Popover>
+          </Popover.Description>
+        </Popover.Content>
+      </Popover.Positioner>
+    </Popover.Root>
   );
 }

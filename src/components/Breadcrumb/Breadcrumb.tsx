@@ -15,14 +15,22 @@
  */
 
 import React, { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import { Button, Container, Heading, Flex, Box, Text, Grid, GridItem, Switch, Link } from 'yorkie-ui';
 
 export function Breadcrumb({ children }: { children: ReactNode }) {
-  return <div className="breadcrumb team_view">{children}</div>;
+  return (
+    <Flex gap="2.5" alignItems="center">
+      {children}
+    </Flex>
+  );
 }
 
 function Inner({ children }: { children: ReactNode }) {
-  return <div className="breadcrumb_inner">{children}</div>;
+  return (
+    <Box borderWidth="sm" height="fit" borderBlock="none" borderRight="none" position="relative">
+      {children}
+    </Box>
+  );
 }
 
 const Item = React.forwardRef(
@@ -42,20 +50,21 @@ const Item = React.forwardRef(
   ) => {
     if (as === 'link') {
       return (
-        <Link to={href} ref={ref as React.ForwardedRef<HTMLAnchorElement>} className="breadcrumb_item" {...restProps}>
+        <Link
+          paddingLeft="2.5"
+          fontSize="sm"
+          href={href}
+          ref={ref as React.ForwardedRef<HTMLAnchorElement>}
+          {...restProps}
+        >
           {children}
         </Link>
       );
     }
     return (
-      <button
-        type="button"
-        ref={ref as React.ForwardedRef<HTMLButtonElement>}
-        className="breadcrumb_item"
-        {...restProps}
-      >
+      <Button type="button" ref={ref as React.ForwardedRef<HTMLButtonElement>} {...restProps} height="fit" size="sm">
         {children}
-      </button>
+      </Button>
     );
   },
 );
@@ -63,17 +72,17 @@ Item.displayName = 'Breadcrumb.Item';
 
 function Thumb({ src }: { src: string }) {
   return (
-    <span className="breadcrumb_thumb">
+    <Text>
       <img src={src} alt="" />
-    </span>
+    </Text>
   );
 }
 
-function Text({ children }: { children: ReactNode }) {
-  return <span className="breadcrumb_text">{children}</span>;
+function Texts({ children }: { children: ReactNode }) {
+  return <Text fontSize="sm">{children}</Text>;
 }
 
 Breadcrumb.Item = Item;
 Breadcrumb.Inner = Inner;
 Breadcrumb.Thumb = Thumb;
-Breadcrumb.Text = Text;
+Breadcrumb.Text = Texts;

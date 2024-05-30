@@ -10,7 +10,10 @@ body {
 .shadow_none {
   box-shadow: none;
 }
-
+.link svg {
+  height: inherit;
+  width: inherit;
+}
 // Tab List
 
 .tab_list {

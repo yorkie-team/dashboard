@@ -16,6 +16,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import classNames from 'classnames';
+import { Button, Container, Heading, Flex, Box, Text, Tooltip } from 'yorkie-ui';
 
 export const Navigator = ({ navList }: { navList: Array<{ name: string; id: string }> }) => {
   const [activeId, setActiveId] = useState(navList[0].id);
@@ -44,18 +45,14 @@ export const Navigator = ({ navList }: { navList: Array<{ name: string; id: stri
   }, [setActiveId]);
 
   return (
-    <nav className="navigator">
-      <ul className="navigator_list">
-        {navList.map(({ name, id }) => {
-          return (
-            <li key={id} className={classNames('navigator_group', { is_active: activeId === id })}>
-              <a href={`#${id}`} className="navigator_item">
-                {name}
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
+    <Flex flexDirection="column">
+      {navList.map(({ name, id }) => {
+        return (
+          <Box key={id} fontWeight={activeId === id ? 'semibold' : 'regular'} paddingBlock="4">
+            <a href={`#${id}`}>{name}</a>
+          </Box>
+        );
+      })}
+    </Flex>
   );
 };

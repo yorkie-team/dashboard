@@ -15,27 +15,27 @@
  */
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import { useAppSelector } from 'app/hooks';
 import { ProjectDropdown } from 'features/projects';
 import { AccountDropdown, MobileGnbDropdown } from 'features/users';
 import { selectUsers } from 'features/users/usersSlice';
 import { Breadcrumb, Icon } from 'components';
+import { Button, Container, Heading, Flex, Box, Text, Grid, GridItem, Switch, Link } from 'yorkie-ui';
 
 export function Header({ className }: { className?: string }) {
   const { token, isValidToken } = useAppSelector(selectUsers);
 
   return (
     <header className={`header ${className}`}>
-      <div className="header_inner">
+      <Flex justifyContent="space-between" paddingInline="6">
         <Breadcrumb>
-          <h1 className="logo">
-            <a href={`${process.env.REACT_APP_SERVICE_URL}`} className="logo_menu">
+          <Heading as="h1">
+            <Link href={`${process.env.REACT_APP_SERVICE_URL}`}>
               <Icon type="logoNoText" fill />
-            </a>
-            <span className="blind">Yorkie</span>
-          </h1>
+            </Link>
+            <Text display="none">Yorkie</Text>
+          </Heading>
           {token && isValidToken && (
             <>
               <Breadcrumb.Inner>
@@ -58,7 +58,7 @@ export function Header({ className }: { className?: string }) {
                 </a>
               </li>
               <li className="util_item">
-                <Link to="/community" className="util_menu">
+                <Link href="/community" className="util_menu">
                   Community
                 </Link>
               </li>
@@ -69,7 +69,7 @@ export function Header({ className }: { className?: string }) {
             <MobileGnbDropdown />
           </nav>
         )}
-      </div>
+      </Flex>
     </header>
   );
 }

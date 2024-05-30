@@ -19,7 +19,7 @@ import classNames from 'classnames';
 import { useAppSelector } from 'app/hooks';
 import { selectProjectDetail } from './projectsSlice';
 import { Icon, CodeBlock, CopyButton } from 'components';
-import { Button, Container, Heading, Flex, Box, Link, Text, Tooltip } from 'yorkie-ui';
+import { Button, Container, Heading, Flex, Box, Text, Tooltip } from 'yorkie-ui';
 
 type Snippet = 'npm' | 'cdn';
 
@@ -145,7 +145,7 @@ main();`,
           <Text color="black.a8" fontSize="xs" marginBlock="6">
             Then, import yorkie and begin using the SDKs.
           </Text>
-          <div className="codeblock_box">
+          <Box borderWidth="xs" borderRadius="xl" paddingBlock="6">
             <Box fontSize="sm">
               <CodeBlock.Code code={snippet.npm} language="javascript" withLineNumbers />
             </Box>
@@ -171,7 +171,7 @@ main();`,
                 )}
               </CopyButton>
             </Box>
-          </div>
+          </Box>
         </Box>
       )}
       {snippetType === 'cdn' && (
