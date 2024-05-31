@@ -142,31 +142,34 @@ export async function listDocumentHistories(
     serverSeq: '5365',
   });
 
-  let tree1 
-  let tree2
+  let snapshotTree;
+  let changesTree;
   const res = await client.listChanges({
     projectName,
     documentKey,
     previousSeq: '5365',
     isForward: true,
   });
-  console.log('5365~', res);
+  // console.log('5365~', res);
 
   const pbChanges = res.changes;
   try {
     const changes = converter.fromChanges(pbChanges);
-    console.log('5365~ changes', changes);
+    // console.log('5365~ changes', changes);
 
     const document = new Document(documentKey);
     document.applySnapshot(Long.fromString('5365'), snapshotMeta.snapshot);
-    console.log('✅ snapshot', (document.getValueByPath('$.text') as any).toJSInfoForTest());
+    // console.log('✅ snapshot', (document.getValueByPath('$.text') as any).toJSInfoForTest());
 
     for (let i = 0; i < changes.length; i++) {
       if (changes[i].hasOperations()) {
-        console.log('✅change', pbChanges[i].id!.serverSeq, changes[i]);
         if (Number(pbChanges[i].id!.serverSeq) == 5369) {
-          console.log('document', (document.getValueByPath('$.text') as any).toJSInfoForTest());
-          tree1 = document.getValueByPath('$.text') as any
+          console.log('✅change', pbChanges[i].id!.serverSeq, changes[i]);
+          console.log('snapshot document', (document.getValueByPath('$.text') as any).toJSInfoForTest());
+          snapshotTree = document.getValueByPath('$.text') as any;
+          console.log('snapshotTree size: ', snapshotTree.tree.indexTree.root.size);
+          const id1Arr = traverse(snapshotTree.tree.indexTree.root);
+          console.log('snapshotTree node 개수: ', id1Arr.length);
           // debugger;
         }
         document.applyChanges([changes[i]], 'Remote' as any);
@@ -176,16 +179,17 @@ export async function listDocumentHistories(
     console.log(err);
   }
 
+  console.log('========== 에러 시점 ==========');
   // 2. changes 테스트
   const res2 = await client.listChanges({
     projectName,
     documentKey,
-    previousSeq: '5371',
+    // previousSeq: '5371',
   });
 
   const pbChanges2 = res2.changes;
   const changes2 = converter.fromChanges(pbChanges2);
-  console.log('changes', changes2);
+  // console.log('changes', changes2);
 
   const document2 = new Document(documentKey);
 
@@ -193,25 +197,29 @@ export async function listDocumentHistories(
     if (changes2[i].hasOperations()) {
       if (Number(pbChanges2[i].id!.serverSeq) == 5369) {
         console.log('✅change', pbChanges2[i].id!.serverSeq, changes2[i]);
-        console.log('document2', (document2.getValueByPath('$.text') as any).toJSInfoForTest());
-        tree2 = document2.getValueByPath('$.text') as any;
+        console.log('changes document', (document2.getValueByPath('$.text') as any).toJSInfoForTest());
+        changesTree = document2.getValueByPath('$.text') as any;
+        console.log('changesTree size: ', changesTree.tree.indexTree.root.size);
+        const id2Arr = traverse(changesTree.tree.indexTree.root);
+        console.log('changesTree node 개수: ', id2Arr.length);
       }
       document2.applyChanges([changes2[i]], 'Remote' as any);
     }
   }
 
+  console.log('========== 전체 문서 ==========');
   // tree1: by snapshot
-  console.log('tree1: ', tree1.tree.indexTree.root)
-  const id1Arr = traverse(tree1.tree.indexTree.root)
-  console.log('id1ArrLen: ', id1Arr.length)
+  console.log('snapshotTree size: ', snapshotTree.tree.indexTree.root.size);
+  const id1Arr = traverse(snapshotTree.tree.indexTree.root);
+  console.log('snapshotTree node 개수: ', id1Arr.length);
 
   // tree2: by change
-  console.log('tree2: ', tree2.tree.indexTree.root.size)
-  const id2Arr = traverse(tree2.tree.indexTree.root)
-  console.log('id2ArrLen: ', id2Arr.length)
-  let n = id2Arr.length
-  for(let i = 0; i < n; i++) {
-    if(id1Arr[i] !== id2Arr[i] && id1Arr[i].size !== id2Arr[i].size) {
+  console.log('changesTree size: ', changesTree.tree.indexTree.root.size);
+  const id2Arr = traverse(changesTree.tree.indexTree.root);
+  console.log('changesTree node 개수: ', id2Arr.length);
+  let n = id2Arr.length;
+  for (let i = 0; i < n; i++) {
+    if (id1Arr[i] !== id2Arr[i] && id1Arr[i].size !== id2Arr[i].size) {
       console.log('diff found, ', id1Arr[i], id2Arr[i]);
       break;
     }
@@ -233,13 +241,13 @@ func createTreeNodePairs(node *crdt.TreeNode, parentID *crdt.TreeNodeID) []treeN
 */
 
 function traverse(curr: any) {
-  let ret = []as any
-  ret.push(curr.id.toTestString())
+  let ret = [] as any;
+  ret.push(curr.id.toTestString());
   // console.log(curr.id.toTestString())
-  for(const child of curr._children) {
-    ret.push(...traverse(child))
+  for (const child of curr._children) {
+    ret.push(...traverse(child));
   }
-  return ret
+  return ret;
 }
 
 // removeDocumentByAdmin removes the document of the given document.
