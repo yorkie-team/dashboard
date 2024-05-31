@@ -135,46 +135,68 @@ export async function listDocumentHistories(
   pageSize: number,
   isForward: boolean,
 ): Promise<Array<DocumentHistory>> {
+  // 1. snapshot 테스트
+  // const snapshotMeta = await client.getSnapshotMeta({
+  //   projectName,
+  //   documentKey,
+  //   serverSeq: '5365',
+  // });
+
   // const res = await client.listChanges({
   //   projectName,
   //   documentKey,
-  //   previousSeq,
-  //   pageSize,
-  //   isForward,
+  //   previousSeq: '5365',
+  //   isForward: true,
   // });
-  // 전체 changes 받아오기
+  // console.log('5365~', res);
+
+  // const pbChanges = res.changes;
+  // try {
+  //   const changes = converter.fromChanges(pbChanges);
+  //   console.log('5365~ changes', changes);
+
+  //   const document = new Document(documentKey);
+  //   document.applySnapshot(Long.fromString('5365'), snapshotMeta.snapshot);
+  //   console.log('✅ snapshot', (document.getValueByPath('$.text') as any).toJSInfoForTest());
+
+  //   for (let i = 0; i < changes.length; i++) {
+  //     if (changes[i].hasOperations()) {
+  //       console.log('✅change', pbChanges[i].id!.serverSeq, changes[i]);
+  //       if (Number(pbChanges[i].id!.serverSeq) >= 5369) {
+  //         console.log('document', (document.getValueByPath('$.text') as any).toJSInfoForTest());
+  //         debugger;
+  //       }
+  //       document.applyChanges([changes[i]], 'Remote' as any);
+  //     }
+  //   }
+  // } catch (err) {
+  //   console.log(err);
+  // }
+
+  // 2. changes 테스트
   const res = await client.listChanges({
     projectName,
     documentKey,
+    previousSeq: '5371',
   });
+
   const pbChanges = res.changes;
   try {
     const changes = converter.fromChanges(pbChanges);
     console.log('changes', changes);
 
     const document = new Document(documentKey);
-    // document.applySnapshot(seq, snapshotMeta.snapshot);
 
-    const histories: Array<DocumentHistory> = [];
     for (let i = 0; i < changes.length; i++) {
       if (changes[i].hasOperations()) {
+        if (Number(pbChanges[i].id!.serverSeq) >= 5369) {
+          console.log('✅change', pbChanges[i].id!.serverSeq, changes[i]);
+          console.log('document', (document.getValueByPath('$.text') as any).toJSInfoForTest());
+          debugger;
+        }
         document.applyChanges([changes[i]], 'Remote' as any);
-
-        changes[i].getOperations().forEach((op) => {
-          // if ((op as any)?.fromPos?.parentID?.toTestString() === '2:cf:2/0') {
-          if ((op as any)?.fromPos?.leftSiblingID?.toTestString() === '6992:a9:2/5') {
-            console.log('✅change', i, changes[i]);
-            console.log('op', op);
-            console.log('document', (document.getValueByPath('$.text') as any).toJSInfoForTest());
-          }
-        });
-        histories.push({
-          serverSeq: pbChanges[i].id!.serverSeq,
-          snapshot: document.toJSON(),
-        });
       }
     }
-    return histories;
   } catch (err) {
     console.log(err);
   }
