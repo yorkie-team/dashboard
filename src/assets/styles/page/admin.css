@@ -8046,7 +8046,7 @@ button {
 }
 a:focus-visible,
 button:focus-visible {
-  outline: 1px solid var(--orange-0);
+  outline: 1px solid transparent;
 }
 legend {
   display: block;

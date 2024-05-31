@@ -14,45 +14,58 @@
  * limitations under the License.
  */
 
-import React, { ReactNode, InputHTMLAttributes } from 'react';
+import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 import { InputHelperText } from './InputHelperText';
-import { Input, Flex, Label, InputProps } from 'yorkie-ui';
+import { Input, InputProps, Box } from 'yorkie-ui';
 
 type InputTextBoxProps = {
-  label?: string;
-  icon?: ReactNode;
   type?: 'text' | 'password' | 'email';
+  label?: string;
+  blindLabel?: boolean;
+  floatingLabel?: boolean;
+  icon?: ReactNode;
   state?: 'error' | 'success' | 'normal' | 'disabled';
   helperText?: string;
   placeholder?: string;
   inputRef?: any;
-} & InputHTMLAttributes<HTMLInputElement>;
+};
 
-export type InputProp = InputTextBoxProps & InputProps;
-export const InputTextBox = React.forwardRef((props: InputProp, ref) => {
+export const InputTextBox = React.forwardRef((props: InputTextBoxProps & InputProps, ref) => {
   return <InputTextBoxInner {...props} inputRef={ref} />;
 });
 InputTextBox.displayName = 'InputTextBox';
 
 function InputTextBoxInner({
+  type = 'text',
   label,
+  blindLabel,
+  floatingLabel,
   icon,
   state = 'normal',
   helperText,
   placeholder,
   inputRef,
   ...restProps
-}: InputProp) {
+}: InputTextBoxProps & InputProps) {
   return (
-    <div>
-      <Flex className="input_inner_box">
-        <Label>{label}</Label>
-        <Input size="xl" width="100w" placeholder={placeholder} ref={inputRef} {...restProps} />
-      </Flex>
+    <Box>
+      <Box position="relative">
+        {icon && icon}
+        <Input
+          type={type}
+          className={classNames('input', {
+            label_in_input: floatingLabel,
+          })}
+          placeholder={placeholder}
+          disabled={state === 'disabled'}
+          ref={inputRef}
+          {...restProps}
+        />
+      </Box>
       {helperText && (
         <InputHelperText state={state === 'disabled' || state === 'normal' ? null : state} message={helperText} />
       )}
-    </div>
+    </Box>
   );
 }

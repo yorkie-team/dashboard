@@ -20,7 +20,21 @@ body {
 .overflow-inline_scroll {
   overflow-x: auto;
 }
-
+.grow_1 {
+  flex-grow: 1;
+}
+.shrink_1 {
+  flex-shrink: 1;
+}
+.basis_auto {
+  flex-basis: auto;
+}
+.vis_hidden {
+  visibility: hidden;
+}
+.vis_visible {
+  visibility: visible;
+}
 // Tab List
 
 .tab_list {

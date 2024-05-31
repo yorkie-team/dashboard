@@ -18,12 +18,12 @@ import React from 'react';
 import { LoginForm } from 'features/users';
 import { PageTemplate } from './PageTemplate';
 import { svgMap } from 'components';
-import { Button, Container, Heading, Icon, Flex } from 'yorkie-ui';
+import { Button, Container, Heading, Icon, Flex, Menu } from 'yorkie-ui';
 
 export function LoginPage() {
   return (
     <PageTemplate className="login_page">
-      <Container paddingInline={{ base: '6', lg: '0' }} margin="auto" width={{ sm: 'lg' }}>
+      <Container paddingInline={{ base: '6', lg: '0' }} margin="auto" width={{ sm: 'sm' }}>
         <Flex justifyContent="center">
           <Icon icon={svgMap['logo3d']} color="black.a1" size="2xl" />
         </Flex>
