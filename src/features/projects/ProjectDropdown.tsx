@@ -62,7 +62,7 @@ export function ProjectDropdown({ size = 'small', icon = false }: { size?: 'smal
                     wLink="100w"
                     width="100w"
                     as="link"
-                    href={`../projects/${project.name}`}
+                    href={`/dashboard/projects/${project.name}`}
                     onClick={() => {
                       setOpened(false);
                     }}
@@ -75,7 +75,7 @@ export function ProjectDropdown({ size = 'small', icon = false }: { size?: 'smal
             <Menu.Separator />
             <Popover.Title>
               {' '}
-              <Link to="../projects/new" className="btn">
+              <Link to="/dashboard/projects/new" className="btn">
                 <Icon type="plus" />
                 <Text fontSize="sm">Create new project</Text>
               </Link>
