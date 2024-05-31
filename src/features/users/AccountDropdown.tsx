@@ -53,11 +53,11 @@ export function AccountDropdown() {
             <Text display="block">{username}@yorkie.dev</Text>
           </Box>
           <Menu.Separator />
-          <Link padding="4" href="/settings">
-            <Text>Settings</Text>
+          <Link padding="4" href="/dashboard/settings">
+            <Text fontSize="md">Settings</Text>
           </Link>
           <Link onClick={logout} padding="4">
-            <Text fontSize="lg" color="orange.default">
+            <Text fontSize="md" color="orange.default">
               Sign out
             </Text>
           </Link>

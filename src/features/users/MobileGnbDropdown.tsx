@@ -44,11 +44,11 @@ export function MobileGnbDropdown() {
   return (
     <Menu.Root>
       <Menu.Trigger display={{ base: 'block', lg: 'none' }}>
-        <Button variant="ghost" position="start" paddingRight="0">
+        <Button variant="ghost" position="start" paddingRight={{ base: '4', lg: '0' }}>
           <Icon type={opened ? 'close' : 'gnbMenu'} />
         </Button>
       </Menu.Trigger>
-      <Menu.Positioner>
+      <Menu.Positioner background="white" zIndex="xl">
         <Menu.Content>
           <Menu.Item id="products" width="screen">
             <Link href="/projects">
@@ -72,15 +72,15 @@ export function MobileGnbDropdown() {
             </Link>
           </Menu.Item>
           <Menu.Item id="signout" onClick={logout}>
-            <Text fontSize="lg" color="orange.default">
-              Sign out
-            </Text>
+            <Text color="orange.default">Sign out</Text>
           </Menu.Item>
           <Menu.Separator />
-          <Menu.Item id="signout" onClick={logout} display="block">
-            <Box paddingBlock="2">
-              <Text>{username}</Text>
-              <Text display="block">{username}@yorkie.dev</Text>
+          <Menu.Item id="username" onClick={logout} display="block">
+            <Box paddingBlock="0">
+              <Text color="gray.a9">{username}</Text>
+              <Text color="gray.a9" display="block" fontSize="xs">
+                {username}@yorkie.dev
+              </Text>
             </Box>
           </Menu.Item>
         </Menu.Content>

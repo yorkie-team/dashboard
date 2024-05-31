@@ -27,7 +27,7 @@ export function ProjectsPage() {
     <PageTemplate className="team_overview_page">
       <Container
         paddingBlock={{ base: '6', lg: '20' }}
-        margin="auto"
+        marginInline="auto"
         paddingInline={{ base: '6', lg: '0' }}
         width={{
           sm: 'breakpoint-sm',

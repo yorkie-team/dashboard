@@ -94,7 +94,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
   return (
     <Container
       paddingBlock={{ base: '6', lg: '10' }}
-      margin="auto"
+      marginInline="auto"
       paddingInline={{ base: '6', lg: '0' }}
       width={{
         sm: 'breakpoint-sm',

@@ -27,7 +27,7 @@ export function Header({ className }: { className?: string }) {
   const { token, isValidToken } = useAppSelector(selectUsers);
 
   return (
-    <Box position="sticky" className={`${className}`} width="100w" background="white">
+    <Box position="sticky" className={`${className}`} width="100w" background="white" zIndex="lg">
       <Flex justifyContent="space-between" paddingInline="6" alignItems="center">
         <Breadcrumb>
           <Heading as="h1">
@@ -39,7 +39,7 @@ export function Header({ className }: { className?: string }) {
           {token && isValidToken && (
             <>
               <Breadcrumb.Inner>
-                <Breadcrumb.Item as="link" href="../projects">
+                <Breadcrumb.Item as="link" href="/dashboard/projects">
                   <Breadcrumb.Text>Dashboard</Breadcrumb.Text>
                 </Breadcrumb.Item>
               </Breadcrumb.Inner>
@@ -55,7 +55,7 @@ export function Header({ className }: { className?: string }) {
               <Link href={`${process.env.REACT_APP_SERVICE_URL}/docs`} className="util_menu">
                 Docs
               </Link>
-              <Link href="/community" className="util_menu">
+              <Link href="/dashboard/community" className="util_menu">
                 Community
               </Link>
               <AccountDropdown />

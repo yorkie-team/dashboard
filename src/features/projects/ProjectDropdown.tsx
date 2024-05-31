@@ -19,9 +19,10 @@ import { useParams, Link } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { Project } from 'api/types';
-import { Icon, Breadcrumb } from 'components';
+import { Icon } from 'components';
 import { selectProjectList, listProjectsAsync } from './projectsSlice';
 import { Button, Popover, Box, Flex, Text, Menu } from 'yorkie-ui';
+
 export function ProjectDropdown({ size = 'small', icon = false }: { size?: 'small' | 'large'; icon?: boolean }) {
   const { projectName } = useParams();
   const { projects } = useAppSelector(selectProjectList);
@@ -89,7 +90,9 @@ export function ProjectDropdown({ size = 'small', icon = false }: { size?: 'smal
     <Popover.Root>
       <Popover.Trigger>
         <Flex alignItems="center">
-          <Button variant="subtle">{projectName}</Button>
+          <Button variant="subtle" fontSize="3xl">
+            {projectName}
+          </Button>
           {icon && <Icon type="openSelector" className="title_icon" />}
         </Flex>
       </Popover.Trigger>
