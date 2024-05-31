@@ -136,63 +136,38 @@ export async function listDocumentHistories(
   isForward: boolean,
 ): Promise<Array<DocumentHistory>> {
   // 1. snapshot 테스트
-  // const snapshotMeta = await client.getSnapshotMeta({
-  //   projectName,
-  //   documentKey,
-  //   serverSeq: '5365',
-  // });
+  const snapshotMeta = await client.getSnapshotMeta({
+    projectName,
+    documentKey,
+    serverSeq: '5365',
+  });
 
-  // const res = await client.listChanges({
-  //   projectName,
-  //   documentKey,
-  //   previousSeq: '5365',
-  //   isForward: true,
-  // });
-  // console.log('5365~', res);
-
-  // const pbChanges = res.changes;
-  // try {
-  //   const changes = converter.fromChanges(pbChanges);
-  //   console.log('5365~ changes', changes);
-
-  //   const document = new Document(documentKey);
-  //   document.applySnapshot(Long.fromString('5365'), snapshotMeta.snapshot);
-  //   console.log('✅ snapshot', (document.getValueByPath('$.text') as any).toJSInfoForTest());
-
-  //   for (let i = 0; i < changes.length; i++) {
-  //     if (changes[i].hasOperations()) {
-  //       console.log('✅change', pbChanges[i].id!.serverSeq, changes[i]);
-  //       if (Number(pbChanges[i].id!.serverSeq) >= 5369) {
-  //         console.log('document', (document.getValueByPath('$.text') as any).toJSInfoForTest());
-  //         debugger;
-  //       }
-  //       document.applyChanges([changes[i]], 'Remote' as any);
-  //     }
-  //   }
-  // } catch (err) {
-  //   console.log(err);
-  // }
-
-  // 2. changes 테스트
+  let tree1 
+  let tree2
   const res = await client.listChanges({
     projectName,
     documentKey,
-    previousSeq: '5371',
+    previousSeq: '5365',
+    isForward: true,
   });
+  console.log('5365~', res);
 
   const pbChanges = res.changes;
   try {
     const changes = converter.fromChanges(pbChanges);
-    console.log('changes', changes);
+    console.log('5365~ changes', changes);
 
     const document = new Document(documentKey);
+    document.applySnapshot(Long.fromString('5365'), snapshotMeta.snapshot);
+    console.log('✅ snapshot', (document.getValueByPath('$.text') as any).toJSInfoForTest());
 
     for (let i = 0; i < changes.length; i++) {
       if (changes[i].hasOperations()) {
-        if (Number(pbChanges[i].id!.serverSeq) >= 5369) {
-          console.log('✅change', pbChanges[i].id!.serverSeq, changes[i]);
+        console.log('✅change', pbChanges[i].id!.serverSeq, changes[i]);
+        if (Number(pbChanges[i].id!.serverSeq) == 5369) {
           console.log('document', (document.getValueByPath('$.text') as any).toJSInfoForTest());
-          debugger;
+          tree1 = document.getValueByPath('$.text') as any
+          // debugger;
         }
         document.applyChanges([changes[i]], 'Remote' as any);
       }
@@ -200,7 +175,71 @@ export async function listDocumentHistories(
   } catch (err) {
     console.log(err);
   }
+
+  // 2. changes 테스트
+  const res2 = await client.listChanges({
+    projectName,
+    documentKey,
+    previousSeq: '5371',
+  });
+
+  const pbChanges2 = res2.changes;
+  const changes2 = converter.fromChanges(pbChanges2);
+  console.log('changes', changes2);
+
+  const document2 = new Document(documentKey);
+
+  for (let i = 0; i < changes2.length; i++) {
+    if (changes2[i].hasOperations()) {
+      if (Number(pbChanges2[i].id!.serverSeq) == 5369) {
+        console.log('✅change', pbChanges2[i].id!.serverSeq, changes2[i]);
+        console.log('document2', (document2.getValueByPath('$.text') as any).toJSInfoForTest());
+        tree2 = document2.getValueByPath('$.text') as any;
+      }
+      document2.applyChanges([changes2[i]], 'Remote' as any);
+    }
+  }
+
+  // tree1: by snapshot
+  console.log('tree1: ', tree1.tree.indexTree.root)
+  const id1Arr = traverse(tree1.tree.indexTree.root)
+  console.log('id1ArrLen: ', id1Arr.length)
+
+  // tree2: by change
+  console.log('tree2: ', tree2.tree.indexTree.root.size)
+  const id2Arr = traverse(tree2.tree.indexTree.root)
+  console.log('id2ArrLen: ', id2Arr.length)
+  let n = id2Arr.length
+  for(let i = 0; i < n; i++) {
+    if(id1Arr[i] !== id2Arr[i] && id1Arr[i].size !== id2Arr[i].size) {
+      console.log('diff found, ', id1Arr[i], id2Arr[i]);
+      break;
+    }
+  }
+
   return [];
+}
+
+/*
+func createTreeNodePairs(node *crdt.TreeNode, parentID *crdt.TreeNodeID) []treeNodePair {
+	var pairs []treeNodePair
+
+	pairs = append(pairs, treeNodePair{node, parentID})
+	for _, child := range node.Index.Children(true) {
+		pairs = append(pairs, createTreeNodePairs(child.Value, node.ID())...)
+	}
+	return pairs
+}
+*/
+
+function traverse(curr: any) {
+  let ret = []as any
+  ret.push(curr.id.toTestString())
+  // console.log(curr.id.toTestString())
+  for(const child of curr._children) {
+    ret.push(...traverse(child))
+  }
+  return ret
 }
 
 // removeDocumentByAdmin removes the document of the given document.
