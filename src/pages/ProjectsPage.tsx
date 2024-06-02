@@ -67,7 +67,7 @@ export function ProjectsPage() {
                   rel="noreferrer"
                   href={`${process.env.REACT_APP_SERVICE_URL}/docs`}
                 >
-                  <Box position="relative" zIndex="xs" display="block" color="white">
+                  <Box position="relative" zIndex="xs" display="block" color="neutral.1">
                     <Text fontWeight="semibold" fontSize="2xl">
                       Check out Documentation
                     </Text>
@@ -79,7 +79,7 @@ export function ProjectsPage() {
               </Flex>
               <Flex position="relative">
                 <Link
-                  background="black.a10"
+                  background="neutral.default"
                   padding="10"
                   display={{ base: 'block', lg: 'flex' }}
                   borderRadius="xl"
@@ -88,7 +88,7 @@ export function ProjectsPage() {
                   rel="noreferrer"
                   href={`${process.env.REACT_APP_SERVICE_URL}/examples`}
                 >
-                  <Box position="relative" zIndex="xs" display="block" color="white">
+                  <Box position="relative" zIndex="xs" display="block" color="neutral.1">
                     <Text fontWeight="semibold" fontSize="2xl">
                       Browse Examples
                     </Text>

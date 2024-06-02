@@ -80,17 +80,17 @@ main();`,
       }}
     >
       <Box>
-        <Flex alignItems="center" color="black.a8">
+        <Flex alignItems="center" color="neutral.default">
           <Icon type="messageSmile" />
           <Heading as="h2" fontSize="2xl" marginLeft="1">
             Your project is ready!
           </Heading>
         </Flex>
-        <Text color="black.a8" fontSize="xs" marginTop="4">
+        <Text color="neutral.default" fontSize="xs" marginTop="4">
           Your project is now ready to use with its own APIs.
         </Text>
       </Box>
-      <Flex alignItems="center" color="black.a8" marginBlock="16">
+      <Flex alignItems="center" color="neutral.default" marginBlock="16">
         <Icon type="route" />
         <Heading as="h2" fontSize="2xl" marginLeft="1">
           Add Yorkie SDK in your app
@@ -107,11 +107,11 @@ main();`,
       <Box borderWidth="1px" />
       {snippetType === 'npm' && (
         <Box marginTop="6">
-          <Box alignItems="center" color="black.a8" marginBlock="10">
+          <Box alignItems="center" color="neutral.default" marginBlock="10">
             <Heading as="h2" fontSize="2xl" marginLeft="1">
               Use npm
             </Heading>
-            <Text color="black.a8" fontSize="xs" marginTop="4">
+            <Text color="neutral.default" fontSize="xs" marginTop="4">
               Your project is now ready to use with its own APIs.
             </Text>
           </Box>
@@ -127,7 +127,7 @@ main();`,
               margin="auto"
               height="fit"
               zIndex="xs"
-              background="white"
+              background="neutral.1"
             >
               <CopyButton value="npm install yorkie-js-sdk" timeout={1000}>
                 {({ copied, copy }) => (
@@ -151,14 +151,14 @@ main();`,
               </CopyButton>
             </Box>
           </Box>
-          <Text color="black.a8" fontSize="xs" marginBlock="6">
+          <Text color="neutral.default" fontSize="xs" marginBlock="6">
             Then, import yorkie and begin using the SDKs.
           </Text>
           <Box borderWidth="xs" borderRadius="xl" paddingBlock="6" position="relative">
             <Box fontSize="sm" overflow="scroll">
               <CodeBlock.Code code={snippet.npm} language="javascript" withLineNumbers />
             </Box>
-            <Box position="absolute" right="2" top="2" height="fit" zIndex="xs" background="white">
+            <Box position="absolute" right="2" top="2" height="fit" zIndex="xs" background="neutral.1">
               <CopyButton value={snippet.npm} timeout={1000}>
                 {({ copied, copy }) => (
                   <Box>
@@ -185,11 +185,11 @@ main();`,
       )}
       {snippetType === 'cdn' && (
         <Box>
-          <Box alignItems="center" color="black.a8" marginBlock="10">
+          <Box alignItems="center" color="neutral.default" marginBlock="10">
             <Heading as="h2" fontSize="2xl" marginLeft="1">
               Use a &lt;script&gt; tag
             </Heading>
-            <Text color="black.a8" fontSize="xs" marginTop="4">
+            <Text color="neutral.default" fontSize="xs" marginTop="4">
               Copy and paste the following script into the bottom of your &lt;body&gt; tag.
             </Text>
           </Box>
@@ -197,7 +197,7 @@ main();`,
             <Box fontSize="sm" overflow="scroll">
               <CodeBlock.Code code={snippet.cdn} language="markup" withLineNumbers />
             </Box>
-            <Box position="absolute" right="2" top="2" height="fit" zIndex="xs" background="white">
+            <Box position="absolute" right="2" top="2" height="fit" zIndex="xs" background="neutral.1">
               <CopyButton value={snippet.cdn} timeout={1000}>
                 {({ copied, copy }) => (
                   <Box>

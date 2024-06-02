@@ -19,7 +19,7 @@ import classNames from 'classnames';
 import { Icon, InputHelperText } from 'components';
 import { useOutsideClick, useAreaBlur } from 'hooks';
 import { mergeRefs } from 'utils';
-import { Button, Input, InputProps, Flex, Box, Link, Text, Grid, Menu } from 'yorkie-ui';
+import { Button, Input, InputProps, Flex } from 'yorkie-ui';
 
 type InputTextFieldProps = {
   type?: 'text' | 'password' | 'email';
@@ -99,18 +99,19 @@ export const InputTextField = React.forwardRef<HTMLInputElement, InputTextFieldP
             {...restProps}
           />
           {fieldUtil && isFieldControlButtonsOpen && (
-            <Flex ref={fieldControlRef} gap="4" marginLeft="4">
-              <Button onClick={cancelInput} size="sm" variant="outline" icon={<Icon type="closeSmall" />}>
+            <Flex ref={fieldControlRef} gap="4" marginLeft={{ base: '0', lg: '4' }} marginTop={{ base: '2', lg: '0' }}>
+              <Button onClick={cancelInput} size="sm" variant="outline">
+                <Icon type="closeSmall" />
                 Cancel
               </Button>
               <Button
                 className={classNames('green_0', { is_disabled: state === 'error' })}
                 size="sm"
                 variant="outline"
-                icon={<Icon type="check" />}
                 type="submit"
                 ref={lastRef}
               >
+                <Icon type="check" />
                 Save
               </Button>
             </Flex>

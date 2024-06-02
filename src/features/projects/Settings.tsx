@@ -17,7 +17,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm, useController } from 'react-hook-form';
-import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import {
   selectProjectDetail,
@@ -28,8 +27,8 @@ import {
   listProjectsAsync,
 } from './projectsSlice';
 import { AUTH_WEBHOOK_METHODS, UpdatableProjectFields, AuthWebhookMethod } from 'api/types';
-import { InputToggle, InputHelperText, InputTextField, Navigator } from 'components';
-import { Button, Container, Heading, Flex, Box, Text, Grid, GridItem, Switch } from 'yorkie-ui';
+import { InputHelperText, InputTextField, Navigator } from 'components';
+import { Heading, Flex, Box, Text, Grid, GridItem, Switch } from 'yorkie-ui';
 
 export type UpdateFieldInfo = {
   target: keyof UpdatableProjectFields | AuthWebhookMethod | null;
@@ -171,7 +170,7 @@ export function Settings() {
     onSubmit({ authWebhookMethods: newWebhookMethods });
   };
   return (
-    <Container
+    <Box
       paddingBlock={{ base: '6', lg: '20' }}
       marginInline="auto"
       paddingInline={{ base: '6', lg: '0' }}
@@ -358,6 +357,6 @@ export function Settings() {
           </form>
         </GridItem>
       </Grid>
-    </Container>
+    </Box>
   );
 }

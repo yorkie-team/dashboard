@@ -15,10 +15,9 @@
  */
 
 import React, { useCallback } from 'react';
-import { InputToggle } from 'components';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectPreferences, toggleUseSystemTheme, toggleUseDarkTheme, toggleUse24HourClock } from './usersSlice';
-import { Button, Container, Heading, Flex, Box, Text, RadioGroup, Switch, Grid, GridItem } from 'yorkie-ui';
+import { Heading, Box, Text, RadioGroup, Switch } from 'yorkie-ui';
 
 export function Preferences() {
   const dispatch = useAppDispatch();

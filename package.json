@@ -34,7 +34,7 @@
     "t": "^0.5.1",
     "typescript": "^5.4.5",
     "yorkie-js-sdk": "^0.4.20",
-    "yorkie-ui": "^0.5.6"
+    "yorkie-ui": "^0.5.7"
   },
   "husky": {
     "hooks": {

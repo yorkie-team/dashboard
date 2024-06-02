@@ -16,14 +16,12 @@
 
 import React, { useEffect, useState, useCallback } from 'react';
 import { fromUnixTime, format } from 'date-fns';
-import classNames from 'classnames';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectProjectList, listProjectsAsync } from './projectsSlice';
 import { Project } from 'api/types';
-import { Icon, Popover, Dropdown, SearchBar } from 'components';
-import { Button, Container, Heading, Flex, Box, Link, Text, Grid, Menu } from 'yorkie-ui';
-import { SSG_FALLBACK_EXPORT_ERROR } from 'next/dist/lib/constants';
+import { Icon, SearchBar } from 'components';
+import { Button, Heading, Flex, Box, Link, Text, Grid, Menu } from 'yorkie-ui';
 
 // TODO(chacha912): Extract to Cards component
 function ProjectCards({
@@ -134,7 +132,6 @@ export function ProjectList() {
   const { projects: allProjects, status } = useAppSelector(selectProjectList);
   const [query, setQuery] = useState<string | null>(null);
   const [viewType, setViewType] = useState<'list' | 'card'>('card');
-  const [sortOpened, setSortOpened] = useState(false);
   const [sortOption, setSortOption] = useState<(typeof SORT_OPTION)[keyof typeof SORT_OPTION]>(SORT_OPTION.createdAt);
 
   const handleProjectSort = useCallback((projects: any, option: string) => {
@@ -166,12 +163,6 @@ export function ProjectList() {
   useEffect(() => {
     handleProjectSort(allProjects, SORT_OPTION.createdAt);
   }, [handleProjectSort, allProjects]);
-
-  useEffect(() => {
-    return () => {
-      setSortOpened(false);
-    };
-  }, []);
 
   return (
     <>
@@ -213,7 +204,13 @@ export function ProjectList() {
           value={query ?? ''}
           onSubmit={handleSearch}
         />
-        <Box position="absolute" right="0" bottom="0" paddingBottom="1" marginBlock="auto">
+        <Box
+          position={{ base: 'relative', lg: 'absolute' }}
+          right="0"
+          bottom="0"
+          paddingBottom="1"
+          marginBlock={{ base: '4', lg: 'auto' }}
+        >
           <Menu.Root>
             <Menu.Trigger>
               <Flex cursor="pointer" alignItems="center">
@@ -233,7 +230,6 @@ export function ProjectList() {
                   onClick={() => {
                     setSortOption(SORT_OPTION.alphabet);
                     handleProjectSort(projects, SORT_OPTION.alphabet);
-                    setSortOpened(false);
                   }}
                 >
                   <Box visibility={sortOption === SORT_OPTION.alphabet ? 'visible' : 'hidden'}>
@@ -246,7 +242,6 @@ export function ProjectList() {
                   onClick={() => {
                     setSortOption(SORT_OPTION.createdAt);
                     handleProjectSort(projects, SORT_OPTION.createdAt);
-                    setSortOpened(false);
                   }}
                 >
                   <Box visibility={sortOption === SORT_OPTION.createdAt ? 'visible' : 'hidden'}>

@@ -27,7 +27,7 @@ import {
 } from './documentsSlice';
 import { SearchBar, Icon, Checkbox } from 'components';
 import { selectPreferences } from 'features/users/usersSlice';
-import { Button, Container, Heading, Flex, Box, Text, Grid, Menu } from 'yorkie-ui';
+import { Button, Flex, Box, Text } from 'yorkie-ui';
 
 export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean }) {
   const dispatch = useAppDispatch();
@@ -92,7 +92,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
   }, [dispatch, previousProjectName, projectName]);
 
   return (
-    <Container
+    <Box
       paddingBlock={{ base: '6', lg: '10' }}
       marginInline="auto"
       paddingInline={{ base: '6', lg: '0' }}
@@ -138,10 +138,10 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
         {!isDetailOpen && (
           <Box>
             <Flex justifyContent="space-between" marginTop="8">
-              <Text fontSize="sm" fontWeight="semibold" color="black.a7">
+              <Text fontSize="sm" fontWeight="semibold" color="neutral.default">
                 Document Key
               </Text>
-              <Text fontSize="sm" fontWeight="semibold" color="black.a7">
+              <Text fontSize="sm" fontWeight="semibold" color="neutral.default">
                 Last Updated
               </Text>
             </Flex>
@@ -276,6 +276,6 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
           </Button>
         </Flex>
       )}
-    </Container>
+    </Box>
   );
 }

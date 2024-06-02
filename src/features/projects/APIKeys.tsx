@@ -19,12 +19,12 @@ import React, { useState } from 'react';
 import { useAppSelector } from 'app/hooks';
 import { selectProjectDetail } from './projectsSlice';
 import { Icon, CopyButton } from 'components';
-import { Button, Container, Heading, Flex, Box, Link, Text, Tooltip } from 'yorkie-ui';
+// eslint-disable-next-line spellcheck/spell-checker
+import { Button, Container, Heading, Flex, Box, Text, Tooltip } from 'yorkie-ui';
 
 export function APIKeys() {
   const { project } = useAppSelector(selectProjectDetail);
   const [revealSecretKey, setRevealSecretKey] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
   return (
     <Container
       paddingBlock={{ base: '6', lg: '10' }}
@@ -44,12 +44,12 @@ export function APIKeys() {
         API
       </Text>
       <Box>
-        <Flex alignItems="center" color="black.a8">
+        <Flex alignItems="center" color="neutral.default">
           <Heading as="h2" fontSize="2xl" marginLeft="1">
             Public key
           </Heading>
         </Flex>
-        <Text color="black.a8" fontSize="xs" marginTop="4">
+        <Text color="neutral.default" fontSize="xs" marginTop="4">
           The public key allows you to use Yorkie without implementing your own authentication endpoint.
         </Text>
       </Box>
@@ -79,22 +79,23 @@ export function APIKeys() {
         </CopyButton>
       </Flex>
       <Box marginTop="16">
-        <Flex alignItems="center" color="black.a8">
+        <Flex alignItems="center" color="neutral.default">
           <Heading as="h2" fontSize="2xl" marginLeft="1">
             Secret key
           </Heading>
         </Flex>
-        <Text color="black.a8" fontSize="xs" marginTop="4">
+        <Text color="neutral.default" fontSize="xs" marginTop="4">
           The secret key allows you to authenticate your API requests on your own backend endpoint.
         </Text>
       </Box>
       <Flex marginTop="6" gap="6" alignItems="center">
         <Box background="gray.a6" padding="1" borderRadius="lg" width="100w">
-          <Flex>
+          <Flex justifyContent="start">
             {!revealSecretKey && (
               <Button
                 color="gray.a11"
                 variant="ghost"
+                width="100w"
                 onClick={() => {
                   setRevealSecretKey(true);
                 }}

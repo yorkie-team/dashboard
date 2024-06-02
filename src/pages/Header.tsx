@@ -21,13 +21,13 @@ import { ProjectDropdown } from 'features/projects';
 import { AccountDropdown, MobileGnbDropdown } from 'features/users';
 import { selectUsers } from 'features/users/usersSlice';
 import { Breadcrumb, Icon } from 'components';
-import { Button, Container, Heading, Flex, Box, Text, Grid, GridItem, Switch, Link } from 'yorkie-ui';
+import { Heading, Flex, Box, Text, Link } from 'yorkie-ui';
 
 export function Header({ className }: { className?: string }) {
   const { token, isValidToken } = useAppSelector(selectUsers);
 
   return (
-    <Box position="sticky" top="0" className={`${className}`} width="100w" background="white" zIndex="lg">
+    <Box position="sticky" top="0" className={`${className}`} width="100w" bg="neutral.1" zIndex="lg">
       <Flex justifyContent="space-between" paddingInline="6" alignItems="center">
         <Breadcrumb>
           <Heading as="h1">

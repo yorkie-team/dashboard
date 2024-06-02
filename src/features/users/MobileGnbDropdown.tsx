@@ -48,7 +48,7 @@ export function MobileGnbDropdown() {
           <Icon type={opened ? 'close' : 'gnbMenu'} />
         </Button>
       </Menu.Trigger>
-      <Menu.Positioner background="white" zIndex="xl">
+      <Menu.Positioner background="neutral.1" zIndex="xl">
         <Menu.Content>
           <Menu.Item id="products" width="screen">
             <Link href="/projects">

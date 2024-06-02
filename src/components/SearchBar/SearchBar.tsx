@@ -16,7 +16,7 @@
 
 import React from 'react';
 import { Icon } from 'components';
-import { Button, Container, Heading, Flex, Box, Link, Text, Grid, Menu, Input, InputProps } from 'yorkie-ui';
+import { Flex, Box, Input, InputProps } from 'yorkie-ui';
 
 export function SearchBar({
   placeholder,
@@ -29,14 +29,24 @@ export function SearchBar({
 } & React.InputHTMLAttributes<HTMLInputElement> &
   InputProps) {
   return (
-    <form onSubmit={onSubmit} className="search">
-      <div className="input_field_box">
-        <div className="input_inner">
-          <Icon type="search" className="icon_search" />
-          <Input size="xs" type="search" border="none" boxShadow="none" placeholder={placeholder} {...restProps} />
-          {children}
-        </div>
-      </div>
+    <form onSubmit={onSubmit}>
+      <Flex alignItems="center" position="relative">
+        <Box position="absolute" left="0" top="0" bottom="0" marginBlock="auto" height="fit">
+          <Icon type="search" />
+        </Box>
+        <Input
+          size="xs"
+          paddingLeft="6"
+          type="search"
+          borderInline="none"
+          borderTop="none"
+          borderRadius="none"
+          boxShadow="none"
+          placeholder={placeholder}
+          {...restProps}
+        />
+        {children}
+      </Flex>
     </form>
   );
 }

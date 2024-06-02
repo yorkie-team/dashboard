@@ -16,13 +16,13 @@
 
 import React from 'react';
 import { Icon } from 'components';
-
+import { Flex, Link } from 'yorkie-ui';
 export function Footer() {
   return (
-    <footer className="footer">
-      <a href={`${process.env.REACT_APP_SERVICE_URL}`}>
+    <Flex paddingBlock="4" borderWidth="xs" justifyContent="center">
+      <Link href={`${process.env.REACT_APP_SERVICE_URL}`} margin="auto">
         <Icon type="LogoHorizontalGray" fill />
-      </a>
-    </footer>
+      </Link>
+    </Flex>
   );
 }
