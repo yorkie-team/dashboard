@@ -18,7 +18,7 @@ import React from 'react';
 import { LoginForm } from 'features/users';
 import { PageTemplate } from './PageTemplate';
 import { svgMap } from 'components';
-import { Button, Container, Heading, Icon, Flex, Menu } from 'yorkie-ui';
+import { Button, Container, Heading, Icon, Flex } from 'yorkie-ui';
 
 export function LoginPage() {
   return (

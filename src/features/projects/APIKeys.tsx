@@ -19,7 +19,6 @@ import React, { useState } from 'react';
 import { useAppSelector } from 'app/hooks';
 import { selectProjectDetail } from './projectsSlice';
 import { Icon, CopyButton } from 'components';
-// eslint-disable-next-line spellcheck/spell-checker
 import { Button, Container, Heading, Flex, Box, Text, Tooltip } from 'yorkie-ui';
 
 export function APIKeys() {

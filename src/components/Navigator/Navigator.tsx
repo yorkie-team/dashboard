@@ -15,8 +15,7 @@
  */
 
 import React, { useState, useRef, useEffect } from 'react';
-import classNames from 'classnames';
-import { Button, Container, Heading, Flex, Box, Text, Tooltip } from 'yorkie-ui';
+import { Flex, Box } from 'yorkie-ui';
 
 export const Navigator = ({ navList }: { navList: Array<{ name: string; id: string }> }) => {
   const [activeId, setActiveId] = useState(navList[0].id);

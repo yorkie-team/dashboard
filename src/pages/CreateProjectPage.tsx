@@ -17,7 +17,7 @@
 import React from 'react';
 import { RegisterForm } from 'features/projects';
 import { PageTemplate } from 'pages';
-import { Button, Container, Heading, Flex, Box, Link, Text, Grid, Menu } from 'yorkie-ui';
+import { Button, Container, Heading, Flex, Box } from 'yorkie-ui';
 
 export function CreateProjectPage() {
   return (

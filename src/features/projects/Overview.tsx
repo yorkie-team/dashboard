@@ -15,7 +15,6 @@
  */
 
 import React, { useState } from 'react';
-import classNames from 'classnames';
 import { useAppSelector } from 'app/hooks';
 import { selectProjectDetail } from './projectsSlice';
 import { Icon, CodeBlock, CopyButton } from 'components';

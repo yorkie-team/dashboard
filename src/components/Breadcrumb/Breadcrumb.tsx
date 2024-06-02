@@ -15,7 +15,7 @@
  */
 
 import React, { ReactNode } from 'react';
-import { Button, Container, Heading, Flex, Box, Text, Grid, GridItem, Switch, Link } from 'yorkie-ui';
+import { Button, Flex, Box, Text, Link } from 'yorkie-ui';
 
 export function Breadcrumb({ children }: { children: ReactNode }) {
   return (

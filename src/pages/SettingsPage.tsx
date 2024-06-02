@@ -19,7 +19,7 @@ import { useNavigate } from 'react-router-dom';
 import { PageTemplate } from './PageTemplate';
 import { Icon, Navigator } from 'components';
 import { Preferences } from 'features/users/Preferences';
-import { Button, Container, Heading, Flex, Box, Text, Switch, Grid, GridItem } from 'yorkie-ui';
+import { Button, Container, Heading, Box, Text, Grid, GridItem } from 'yorkie-ui';
 
 export function SettingsPage() {
   const navigate = useNavigate();
