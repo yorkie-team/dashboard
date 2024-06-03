@@ -27,17 +27,10 @@ export function ProjectDropdown({ size = 'small', icon = false }: { size?: 'smal
   const { projectName } = useParams();
   const { projects } = useAppSelector(selectProjectList);
   const dispatch = useAppDispatch();
-  const [opened, setOpened] = useState(false);
 
   useEffect(() => {
     dispatch(listProjectsAsync());
   }, [dispatch]);
-
-  useEffect(() => {
-    return () => {
-      setOpened(false);
-    };
-  }, []);
 
   if (!projectName) return null;
 
@@ -63,9 +56,6 @@ export function ProjectDropdown({ size = 'small', icon = false }: { size?: 'smal
                     width="100w"
                     as="link"
                     href={`/dashboard/projects/${project.name}`}
-                    onClick={() => {
-                      setOpened(false);
-                    }}
                   >
                     {project.name}
                   </Button>
@@ -116,9 +106,6 @@ export function ProjectDropdown({ size = 'small', icon = false }: { size?: 'smal
                   width="100w"
                   as="link"
                   href={`../projects/${project.name}`}
-                  onClick={() => {
-                    setOpened(false);
-                  }}
                 >
                   {project.name}
                 </Button>

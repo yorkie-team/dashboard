@@ -15,7 +15,6 @@
  */
 
 import React, { useCallback, useState, useEffect } from 'react';
-import classNames from 'classnames';
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 import { selectUsers, logoutUser } from './usersSlice';
 import { Icon } from 'components';

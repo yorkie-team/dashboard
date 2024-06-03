@@ -17,7 +17,7 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 import { selectUsers, logoutUser } from './usersSlice';
-import { Button, Popover, Heading, Flex, Box, Text, Grid, GridItem, Switch, Link, Menu } from 'yorkie-ui';
+import { Button, Popover, Flex, Box, Text, Link, Menu } from 'yorkie-ui';
 
 export function AccountDropdown() {
   const { username } = useAppSelector(selectUsers);
