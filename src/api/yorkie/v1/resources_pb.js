@@ -55,6 +55,7 @@ const DocEventType = proto3.makeEnum(
     {no: 0, name: "DOC_EVENT_TYPE_DOCUMENT_CHANGED", localName: "DOCUMENT_CHANGED"},
     {no: 1, name: "DOC_EVENT_TYPE_DOCUMENT_WATCHED", localName: "DOCUMENT_WATCHED"},
     {no: 2, name: "DOC_EVENT_TYPE_DOCUMENT_UNWATCHED", localName: "DOCUMENT_UNWATCHED"},
+    {no: 3, name: "DOC_EVENT_TYPE_DOCUMENT_BROADCAST", localName: "DOCUMENT_BROADCAST"},
   ],
 );
 
@@ -238,6 +239,7 @@ const Operation_Style = proto3.makeMessageType(
     { no: 3, name: "to", kind: "message", T: TextNodePos },
     { no: 4, name: "attributes", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
     { no: 5, name: "executed_at", kind: "message", T: TimeTicket },
+    { no: 6, name: "created_at_map_by_actor", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: TimeTicket} },
   ],
   {localName: "Operation_Style"},
 );
@@ -266,6 +268,7 @@ const Operation_TreeEdit = proto3.makeMessageType(
     { no: 3, name: "to", kind: "message", T: TreePos },
     { no: 4, name: "created_at_map_by_actor", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: TimeTicket} },
     { no: 5, name: "contents", kind: "message", T: TreeNodes, repeated: true },
+    { no: 7, name: "split_level", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 6, name: "executed_at", kind: "message", T: TimeTicket },
   ],
   {localName: "Operation_TreeEdit"},
@@ -282,6 +285,8 @@ const Operation_TreeStyle = proto3.makeMessageType(
     { no: 3, name: "to", kind: "message", T: TreePos },
     { no: 4, name: "attributes", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
     { no: 5, name: "executed_at", kind: "message", T: TimeTicket },
+    { no: 6, name: "attributes_to_remove", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 7, name: "created_at_map_by_actor", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: TimeTicket} },
   ],
   {localName: "Operation_TreeStyle"},
 );
@@ -647,6 +652,17 @@ const TimeTicket = proto3.makeMessageType(
 );
 
 /**
+ * @generated from message yorkie.v1.DocEventBody
+ */
+const DocEventBody = proto3.makeMessageType(
+  "yorkie.v1.DocEventBody",
+  () => [
+    { no: 1, name: "topic", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "payload", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+  ],
+);
+
+/**
  * @generated from message yorkie.v1.DocEvent
  */
 const DocEvent = proto3.makeMessageType(
@@ -654,6 +670,7 @@ const DocEvent = proto3.makeMessageType(
   () => [
     { no: 1, name: "type", kind: "enum", T: proto3.getEnumType(DocEventType) },
     { no: 2, name: "publisher", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "body", kind: "message", T: DocEventBody },
   ],
 );
 
@@ -703,4 +720,5 @@ exports.Presence = Presence;
 exports.Checkpoint = Checkpoint;
 exports.TextNodePos = TextNodePos;
 exports.TimeTicket = TimeTicket;
+exports.DocEventBody = DocEventBody;
 exports.DocEvent = DocEvent;

@@ -160,7 +160,7 @@ export async function listDocumentHistories(
       const pbChanges = res.changes;
       const changes = converter.fromChanges(pbChanges);
       const document = new Document(documentKey);
-      console.log('length', changes.length);
+      // console.log('length', changes.length);
       for (let i = 0; i < changes.length; i++) {
         if (changes[i].hasOperations()) {
           // if (i === 159) {
@@ -172,112 +172,112 @@ export async function listDocumentHistories(
       return [document.getValueByPath('$.text') as any, changes[changes.length - 1]];
     };
 
-    for (let i = 160; i < 161; i++) {
-      const snapshotTree = await getSnapshotTree(String(i));
-      const [changesTree, lastChange] = await getChangesTree(String(i + 1));
-      console.log(changesTree);
-      if (snapshotTree?.tree.toXML() !== changesTree?.tree.toXML()) {
-        console.log('i ===== ', i, lastChange);
-        console.log('✅change', lastChange.hasOperations());
-        console.log('c xml', changesTree?.tree.toXML());
-        console.log('=====');
-        console.log('s xml', snapshotTree?.tree.toXML());
+    // for (let i = 0; i < 5369; i++) {
+    //   const snapshotTree = await getSnapshotTree(String(i));
+    //   const [changesTree, lastChange] = await getChangesTree(String(i + 1));
+    //   // console.log(changesTree);
+    //   if (snapshotTree?.tree.toXML() !== changesTree?.tree.toXML()) {
+    //     console.log('i ===== ', i, lastChange);
+    //     console.log('✅change', lastChange.hasOperations());
+    //     console.log('c xml', changesTree?.tree.toXML());
+    //     console.log('=====');
+    //     console.log('s xml', snapshotTree?.tree.toXML());
+    //   }
+    // }
+
+    const snapshotMeta = await client.getSnapshotMeta({
+      projectName,
+      documentKey,
+      serverSeq: '5365',
+    });
+
+    let snapshotTree;
+    let changesTree;
+    const res = await client.listChanges({
+      projectName,
+      documentKey,
+      previousSeq: '5365',
+      isForward: true,
+    });
+    // console.log('744~', res);
+
+    const pbChanges = res.changes;
+    try {
+      const changes = converter.fromChanges(pbChanges);
+      // console.log('744~ changes', changes);
+
+      const document = new Document(documentKey);
+      document.applySnapshot(Long.fromString('5365'), snapshotMeta.snapshot);
+      // console.log('✅ snapshot', (document.getValueByPath('$.text') as any).toJSInfoForTest());
+
+      for (let i = 0; i < changes.length; i++) {
+        if (changes[i].hasOperations()) {
+          if (Number(pbChanges[i].id!.serverSeq) == 5369) {
+            console.log('✅change', pbChanges[i].id!.serverSeq, changes[i]);
+            console.log('snapshot document', (document.getValueByPath('$.text') as any).toJSInfoForTest());
+            snapshotTree = document.getValueByPath('$.text') as any;
+            console.log('snapshotTree size: ', snapshotTree.tree.indexTree.root.size);
+            const id1Arr = traverse(snapshotTree.tree.indexTree.root);
+            console.log('snapshotTree node 개수: ', id1Arr.length);
+            // debugger;
+          }
+          document.applyChanges([changes[i]], 'Remote' as any);
+        }
+      }
+    } catch (err) {
+      console.error(err);
+    }
+
+    console.log('========== 에러 시점 ==========');
+    // 2. changes 테스트
+    const res2 = await client.listChanges({
+      projectName,
+      documentKey,
+      // previousSeq: '5371',
+    });
+
+    const pbChanges2 = res2.changes;
+    const changes2 = converter.fromChanges(pbChanges2);
+    // console.log('changes', changes2);
+
+    const document2 = new Document(documentKey);
+
+    for (let i = 0; i < changes2.length; i++) {
+      if (changes2[i].hasOperations()) {
+        if (Number(pbChanges2[i].id!.serverSeq) == 5369) {
+          console.log('✅change', pbChanges2[i].id!.serverSeq, changes2[i]);
+          console.log('changes document', (document2.getValueByPath('$.text') as any).toJSInfoForTest());
+          changesTree = document2.getValueByPath('$.text') as any;
+          console.log('changesTree size: ', changesTree.tree.indexTree.root.size);
+          const id2Arr = traverse(changesTree.tree.indexTree.root);
+          console.log('changesTree node 개수: ', id2Arr.length);
+        }
+        document2.applyChanges([changes2[i]], 'Remote' as any);
       }
     }
 
-    // const snapshotMeta = await client.getSnapshotMeta({
-    //   projectName,
-    //   documentKey,
-    //   serverSeq: '744',
-    // });
+    console.log('========== 전체 문서 ==========');
+    // tree1: by snapshot
+    console.log('snapshotTree size: ', snapshotTree.tree.indexTree.root.size);
+    const id1Arr = traverse(snapshotTree.tree.indexTree.root);
+    console.log('snapshotTree node 개수: ', id1Arr.length);
 
-    // let snapshotTree;
-    // let changesTree;
-    // const res = await client.listChanges({
-    //   projectName,
-    //   documentKey,
-    //   previousSeq: '744',
-    //   isForward: true,
-    // });
-    // // console.log('744~', res);
+    // tree2: by change
+    console.log('changesTree size: ', changesTree.tree.indexTree.root.size);
+    const id2Arr = traverse(changesTree.tree.indexTree.root);
+    console.log('changesTree node 개수: ', id2Arr.length);
+    let n = id2Arr.length;
+    for (let i = 0; i < n; i++) {
+      if (id1Arr[i] !== id2Arr[i] && id1Arr[i].size !== id2Arr[i].size) {
+        console.log('diff found, ', id1Arr[i], id2Arr[i]);
+        break;
+      }
+    }
 
-    // const pbChanges = res.changes;
-    // try {
-    //   const changes = converter.fromChanges(pbChanges);
-    //   // console.log('744~ changes', changes);
-
-    //   const document = new Document(documentKey);
-    //   document.applySnapshot(Long.fromString('744'), snapshotMeta.snapshot);
-    //   // console.log('✅ snapshot', (document.getValueByPath('$.text') as any).toJSInfoForTest());
-
-    //   for (let i = 0; i < changes.length; i++) {
-    //     if (changes[i].hasOperations()) {
-    //       if (Number(pbChanges[i].id!.serverSeq) == 760) {
-    //         console.log('✅change', pbChanges[i].id!.serverSeq, changes[i]);
-    //         console.log('snapshot document', (document.getValueByPath('$.text') as any).toJSInfoForTest());
-    //         snapshotTree = document.getValueByPath('$.text') as any;
-    //         console.log('snapshotTree size: ', snapshotTree.tree.indexTree.root.size);
-    //         const id1Arr = traverse(snapshotTree.tree.indexTree.root);
-    //         console.log('snapshotTree node 개수: ', id1Arr.length);
-    //         // debugger;
-    //       }
-    //       document.applyChanges([changes[i]], 'Remote' as any);
-    //     }
-    //   }
-    // } catch (err) {
-    //   console.error(err);
-    // }
-
-    // console.log('========== 에러 시점 ==========');
-    // // 2. changes 테스트
-    // const res2 = await client.listChanges({
-    //   projectName,
-    //   documentKey,
-    //   // previousSeq: '5371',
-    // });
-
-    // const pbChanges2 = res2.changes;
-    // const changes2 = converter.fromChanges(pbChanges2);
-    // // console.log('changes', changes2);
-
-    // const document2 = new Document(documentKey);
-
-    // for (let i = 0; i < changes2.length; i++) {
-    //   if (changes2[i].hasOperations()) {
-    //     if (Number(pbChanges2[i].id!.serverSeq) == 760) {
-    //       console.log('✅change', pbChanges2[i].id!.serverSeq, changes2[i]);
-    //       console.log('changes document', (document2.getValueByPath('$.text') as any).toJSInfoForTest());
-    //       changesTree = document2.getValueByPath('$.text') as any;
-    //       console.log('changesTree size: ', changesTree.tree.indexTree.root.size);
-    //       const id2Arr = traverse(changesTree.tree.indexTree.root);
-    //       console.log('changesTree node 개수: ', id2Arr.length);
-    //     }
-    //     document2.applyChanges([changes2[i]], 'Remote' as any);
-    //   }
-    // }
-
-    // console.log('========== 전체 문서 ==========');
-    // // tree1: by snapshot
-    // console.log('snapshotTree size: ', snapshotTree.tree.indexTree.root.size);
-    // const id1Arr = traverse(snapshotTree.tree.indexTree.root);
-    // console.log('snapshotTree node 개수: ', id1Arr.length);
-
-    // // tree2: by change
-    // console.log('changesTree size: ', changesTree.tree.indexTree.root.size);
-    // const id2Arr = traverse(changesTree.tree.indexTree.root);
-    // console.log('changesTree node 개수: ', id2Arr.length);
-    // let n = id2Arr.length;
-    // for (let i = 0; i < n; i++) {
-    //   if (id1Arr[i] !== id2Arr[i] && id1Arr[i].size !== id2Arr[i].size) {
-    //     console.log('diff found, ', id1Arr[i], id2Arr[i]);
-    //     break;
-    //   }
-    // }
-
-    // console.log('xml', changesTree.tree.toXML());
-    // console.log('=====');
-    // console.log('xml', snapshotTree.tree.toXML());
-    // console.log(changesTree.tree.toXML() === snapshotTree.tree.toXML());
+    console.log('xml', changesTree.tree.toXML());
+    console.log('=====');
+    console.log('xml', snapshotTree.tree.toXML());
+    console.log(changesTree.tree.toXML() === snapshotTree.tree.toXML());
   } catch (err) {
     console.error(err);
   }
