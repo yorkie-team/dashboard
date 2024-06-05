@@ -33,7 +33,7 @@
     "react-scripts": "5.0.0",
     "sass": "^1.55.0",
     "typescript": "~4.1.5",
-    "yorkie-js-sdk": "github:chacha912/yorkie-js-sdk#removed-node"
+    "yorkie-js-sdk": "^0.4.22"
   },
   "husky": {
     "hooks": {
