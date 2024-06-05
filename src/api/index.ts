@@ -135,13 +135,6 @@ export async function listDocumentHistories(
   pageSize: number,
   isForward: boolean,
 ): Promise<Array<DocumentHistory>> {
-  // const res = await client.listChanges({
-  //   projectName,
-  //   documentKey,
-  //   previousSeq,
-  //   pageSize,
-  //   isForward,
-  // });
   // 전체 changes 받아오기
   const res = await client.listChanges({
     projectName,
@@ -152,8 +145,35 @@ export async function listDocumentHistories(
     const changes = converter.fromChanges(pbChanges);
     console.log('changes', changes);
 
+    // Group changes by actor ID
+    let groupChanges: any[] = []; // 2D array to hold grouped results
+    let prevId = 'a';
+    let toAdd = [];
+
+    for (let i = 0; i < changes.length; i++) {
+      if (prevId !== changes[i].getID().getActorID()) {
+        // A new group is created!
+        if (prevId === 'a') {
+          prevId = changes[i].getID().getActorID();
+          toAdd.push(changes[i]);
+          continue;
+        }
+        groupChanges.push(toAdd);
+        toAdd = [];
+        toAdd.push(changes[i]);
+        prevId = changes[i].getID().getActorID();
+      } else {
+        toAdd.push(changes[i]);
+      }
+    }
+
+    if (toAdd.length > 0) {
+      groupChanges.push(toAdd);
+    }
+
+    console.log('groupedChanges', groupChanges);
+
     const document = new Document(documentKey);
-    // document.applySnapshot(seq, snapshotMeta.snapshot);
 
     const histories: Array<DocumentHistory> = [];
     for (let i = 0; i < changes.length; i++) {
