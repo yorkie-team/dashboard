@@ -114,6 +114,11 @@ export declare enum DocEventType {
    * @generated from enum value: DOC_EVENT_TYPE_DOCUMENT_UNWATCHED = 2;
    */
   DOCUMENT_UNWATCHED = 2,
+
+  /**
+   * @generated from enum value: DOC_EVENT_TYPE_DOCUMENT_BROADCAST = 3;
+   */
+  DOCUMENT_BROADCAST = 3,
 }
 
 /**
@@ -641,6 +646,11 @@ export declare class Operation_Style extends Message<Operation_Style> {
    */
   executedAt?: TimeTicket;
 
+  /**
+   * @generated from field: map<string, yorkie.v1.TimeTicket> created_at_map_by_actor = 6;
+   */
+  createdAtMapByActor: { [key: string]: TimeTicket };
+
   constructor(data?: PartialMessage<Operation_Style>);
 
   static readonly runtime: typeof proto3;
@@ -720,6 +730,11 @@ export declare class Operation_TreeEdit extends Message<Operation_TreeEdit> {
   contents: TreeNodes[];
 
   /**
+   * @generated from field: int32 split_level = 7;
+   */
+  splitLevel: number;
+
+  /**
    * @generated from field: yorkie.v1.TimeTicket executed_at = 6;
    */
   executedAt?: TimeTicket;
@@ -767,6 +782,16 @@ export declare class Operation_TreeStyle extends Message<Operation_TreeStyle> {
    * @generated from field: yorkie.v1.TimeTicket executed_at = 5;
    */
   executedAt?: TimeTicket;
+
+  /**
+   * @generated from field: repeated string attributes_to_remove = 6;
+   */
+  attributesToRemove: string[];
+
+  /**
+   * @generated from field: map<string, yorkie.v1.TimeTicket> created_at_map_by_actor = 7;
+   */
+  createdAtMapByActor: { [key: string]: TimeTicket };
 
   constructor(data?: PartialMessage<Operation_TreeStyle>);
 
@@ -1202,6 +1227,11 @@ export declare class NodeAttr extends Message<NodeAttr> {
    * @generated from field: yorkie.v1.TimeTicket updated_at = 2;
    */
   updatedAt?: TimeTicket;
+
+  /**
+   * @generated from field: bool is_removed = 3;
+   */
+  isRemoved: boolean;
 
   constructor(data?: PartialMessage<NodeAttr>);
 
@@ -1818,6 +1848,35 @@ export declare class TimeTicket extends Message<TimeTicket> {
 }
 
 /**
+ * @generated from message yorkie.v1.DocEventBody
+ */
+export declare class DocEventBody extends Message<DocEventBody> {
+  /**
+   * @generated from field: string topic = 1;
+   */
+  topic: string;
+
+  /**
+   * @generated from field: bytes payload = 2;
+   */
+  payload: Uint8Array;
+
+  constructor(data?: PartialMessage<DocEventBody>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "yorkie.v1.DocEventBody";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DocEventBody;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DocEventBody;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DocEventBody;
+
+  static equals(a: DocEventBody | PlainMessage<DocEventBody> | undefined, b: DocEventBody | PlainMessage<DocEventBody> | undefined): boolean;
+}
+
+/**
  * @generated from message yorkie.v1.DocEvent
  */
 export declare class DocEvent extends Message<DocEvent> {
@@ -1830,6 +1889,11 @@ export declare class DocEvent extends Message<DocEvent> {
    * @generated from field: string publisher = 2;
    */
   publisher: string;
+
+  /**
+   * @generated from field: yorkie.v1.DocEventBody body = 3;
+   */
+  body?: DocEventBody;
 
   constructor(data?: PartialMessage<DocEvent>);
 

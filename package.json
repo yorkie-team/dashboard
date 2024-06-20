@@ -32,7 +32,7 @@
     "sass": "^1.55.0",
     "t": "^0.5.1",
     "typescript": "^5.4.5",
-    "yorkie-js-sdk": "^0.4.20",
+    "yorkie-js-sdk": "^0.4.23",
     "yorkie-ui": "^0.5.16"
   },
   "husky": {
