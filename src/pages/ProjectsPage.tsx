@@ -22,7 +22,7 @@ import { PageTemplate } from './PageTemplate';
 import { Button, Container, Heading, Flex, Box, Link, Text, Grid } from 'yorkie-ui';
 
 export function ProjectsPage() {
-  const [showBanner, setShowBanner] = useState(localStorage.getItem('banner') === 'N' ? false : true);
+  const [showBanner, setShowBanner] = useState(localStorage.getItem('banner') !== 'N');
   return (
     <PageTemplate className="team_overview_page">
       <Container

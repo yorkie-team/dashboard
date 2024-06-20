@@ -19,12 +19,13 @@ import classNames from 'classnames';
 import { Icon, InputHelperText } from 'components';
 import { useOutsideClick, useAreaBlur } from 'hooks';
 import { mergeRefs } from 'utils';
-import { Button, Input, InputProps, Flex } from 'yorkie-ui';
+import { Button, Input, Flex } from 'yorkie-ui';
+import type { InputProps } from 'yorkie-ui';
 
 type InputTextFieldProps = {
   type?: 'text' | 'password' | 'email';
   label?: string;
-  reset?: (fieldName?: any) => void;
+  reset?: (fieldName?: string) => void;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   id: string;
   blindLabel?: boolean;

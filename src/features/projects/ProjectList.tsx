@@ -57,7 +57,7 @@ function ProjectCards({
   if (projects.length === 0) {
     return (
       <Box paddingBlock="10" width="100w" borderWidth="xs" borderRadius="xl" borderStyle="dashed" background="gray.2">
-        <Text align="center" fontSize="xl" fontWeight="semibold" color="black.a9">
+        <Text align="center" fontSize="xl" fontWeight="semibold" color="neutral.12">
           No matching result
         </Text>
       </Box>

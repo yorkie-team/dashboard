@@ -19,7 +19,7 @@ import { Flex, Box } from 'yorkie-ui';
 
 export const Navigator = ({ navList }: { navList: Array<{ name: string; id: string }> }) => {
   const [activeId, setActiveId] = useState(navList[0].id);
-  const contentRef = useRef<any>({});
+  const contentRef = useRef<Record<string, IntersectionObserverEntry>>({});
 
   useEffect(() => {
     const callback: IntersectionObserverCallback = (observedContent) => {

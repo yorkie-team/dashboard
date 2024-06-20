@@ -161,7 +161,7 @@ export function Settings() {
   const onChangeSwitch = (e: any, method: any) => {
     let newWebhookMethods = [...project?.authWebhookMethods!];
     if (e && e.target && e.target.checked) {
-      newWebhookMethods = newWebhookMethods.includes(method) ? newWebhookMethods : [...newWebhookMethods, method];
+      newWebhookMethods = newWebhookMethods?.includes(method) ? newWebhookMethods : [...newWebhookMethods, method];
     } else {
       newWebhookMethods = newWebhookMethods.filter((newMethod) => newMethod !== method);
     }

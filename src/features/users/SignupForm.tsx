@@ -117,7 +117,7 @@ export function SignupForm() {
               },
             })}
             state={formErrors.confirmPassword ? 'error' : 'normal'}
-            helperText={(formErrors.confirmPassword && formErrors.confirmPassword.message) || ''}
+            helperText={formErrors.confirmPassword?.message || ''}
           />
         </Box>
         <Button type="submit" disabled={status === 'loading'} width="100w" marginTop="6" size="xl">

@@ -76,7 +76,7 @@ export function RegisterForm() {
             autoComplete="off"
             autoFocus
             state={formErrors.projectName ? 'error' : 'normal'}
-            helperText={(formErrors.projectName && formErrors.projectName.message) || ''}
+            helperText={formErrors.projectName?.message || ''}
             large
           />
         </Box>

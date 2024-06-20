@@ -16,7 +16,8 @@
 
 import React from 'react';
 import { Icon } from 'components';
-import { Flex, Box, Input, InputProps } from 'yorkie-ui';
+import type { InputProps } from 'yorkie-ui';
+import { Flex, Box, Input } from 'yorkie-ui';
 
 export function SearchBar({
   placeholder,

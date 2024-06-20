@@ -72,14 +72,14 @@ export function LoginForm() {
           autoComplete="off"
           autoFocus
           state={formErrors.username ? 'error' : 'normal'}
-          helperText={(formErrors.username && formErrors.username.message) || ''}
+          helperText={formErrors.username?.message || ''}
         />
         <InputTextBox
           type="password"
           placeholder="Password"
           {...register('password', { required: 'Password is required' })}
           state={formErrors.password ? 'error' : 'normal'}
-          helperText={(formErrors.password && formErrors.password.message) || ''}
+          helperText={formErrors.password?.message || ''}
         />
         <Button disabled={status === 'loading'} width="100w" marginTop="36" size="xl">
           {status !== 'loading' && 'Sign in'}

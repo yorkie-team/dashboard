@@ -56,7 +56,7 @@ export function APIKeys() {
         <Box padding="3" borderRadius="sm" borderWidth="xs" width="100w">
           <span className="value">{project?.publicKey}</span>
         </Box>
-        <CopyButton value={project?.publicKey!} timeout={1000}>
+        <CopyButton value={project?.publicKey || ''} timeout={1000}>
           {({ copied, copy }) => (
             <Box>
               <Tooltip.Root open={copied}>
@@ -106,7 +106,7 @@ export function APIKeys() {
             {revealSecretKey && <Text padding="2">{project?.secretKey}</Text>}
           </Flex>
         </Box>
-        <CopyButton value={project?.secretKey!} timeout={1000}>
+        <CopyButton value={project?.secretKey || ''} timeout={1000}>
           {({ copied, copy }) => (
             <Box>
               <Tooltip.Root open={copied}>
