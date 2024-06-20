@@ -26,7 +26,6 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.33.1",
-    "react-json-view": "chacha912/react-json-view#master",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
@@ -34,7 +33,7 @@
     "t": "^0.5.1",
     "typescript": "^5.4.5",
     "yorkie-js-sdk": "^0.4.20",
-    "yorkie-ui": "^0.5.7"
+    "yorkie-ui": "^0.5.16"
   },
   "husky": {
     "hooks": {
@@ -130,6 +129,7 @@
     ]
   },
   "devDependencies": {
+    "react-json-view": "chacha912/react-json-view#master",
     "@bufbuild/buf": "^1.28.1",
     "@bufbuild/protoc-gen-es": "^1.6.0",
     "@connectrpc/protoc-gen-connect-es": "^1.2.0",
