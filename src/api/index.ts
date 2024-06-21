@@ -29,7 +29,7 @@ export * from './types';
 const interceptor = new InterceptorBuilder();
 const transport = createGrpcWebTransport({
   baseUrl: process.env.REACT_APP_API_ADDR!,
-  interceptors: [interceptor.createAuthInterceptor()],
+  interceptors: [interceptor.createAuthInterceptor(), interceptor.createMetricInterceptor()],
   defaultTimeoutMs: 3000,
 });
 const client = createPromiseClient(AdminService, transport);
