@@ -41,6 +41,7 @@ function App() {
   const { theme } = useAppSelector(selectPreferences);
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme.darkMode ? 'dark' : 'light');
+    window.document.body.classList.add(theme.darkMode ? 'darkmode' : 'lightmode');
   }, [theme.darkMode]);
 
   return (

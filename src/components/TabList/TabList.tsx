@@ -17,15 +17,15 @@
 import React, { ReactNode } from 'react';
 import { NavLink as Link } from 'react-router-dom';
 import classNames from 'classnames';
-import { Text } from 'yorkie-ui';
+import { Text, Box, Flex } from 'yorkie-ui';
 
 function Item({ children, end, to }: { children: ReactNode; end?: boolean; to: string }) {
   return (
-    <li className="tab_item">
-      <Link to={to} className={({ isActive }) => classNames({ is_active: isActive }, 'tab_menu')} end={end}>
+    <Box position="relative" paddingBottom="2.5" color="neutral.9">
+      <Link to={to} className={({ isActive }) => classNames({ is_active: isActive })} end={end}>
         {children}
       </Link>
-    </li>
+    </Box>
   );
 }
 
@@ -34,7 +34,18 @@ function Texts({ children }: { children: ReactNode }) {
 }
 
 export function TabList({ children }: { children: ReactNode }) {
-  return <ul className="tab_list">{children}</ul>;
+  return (
+    <Flex
+      paddingInline={{ base: 6, lg: '0' }}
+      gap="10"
+      borderWidth="1px"
+      borderInline="none"
+      borderTop="none"
+      borderColor="gray.7"
+    >
+      {children}
+    </Flex>
+  );
 }
 
 TabList.Item = Item;

@@ -46,7 +46,7 @@ export function InputHelperText({
   }
 
   return (
-    <Flex alignItems="center" marginTop="3" color={state === 'success' ? 'black.a12' : 'orange.10'}>
+    <Flex alignItems="center" marginTop="3" color={state === 'success' ? 'neutral.12' : 'orange.10'}>
       {state && (
         <Icon
           icon={svgMap[state === 'success' ? 'check' : 'inputFail']}

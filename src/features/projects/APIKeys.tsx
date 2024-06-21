@@ -93,6 +93,7 @@ export function APIKeys() {
             {!revealSecretKey && (
               <Button
                 color="gray.a11"
+                className="fillSVG"
                 variant="ghost"
                 width="100w"
                 onClick={() => {

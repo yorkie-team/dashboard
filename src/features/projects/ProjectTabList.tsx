@@ -19,6 +19,7 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'app/hooks';
 import { getProjectAsync } from './projectsSlice';
 import { Icon, TabList } from 'components';
+import { Flex } from 'yorkie-ui';
 
 export function ProjectTabList() {
   let { projectName } = useParams();
@@ -35,20 +36,28 @@ export function ProjectTabList() {
   return (
     <TabList>
       <TabList.Item to={`/projects/${projectName}`} end>
-        <Icon type="chart" />
-        <TabList.Text>Project overview</TabList.Text>
+        <Flex alignItems="center" gap="1">
+          <Icon type="chart" />
+          <TabList.Text>Project overview</TabList.Text>
+        </Flex>
       </TabList.Item>
       <TabList.Item to={`/projects/${projectName}/documents`}>
-        <Icon type="keynote" />
-        <TabList.Text>Documents</TabList.Text>
+        <Flex alignItems="center" gap="1">
+          <Icon type="keynote" />
+          <TabList.Text>Documents</TabList.Text>
+        </Flex>
       </TabList.Item>
       <TabList.Item to={`/projects/${projectName}/apikeys`}>
-        <Icon type="key" />
-        <TabList.Text>API</TabList.Text>
+        <Flex alignItems="center" gap="1">
+          <Icon type="key" />
+          <TabList.Text>API</TabList.Text>
+        </Flex>
       </TabList.Item>
       <TabList.Item to={`/projects/${projectName}/settings`}>
-        <Icon type="setting" />
-        <TabList.Text>Settings</TabList.Text>
+        <Flex alignItems="center" gap="1">
+          <Icon type="setting" />
+          <TabList.Text>Settings</TabList.Text>
+        </Flex>
       </TabList.Item>
     </TabList>
   );

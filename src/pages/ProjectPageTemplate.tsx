@@ -26,6 +26,7 @@ export function ProjectPageTemplate({ className, children }: { className: string
         paddingBlock={{ base: '6', lg: '20' }}
         marginInline="auto"
         width={{
+          base: '100w',
           sm: 'breakpoint-sm',
           md: 'breakpoint-md',
           lg: 'breakpoint-lg',

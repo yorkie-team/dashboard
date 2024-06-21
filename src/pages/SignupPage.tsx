@@ -32,7 +32,7 @@ export function SignupPage() {
           Ceate an account
         </Heading>
         <SignupForm />
-        <Button as="link" variant="outline" width="100w" wLink="100w" href="/login" marginTop="36" size="xl">
+        <Button as="link" variant="outline" width="100w" wLink="100w" href="login" marginTop="36" size="xl">
           Sign in
         </Button>
       </Container>

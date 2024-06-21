@@ -87,7 +87,7 @@ export const InputTextField = React.forwardRef<HTMLInputElement, InputTextFieldP
             {label}
           </label>
         )}
-        <div className="input_inner" onKeyDown={onKeyDown}>
+        <Flex className="input_inner" onKeyDown={onKeyDown}>
           <Input
             type={type}
             id={id}
@@ -117,7 +117,7 @@ export const InputTextField = React.forwardRef<HTMLInputElement, InputTextFieldP
               </Button>
             </Flex>
           )}
-        </div>
+        </Flex>
         {helperText && (
           <InputHelperText
             state={state === 'disabled' || state === 'normal' ? null : state}
