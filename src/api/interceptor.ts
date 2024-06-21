@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import pkg from '../../package.json';
 import { Interceptor } from '@connectrpc/connect';
 
 export class InterceptorBuilder {
@@ -36,6 +37,17 @@ export class InterceptorBuilder {
       if (this.token) {
         req.header.set('authorization', this.token);
       }
+      return await next(req);
+    };
+  }
+
+  /**
+   * `createMetricInterceptor` creates an interceptor to add the x-yorkie-user-agent header for each
+   * request.
+   */
+  createMetricInterceptor(): Interceptor {
+    return (next) => async (req) => {
+      req.header.set('x-yorkie-user-agent', pkg.name + '/' + pkg.version);
       return await next(req);
     };
   }
