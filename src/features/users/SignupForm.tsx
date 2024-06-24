@@ -15,12 +15,11 @@
  */
 
 import React, { useEffect, useCallback } from 'react';
-import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { SignupFields, selectUsers, signupUser, resetSignupState } from './usersSlice';
 import { Button, InputTextBox } from 'components';
-import { useAppDispatch } from 'app/hooks';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
 
 export function SignupForm() {
   const dispatch = useAppDispatch();
@@ -35,7 +34,7 @@ export function SignupForm() {
   } = useForm<SignupFields>();
   const {
     signup: { isSuccess, status, error },
-  } = useSelector(selectUsers);
+  } = useAppSelector(selectUsers);
 
   const onSubmit = useCallback(
     (data: SignupFields) => {
