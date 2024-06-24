@@ -115,12 +115,12 @@ export function ProjectList() {
     }
   }, []);
 
-  const handleChangeQuery = useCallback((e: any) => {
+  const handleChangeQuery = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   }, []);
 
   const handleSearch = useCallback(
-    (e: any) => {
+    (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       const results = allProjects.filter((project) => project.name.includes(query ?? ''));
       handleProjectSort(results, sortOption);
