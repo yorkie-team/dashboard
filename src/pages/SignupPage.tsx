@@ -29,7 +29,7 @@ export function SignupPage() {
           <Icon icon={svgMap['logo3d']} color="black.a1" size="2xl" />
         </Flex>
         <Heading as="h2" fontSize={{ base: '2xl', lg: '4xl' }} align="center" marginBottom="14">
-          Ceate an account
+          Create an account
         </Heading>
         <SignupForm />
         <Button as="link" variant="outline" width="100w" wLink="100w" href="login" marginTop="36" size="xl">

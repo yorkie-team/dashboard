@@ -159,7 +159,7 @@ export function Settings() {
   }, [resetForm]);
 
   const onChangeSwitch = (e: any, method: any) => {
-    let newWebhookMethods = [...project?.authWebhookMethods!];
+    let newWebhookMethods = [...(project?.authWebhookMethods ?? [])];
     if (e && e.target && e.target.checked) {
       newWebhookMethods = newWebhookMethods?.includes(method) ? newWebhookMethods : [...newWebhookMethods, method];
     } else {
