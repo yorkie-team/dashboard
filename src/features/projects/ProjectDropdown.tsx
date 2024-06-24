@@ -15,13 +15,13 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { Project } from 'api/types';
 import { Icon } from 'components';
 import { selectProjectList, listProjectsAsync } from './projectsSlice';
-import { Button, Popover, Box, Flex, Text, Menu } from 'yorkie-ui';
+import { Button, Popover, Box, Flex, Text, Menu, Link } from 'yorkie-ui';
 
 export function ProjectDropdown({ size = 'small', icon = false }: { size?: 'small' | 'large'; icon?: boolean }) {
   const { projectName } = useParams();
@@ -63,9 +63,8 @@ export function ProjectDropdown({ size = 'small', icon = false }: { size?: 'smal
               ))}
             </Popover.Description>
             <Menu.Separator />
-            <Popover.Title>
-              {' '}
-              <Link to="/dashboard/projects/new" className="btn">
+            <Popover.Title paddingTop="2">
+              <Link href="/dashboard/projects/new" display="flex">
                 <Icon type="plus" />
                 <Text fontSize="sm">Create new project</Text>
               </Link>
@@ -88,9 +87,8 @@ export function ProjectDropdown({ size = 'small', icon = false }: { size?: 'smal
       </Popover.Trigger>
       <Popover.Positioner>
         <Popover.Content>
-          <Popover.Title>
-            {' '}
-            <Link to="../projects/new" className="btn">
+          <Popover.Title paddingBottom="2">
+            <Link href="../projects/new" display="flex">
               <Icon type="plus" />
               <Text fontSize="sm">Create new project</Text>
             </Link>
