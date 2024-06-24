@@ -17,7 +17,8 @@
 import React from 'react';
 import { PageTemplate } from './PageTemplate';
 import { ReactComponent as CommunitySVG } from 'assets/icons/community_help.svg';
-import { Button, Icon } from 'components';
+import { Button } from 'yorkie-ui';
+import { Icon } from 'components';
 
 export function CommunityPage() {
   return (
@@ -27,33 +28,36 @@ export function CommunityPage() {
       </div>
       <h2 className="title">Join our community</h2>
       <p className="desc">
-        If you have any questions along the way,<br className="br_mo" /> please don’t hesitate to ask us<br className="br_tablet" /> through our<br className="br_mo" /><br className="br_pc" />
-        channels.<br className="br_mo_xs" /> You can sign up for our Discord or<br className="br_mo" /> raise GitHub<br className="br_tablet" /> discussions.
+        If you have any questions along the way,
+        <br className="br_mo" /> please don’t hesitate to ask us
+        <br className="br_tablet" /> through our
+        <br className="br_mo" />
+        <br className="br_pc" />
+        channels.
+        <br className="br_mo_xs" /> You can sign up for our Discord or
+        <br className="br_mo" /> raise GitHub
+        <br className="br_tablet" /> discussions.
       </p>
-      <Button.Box>
-        <Button
-          icon={<Icon type="discord" />}
-          href="https://discord.gg/MVEAwz9sBy"
-          className="gray50"
-          as="a"
-          outline
-          target="_blank"
-          rel="noreferrer"
-        >
-          Discord
-        </Button>
-        <Button
-          icon={<Icon type="github" />}
-          href="https://github.com/yorkie-team/dashboard/issues"
-          className="gray50"
-          as="a"
-          outline
-          target="_blank"
-          rel="noreferrer"
-        >
-          GitHub
-        </Button>
-      </Button.Box>
+      <Button
+        icon={<Icon type="discord" />}
+        href="https://discord.gg/MVEAwz9sBy"
+        className="gray50"
+        as="link"
+        variant="outline"
+        rel="noreferrer"
+      >
+        Discord
+      </Button>
+      <Button
+        icon={<Icon type="github" />}
+        href="https://github.com/yorkie-team/dashboard/issues"
+        className="gray50"
+        as="link"
+        variant="outline"
+        rel="noreferrer"
+      >
+        GitHub
+      </Button>
     </PageTemplate>
   );
 }

@@ -35,7 +35,7 @@ import {
 import { useAppSelector } from 'app/hooks';
 import { DocumentDetail } from 'features/documents';
 import { selectPreferences } from 'features/users/usersSlice';
-import { TestPage, ButtonView, PopoverView, DropdownView, InputView, BreadcrumbView, ModalView } from 'test';
+import { TestPage, PopoverView, DropdownView, InputView, BreadcrumbView, ModalView } from 'test';
 
 function App() {
   const { theme } = useAppSelector(selectPreferences);
@@ -67,7 +67,6 @@ function App() {
         {process.env.NODE_ENV === 'development' && (
           <Route path="/test" element={<TestPage />}>
             <Route path="/test" element={<Navigate to="./button" />} />
-            <Route path="/test/button" element={<ButtonView />} />
             <Route path="/test/popover" element={<PopoverView />} />
             <Route path="/test/dropdown" element={<DropdownView />} />
             <Route path="/test/input" element={<InputView />} />

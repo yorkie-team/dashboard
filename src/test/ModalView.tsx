@@ -15,7 +15,8 @@
  */
 
 import React, { useState } from 'react';
-import { Modal, Icon, Button, Popover } from 'components';
+import { Button } from 'yorkie-ui';
+import { Modal, Icon, Popover } from 'components';
 
 export function ModalView() {
   const [type, setType] = useState('basic1');
@@ -62,10 +63,8 @@ function Basic1Modal() {
         <Modal.Title>Are you sure you want to delete this team?</Modal.Title>
       </Modal.Content>
       <Modal.Bottom>
-        <Button.Box fullWidth>
-          <Button color="danger">Remove</Button>
-          <Button outline>Cancel</Button>
-        </Button.Box>
+        <Button>Remove</Button>
+        <Button variant="outline">Cancel</Button>
       </Modal.Bottom>
     </Modal>
   );
@@ -81,10 +80,8 @@ function Basic2Modal() {
         <Modal.Title>Modal Title</Modal.Title>
       </Modal.Content>
       <Modal.Bottom>
-        <Button.Box fullWidth>
-          <Button outline>Cancel</Button>
-          <Button color="success">Confirm</Button>
-        </Button.Box>
+        <Button variant="outline">Cancel</Button>
+        <Button>Confirm</Button>
       </Modal.Bottom>
     </Modal>
   );

@@ -19,7 +19,8 @@ import { fromUnixTime, format } from 'date-fns';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectDocumentDetail, getDocumentAsync, removeDocumentByAdminAsync } from './documentsSlice';
-import { Icon, Button, CodeBlock, CopyButton, Popover, Dropdown } from 'components';
+import { Button } from 'yorkie-ui';
+import { Icon, CodeBlock, CopyButton, Popover, Dropdown } from 'components';
 
 export function DocumentDetail() {
   const navigate = useNavigate();
@@ -89,12 +90,14 @@ export function DocumentDetail() {
         <div className="box_right">
           <Button
             icon={<Icon type="codeSnippet" />}
+            position="start"
             color="toggle"
             onClick={() => SetViewType('code')}
             className={viewType === 'code' ? 'is_active' : ''}
           />
           <Button
             icon={<Icon type="branch" />}
+            position="start"
             color="toggle"
             onClick={() => SetViewType('tree')}
             className={viewType === 'tree' ? 'is_active' : ''}
@@ -103,7 +106,13 @@ export function DocumentDetail() {
             <CopyButton value={document?.snapshot || ''} timeout={1000}>
               {({ copied, copy }) => (
                 <>
-                  <Button icon={<Icon type="copy" />} color="toggle" outline onClick={copy} />
+                  <Button
+                    icon={<Icon type="copy" />}
+                    position="start"
+                    color="toggle"
+                    variant="outline"
+                    onClick={copy}
+                  />
                   {copied && (
                     <div className="toast_box shadow_l">
                       <Icon type="check" />
