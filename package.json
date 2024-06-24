@@ -55,7 +55,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "serve": "vite preview",
     "test": "vitest run",
     "build:proto": "npx buf generate",

@@ -22,7 +22,7 @@
       "@/*": ["./*"]
     },
 
-    "types": ["vite/client", "node"]
+    "types": ["vite/client", "node", "vite-plugin-svgr/client"]
   },
-  "include": ["src", "vite.config.ts", "vite-plugin-svgr/client"]
+  "include": ["src", "vite.config.ts"]
 }
