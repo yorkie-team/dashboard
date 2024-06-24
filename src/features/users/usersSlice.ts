@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { createAppThunk } from 'app/appThunk';
 import * as api from 'api';
 import { User, RPCStatusCode, RPCError } from 'api/types';
@@ -138,7 +138,7 @@ export const usersSlice = createSlice({
       state.login.error = null;
       state.logout.isSuccess = true;
     },
-    setIsValidToken: (state, action) => {
+    setIsValidToken: (state, action: PayloadAction<boolean>) => {
       state.isValidToken = action.payload;
     },
     resetSignupState: (state) => {
