@@ -15,7 +15,7 @@
  */
 
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import { usersReducer, projectsReducer, documentsReducer, globalErrorReducer } from 'features';
+import { usersReducer, projectsReducer, documentsReducer, globalErrorReducer } from '@/features';
 import { globalErrorHandler } from './middleware';
 
 export const store = configureStore({

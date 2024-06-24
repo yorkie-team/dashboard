@@ -2,11 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon-512x512.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/favicon-512x512.png" />
+    <link rel="manifest" href="/manifest.json" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#000000" />
     <title>Dashboard · Yorkie</title>
@@ -15,8 +15,8 @@
       content="Yorkie Dashboard is an administrative tool that allows user to manage projects and documents."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="%PUBLIC_URL%/og.png" />
-    <meta property="og:url" content="%REACT_APP_SITE_URL%" />
+    <meta property="og:image" content="/og.png" />
+    <meta property="og:url" content="%VITE_SITE_URL%" />
     <meta property="og:title" content="Yorkie Dashboard" />
     <meta
       property="og:description"
@@ -24,7 +24,7 @@
     />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@team_yorkie" />
-    <meta property="twitter:image" content="%PUBLIC_URL%/og.png" />
+    <meta property="twitter:image" content="/og.png" />
     <meta property="twitter:title" content="Yorkie Dashboard" />
     <meta
       property="twitter:description"
@@ -71,5 +71,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -15,8 +15,8 @@
  */
 
 import React from 'react';
-import ReactJson, { ReactJsonViewProps } from 'react-json-view';
-import Highlight, { defaultProps, Language } from 'prism-react-renderer';
+import ReactJson, { ReactJsonViewProps } from '@microlink/react-json-view';
+import { Highlight, Language } from 'prism-react-renderer';
 import theme from './prismThemeLight';
 
 function CodeBlockCode({
@@ -29,15 +29,15 @@ function CodeBlockCode({
   withLineNumbers?: boolean;
 }) {
   return (
-    <Highlight {...defaultProps} code={code} theme={theme} language={language}>
+    <Highlight code={code} theme={theme} language={language}>
       {({ className, tokens, getLineProps, getTokenProps }) => (
         <pre className={className}>
           {tokens.map((line, i) => (
-            <div key={i} {...getLineProps({ line, key: i })}>
+            <div key={i} {...getLineProps({ line })}>
               {withLineNumbers && <span className="line-number">{i + 1}</span>}
               <span className="line-content">
                 {line.map((token, key) => (
-                  <span key={key} {...getTokenProps({ token, key })} />
+                  <span key={key} {...getTokenProps({ token })} />
                 ))}
               </span>
             </div>
@@ -52,10 +52,8 @@ function CodeBlockTree({ code, ...restProps }: { code: object } & Omit<ReactJson
   return (
     <ReactJson
       src={code}
-      iconStyle="arrow"
       displayObjectSize={false}
       displayDataTypes={false}
-      displayBraceColon={false}
       enableClipboard={false}
       quotesOnKeys={false}
       groupArraysAfterLength={0}

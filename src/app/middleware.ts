@@ -16,9 +16,9 @@
 
 import type { MiddlewareAPI, Middleware } from '@reduxjs/toolkit';
 import { isRejectedWithValue } from '@reduxjs/toolkit';
-import { RPCStatusCode } from 'api/types';
-import { setGlobalError } from 'features/globalError/globalErrorSlice';
-import { setIsValidToken } from 'features/users/usersSlice';
+import { RPCStatusCode } from '@/api/types';
+import { setGlobalError } from '@/features/globalError/globalErrorSlice';
+import { setIsValidToken } from '@/features/users/usersSlice';
 
 export const globalErrorHandler: Middleware = (store: MiddlewareAPI) => (next) => (action) => {
   const result = next(action);

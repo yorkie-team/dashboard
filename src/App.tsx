@@ -31,11 +31,11 @@ import {
   ProjectSettingsPage,
   CommunityPage,
   NotFoundPage,
-} from 'pages';
-import { useAppSelector } from 'app/hooks';
-import { DocumentDetail } from 'features/documents';
-import { selectPreferences } from 'features/users/usersSlice';
-import { TestPage, ButtonView, PopoverView, DropdownView, InputView, BreadcrumbView, ModalView } from 'test';
+} from '@/pages';
+import { useAppSelector } from '@/app/hooks';
+import { DocumentDetail } from '@/features/documents';
+import { selectPreferences } from '@/features/users/usersSlice';
+import { TestPage, ButtonView, PopoverView, DropdownView, InputView, BreadcrumbView, ModalView } from '@/test';
 
 function App() {
   const { theme } = useAppSelector(selectPreferences);
@@ -44,7 +44,7 @@ function App() {
   }, [theme.darkMode]);
 
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router basename={import.meta.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route element={<PublicRoute />} >
@@ -64,7 +64,7 @@ function App() {
         </Route>
         <Route path="/community" element={<CommunityPage />} />
         {
-          process.env.NODE_ENV === 'development' && (
+          import.meta.env.NODE_ENV === 'development' && (
             <Route path="/test" element={<TestPage />}>
               <Route path="/test" element={<Navigate to="./button" />} />
               <Route path="/test/button" element={<ButtonView />} />

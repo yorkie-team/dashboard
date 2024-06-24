@@ -16,7 +16,7 @@
 
 import React, { useState } from 'react';
 import { ProjectList } from 'features/projects';
-import { ReactComponent as BannerSVG } from 'assets/images/@tmp/sample_banner_icon.svg';
+import BannerSVG from 'assets/images/@tmp/sample_banner_icon.svg?react';
 import { Button, Icon } from 'components';
 import { PageTemplate } from './PageTemplate';
 
@@ -30,7 +30,7 @@ export function ProjectsPage() {
           <ul className="banner_list">
             <li className="banner_item">
               <a
-                href={`${process.env.REACT_APP_SERVICE_URL}/docs`}
+                href={`${import.meta.env.VITE_SERVICE_URL}/docs`}
                 target="_blank"
                 rel="noreferrer"
                 className="banner gradient_180deg_yellow"
@@ -40,9 +40,16 @@ export function ProjectsPage() {
               </a>
             </li>
             <li className="banner_item">
-              <a href={`${process.env.REACT_APP_SERVICE_URL}/examples`} target="_blank" rel="noreferrer" className="banner gray900_bg">
+              <a
+                href={`${import.meta.env.VITE_SERVICE_URL}/examples`}
+                target="_blank"
+                rel="noreferrer"
+                className="banner gray900_bg"
+              >
                 <strong className="banner_title gray000">Browse Examples</strong>
-                <p className="banner_desc gray000">See how Yorkie can help you bring your products to the next level of collaboration.</p>
+                <p className="banner_desc gray000">
+                  See how Yorkie can help you bring your products to the next level of collaboration.
+                </p>
                 <span className="img_box">
                   <BannerSVG />
                 </span>

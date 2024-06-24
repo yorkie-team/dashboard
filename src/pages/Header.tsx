@@ -31,7 +31,7 @@ export function Header({ className }: { className?: string }) {
       <div className="header_inner">
         <Breadcrumb>
           <h1 className="logo">
-            <a href={`${process.env.REACT_APP_SERVICE_URL}`} className="logo_menu">
+            <a href={`${import.meta.env.VITE_SERVICE_URL}`} className="logo_menu">
               <Icon type="logoNoText" fill />
             </a>
             <span className="blind">Yorkie</span>
@@ -53,7 +53,7 @@ export function Header({ className }: { className?: string }) {
           <nav className="util_box">
             <ul className="util_list">
               <li className="util_item">
-                <a href={`${process.env.REACT_APP_SERVICE_URL}/docs`} className="util_menu">
+                <a href={`${import.meta.env.VITE_SERVICE_URL}/docs`} className="util_menu">
                   Docs
                 </a>
               </li>
