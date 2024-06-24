@@ -39,7 +39,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
   const [selectedDocKeys, setSelectedDocKeys] = useState<Array<string>>([]);
 
   const [query, SetQuery] = useState<string | null>(null);
-  const handleChangeQuery = useCallback((e) => {
+  const handleChangeQuery = useCallback((e: any) => {
     SetQuery(e.target.value);
   }, []);
 
@@ -65,7 +65,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
   }, [dispatch, projectName, documents]);
 
   const handleSearch = useCallback(
-    (e) => {
+    (e: any) => {
       e.preventDefault();
       if (query === null || query === '') {
         dispatch(listDocumentsAsync({ projectName, isForward: false }));
