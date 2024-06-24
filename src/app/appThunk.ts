@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { AsyncThunkPayloadCreator, AsyncThunk, Dispatch } from '@reduxjs/toolkit';
 import { ConnectError } from '@connectrpc/connect';
-import { fromErrorDetails } from '@/api/converter';
-import { RPCError } from '@/api/types';
+import { fromErrorDetails } from 'api/converter';
+import { RPCError } from 'api/types';
 
 type AsyncThunkConfig = {
   state?: unknown;

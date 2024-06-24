@@ -18,10 +18,6 @@
 
     /* Paths */
     "baseUrl": "./src",
-    "paths": {
-      "@/*": ["./*"]
-    },
-
     "types": ["vite/client", "node", "vite-plugin-svgr/client"]
   },
   "include": ["src", "vite.config.ts"]

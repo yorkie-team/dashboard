@@ -31,11 +31,11 @@ import {
   ProjectSettingsPage,
   CommunityPage,
   NotFoundPage,
-} from '@/pages';
-import { useAppSelector } from '@/app/hooks';
-import { DocumentDetail } from '@/features/documents';
-import { selectPreferences } from '@/features/users/usersSlice';
-import { TestPage, ButtonView, PopoverView, DropdownView, InputView, BreadcrumbView, ModalView } from '@/test';
+} from 'pages';
+import { useAppSelector } from 'app/hooks';
+import { DocumentDetail } from 'features/documents';
+import { selectPreferences } from 'features/users/usersSlice';
+import { TestPage, ButtonView, PopoverView, DropdownView, InputView, BreadcrumbView, ModalView } from 'test';
 
 function App() {
   const { theme } = useAppSelector(selectPreferences);
@@ -47,7 +47,7 @@ function App() {
     <Router basename={import.meta.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
-        <Route element={<PublicRoute />} >
+        <Route element={<PublicRoute />}>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
         </Route>
@@ -63,19 +63,17 @@ function App() {
           <Route path="/settings" element={<SettingsPage />} />
         </Route>
         <Route path="/community" element={<CommunityPage />} />
-        {
-          import.meta.env.NODE_ENV === 'development' && (
-            <Route path="/test" element={<TestPage />}>
-              <Route path="/test" element={<Navigate to="./button" />} />
-              <Route path="/test/button" element={<ButtonView />} />
-              <Route path="/test/popover" element={<PopoverView />} />
-              <Route path="/test/dropdown" element={<DropdownView />} />
-              <Route path="/test/input" element={<InputView />} />
-              <Route path="/test/breadcrumb" element={<BreadcrumbView />} />
-              <Route path="/test/modal" element={<ModalView />} />
-            </Route>
-          )
-        }
+        {import.meta.env.NODE_ENV === 'development' && (
+          <Route path="/test" element={<TestPage />}>
+            <Route path="/test" element={<Navigate to="./button" />} />
+            <Route path="/test/button" element={<ButtonView />} />
+            <Route path="/test/popover" element={<PopoverView />} />
+            <Route path="/test/dropdown" element={<DropdownView />} />
+            <Route path="/test/input" element={<InputView />} />
+            <Route path="/test/breadcrumb" element={<BreadcrumbView />} />
+            <Route path="/test/modal" element={<ModalView />} />
+          </Route>
+        )}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
