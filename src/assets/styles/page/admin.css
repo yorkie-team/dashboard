@@ -858,6 +858,9 @@ legend {
   fill: currentColor;
 }
 
+.grow_1 {
+  flex-grow: 1;
+}
 /* Modal */
 
 @charset "UTF-8";
@@ -1925,4 +1928,11 @@ pre[class*='language-'] {
 }
 .overflow_scroll {
   overflow: scroll;
+}
+
+/* Footer */
+
+.footer svg path:nth-child(-n + 6),
+.footer svg path:nth-child(7) {
+  fill: var(--gray-800);
 }

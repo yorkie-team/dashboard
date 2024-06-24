@@ -30,7 +30,11 @@ function Item({ children, end, to }: { children: ReactNode; end?: boolean; to: s
 }
 
 function Texts({ children }: { children: ReactNode }) {
-  return <Text fontSize="sm">{children}</Text>;
+  return (
+    <Text fontSize="sm" textWrap="nowrap">
+      {children}
+    </Text>
+  );
 }
 
 export function TabList({ children }: { children: ReactNode }) {

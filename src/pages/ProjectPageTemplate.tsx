@@ -36,13 +36,7 @@ export function ProjectPageTemplate({ className, children }: { className: string
         <Box>
           <ProjectDropdown size="large" icon={true} />
         </Box>
-        <Box
-          marginTop="12"
-          overflowInline="scroll"
-          whiteSpace="nowrap"
-          paddingBottom={{ base: 2, lg: 0 }}
-          paddingTop={{ base: 1, lg: 0 }}
-        >
+        <Box marginTop="12" overflow="scroll" whiteSpace="nowrap" paddingTop={{ base: 1, lg: 0 }}>
           <ProjectTabList />
         </Box>
         {children}

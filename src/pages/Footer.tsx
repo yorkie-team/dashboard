@@ -15,14 +15,12 @@
  */
 
 import React from 'react';
-import { Icon } from 'components';
-import { Flex, Link } from 'yorkie-ui';
+import { Flex, Link, Icon } from 'yorkie-ui';
+import { svgMap } from 'components';
 export function Footer() {
   return (
-    <Flex paddingBlock="4" borderWidth="xs" justifyContent="center">
-      <Link href={`${process.env.REACT_APP_SERVICE_URL}`} margin="auto">
-        <Icon type="LogoHorizontalGray" fill />
-      </Link>
+    <Flex paddingBlock="4" borderWidth="xs" justifyContent="center" className="footer">
+      <Flex justifyContent="center">{svgMap['LogoHorizontalGray']}</Flex>
     </Flex>
   );
 }

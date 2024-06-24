@@ -18,14 +18,14 @@ import React from 'react';
 import { LoginForm } from 'features/users';
 import { PageTemplate } from './PageTemplate';
 import { svgMap } from 'components';
-import { Button, Container, Heading, Icon, Flex } from 'yorkie-ui';
+import { Button, Container, Heading, Flex } from 'yorkie-ui';
 
 export function LoginPage() {
   return (
     <PageTemplate className="login_page">
       <Container paddingInline={{ base: '6', lg: '0' }} margin="auto" width={{ sm: 'sm' }}>
-        <Flex justifyContent="center">
-          <Icon icon={svgMap['logo3d']} color="black.a1" size="2xl" />
+        <Flex justifyContent="center" height="10" width="xs" marginBottom="6" margin="auto">
+          {svgMap['logo3d']}
         </Flex>
         <Heading as="h2" fontSize={{ base: '2xl', lg: '4xl' }} align="center" marginBottom="14">
           Sign in to Yorkie

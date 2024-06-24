@@ -91,7 +91,7 @@ main();`,
       </Box>
       <Flex alignItems="center" color="neutral.default" marginBlock="16">
         <Icon type="route" />
-        <Heading as="h2" fontSize="2xl" marginLeft="1">
+        <Heading as="h2" fontSize={{ base: 'xl', xl: '2xl' }} marginLeft="1">
           Add Yorkie SDK in your app
         </Heading>
       </Flex>
