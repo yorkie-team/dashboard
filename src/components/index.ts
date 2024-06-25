@@ -15,7 +15,6 @@
  */
 
 export * from './Icons/Icon';
-export * from './Button/Button';
 export * from './CopyButton/CopyButton';
 export * from './Input/InputTextBox';
 export * from './Input/InputTextField';

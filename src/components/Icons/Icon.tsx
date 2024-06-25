@@ -60,7 +60,7 @@ import NextSVG from 'assets/icons/icon_next.svg?react';
 import DiscordSVG from 'assets/icons/icon_discord.svg?react';
 import MoreLargeSVG from 'assets/icons/icon_more_large.svg?react';
 
-const svgMap = {
+export const svgMap = {
   shortcut: <ShortcutSVG />,
   circle: <CircleSVG />,
   square: <SquareSVG />,

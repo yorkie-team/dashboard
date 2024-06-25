@@ -18,7 +18,8 @@ import React, { useEffect, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { SignupFields, selectUsers, signupUser, resetSignupState } from './usersSlice';
-import { Button, InputTextBox } from 'components';
+import { InputTextBox } from 'components';
+import { Box, Button } from 'yorkie-ui';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 
 export function SignupForm() {
@@ -61,71 +62,68 @@ export function SignupForm() {
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <fieldset>
         <legend className="blind">Signup Form</legend>
-        <InputTextBox
-          label="Username"
-          blindLabel={true}
-          floatingLabel={true}
-          placeholder="Username"
-          {...register('username', {
-            required: 'Username is required',
-            pattern: {
-              value: /^[a-zA-Z0-9\-._~]{2,30}$/,
-              message:
-                'Username should only contain 2 to 30 characters with alphabets, numbers, hyphen(-), period(.), underscore(_), and tilde(~)',
-            },
-          })}
-          autoComplete="off"
-          autoFocus
-          state={formErrors.username ? 'error' : 'normal'}
-          helperText={(formErrors.username && formErrors.username.message) || ''}
-        />
-        <InputTextBox
-          type="password"
-          label="Password"
-          blindLabel={true}
-          floatingLabel={true}
-          placeholder="Password"
-          autoComplete="off"
-          {...register('password', {
-            required: 'Password is required',
-            pattern: {
-              value:
-                /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~`!?@#$%^&*()\-_+={}[\]|\\;:'"<>,./])(?:[a-zA-Z0-9~`!?@#$%^&*()\-_+={}[\]|\\;:'"<>,./]{8,30})$/,
-              message:
-                'Password must contain 8 to 30 characters with at least 1 alphabet, 1 number, and 1 special character',
-            },
-            onChange: async () => {
-              await trigger(['password', 'confirmPassword']);
-            },
-          })}
-          state={formErrors.password ? 'error' : 'normal'}
-          helperText={(formErrors.password && formErrors.password.message) || ''}
-        />
-        <InputTextBox
-          type="password"
-          label="Confirm Password"
-          blindLabel={true}
-          floatingLabel={true}
-          placeholder="ConfirmPassword"
-          autoComplete="off"
-          {...register('confirmPassword', {
-            required: 'Confirm password is required',
-            validate: {
-              match: (value) => watch('password') === value || 'Passwords do not match',
-            },
-            onChange: async () => {
-              await trigger('confirmPassword');
-            },
-          })}
-          state={formErrors.confirmPassword ? 'error' : 'normal'}
-          helperText={(formErrors.confirmPassword && formErrors.confirmPassword.message) || ''}
-        />
-        <Button.Box fullWidth={true}>
-          <Button type="submit" disabled={status === 'loading'} color="primary">
-            {status !== 'loading' && 'Sign up'}
-            {status === 'loading' && 'Loading...'}
-          </Button>
-        </Button.Box>
+        <Box display="flex" gap="6" flexDirection="column">
+          <InputTextBox
+            size="xl"
+            label="Username"
+            placeholder="Username"
+            {...register('username', {
+              required: 'Username is required',
+              pattern: {
+                value: /^[a-zA-Z0-9\-._~]{2,30}$/,
+                message:
+                  'Username should only contain 2 to 30 characters with alphabets, numbers, hyphen(-), period(.), underscore(_), and tilde(~)',
+              },
+            })}
+            autoComplete="off"
+            autoFocus
+            state={formErrors.username ? 'error' : 'normal'}
+            helperText={(formErrors.username && formErrors.username.message) || ''}
+          />
+          <InputTextBox
+            type="password"
+            label="Password"
+            size="xl"
+            placeholder="Password"
+            autoComplete="off"
+            {...register('password', {
+              required: 'Password is required',
+              pattern: {
+                value:
+                  /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~`!?@#$%^&*()\-_+={}[\]|\\;:'"<>,./])(?:[a-zA-Z0-9~`!?@#$%^&*()\-_+={}[\]|\\;:'"<>,./]{8,30})$/,
+                message:
+                  'Password must contain 8 to 30 characters with at least 1 alphabet, 1 number, and 1 special character',
+              },
+              onChange: async () => {
+                await trigger(['password', 'confirmPassword']);
+              },
+            })}
+            state={formErrors.password ? 'error' : 'normal'}
+            helperText={(formErrors.password && formErrors.password.message) || ''}
+          />
+          <InputTextBox
+            type="password"
+            size="xl"
+            label="Confirm Password"
+            placeholder="ConfirmPassword"
+            autoComplete="off"
+            {...register('confirmPassword', {
+              required: 'Confirm password is required',
+              validate: {
+                match: (value) => watch('password') === value || 'Passwords do not match',
+              },
+              onChange: async () => {
+                await trigger('confirmPassword');
+              },
+            })}
+            state={formErrors.confirmPassword ? 'error' : 'normal'}
+            helperText={formErrors.confirmPassword?.message || ''}
+          />
+        </Box>
+        <Button type="submit" disabled={status === 'loading'} width="100w" marginTop="6" size="xl">
+          {status !== 'loading' && 'Sign up'}
+          {status === 'loading' && 'Loading...'}
+        </Button>
       </fieldset>
     </form>
   );
