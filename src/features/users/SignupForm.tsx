@@ -15,15 +15,15 @@
  */
 
 import React, { useEffect, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { SignupFields, selectUsers, signupUser, resetSignupState } from './usersSlice';
 import { InputTextBox } from 'components';
 import { Box, Button } from 'yorkie-ui';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
 
 export function SignupForm() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const {
     register,
@@ -35,7 +35,7 @@ export function SignupForm() {
   } = useForm<SignupFields>();
   const {
     signup: { isSuccess, status, error },
-  } = useSelector(selectUsers);
+  } = useAppSelector(selectUsers);
 
   const onSubmit = useCallback(
     (data: SignupFields) => {

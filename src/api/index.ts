@@ -28,8 +28,8 @@ export * from './types';
 
 const interceptor = new InterceptorBuilder();
 const transport = createGrpcWebTransport({
-  baseUrl: process.env.REACT_APP_API_ADDR!,
-  interceptors: [interceptor.createAuthInterceptor()],
+  baseUrl: import.meta.env.VITE_API_ADDR!,
+  interceptors: [interceptor.createAuthInterceptor(), interceptor.createMetricInterceptor()],
   defaultTimeoutMs: 3000,
 });
 const client = createPromiseClient(AdminService, transport);

@@ -29,7 +29,7 @@ export function Overview() {
     npm: `import yorkie from 'yorkie-js-sdk';
 
 async function main() {
-  const client = new yorkie.Client('${process.env.REACT_APP_API_ADDR}', {
+  const client = new yorkie.Client('${import.meta.env.VITE_API_ADDR}', {
     apiKey: '${project?.publicKey}',
   });
   await client.activate();
@@ -47,10 +47,10 @@ main();`,
     cdn: `<div>There are currently <span id='peersCount'></span> peers!</div>
 
 <!-- include yorkie js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/yorkie-js-sdk/${process.env.REACT_APP_JS_SDK_VERSION}/yorkie-js-sdk.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/yorkie-js-sdk/${import.meta.env.VITE_JS_SDK_VERSION}/yorkie-js-sdk.js"></script>
 <script>
   async function main() {
-    const client = new yorkie.Client('${process.env.REACT_APP_API_ADDR}', {
+    const client = new yorkie.Client('${import.meta.env.VITE_API_ADDR}', {
       apiKey: '${project?.publicKey}',
     });
     await client.activate();

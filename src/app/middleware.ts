@@ -15,21 +15,21 @@
  */
 
 import type { MiddlewareAPI, Middleware } from '@reduxjs/toolkit';
-import { isRejectedWithValue } from '@reduxjs/toolkit';
-import { RPCStatusCode } from 'api/types';
+import { RPCError, RPCStatusCode } from 'api/types';
 import { setGlobalError } from 'features/globalError/globalErrorSlice';
 import { setIsValidToken } from 'features/users/usersSlice';
+import { isRejectedAction } from './appThunk';
 
 export const globalErrorHandler: Middleware = (store: MiddlewareAPI) => (next) => (action) => {
   const result = next(action);
 
-  if (!isRejectedWithValue(action)) return result;
+  if (!isRejectedAction(action)) return result;
   // skip errors that have already been handled in reducers
   if (action.meta.isHandledError) return result;
 
   // handle common error
-  let { code: statusCode, message: errorMessage } = action.payload.error;
-  statusCode = Number(statusCode);
+  const errorMessage = action.payload.error.message;
+  const statusCode = action.payload.error instanceof RPCError ? Number(action.payload.error.code) : null;
 
   if (statusCode === RPCStatusCode.UNAUTHENTICATED) {
     store.dispatch(setIsValidToken(false));

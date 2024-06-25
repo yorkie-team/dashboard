@@ -20,12 +20,10 @@ import type { InputProps } from 'yorkie-ui';
 import { Flex, Box, Input } from 'yorkie-ui';
 
 export function SearchBar({
-  placeholder,
   onSubmit,
   children,
   ...restProps
 }: {
-  placeholder: string;
   onSubmit?: React.FormEventHandler<HTMLFormElement>;
 } & React.InputHTMLAttributes<HTMLInputElement> &
   InputProps) {
@@ -43,7 +41,6 @@ export function SearchBar({
           borderTop="none"
           borderRadius="none"
           boxShadow="none"
-          placeholder={placeholder}
           {...restProps}
         />
         {children}

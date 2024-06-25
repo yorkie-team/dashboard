@@ -15,7 +15,7 @@
  */
 
 import React from 'react';
-import { Flex, Link, Icon } from 'yorkie-ui';
+import { Flex } from 'yorkie-ui';
 import { svgMap } from 'components';
 export function Footer() {
   return (

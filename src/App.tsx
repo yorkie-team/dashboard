@@ -45,7 +45,7 @@ function App() {
   }, [theme.darkMode]);
 
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router basename={import.meta.env.BASE_URL}>
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route element={<PublicRoute />}>
@@ -64,7 +64,7 @@ function App() {
           <Route path="/settings" element={<SettingsPage />} />
         </Route>
         <Route path="/community" element={<CommunityPage />} />
-        {process.env.NODE_ENV === 'development' && (
+        {import.meta.env.DEV && (
           <Route path="/test" element={<TestPage />}>
             <Route path="/test" element={<Navigate to="./button" />} />
             <Route path="/test/popover" element={<PopoverView />} />

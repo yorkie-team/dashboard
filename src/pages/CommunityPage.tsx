@@ -16,9 +16,9 @@
 
 import React from 'react';
 import { PageTemplate } from './PageTemplate';
-import { ReactComponent as CommunitySVG } from 'assets/icons/community_help.svg';
 import { Button } from 'yorkie-ui';
 import { Icon } from 'components';
+import CommunitySVG from 'assets/icons/community_help.svg?react';
 
 export function CommunityPage() {
   return (

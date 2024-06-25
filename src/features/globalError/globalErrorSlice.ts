@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { RootState } from 'app/store';
 import { RPCStatusCode } from 'api/types';
 
@@ -34,7 +34,7 @@ export const globalErrorSlice = createSlice({
   name: 'globalError',
   initialState,
   reducers: {
-    setGlobalError: (state, action) => {
+    setGlobalError: (state, action: PayloadAction<{ statusCode: number | null; errorMessage: string }>) => {
       const { statusCode, errorMessage } = action.payload;
       state.code = statusCode;
       switch (statusCode) {

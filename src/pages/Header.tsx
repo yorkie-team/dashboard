@@ -31,7 +31,7 @@ export function Header({ className }: { className?: string }) {
       <Flex justifyContent="space-between" paddingInline="6" alignItems="center">
         <Breadcrumb>
           <Heading as="h1">
-            <Link href={`${process.env.REACT_APP_SERVICE_URL}`}>
+            <Link href={`${import.meta.env.VITE_SERVICE_URL}`}>
               <Icon type="logoNoText" fill />
             </Link>
             <Text display="none">Yorkie</Text>

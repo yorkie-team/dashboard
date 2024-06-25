@@ -16,50 +16,49 @@
 
 import React from 'react';
 import classNames from 'classnames';
-import { ReactComponent as CircleSVG } from 'assets/icons/icon_circle.svg';
-import { ReactComponent as SquareSVG } from 'assets/icons/icon_square.svg';
-import { ReactComponent as CheckSVG } from 'assets/icons/icon_check.svg';
-import { ReactComponent as LogoHorizontalGraySVG } from 'assets/icons/logo_horizontal_s_gray.svg';
-import { ReactComponent as LogoMarkOnlySVG } from 'assets/icons/logo_no_text.svg';
-import { ReactComponent as Logo3DMarkOnlySVG } from 'assets/icons/logo_3d_2.svg';
-import { ReactComponent as InputHelperSVG } from 'assets/icons/icon_input.svg';
-import { ReactComponent as AddSVG } from 'assets/icons/icon_plus.svg';
-import { ReactComponent as CloseSVG } from 'assets/icons/icon_close.svg';
-import { ReactComponent as HamburgerSVG } from 'assets/icons/icon_gnb_menu.svg';
-import { ReactComponent as GridViewSVG } from 'assets/icons/icon_view_grid.svg';
-import { ReactComponent as ListViewSVG } from 'assets/icons/icon_view_list.svg';
-import { ReactComponent as ShortcutSVG } from 'assets/icons/icon_short_cut.svg';
-import { ReactComponent as OpenSelectorSVG } from 'assets/icons/icon_open_selector.svg';
-import { ReactComponent as StarSVG } from 'assets/icons/icon_star.svg';
-import { ReactComponent as StarFullSVG } from 'assets/icons/icon_star_full.svg';
-import { ReactComponent as ChartSVG } from 'assets/icons/icon_chart.svg';
-import { ReactComponent as KeynoteSVG } from 'assets/icons/icon_keynote.svg';
-import { ReactComponent as KeySVG } from 'assets/icons/icon_key.svg';
-import { ReactComponent as MessageSmileSVG } from 'assets/icons/icon_message_smile.svg';
-import { ReactComponent as RouteSVG } from 'assets/icons/icon_route.svg';
-import { ReactComponent as SearchSVG } from 'assets/icons/icon_search.svg';
-import { ReactComponent as TrashSVG } from 'assets/icons/icon_trash.svg';
-import { ReactComponent as ArrowBackSVG } from 'assets/icons/icon_arrow_back.svg';
-import { ReactComponent as CodeSnippetSVG } from 'assets/icons/icon_code_snippet.svg';
-import { ReactComponent as PlaySVG } from 'assets/icons/icon_play.svg';
-import { ReactComponent as BranchSVG } from 'assets/icons/icon_branch.svg';
-import { ReactComponent as CopySVG } from 'assets/icons/icon_copy.svg';
-import { ReactComponent as LockSmallSVG } from 'assets/icons/icon_lock_small.svg';
-import { ReactComponent as Arrow2SVG } from 'assets/icons/icon_arrow2.svg';
-import { ReactComponent as ArrowSVG } from 'assets/icons/icon_arrow.svg';
-import { ReactComponent as CloseSmallSVG } from 'assets/icons/icon_close_small.svg';
-import { ReactComponent as SlackSVG } from 'assets/icons/icon_slack.svg';
-import { ReactComponent as GitHubSVG } from 'assets/icons/icon_github.svg';
-import { ReactComponent as BackHomeSVG } from 'assets/icons/icon_back_home.svg';
-import { ReactComponent as AlertSVG } from 'assets/icons/icon_alert.svg';
-import { ReactComponent as AddMemberSVG } from 'assets/icons/icon_add_member.svg';
-import { ReactComponent as MemberEmailSVG } from 'assets/icons/icon_member_email.svg';
-import { ReactComponent as SettingSVG } from 'assets/icons/icon_setting.svg';
-import { ReactComponent as PreviousSVG } from 'assets/icons/icon_previous.svg';
-import { ReactComponent as NextSVG } from 'assets/icons/icon_next.svg';
-import { ReactComponent as DiscordSVG } from 'assets/icons/icon_discord.svg';
-import { ReactComponent as MoreLargeSVG } from 'assets/icons/icon_more_large.svg';
-import { ReactComponent as InputFailHelperSVG } from 'assets/icons/icon_input_fail.svg';
+import CircleSVG from 'assets/icons/icon_circle.svg?react';
+import SquareSVG from 'assets/icons/icon_square.svg?react';
+import CheckSVG from 'assets/icons/icon_check.svg?react';
+import LogoHorizontalGraySVG from 'assets/icons/logo_horizontal_s_gray.svg?react';
+import LogoMarkOnlySVG from 'assets/icons/logo_no_text.svg?react';
+import Logo3DMarkOnlySVG from 'assets/icons/logo_3d_2.svg?react';
+import InputHelperSVG from 'assets/icons/icon_input.svg?react';
+import AddSVG from 'assets/icons/icon_plus.svg?react';
+import CloseSVG from 'assets/icons/icon_close.svg?react';
+import HamburgerSVG from 'assets/icons/icon_gnb_menu.svg?react';
+import GridViewSVG from 'assets/icons/icon_view_grid.svg?react';
+import ListViewSVG from 'assets/icons/icon_view_list.svg?react';
+import ShortcutSVG from 'assets/icons/icon_short_cut.svg?react';
+import OpenSelectorSVG from 'assets/icons/icon_open_selector.svg?react';
+import StarSVG from 'assets/icons/icon_star.svg?react';
+import StarFullSVG from 'assets/icons/icon_star_full.svg?react';
+import ChartSVG from 'assets/icons/icon_chart.svg?react';
+import KeynoteSVG from 'assets/icons/icon_keynote.svg?react';
+import KeySVG from 'assets/icons/icon_key.svg?react';
+import MessageSmileSVG from 'assets/icons/icon_message_smile.svg?react';
+import RouteSVG from 'assets/icons/icon_route.svg?react';
+import SearchSVG from 'assets/icons/icon_search.svg?react';
+import TrashSVG from 'assets/icons/icon_trash.svg?react';
+import ArrowBackSVG from 'assets/icons/icon_arrow_back.svg?react';
+import CodeSnippetSVG from 'assets/icons/icon_code_snippet.svg?react';
+import PlaySVG from 'assets/icons/icon_play.svg?react';
+import BranchSVG from 'assets/icons/icon_branch.svg?react';
+import CopySVG from 'assets/icons/icon_copy.svg?react';
+import LockSmallSVG from 'assets/icons/icon_lock_small.svg?react';
+import Arrow2SVG from 'assets/icons/icon_arrow2.svg?react';
+import ArrowSVG from 'assets/icons/icon_arrow.svg?react';
+import CloseSmallSVG from 'assets/icons/icon_close_small.svg?react';
+import SlackSVG from 'assets/icons/icon_slack.svg?react';
+import GitHubSVG from 'assets/icons/icon_github.svg?react';
+import BackHomeSVG from 'assets/icons/icon_back_home.svg?react';
+import AlertSVG from 'assets/icons/icon_alert.svg?react';
+import AddMemberSVG from 'assets/icons/icon_add_member.svg?react';
+import MemberEmailSVG from 'assets/icons/icon_member_email.svg?react';
+import SettingSVG from 'assets/icons/icon_setting.svg?react';
+import PreviousSVG from 'assets/icons/icon_previous.svg?react';
+import NextSVG from 'assets/icons/icon_next.svg?react';
+import DiscordSVG from 'assets/icons/icon_discord.svg?react';
+import MoreLargeSVG from 'assets/icons/icon_more_large.svg?react';
 
 export const svgMap = {
   shortcut: <ShortcutSVG />,
@@ -70,7 +69,6 @@ export const svgMap = {
   logoNoText: <LogoMarkOnlySVG />,
   logo3d: <Logo3DMarkOnlySVG />,
   input: <InputHelperSVG />,
-  inputFail: <InputFailHelperSVG />,
   plus: <AddSVG />,
   close: <CloseSVG />,
   gnbMenu: <HamburgerSVG />,

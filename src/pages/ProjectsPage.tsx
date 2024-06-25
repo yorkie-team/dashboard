@@ -16,7 +16,7 @@
 
 import React, { useState } from 'react';
 import { ProjectList } from 'features/projects';
-import { ReactComponent as BannerSVG } from 'assets/images/@tmp/sample_banner_icon.svg';
+import BannerSVG from 'assets/images/@tmp/sample_banner_icon.svg?react';
 import { Icon } from 'components';
 import { PageTemplate } from './PageTemplate';
 import { Button, Container, Heading, Flex, Box, Link, Text, Grid } from 'yorkie-ui';
@@ -65,7 +65,7 @@ export function ProjectsPage() {
                   alignItems="center"
                   target="_blank"
                   rel="noreferrer"
-                  href={`${process.env.REACT_APP_SERVICE_URL}/docs`}
+                  href={`${import.meta.env.VITE_SERVICE_URL}/docs`}
                 >
                   <Box position="relative" zIndex="xs" display="block" color="neutral.1">
                     <Text fontWeight="semibold" fontSize="2xl">
@@ -86,7 +86,7 @@ export function ProjectsPage() {
                   alignItems="center"
                   target="_blank"
                   rel="noreferrer"
-                  href={`${process.env.REACT_APP_SERVICE_URL}/examples`}
+                  href={`${import.meta.env.VITE_SERVICE_URL}/examples`}
                 >
                   <Box position="relative" zIndex="xs" display="block" color="neutral.1">
                     <Text fontWeight="semibold" fontSize="2xl">
