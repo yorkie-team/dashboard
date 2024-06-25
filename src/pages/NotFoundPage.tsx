@@ -16,7 +16,7 @@
 
 import React from 'react';
 import { PageTemplate } from './PageTemplate';
-import { ReactComponent as NotFoundSVG } from 'assets/icons/error_404.svg';
+import NotFoundSVG from 'assets/icons/error_404.svg?react';
 import { Button, Icon } from 'components';
 
 export function NotFoundPage() {

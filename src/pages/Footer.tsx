@@ -20,7 +20,7 @@ import { Icon } from 'components';
 export function Footer() {
   return (
     <footer className="footer">
-      <a href={`${process.env.REACT_APP_SERVICE_URL}`}>
+      <a href={`${import.meta.env.VITE_SERVICE_URL}`}>
         <Icon type="LogoHorizontalGray" fill />
       </a>
     </footer>

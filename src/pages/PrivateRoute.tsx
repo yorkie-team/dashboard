@@ -28,7 +28,7 @@ export function PrivateRoute() {
 
   useEffect(() => {
     if (logout.isSuccess) {
-      window.location.href = `${process.env.REACT_APP_SERVICE_URL}`;
+      window.location.href = `${import.meta.env.VITE_SERVICE_URL}`;
     } else if (!token || !isValidToken) {
       navigate('/login', { state: { from: location.pathname } });
     }

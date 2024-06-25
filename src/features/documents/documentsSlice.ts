@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { createAppThunk } from 'app/appThunk';
 import { RootState } from 'app/store';
 import {
@@ -187,7 +187,7 @@ export const documentSlice = createSlice({
   name: 'documents',
   initialState,
   reducers: {
-    setHistory: (state, action) => {
+    setHistory: (state, action: PayloadAction<number>) => {
       state.detail.document!.snapshot = state.history.histories[action.payload].snapshot;
     },
     resetHistory: (state) => {

@@ -1,5 +1,5 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import type { AsyncThunkPayloadCreator, AsyncThunk, Dispatch } from '@reduxjs/toolkit';
+import { createAsyncThunk, isAction, isRejectedWithValue } from '@reduxjs/toolkit';
+import type { Action, AsyncThunkPayloadCreator, AsyncThunk, Dispatch } from '@reduxjs/toolkit';
 import { ConnectError } from '@connectrpc/connect';
 import { fromErrorDetails } from 'api/converter';
 import { RPCError } from 'api/types';
@@ -15,10 +15,41 @@ type AsyncThunkConfig = {
   rejectedMeta?: unknown;
 };
 
-type AppThunkConfig = {
-  rejectValue: { error: RPCError | Error };
-  rejectedMeta: { isHandledError: boolean };
+type RejectedPayload = {
+  error: RPCError | Error;
 };
+type RejectedMeta = {
+  isHandledError: boolean;
+};
+type AppThunkConfig = {
+  rejectValue: RejectedPayload;
+  rejectedMeta: RejectedMeta;
+};
+type RejectedAction = Action & {
+  payload: RejectedPayload;
+  meta: RejectedMeta;
+};
+
+export function isRejectedAction(action: unknown): action is RejectedAction {
+  if (!isAction(action) || !isRejectedWithValue(action)) return false;
+
+  const actionObj = action as unknown as RejectedAction;
+  if (
+    typeof actionObj.payload !== 'object' ||
+    actionObj.payload === null ||
+    !(actionObj.payload.error instanceof Error)
+  ) {
+    return false;
+  }
+  if (
+    typeof actionObj.meta !== 'object' ||
+    actionObj.meta === null ||
+    typeof actionObj.meta.isHandledError !== 'boolean'
+  ) {
+    return false;
+  }
+  return true;
+}
 
 /**
  * createAppThunk is a wrapper for createAsyncThunk that provides error handling for RPCError.

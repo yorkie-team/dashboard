@@ -107,7 +107,7 @@ export function ProjectList() {
   const [sortOpened, setSortOpened] = useState(false);
   const [sortOption, setSortOption] = useState<(typeof SORT_OPTION)[keyof typeof SORT_OPTION]>(SORT_OPTION.createdAt);
 
-  const handleProjectSort = useCallback((projects, option) => {
+  const handleProjectSort = useCallback((projects: Array<Project>, option: string) => {
     if (option === SORT_OPTION.alphabet) {
       setProjects([...projects].sort((p1, p2) => (p1.name > p2.name ? 1 : -1)));
     } else if (option === SORT_OPTION.createdAt) {
@@ -115,12 +115,12 @@ export function ProjectList() {
     }
   }, []);
 
-  const handleChangeQuery = useCallback((e) => {
+  const handleChangeQuery = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   }, []);
 
   const handleSearch = useCallback(
-    (e) => {
+    (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       const results = allProjects.filter((project) => project.name.includes(query ?? ''));
       handleProjectSort(results, sortOption);

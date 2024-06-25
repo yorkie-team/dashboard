@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { createAppThunk } from 'app/appThunk';
 import * as api from 'api';
 import { User, RPCStatusCode, RPCError } from 'api/types';
 import { RootState } from 'app/store';
-import jwt_decode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 export interface UsersState {
   token: string;
@@ -105,7 +105,7 @@ if (initialState.token) {
   api.setToken(initialState.token);
   initialState.isValidToken = true;
   try {
-    initialState.username = jwt_decode<JWTPayload>(initialState.token).username;
+    initialState.username = jwtDecode<JWTPayload>(initialState.token).username;
   } catch (error) {
     console.error(`Invalid token format: ${initialState.token}`, error);
   }
@@ -138,7 +138,7 @@ export const usersSlice = createSlice({
       state.login.error = null;
       state.logout.isSuccess = true;
     },
-    setIsValidToken: (state, action) => {
+    setIsValidToken: (state, action: PayloadAction<boolean>) => {
       state.isValidToken = action.payload;
     },
     resetSignupState: (state) => {
@@ -177,7 +177,7 @@ export const usersSlice = createSlice({
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.token = action.payload;
       state.isValidToken = true;
-      state.username = jwt_decode<JWTPayload>(action.payload).username;
+      state.username = jwtDecode<JWTPayload>(action.payload).username;
       state.login.status = 'idle';
       state.login.isSuccess = true;
     });

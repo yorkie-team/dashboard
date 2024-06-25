@@ -16,7 +16,7 @@
 
 import React from 'react';
 import { PageTemplate } from './PageTemplate';
-import { ReactComponent as CommunitySVG } from 'assets/icons/community_help.svg';
+import CommunitySVG from 'assets/icons/community_help.svg?react';
 import { Button, Icon } from 'components';
 
 export function CommunityPage() {

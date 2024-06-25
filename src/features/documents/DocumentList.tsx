@@ -39,7 +39,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
   const [selectedDocKeys, setSelectedDocKeys] = useState<Array<string>>([]);
 
   const [query, SetQuery] = useState<string | null>(null);
-  const handleChangeQuery = useCallback((e) => {
+  const handleChangeQuery = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     SetQuery(e.target.value);
   }, []);
 
@@ -65,7 +65,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
   }, [dispatch, projectName, documents]);
 
   const handleSearch = useCallback(
-    (e) => {
+    (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (query === null || query === '') {
         dispatch(listDocumentsAsync({ projectName, isForward: false }));
@@ -131,6 +131,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
             <span className="th updated">Last Updated</span>
             <span className="th select">
               <button
+                type="button"
                 className="btn_all_check"
                 onClick={() => {
                   if (selectedDocKeys.length === documents.length) {

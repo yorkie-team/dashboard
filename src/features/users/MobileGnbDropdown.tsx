@@ -55,7 +55,7 @@ export function MobileGnbDropdown() {
             <Dropdown.Item as="link" href="/projects">
               <Dropdown.Text>Dashboard</Dropdown.Text>
             </Dropdown.Item>
-            <Dropdown.Item as="a" href={`${process.env.REACT_APP_SERVICE_URL}/docs`}>
+            <Dropdown.Item as="a" href={`${import.meta.env.VITE_SERVICE_URL}/docs`}>
               <Dropdown.Text>Documentation</Dropdown.Text>
             </Dropdown.Item>
             <Dropdown.Item as="link" href="/community">

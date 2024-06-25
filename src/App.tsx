@@ -44,10 +44,10 @@ function App() {
   }, [theme.darkMode]);
 
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router basename={import.meta.env.BASE_URL}>
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
-        <Route element={<PublicRoute />} >
+        <Route element={<PublicRoute />}>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
         </Route>
@@ -63,19 +63,17 @@ function App() {
           <Route path="/settings" element={<SettingsPage />} />
         </Route>
         <Route path="/community" element={<CommunityPage />} />
-        {
-          process.env.NODE_ENV === 'development' && (
-            <Route path="/test" element={<TestPage />}>
-              <Route path="/test" element={<Navigate to="./button" />} />
-              <Route path="/test/button" element={<ButtonView />} />
-              <Route path="/test/popover" element={<PopoverView />} />
-              <Route path="/test/dropdown" element={<DropdownView />} />
-              <Route path="/test/input" element={<InputView />} />
-              <Route path="/test/breadcrumb" element={<BreadcrumbView />} />
-              <Route path="/test/modal" element={<ModalView />} />
-            </Route>
-          )
-        }
+        {import.meta.env.DEV && (
+          <Route path="/test" element={<TestPage />}>
+            <Route path="/test" element={<Navigate to="./button" />} />
+            <Route path="/test/button" element={<ButtonView />} />
+            <Route path="/test/popover" element={<PopoverView />} />
+            <Route path="/test/dropdown" element={<DropdownView />} />
+            <Route path="/test/input" element={<InputView />} />
+            <Route path="/test/breadcrumb" element={<BreadcrumbView />} />
+            <Route path="/test/modal" element={<ModalView />} />
+          </Route>
+        )}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>

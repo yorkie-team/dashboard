@@ -18,20 +18,18 @@ import React from 'react';
 import { Icon } from 'components';
 
 export function SearchBar({
-  placeholder,
   onSubmit,
   children,
   ...restProps
 }: {
-  placeholder: string;
   onSubmit?: React.FormEventHandler<HTMLFormElement>;
-} & React.InputHTMLAttributes<HTMLInputElement>) {
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onSubmit'>) {
   return (
     <form onSubmit={onSubmit} className="search">
       <div className="input_field_box">
         <div className="input_inner">
           <Icon type="search" className="icon_search" />
-          <input type="search" className="input" placeholder={placeholder} {...restProps} />
+          <input type="search" className="input" {...restProps} />
           {children}
         </div>
       </div>
