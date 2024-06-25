@@ -55,7 +55,7 @@ function CodeBlockCode({
   code: string;
   language: Language;
   withLineNumbers?: boolean;
-}) => {
+}) {
   return (
     <Highlight code={code} theme={theme} language={language}>
       {({ className, tokens, getLineProps, getTokenProps }) => (
@@ -74,7 +74,7 @@ function CodeBlockCode({
       )}
     </Highlight>
   );
-};
+}
 
 function CodeBlockTree({ code, ...restProps }: { code: object } & Omit<ReactJsonViewProps, 'src'>) {
   return (
