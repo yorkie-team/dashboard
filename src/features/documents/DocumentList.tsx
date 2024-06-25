@@ -131,6 +131,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
             <span className="th updated">Last Updated</span>
             <span className="th select">
               <button
+                type="button"
                 className="btn_all_check"
                 onClick={() => {
                   if (selectedDocKeys.length === documents.length) {

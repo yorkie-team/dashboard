@@ -21,7 +21,7 @@ import { Button, Icon } from 'components';
 import { PageTemplate } from './PageTemplate';
 
 export function ProjectsPage() {
-  const [showBanner, setShowBanner] = useState(localStorage.getItem('banner') === 'N' ? false : true);
+  const [showBanner, setShowBanner] = useState(localStorage.getItem('banner') !== 'N');
   return (
     <PageTemplate className="team_overview_page">
       {showBanner && (
