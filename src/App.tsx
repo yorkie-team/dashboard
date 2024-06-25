@@ -63,7 +63,7 @@ function App() {
           <Route path="/settings" element={<SettingsPage />} />
         </Route>
         <Route path="/community" element={<CommunityPage />} />
-        {import.meta.env.NODE_ENV === 'development' && (
+        {import.meta.env.DEV && (
           <Route path="/test" element={<TestPage />}>
             <Route path="/test" element={<Navigate to="./button" />} />
             <Route path="/test/button" element={<ButtonView />} />
