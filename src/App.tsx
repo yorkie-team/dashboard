@@ -44,7 +44,7 @@ function App() {
   }, [theme.darkMode]);
 
   return (
-    <Router basename={import.meta.env.PUBLIC_URL}>
+    <Router basename={import.meta.env.BASE_URL}>
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route element={<PublicRoute />}>
