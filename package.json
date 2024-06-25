@@ -2,7 +2,6 @@
   "name": "dashboard",
   "version": "0.4.23",
   "private": true,
-  "type": "module",
   "homepage": "https://yorkie.dev/dashboard",
   "dependencies": {
     "@bufbuild/buf": "^1.34.0",
