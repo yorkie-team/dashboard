@@ -24,7 +24,7 @@ import {
   Change as PbChange,
 } from './yorkie/v1/resources_pb';
 import { ConnectError } from '@connectrpc/connect';
-import { BadRequest } from './yorkie/v1/error_details_pb';
+import { BadRequest } from '@buf/googleapis_googleapis.bufbuild_es/google/rpc/error_details_pb';
 
 export function fromTimestamp(pbTimestamp: PbTimestamp): number {
   return pbTimestamp.toDate().getTime() / 1000;
