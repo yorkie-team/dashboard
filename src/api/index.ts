@@ -138,26 +138,52 @@ export async function listDocumentHistories(
   const res = await client.listChanges({
     projectName,
     documentKey,
-    previousSeq,
-    pageSize,
-    isForward,
+    // previousSeq,
+    // pageSize,
+    // isForward,
   });
   const pbChanges = res.changes;
   const changes = converter.fromChanges(pbChanges);
 
-  const seq = Long.fromString(pbChanges[0].id!.serverSeq).add(-1);
-  const snapshotMeta = await client.getSnapshotMeta({
-    projectName,
-    documentKey,
-    serverSeq: seq.toString(),
+  // const seq = Long.fromString(pbChanges[0].id!.serverSeq).add(-1);
+  // const snapshotMeta = await client.getSnapshotMeta({
+  //   projectName,
+  //   documentKey,
+  //   serverSeq: seq.toString(),
+  // });
+
+  const document = new Document(documentKey, {
+    enableDevtools: true,
   });
 
-  const document = new Document(documentKey);
-  document.applySnapshot(seq, snapshotMeta.snapshot);
+  // const traverse = (node: any) => {
+  //   let ret = [] as any;
+  //   ret.push(node.id.toTestString());
+  //   for (const child of node._children) {
+  //     ret.push(...traverse(child));
+  //   }
+  //   return ret;
+  // };
 
+  // const getTreeArr = (doc: any) => {
+  //   const tree = doc.getValueByPath('$.text') as any;
+  //   if (!tree) return [];
+  //   return traverse(tree.getIndexTree().root);
+  // };
+
+  // document.applySnapshot(seq, snapshotMeta.snapshot);
+  console.log(changes);
   const histories: Array<DocumentHistory> = [];
   for (let i = 0; i < changes.length; i++) {
-    document.applyChanges([changes[i]], OpSource.Remote);
+    try {
+      document.applyChanges([changes[i]], OpSource.Remote);
+      if (changes[i].hasOperations()) {
+        console.log('i- change', i, changes[i], (document.getValueByPath('$.text') as any)?.toJSInfoForTest());
+      }
+    } catch (e) {
+      console.log('i', i, changes[i]);
+      throw e;
+    }
     histories.push({
       serverSeq: pbChanges[i].id!.serverSeq,
       snapshot: document.toJSON(),

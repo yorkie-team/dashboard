@@ -14,16 +14,27 @@
  * limitations under the License.
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { fromUnixTime, format } from 'date-fns';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { selectDocumentDetail, getDocumentAsync, removeDocumentByAdminAsync } from './documentsSlice';
+import {
+  selectDocumentDetail,
+  getDocumentAsync,
+  removeDocumentByAdminAsync,
+  listDocumentHistoriesAsync,
+  selectDocumentHistory,
+  setHistory,
+  resetHistory,
+} from './documentsSlice';
 import { Icon, Button, CodeBlock, CopyButton, Popover, Dropdown } from 'components';
+import Slider from 'rc-slider';
+import './rc-slider.css';
 
 export function DocumentDetail() {
   const navigate = useNavigate();
   const { document } = useAppSelector(selectDocumentDetail);
+  const { histories, status: historyStatus, hasNext, hasPrevious } = useAppSelector(selectDocumentHistory);
   const dispatch = useAppDispatch();
   const params = useParams();
   const projectName = params.projectName || '';
@@ -33,17 +44,61 @@ export function DocumentDetail() {
   const [viewType, SetViewType] = useState('code');
   const [opened, setOpened] = useState(false);
 
-  useEffect(() => {
+  const getHistories = useCallback(() => {
     dispatch(
-      getDocumentAsync({
+      listDocumentHistoriesAsync({
         projectName,
         documentKey,
+        isForward: false,
       }),
     );
   }, [dispatch, projectName, documentKey]);
 
+  const handleClickHistories = useCallback(
+    (i) => {
+      dispatch(setHistory(i));
+    },
+    [dispatch],
+  );
+
+  const handlePrevHistories = useCallback(() => {
+    dispatch(
+      listDocumentHistoriesAsync({
+        projectName,
+        documentKey,
+        isForward: false,
+        previousSeq: histories[0].serverSeq,
+      }),
+    );
+  }, [dispatch, projectName, documentKey, histories]);
+
+  const handleNextHistories = useCallback(() => {
+    dispatch(
+      listDocumentHistoriesAsync({
+        projectName,
+        documentKey,
+        isForward: true,
+        previousSeq: histories[histories.length - 1].serverSeq,
+      }),
+    );
+  }, [dispatch, projectName, documentKey, histories]);
+
+  useEffect(() => {
+    // dispatch(
+    //   getDocumentAsync({
+    //     projectName,
+    //     documentKey,
+    //   }),
+    // );
+    dispatch(resetHistory());
+  }, [dispatch, projectName, documentKey]);
+
   if (!document) {
-    return null;
+    return (
+      <Button icon={<Icon type="play" />} outline color="toggle" onClick={getHistories}>
+        History
+      </Button>
+    );
   }
 
   return (
@@ -85,7 +140,11 @@ export function DocumentDetail() {
         </div>
       </div>
       <div className="codeblock_header">
-        <div className="box_left"></div>
+        <div className="box_left">
+          <Button icon={<Icon type="play" />} outline color="toggle" onClick={getHistories}>
+            History
+          </Button>
+        </div>
         <div className="box_right">
           <Button
             icon={<Icon type="codeSnippet" />}
@@ -115,6 +174,22 @@ export function DocumentDetail() {
             </CopyButton>
           </div>
         </div>
+      </div>
+      <div>
+        {historyStatus === 'idle' && histories.length !== 0 && (
+          <div className="w-full px-4">
+            <Slider
+              dots
+              min={0}
+              max={histories.length - 1}
+              step={1}
+              defaultValue={histories.length - 1}
+              onChange={handleClickHistories}
+              included={false}
+              handleStyle={{ borderColor: '#3C9AF1' }}
+            />
+          </div>
+        )}
       </div>
       {viewType === 'code' && (
         <div className="codeblock">
