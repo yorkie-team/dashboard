@@ -1,6 +1,6 @@
 {
   "name": "dashboard",
-  "version": "0.4.23",
+  "version": "0.4.25",
   "private": true,
   "type": "module",
   "homepage": "https://yorkie.dev/dashboard",
