@@ -15,10 +15,10 @@
  */
 
 import React, { useCallback, useState, useEffect } from 'react';
-import classNames from 'classnames';
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 import { selectUsers, logoutUser } from './usersSlice';
-import { Popover, Dropdown, Icon } from 'components';
+import { Icon } from 'components';
+import { Button, Menu, Link, Box, Text } from 'yorkie-ui';
 
 export function MobileGnbDropdown() {
   const { username } = useAppSelector(selectUsers);
@@ -41,45 +41,49 @@ export function MobileGnbDropdown() {
   }, []);
 
   return (
-    <Popover opened={opened} onChange={setOpened}>
-      <Popover.Target>
-        <button className="btn_menu">
-          <span className="blind">Open menu</span>
-          <Icon type="gnbMenu" className={classNames('icon_menu', { is_active: !opened })} />
-          <Icon type="close" className={classNames('icon_close', { is_active: opened })} />
-        </button>
-      </Popover.Target>
-      <Popover.Dropdown>
-        <Dropdown className="util_list_mo">
-          <Dropdown.List>
-            <Dropdown.Item as="link" href="/projects">
-              <Dropdown.Text>Dashboard</Dropdown.Text>
-            </Dropdown.Item>
-            <Dropdown.Item as="a" href={`${import.meta.env.VITE_SERVICE_URL}/docs`}>
-              <Dropdown.Text>Documentation</Dropdown.Text>
-            </Dropdown.Item>
-            <Dropdown.Item as="link" href="/community">
-              <Dropdown.Text>Community</Dropdown.Text>
-            </Dropdown.Item>
-          </Dropdown.List>
-          <Dropdown.List>
-            <Dropdown.Item as="link" href="/settings">
-              <Dropdown.Text>Settings</Dropdown.Text>
-            </Dropdown.Item>
-            <Dropdown.Item onClick={logout}>
-              <Dropdown.Text highlight>Sign out</Dropdown.Text>
-            </Dropdown.Item>
-          </Dropdown.List>
-          <dl className="user_account">
-            <dt className="blind">Name</dt>
-            <dd className="user_account_text">{username}</dd>
-            <dt className="blind">Mail</dt>
-            <dd className="user_account_text">
-              <span className="user_account_mail">{username}@yorkie.dev</span>
-            </dd>
-          </dl>
-        </Dropdown>
-      </Popover.Dropdown>
-    </Popover>
+    <Menu.Root>
+      <Menu.Trigger display={{ base: 'block', lg: 'none' }}>
+        <Button variant="ghost" position="start" paddingRight={{ base: '4', lg: '0' }}>
+          <Icon type={opened ? 'close' : 'gnbMenu'} />
+        </Button>
+      </Menu.Trigger>
+      <Menu.Positioner background="neutral.1" zIndex="xl">
+        <Menu.Content>
+          <Menu.Item id="products" width="screen">
+            <Link href="/projects">
+              <Text>Dashboard</Text>
+            </Link>
+          </Menu.Item>
+          <Menu.Item id="example">
+            <Link href={`${process.env.REACT_APP_SERVICE_URL}/docs`}>
+              <Text>Documentation</Text>
+            </Link>
+          </Menu.Item>
+          <Menu.Item id="community">
+            <Link href="/community">
+              <Text>Community</Text>
+            </Link>
+          </Menu.Item>
+          <Menu.Separator />
+          <Menu.Item id="settings">
+            <Link href="/settings">
+              <Text>Settings</Text>
+            </Link>
+          </Menu.Item>
+          <Menu.Item id="signout" onClick={logout}>
+            <Text color="orange.default">Sign out</Text>
+          </Menu.Item>
+          <Menu.Separator />
+          <Menu.Item id="username" onClick={logout} display="block">
+            <Box paddingBlock="0">
+              <Text color="gray.a9">{username}</Text>
+              <Text color="gray.a9" display="block" fontSize="xs">
+                {username}@yorkie.dev
+              </Text>
+            </Box>
+          </Menu.Item>
+        </Menu.Content>
+      </Menu.Positioner>
+    </Menu.Root>
   );
 }

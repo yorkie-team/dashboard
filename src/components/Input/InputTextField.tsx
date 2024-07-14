@@ -16,14 +16,16 @@
 
 import React, { useCallback, useRef, useState } from 'react';
 import classNames from 'classnames';
-import { Icon, Button, InputHelperText } from 'components';
+import { Icon, InputHelperText } from 'components';
 import { useOutsideClick, useAreaBlur } from 'hooks';
 import { mergeRefs } from 'utils';
+import { Button, Input, Flex } from 'yorkie-ui';
+import type { InputProps } from 'yorkie-ui';
 
 type InputTextFieldProps = {
   type?: 'text' | 'password' | 'email';
-  label: string;
-  reset?: (fieldName?: any) => void;
+  label?: string;
+  reset?: (fieldName?: string) => void;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   id: string;
   blindLabel?: boolean;
@@ -33,7 +35,8 @@ type InputTextFieldProps = {
   large?: boolean;
   fieldUtil?: boolean;
   onSuccessEnd?: () => void;
-} & React.InputHTMLAttributes<HTMLInputElement>;
+} & React.InputHTMLAttributes<HTMLInputElement> &
+  InputProps;
 
 export const InputTextField = React.forwardRef<HTMLInputElement, InputTextFieldProps>(
   (
@@ -77,7 +80,6 @@ export const InputTextField = React.forwardRef<HTMLInputElement, InputTextFieldP
       },
       fieldControlRef,
     );
-
     return (
       <div className={inputTextFieldClassName}>
         {!large && (
@@ -85,11 +87,10 @@ export const InputTextField = React.forwardRef<HTMLInputElement, InputTextFieldP
             {label}
           </label>
         )}
-        <div className="input_inner" onKeyDown={onKeyDown}>
-          <input
+        <Flex className="input_inner" onKeyDown={onKeyDown}>
+          <Input
             type={type}
             id={id}
-            className="input"
             placeholder={placeholder}
             disabled={state === 'disabled'}
             ref={mergeRefs(ref, firstRef)}
@@ -99,23 +100,24 @@ export const InputTextField = React.forwardRef<HTMLInputElement, InputTextFieldP
             {...restProps}
           />
           {fieldUtil && isFieldControlButtonsOpen && (
-            <Button.Box ref={fieldControlRef}>
-              <Button onClick={cancelInput} size="sm" outline={true} icon={<Icon type="closeSmall" />}>
+            <Flex ref={fieldControlRef} gap="4" marginLeft={{ base: '0', lg: '4' }} marginTop={{ base: '2', lg: '0' }}>
+              <Button onClick={cancelInput} size="sm" variant="outline">
+                <Icon type="closeSmall" />
                 Cancel
               </Button>
               <Button
                 className={classNames('green_0', { is_disabled: state === 'error' })}
                 size="sm"
-                outline={true}
-                icon={<Icon type="check" />}
+                variant="outline"
                 type="submit"
                 ref={lastRef}
               >
+                <Icon type="check" />
                 Save
               </Button>
-            </Button.Box>
+            </Flex>
           )}
-        </div>
+        </Flex>
         {helperText && (
           <InputHelperText
             state={state === 'disabled' || state === 'normal' ? null : state}

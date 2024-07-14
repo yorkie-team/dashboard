@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-import React, { ReactNode, InputHTMLAttributes } from 'react';
+import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 import { InputHelperText } from './InputHelperText';
+import { Input, InputProps, Box } from 'yorkie-ui';
 
 type InputTextBoxProps = {
   type?: 'text' | 'password' | 'email';
-  label: string;
+  label?: string;
   blindLabel?: boolean;
   floatingLabel?: boolean;
   icon?: ReactNode;
@@ -28,9 +29,9 @@ type InputTextBoxProps = {
   helperText?: string;
   placeholder?: string;
   inputRef?: any;
-} & InputHTMLAttributes<HTMLInputElement>;
+};
 
-export const InputTextBox = React.forwardRef((props: InputTextBoxProps, ref) => {
+export const InputTextBox = React.forwardRef((props: InputTextBoxProps & InputProps, ref) => {
   return <InputTextBoxInner {...props} inputRef={ref} />;
 });
 InputTextBox.displayName = 'InputTextBox';
@@ -46,27 +47,12 @@ function InputTextBoxInner({
   placeholder,
   inputRef,
   ...restProps
-}: InputTextBoxProps) {
-  const inputTextBoxClassName = classNames('input_box', {
-    is_disabled: state === 'disabled',
-    is_error: state === 'error',
-    is_success: state === 'success',
-  });
-
+}: InputTextBoxProps & InputProps) {
   return (
-    <div className={inputTextBoxClassName}>
-      <label className="input_inner_box">
-        {!floatingLabel && (
-          <span
-            className={classNames('label', {
-              blind: blindLabel,
-            })}
-          >
-            {label}
-          </span>
-        )}
+    <Box>
+      <Box position="relative">
         {icon && icon}
-        <input
+        <Input
           type={type}
           className={classNames('input', {
             label_in_input: floatingLabel,
@@ -76,11 +62,10 @@ function InputTextBoxInner({
           ref={inputRef}
           {...restProps}
         />
-        {floatingLabel && <span className="label label_in">{label}</span>}
-      </label>
+      </Box>
       {helperText && (
         <InputHelperText state={state === 'disabled' || state === 'normal' ? null : state} message={helperText} />
       )}
-    </div>
+    </Box>
   );
 }

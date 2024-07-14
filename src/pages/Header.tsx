@@ -15,31 +15,31 @@
  */
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import { useAppSelector } from 'app/hooks';
 import { ProjectDropdown } from 'features/projects';
 import { AccountDropdown, MobileGnbDropdown } from 'features/users';
 import { selectUsers } from 'features/users/usersSlice';
 import { Breadcrumb, Icon } from 'components';
+import { Heading, Flex, Box, Text, Link } from 'yorkie-ui';
 
 export function Header({ className }: { className?: string }) {
   const { token, isValidToken } = useAppSelector(selectUsers);
 
   return (
-    <header className={`header ${className}`}>
-      <div className="header_inner">
+    <Box position="sticky" top="0" className={`${className}`} width="100w" bg="neutral.1" zIndex="lg">
+      <Flex justifyContent="space-between" paddingInline="6" alignItems="center">
         <Breadcrumb>
-          <h1 className="logo">
-            <a href={`${import.meta.env.VITE_SERVICE_URL}`} className="logo_menu">
+          <Heading as="h1">
+            <Link href={`${import.meta.env.VITE_SERVICE_URL}`}>
               <Icon type="logoNoText" fill />
-            </a>
-            <span className="blind">Yorkie</span>
-          </h1>
+            </Link>
+            <Text display="none">Yorkie</Text>
+          </Heading>
           {token && isValidToken && (
             <>
               <Breadcrumb.Inner>
-                <Breadcrumb.Item as="link" href="/projects">
+                <Breadcrumb.Item as="link" href="/dashboard/projects">
                   <Breadcrumb.Text>Dashboard</Breadcrumb.Text>
                 </Breadcrumb.Item>
               </Breadcrumb.Inner>
@@ -50,26 +50,20 @@ export function Header({ className }: { className?: string }) {
           )}
         </Breadcrumb>
         {token && isValidToken && (
-          <nav className="util_box">
-            <ul className="util_list">
-              <li className="util_item">
-                <a href={`${import.meta.env.VITE_SERVICE_URL}/docs`} className="util_menu">
-                  Docs
-                </a>
-              </li>
-              <li className="util_item">
-                <Link to="/community" className="util_menu">
-                  Community
-                </Link>
-              </li>
-              <li className="util_item">
-                <AccountDropdown />
-              </li>
-            </ul>
+          <Box height="fit">
+            <Flex display={{ base: 'none', lg: 'flex' }} gap="4">
+              <Link href={`${process.env.REACT_APP_SERVICE_URL}/docs`} className="util_menu">
+                Docs
+              </Link>
+              <Link href="/dashboard/community" className="util_menu">
+                Community
+              </Link>
+              <AccountDropdown />
+            </Flex>
             <MobileGnbDropdown />
-          </nav>
+          </Box>
         )}
-      </div>
-    </header>
+      </Flex>
+    </Box>
   );
 }

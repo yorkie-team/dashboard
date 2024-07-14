@@ -88,7 +88,6 @@ export function InputView() {
       <div className="uio_align_box">
         <InputTextBox
           label="Label"
-          blindLabel
           placeholder="placeholder"
           autoComplete="off"
           helperText="Helper Text"
@@ -96,7 +95,6 @@ export function InputView() {
         />
         <InputTextBox
           label="Label (Error)"
-          blindLabel
           placeholder="placeholder"
           autoComplete="off"
           state="error"
@@ -105,7 +103,6 @@ export function InputView() {
         />
         <InputTextBox
           label="Label (Success)"
-          blindLabel
           placeholder="placeholder"
           autoComplete="off"
           state="success"
@@ -114,7 +111,6 @@ export function InputView() {
         />
         <InputTextBox
           label="Label (Disabled)"
-          blindLabel
           placeholder="placeholder"
           autoComplete="off"
           state="disabled"
@@ -124,17 +120,8 @@ export function InputView() {
       </div>
       <em className="uio_title">Label on Box</em>
       <div className="uio_align_box">
+        <InputTextBox placeholder=" " autoComplete="off" helperText="Helper Text" icon={<Icon type="square" />} />
         <InputTextBox
-          label="Label"
-          floatingLabel
-          placeholder=" "
-          autoComplete="off"
-          helperText="Helper Text"
-          icon={<Icon type="square" />}
-        />
-        <InputTextBox
-          label="Label (Error)"
-          floatingLabel
           placeholder="placeholder"
           autoComplete="off"
           state="error"
@@ -142,8 +129,6 @@ export function InputView() {
           icon={<Icon type="square" />}
         />
         <InputTextBox
-          label="Label (Success)"
-          floatingLabel
           placeholder="placeholder"
           autoComplete="off"
           state="success"
@@ -151,8 +136,6 @@ export function InputView() {
           icon={<Icon type="square" />}
         />
         <InputTextBox
-          label="Label (Disabled)"
-          floatingLabel
           placeholder="placeholder"
           autoComplete="off"
           state="disabled"
@@ -203,7 +186,6 @@ export function InputView() {
           autoComplete="off"
           helperText="Helper Text"
           state="disabled"
-          blindLabel
         />
         <InputTextField
           label="Default(Editing)"
@@ -211,7 +193,6 @@ export function InputView() {
           placeholder="Editing"
           autoComplete="off"
           helperText="Helper Text"
-          blindLabel
         />
         <InputTextField
           label="Error"
@@ -220,7 +201,6 @@ export function InputView() {
           placeholder="Error"
           autoComplete="off"
           helperText="Helper Text"
-          blindLabel
         />
         <InputTextField
           label="Success"
@@ -229,7 +209,6 @@ export function InputView() {
           placeholder="Success"
           autoComplete="off"
           helperText="Helper Text"
-          blindLabel
         />
       </div>
       <em className="uio_title">Input Field (No Helper)</em>
@@ -278,25 +257,25 @@ export function InputView() {
         />
       </div>
       <em className="uio_title">Input Toggle</em>
-      <InputToggle id="label1" label="label" blindLabel />
+      <InputToggle id="label1" label="label" />
       <br />
       <InputToggle id="label2" label="label" />
       <br />
       <InputToggle id="label3" label="label" reverse />
       <br />
-      <InputToggle id="label1" label="label" blindLabel checked />
+      <InputToggle id="label1" label="label" checked />
       <br />
       <InputToggle id="label2" label="label" checked />
       <br />
       <InputToggle id="label3" label="label" reverse checked />
       <br />
-      <InputToggle id="label1" label="label" blindLabel disabled />
+      <InputToggle id="label1" label="label" disabled />
       <br />
       <InputToggle id="label2" label="label" disabled />
       <br />
       <InputToggle id="label3" label="label" reverse disabled />
       <br />
-      <InputToggle id="label1" label="label" blindLabel disabled checked />
+      <InputToggle id="label1" label="label" disabled checked />
       <br />
       <InputToggle id="label2" label="label" disabled checked />
       <br />

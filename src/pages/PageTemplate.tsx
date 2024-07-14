@@ -19,6 +19,7 @@ import React, { ReactNode } from 'react';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { ErrorModal } from 'features/globalError/ErrorModal';
+import { Flex } from 'yorkie-ui';
 
 export function PageTemplate({
   className = '',
@@ -32,13 +33,13 @@ export function PageTemplate({
   children: ReactNode;
 }) {
   return (
-    <div className={`wrap ${className}`}>
+    <Flex flexDirection="column" minHeight="100w">
       <Header className={headerClassName} />
-      <main className="container">
-        <div className={contentClassName ? `content ${contentClassName}` : 'content'}>{children}</div>
-        <ErrorModal />
-      </main>
+      <Flex flexGrow="1" flexShrink="1" flexBasis="auto" flexDirection="column">
+        {children}
+      </Flex>
+      <ErrorModal />
       <Footer />
-    </div>
+    </Flex>
   );
 }

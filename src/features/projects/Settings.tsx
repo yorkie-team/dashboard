@@ -17,7 +17,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm, useController } from 'react-hook-form';
-import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import {
   selectProjectDetail,
@@ -28,7 +27,8 @@ import {
   listProjectsAsync,
 } from './projectsSlice';
 import { AUTH_WEBHOOK_METHODS, UpdatableProjectFields, AuthWebhookMethod } from 'api/types';
-import { InputToggle, InputHelperText, InputTextField, Navigator } from 'components';
+import { InputHelperText, InputTextField, Navigator } from 'components';
+import { Heading, Flex, Box, Text, Grid, GridItem, Switch } from 'yorkie-ui';
 
 export type UpdateFieldInfo = {
   target: keyof UpdatableProjectFields | AuthWebhookMethod | null;
@@ -67,10 +67,10 @@ export function Settings() {
     control,
     name: 'authWebhookMethods',
   });
-  const { field: clientDeactivateThreshold, fieldState: clientDeactivateThresholdState } = useController({ 
-    control, 
+  const { field: clientDeactivateThreshold, fieldState: clientDeactivateThresholdState } = useController({
+    control,
     name: 'clientDeactivateThreshold',
-   });
+  });
   const checkFieldState = useCallback(
     (fieldName: keyof UpdatableProjectFields | AuthWebhookMethod, state: 'success' | 'error'): boolean => {
       return updateFieldInfo.target === fieldName && updateFieldInfo.state === state;
@@ -109,7 +109,12 @@ export function Settings() {
   );
 
   useEffect(() => {
-    if (updateFieldInfo.state !== 'success' && !nameFieldState.error && !webhookURLFieldState.error && !clientDeactivateThresholdState.error) {
+    if (
+      updateFieldInfo.state !== 'success' &&
+      !nameFieldState.error &&
+      !webhookURLFieldState.error &&
+      !clientDeactivateThresholdState.error
+    ) {
       setUpdateFieldInfo((info) => ({
         ...info,
         state: null,
@@ -123,7 +128,14 @@ export function Settings() {
         message: formErrors[updateFieldInfo.target as keyof UpdatableProjectFields]?.message || '',
       }));
     }
-  }, [formErrors, updateFieldInfo.state, updateFieldInfo.target, nameFieldState.error, webhookURLFieldState.error, clientDeactivateThresholdState.error]);
+  }, [
+    formErrors,
+    updateFieldInfo.state,
+    updateFieldInfo.target,
+    nameFieldState.error,
+    webhookURLFieldState.error,
+    clientDeactivateThresholdState.error,
+  ]);
 
   useEffect(() => {
     if (isSuccess) {
@@ -146,215 +158,205 @@ export function Settings() {
     resetForm();
   }, [resetForm]);
 
+  const onChangeSwitch = (e: any, method: any) => {
+    let newWebhookMethods = [...(project?.authWebhookMethods ?? [])];
+    if (e && e.target && e.target.checked) {
+      newWebhookMethods = newWebhookMethods?.includes(method) ? newWebhookMethods : [...newWebhookMethods, method];
+    } else {
+      newWebhookMethods = newWebhookMethods.filter((newMethod) => newMethod !== method);
+    }
+    webhookMethodField.onChange(newWebhookMethods);
+    setUpdateFieldInfo((info) => ({ ...info, target: method }));
+    onSubmit({ authWebhookMethods: newWebhookMethods });
+  };
   return (
-    <div className="setting_group">
-      <Navigator
-        navList={[
-          { name: 'General', id: 'general' },
-          { name: 'Webhook', id: 'webhook' },
-          { name: 'Advanced', id: 'advanced' },
-        ]}
-      />
-      <div className="box_right">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="section setting_box" id="general">
-            <div className="setting_title">
-              <strong className="text">General</strong>
-            </div>
-            <dl className="sub_info">
-              <dt className="sub_title">Project name</dt>
-              <dd className="sub_desc">
-                <div
-                  className={classNames('input_field_box', {
-                    is_error: checkFieldState('name', 'error'),
-                    is_success: checkFieldState('name', 'success'),
+    <Box
+      paddingBlock={{ base: '6', lg: '20' }}
+      marginInline="auto"
+      paddingInline={{ base: '6', lg: '0' }}
+      width={{
+        sm: 'breakpoint-sm',
+        md: 'breakpoint-md',
+        lg: 'breakpoint-lg',
+        xl: 'breakpoint-xl',
+      }}
+    >
+      <Grid gridTemplateColumns={{ base: 1, sm: 4 }} paddingBlock="10" gap="10">
+        <GridItem gridColumnStart={1} gridColumnEnd={2} gridColumn={1} display="grid">
+          <Navigator
+            navList={[
+              { name: 'General', id: 'general' },
+              { name: 'Webhook', id: 'webhook' },
+              { name: 'Advanced', id: 'advanced' },
+            ]}
+          />
+        </GridItem>
+        <GridItem gridColumnStart={3} gridColumnEnd={4} gridColumn={2} display="grid">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Box id="general">
+              <Heading as="h2" width="fit" fontSize="2xl">
+                General <Box marginTop="2" borderWidth="xs" borderColor="orange.default" />
+              </Heading>
+              <Box marginTop="10">
+                <Text>Project name</Text>
+                <InputTextField
+                  borderInline="none"
+                  borderTop="none"
+                  borderRadius="none"
+                  boxShadow="none"
+                  reset={() => {
+                    resetForm();
+                    resetUpdateFieldInfo();
+                  }}
+                  {...register('name', {
+                    required: 'The project name is required',
+                    pattern: {
+                      value: /^[a-zA-Z0-9\-._~]{2,30}$/,
+                      message:
+                        'Project name should only contain 2 to 30 characters with alphabets, numbers, hyphen(-), period(.), underscore(_), and tilde(~)',
+                    },
+                    onChange: async () => {
+                      await trigger('name');
+                    },
                   })}
-                >
-                  <InputTextField
-                    reset={() => {
-                      resetForm();
-                      resetUpdateFieldInfo();
-                    }}
-                    {...register('name', {
-                      required: 'The project name is required',
-                      pattern: {
-                        value: /^[a-zA-Z0-9\-._~]{2,30}$/,
-                        message:
-                          'Project name should only contain 2 to 30 characters with alphabets, numbers, hyphen(-), period(.), underscore(_), and tilde(~)',
-                      },
-                      onChange: async () => {
-                        await trigger('name');
-                      },
-                    })}
-                    onChange={(e) => {
-                      setUpdateFieldInfo((info) => ({ ...info, target: 'name' }));
-                      nameField.onChange(e.target.value);
-                    }}
-                    id="name"
-                    label="Project name"
-                    blindLabel={true}
-                    fieldUtil={true}
-                    state={
-                      checkFieldState('name', 'success')
-                        ? 'success'
-                        : checkFieldState('name', 'error')
-                        ? 'error'
-                        : undefined
-                    }
-                    helperText={
-                      updateFieldInfo.target === 'name' && updateFieldInfo.state !== null
-                        ? updateFieldInfo.message
-                        : undefined
-                    }
-                    onSuccessEnd={resetUpdateFieldInfo}
-                  />
-                </div>
-              </dd>
-            </dl>
-          </div>
-          <div className="section setting_box webhook" id="webhook">
-            <div className="setting_title">
-              <strong className="text">Webhook</strong>
-            </div>
-            <dl className="sub_info">
-              <dt className="sub_title">Auth webhook URL</dt>
-              <dd className="sub_desc">
-                <div
-                  className={classNames('input_field_box', {
-                    is_error: checkFieldState('authWebhookURL', 'error'),
-                    is_success: checkFieldState('authWebhookURL', 'success'),
+                  onChange={(e) => {
+                    setUpdateFieldInfo((info) => ({ ...info, target: 'name' }));
+                    nameField.onChange(e.target.value);
+                  }}
+                  id="name"
+                  label="Project name"
+                  blindLabel={true}
+                  fieldUtil={true}
+                  state={
+                    checkFieldState('name', 'success')
+                      ? 'success'
+                      : checkFieldState('name', 'error')
+                      ? 'error'
+                      : undefined
+                  }
+                  helperText={
+                    updateFieldInfo.target === 'name' && updateFieldInfo.state !== null
+                      ? updateFieldInfo.message
+                      : undefined
+                  }
+                  onSuccessEnd={resetUpdateFieldInfo}
+                />
+              </Box>
+            </Box>
+            <Box id="webhook" marginTop="28">
+              <Heading as="h2" width="fit" fontSize="2xl">
+                Webhook <Box marginTop="2" borderWidth="xs" borderColor="orange.default" />
+              </Heading>
+              <Box marginTop="10">
+                <Text marginBottom="10">Auth webhook URL</Text>
+                <InputTextField
+                  reset={() => {
+                    resetForm();
+                    resetUpdateFieldInfo();
+                  }}
+                  {...register('authWebhookURL')}
+                  onChange={(e) => {
+                    setUpdateFieldInfo((info) => ({ ...info, target: 'authWebhookURL' }));
+                    webhookURLField.onChange(e.target.value);
+                  }}
+                  id="authWebhookURL"
+                  borderInline="none"
+                  borderTop="none"
+                  borderRadius="none"
+                  boxShadow="none"
+                  fieldUtil={true}
+                  state={
+                    checkFieldState('authWebhookURL', 'success')
+                      ? 'success'
+                      : checkFieldState('authWebhookURL', 'error')
+                      ? 'error'
+                      : undefined
+                  }
+                  helperText={
+                    updateFieldInfo.target === 'authWebhookURL' && updateFieldInfo.state !== null
+                      ? updateFieldInfo.message
+                      : undefined
+                  }
+                  onSuccessEnd={resetUpdateFieldInfo}
+                />
+                <Text marginBlock="10">Auth webhook methods</Text>
+                <Box>
+                  {AUTH_WEBHOOK_METHODS.map((method) => {
+                    return (
+                      <Flex key={method} gap="20" marginTop="4">
+                        <Switch
+                          id={method}
+                          checked={webhookMethodField.value.includes(method)}
+                          onChange={(e) => onChangeSwitch(e, method)}
+                        >
+                          {method}
+                        </Switch>
+                        {updateFieldInfo.target === method && updateFieldInfo.state !== null && (
+                          <InputHelperText
+                            state={updateFieldInfo.state}
+                            message={updateFieldInfo.message}
+                            onSuccessEnd={resetUpdateFieldInfo}
+                          />
+                        )}
+                      </Flex>
+                    );
                   })}
-                >
-                  <InputTextField
-                    reset={() => {
-                      resetForm();
-                      resetUpdateFieldInfo();
-                    }}
-                    {...register('authWebhookURL')}
-                    onChange={(e) => {
-                      setUpdateFieldInfo((info) => ({ ...info, target: 'authWebhookURL' }));
-                      webhookURLField.onChange(e.target.value);
-                    }}
-                    id="authWebhookURL"
-                    label="authWebhookURL"
-                    blindLabel={true}
-                    fieldUtil={true}
-                    state={
-                      checkFieldState('authWebhookURL', 'success')
-                        ? 'success'
-                        : checkFieldState('authWebhookURL', 'error')
-                        ? 'error'
-                        : undefined
-                    }
-                    helperText={
-                      updateFieldInfo.target === 'authWebhookURL' && updateFieldInfo.state !== null
-                        ? updateFieldInfo.message
-                        : undefined
-                    }
-                    onSuccessEnd={resetUpdateFieldInfo}
-                  />
-                </div>
-              </dd>
-              <dt className="sub_title">Auth webhook methods</dt>
-              <dd className="sub_desc">
-                {AUTH_WEBHOOK_METHODS.map((method) => {
-                  return (
-                    <div
-                      className={classNames('input_group', {
-                        is_error: checkFieldState(method, 'error'),
-                        is_success: checkFieldState(method, 'success'),
-                      })}
-                      key={method}
-                    >
-                      <InputToggle
-                        id={method}
-                        label={method}
-                        checked={webhookMethodField.value.includes(method)}
-                        onChange={(e) => {
-                          let newWebhookMethods = [...project?.authWebhookMethods!];
-                          if (e.target.checked) {
-                            newWebhookMethods = newWebhookMethods.includes(method)
-                              ? newWebhookMethods
-                              : [...newWebhookMethods, method];
-                          } else {
-                            newWebhookMethods = newWebhookMethods.filter((newMethod) => newMethod !== method);
-                          }
-                          webhookMethodField.onChange(newWebhookMethods);
-                          setUpdateFieldInfo((info) => ({ ...info, target: method }));
-                          onSubmit({ authWebhookMethods: newWebhookMethods });
-                        }}
-                      />
-                      {updateFieldInfo.target === method && updateFieldInfo.state !== null && (
-                        <InputHelperText
-                          state={updateFieldInfo.state}
-                          message={updateFieldInfo.message}
-                          onSuccessEnd={resetUpdateFieldInfo}
-                        />
-                      )}
-                    </div>
-                  );
-                })}
-              </dd>
-            </dl>
-          </div>
-          <div className="section setting_box" id="advanced">
-            <div className="setting_title">
-              <strong className="text">Advanced</strong>
-            </div>
-            <dl className="sub_info">
-              <dt className="sub_title">Client Deactivate Threshold</dt>
-              <dd className="sub_desc">
-                <div
-                  className={classNames('input_field_box', {
-                    is_error: checkFieldState('clientDeactivateThreshold', 'error'),
-                    is_success: checkFieldState('clientDeactivateThreshold', 'success'),
-                  })}
-                >
-                  <InputTextField
-                    reset={() => {
-                      resetForm();
-                      resetUpdateFieldInfo();
-                    }}
-                    {...register('clientDeactivateThreshold', {
-                      required: 'Client Deactivate Threshold is required',
-                      pattern: {
-                        value: /^(\d{1,2}h\s?)?(\d{1,2}m\s?)?(\d{1,2}s)?$/,
-                        message:
+                </Box>
+              </Box>
+            </Box>
+            <Box id="advanced" marginTop="28">
+              <Heading as="h2" width="fit" fontSize="2xl">
+                Advanced <Box marginTop="2" borderWidth="xs" borderColor="orange.default" />
+              </Heading>
+              <Box marginTop="10">
+                <Text>Client Deactivate Threshold</Text>
+                <InputTextField
+                  reset={() => {
+                    resetForm();
+                    resetUpdateFieldInfo();
+                  }}
+                  {...register('clientDeactivateThreshold', {
+                    required: 'Client Deactivate Threshold is required',
+                    pattern: {
+                      value: /^(\d{1,2}h\s?)?(\d{1,2}m\s?)?(\d{1,2}s)?$/,
+                      message:
                         'Client Deactivate Threshold should be a signed sequence of decimal numbers, each with a unit suffix, such as "23h30m10s" or "2h45m"',
-                      },
-                      onChange: async () => {
-                        await trigger('clientDeactivateThreshold');
-                      },
-                    })}
-                    onChange={(e) => {
-                      setUpdateFieldInfo((info) => ({ ...info, target: 'clientDeactivateThreshold' }));
-                      clientDeactivateThreshold.onChange(e.target.value);
-                    }}
-                    id="clientDeactivateThreshold"
-                    label="clientDeactivateThreshold"
-                    blindLabel={true}
-                    fieldUtil={true}
-                    placeholder={'24h00m00s'}
-                    state={
-                      checkFieldState('clientDeactivateThreshold', 'success')
-                        ? 'success'
-                        : checkFieldState('clientDeactivateThreshold', 'error')
-                        ? 'error'
-                        : undefined
-                    }
-                    helperText={
-                      updateFieldInfo.target === 'clientDeactivateThreshold' && updateFieldInfo.state !== null
-                        ? updateFieldInfo.message
-                        : undefined
-                    }
-                    onSuccessEnd={resetUpdateFieldInfo}
-                  />
-                </div>
-              </dd>
-            </dl>
-          </div>
-        </form>
-      </div>
-    </div>
+                    },
+                    onChange: async () => {
+                      await trigger('clientDeactivateThreshold');
+                    },
+                  })}
+                  onChange={(e) => {
+                    setUpdateFieldInfo((info) => ({ ...info, target: 'clientDeactivateThreshold' }));
+                    clientDeactivateThreshold.onChange(e.target.value);
+                  }}
+                  id="clientDeactivateThreshold"
+                  borderInline="none"
+                  borderTop="none"
+                  borderRadius="none"
+                  boxShadow="none"
+                  fieldUtil={true}
+                  fontWeight="semibold"
+                  placeholder={'24h00m00s'}
+                  state={
+                    checkFieldState('clientDeactivateThreshold', 'success')
+                      ? 'success'
+                      : checkFieldState('clientDeactivateThreshold', 'error')
+                      ? 'error'
+                      : undefined
+                  }
+                  helperText={
+                    updateFieldInfo.target === 'clientDeactivateThreshold' && updateFieldInfo.state !== null
+                      ? updateFieldInfo.message
+                      : undefined
+                  }
+                  onSuccessEnd={resetUpdateFieldInfo}
+                />
+              </Box>
+            </Box>
+          </form>
+        </GridItem>
+      </Grid>
+    </Box>
   );
 }
