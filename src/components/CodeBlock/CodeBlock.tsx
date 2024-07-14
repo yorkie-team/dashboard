@@ -47,7 +47,7 @@ Prism.languages.json = {
   },
 };
 
-function CodeBlockCode({
+const CodeBlockCode = ({
   code,
   language,
   withLineNumbers,

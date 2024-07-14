@@ -15,8 +15,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { Flex, Text, Icon } from 'yorkie-ui';
-import { svgMap } from 'components';
+import { Flex, Text, Icon, Icons } from 'yorkie-ui';
 
 export function InputHelperText({
   state,
@@ -49,7 +48,7 @@ export function InputHelperText({
     <Flex alignItems="center" marginTop="3" color={state === 'success' ? 'neutral.12' : 'orange.10'}>
       {state && (
         <Icon
-          icon={svgMap[state === 'success' ? 'check' : 'inputFail']}
+          icon={state === 'success' ? <Icons.IconCheck /> : <Icons.IconCloseSmall />}
           size={state === 'success' ? 'xs' : 'sm'}
           marginRight="1"
         />

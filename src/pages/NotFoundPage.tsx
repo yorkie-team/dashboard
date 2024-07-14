@@ -17,7 +17,7 @@
 import React from 'react';
 import { PageTemplate } from './PageTemplate';
 import NotFoundSVG from 'assets/icons/error_404.svg?react';
-import { Button, Icon, Box, Heading, Text, Flex, IconDiscord, IconGitHub, IconBackHome, Container } from 'yorkie-ui';
+import { Button, Icon, Box, Heading, Text, Flex, Icons, Container } from 'yorkie-ui';
 
 export function NotFoundPage() {
   return (
@@ -45,7 +45,7 @@ export function NotFoundPage() {
               <br className="br_mo" /> removed or is temporarily unavailable.
             </Text>
             <Flex gap="6" flexDirection={{ base: 'column', lg: 'row' }}>
-              <Button as="link" href="/" position="start" icon={<Icon icon={<IconBackHome />} />}>
+              <Button as="link" href="/" position="start" icon={<Icon icon={<Icons.IconBackHome />} />}>
                 Back to home
               </Button>
               <Button
@@ -56,7 +56,7 @@ export function NotFoundPage() {
                 position="start"
                 stroke="neutral.11"
                 className="fillSVG"
-                icon={<IconDiscord />}
+                icon={<Icons.IconDiscord />}
               >
                 Discord
               </Button>
@@ -68,7 +68,7 @@ export function NotFoundPage() {
                 className="fillSVG"
                 variant="outline"
                 position="start"
-                icon={<IconGitHub />}
+                icon={<Icons.IconGithub />}
               >
                 GitHub
               </Button>
