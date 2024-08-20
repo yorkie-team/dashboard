@@ -1,0 +1,129 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.banner {
+  display: block;
+  min-height: 134px;
+  padding: variables.$spacing_24 variables.$spacing_32;
+  border-radius: 10px;
+  box-sizing: border-box;
+
+  @include mixins-lib.tabletStart() {
+    min-height: 112px;
+    padding: 27px 14px 27px 22px;
+  }
+
+  &_box {
+    position: relative;
+
+    @include mixins-lib.tabletStart() {
+      padding: 0 variables.$spacing_32;
+    }
+
+    @include mixins-lib.mobileStart() {
+      padding: 0 variables.$spacing_16;
+    }
+
+    .guide {
+      display: block;
+      margin-bottom: variables.$spacing_24;
+      padding-right: variables.$spacing_32;
+      @include mixins-lib.rfonts(24, 32, 500);
+      color: var(--gray-900);
+    }
+
+    .btn_close {
+      position: absolute;
+      top: -2px;
+      right: -7px;
+      margin: 0;
+      padding: 5px;
+      color: var(--gray-900);
+
+      @include mixins-lib.tabletStart() {
+        right: 25px;
+      }
+
+      @include mixins-lib.mobileStart() {
+        right: 7px;
+      }
+
+      .icon {
+        width: 22px;
+        height: 22px;
+        margin: 0;
+      }
+    }
+  }
+
+  &_list {
+    display: flex;
+    align-items: center;
+
+    @include mixins-lib.mobileStart() {
+      display: block;
+    }
+  }
+
+  &_item {
+    overflow: hidden;
+    position: relative;
+    flex: 1 1 0;
+    margin: 0 variables.$spacing_8;
+    border-radius: 10px;
+
+    @include mixins-lib.mobileStart() {
+      margin: variables.$spacing_16 0 0;
+    }
+
+    &:first-child {
+      margin-left: 0;
+
+      @include mixins-lib.mobileStart() {
+        margin-top: 0;
+      }
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &_title {
+    display: block;
+    position: relative;
+    z-index: 1;
+    margin-bottom: variables.$spacing_8;
+    @include mixins-lib.rfonts(24, 32, 600);
+
+    @include mixins-lib.tabletStart() {
+      @include mixins-lib.rfonts(16, 24);
+    }
+  }
+
+  &_desc {
+    position: relative;
+    z-index: 1;
+    @include mixins-lib.rfonts(14, 22, 400);
+
+    @include mixins-lib.tabletStart() {
+      @include mixins-lib.rfonts(12, 16);
+    }
+  }
+
+  .img_box {
+    display: block;
+    position: absolute;
+    right: -4px;
+    bottom: -8px;
+
+    @include mixins-lib.tabletStart() {
+      width: 158px;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+}

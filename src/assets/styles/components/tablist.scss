@@ -1,0 +1,170 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.box_tab {
+  @include mixins-lib.tabSticky();
+
+  &::before {
+    @include mixins-lib.tabletStart() {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: var(--gray-500);
+      content: '';
+    }
+  }
+
+  @include mixins-lib.tabletStart() {
+    overflow-x: auto;
+    padding-top: variables.$spacing_16;
+    padding-bottom: 2px;
+    white-space: nowrap;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.tab {
+  $tab: '.tab';
+
+  &_list {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+
+    @include mixins-lib.pcStart() {
+      border-bottom: 1px solid var(--gray-500);
+    }
+  }
+
+  &_item {
+    margin: 0 4px;
+
+    @include mixins-lib.tabletStart() {
+      position: relative;
+    }
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:hover {
+      #{$tab}_menu {
+        &::before {
+          background: var(--gray-400);
+        }
+
+        .icon {
+          color: var(--gray-800);
+        }
+
+        &.is_active {
+          &::before {
+            background: var(--orange-0);
+          }
+        }
+      }
+
+      #{$tab}_text {
+        color: var(--gray-800);
+      }
+    }
+
+    &::before {
+      @include mixins-lib.tabletStart() {
+        position: absolute;
+        bottom: -2px;
+        left: -4px;
+        right: -4px;
+        height: 1px;
+        background-color: var(--gray-500);
+        content: '';
+      }
+    }
+  }
+
+  &_menu {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: variables.$spacing_8 variables.$spacing_16 6px 12px;
+    transition: border 0.2s;
+
+    &::before {
+      display: block;
+      position: absolute;
+      right: 0;
+      bottom: -1px;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+      height: 2px;
+      content: '';
+
+      @include mixins-lib.tabletStart() {
+        bottom: -2px;
+      }
+    }
+
+    &::after {
+      @include mixins-lib.tabletStart() {
+        display: block;
+        position: absolute;
+        right: 0;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: var(--gray-500);
+        content: '';
+      }
+    }
+
+    &.is_active {
+      &::before {
+        background: var(--orange-0);
+      }
+
+      .icon {
+        color: var(--gray-800);
+      }
+
+      #{$tab}_text {
+        color: var(--gray-800);
+      }
+    }
+
+    .icon {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin-right: variables.$spacing_8;
+      color: var(--gray-500);
+      transition: color 0.2s;
+      vertical-align: middle;
+
+      svg {
+        display: block;
+        width: 100%;
+
+        path {
+          fill: currentColor;
+        }
+      }
+    }
+  }
+
+  &_text {
+    @include mixins-lib.rfonts(14, 22);
+    color: var(--gray-500);
+    transition: color 0.2s;
+  }
+}

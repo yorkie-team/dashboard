@@ -1,0 +1,721 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.input {
+  $input: '.input';
+  display: inline-block;
+  width: 100%;
+  padding: 13px 15px;
+  box-sizing: border-box;
+  border: 1px solid var(--gray-400);
+  border-radius: 4px;
+  background-color: transparent;
+  @include mixins-lib.rfonts(14, 22);
+  color: var(--gray-900);
+  vertical-align: top;
+
+  &[type='search'] {
+    outline-offset: initial;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  &::placeholder {
+    color: var(--gray-500);
+  }
+
+  &:-webkit-autofill {
+    box-shadow: 0 0 0 1000px variables.$white inset;
+    -webkit-text-fill-color: var(--gray-900);
+  }
+
+  &:focus,
+  &:focus-visible {
+    border-color: var(--blue-0);
+    caret-color: var(--blue-0);
+    outline: none;
+  }
+
+  &_group {
+    display: flex;
+    align-items: center;
+
+    @include mixins-lib.mobileStart() {
+      display: block;
+    }
+
+    .input_guide_desc {
+      font-weight: 500;
+    }
+
+    &.is_success {
+      .input_guide {
+        color: var(--green-dark);
+
+        .icon {
+          path:first-child {
+            display: none;
+          }
+        }
+
+        &_desc {
+          color: var(--green-dark);
+        }
+      }
+    }
+
+    &.is_error {
+      .input_guide {
+        color: var(--red-dark);
+
+        .icon {
+          path:last-child {
+            display: none;
+          }
+        }
+
+        &_desc {
+          color: var(--red-dark);
+        }
+      }
+    }
+  }
+
+  &_box {
+    display: inline-block;
+    vertical-align: top;
+    color: var(--gray-800);
+
+    .label {
+      display: block;
+      position: relative;
+      @include mixins-lib.rfonts(12, 16);
+      color: var(--gray-800);
+      word-break: break-all;
+
+      & ~ .input {
+        margin-top: variables.$spacing_8;
+      }
+
+      &_in {
+        position: absolute;
+        top: 0;
+        left: variables.$spacing_16;
+        right: variables.$spacing_40;
+        @include mixins-lib.rfonts(14, 22);
+        color: var(--gray-500);
+        transform: translateY(14px);
+        transition-duration: 300ms;
+      }
+    }
+
+    &.is_disabled {
+      .label {
+        color: var(--gray-300);
+
+        &_in_box {
+          border-color: var(--gray-300);
+        }
+      }
+
+      #{$input} {
+        border-color: var(--gray-300);
+        color: var(--gray-300);
+
+        &::placeholder {
+          color: var(--gray-300);
+        }
+      }
+
+      .icon {
+        color: var(--gray-300);
+      }
+
+      #{$input}_guide {
+        color: var(--gray-300);
+      }
+    }
+
+    &.is_error {
+      #{$input} {
+        border-color: var(--red-dark);
+        caret-color: var(--red-dark);
+      }
+
+      #{$input}_guide {
+        color: var(--red-dark);
+
+        .icon {
+          path {
+            &:last-child {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    &.is_success {
+      #{$input} {
+        border-color: var(--green-dark);
+        caret-color: var(--green-dark);
+      }
+
+      #{$input}_guide {
+        color: var(--green-dark);
+
+        .icon {
+          path {
+            &:first-child {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &_guide {
+    display: flex;
+    align-items: flex-start;
+    margin-top: variables.$spacing_8;
+    color: var(--gray-800);
+
+    .icon {
+      width: 16px;
+      height: 16px;
+      margin-right: variables.$spacing_8;
+    }
+
+    &_desc {
+      @include mixins-lib.rfonts(12, 16, 300);
+      color: currentColor;
+      word-break: break-word;
+    }
+  }
+
+  &_inner_box {
+    display: block;
+    position: relative;
+
+    .icon {
+      position: absolute;
+      bottom: 18px;
+      right: variables.$spacing_16;
+
+      svg {
+        display: block;
+
+        path {
+          fill: currentColor;
+        }
+      }
+
+      ~ #{input} {
+        padding-right: variables.$spacing_40;
+      }
+    }
+
+    .label_in_input {
+      padding: 19px 15px 7px;
+
+      &::placeholder {
+        color: transparent;
+      }
+
+      &:not(:placeholder-shown) {
+        & + .label_in {
+          @include mixins-lib.fonts(8, 10);
+          color: var(--gray-800);
+          transform: translateY(8px);
+        }
+      }
+
+      &:disabled {
+        padding: 13px 15px;
+
+        &::placeholder {
+          color: transparent;
+        }
+      }
+    }
+
+    &:focus-within {
+      .label_in {
+        @include mixins-lib.fonts(8, 10);
+        color: var(--gray-800);
+        transform: translateY(8px);
+      }
+    }
+  }
+}
+
+.input_field_box {
+  &.is_error {
+    .input {
+      border-color: var(--red-0);
+      color: var(--red-0);
+    }
+
+    .input_guide {
+      color: var(--red-dark);
+
+      .icon {
+        path:last-child {
+          display: none;
+        }
+      }
+
+      &_desc {
+        color: var(--red-dark);
+      }
+    }
+  }
+
+  &.is_success {
+    .input {
+      border-color: var(--green-0);
+    }
+
+    .input_guide {
+      color: var(--green-0);
+
+      .icon {
+        path:first-child {
+          display: none;
+        }
+      }
+
+      &_desc {
+        color: var(--green-0);
+      }
+    }
+  }
+
+  &.is_disabled {
+    .label {
+      color: var(--gray-300);
+    }
+
+    .input {
+      border-color: var(--gray-300);
+      color: var(--gray-300);
+
+      &::placeholder {
+        color: var(--gray-300);
+      }
+    }
+
+    .input_guide {
+      color: var(--gray-300);
+    }
+  }
+
+  .input_inner {
+    display: flex;
+    align-items: flex-end;
+
+    @include mixins-lib.mobileStart() {
+      display: block;
+    }
+
+    .btn_box {
+      @include mixins-lib.tabletStart() {
+        margin-left: 12px;
+      }
+
+      @include mixins-lib.mobileStart() {
+        margin-top: 10px;
+        margin-left: 0;
+      }
+    }
+  }
+
+  .label {
+    display: block;
+    position: relative;
+    padding-left: variables.$spacing_8;
+    @include mixins-lib.fonts(14, 22, 500);
+    color: var(--gray-800);
+    word-break: break-all;
+
+    & ~ .input {
+      margin-top: variables.$spacing_8;
+    }
+
+    &_in {
+      position: absolute;
+      top: 0;
+      left: variables.$spacing_16;
+      right: variables.$spacing_40;
+      @include mixins-lib.rfonts(14, 22);
+      color: var(--gray-500);
+      transform: translateY(14px);
+      transition-duration: 300ms;
+    }
+
+    & ~ .input_inner {
+      margin-top: variables.$spacing_16;
+    }
+  }
+
+  .input {
+    width: 511px;
+    margin-right: 12px;
+    padding: 0 0 7px variables.$spacing_8;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid var(--gray-400);
+    @include mixins-lib.rfonts(16, 24, 600);
+    color: var(--gray-800);
+
+    @include mixins-lib.tabletStart() {
+      width: 100%;
+      margin-right: 0;
+      padding-right: variables.$spacing_8;
+    }
+
+    &:focus {
+      caret-color: initial;
+    }
+  }
+
+  &_large {
+    &.is_success {
+      .input {
+        color: var(--green-0);
+      }
+    }
+
+    .input {
+      display: block;
+      width: 100%;
+      margin-right: 0;
+      padding: 0;
+      border-bottom: none;
+      @include mixins-lib.rfonts(24, 32, 600);
+      color: var(--gray-800);
+    }
+  }
+}
+
+.input_toggle_box {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & + .input_guide {
+    margin-top: 0;
+
+    .icon svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &.is_reverse {
+    flex-direction: row-reverse;
+  }
+
+  input {
+    &:checked {
+      & ~ .toggle_ui {
+        border-color: var(--blue-0);
+
+        .track {
+          left: 0;
+        }
+
+        .ball {
+          transform: translateX(16px);
+          background-color: var(--blue-0);
+
+          svg {
+            width: 12px;
+            height: 12px;
+            transform: scale(1);
+            color: var(--gray-000);
+          }
+        }
+      }
+
+      & ~ .label {
+        color: var(--blue-dark);
+      }
+    }
+
+    &:disabled {
+      & ~ .toggle_ui {
+        border-color: var(--gray-300);
+        background-color: var(--gray-100);
+        cursor: default;
+
+        .track {
+          display: none;
+        }
+
+        .ball {
+          background-color: var(--gray-300);
+
+          svg {
+            color: var(--gray-300);
+          }
+        }
+      }
+
+      & ~ .label {
+        color: var(--gray-300);
+        cursor: default;
+      }
+    }
+
+    &:disabled:checked {
+      & ~ .toggle_ui {
+        .ball {
+          svg {
+            color: var(--gray-100);
+          }
+        }
+      }
+    }
+  }
+
+  .toggle_ui {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    width: 38px;
+    height: 22px;
+    border: 1px solid var(--gray-600);
+    border-radius: 20px;
+    vertical-align: top;
+    transition: border-color 0.2s 0.1s;
+    cursor: pointer;
+  }
+
+  .track {
+    position: absolute;
+    top: 0;
+    left: -38px;
+    width: 76px;
+    height: 22px;
+    border-radius: 11px;
+    background: linear-gradient(
+      90deg,
+      var(--blue-alpha-light) 0%,
+      var(--blue-alpha-light) 45%,
+      var(--gray-300) 55%,
+      var(--gray-300) 100%
+    );
+    transition: left 0.2s 0.2s;
+  }
+
+  .ball {
+    display: block;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    margin: 3px 0 0 3px;
+    border-radius: 50%;
+    background-color: var(--gray-600);
+    transition: transform cubic-bezier(0.98, 0.02, 0.3, 1.52) 0.3s, background-color 0.2s;
+
+    svg {
+      display: block;
+      width: 12px;
+      height: 12px;
+      padding: 2px;
+      color: var(--gray-600);
+      transform: scale(0.5);
+      transition: transform 0.3s 0.1s, color 0.3s 0.2s;
+
+      path {
+        fill: currentColor;
+      }
+    }
+  }
+
+  .label {
+    display: block;
+    position: relative;
+    padding: 0 variables.$spacing_16;
+    @include mixins-lib.rfonts(12, 16, 500);
+    color: var(--gray-800);
+    transition: color 0.2s;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+}
+
+.input_radio_box {
+  display: inline-flex;
+  align-items: center;
+
+  input {
+    &:checked {
+      & ~ .radio_ui {
+        border-color: var(--blue-0);
+
+        .ball {
+          transform: scale(1);
+        }
+      }
+
+      & ~ .label {
+        color: var(--blue-0);
+      }
+    }
+
+    &:disabled {
+      & ~ .radio_ui {
+        border-color: var(--gray-300);
+        cursor: default;
+
+        .ball {
+          background-color: var(--gray-300);
+        }
+      }
+
+      & ~ .label {
+        color: var(--gray-300);
+        cursor: default;
+      }
+    }
+  }
+
+  .radio_ui {
+    display: block;
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--gray-800);
+    border-radius: 50%;
+    transition: border 0.3s;
+    cursor: pointer;
+  }
+
+  .ball {
+    display: block;
+    width: 8px;
+    height: 8px;
+    margin: 3px 0 0 3px;
+    border-radius: 50%;
+    background-color: var(--blue-0);
+    transform: scale(0);
+    transition: transform cubic-bezier(0.98, 0.02, 0.3, 1.52) 0.3s;
+  }
+
+  .label {
+    padding-left: variables.$spacing_8;
+    @include mixins-lib.rfonts(12, 16, 500);
+    color: var(--gray-800);
+    transition: color 0.3s;
+    cursor: pointer;
+  }
+}
+
+.input_check_box {
+  display: inline-flex;
+  align-items: center;
+
+  &.is_large {
+    .checkbox_ui {
+      width: 18px;
+      height: 18px;
+
+      .check {
+        svg {
+          padding: 3px;
+        }
+      }
+    }
+
+    .label {
+      padding-left: variables.$spacing_16;
+    }
+  }
+
+  input {
+    &:checked {
+      & ~ .checkbox_ui {
+        border-color: var(--blue-0);
+
+        .check {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      & ~ .label {
+        color: var(--blue-0);
+      }
+    }
+
+    &:disabled {
+      & ~ .checkbox_ui {
+        border-color: var(--gray-300);
+        cursor: default;
+
+        .check {
+          background-color: var(--gray-300);
+        }
+      }
+
+      & ~ .label {
+        color: var(--gray-300);
+        cursor: default;
+      }
+    }
+  }
+
+  .checkbox_ui {
+    display: block;
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--gray-800);
+    border-radius: 4px;
+    transition: border 0.3s;
+    cursor: pointer;
+
+    .check {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: var(--blue-0);
+      transform: scale(0.7);
+      opacity: 0;
+      transition: transform cubic-bezier(0.98, 0.02, 0.3, 1.52) 0.2s 0.1s,
+        opacity cubic-bezier(0.98, 0.02, 0.3, 1.52) 0.2s 0.1s;
+
+      svg {
+        display: block;
+        width: 12px;
+        height: 12px;
+        padding: 1px;
+        color: var(--gray-000);
+
+        path {
+          fill: currentColor;
+        }
+      }
+    }
+  }
+
+  .label {
+    display: block;
+    position: relative;
+    padding-left: variables.$spacing_8;
+    @include mixins-lib.rfonts(12, 16, 500);
+    color: var(--gray-800);
+    cursor: pointer;
+    transition: color 0.3s;
+    word-break: break-all;
+  }
+}
+
+.darkmode {
+  .input {
+    &:-webkit-autofill {
+      box-shadow: 0 0 0 1000px var(--gray-000) inset;
+    }
+  }
+}

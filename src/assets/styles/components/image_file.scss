@@ -1,0 +1,30 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.image_area {
+  $img: '.image';
+  display: flex;
+  align-items: center;
+  padding-top: variables.$spacing_24;
+
+  #{$img}_group {
+    flex: 1 1 auto;
+
+    & + #{$img}_group {
+      padding-left: variables.$spacing_16;
+    }
+  }
+
+  #{$img}_desc {
+    color: var(--gray-800);
+    @include mixins-lib.rfonts(12, 16, 400);
+  }
+
+  #{$img}_box {
+    img {
+      vertical-align: top;
+      width: 100%;
+      height: auto;
+    }
+  }
+}

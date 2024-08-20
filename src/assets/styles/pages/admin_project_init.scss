@@ -1,0 +1,111 @@
+@use '../base/normalize';
+@use '../base/common';
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.project_init_page {
+  @include mixins-lib.setContainerPC(variables.$spacing_72, variables.$spacing_72);
+
+  .content {
+    position: relative;
+
+    @include mixins-lib.tabletStart() {
+      padding-bottom: variables.$spacing_64;
+    }
+  }
+
+  .box_top {
+    @include mixins-lib.tabletStart() {
+      display: none;
+    }
+  }
+
+  .box_tab {
+    margin-top: variables.$spacing_24;
+
+    @include mixins-lib.tabletStart() {
+      margin-top: 0;
+    }
+  }
+
+  .init {
+    &_area {
+      padding-top: variables.$spacing_48;
+
+      @include mixins-lib.tabletStart() {
+        padding: variables.$spacing_56 variables.$spacing_32 0;
+      }
+
+      @include mixins-lib.mobileStart() {
+        padding-left: variables.$spacing_16;
+        padding-right: variables.$spacing_16;
+      }
+    }
+
+    &_box {
+      margin-top: variables.$spacing_72;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    &_content {
+      display: flex;
+      flex-direction: column;
+      padding: variables.$spacing_24 variables.$spacing_16 0;
+
+      @include mixins-lib.tabletStart() {
+        padding-left: variables.$spacing_8;
+        padding-right: variables.$spacing_8;
+      }
+
+      @include mixins-lib.mobileStart() {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .title_desc {
+        margin-top: variables.$spacing_24;
+      }
+
+      .init_box {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .codeblock_navigator {
+    margin-top: variables.$spacing_48;
+  }
+
+  .box_right {
+    width: calc(100% - 176px);
+    padding-left: 104px;
+    box-sizing: border-box;
+
+    @include mixins-lib.tabletStart() {
+      padding-left: variables.$spacing_64;
+    }
+
+    @include mixins-lib.mobileStart() {
+      padding-left: variables.$spacing_32;
+    }
+
+    .init_box {
+      margin-top: variables.$spacing_24;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    .title_desc {
+      margin-top: variables.$spacing_24;
+    }
+  }
+
+  .codeblock_box {
+    margin-top: variables.$spacing_24;
+  }
+}

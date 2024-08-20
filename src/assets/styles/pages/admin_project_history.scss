@@ -1,0 +1,83 @@
+@use '../base/normalize';
+@use '../base/common';
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.project_history {
+  @include mixins-lib.setContainerPC(variables.$spacing_72, variables.$spacing_72);
+
+  .content {
+    position: relative;
+
+    @include mixins-lib.tabletStart() {
+      padding-bottom: variables.$spacing_64;
+    }
+  }
+
+  .project_area {
+    @include mixins-lib.mobileStart() {
+      padding-left: variables.$spacing_16;
+      padding-right: variables.$spacing_16;
+    }
+  }
+
+  .history_area {
+    padding-top: 4px;
+
+    @include mixins-lib.tabletStart() {
+      padding: 4px variables.$spacing_32 0;
+    }
+
+    @include mixins-lib.mobileStart() {
+      padding-left: variables.$spacing_16;
+      padding-right: variables.$spacing_16;
+    }
+  }
+
+  .history_changes {
+    margin: variables.$spacing_32 0 variables.$spacing_24;
+  }
+
+  .history_title {
+    margin-bottom: variables.$spacing_8;
+  }
+
+  .history_slider {
+    margin: 0 variables.$spacing_8;
+  }
+
+  .codeblock_header {
+    & ~ {
+      .codeblock,
+      .codeblock_tree_box {
+        border-radius: 0 0 4px 4px;
+        border-top: 0;
+      }
+    }
+  }
+
+  .codeblock {
+    .prism-code {
+      .token {
+        white-space: pre-wrap;
+      }
+    }
+  }
+
+  .compare_area {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .compare_box {
+    width: calc(50% - 8px);
+
+    &.before {
+      .prism-code {
+        .line-number {
+          color: var(--gray-400);
+        }
+      }
+    }
+  }
+}

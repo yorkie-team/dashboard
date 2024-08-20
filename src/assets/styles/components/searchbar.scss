@@ -1,0 +1,153 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.search {
+  font-size: 0;
+  line-height: normal;
+
+  @include mixins-lib.tabletStart() {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  @include mixins-lib.mobileStart() {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .input {
+    flex: 1;
+    width: 100%;
+    padding: 0 0 8px;
+    border: none;
+    @include mixins-lib.rfonts(12, 16, 400);
+    color: var(--gray-800);
+
+    @include mixins-lib.mobileStart() {
+      min-width: 0;
+      width: auto;
+      flex-grow: 1;
+      border-bottom: 1px solid var(--gray-400);
+    }
+
+    &_inner {
+      border-bottom: 1px solid var(--gray-400);
+
+      @include mixins-lib.mobileStart() {
+        display: flex;
+        border-bottom: none;
+      }
+
+      .btn_box {
+        @include mixins-lib.mobileStart() {
+          margin-top: 0;
+          border-bottom: 1px solid var(--gray-400);
+        }
+      }
+    }
+  }
+
+  .icon {
+    &_search {
+      margin: 8px;
+      color: var(--gray-800);
+
+      @include mixins-lib.mobileStart() {
+        margin: 0;
+        padding: 0 8px 8px;
+        border-bottom: 1px solid var(--gray-400);
+      }
+
+      svg {
+        display: block;
+      }
+    }
+
+    &_close {
+      width: 12px;
+      height: 12px;
+    }
+  }
+}
+
+.search_area {
+  $sc: '.search';
+  display: flex;
+
+  @include mixins-lib.tabletStart() {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  @include mixins-lib.mobileStart() {
+    display: block;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  #{$sc} {
+    flex-grow: 1;
+
+    @include mixins-lib.tabletStart() {
+      padding: 0;
+      border-bottom: 1px solid var(--gray-400);
+    }
+
+    @include mixins-lib.mobileStart() {
+      border-bottom: none;
+    }
+  }
+
+  .input_inner {
+    @include mixins-lib.tabletStart() {
+      border-bottom: none;
+    }
+  }
+
+  .filter {
+    margin-left: auto;
+
+    @include mixins-lib.tabletStart() {
+      padding: 0;
+    }
+
+    @include mixins-lib.mobileStart() {
+      margin-top: 16px;
+    }
+
+    &_list {
+      padding-right: 8px;
+
+      @include mixins-lib.mobileStart() {
+        padding-right: 0;
+        padding-bottom: 12px;
+      }
+    }
+  }
+
+  .btn {
+    min-width: 88px;
+    height: 100%;
+
+    @include mixins-lib.tabletStart() {
+      min-width: 64px;
+    }
+
+    &_del {
+      color: var(--red-0);
+    }
+  }
+
+  .btn_box {
+    margin-left: auto;
+    border-bottom: 1px solid var(--gray-400);
+
+    @include mixins-lib.tabletStart() {
+      padding: 0;
+    }
+
+    @include mixins-lib.mobileStart() {
+      margin-top: 16px;
+    }
+  }
+}

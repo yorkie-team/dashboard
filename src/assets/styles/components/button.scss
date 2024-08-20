@@ -1,0 +1,467 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+@use 'sass:list';
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+$palette_gray: (
+  'white': variables.$white,
+  'gray900': var(--gray-900),
+  'gray800': var(--gray-800),
+  'gray700': var(--gray-700),
+  'gray600': var(--gray-600),
+  'gray500': var(--gray-500),
+  'gray400': var(--gray-400),
+  'gray300': var(--gray-300),
+  'gray200': var(--gray-200),
+  'gray100': var(--gray-100),
+  'gray50': var(--gray-50),
+);
+$palette_color: (
+  'orange': (
+    'dark': var(--orange-dark),
+    '0': var(--orange-0),
+    'light': var(--orange-light),
+    'alpha_dark': var(--orange-alpha-dark),
+    'alpha_0': var(--orange-alpha-0),
+    'alpha_light': var(--orange-alpha-light),
+  ),
+  'yellow': (
+    'dark': var(--yellow-dark),
+    '0': var(--yellow-0),
+    'light': var(--yellow-light),
+    'alpha_dark': var(--yellow-alpha-dark),
+    'alpha_0': var(--yellow-alpha-0),
+    'alpha_light': var(--yellow-alpha-light),
+  ),
+  'green': (
+    'dark': var(--green-dark),
+    '0': var(--green-0),
+    'light': var(--green-light),
+    'alpha_dark': var(--green-alpha-dark),
+    'alpha_0': var(--green-alpha-0),
+    'alpha_light': var(--green-alpha-light),
+  ),
+  'blue': (
+    'dark': var(--blue-dark),
+    '0': var(--blue-0),
+    'light': var(--blue-light),
+    'alpha_dark': var(--blue-alpha-dark),
+    'alpha_0': var(--blue-alpha-0),
+    'alpha_light': var(--blue-alpha-light),
+  ),
+  'red': (
+    'dark': var(--red-dark),
+    '0': var(--red-0),
+    'light': var(--red-light),
+    'alpha_dark': var(--red-alpha-dark),
+    'alpha_0': var(--red-alpha-0),
+    'alpha_light': var(--red-alpha-light),
+  ),
+  'purple': (
+    'dark': var(--purple-dark),
+    '0': var(--purple-0),
+    'light': var(--purple-light),
+    'alpha_dark': var(--purple-alpha-dark),
+    'alpha_0': var(--purple-alpha-0),
+    'alpha_light': var(--purple-alpha-light),
+  ),
+);
+$orange_map: map-deep-get($palette_color, 'orange');
+$yellow_map: map-deep-get($palette_color, 'yellow');
+$green_map: map-deep-get($palette_color, 'green');
+$blue_map: map-deep-get($palette_color, 'blue');
+$red_map: map-deep-get($palette_color, 'red');
+$purple_map: map-deep-get($palette_color, 'purple');
+$line: '.btn_line';
+
+@mixin setGray($name, $value) {
+  & {
+    background-color: $value;
+
+    @if (
+      ($name == 'gray900') or
+        ($name == 'gray800') or
+        ($name == 'gray700') or
+        ($name == 'gray600') or
+        ($name == 'gray500')
+    ) {
+      color: var(--gray-000);
+
+      &#{$line} {
+        border-color: transparent;
+      }
+    }
+
+    @if (
+      ($name == 'gray400') or
+        ($name == 'gray300') or
+        ($name == 'gray200') or
+        ($name == 'gray100') or
+        ($name == 'gray50') or
+        ($name == 'white')
+    ) {
+      color: var(--gray-600);
+    }
+  }
+
+  &:disabled,
+  &.is_disabled {
+    cursor: auto;
+    background-color: var(--gray-50);
+    color: var(--gray-300);
+  }
+}
+
+@mixin setColor($range, $name, $value) {
+  @if ($name == 'dark') {
+    & {
+      background-color: map-get($range, 'dark');
+      color: var(--gray-000);
+
+      &#{$line} {
+        border-color: map-get($range, '0');
+        background-color: map-get($range, 'alpha_0');
+        color: map-get($range, 'dark');
+
+        &:disabled,
+        &.is_disabled {
+          border-color: var(--gray-300);
+        }
+      }
+    }
+  } @else if ($name == '0') {
+    & {
+      background-color: map-get($range, '0');
+      color: var(--gray-000);
+
+      &:hover {
+        background-color: map-get($range, 'dark');
+      }
+
+      &#{$line} {
+        border-color: map-get($range, '0');
+        background-color: map-get($range, 'alpha_light');
+        color: map-get($range, 'dark');
+
+        &:hover {
+          background-color: map-get($range, 'alpha_0');
+        }
+
+        &:disabled,
+        &.is_disabled {
+          border-color: var(--gray-300);
+        }
+      }
+    }
+  } @else if ($name == 'light') {
+    & {
+      background-color: map-get($range, 'light');
+      color: var(--gray-000);
+
+      &#{$line} {
+        border-color: map-get($range, 'alpha_dark');
+        background-color: map-get($range, 'alpha_0');
+        color: map-get($range, 'dark');
+
+        &:disabled,
+        &.is_disabled {
+          border-color: var(--gray-300);
+        }
+      }
+    }
+  } @else if ($name == 'alpha_dark') {
+    & {
+      background-color: map-get($range, 'alpha_dark');
+      color: map-get($range, 'dark');
+
+      &#{$line} {
+        border-color: map-get($range, 'alpha_dark');
+
+        &:disabled,
+        &.is_disabled {
+          border-color: var(--gray-300);
+        }
+      }
+    }
+  } @else if ($name == 'alpha_0') {
+    & {
+      background-color: map-get($range, 'alpha_0');
+      color: map-get($range, 'dark');
+
+      &#{$line} {
+        border-color: map-get($range, 'alpha_0');
+
+        &:disabled,
+        &.is_disabled {
+          border-color: var(--gray-300);
+        }
+      }
+    }
+  } @else {
+    & {
+      background-color: map-get($range, 'alpha_light');
+      color: map-get($range, '0');
+
+      &#{$line} {
+        border-color: map-get($range, 'alpha_light');
+
+        &:disabled,
+        &.is_disabled {
+          border-color: var(--gray-300);
+        }
+      }
+    }
+  }
+
+  &:disabled,
+  &.is_disabled {
+    pointer-events: none;
+    background-color: var(--gray-50);
+    color: var(--gray-300);
+  }
+}
+
+.btn {
+  $line: '.btn_line';
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 0 variables.$spacing_8;
+  padding: variables.$spacing_8 variables.$spacing_16;
+  @include mixins-lib.rfonts(14, 22);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: var(--gray-000);
+  color: var(--gray-600);
+  vertical-align: top;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  box-sizing: border-box;
+
+  &:hover {
+    background-color: var(--gray-100);
+  }
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  .text {
+    margin-left: variables.$spacing_8;
+
+    &:only-child {
+      margin-left: 0;
+    }
+  }
+
+  // Icon
+  .icon {
+    width: 16px;
+    height: 16px;
+    margin-left: variables.$spacing_8;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+
+      path {
+        fill: currentColor;
+      }
+    }
+  }
+
+  // Border
+  &_line {
+    border-color: var(--gray-400);
+
+    &:disabled,
+    &.is_disabled {
+      border-color: var(--gray-300);
+    }
+  }
+
+  // Size
+  &_small {
+    padding: 7px 12px;
+    @include mixins-lib.rfonts(12, 16, 500);
+
+    .icon {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  &_large {
+    padding: 11px variables.$spacing_16;
+    @include mixins-lib.rfonts(16, 24, 600);
+
+    .icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &_star {
+    margin-left: variables.$spacing_8;
+    margin-right: -4px;
+    padding: 3px;
+    color: var(--gray-500);
+
+    .icon {
+      display: block;
+      width: 24px;
+      height: 24px;
+
+      path {
+        &:first-child {
+          color: transparent;
+          transition: color 0.2s;
+        }
+
+        &:last-child {
+          transition: color 0.2s;
+        }
+      }
+    }
+
+    &.is_active {
+      color: var(--yellow-0);
+
+      path {
+        &:first-child {
+          color: inherit;
+        }
+      }
+    }
+  }
+
+  // Color
+  @each $name, $value in $palette_gray {
+    &.#{$name} {
+      @include setGray($name, $value);
+    }
+  }
+
+  @each $name, $value in $orange_map {
+    &.orange_#{$name} {
+      @include setColor($orange_map, $name, $value);
+    }
+  }
+
+  @each $name, $value in $yellow_map {
+    &.yellow_#{$name} {
+      @include setColor($yellow_map, $name, $value);
+    }
+  }
+
+  @each $name, $value in $green_map {
+    &.green_#{$name} {
+      @include setColor($green_map, $name, $value);
+    }
+  }
+
+  @each $name, $value in $blue_map {
+    &.blue_#{$name} {
+      @include setColor($blue_map, $name, $value);
+    }
+  }
+
+  @each $name, $value in $red_map {
+    &.red_#{$name} {
+      @include setColor($red_map, $name, $value);
+    }
+  }
+
+  @each $name, $value in $purple_map {
+    &.purple_#{$name} {
+      @include setColor($purple_map, $name, $value);
+    }
+  }
+
+  // Toggle
+  &_toggle {
+    padding: 7px 11px;
+    color: var(--gray-500);
+    background-color: var(--gray-000);
+
+    &:hover {
+      background-color: var(--gray-100);
+    }
+
+    &.is_active {
+      color: var(--blue-dark);
+      background-color: var(--blue-alpha-light);
+    }
+  }
+
+  &_plus {
+    margin-left: variables.$spacing_32;
+    padding: 7px 11px 7px 10px;
+    @include mixins-lib.rfonts(12, 16, 500);
+    background-color: var(--blue-0);
+    color: var(--gray-000);
+
+    &:hover {
+      background-color: var(--blue-dark);
+    }
+
+    .icon {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  // Box
+  &_box {
+    display: flex;
+    align-items: center;
+
+    &.full_width {
+      flex: 1 1 100%;
+
+      .btn {
+        flex: 1;
+      }
+    }
+  }
+}
+
+.btn_top {
+  display: none;
+
+  @include mixins-lib.tabletStart() {
+    display: block;
+    position: fixed;
+    bottom: variables.$spacing_72;
+    right: variables.$spacing_24;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+  }
+
+  .icon {
+    @include mixins-lib.tabletStart() {
+      width: 32px;
+      height: 32px;
+      margin: 0;
+    }
+  }
+
+  svg {
+    rect {
+      fill: var(--gray-000);
+    }
+  }
+}

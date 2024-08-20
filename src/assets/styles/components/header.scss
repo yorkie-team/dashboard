@@ -1,0 +1,581 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.header {
+  position: sticky;
+  top: 0;
+  height: variables.$pcHeader;
+  z-index: variables.$z_header;
+
+  &_inner {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1920px;
+    height: variables.$pcHeader;
+    margin: 0 auto;
+    background-color: var(--gray-000);
+
+    @include mixins-lib.tabletStart() {
+      max-width: none;
+      height: 100%;
+      padding: 0 variables.$spacing_24 0 variables.$spacing_32;
+      border-bottom: 1px solid var(--gray-400);
+      box-sizing: border-box;
+      transform: none;
+
+      @supports (padding: env(safe-area-inset-right)) {
+        padding: 0 calc(variables.$spacing_24 + env(safe-area-inset-right)) 0
+          calc(variables.$spacing_32 + env(safe-area-inset-left));
+      }
+
+      @supports (padding: constant(safe-area-inset-right)) {
+        padding: 0 calc(variables.$spacing_24 + constant(safe-area-inset-right)) 0
+          calc(variables.$spacing_32 + constant(safe-area-inset-left));
+      }
+    }
+
+    @include mixins-lib.mobileStart() {
+      padding: 0 variables.$spacing_8 0 variables.$spacing_16;
+
+      @supports (padding: env(safe-area-inset-right)) {
+        padding: 0 calc(variables.$spacing_8 + env(safe-area-inset-right)) 0
+          calc(variables.$spacing_16 + env(safe-area-inset-left));
+      }
+
+      @supports (padding: constant(safe-area-inset-right)) {
+        padding: 0 calc(variables.$spacing_8 + constant(safe-area-inset-right)) 0
+          calc(variables.$spacing_16 + constant(safe-area-inset-left));
+      }
+    }
+  }
+
+  .util_box {
+    $util: '.util';
+    display: flex;
+    align-items: center;
+    padding-right: variables.$spacing_16;
+
+    @include mixins-lib.tabletStart() {
+      padding-right: 0;
+    }
+
+    #{$util}_list {
+      display: flex;
+      align-items: center;
+      height: 100%;
+
+      @include mixins-lib.tabletStart() {
+        display: none;
+      }
+    }
+
+    #{$util}_item {
+      position: relative;
+      height: 100%;
+      margin-left: variables.$spacing_8;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+
+    #{$util}_menu {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: variables.$spacing_8;
+      box-sizing: border-box;
+      @include mixins-lib.rfonts(14, 22, 300);
+      color: var(--gray-800);
+
+      .profile {
+        overflow: hidden;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+
+        .img_box {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+        }
+
+        .name {
+          @include mixins-lib.rfonts(12, 16, 600);
+          color: var(--gray-900);
+        }
+
+        img {
+          display: block;
+          width: 100%;
+        }
+      }
+    }
+
+    .input_toggle_box {
+      display: none;
+
+      @include mixins-lib.tabletStart() {
+        display: inline-flex;
+        margin-right: variables.$spacing_16;
+      }
+    }
+
+    .btn_menu {
+      display: none;
+
+      @include mixins-lib.tabletStart() {
+        display: block;
+        width: 100%;
+        padding: 0 variables.$spacing_8;
+        height: 32px;
+        box-sizing: border-box;
+      }
+
+      .icon {
+        width: 16px;
+        height: 16px;
+        color: var(--gray-500);
+
+        svg {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+    .icon_menu,
+    .icon_close {
+      display: none;
+
+      &.is_active {
+        display: block;
+      }
+    }
+  }
+
+  .user_account {
+    padding: variables.$spacing_8 variables.$spacing_16 variables.$spacing_16;
+
+    @include mixins-lib.tabletStart() {
+      margin-top: 4px;
+      padding: variables.$spacing_16 variables.$spacing_24;
+      border-top: 1px solid var(--gray-400);
+    }
+
+    @include mixins-lib.mobileStart() {
+      padding: variables.$spacing_16 variables.$spacing_16;
+    }
+
+    &_text {
+      @include mixins-lib.rfonts(14, 22, 500);
+      color: var(--gray-900);
+      word-break: break-all;
+
+      @include mixins-lib.tabletStart() {
+        @include mixins-lib.rfonts(16, 24);
+        color: var(--gray-500);
+      }
+    }
+
+    &_mail {
+      display: block;
+      margin-top: 2px;
+      @include mixins-lib.rfonts(10, 12);
+      color: var(--gray-600);
+      word-break: break-all;
+
+      @include mixins-lib.tabletStart() {
+        @include mixins-lib.rfonts(14, 22, 300);
+        color: var(--gray-500);
+      }
+    }
+  }
+
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 256px;
+
+    &_menu {
+      width: 100%;
+      padding-left: variables.$spacing_16;
+      padding-right: variables.$spacing_16;
+      box-sizing: border-box;
+      text-align: left;
+
+      &.is_active,
+      &:hover {
+        background-color: var(--gray-100);
+      }
+    }
+
+    &_text {
+      @include mixins-lib.rfonts(14, 22);
+    }
+  }
+
+  .util_list_mo {
+    @include mixins-lib.tabletStart() {
+      overflow-y: auto;
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      margin-top: 0;
+    }
+
+    &.dropdown {
+      $drop: '.dropdown';
+
+      @include mixins-lib.tabletStart() {
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      #{$drop}_menu {
+        padding-left: variables.$spacing_32;
+        padding-right: variables.$spacing_32;
+
+        @include mixins-lib.mobileStart() {
+          padding-left: variables.$spacing_16;
+          padding-right: variables.$spacing_16;
+        }
+
+        &:hover,
+        &.is_active {
+          background-color: var(--gray-100);
+        }
+
+        &.is_active {
+          & + .modal {
+            display: block;
+          }
+        }
+      }
+
+      #{$drop}_text {
+        @include mixins-lib.rfonts(16, 24);
+        color: var(--gray-800);
+      }
+
+      .highlight {
+        color: var(--red-dark);
+      }
+    }
+  }
+
+  .user_profile {
+    &.is_active {
+      & + .dropdown {
+        display: block;
+        margin-top: -(variables.$spacing_8);
+      }
+    }
+  }
+
+  .terms {
+    &_list {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 4px;
+      padding: 5px 0 3px;
+      border-top: 1px solid var(--gray-400);
+    }
+
+    &_item {
+      position: relative;
+
+      &::before {
+        position: absolute;
+        top: 11px;
+        left: 0;
+        width: 2px;
+        height: 2px;
+        border-radius: 50%;
+        background-color: var(--gray-400);
+        content: '';
+      }
+
+      &:first-child {
+        &::before {
+          display: none;
+        }
+      }
+    }
+
+    &_menu {
+      display: block;
+      padding: 5px variables.$spacing_8;
+      @include mixins-lib.rfonts(10, 10);
+      color: var(--gray-400);
+    }
+  }
+
+  &_bar {
+    display: none;
+
+    @include mixins-lib.tabletStart() {
+      display: block;
+      margin: 0 -32px;
+
+      @supports (padding: env(safe-area-inset-right)) {
+        margin: 0 calc(-32px - env(safe-area-inset-right)) 0 calc(-32px - env(safe-area-inset-left));
+      }
+
+      @supports (padding: constant(safe-area-inset-right)) {
+        margin: 0 calc(-32px - constant(safe-area-inset-right)) 0 calc(-32px - constant(safe-area-inset-left));
+      }
+    }
+
+    @include mixins-lib.mobileStart() {
+      margin: 0 -16px;
+
+      @supports (padding: env(safe-area-inset-right)) {
+        margin: 0 calc(-16px - env(safe-area-inset-right)) 0 calc(-16px - env(safe-area-inset-left));
+      }
+
+      @supports (padding: constant(safe-area-inset-right)) {
+        margin: 0 calc(-16px - constant(safe-area-inset-right)) 0 calc(-16px - constant(safe-area-inset-left));
+      }
+    }
+
+    .header_inner {
+      position: relative;
+      align-items: center;
+    }
+  }
+}
+
+.breadcrumb {
+  $bc: '.breadcrumb';
+  display: flex;
+  align-items: center;
+  padding-left: variables.$spacing_16;
+
+  @include mixins-lib.tabletStart() {
+    padding-left: 0;
+  }
+
+  .logo {
+    padding: variables.$spacing_8;
+
+    @include mixins-lib.tabletStart() {
+      width: 24px;
+      height: 24px;
+      margin-right: variables.$spacing_8;
+      padding: 0;
+    }
+
+    &_menu {
+      display: block;
+
+      @include mixins-lib.tabletStart() {
+        height: 100%;
+      }
+    }
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .dropdown {
+    position: absolute;
+    top: 43px;
+    left: 8px;
+    z-index: variables.$z_dropdown;
+    width: 327px;
+    padding: variables.$spacing_8 0;
+    border: 1px solid var(--gray-400);
+    border-radius: 4px;
+    background-color: var(--gray-000);
+
+    @include mixins-lib.tabletStart() {
+      top: 100%;
+      left: -17px;
+      margin-top: -6px;
+    }
+
+    @include mixins-lib.mobileStart() {
+      left: -4px;
+    }
+
+    &_menu {
+      padding: 12px variables.$spacing_16;
+      color: var(--gray-800);
+
+      &.is_active,
+      &:hover {
+        background-color: var(--gray-100);
+      }
+    }
+
+    &_list {
+      -webkit-overflow-scrolling: touch;
+      overflow-y: overlay;
+      max-height: 180px;
+    }
+
+    @include mixins-lib.setScrollbar(gray);
+  }
+
+  &_inner {
+    position: relative;
+
+    @include mixins-lib.tabletStart() {
+      display: none;
+    }
+
+    &:last-child {
+      @include mixins-lib.tabletStart() {
+        display: block;
+      }
+    }
+
+    &.team_list {
+      @include mixins-lib.tabletStart() {
+        height: 100%;
+      }
+
+      #{$bc}_item {
+        @include mixins-lib.tabletStart() {
+          height: 100%;
+          align-items: center;
+          margin-left: 0;
+        }
+
+        &::before {
+          @include mixins-lib.tabletStart() {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  &_item {
+    display: flex;
+    position: relative;
+    margin-left: variables.$spacing_16;
+    padding: variables.$spacing_8;
+
+    @include mixins-lib.tabletStart() {
+      align-items: center;
+      margin-left: 0;
+      padding: variables.$spacing_16 0;
+
+      &::before {
+        display: none;
+      }
+    }
+
+    &::before {
+      position: absolute;
+      top: 8px;
+      left: -8px;
+      width: 1px;
+      height: 16px;
+      background-color: var(--gray-400);
+      content: '';
+    }
+
+    &.is_active {
+      & + .dropdown {
+        display: block;
+      }
+    }
+
+    .icon {
+      display: none;
+
+      @include mixins-lib.tabletStart() {
+        display: block;
+        height: 16px;
+        color: var(--gray-500);
+      }
+    }
+  }
+
+  &_thumb {
+    overflow: hidden;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    margin-right: variables.$spacing_8;
+    border-radius: 4px;
+
+    &.emoji {
+      border: 1px solid var(--gray-400);
+      box-sizing: border-box;
+
+      img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 12px;
+        height: 12px;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    &.icon {
+      &_star_full,
+      &_square {
+        width: 12px;
+        height: 12px;
+        margin-top: 1px;
+        padding: 0 2px;
+      }
+    }
+
+    img,
+    svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    svg path {
+      fill: currentColor;
+    }
+  }
+
+  &_text {
+    flex: 1 1 0;
+    @include mixins-lib.rfonts(12, 16, 500);
+
+    word-break: break-all;
+    color: var(--gray-800);
+
+    @include mixins-lib.tabletStart() {
+      margin-right: variables.$spacing_8;
+      @include mixins-lib.rfonts(14, 22);
+    }
+  }
+}
+
+.darkmode {
+  .breadcrumb {
+    .logo {
+      svg {
+        *[fill='#514C49'] {
+          fill: var(--gray-100);
+        }
+      }
+    }
+  }
+}

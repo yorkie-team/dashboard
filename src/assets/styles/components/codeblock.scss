@@ -1,0 +1,291 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.codeblock_box {
+  position: relative;
+
+  &.is_bash {
+    .codeblock {
+      padding: 12px 0;
+    }
+  }
+
+  .btn_area {
+    position: absolute;
+    right: variables.$spacing_8;
+    top: variables.$spacing_8;
+
+    .btn {
+      padding: 9px 11px;
+    }
+
+    .icon {
+      width: 12px;
+      height: 12px;
+    }
+  }
+}
+
+.codeblock {
+  position: relative;
+  overflow-x: auto;
+  min-height: 48px;
+  padding: variables.$spacing_8 0;
+  border-radius: 4px;
+  border: 1px solid var(--gray-400);
+  background: var(--gray-000);
+  box-sizing: border-box;
+}
+
+.prism-code {
+  display: table;
+  margin: 0;
+  font-family: variables.$font-family-roboto;
+
+  .token {
+    // color: var(--gray-900);
+    // white-space: pre-wrap;
+    white-space: pre;
+  }
+
+  .token-line {
+    display: table-row;
+
+    &.is_removed {
+      background: var(--red-alpha-light);
+    }
+
+    &.is_created {
+      background: var(--green-alpha-light);
+    }
+
+    &.is_edited {
+      background: var(--yellow-alpha-light);
+    }
+  }
+
+  .string {
+    word-break: break-all;
+  }
+
+  .class-name {
+    color: var(--purple-dark);
+  }
+
+  .plain,
+  .parameter,
+  .property {
+    color: var(--gray-900);
+  }
+
+  .line-number,
+  .line-content {
+    display: table-cell;
+    padding: 0 variables.$spacing_16;
+  }
+
+  .line-number {
+    @include mixins-lib.rfonts(12, 24, 400);
+    color: var(--gray-500);
+    text-align: right;
+    user-select: none;
+  }
+
+  .line-content {
+    @include mixins-lib.rfonts(14, 24, 400);
+  }
+
+  &.language-json {
+    .token {
+      &.property {
+        color: var(--blue-dark);
+      }
+
+      &.number {
+        color: var(--orange-dark);
+      }
+    }
+  }
+
+  &.language-bash {
+    padding: 0 variables.$spacing_24;
+  }
+}
+
+.codeblock_tree_box {
+  padding: variables.$spacing_16 variables.$spacing_24;
+  border: 1px solid var(--gray-400);
+  border-radius: 0 0 4px 4px;
+  background: var(--gray-000);
+  color: var(--gray-600);
+  word-break: break-all;
+
+  .react-json-view {
+    font-family: variables.$font-family-common !important;
+
+    & > .object-container > .object-content > .object-key-val {
+      & > span:first-child {
+        .object-key::after {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .object-key-val {
+    padding: 0 !important;
+
+    span {
+      position: relative;
+      display: inline-block;
+      opacity: 1 !important;
+    }
+
+    .object-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-left: variables.$spacing_24 !important;
+    }
+
+    .icon-container {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+
+      .expanded-icon,
+      .collapsed-icon {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    & > span:first-child,
+    .variable-row {
+      display: inline-block;
+      padding: variables.$spacing_8 12px;
+      margin-bottom: variables.$spacing_16;
+      border-radius: 4px;
+      border: 1px solid var(--gray-400);
+      @include mixins-lib.rfonts(14, 24, 500);
+      letter-spacing: 0 !important;
+
+      &.is_edited {
+        border-color: var(--yellow-0);
+        background: var(--yellow-alpha-light);
+        color: var(--yellow-dark);
+      }
+
+      &.is_created {
+        border-color: var(--green-0);
+        background: var(--green-alpha-light);
+        color: var(--green-dark);
+      }
+
+      &.is_removed {
+        border-color: var(--red-0);
+        background: var(--red-alpha-light);
+        color: var(--red-dark);
+      }
+    }
+
+    .object-key,
+    .array-key {
+      position: relative;
+      padding-left: 20px;
+      @include mixins-lib.rfonts(14, 24, 500);
+    }
+
+    .variable-row,
+    .object-key-val {
+      position: relative;
+
+      &:first-of-type {
+        &::after {
+          top: -16px;
+          height: 32px;
+        }
+      }
+
+      &::after {
+        position: absolute;
+        top: 0;
+        width: 16px;
+        height: 16px;
+        border: 1px dashed var(--gray-400);
+        border-width: 0 0 1px 1px;
+        border-radius: 0 0 0 4px;
+        content: '';
+      }
+
+      &:not(:last-of-type) {
+        &::before {
+          position: absolute;
+          border: 1px dashed var(--gray-400);
+          border-width: 0 0 0 1px;
+          content: '';
+        }
+      }
+    }
+
+    .object-key-val {
+      &::after {
+        left: -17px;
+      }
+
+      &:not(:last-of-type) {
+        &::before {
+          left: -17px;
+          top: 17px;
+          bottom: 0;
+        }
+      }
+    }
+
+    .variable-row {
+      padding: variables.$spacing_8 12px !important;
+
+      &::after {
+        left: -18px;
+      }
+
+      &:not(:last-of-type) {
+        &::before {
+          left: -18px;
+          top: 16px;
+          bottom: -20px;
+        }
+      }
+
+      .object-key {
+        padding: 0;
+        border: 0;
+        margin: 0;
+
+        &::before,
+        &::after {
+          display: none;
+        }
+      }
+
+      .variable-value {
+        padding-right: 0 !important;
+      }
+    }
+
+    .brace-row {
+      display: block;
+      width: 0;
+      font-size: 0;
+    }
+
+    .object-meta-data {
+      position: absolute;
+    }
+  }
+
+  .node-ellipsis {
+    margin-left: 4px;
+  }
+}

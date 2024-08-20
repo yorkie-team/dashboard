@@ -1,0 +1,117 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.document_header {
+  .title_box {
+    display: flex;
+    position: relative;
+    align-items: center;
+    min-height: 28px;
+    padding: 0 variables.$spacing_40 0 variables.$spacing_8;
+
+    @include mixins-lib.tabletStart() {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0;
+    }
+  }
+
+  .dropdown {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    z-index: 1;
+  }
+
+  .title_inner {
+    display: flex;
+    align-items: flex-end;
+    padding-left: variables.$spacing_16;
+
+    @include mixins-lib.tabletStart() {
+      padding: variables.$spacing_16 0 0;
+    }
+  }
+
+  .btn {
+    .icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    &_back {
+      padding: 0;
+      color: var(--gray-800);
+    }
+
+    &_more {
+      position: absolute;
+      top: 2px;
+      right: variables.$spacing_8;
+      padding: 0;
+
+      @include mixins-lib.tabletStart() {
+        top: 0;
+        right: 0;
+      }
+
+      .icon svg path {
+        stroke: var(--gray-800);
+      }
+    }
+  }
+
+  .title {
+    @include mixins-lib.rfonts(20, 28, 600);
+    color: var(--gray-800);
+    word-break: break-all;
+  }
+
+  .date {
+    padding: 0 0 3px variables.$spacing_16;
+    @include mixins-lib.rfonts(12, 16, 400);
+    color: var(--gray-600);
+    flex: none;
+  }
+
+  .info_list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 54px;
+    margin-top: variables.$spacing_8;
+    padding: 0 variables.$spacing_16;
+    box-sizing: border-box;
+
+    @include mixins-lib.tabletStart() {
+      flex-direction: column;
+      align-items: flex-start;
+      min-height: 52px;
+      padding: 0;
+    }
+  }
+
+  .info_item {
+    & + .info_item {
+      @include mixins-lib.tabletStart() {
+        padding-top: 10px;
+      }
+    }
+  }
+
+  .info_title,
+  .info_desc {
+    display: inline-block;
+  }
+
+  .info_title {
+    margin-right: 24px;
+    @include mixins-lib.rfonts(12, 16, 600);
+    color: var(--gray-600);
+  }
+
+  .info_desc {
+    @include mixins-lib.rfonts(14, 22, 500);
+    color: var(--gray-800);
+  }
+}

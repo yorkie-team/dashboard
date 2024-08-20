@@ -1,0 +1,174 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.usage {
+  @include mixins-lib.tabletStart() {
+    padding: 0 32px;
+  }
+
+  @include mixins-lib.mobileStart() {
+    padding: 0 16px;
+  }
+
+  &_list {
+    display: flex;
+    align-items: center;
+    margin: -16px 0 0 -16px;
+
+    @include mixins-lib.tabletStart() {
+      flex-wrap: wrap;
+    }
+
+    @include mixins-lib.mobileStart() {
+      display: block;
+      margin: 0;
+    }
+  }
+
+  &_item {
+    margin: 16px 0 0 16px;
+
+    @include mixins-lib.mobileStart() {
+      margin: 16px 0 0;
+    }
+
+    &:only-child {
+      @include mixins-lib.tabletStart() {
+        flex-basis: 100%;
+      }
+    }
+
+    &:first-child {
+      @include mixins-lib.mobileStart() {
+        margin-top: 0;
+      }
+    }
+
+    &.bar_type {
+      min-width: 336px;
+
+      @include mixins-lib.tabletStart() {
+        flex-basis: calc(50% - 16px);
+        min-width: auto;
+      }
+
+      @include mixins-lib.mobileStart() {
+        flex-basis: auto;
+      }
+
+      .info_text {
+        margin-left: 0;
+        color: var(--gray-600);
+      }
+    }
+
+    &.link_type {
+      min-width: auto;
+
+      .title {
+        margin-bottom: 16px;
+      }
+
+      .info_text {
+        @include mixins-lib.rfonts(20, 28, 400);
+      }
+    }
+
+    &.big_type {
+      .title {
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+
+      .icon {
+        margin-top: -1px;
+        width: 24px;
+        height: 24px;
+      }
+
+      .info_text {
+        @include mixins-lib.rfonts(24, 32, 500);
+      }
+    }
+  }
+
+  &_menu {
+    display: block;
+    position: relative;
+  }
+
+  .title {
+    display: block;
+    margin-bottom: 19px;
+    @include mixins-lib.rfonts(14, 22);
+    color: var(--gray-900);
+
+    @include mixins-lib.mobileStart() {
+      margin-bottom: 8px;
+    }
+
+    &_box {
+      display: flex;
+    }
+  }
+
+  .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &_text {
+      margin-left: 6px;
+      @include mixins-lib.rfonts(16, 24, 500);
+      color: var(--gray-900);
+
+      &:last-child {
+        margin-left: 0;
+      }
+
+      &:first-of-type {
+        order: 1;
+      }
+
+      &.highlight {
+        color: var(--orange-0);
+      }
+    }
+  }
+
+  .icon {
+    width: 16px;
+    height: 16px;
+    margin-top: 3px;
+    margin-left: 9px;
+    color: var(--gray-900);
+    transform: rotate(-90deg);
+
+    svg {
+      width: 100%;
+      height: 100%;
+
+      path {
+        fill: currentColor;
+      }
+    }
+  }
+
+  .progress_bar {
+    display: block;
+    position: relative;
+    height: 4px;
+    margin-top: 18px;
+    background-color: var(--gray-300);
+    border-radius: 20px;
+
+    .now {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      border-radius: 20px;
+      background-color: var(--orange-0);
+    }
+  }
+}

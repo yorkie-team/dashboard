@@ -1,0 +1,244 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.card {
+  @include mixins-lib.tabletStart() {
+    padding: 0 variables.$spacing_32;
+  }
+
+  @include mixins-lib.mobileStart() {
+    padding: 0 variables.$spacing_16;
+  }
+
+  &_list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin: -16px 0 0 -16px;
+
+    @include mixins-lib.tabletStart() {
+      margin: 0;
+    }
+  }
+
+  &_item {
+    position: relative;
+    width: 100%;
+    max-width: 336px;
+    margin: variables.$spacing_16 0 0 variables.$spacing_16;
+    border: 1px solid var(--gray-400);
+    border-radius: 4px;
+    box-sizing: border-box;
+
+    @include mixins-lib.pcStart() {
+      flex-basis: calc((100% / 3) - 16px);
+    }
+
+    @include mixins-lib.tabletStart() {
+      flex-basis: calc(50% - 8px);
+      min-width: auto;
+      max-width: none;
+      margin: variables.$spacing_8;
+
+      &:nth-child(-n + 2) {
+        margin-top: 0;
+      }
+
+      &:nth-child(2n + 1) {
+        margin-left: 0;
+      }
+
+      &:nth-child(2n) {
+        margin-right: 0;
+      }
+
+      &:nth-last-child(-n + 2) {
+        margin-bottom: 0;
+      }
+    }
+
+    @include mixins-lib.mobileStart() {
+      flex-basis: 100%;
+      margin: variables.$spacing_16 0 0;
+
+      &:nth-child(2) {
+        margin-top: variables.$spacing_16;
+      }
+
+      &:nth-child(2n + 1) {
+        margin-left: 0;
+      }
+
+      &:nth-child(2n) {
+        margin-right: 0;
+      }
+
+      &:nth-last-child(-n + 2) {
+        margin-bottom: 0;
+      }
+    }
+
+    .link {
+      display: block;
+      padding: variables.$spacing_16 23px 15px;
+
+      @include mixins-lib.tabletStart() {
+        padding-bottom: variables.$spacing_24;
+      }
+    }
+  }
+
+  .title {
+    &_thumbnail {
+      display: block;
+      width: 40px;
+      height: 40px;
+      margin-bottom: 9px;
+
+      img {
+        display: block;
+        width: 100%;
+      }
+
+      &.emoji {
+        padding: 4px;
+        border: 1px solid var(--gray-400);
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+    }
+
+    &_text {
+      display: block;
+      height: 56px;
+      @include mixins-lib.ellipsis-multiline(2);
+      @include mixins-lib.rfonts(20, 28, 600);
+      color: var(--gray-800);
+
+      @include mixins-lib.tabletStart() {
+        height: 48px;
+        @include mixins-lib.rfonts(16, 24);
+      }
+    }
+  }
+
+  .team {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 11px 30px 0 0;
+
+    &_thumb {
+      overflow: hidden;
+      position: relative;
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &_text {
+      flex: 1 1 0;
+      margin-left: variables.$spacing_8;
+      @include mixins-lib.rfonts(12, 16, 500);
+      color: var(--gray-800);
+      word-break: break-all;
+      @include mixins-lib.ellipsis();
+
+      @include mixins-lib.tabletStart() {
+        @include mixins-lib.rfonts(12, 16);
+      }
+    }
+  }
+
+  .info {
+    &_list {
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: min-content;
+      height: 46px;
+      margin-top: 15px;
+
+      @include mixins-lib.tabletStart() {
+        margin-top: variables.$spacing_16;
+      }
+    }
+
+    &_item {
+      margin: 0 14px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    &_title {
+      flex: 0 0 auto;
+      margin-right: variables.$spacing_32;
+      @include mixins-lib.rfonts(12, 16, 400);
+      color: var(--gray-400);
+      white-space: nowrap;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+
+    &_desc {
+      flex: 0 0 auto;
+      margin-right: variables.$spacing_32;
+      @include mixins-lib.rfonts(14, 22, 500);
+      color: var(--gray-600);
+      white-space: nowrap;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .btn_favorite,
+  .btn_favorite_full {
+    position: absolute;
+    top: 19px;
+    right: 19px;
+    margin: 0;
+
+    @include mixins-lib.tabletStart() {
+      top: 21px;
+      right: 21px;
+    }
+
+    .icon {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .btn_favorite {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    color: var(--gray-500);
+  }
+
+  .btn_favorite_full {
+    width: 33px;
+    height: 33px;
+    padding: 5px;
+    color: var(--yellow-0);
+  }
+}

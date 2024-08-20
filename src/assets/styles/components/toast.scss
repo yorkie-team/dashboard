@@ -1,0 +1,45 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.toast_box {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: max-content;
+  padding: 8px;
+  border-radius: 8px;
+  background: var(--gray-800);
+  @include mixins-lib.rfonts(12, 16, 500);
+  color: var(--gray-000);
+  transform: translate(-50%, calc(-100% - 16px));
+  opacity: 1;
+  animation: toast 0.2s linear;
+
+  .icon {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: variables.$spacing_8;
+  }
+
+  svg {
+    display: block;
+
+    path {
+      fill: currentColor;
+    }
+  }
+}
+
+@keyframes toast {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, calc(-100% - 6px));
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, calc(-100% - 16px));
+  }
+}

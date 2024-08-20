@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+@use './components/index.scss';
+@use './pages/common_community.scss';
+@use './pages/common_error.scss';
+@use './pages/admin_login.scss';
+@use './pages/admin_project_api.scss';
+@use './pages/admin_project_create.scss';
+@use './pages/admin_project_document.scss';
+@use './pages/admin_project_history.scss';
+@use './pages/admin_project_init.scss';
+@use './pages/admin_project_member.scss';
+@use './pages/admin_project_overview.scss';
+@use './pages/admin_setting_account.scss';
+@use './pages/admin_setting_project.scss';
+@use './pages/admin_setting_team.scss';
+@use './pages/admin_team_member.scss';
+@use './pages/admin_team_overview.scss';

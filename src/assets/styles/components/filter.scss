@@ -1,0 +1,102 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.filter {
+  flex: none;
+
+  @include mixins-lib.tabletStart() {
+    padding-left: variables.$spacing_32;
+    padding-right: variables.$spacing_32;
+  }
+
+  @include mixins-lib.mobileStart() {
+    width: 100%;
+    padding-left: variables.$spacing_16;
+    padding-right: variables.$spacing_16;
+    box-sizing: border-box;
+  }
+
+  &_list {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--gray-400);
+
+    @include mixins-lib.mobileStart() {
+      display: block;
+    }
+  }
+
+  &_item {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    & + & {
+      margin-left: variables.$spacing_16;
+
+      @include mixins-lib.mobileStart() {
+        margin-left: 0;
+      }
+    }
+  }
+
+  &_title {
+    @include mixins-lib.rfonts(12, 16, 500);
+    color: var(--gray-500);
+  }
+
+  &_desc {
+    padding: 7px;
+    @include mixins-lib.rfonts(12, 16, 400);
+    color: var(--gray-800);
+  }
+
+  .btn {
+    margin: 0;
+
+    .text {
+      margin-left: variables.$spacing_16;
+    }
+  }
+
+  .icon {
+    &_arrow {
+      width: 12px;
+      height: 12px;
+      margin-left: 13px;
+      color: var(--gray-800);
+    }
+
+    &_check {
+      svg path {
+        fill: currentColor;
+      }
+    }
+  }
+
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 200px;
+    margin-top: -5px;
+    z-index: 10;
+
+    @include mixins-lib.mobileStart() {
+      left: 0;
+      right: 0;
+      width: auto;
+      margin-top: 0;
+      box-shadow: 0 8px 16px -8px rgb(0 0 0 / 20%);
+    }
+
+    &_list {
+      overflow-y: overlay;
+      max-height: 200px;
+    }
+
+    &_text:only-child {
+      padding-left: 26px;
+    }
+  }
+}

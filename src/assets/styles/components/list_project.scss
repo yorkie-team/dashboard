@@ -1,0 +1,163 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.project_table {
+  padding: 0 variables.$spacing_16;
+
+  @include mixins-lib.tabletStart() {
+    display: none;
+  }
+
+  .thead {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    @include mixins-lib.rfonts(12, 16, 600);
+    color: var(--gray-600);
+
+    @include mixins-lib.tabletStart() {
+      padding-right: 0;
+      padding-left: 0;
+      @include mixins-lib.rfonts(8, 8);
+    }
+  }
+
+  .tbody {
+    &_list {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-top: variables.$spacing_24;
+    }
+
+    &_item {
+      display: flex;
+      width: 100%;
+      @include mixins-lib.rfonts(14, 22, 500);
+      color: var(--gray-800);
+      word-break: break-all;
+
+      &:not(:first-of-type) {
+        @include mixins-lib.tabletStart() {
+          margin-top: variables.$spacing_24;
+        }
+      }
+
+      &:hover {
+        background-color: var(--gray-100);
+      }
+
+      .link {
+        display: flex;
+        flex: 1;
+        flex-wrap: wrap;
+        @include mixins-lib.tabletStart() {
+          display: grid;
+          grid-template-areas:
+            'item1 item1 item1 item1 item3'
+            'item1 item1 item1 item1 item4'
+            'item2 item2 item2 item2 item4';
+        }
+      }
+    }
+  }
+
+  .th,
+  .td {
+    padding: variables.$spacing_16;
+    box-sizing: border-box;
+
+    & + .td,
+    & + .th {
+      margin-left: variables.$spacing_24;
+      text-align: right;
+      @include mixins-lib.tabletStart() {
+        margin-left: 0;
+      }
+    }
+
+    &:first-child {
+      flex: 1;
+      @include mixins-lib.tabletStart() {
+        padding-left: 0;
+      }
+    }
+
+    &.storage {
+      @include mixins-lib.tabletStart() {
+        padding-right: 0;
+      }
+    }
+  }
+
+  .th {
+    &:not(.select) {
+      @include mixins-lib.tabletStart() {
+        width: 50%;
+      }
+    }
+
+    &.connections,
+    &.load {
+      @include mixins-lib.tabletStart() {
+        display: none;
+      }
+    }
+  }
+
+  .td {
+    &:not(.select) {
+      @include mixins-lib.tabletStart() {
+        width: auto;
+        padding: 0;
+      }
+    }
+
+    &.title {
+      @include mixins-lib.tabletStart() {
+        padding-right: variables.$spacing_16;
+        grid-area: item1;
+      }
+    }
+
+    &.connections {
+      @include mixins-lib.tabletStart() {
+        grid-area: item2;
+        text-align: left;
+      }
+    }
+
+    &.storage {
+      @include mixins-lib.tabletStart() {
+        grid-area: item3;
+      }
+    }
+
+    &.load {
+      @include mixins-lib.tabletStart() {
+        grid-area: item4;
+      }
+    }
+
+    &.connections,
+    &.load {
+      @include mixins-lib.tabletStart() {
+        order: 1;
+        padding-top: 3px;
+
+        @include mixins-lib.rfonts(12, 16, 400);
+        color: var(--gray-600);
+      }
+    }
+  }
+
+  .storage,
+  .load {
+    padding-left: 12px;
+    width: 160px;
+  }
+
+  .connections {
+    width: 120px;
+  }
+}

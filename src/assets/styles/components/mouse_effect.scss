@@ -1,0 +1,115 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.mouse_effect {
+  $mouse: '.mouse_effect';
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 20;
+  max-width: 192px;
+  padding: 20px;
+
+  @include mixins-lib.tabletStart() {
+    display: none;
+  }
+
+  &_list {
+    display: flex;
+    align-items: center;
+  }
+
+  &_item {
+    & + #{$mouse}_item {
+      margin-left: variables.$spacing_16;
+    }
+
+    &.is_active {
+      #{$mouse}_menu {
+        opacity: 1;
+      }
+    }
+  }
+
+  &_menu {
+    display: block;
+    width: 36px;
+    height: 36px;
+    opacity: 0.3;
+
+    svg {
+      rect {
+        &:first-child {
+          fill: var(--gray-800);
+        }
+      }
+    }
+  }
+
+  .btn_box {
+    flex-direction: column;
+    align-items: initial;
+    margin-top: variables.$spacing_16;
+
+    .btn {
+      justify-content: flex-start;
+      margin: 0;
+      border-radius: 8px;
+
+      &.is_hide {
+        .icon {
+          svg {
+            &:first-child {
+              display: none;
+            }
+
+            &:last-child {
+              display: block;
+            }
+          }
+        }
+      }
+
+      .icon {
+        width: 20px;
+        height: 20px;
+
+        svg {
+          &:last-child {
+            display: none;
+          }
+        }
+      }
+
+      &:hover {
+        background-color: var(--gray-900);
+
+        &.is_hide {
+          .icon {
+            svg {
+              &:first-child {
+                display: block;
+              }
+
+              &:last-child {
+                display: none;
+              }
+            }
+          }
+        }
+
+        .icon {
+          svg {
+            &:first-child {
+              display: none;
+            }
+
+            &:last-child {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+}

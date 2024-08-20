@@ -1,0 +1,251 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.member_list {
+  @include mixins-lib.tabletStart() {
+    padding: 0 variables.$spacing_32;
+  }
+
+  @include mixins-lib.mobileStart() {
+    padding: 0 variables.$spacing_16;
+  }
+}
+
+.member_item {
+  display: flex;
+  align-items: center;
+  padding: 10px 10px 10px variables.$spacing_16;
+
+  & + & {
+    margin-top: 6px;
+  }
+
+  .member_info {
+    display: flex;
+    flex: 1;
+    align-items: center;
+
+    @include mixins-lib.mobileStart() {
+      align-items: flex-start;
+    }
+
+    .align_box {
+      display: flex;
+      flex-basis: 100%;
+
+      @include mixins-lib.mobileStart() {
+        display: block;
+      }
+    }
+  }
+
+  .profile {
+    flex: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+
+    img {
+      width: 100%;
+      vertical-align: top;
+    }
+
+    .icon {
+      display: block;
+      width: 100%;
+      height: 100%;
+      color: var(--gray-900);
+    }
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .info_box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-left: variables.$spacing_16;
+
+    @include mixins-lib.mobileStart() {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .details {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 48%;
+    padding-right: variables.$spacing_16;
+    box-sizing: border-box;
+
+    @include mixins-lib.mobileStart() {
+      display: block;
+      width: 100%;
+    }
+
+    & + .authority,
+    & + .dropdown_box {
+      @include mixins-lib.mobileStart() {
+        padding-top: variables.$spacing_8;
+      }
+    }
+
+    &_desc {
+      padding-right: variables.$spacing_16;
+      @include mixins-lib.rfonts(14, 22, 600);
+      color: var(--gray-900);
+      word-break: break-all;
+    }
+
+    &_sub_desc {
+      flex: 1;
+      @include mixins-lib.rfonts(12, 16, 300);
+      color: var(--gray-800);
+      word-break: break-all;
+      @include mixins-lib.ellipsis;
+    }
+  }
+
+  .authority {
+    min-width: 90px;
+    margin-right: variables.$spacing_8;
+    @include mixins-lib.rfonts(14, 22, 600);
+    color: var(--gray-900);
+    text-align: right;
+    word-break: break-all;
+
+    @include mixins-lib.mobileStart() {
+      min-width: 0;
+      text-align: left;
+    }
+  }
+
+  .dropdown {
+    $this: '.dropdown';
+    display: block;
+    position: absolute;
+    top: 30px;
+    z-index: variables.$z_dropdown;
+    width: 200px;
+
+    &_box {
+      position: relative;
+
+      @include mixins-lib.mobileStart() {
+        padding-left: 0;
+      }
+
+      #{$this} {
+        right: 0;
+        width: 100px;
+
+        @include mixins-lib.mobileStart() {
+          left: 0;
+        }
+      }
+    }
+
+    &_title {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      min-width: 90px;
+      padding: 0;
+
+      @include mixins-lib.tabletStart() {
+        justify-content: flex-start;
+      }
+
+      @include mixins-lib.mobileStart() {
+        padding: 0;
+      }
+
+      .icon {
+        display: block;
+        color: var(--gray-800);
+
+        svg {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      &.is_active {
+        .icon {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    &_list {
+      overflow-y: auto;
+      max-height: 200px;
+      @include mixins-lib.setScrollbar(orange);
+    }
+  }
+
+  .guide {
+    &_area {
+      display: flex;
+      flex: 1 0 auto;
+      justify-content: center;
+      padding: 0 variables.$spacing_8;
+
+      @include mixins-lib.tabletStart() {
+        padding: 0;
+      }
+
+      @include mixins-lib.mobileStart() {
+        justify-content: flex-start;
+      }
+    }
+
+    &_text {
+      display: block;
+      max-width: 300px;
+      @include mixins-lib.rfonts(12, 16, 300);
+      word-break: break-all;
+    }
+  }
+
+  .add_view_area {
+    flex: none;
+    margin-left: auto;
+    position: relative;
+
+    @include mixins-lib.mobileStart() {
+      margin-bottom: auto;
+    }
+
+    .btn_add_view {
+      display: block;
+      margin: 0;
+      padding: 5px;
+      color: var(--gray-800);
+      font-size: 0;
+      line-height: normal;
+
+      &.is_active {
+        & + .dropdown {
+          display: block;
+        }
+      }
+    }
+
+    .dropdown {
+      left: -179px;
+
+      &_menu {
+        padding-top: 12px;
+        padding-bottom: 12px;
+      }
+    }
+  }
+}

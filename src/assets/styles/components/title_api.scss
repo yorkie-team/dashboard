@@ -1,0 +1,67 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.api_title {
+  .title_box {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-right: 185px;
+    box-sizing: border-box;
+
+    @include mixins-lib.mobileStart() {
+      flex-wrap: wrap;
+    }
+
+    @include mixins-lib.mobileXS() {
+      padding-right: 120px;
+    }
+  }
+
+  .title {
+    margin-right: 24px;
+    @include mixins-lib.rfonts(20, 28, 600);
+    color: var(--gray-800);
+  }
+
+  .input_toggle_box {
+    @include mixins-lib.mobileStart() {
+      margin: 4px 0;
+    }
+  }
+
+  .btn_refresh {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    padding: 0 12px;
+    height: 32px;
+    @include mixins-lib.rfonts(12, 16, 400);
+    color: var(--gray-600);
+    transform: translateY(-50%);
+
+    @include mixins-lib.mobileXS() {
+      max-width: 120px;
+    }
+  }
+
+  .icon {
+    display: inline-block;
+    flex: 1 0 auto;
+    margin-right: 8px;
+    vertical-align: top;
+
+    svg {
+      display: block;
+    }
+  }
+
+  .desc {
+    margin-top: 10px;
+    @include mixins-lib.rfonts(12, 16, 400);
+    color: var(--gray-600);
+  }
+}
