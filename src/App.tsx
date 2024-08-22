@@ -15,7 +15,7 @@
  */
 
 import React, { useEffect } from 'react';
-import './app.scss';
+import './assets/styles/style.scss'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import {
   PublicRoute,

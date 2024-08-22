@@ -1,0 +1,26 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.pagination {
+  .btn_box {
+    justify-content: center;
+  }
+
+  .btn {
+    min-width: 90px;
+    transition: border-color 0.2s, color 0.2s;
+
+    &:disabled,
+    &.is_disabled {
+      pointer-events: none;
+      background-color: var(--gray-100);
+      color: var(--gray-400);
+    }
+
+    &:hover {
+      border-color: var(--gray-800);
+      background-color: var(--gray-000);
+      color: var(--gray-800);
+    }
+  }
+}

@@ -1,0 +1,63 @@
+@use '../base/normalize';
+@use '../base/common';
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.project_create_page {
+  @include mixins-lib.setContainerPC(184px, variables.$spacing_72);
+
+  .container {
+    @include mixins-lib.tabletStart() {
+      padding-bottom: variables.$spacing_64;
+    }
+
+    @include mixins-lib.mobileStart() {
+      padding-bottom: calc(variables.$spacing_96 + variables.$spacing_16);
+    }
+  }
+
+  .content {
+    padding: 0 177px;
+
+    @include mixins-lib.tabletStart() {
+      padding: variables.$spacing_72 variables.$spacing_32 0;
+    }
+
+    @include mixins-lib.mobileStart() {
+      padding: variables.$spacing_64 0 0;
+    }
+  }
+
+  .title {
+    display: block;
+    @include mixins-lib.rfonts(24, 32, 600);
+    color: var(--gray-900);
+
+    &_box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      @include mixins-lib.tabletStart() {
+        padding: 0;
+      }
+
+      @include mixins-lib.mobileStart() {
+        padding: 0 variables.$spacing_16;
+      }
+
+      .btn {
+        margin: 0;
+        padding-left: 12px;
+        padding-right: 12px;
+        @include mixins-lib.rfonts(12, 16, 500);
+      }
+    }
+  }
+
+  .footer {
+    @include mixins-lib.tabletStart() {
+      display: none;
+    }
+  }
+}

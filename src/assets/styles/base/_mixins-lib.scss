@@ -1,0 +1,346 @@
+@use 'sass:list';
+@use 'sass:math';
+@use 'sass:meta';
+@use './variables';
+
+$root-em: 10;
+
+/* [px, em fonts mixin]
+  - Specify font-size, line-height, and font-weight. line-height is calculated in em relative to font-size.
+  - However, if line-height is specified in pixels, it will be directly set as pixels instead of being calculated in em.
+  - line-height and font-weight are optional.
+  - ex)
+    1. @include fonts(14,18,300);
+    2. @include fonts(14,18px,"normal");
+    3. @include fonts(14");
+    4. @include fonts(14,20);
+*/
+@mixin fonts($size: $initial-font-size, $lineHeight: false, $bold: false) {
+  @if math.is-unitless($size) {
+    $size: 1px * $size;
+  }
+  font-size: $size;
+
+  $lhr: 0;
+  @if $lineHeight {
+    @if $lineHeight == 'normal' {
+      line-height: normal;
+    } @else {
+      @if math.is-unitless($lineHeight) {
+        $lineHeight: 1px * $lineHeight;
+        $lh: calc(math.ceil(calc($lineHeight * 100 / $size)) / 100);
+        $lhr: $lh * 1em;
+      } @else {
+        $lhr: $lineHeight;
+      }
+      line-height: $lhr;
+    }
+  }
+  @if $bold {
+    font-weight: setFontWeight($bold);
+  }
+}
+
+/* [rem unit fonts mixin]
+  - line-height: normal
+  - Specify font-size, line-height, and font-weight. line-height is calculated in rem relative to font-size.
+  - line-height and font-weight are optional.
+  - ex)
+    1. @include rfonts(16);
+    2. @include rfonts(16, 20);
+    3. @include rfonts(16, 20px);
+    4. @include rfonts(16, 20px, 400);
+    5. @include rfonts(16, false, 400);
+    6. @include rfonts(16, normal, bold);
+*/
+@mixin rfonts($size: $initial-font-size, $lineHeight: false, $bold: false) {
+  $lhr: 0;
+  font-size: setRem($size);
+  @if $lineHeight {
+    @if $lineHeight == 'normal' {
+      line-height: normal;
+    } @else {
+      @if math.is-unitless($lineHeight) {
+        $lhr: calc(math.ceil(calc($lineHeight * 100 / $size)) / 100);
+      } @else {
+        $lhr: $lineHeight;
+      }
+      line-height: $lhr;
+    }
+  }
+  @if $bold {
+    font-weight: setFontWeight($bold);
+  }
+}
+
+@function setRem($size) {
+  $remSize: calc(($size * 100 / $root-em) / 100);
+  @return $remSize * 1rem;
+}
+
+@function setFontWeight($bold) {
+  @if $bold == 'thin' {
+    @return 100;
+  } @else if $bold == 'light' {
+    @return 300;
+  } @else if $bold == 'normal' {
+    @return 400;
+  } @else if $bold == 'bold' {
+    @return 700;
+  } @else {
+    @return $bold;
+  }
+}
+
+// utilities etc.
+// Hide text for accessibility >> @extend %visuallyhidden;
+// It is specified as .blind in common.scss. <span class="blind">invisible</span> etc.
+%visuallyhidden {
+  margin: -1px !important;
+  padding: 0 !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  position: absolute;
+}
+
+@mixin ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Multiline ellipsis (only. webkit)
+@mixin ellipsis-multiline($line) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+
+@mixin fixedFull {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+// MediaQuery
+// @include mixins-lib.tabletStart()
+@mixin pcStart {
+  @media screen and (min-width: #{variables.$pcMin + 1}) {
+    @content;
+  }
+}
+
+@mixin tabletStart {
+  @media screen and (max-width: #{variables.$pcMin}) {
+    @content;
+  }
+}
+
+@mixin mobileStart {
+  @media screen and (max-width: #{variables.$tabletMin - 1}) {
+    @content;
+  }
+}
+
+@mixin mobileXS {
+  @media screen and (max-width: #{variables.$mobileMin - 1}) {
+    @content;
+  }
+}
+
+// Container
+// @include mixins-lib.setContainerPC();
+@mixin setContainerPC($padding-top: false, $padding-bottom: false) {
+  .container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: $padding-top 40px $padding-bottom;
+    box-sizing: border-box;
+
+    @media screen and (max-width: 1023px) {
+      max-width: none;
+      padding: 0;
+    }
+  }
+}
+
+// Sticky
+@mixin tabSticky {
+  position: sticky;
+  top: 64px;
+  z-index: variables.$z_tab;
+  background-color: var(--gray-000);
+}
+
+// Scrollbar Custom
+// @include mixins-lib.setScrollbar();
+@mixin setScrollbar($color) {
+  @if ($color == gray) {
+    *::-webkit-scrollbar {
+      width: 10px;
+      height: 4px;
+    }
+
+    /* scrollbar thumb color */
+    *::-webkit-scrollbar-thumb {
+      background: var(--gray-400);
+      border-radius: 10px;
+      border: 3px solid var(--gray-000);
+    }
+
+    /* scrollbar track color */
+    *::-webkit-scrollbar-track {
+      background: transparent;
+    }
+  } @else if ($color == orange) {
+    *::-webkit-scrollbar {
+      width: 3px;
+      height: 3px;
+    }
+
+    *::-webkit-scrollbar-thumb {
+      background: var(--orange-alpha-dark);
+      border-radius: 2px;
+    }
+
+    *::-webkit-scrollbar-track {
+      background: transparent;
+    }
+  }
+}
+
+/* safe area
+  - @include safeArea(true, padding, 10px 5px right left);
+  - @include safeArea(false, padding, 5px bottom);
+  - $all: true / false(multi / single)
+  - $attr: selector
+  - $val...: value direction
+*/
+@mixin safeArea($all: false, $attr: padding, $val...) {
+  @if (($attr == padding or $attr == margin) and $all == false) {
+    #{$attr}-#{separateVal($val, false)}: safeAresLoop($all, 'env', $attr, $val);
+    #{$attr}-#{separateVal($val, false)}: safeAresLoop($all, 'constant', $attr, $val);
+  } @else {
+    #{$attr}: safeAresLoop($all, 'env', $attr, $val);
+    #{$attr}: safeAresLoop($all, 'constant', $attr, $val);
+  }
+}
+
+/* slice dircetion value
+  - $boolean: true/false (value / direction)
+*/
+@function separateVal($val, $boolean) {
+  $val: list.nth($val, 1);
+  $returnVal: 0;
+  $returnStringVal: 0;
+  $stringIdx: 0;
+  @for $i from 1 through list.length($val) {
+    @if (meta.type-of(list.nth($val, $i)) != string and $i == 1) {
+      $returnVal: list.nth($val, $i);
+    } @else if (meta.type-of(list.nth($val, $i)) != string and $i != 1) {
+      $returnVal: list.join($returnVal, list.nth($val, $i));
+    } @else if (meta.type-of(list.nth($val, $i)) == string and $stringIdx == 0) {
+      $stringIdx: $i;
+      $returnStringVal: list.nth($val, $i);
+    } @else {
+      $returnStringVal: list.join($returnStringVal, list.nth($val, $i));
+    }
+  }
+
+  @if ($boolean == true) {
+    @return $returnVal;
+  } @else {
+    @return $returnStringVal;
+  }
+}
+
+@function dirFlag($receiveDirFlag, $receiveDir) {
+  @if ($receiveDirFlag != list.length($receiveDir)) {
+    @return $receiveDirFlag + 1;
+  }
+  @return $receiveDirFlag;
+}
+
+@function safeAresLoop($all, $set, $attr, $val) {
+  $dir: top, right, bottom, left;
+  $receiveDir: separateVal($val, false);
+  $receiveDirFlag: 1;
+  $realVal: separateVal($val, true);
+  $returnVal: '';
+  $safeArea: '';
+
+  // transform value to 4 values
+  @if (list.length($realVal) == 1) {
+    $realVal: $realVal $realVal $realVal $realVal;
+  } @else if (list.length($realVal) == 2) {
+    $realVal: list.nth($realVal, 1) list.nth($realVal, 2) list.nth($realVal, 1) list.nth($realVal, 2);
+  } @else if (list.length($realVal) == 3) {
+    $realVal: list.nth($realVal, 1) list.nth($realVal, 2) list.nth($realVal, 3) list.nth($realVal, 2);
+  } @else if (list.length($realVal) == 4) {
+    $realVal: $realVal;
+  } @else {
+    @error "safeAresLoop length of $val error";
+  }
+
+  @for $i from 1 through 4 {
+    // check $set (env or constant)
+    @if ($set == env) {
+      $safeArea: env(safe-area-inset-#{list.nth($dir, $i)});
+    } @else if ($set == constant) {
+      $safeArea: constant(safe-area-inset-#{list.nth($dir, $i)});
+    } @else {
+      @error "safeAresLoop $set error";
+    }
+
+    // returnVal setting
+    @if ($i == 1) {
+      @if ((list.nth($dir, $i) == list.nth($receiveDir, $receiveDirFlag)) == true and list.nth($realVal, $i) == 0) {
+        $returnVal: $safeArea;
+        $receiveDirFlag: dirFlag($receiveDirFlag, $receiveDir);
+      } @else if
+        ((list.nth($dir, $i) == list.nth($receiveDir, $receiveDirFlag)) == true and list.nth($realVal, $i) != 0)
+      {
+        $returnVal: calc(#{list.nth($realVal, $i)} + #{$safeArea});
+        $receiveDirFlag: dirFlag($receiveDirFlag, $receiveDir);
+      } @else {
+        $returnVal: list.nth($realVal, $i);
+      }
+    } @else {
+      // sare-area multi
+      @if ($receiveDir != 0 and $all == true) {
+        @if ((list.nth($dir, $i) == list.nth($receiveDir, $receiveDirFlag)) == true and list.nth($realVal, $i) == 0) {
+          $returnVal: list.join($returnVal, $safeArea);
+          $receiveDirFlag: dirFlag($receiveDirFlag, $receiveDir);
+        } @else if
+          ((list.nth($dir, $i) == list.nth($receiveDir, $receiveDirFlag)) == true and list.nth($realVal, $i) != 0)
+        {
+          $returnVal: list.join($returnVal, calc(#{list.nth($realVal, $i)} + #{$safeArea}));
+          $receiveDirFlag: dirFlag($receiveDirFlag, $receiveDir);
+        } @else {
+          $returnVal: list.join($returnVal, list.nth($realVal, $i));
+        }
+      } @else if ($receiveDir != 0 and $all == false) {
+        // sare-area single
+        @if ((list.nth($dir, $i) == list.nth($receiveDir, $receiveDirFlag)) == true) {
+          @if (list.nth($realVal, $i) == 0) {
+            $returnVal: $safeArea;
+          } @else {
+            $returnVal: calc(#{list.nth($realVal, $i)} + #{$safeArea});
+          }
+        }
+      } @else {
+        // safe-area none
+        $returnVal: list.nth($realVal, $i);
+        @warn "please set drection of safe-area";
+        @return $returnVal;
+      }
+    }
+  }
+  @return $returnVal;
+}

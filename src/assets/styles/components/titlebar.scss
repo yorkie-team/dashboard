@@ -1,0 +1,242 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.project_area {
+  @include mixins-lib.tabletStart() {
+    padding: variables.$spacing_16 variables.$spacing_32 0;
+  }
+
+  @include mixins-lib.mobileStart() {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .title {
+    display: block;
+    flex: none;
+    margin-right: auto;
+    @include mixins-lib.rfonts(24, 32, 600);
+    color: var(--gray-800);
+
+    @include mixins-lib.mobileStart() {
+      flex: 1 1 0;
+      padding-right: 10px;
+      word-break: break-all;
+    }
+  }
+
+  .title_group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    @include mixins-lib.tabletStart() {
+      display: none;
+    }
+
+    @include mixins-lib.mobileStart() {
+      padding-left: variables.$spacing_16;
+      padding-right: variables.$spacing_16;
+    }
+
+    & + .search {
+      margin-top: variables.$spacing_24;
+    }
+
+    .thumbnail {
+      flex: none;
+      width: 32px;
+      height: 32px;
+      margin-right: variables.$spacing_16;
+
+      &.emoji {
+        padding: 3px;
+        border: 1px solid var(--gray-300);
+        border-radius: 4px;
+        box-sizing: border-box;
+
+        img {
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+      img {
+        display: block;
+        width: 100%;
+      }
+
+      &.icon {
+        display: block;
+        width: 32px;
+        height: 32px;
+        margin-left: 0;
+        color: var(--gray-800);
+
+        svg {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+    .dropdown {
+      $drop: '.dropdown';
+      position: absolute;
+      top: 100%;
+      left: -24px;
+      z-index: variables.$z_dropdown;
+      width: 640px;
+      margin-top: variables.$spacing_16;
+      padding: 12px 0;
+      border-radius: 10px;
+      box-sizing: border-box;
+
+      &_list {
+        overflow-y: overlay;
+        max-height: 252px;
+
+        & + #{$drop}_list {
+          margin-top: variables.$spacing_8;
+          padding-top: 7px;
+        }
+      }
+
+      &_item {
+        &.has_border {
+          margin-top: variables.$spacing_8;
+          padding-top: 7px;
+        }
+      }
+
+      &_title {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: -12px;
+        padding: 3px variables.$spacing_8 2px variables.$spacing_24;
+        border-bottom: 1px solid var(--gray-400);
+
+        & ~ #{$drop}_list {
+          margin: variables.$spacing_8 0 0 0;
+        }
+
+        .title {
+          @include mixins-lib.rfonts(12, 16, 500);
+          color: var(--gray-800);
+        }
+
+        .btn {
+          padding-left: variables.$spacing_8;
+          padding-right: variables.$spacing_8;
+          color: var(--gray-800);
+
+          .icon {
+            width: 16px;
+            height: 16px;
+          }
+
+          .text {
+            @include mixins-lib.rfonts(12, 16, 400);
+          }
+        }
+      }
+
+      &_menu {
+        padding: 12px variables.$spacing_24;
+
+        &:hover {
+          background-color: var(--gray-100);
+        }
+      }
+
+      &_text {
+        @include mixins-lib.rfonts(24, 32, 600);
+      }
+
+      .icon {
+        width: 32px;
+        height: 32px;
+        color: var(--gray-900);
+
+        svg {
+          width: 100%;
+          height: 100%;
+        }
+
+        & + #{$drop}_text {
+          margin-left: variables.$spacing_16;
+        }
+      }
+    }
+
+    @include mixins-lib.setScrollbar(gray);
+  }
+
+  .btn_title {
+    display: flex;
+    align-items: center;
+    flex: none;
+    margin-right: auto;
+
+    .icon {
+      height: 16px;
+      margin-left: variables.$spacing_16;
+      color: var(--gray-500);
+    }
+  }
+
+  .btn_box {
+    .btn_favorite {
+      padding: 0;
+      color: var(--gray-500);
+
+      .icon {
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    .btn_favorite_full {
+      padding: 5px;
+      color: var(--yellow-0);
+
+      .icon {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    .btn_grid {
+      color: var(--gray-500);
+    }
+  }
+
+  & > .search {
+    @include mixins-lib.tabletStart() {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    @include mixins-lib.mobileStart() {
+      padding-left: variables.$spacing_16;
+      padding-right: variables.$spacing_16;
+    }
+  }
+
+  .search_area {
+    margin-top: variables.$spacing_24;
+
+    @include mixins-lib.tabletStart() {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    @include mixins-lib.mobileStart() {
+      padding-left: variables.$spacing_16;
+      padding-right: variables.$spacing_16;
+    }
+  }
+}

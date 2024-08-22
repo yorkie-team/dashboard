@@ -1,0 +1,162 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.connect_box {
+  display: flex;
+  align-items: center;
+
+  & + & {
+    margin-top: variables.$spacing_16;
+  }
+
+  .account {
+    display: flex;
+    align-items: center;
+    min-width: 373px;
+    padding: 11px 23px;
+    border: 1px solid var(--gray-400);
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: var(--gray-50);
+
+    @include mixins-lib.tabletStart() {
+      min-width: auto;
+      width: 100%;
+    }
+
+    &_title {
+      min-width: 96px;
+      padding-right: 10px;
+      box-sizing: border-box;
+      @include mixins-lib.rfonts(12, 16, 500);
+      color: var(--gray-600);
+      word-break: break-all;
+
+      @include mixins-lib.tabletStart() {
+        min-width: 87px;
+      }
+
+      @include mixins-lib.mobileStart() {
+        min-width: auto;
+        padding-left: 0;
+      }
+    }
+
+    &_id {
+      flex: 1 1 0;
+      @include mixins-lib.rfonts(14, 16, 600);
+      color: var(--gray-800);
+      word-break: break-all;
+
+      @include mixins-lib.mobileStart() {
+        @include mixins-lib.ellipsis();
+      }
+
+      &.is_disabled {
+        @include mixins-lib.rfonts(12, 16, 300);
+        color: var(--gray-400);
+      }
+
+      &:empty {
+        @include mixins-lib.rfonts(12, 16, 300);
+        color: var(--gray-400);
+
+        &::before {
+          content: attr(data-placeholder);
+        }
+      }
+    }
+  }
+
+  .btn_box {
+    margin-left: variables.$spacing_16;
+
+    @include mixins-lib.tabletStart() {
+      min-width: 100px;
+    }
+
+    .btn {
+      margin-top: 1px;
+      padding: 7px 13px 7px 11px;
+    }
+
+    .icon {
+      width: 12px;
+      height: 12px;
+    }
+
+    .text {
+      @include mixins-lib.rfonts(12, 16, 300);
+    }
+  }
+}
+
+.connect_api_box {
+  display: flex;
+
+  .api_box {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    flex: 1;
+    align-items: center;
+    margin-right: variables.$spacing_16;
+    border: 1px solid var(--gray-400);
+    border-radius: 8px;
+  }
+
+  .api {
+    display: flex;
+    overflow-x: overlay;
+    position: relative;
+    flex: 1;
+    height: 100%;
+    align-items: center;
+  }
+
+  .value {
+    padding: 0 variables.$spacing_24;
+    @include mixins-lib.rfonts(12, 16, 500);
+    color: var(--gray-600);
+  }
+
+  .btn_area {
+    position: relative;
+    flex: none;
+
+    .btn {
+      height: 40px;
+      margin-left: 0;
+    }
+
+    .icon {
+      margin-right: variables.$spacing_8;
+    }
+  }
+
+  .btn_cover {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: 0 26px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    background: var(--gray-400);
+    @include mixins-lib.rfonts(12, 16, 500);
+    color: var(--gray-800);
+    z-index: 1;
+
+    .icon {
+      display: inline-block;
+      margin-right: 10px;
+      vertical-align: top;
+
+      svg {
+        display: block;
+      }
+    }
+  }
+}

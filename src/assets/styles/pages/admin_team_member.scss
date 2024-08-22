@@ -1,0 +1,42 @@
+@use '../base/normalize';
+@use '../base/common';
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.team_member_page {
+  @include mixins-lib.setContainerPC(variables.$spacing_72, variables.$spacing_72);
+
+  .content {
+    @include mixins-lib.tabletStart() {
+      padding-bottom: variables.$spacing_64;
+    }
+  }
+
+  .box_top {
+    @include mixins-lib.tabletStart() {
+      display: none;
+    }
+  }
+
+  .box_tab {
+    margin-top: variables.$spacing_24;
+
+    @include mixins-lib.tabletStart() {
+      margin-top: 0;
+    }
+  }
+
+  .title_group {
+    @include mixins-lib.tabletStart() {
+      display: flex;
+    }
+  }
+
+  .member_group {
+    margin-top: variables.$spacing_48;
+  }
+
+  .member_list {
+    margin-top: variables.$spacing_16;
+  }
+}

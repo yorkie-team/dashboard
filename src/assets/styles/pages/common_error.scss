@@ -1,0 +1,159 @@
+@use '../base/normalize';
+@use '../base/common';
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.error_page {
+  @include mixins-lib.setContainerPC(variables.$spacing_72, variables.$spacing_72);
+
+  .container {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .content {
+    position: relative;
+    width: 100%;
+    max-width: 990px;
+    padding-left: 32.405%;
+    box-sizing: border-box;
+
+    @include mixins-lib.tabletStart() {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: variables.$spacing_64 variables.$spacing_32;
+    }
+
+    @include mixins-lib.mobileStart() {
+      padding-left: variables.$spacing_16;
+      padding-right: variables.$spacing_16;
+    }
+
+    &.error_404 {
+      padding-left: 40.577%;
+
+      @include mixins-lib.tabletStart() {
+        padding-left: variables.$spacing_32;
+      }
+
+      @include mixins-lib.tabletStart() {
+        padding-left: variables.$spacing_16;
+      }
+    }
+
+    .img_box {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      @include mixins-lib.tabletStart() {
+        position: static;
+        order: 2;
+        margin-top: variables.$spacing_32;
+      }
+
+      svg {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+
+  .title {
+    color: var(--gray-800);
+    @include mixins-lib.rfonts(46, 54, 600);
+
+    @include mixins-lib.tabletStart() {
+      order: 1;
+      @include mixins-lib.rfonts(30, 38);
+      text-align: center;
+    }
+
+    @include mixins-lib.mobileXS() {
+      @include mixins-lib.rfonts(26, 34);
+    }
+  }
+
+  .desc {
+    display: block;
+    margin-top: variables.$spacing_32;
+    color: var(--gray-800);
+    @include mixins-lib.rfonts(16, 24, 400);
+
+    @include mixins-lib.tabletStart() {
+      order: 3;
+      text-align: center;
+    }
+  }
+
+  .btn_box {
+    margin-top: variables.$spacing_32;
+
+    @include mixins-lib.tabletStart() {
+      flex-wrap: wrap;
+      order: 4;
+    }
+
+    .btn {
+      margin: 0 12px;
+      padding: 11px 15px;
+      border-radius: 8px;
+
+      @include mixins-lib.tabletStart() {
+        flex-basis: calc(50% - 12px);
+        margin-top: variables.$spacing_24;
+      }
+
+      &:first-child {
+        margin-left: 0;
+
+        @include mixins-lib.tabletStart() {
+          flex-basis: 100%;
+          margin-top: 0;
+          margin-right: 0;
+        }
+
+        .icon {
+          width: 24px;
+          height: 24px;
+        }
+
+        .text {
+          color: var(--gray-000);
+        }
+      }
+
+      &:nth-child(2) {
+        @include mixins-lib.tabletStart() {
+          margin-left: 0;
+        }
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    .btn_github {
+      svg {
+        padding: 2px;
+        box-sizing: border-box;
+
+        path {
+          fill: var(--gray-900);
+        }
+      }
+    }
+
+    .icon {
+      width: 28px;
+      height: 28px;
+    }
+
+    .text {
+      @include mixins-lib.rfonts(20, 28, 600);
+      color: var(--gray-800);
+    }
+  }
+}

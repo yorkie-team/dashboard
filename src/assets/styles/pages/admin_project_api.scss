@@ -1,0 +1,62 @@
+@use '../base/normalize';
+@use '../base/common';
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.project_api_page {
+  @include mixins-lib.setContainerPC(variables.$spacing_72, variables.$spacing_72);
+
+  .content {
+    position: relative;
+
+    @include mixins-lib.tabletStart() {
+      padding-bottom: variables.$spacing_64;
+    }
+  }
+
+  .box_top {
+    @include mixins-lib.tabletStart() {
+      display: none;
+    }
+  }
+
+  .box_tab {
+    margin-top: variables.$spacing_24;
+
+    @include mixins-lib.tabletStart() {
+      margin-top: 0;
+    }
+  }
+
+  .api_area {
+    padding-top: variables.$spacing_48;
+
+    @include mixins-lib.tabletStart() {
+      padding: variables.$spacing_40 variables.$spacing_32 0;
+    }
+
+    @include mixins-lib.mobileStart() {
+      padding-left: variables.$spacing_16;
+      padding-right: variables.$spacing_16;
+    }
+  }
+
+  .title_box {
+    .title {
+      @include mixins-lib.rfonts(24, 32, 500);
+      color: var(--gray-800);
+    }
+  }
+
+  .api_title {
+    margin-top: variables.$spacing_24;
+
+    & ~ .api_title {
+      margin-top: variables.$spacing_64;
+    }
+  }
+
+  .connect_api_box {
+    margin-top: variables.$spacing_24;
+  }
+}

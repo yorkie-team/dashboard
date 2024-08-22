@@ -1,0 +1,143 @@
+@use '../base/normalize';
+@use '../base/common';
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.community_page {
+  @include mixins-lib.setContainerPC(158px, 240px);
+
+  .container {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .content {
+    position: relative;
+    padding-right: 32.789%;
+    box-sizing: border-box;
+
+    @include mixins-lib.tabletStart() {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 640px;
+      padding: variables.$spacing_72 variables.$spacing_32;
+    }
+
+    @include mixins-lib.mobileStart() {
+      max-width: none;
+      padding-left: variables.$spacing_16;
+      padding-right: variables.$spacing_16;
+    }
+
+    .img_box {
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      @include mixins-lib.tabletStart() {
+        position: static;
+        order: 2;
+        margin-top: variables.$spacing_32;
+      }
+
+      svg {
+        display: block;
+        width: 100%;
+      }
+    }
+
+    .title {
+      @include mixins-lib.rfonts(56, 64, 600);
+      color: var(--gray-800);
+
+      @include mixins-lib.tabletStart() {
+        order: 1;
+        @include mixins-lib.rfonts(30, 38);
+      }
+    }
+
+    .desc {
+      display: block;
+      margin-top: variables.$spacing_32;
+      @include mixins-lib.rfonts(16, 24, 500);
+      color: var(--gray-800);
+
+      @include mixins-lib.tabletStart() {
+        order: 3;
+        text-align: center;
+      }
+    }
+
+    .btn_box {
+      margin-top: variables.$spacing_32;
+
+      @include mixins-lib.tabletStart() {
+        order: 4;
+        width: 100%;
+      }
+
+      @include mixins-lib.mobileStart() {
+        flex-direction: column;
+      }
+
+      .btn {
+        margin: 0 12px;
+        padding: 11px 15px;
+        border-radius: 8px;
+
+        @include mixins-lib.tabletStart() {
+          flex-basis: 50%;
+        }
+
+        @include mixins-lib.mobileStart() {
+          flex-basis: auto;
+          width: 100%;
+          margin: 16px 0 0;
+        }
+
+        &:first-child {
+          margin-left: 0;
+
+          @include mixins-lib.mobileStart() {
+            margin-top: 0;
+          }
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+
+      .btn_github {
+        svg {
+          padding: 2px;
+          box-sizing: border-box;
+
+          path {
+            fill: var(--gray-900);
+          }
+        }
+      }
+
+      .btn_discord {
+        color: #5865f2;
+
+        svg {
+          padding: 2px;
+          box-sizing: border-box;
+        }
+      }
+
+      .icon {
+        width: 28px;
+        height: 28px;
+      }
+
+      .text {
+        @include mixins-lib.rfonts(20, 28, 600);
+        color: var(--gray-800);
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.setting_title {
+  .text {
+    display: inline-block;
+    padding: 0 4px 7px 5px;
+    border-bottom: 1px solid var(--orange-0);
+    @include mixins-lib.rfonts(24, 32, 500);
+    color: var(--gray-800);
+    vertical-align: top;
+  }
+}

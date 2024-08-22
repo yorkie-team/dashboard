@@ -1,0 +1,108 @@
+@use '../base/normalize';
+@use '../base/common';
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.team_overview_page {
+  @include mixins-lib.setContainerPC(variables.$spacing_72, variables.$spacing_72);
+
+  .content {
+    @include mixins-lib.tabletStart() {
+      padding-bottom: variables.$spacing_64;
+    }
+  }
+
+  .box_top {
+    @include mixins-lib.tabletStart() {
+      display: none;
+    }
+
+    .project_area {
+      margin-top: 0;
+    }
+
+    .search {
+      @include mixins-lib.tabletStart() {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .box_tab {
+    margin-top: variables.$spacing_24;
+
+    @include mixins-lib.tabletStart() {
+      margin-top: 0;
+    }
+  }
+
+  .project_area {
+    margin-top: variables.$spacing_72;
+
+    .title_group {
+      @include mixins-lib.tabletStart() {
+        display: flex;
+      }
+
+      .btn_toggle {
+        @include mixins-lib.tabletStart() {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .banner_box {
+    margin-top: variables.$spacing_48;
+  }
+
+  .placeholder_box {
+    margin-top: variables.$spacing_24;
+  }
+
+  .card {
+    display: none;
+    margin-top: variables.$spacing_24;
+
+    @include mixins-lib.tabletStart() {
+      display: block;
+    }
+
+    @include mixins-lib.mobileStart() {
+      margin-top: variables.$spacing_16;
+    }
+
+    &.is_active {
+      display: block;
+    }
+  }
+
+  .project_table {
+    display: none;
+    margin-top: variables.$spacing_24;
+
+    &.is_active {
+      display: block;
+
+      @include mixins-lib.tabletStart() {
+        display: none;
+      }
+    }
+  }
+
+  .usage {
+    margin-top: variables.$spacing_48;
+
+    @include mixins-lib.tabletStart() {
+      margin-top: variables.$spacing_32;
+    }
+
+    @include mixins-lib.mobileStart() {
+      margin-top: variables.$spacing_24;
+    }
+
+    & + .project_area {
+      margin-top: variables.$spacing_72;
+    }
+  }
+}

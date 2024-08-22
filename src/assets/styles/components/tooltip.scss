@@ -1,0 +1,106 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.tooltip {
+  $tip: '.tooltip';
+  position: absolute;
+  top: -20px;
+  right: -13px;
+  z-index: 1;
+  width: 326px;
+  padding: 15px;
+  box-sizing: border-box;
+  border: 1px solid var(--gray-900);
+  border-radius: 8px;
+  background-color: var(--gray-000);
+  box-shadow: 0 8px 8px -8px rgb(0 0 0 / 20%);
+  transform: translateX(326px);
+
+  @include mixins-lib.tabletStart() {
+    top: 38px;
+    left: 50%;
+    right: 0;
+    width: 100%;
+    transform: translateX(-50%);
+  }
+
+  &_area {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-size: 0;
+    line-height: normal;
+
+    @include mixins-lib.tabletStart() {
+      position: relative;
+    }
+
+    &_title {
+      margin-top: 0;
+      @include mixins-lib.rfonts(14, 22, 500);
+      color: var(--gray-900);
+    }
+  }
+
+  &_inner {
+    position: relative;
+
+    @include mixins-lib.tabletStart() {
+      position: initial;
+    }
+
+    .btn_tooltip {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 3px;
+
+      .icon {
+        display: block;
+      }
+
+      svg path {
+        fill: inherit;
+        stroke: var(--gray-900);
+      }
+    }
+  }
+
+  &_title_box {
+    display: flex;
+    align-items: center;
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      color: var(--gray-800);
+      vertical-align: top;
+
+      svg {
+        width: 100%;
+        height: 100%;
+
+        path {
+          fill: inherit;
+          stroke: currentColor;
+        }
+      }
+    }
+  }
+
+  &_title {
+    padding-left: 8px;
+    @include mixins-lib.rfonts(20, 28, 500);
+    color: var(--gray-800);
+  }
+
+  &_content {
+    display: block;
+    padding-top: 16px;
+  }
+
+  &_desc {
+    @include mixins-lib.rfonts(14, 22, 500);
+    color: var(--gray-800);
+  }
+}

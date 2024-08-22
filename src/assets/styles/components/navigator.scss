@@ -1,0 +1,122 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.navigator {
+  $nav: '.navigator';
+
+  &_list {
+    display: inline-flex;
+    max-width: 244px;
+    width: 100%;
+    flex-direction: column;
+    box-sizing: border-box;
+
+    & > #{$nav}_group {
+      #{$nav}_list {
+        padding-right: variables.$spacing_16;
+      }
+    }
+
+    #{$nav}_list {
+      padding: 0 0 0 variables.$spacing_32;
+
+      #{$nav}_group {
+        &:not(:first-of-type) {
+          #{$nav}_menu,
+          #{$nav}_item {
+            margin-top: variables.$spacing_8;
+          }
+        }
+      }
+
+      #{$nav}_menu {
+        margin-top: variables.$spacing_8;
+        padding: 12px;
+        @include mixins-lib.rfonts(14, 22, 600);
+        color: var(--gray-800);
+      }
+    }
+  }
+
+  &_group {
+    display: flex;
+    flex-direction: column;
+
+    & + #{$nav}_group {
+      margin-top: variables.$spacing_8;
+    }
+
+    & &:not(:first-of-type) {
+      #{$nav}_item {
+        margin-top: variables.$spacing_24;
+      }
+    }
+  }
+
+  &_item {
+    padding: 9px variables.$spacing_16;
+    border-radius: 4px;
+    box-sizing: border-box;
+    @include mixins-lib.rfonts(14, 22, 500);
+    color: var(--gray-800);
+    text-align: start;
+    word-break: break-all;
+
+    &.is_active {
+      border: 1px solid var(--orange-0);
+      background: var(--orange-alpha-light);
+
+      .icon {
+        margin-right: variables.$spacing_8;
+      }
+    }
+
+    &.add_icon {
+      &.is_active {
+        color: var(--orange-0);
+
+        .icon {
+          svg {
+            path {
+              fill: var(--orange-0);
+            }
+          }
+        }
+      }
+    }
+
+    .icon {
+      margin-right: variables.$spacing_8;
+    }
+  }
+
+  &_menu {
+    display: inline-flex;
+    align-items: flex-start;
+    padding: 12px variables.$spacing_16;
+    @include mixins-lib.rfonts(16, 24, 600);
+    color: var(--gray-900);
+    word-break: break-all;
+    box-sizing: border-box;
+
+    &.is_active {
+      .icon svg {
+        transform: rotate(0deg);
+      }
+    }
+
+    .icon {
+      flex: 0 0 auto;
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      margin-right: variables.$spacing_8;
+
+      svg {
+        width: 100%;
+        height: 100%;
+        transform: rotate(-90deg);
+      }
+    }
+  }
+}

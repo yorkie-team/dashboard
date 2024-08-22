@@ -1,0 +1,26 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 47px;
+  border-top: 1px solid var(--gray-300);
+  background-color: var(--gray-000);
+
+  svg path {
+    &:nth-child(-n + 6) {
+      fill: var(--gray-800);
+    }
+
+    &:nth-child(7) {
+      fill: var(--gray-800);
+    }
+
+    &:nth-child(8),
+    &:nth-child(9) {
+      fill: var(--gray-400);
+    }
+  }
+}

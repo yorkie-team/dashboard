@@ -1,0 +1,120 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.codeblock_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: variables.$spacing_8 variables.$spacing_8 variables.$spacing_8 variables.$spacing_16;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-400);
+  border-radius: 4px 4px 0 0;
+  box-sizing: border-box;
+
+  @include mixins-lib.tabletStart() {
+    padding: 10px variables.$spacing_8 6px;
+    align-items: flex-end;
+  }
+
+  @include mixins-lib.mobileStart() {
+    flex-wrap: wrap;
+  }
+
+  .box_left {
+    display: flex;
+    align-items: center;
+
+    @include mixins-lib.tabletStart() {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    @include mixins-lib.mobileStart() {
+      margin-right: 10px;
+    }
+
+    .btn {
+      height: 32px;
+      margin-left: variables.$spacing_16;
+      padding: variables.$spacing_8 12px;
+      @include mixins-lib.rfonts(12, 16, 500);
+      color: var(--gray-800);
+      box-sizing: border-box;
+      @include mixins-lib.tabletStart() {
+        margin: 10px 0 0;
+      }
+
+      .icon {
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+
+  .desc {
+    padding-left: variables.$spacing_8;
+    @include mixins-lib.rfonts(14, 22, 600);
+    color: var(--gray-800);
+  }
+
+  .info_list {
+    display: flex;
+    flex: none;
+    padding-left: variables.$spacing_56;
+    @include mixins-lib.rfonts(12, 16, 600);
+    @include mixins-lib.tabletStart() {
+      padding-left: variables.$spacing_8;
+    }
+
+    .info_title {
+      color: var(--gray-600);
+
+      &:not(:first-child) {
+        padding-left: variables.$spacing_40;
+      }
+    }
+
+    .info_desc {
+      padding-left: variables.$spacing_16;
+      font-weight: 400;
+      color: var(--gray-800);
+    }
+  }
+
+  .box_right {
+    display: flex;
+
+    @include mixins-lib.mobileStart() {
+      margin-top: variables.$spacing_8;
+    }
+
+    .btn_area {
+      position: relative;
+      margin-left: variables.$spacing_24;
+    }
+
+    .btn_line {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 12px;
+      border-radius: 4px;
+      border: 1px solid var(--gray-400);
+      color: var(--gray-800);
+
+      .icon {
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+
+  .btn_toggle {
+    padding: variables.$spacing_8;
+
+    &:not(.is_active) {
+      background: var(--gray-50);
+    }
+  }
+}

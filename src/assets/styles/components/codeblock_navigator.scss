@@ -1,0 +1,28 @@
+@use '../base/mixins-lib';
+@use '../base/variables';
+
+.codeblock_navigator {
+  display: flex;
+  align-items: center;
+  padding-bottom: variables.$spacing_8;
+  border-bottom: 1px solid var(--gray-400);
+
+  .item {
+    display: inline-flex;
+    align-items: center;
+    height: 36px;
+    padding: 0 variables.$spacing_16;
+    border-radius: 8px;
+    @include mixins-lib.rfonts(14, 22, 600);
+    color: var(--gray-600);
+
+    & + .item {
+      margin-left: variables.$spacing_8;
+    }
+
+    &.is_active {
+      background: var(--gray-800);
+      color: var(--gray-000);
+    }
+  }
+}
