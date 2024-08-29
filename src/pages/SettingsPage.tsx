@@ -30,7 +30,7 @@ export function SettingsPage() {
   return (
     <PageTemplate className="setting_account_page">
       <h2 className="page_title">
-        <span className="text">User Settings</span>
+        <span className="text">Account Settings</span>
       </h2>
       <div className="setting_group">
         <Navigator
