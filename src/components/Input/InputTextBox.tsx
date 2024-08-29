@@ -28,6 +28,7 @@ type InputTextBoxProps = {
   helperText?: string;
   placeholder?: string;
   inputRef?: any;
+  fullWidth?: boolean;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export const InputTextBox = React.forwardRef((props: InputTextBoxProps, ref) => {
@@ -45,12 +46,14 @@ function InputTextBoxInner({
   helperText,
   placeholder,
   inputRef,
+  fullWidth,
   ...restProps
 }: InputTextBoxProps) {
   const inputTextBoxClassName = classNames('input_box', {
     is_disabled: state === 'disabled',
     is_error: state === 'error',
     is_success: state === 'success',
+    full_width: fullWidth,
   });
 
   return (

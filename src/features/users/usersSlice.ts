@@ -41,6 +41,11 @@ export interface UsersState {
     status: 'idle' | 'loading' | 'failed';
     error: Array<ErrorDetails> | null;
   };
+  deleteAccount: {
+    status: 'idle' | 'loading' | 'failed';
+    isSuccess: boolean;
+    error: { message: string } | null;
+  };
   preferences: {
     theme: {
       useSystem: boolean;
@@ -86,6 +91,11 @@ const initialState: UsersState = {
   logout: {
     isSuccess: false,
   },
+  deleteAccount: {
+    isSuccess: false,
+    status: 'idle',
+    error: null,
+  },
   signup: {
     isSuccess: false,
     status: 'idle',
@@ -121,6 +131,10 @@ export const loginUser = createAppThunk<string, LoginFields>('users/login', asyn
 
 export const signupUser = createAppThunk<User, SignupFields>('users/signup', async ({ username, password }) => {
   return await api.signUp(username, password);
+});
+
+export const deleteUser = createAppThunk<void, LoginFields>('users/deleteAccount', async ({ username, password }) => {
+  return await api.deleteAccount(username, password);
 });
 
 export const usersSlice = createSlice({
@@ -240,6 +254,34 @@ export const usersSlice = createSlice({
         }
         state.signup.error = signupErrors;
         action.meta.isHandledError = true;
+      }
+    });
+    builder.addCase(deleteUser.fulfilled, (state) => {
+      state.deleteAccount.status = 'idle';
+      state.deleteAccount.isSuccess = true;
+      localStorage.removeItem('token');
+      api.setToken('');
+      state.token = '';
+      state.isValidToken = false;
+      state.username = '';
+      state.logout.isSuccess = true;
+    });
+    builder.addCase(deleteUser.pending, (state) => {
+      state.deleteAccount.status = 'loading';
+    });
+    builder.addCase(deleteUser.rejected, (state, action) => {
+      state.deleteAccount.status = 'failed';
+      const error = action.payload!.error;
+      if (!(error instanceof RPCError)) {
+        return;
+      }
+      const statusCode = Number(error.code);
+      if (statusCode === RPCStatusCode.NOT_FOUND || statusCode === RPCStatusCode.UNAUTHENTICATED) {
+        state.deleteAccount.error = {
+          message: 'Please verify your account information and try again.',
+        };
+        action.meta.isHandledError = true;
+        return;
       }
     });
   },

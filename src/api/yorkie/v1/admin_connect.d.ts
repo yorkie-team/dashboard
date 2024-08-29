@@ -18,7 +18,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateProjectRequest, CreateProjectResponse, GetDocumentRequest, GetDocumentResponse, GetProjectRequest, GetProjectResponse, GetSnapshotMetaRequest, GetSnapshotMetaResponse, ListChangesRequest, ListChangesResponse, ListDocumentsRequest, ListDocumentsResponse, ListProjectsRequest, ListProjectsResponse, LogInRequest, LogInResponse, RemoveDocumentByAdminRequest, RemoveDocumentByAdminResponse, SearchDocumentsRequest, SearchDocumentsResponse, SignUpRequest, SignUpResponse, UpdateProjectRequest, UpdateProjectResponse } from "./admin_pb.js";
+import { ChangePasswordRequest, ChangePasswordResponse, CreateProjectRequest, CreateProjectResponse, DeleteAccountRequest, DeleteAccountResponse, GetDocumentRequest, GetDocumentResponse, GetDocumentsRequest, GetDocumentsResponse, GetProjectRequest, GetProjectResponse, GetServerVersionRequest, GetServerVersionResponse, GetSnapshotMetaRequest, GetSnapshotMetaResponse, ListChangesRequest, ListChangesResponse, ListDocumentsRequest, ListDocumentsResponse, ListProjectsRequest, ListProjectsResponse, LogInRequest, LogInResponse, RemoveDocumentByAdminRequest, RemoveDocumentByAdminResponse, SearchDocumentsRequest, SearchDocumentsResponse, SignUpRequest, SignUpResponse, UpdateProjectRequest, UpdateProjectResponse } from "./admin_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -45,6 +45,24 @@ export declare const AdminService: {
       readonly name: "LogIn",
       readonly I: typeof LogInRequest,
       readonly O: typeof LogInResponse,
+      readonly kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.DeleteAccount
+     */
+    readonly deleteAccount: {
+      readonly name: "DeleteAccount",
+      readonly I: typeof DeleteAccountRequest,
+      readonly O: typeof DeleteAccountResponse,
+      readonly kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.ChangePassword
+     */
+    readonly changePassword: {
+      readonly name: "ChangePassword",
+      readonly I: typeof ChangePasswordRequest,
+      readonly O: typeof ChangePasswordResponse,
       readonly kind: MethodKind.Unary,
     },
     /**
@@ -102,6 +120,15 @@ export declare const AdminService: {
       readonly kind: MethodKind.Unary,
     },
     /**
+     * @generated from rpc yorkie.v1.AdminService.GetDocuments
+     */
+    readonly getDocuments: {
+      readonly name: "GetDocuments",
+      readonly I: typeof GetDocumentsRequest,
+      readonly O: typeof GetDocumentsResponse,
+      readonly kind: MethodKind.Unary,
+    },
+    /**
      * @generated from rpc yorkie.v1.AdminService.RemoveDocumentByAdmin
      */
     readonly removeDocumentByAdmin: {
@@ -135,6 +162,15 @@ export declare const AdminService: {
       readonly name: "ListChanges",
       readonly I: typeof ListChangesRequest,
       readonly O: typeof ListChangesResponse,
+      readonly kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.GetServerVersion
+     */
+    readonly getServerVersion: {
+      readonly name: "GetServerVersion",
+      readonly I: typeof GetServerVersionRequest,
+      readonly O: typeof GetServerVersionResponse,
       readonly kind: MethodKind.Unary,
     },
   }

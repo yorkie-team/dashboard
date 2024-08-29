@@ -63,7 +63,7 @@ export function AccountDropdown() {
           </dl>
           <Dropdown.List>
             <Dropdown.Item as="link" href="/settings" border>
-              <Dropdown.Text>Settings</Dropdown.Text>
+              <Dropdown.Text>Account Settings</Dropdown.Text>
             </Dropdown.Item>
             <Dropdown.Item onClick={logout}>
               <Dropdown.Text highlight>Sign out</Dropdown.Text>

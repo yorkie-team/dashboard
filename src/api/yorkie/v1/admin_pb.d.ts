@@ -129,6 +129,107 @@ export declare class LogInResponse extends Message<LogInResponse> {
 }
 
 /**
+ * @generated from message yorkie.v1.DeleteAccountRequest
+ */
+export declare class DeleteAccountRequest extends Message<DeleteAccountRequest> {
+  /**
+   * @generated from field: string username = 1;
+   */
+  username: string;
+
+  /**
+   * @generated from field: string password = 2;
+   */
+  password: string;
+
+  constructor(data?: PartialMessage<DeleteAccountRequest>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "yorkie.v1.DeleteAccountRequest";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteAccountRequest;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeleteAccountRequest;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeleteAccountRequest;
+
+  static equals(a: DeleteAccountRequest | PlainMessage<DeleteAccountRequest> | undefined, b: DeleteAccountRequest | PlainMessage<DeleteAccountRequest> | undefined): boolean;
+}
+
+/**
+ * @generated from message yorkie.v1.DeleteAccountResponse
+ */
+export declare class DeleteAccountResponse extends Message<DeleteAccountResponse> {
+  constructor(data?: PartialMessage<DeleteAccountResponse>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "yorkie.v1.DeleteAccountResponse";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteAccountResponse;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeleteAccountResponse;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeleteAccountResponse;
+
+  static equals(a: DeleteAccountResponse | PlainMessage<DeleteAccountResponse> | undefined, b: DeleteAccountResponse | PlainMessage<DeleteAccountResponse> | undefined): boolean;
+}
+
+/**
+ * @generated from message yorkie.v1.ChangePasswordRequest
+ */
+export declare class ChangePasswordRequest extends Message<ChangePasswordRequest> {
+  /**
+   * @generated from field: string username = 1;
+   */
+  username: string;
+
+  /**
+   * @generated from field: string current_password = 2;
+   */
+  currentPassword: string;
+
+  /**
+   * @generated from field: string new_password = 3;
+   */
+  newPassword: string;
+
+  constructor(data?: PartialMessage<ChangePasswordRequest>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "yorkie.v1.ChangePasswordRequest";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ChangePasswordRequest;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ChangePasswordRequest;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ChangePasswordRequest;
+
+  static equals(a: ChangePasswordRequest | PlainMessage<ChangePasswordRequest> | undefined, b: ChangePasswordRequest | PlainMessage<ChangePasswordRequest> | undefined): boolean;
+}
+
+/**
+ * @generated from message yorkie.v1.ChangePasswordResponse
+ */
+export declare class ChangePasswordResponse extends Message<ChangePasswordResponse> {
+  constructor(data?: PartialMessage<ChangePasswordResponse>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "yorkie.v1.ChangePasswordResponse";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ChangePasswordResponse;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ChangePasswordResponse;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ChangePasswordResponse;
+
+  static equals(a: ChangePasswordResponse | PlainMessage<ChangePasswordResponse> | undefined, b: ChangePasswordResponse | PlainMessage<ChangePasswordResponse> | undefined): boolean;
+}
+
+/**
  * @generated from message yorkie.v1.CreateProjectRequest
  */
 export declare class CreateProjectRequest extends Message<CreateProjectRequest> {
@@ -442,6 +543,64 @@ export declare class GetDocumentResponse extends Message<GetDocumentResponse> {
 }
 
 /**
+ * @generated from message yorkie.v1.GetDocumentsRequest
+ */
+export declare class GetDocumentsRequest extends Message<GetDocumentsRequest> {
+  /**
+   * @generated from field: string project_name = 1;
+   */
+  projectName: string;
+
+  /**
+   * @generated from field: repeated string document_keys = 2;
+   */
+  documentKeys: string[];
+
+  /**
+   * @generated from field: bool include_snapshot = 3;
+   */
+  includeSnapshot: boolean;
+
+  constructor(data?: PartialMessage<GetDocumentsRequest>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "yorkie.v1.GetDocumentsRequest";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetDocumentsRequest;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetDocumentsRequest;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetDocumentsRequest;
+
+  static equals(a: GetDocumentsRequest | PlainMessage<GetDocumentsRequest> | undefined, b: GetDocumentsRequest | PlainMessage<GetDocumentsRequest> | undefined): boolean;
+}
+
+/**
+ * @generated from message yorkie.v1.GetDocumentsResponse
+ */
+export declare class GetDocumentsResponse extends Message<GetDocumentsResponse> {
+  /**
+   * @generated from field: repeated yorkie.v1.DocumentSummary documents = 1;
+   */
+  documents: DocumentSummary[];
+
+  constructor(data?: PartialMessage<GetDocumentsResponse>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "yorkie.v1.GetDocumentsResponse";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetDocumentsResponse;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetDocumentsResponse;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetDocumentsResponse;
+
+  static equals(a: GetDocumentsResponse | PlainMessage<GetDocumentsResponse> | undefined, b: GetDocumentsResponse | PlainMessage<GetDocumentsResponse> | undefined): boolean;
+}
+
+/**
  * @generated from message yorkie.v1.RemoveDocumentByAdminRequest
  */
 export declare class RemoveDocumentByAdminRequest extends Message<RemoveDocumentByAdminRequest> {
@@ -686,5 +845,58 @@ export declare class ListChangesResponse extends Message<ListChangesResponse> {
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListChangesResponse;
 
   static equals(a: ListChangesResponse | PlainMessage<ListChangesResponse> | undefined, b: ListChangesResponse | PlainMessage<ListChangesResponse> | undefined): boolean;
+}
+
+/**
+ * @generated from message yorkie.v1.GetServerVersionRequest
+ */
+export declare class GetServerVersionRequest extends Message<GetServerVersionRequest> {
+  constructor(data?: PartialMessage<GetServerVersionRequest>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "yorkie.v1.GetServerVersionRequest";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetServerVersionRequest;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetServerVersionRequest;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetServerVersionRequest;
+
+  static equals(a: GetServerVersionRequest | PlainMessage<GetServerVersionRequest> | undefined, b: GetServerVersionRequest | PlainMessage<GetServerVersionRequest> | undefined): boolean;
+}
+
+/**
+ * @generated from message yorkie.v1.GetServerVersionResponse
+ */
+export declare class GetServerVersionResponse extends Message<GetServerVersionResponse> {
+  /**
+   * @generated from field: string yorkie_version = 1;
+   */
+  yorkieVersion: string;
+
+  /**
+   * @generated from field: string go_version = 2;
+   */
+  goVersion: string;
+
+  /**
+   * @generated from field: string build_date = 3;
+   */
+  buildDate: string;
+
+  constructor(data?: PartialMessage<GetServerVersionResponse>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "yorkie.v1.GetServerVersionResponse";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetServerVersionResponse;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetServerVersionResponse;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetServerVersionResponse;
+
+  static equals(a: GetServerVersionResponse | PlainMessage<GetServerVersionResponse> | undefined, b: GetServerVersionResponse | PlainMessage<GetServerVersionResponse> | undefined): boolean;
 }
 

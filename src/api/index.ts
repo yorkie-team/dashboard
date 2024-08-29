@@ -52,6 +52,11 @@ export async function signUp(username: string, password: string): Promise<User> 
   return converter.fromUser(res.user!);
 }
 
+// deleteAccount deletes the account.
+export async function deleteAccount(username: string, password: string) {
+  await client.deleteAccount({ username, password });
+}
+
 // createProject creates a new project.
 export async function createProject(name: string): Promise<Project> {
   const res = await client.createProject({ name });
