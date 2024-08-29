@@ -211,7 +211,10 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
                     <span className="td id">{key}</span>
                     {!isDetailOpen && (
                       <span className="td updated">
-                        {format(fromUnixTime(updatedAt), `${use24HourClock ? 'MMM d, h:mm' : 'MMM d, h:mm aa'}`)}
+                        {format(
+                          fromUnixTime(updatedAt),
+                          `MMM d${new Date().getFullYear() === fromUnixTime(updatedAt).getFullYear() ? '' : ', yyyy'}, ${use24HourClock ? 'HH:mm' : 'h:mm a'}`,
+                        )}
                       </span>
                     )}
                   </Link>

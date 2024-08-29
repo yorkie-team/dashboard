@@ -18,12 +18,14 @@ import React, { useEffect, useState } from 'react';
 import { fromUnixTime, format } from 'date-fns';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { selectPreferences } from 'features/users/usersSlice';
 import { selectDocumentDetail, getDocumentAsync, removeDocumentByAdminAsync } from './documentsSlice';
 import { Icon, Button, CodeBlock, CopyButton, Popover, Dropdown } from 'components';
 
 export function DocumentDetail() {
   const navigate = useNavigate();
   const { document } = useAppSelector(selectDocumentDetail);
+  const { use24HourClock } = useAppSelector(selectPreferences);
   const dispatch = useAppDispatch();
   const params = useParams();
   const projectName = params.projectName || '';
@@ -55,7 +57,12 @@ export function DocumentDetail() {
           </Link>
           <div className="title_inner">
             <strong className="title">{document?.key}</strong>
-            <span className="date">{format(fromUnixTime(document?.updatedAt!), 'MMM d, h:mm')}</span>
+            <span className="date">
+              {format(
+                fromUnixTime(document?.updatedAt!),
+                `MMM d${new Date().getFullYear() === fromUnixTime(document?.updatedAt!).getFullYear() ? '' : ', yyyy'}, ${use24HourClock ? 'HH:mm' : 'h:mm a'}`,
+              )}
+            </span>
           </div>
 
           <Popover opened={opened} onChange={setOpened}>
