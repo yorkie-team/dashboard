@@ -18,7 +18,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateProjectRequest, CreateProjectResponse, GetDocumentRequest, GetDocumentResponse, GetProjectRequest, GetProjectResponse, GetSnapshotMetaRequest, GetSnapshotMetaResponse, ListChangesRequest, ListChangesResponse, ListDocumentsRequest, ListDocumentsResponse, ListProjectsRequest, ListProjectsResponse, LogInRequest, LogInResponse, RemoveDocumentByAdminRequest, RemoveDocumentByAdminResponse, SearchDocumentsRequest, SearchDocumentsResponse, SignUpRequest, SignUpResponse, UpdateProjectRequest, UpdateProjectResponse } from "./admin_pb.js";
+import { ChangePasswordRequest, ChangePasswordResponse, CreateProjectRequest, CreateProjectResponse, DeleteAccountRequest, DeleteAccountResponse, GetDocumentRequest, GetDocumentResponse, GetDocumentsRequest, GetDocumentsResponse, GetProjectRequest, GetProjectResponse, GetServerVersionRequest, GetServerVersionResponse, GetSnapshotMetaRequest, GetSnapshotMetaResponse, ListChangesRequest, ListChangesResponse, ListDocumentsRequest, ListDocumentsResponse, ListProjectsRequest, ListProjectsResponse, LogInRequest, LogInResponse, RemoveDocumentByAdminRequest, RemoveDocumentByAdminResponse, SearchDocumentsRequest, SearchDocumentsResponse, SignUpRequest, SignUpResponse, UpdateProjectRequest, UpdateProjectResponse } from "./admin_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -45,6 +45,24 @@ export const AdminService = {
       name: "LogIn",
       I: LogInRequest,
       O: LogInResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.DeleteAccount
+     */
+    deleteAccount: {
+      name: "DeleteAccount",
+      I: DeleteAccountRequest,
+      O: DeleteAccountResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.ChangePassword
+     */
+    changePassword: {
+      name: "ChangePassword",
+      I: ChangePasswordRequest,
+      O: ChangePasswordResponse,
       kind: MethodKind.Unary,
     },
     /**
@@ -102,6 +120,15 @@ export const AdminService = {
       kind: MethodKind.Unary,
     },
     /**
+     * @generated from rpc yorkie.v1.AdminService.GetDocuments
+     */
+    getDocuments: {
+      name: "GetDocuments",
+      I: GetDocumentsRequest,
+      O: GetDocumentsResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
      * @generated from rpc yorkie.v1.AdminService.RemoveDocumentByAdmin
      */
     removeDocumentByAdmin: {
@@ -135,6 +162,15 @@ export const AdminService = {
       name: "ListChanges",
       I: ListChangesRequest,
       O: ListChangesResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.GetServerVersion
+     */
+    getServerVersion: {
+      name: "GetServerVersion",
+      I: GetServerVersionRequest,
+      O: GetServerVersionResponse,
       kind: MethodKind.Unary,
     },
   }

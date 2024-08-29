@@ -243,6 +243,7 @@ $line: '.btn_line';
   cursor: pointer;
   transition: background-color 0.2s;
   box-sizing: border-box;
+  white-space: nowrap;
 
   &:hover {
     background-color: var(--gray-100);

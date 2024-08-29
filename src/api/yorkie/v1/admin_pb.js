@@ -64,6 +64,45 @@ export const LogInResponse = /*@__PURE__*/ proto3.makeMessageType(
 );
 
 /**
+ * @generated from message yorkie.v1.DeleteAccountRequest
+ */
+export const DeleteAccountRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "yorkie.v1.DeleteAccountRequest",
+  () => [
+    { no: 1, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "password", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
+ * @generated from message yorkie.v1.DeleteAccountResponse
+ */
+export const DeleteAccountResponse = /*@__PURE__*/ proto3.makeMessageType(
+  "yorkie.v1.DeleteAccountResponse",
+  [],
+);
+
+/**
+ * @generated from message yorkie.v1.ChangePasswordRequest
+ */
+export const ChangePasswordRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "yorkie.v1.ChangePasswordRequest",
+  () => [
+    { no: 1, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "current_password", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "new_password", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ],
+);
+
+/**
+ * @generated from message yorkie.v1.ChangePasswordResponse
+ */
+export const ChangePasswordResponse = /*@__PURE__*/ proto3.makeMessageType(
+  "yorkie.v1.ChangePasswordResponse",
+  [],
+);
+
+/**
  * @generated from message yorkie.v1.CreateProjectRequest
  */
 export const CreateProjectRequest = /*@__PURE__*/ proto3.makeMessageType(
@@ -188,6 +227,28 @@ export const GetDocumentResponse = /*@__PURE__*/ proto3.makeMessageType(
 );
 
 /**
+ * @generated from message yorkie.v1.GetDocumentsRequest
+ */
+export const GetDocumentsRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "yorkie.v1.GetDocumentsRequest",
+  () => [
+    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "document_keys", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 3, name: "include_snapshot", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ],
+);
+
+/**
+ * @generated from message yorkie.v1.GetDocumentsResponse
+ */
+export const GetDocumentsResponse = /*@__PURE__*/ proto3.makeMessageType(
+  "yorkie.v1.GetDocumentsResponse",
+  () => [
+    { no: 1, name: "documents", kind: "message", T: DocumentSummary, repeated: true },
+  ],
+);
+
+/**
  * @generated from message yorkie.v1.RemoveDocumentByAdminRequest
  */
 export const RemoveDocumentByAdminRequest = /*@__PURE__*/ proto3.makeMessageType(
@@ -274,6 +335,26 @@ export const ListChangesResponse = /*@__PURE__*/ proto3.makeMessageType(
   "yorkie.v1.ListChangesResponse",
   () => [
     { no: 1, name: "changes", kind: "message", T: Change, repeated: true },
+  ],
+);
+
+/**
+ * @generated from message yorkie.v1.GetServerVersionRequest
+ */
+export const GetServerVersionRequest = /*@__PURE__*/ proto3.makeMessageType(
+  "yorkie.v1.GetServerVersionRequest",
+  [],
+);
+
+/**
+ * @generated from message yorkie.v1.GetServerVersionResponse
+ */
+export const GetServerVersionResponse = /*@__PURE__*/ proto3.makeMessageType(
+  "yorkie.v1.GetServerVersionResponse",
+  () => [
+    { no: 1, name: "yorkie_version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "go_version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "build_date", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ],
 );
 

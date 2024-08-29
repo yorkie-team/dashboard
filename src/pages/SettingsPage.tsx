@@ -19,6 +19,7 @@ import { useNavigate } from 'react-router-dom';
 import { PageTemplate } from './PageTemplate';
 import { Button, Icon, Navigator } from 'components';
 import { Preferences } from 'features/users/Preferences';
+import { DangerZone } from 'features/users/DangerZone';
 
 export function SettingsPage() {
   const navigate = useNavigate();
@@ -29,15 +30,26 @@ export function SettingsPage() {
   return (
     <PageTemplate className="setting_account_page">
       <h2 className="page_title">
-        <span className="text">Settings</span>
+        <span className="text">User Settings</span>
       </h2>
       <div className="setting_group">
-        <Navigator navList={[{ name: 'Preferences', id: 'preferences' }]} />
+        <Navigator
+          navList={[
+            { name: 'Preferences', id: 'preferences' },
+            { name: 'Danger zone', id: 'danger' },
+          ]}
+        />
         <div className="box_right">
           <Preferences />
+          <DangerZone />
         </div>
       </div>
-      <Button icon={<Icon type="close" />} className="btn_close" onClick={handleCloseBtn} blindText>
+      <Button
+        icon={<Icon type="close" />}
+        className="btn_close setting_account_close"
+        onClick={handleCloseBtn}
+        blindText
+      >
         Go back
       </Button>
     </PageTemplate>

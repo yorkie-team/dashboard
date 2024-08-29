@@ -14,11 +14,18 @@
  * limitations under the License.
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Icon } from 'components';
 import classNames from 'classnames';
 
 export function Modal({ children, large }: { children: React.ReactNode; large?: boolean }) {
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
+
   return (
     <>
       <div className="dimmed"></div>
@@ -40,7 +47,7 @@ function Title({ children }: { children: React.ReactNode }) {
 }
 
 function Description({ children }: { children: React.ReactNode }) {
-  return <p className="modal_desc fontsize_12 gray600">{children}</p>;
+  return <p className="modal_desc fontsize_14 gray600">{children}</p>;
 }
 
 function Bottom({ children, combine }: { children: React.ReactNode; combine?: boolean }) {

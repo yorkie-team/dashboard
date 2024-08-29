@@ -64,7 +64,7 @@ export function MobileGnbDropdown() {
           </Dropdown.List>
           <Dropdown.List>
             <Dropdown.Item as="link" href="/settings">
-              <Dropdown.Text>Settings</Dropdown.Text>
+              <Dropdown.Text>User Settings</Dropdown.Text>
             </Dropdown.Item>
             <Dropdown.Item onClick={logout}>
               <Dropdown.Text highlight>Sign out</Dropdown.Text>

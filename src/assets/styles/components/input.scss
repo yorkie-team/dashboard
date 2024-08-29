@@ -109,6 +109,10 @@
       }
     }
 
+    &.full_width {
+      width: 100%;
+    }
+
     &.is_disabled {
       .label {
         color: var(--gray-300);
@@ -518,7 +522,9 @@
     margin: 3px 0 0 3px;
     border-radius: 50%;
     background-color: var(--gray-600);
-    transition: transform cubic-bezier(0.98, 0.02, 0.3, 1.52) 0.3s, background-color 0.2s;
+    transition:
+      transform cubic-bezier(0.98, 0.02, 0.3, 1.52) 0.3s,
+      background-color 0.2s;
 
     svg {
       display: block;
@@ -527,7 +533,9 @@
       padding: 2px;
       color: var(--gray-600);
       transform: scale(0.5);
-      transition: transform 0.3s 0.1s, color 0.3s 0.2s;
+      transition:
+        transform 0.3s 0.1s,
+        color 0.3s 0.2s;
 
       path {
         fill: currentColor;
@@ -683,7 +691,8 @@
       background-color: var(--blue-0);
       transform: scale(0.7);
       opacity: 0;
-      transition: transform cubic-bezier(0.98, 0.02, 0.3, 1.52) 0.2s 0.1s,
+      transition:
+        transform cubic-bezier(0.98, 0.02, 0.3, 1.52) 0.2s 0.1s,
         opacity cubic-bezier(0.98, 0.02, 0.3, 1.52) 0.2s 0.1s;
 
       svg {
