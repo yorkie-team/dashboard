@@ -124,7 +124,7 @@
 
     .guide {
       margin-top: variables.$spacing_8;
-      @include mixins-lib.rfonts(12, 16, 500);
+      @include mixins-lib.rfonts(13, 18, 400);
       color: var(--gray-500);
 
       @include mixins-lib.mobileStart() {
@@ -193,14 +193,12 @@
   }
 
   .webhook {
-    .sub_desc {
-      &:last-child {
-        margin-top: variables.$spacing_24;
-        padding: 0 variables.$spacing_8;
+    .webhook_methods {
+      margin-top: variables.$spacing_24;
+      padding: 0 variables.$spacing_8;
 
-        @include mixins-lib.tabletStart() {
-          padding: 0;
-        }
+      @include mixins-lib.tabletStart() {
+        padding: 0;
       }
     }
   }
@@ -238,6 +236,23 @@
 
       .text {
         @include mixins-lib.rfonts(12, 16, 500);
+      }
+    }
+  }
+
+  .page_link {
+    color: var(--orange-0);
+    border-bottom: 1px solid var(--orange-0);
+
+    &.icon_link {
+      &::after {
+        display: inline-block;
+        width: 13px;
+        height: 13px;
+        margin-left: 2px;
+        background: url('/assets/icons/icon_link.svg') no-repeat center;
+        content: '';
+        vertical-align: text-top;
       }
     }
   }
