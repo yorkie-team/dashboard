@@ -67,10 +67,10 @@ export function Settings() {
     control,
     name: 'authWebhookMethods',
   });
-  const { field: clientDeactivateThreshold, fieldState: clientDeactivateThresholdState } = useController({ 
-    control, 
+  const { field: clientDeactivateThreshold, fieldState: clientDeactivateThresholdState } = useController({
+    control,
     name: 'clientDeactivateThreshold',
-   });
+  });
   const checkFieldState = useCallback(
     (fieldName: keyof UpdatableProjectFields | AuthWebhookMethod, state: 'success' | 'error'): boolean => {
       return updateFieldInfo.target === fieldName && updateFieldInfo.state === state;
@@ -109,7 +109,12 @@ export function Settings() {
   );
 
   useEffect(() => {
-    if (updateFieldInfo.state !== 'success' && !nameFieldState.error && !webhookURLFieldState.error && !clientDeactivateThresholdState.error) {
+    if (
+      updateFieldInfo.state !== 'success' &&
+      !nameFieldState.error &&
+      !webhookURLFieldState.error &&
+      !clientDeactivateThresholdState.error
+    ) {
       setUpdateFieldInfo((info) => ({
         ...info,
         state: null,
@@ -123,7 +128,14 @@ export function Settings() {
         message: formErrors[updateFieldInfo.target as keyof UpdatableProjectFields]?.message || '',
       }));
     }
-  }, [formErrors, updateFieldInfo.state, updateFieldInfo.target, nameFieldState.error, webhookURLFieldState.error, clientDeactivateThresholdState.error]);
+  }, [
+    formErrors,
+    updateFieldInfo.state,
+    updateFieldInfo.target,
+    nameFieldState.error,
+    webhookURLFieldState.error,
+    clientDeactivateThresholdState.error,
+  ]);
 
   useEffect(() => {
     if (isSuccess) {
@@ -198,8 +210,8 @@ export function Settings() {
                       checkFieldState('name', 'success')
                         ? 'success'
                         : checkFieldState('name', 'error')
-                        ? 'error'
-                        : undefined
+                          ? 'error'
+                          : undefined
                     }
                     helperText={
                       updateFieldInfo.target === 'name' && updateFieldInfo.state !== null
@@ -219,6 +231,19 @@ export function Settings() {
             <dl className="sub_info">
               <dt className="sub_title">Auth webhook URL</dt>
               <dd className="sub_desc">
+                <p className="guide">
+                  Enter the URL of the endpoint you want to use for authorization. This allows the server to check if a
+                  client is allowed to access a Document by calling this webhook URL. Changes to this setting may take
+                  up to 10 minutes to take effect.{' '}
+                  <a
+                    href="https://yorkie.dev/docs/cli#auth-webhook"
+                    className="page_link icon_link"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Learn more about how to set up and use the Auth Webhook.
+                  </a>
+                </p>
                 <div
                   className={classNames('input_field_box', {
                     is_error: checkFieldState('authWebhookURL', 'error'),
@@ -243,8 +268,8 @@ export function Settings() {
                       checkFieldState('authWebhookURL', 'success')
                         ? 'success'
                         : checkFieldState('authWebhookURL', 'error')
-                        ? 'error'
-                        : undefined
+                          ? 'error'
+                          : undefined
                     }
                     helperText={
                       updateFieldInfo.target === 'authWebhookURL' && updateFieldInfo.state !== null
@@ -257,43 +282,49 @@ export function Settings() {
               </dd>
               <dt className="sub_title">Auth webhook methods</dt>
               <dd className="sub_desc">
-                {AUTH_WEBHOOK_METHODS.map((method) => {
-                  return (
-                    <div
-                      className={classNames('input_group', {
-                        is_error: checkFieldState(method, 'error'),
-                        is_success: checkFieldState(method, 'success'),
-                      })}
-                      key={method}
-                    >
-                      <InputToggle
-                        id={method}
-                        label={method}
-                        checked={webhookMethodField.value.includes(method)}
-                        onChange={(e) => {
-                          let newWebhookMethods = [...project?.authWebhookMethods!];
-                          if (e.target.checked) {
-                            newWebhookMethods = newWebhookMethods.includes(method)
-                              ? newWebhookMethods
-                              : [...newWebhookMethods, method];
-                          } else {
-                            newWebhookMethods = newWebhookMethods.filter((newMethod) => newMethod !== method);
-                          }
-                          webhookMethodField.onChange(newWebhookMethods);
-                          setUpdateFieldInfo((info) => ({ ...info, target: method }));
-                          onSubmit({ authWebhookMethods: newWebhookMethods });
-                        }}
-                      />
-                      {updateFieldInfo.target === method && updateFieldInfo.state !== null && (
-                        <InputHelperText
-                          state={updateFieldInfo.state}
-                          message={updateFieldInfo.message}
-                          onSuccessEnd={resetUpdateFieldInfo}
+                <p className="guide">
+                  Select which methods require webhook authorization. Only the selected methods will be checked for
+                  authorization.
+                </p>
+                <div className="webhook_methods">
+                  {AUTH_WEBHOOK_METHODS.map((method) => {
+                    return (
+                      <div
+                        className={classNames('input_group', {
+                          is_error: checkFieldState(method, 'error'),
+                          is_success: checkFieldState(method, 'success'),
+                        })}
+                        key={method}
+                      >
+                        <InputToggle
+                          id={method}
+                          label={method}
+                          checked={webhookMethodField.value.includes(method)}
+                          onChange={(e) => {
+                            let newWebhookMethods = [...project?.authWebhookMethods!];
+                            if (e.target.checked) {
+                              newWebhookMethods = newWebhookMethods.includes(method)
+                                ? newWebhookMethods
+                                : [...newWebhookMethods, method];
+                            } else {
+                              newWebhookMethods = newWebhookMethods.filter((newMethod) => newMethod !== method);
+                            }
+                            webhookMethodField.onChange(newWebhookMethods);
+                            setUpdateFieldInfo((info) => ({ ...info, target: method }));
+                            onSubmit({ authWebhookMethods: newWebhookMethods });
+                          }}
                         />
-                      )}
-                    </div>
-                  );
-                })}
+                        {updateFieldInfo.target === method && updateFieldInfo.state !== null && (
+                          <InputHelperText
+                            state={updateFieldInfo.state}
+                            message={updateFieldInfo.message}
+                            onSuccessEnd={resetUpdateFieldInfo}
+                          />
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
               </dd>
             </dl>
           </div>
@@ -304,6 +335,18 @@ export function Settings() {
             <dl className="sub_info">
               <dt className="sub_title">Client Deactivate Threshold</dt>
               <dd className="sub_desc">
+                <p className="guide">
+                  Set the duration for automatic client deactivation on documents in this project. To improve garbage
+                  collection efficiency, clients inactive for this period will be automatically deactivated.{' '}
+                  <a
+                    href="https://github.com/yorkie-team/yorkie/blob/main/design/housekeeping.md"
+                    className="page_link icon_link"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Learn more about deactivating outdated clients and improving GC efficiency.
+                  </a>
+                </p>
                 <div
                   className={classNames('input_field_box', {
                     is_error: checkFieldState('clientDeactivateThreshold', 'error'),
@@ -320,7 +363,7 @@ export function Settings() {
                       pattern: {
                         value: /^(\d{1,2}h\s?)?(\d{1,2}m\s?)?(\d{1,2}s)?$/,
                         message:
-                        'Client Deactivate Threshold should be a signed sequence of decimal numbers, each with a unit suffix, such as "23h30m10s" or "2h45m"',
+                          'Client Deactivate Threshold should be a signed sequence of decimal numbers, each with a unit suffix, such as "23h30m10s" or "2h45m"',
                       },
                       onChange: async () => {
                         await trigger('clientDeactivateThreshold');
@@ -339,8 +382,8 @@ export function Settings() {
                       checkFieldState('clientDeactivateThreshold', 'success')
                         ? 'success'
                         : checkFieldState('clientDeactivateThreshold', 'error')
-                        ? 'error'
-                        : undefined
+                          ? 'error'
+                          : undefined
                     }
                     helperText={
                       updateFieldInfo.target === 'clientDeactivateThreshold' && updateFieldInfo.state !== null

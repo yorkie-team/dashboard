@@ -156,7 +156,7 @@
 
     .guide {
       padding-top: variables.$spacing_8;
-      @include mixins-lib.rfonts(12, 16, 500);
+      @include mixins-lib.rfonts(13, 18, 400);
       color: var(--gray-500);
     }
 
