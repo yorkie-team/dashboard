@@ -57,6 +57,11 @@ export async function deleteAccount(username: string, password: string) {
   await client.deleteAccount({ username, password });
 }
 
+// ChangePassword changes the password.
+export async function ChangePassword(username: string, password: string, newPassword: string) {
+  await client.changePassword({ username, currentPassword: password, newPassword });
+}
+
 // createProject creates a new project.
 export async function createProject(name: string): Promise<Project> {
   const res = await client.createProject({ name });

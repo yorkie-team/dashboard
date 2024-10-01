@@ -20,6 +20,7 @@ import { PageTemplate } from './PageTemplate';
 import { Button, Icon, Navigator } from 'components';
 import { Preferences } from 'features/users/Preferences';
 import { DangerZone } from 'features/users/DangerZone';
+import { Account } from 'features/users/Account';
 
 export function SettingsPage() {
   const navigate = useNavigate();
@@ -35,11 +36,13 @@ export function SettingsPage() {
       <div className="setting_group">
         <Navigator
           navList={[
+            { name: 'Account', id: 'account' },
             { name: 'Preferences', id: 'preferences' },
             { name: 'Danger zone', id: 'danger' },
           ]}
         />
         <div className="box_right">
+          <Account />
           <Preferences />
           <DangerZone />
         </div>
