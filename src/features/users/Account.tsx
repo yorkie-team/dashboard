@@ -108,7 +108,7 @@ export function Account() {
                   },
                 })}
                 state={formErrors.password ? 'error' : 'normal'}
-                helperText={(formErrors.password && formErrors.password.message) || ''}
+                helperText={formErrors.password?.message || ''}
               />
               <InputTextBox
                 type="password"
@@ -134,7 +134,7 @@ export function Account() {
                   },
                 })}
                 state={formErrors.newPassword ? 'error' : 'normal'}
-                helperText={(formErrors.newPassword && formErrors.newPassword.message) || ''}
+                helperText={formErrors.newPassword?.message || ''}
               />
               <InputTextBox
                 type="password"
@@ -152,7 +152,7 @@ export function Account() {
                   },
                 })}
                 state={formErrors.confirmPassword ? 'error' : 'normal'}
-                helperText={(formErrors.confirmPassword && formErrors.confirmPassword.message) || ''}
+                helperText={formErrors.confirmPassword?.message || ''}
               />
             </Modal.Content>
             <Modal.Bottom>
