@@ -26,6 +26,7 @@ const ButtonStyle = {
   primary: 'orange_0',
   success: 'green_0',
   danger: 'red_0',
+  info: 'blue_0',
   toggle: 'btn_toggle',
   disabled: 'btn_line gray300',
   default: undefined,
@@ -42,7 +43,7 @@ type ButtonProps = {
   icon?: ReactNode;
   size?: 'sm' | 'md' | 'lg';
   outline?: boolean;
-  color?: 'primary' | 'success' | 'danger' | 'toggle' | 'default';
+  color?: 'primary' | 'success' | 'danger' | 'info' | 'toggle' | 'default';
   isActive?: boolean;
   buttonRef?: any;
 } & AnchorHTMLAttributes<HTMLAnchorElement> &

@@ -46,6 +46,14 @@ export interface UsersState {
     isSuccess: boolean;
     error: { message: string } | null;
   };
+  changePassword: {
+    status: 'idle' | 'loading' | 'failed';
+    isSuccess: boolean;
+    error: {
+      target: 'password' | 'newPassword';
+      message: string;
+    } | null;
+  };
   preferences: {
     theme: {
       useSystem: boolean;
@@ -75,6 +83,13 @@ export type SignupFields = {
   confirmPassword: string;
 };
 
+export type ChangePasswordFields = {
+  username: string;
+  password: string;
+  newPassword: string;
+  confirmPassword: string;
+};
+
 type JWTPayload = {
   username: string;
 };
@@ -92,6 +107,11 @@ const initialState: UsersState = {
     isSuccess: false,
   },
   deleteAccount: {
+    isSuccess: false,
+    status: 'idle',
+    error: null,
+  },
+  changePassword: {
     isSuccess: false,
     status: 'idle',
     error: null,
@@ -136,6 +156,13 @@ export const signupUser = createAppThunk<User, SignupFields>('users/signup', asy
 export const deleteUser = createAppThunk<void, LoginFields>('users/deleteAccount', async ({ username, password }) => {
   return await api.deleteAccount(username, password);
 });
+
+export const changePassword = createAppThunk<void, ChangePasswordFields>(
+  'users/changePassword',
+  async ({ username, password, newPassword }) => {
+    return await api.changePassword(username, password, newPassword);
+  },
+);
 
 export const usersSlice = createSlice({
   name: 'users',
@@ -259,6 +286,45 @@ export const usersSlice = createSlice({
     builder.addCase(deleteUser.fulfilled, (state) => {
       state.deleteAccount.status = 'idle';
       state.deleteAccount.isSuccess = true;
+      localStorage.removeItem('token');
+      api.setToken('');
+      state.token = '';
+      state.isValidToken = false;
+      state.username = '';
+      state.logout.isSuccess = true;
+    });
+    builder.addCase(changePassword.pending, (state) => {
+      state.changePassword.status = 'loading';
+    });
+    builder.addCase(changePassword.rejected, (state, action) => {
+      state.changePassword.status = 'failed';
+      const error = action.payload!.error;
+      if (!(error instanceof RPCError)) {
+        return;
+      }
+      const statusCode = Number(error.code);
+      if (statusCode === RPCStatusCode.UNAUTHENTICATED) {
+        state.changePassword.error = {
+          target: 'password',
+          message: 'The password is incorrect. Try again.',
+        };
+        action.meta.isHandledError = true;
+        return;
+      } else if (statusCode === RPCStatusCode.INVALID_ARGUMENT) {
+        for (const { field, description } of error.details!) {
+          if (field === 'Password') {
+            state.changePassword.error = {
+              target: 'newPassword',
+              message: description,
+            };
+          }
+        }
+        action.meta.isHandledError = true;
+      }
+    });
+    builder.addCase(changePassword.fulfilled, (state) => {
+      state.changePassword.status = 'idle';
+      state.changePassword.isSuccess = true;
       localStorage.removeItem('token');
       api.setToken('');
       state.token = '';
