@@ -160,7 +160,7 @@ export const deleteUser = createAppThunk<void, LoginFields>('users/deleteAccount
 export const changePassword = createAppThunk<void, ChangePasswordFields>(
   'users/changePassword',
   async ({ username, password, newPassword }) => {
-    return await api.ChangePassword(username, password, newPassword);
+    return await api.changePassword(username, password, newPassword);
   },
 );
 

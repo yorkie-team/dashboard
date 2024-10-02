@@ -58,7 +58,7 @@ export async function deleteAccount(username: string, password: string) {
 }
 
 // ChangePassword changes the password.
-export async function ChangePassword(username: string, password: string, newPassword: string) {
+export async function changePassword(username: string, password: string, newPassword: string) {
   await client.changePassword({ username, currentPassword: password, newPassword });
 }
 
