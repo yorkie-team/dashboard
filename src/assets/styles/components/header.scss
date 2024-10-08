@@ -368,6 +368,7 @@
 
   .logo {
     padding: variables.$spacing_8;
+    width: 40px;
 
     @include mixins-lib.tabletStart() {
       width: 24px;
