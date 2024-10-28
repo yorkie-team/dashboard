@@ -24,7 +24,7 @@ export type DocumentSummary = {
 };
 
 export type DocumentHistory = {
-  serverSeq: string;
+  serverSeq: bigint;
   snapshot: string;
 };
 
