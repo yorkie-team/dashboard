@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 
-import Long from 'long';
-import { Document, OpSource } from 'yorkie-js-sdk';
+import { Document, OpSource, VersionVector } from 'yorkie-js-sdk';
 import { createPromiseClient } from '@connectrpc/connect';
 import { createGrpcWebTransport } from '@connectrpc/connect-web';
 import { AdminService } from './yorkie/v1/admin_connect';
@@ -141,7 +140,7 @@ export async function searchDocuments(
 export async function listDocumentHistories(
   projectName: string,
   documentKey: string,
-  previousSeq: string,
+  previousSeq: bigint,
   pageSize: number,
   isForward: boolean,
 ): Promise<Array<DocumentHistory>> {
@@ -155,15 +154,15 @@ export async function listDocumentHistories(
   const pbChanges = res.changes;
   const changes = converter.fromChanges(pbChanges);
 
-  const seq = Long.fromString(pbChanges[0].id!.serverSeq).add(-1);
+  const seq = pbChanges[0].id!.serverSeq - 1n;
   const snapshotMeta = await client.getSnapshotMeta({
     projectName,
     documentKey,
-    serverSeq: seq.toString(),
+    serverSeq: seq,
   });
 
   const document = new Document(documentKey);
-  document.applySnapshot(seq, snapshotMeta.snapshot);
+  document.applySnapshot(seq, new VersionVector(new Map()), snapshotMeta.snapshot);
 
   const histories: Array<DocumentHistory> = [];
   for (let i = 0; i < changes.length; i++) {

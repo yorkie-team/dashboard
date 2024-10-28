@@ -124,13 +124,13 @@ export const listDocumentHistoriesAsync = createAppThunk(
     projectName: string;
     documentKey: string;
     isForward: boolean;
-    previousSeq?: string;
+    previousSeq?: bigint;
   }): Promise<{
     data: Array<DocumentHistory>;
     hasNext: boolean;
     hasPrevious: boolean;
   }> => {
-    const { projectName, documentKey, isForward, previousSeq = '0' } = params;
+    const { projectName, documentKey, isForward, previousSeq = 0n } = params;
     const histories = await listDocumentHistories(
       projectName,
       documentKey,
@@ -142,7 +142,7 @@ export const listDocumentHistoriesAsync = createAppThunk(
     return getPaginationData({
       data: histories,
       isForward,
-      previousID: previousSeq,
+      previousID: String(previousSeq),
       pageSize: HISTORIES_LIMIT,
       reverse: true,
     });
