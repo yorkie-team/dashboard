@@ -6,9 +6,9 @@ npm install
 npm run build-admin
 
 cd ..
-rm -rf src/assets
+npx rimraf src/assets
 mkdir -p src/assets
-cp -R ./temp/dist/assets/* src/assets 
-rm -rf temp
+cp -R ./temp/dist/assets/* src/assets
+npx rimraf temp
 mv src/assets/images/favicon* public/
 mv src/assets/images/og* public/
