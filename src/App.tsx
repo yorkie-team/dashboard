@@ -15,7 +15,7 @@
  */
 
 import React, { useEffect } from 'react';
-import './assets/styles/style.scss'
+import './assets/styles/style.scss';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import {
   PublicRoute,
@@ -37,11 +37,36 @@ import { DocumentDetail } from 'features/documents';
 import { selectPreferences } from 'features/users/usersSlice';
 import { TestPage, ButtonView, PopoverView, DropdownView, InputView, BreadcrumbView, ModalView } from 'test';
 
+const applyTheme = (theme: 'light' | 'dark') => {
+  if (theme === 'light') {
+    window.document.documentElement.classList.remove('darkmode');
+    window.document.documentElement.style.colorScheme = 'light';
+  } else {
+    window.document.documentElement.classList.add('darkmode');
+    window.document.documentElement.style.colorScheme = 'dark';
+  }
+};
+
 function App() {
   const { theme } = useAppSelector(selectPreferences);
   useEffect(() => {
-    document.body.classList.toggle('darkmode', theme.darkMode);
+    applyTheme(theme.darkMode ? 'dark' : 'light');
   }, [theme.darkMode]);
+
+  useEffect(() => {
+    const mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleSystemThemeChange = (e: MediaQueryListEvent) => {
+      applyTheme(e.matches ? 'dark' : 'light');
+    };
+
+    if (theme.useSystem) {
+      applyTheme(mediaQueryList.matches ? 'dark' : 'light');
+      mediaQueryList.addEventListener('change', handleSystemThemeChange);
+    }
+    return () => {
+      mediaQueryList.removeEventListener('change', handleSystemThemeChange);
+    };
+  }, [theme.useSystem]);
 
   return (
     <Router basename={import.meta.env.BASE_URL}>

@@ -129,6 +129,10 @@ a {
   @extend %visuallyhidden;
 }
 
+html {
+  background-color: var(--gray-000);
+}
+
 // color
 $palette: (
   'gray': (
