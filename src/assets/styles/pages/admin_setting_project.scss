@@ -239,21 +239,4 @@
       }
     }
   }
-
-  .page_link {
-    color: var(--orange-0);
-    border-bottom: 1px solid var(--orange-0);
-
-    &.icon_link {
-      &::after {
-        display: inline-block;
-        width: 13px;
-        height: 13px;
-        margin-left: 2px;
-        background: url('/assets/icons/icon_link.svg') no-repeat center;
-        content: '';
-        vertical-align: text-top;
-      }
-    }
-  }
 }

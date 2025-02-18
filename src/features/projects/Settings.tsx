@@ -163,7 +163,7 @@ export function Settings() {
       <Navigator
         navList={[
           { name: 'General', id: 'general' },
-          { name: 'Webhook', id: 'webhook' },
+          { name: 'Webhooks', id: 'webhooks' },
           { name: 'Advanced', id: 'advanced' },
         ]}
       />
@@ -224,12 +224,12 @@ export function Settings() {
               </dd>
             </dl>
           </div>
-          <div className="section setting_box webhook" id="webhook">
+          <div className="section setting_box webhook" id="webhooks">
             <div className="setting_title">
-              <strong className="text">Webhook</strong>
+              <strong className="text">Webhooks</strong>
             </div>
             <dl className="sub_info">
-              <dt className="sub_title">Auth webhook URL</dt>
+              <dt className="sub_title">Auth Webhook URL</dt>
               <dd className="sub_desc">
                 <p className="guide">
                   Enter the URL of the endpoint you want to use for authorization. This allows the server to check if a
@@ -280,7 +280,7 @@ export function Settings() {
                   />
                 </div>
               </dd>
-              <dt className="sub_title">Auth webhook methods</dt>
+              <dt className="sub_title">Auth Webhook Methods</dt>
               <dd className="sub_desc">
                 <p className="guide">
                   Select which methods require webhook authorization. Only the selected methods will be checked for

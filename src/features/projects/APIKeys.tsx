@@ -19,6 +19,7 @@ import React, { useState } from 'react';
 import { useAppSelector } from 'app/hooks';
 import { selectProjectDetail } from './projectsSlice';
 import { Icon, Button, CopyButton } from 'components';
+import { Link } from 'react-router-dom';
 
 export function APIKeys() {
   const { project } = useAppSelector(selectProjectDetail);
@@ -28,14 +29,22 @@ export function APIKeys() {
     <section className="api_area">
       <h2 className="blind">Project API Key</h2>
       <div className="title_box">
-        <strong className="title">API</strong>
+        <strong className="title">API Keys</strong>
       </div>
       <div className="api_title">
         <div className="title_box">
           <strong className="title">Public key</strong>
         </div>
         <p className="desc">
-          The public key allows you to use Yorkie without implementing your own authentication endpoint.
+          The public key is used to identify your project when&nbsp;
+          <a
+            href={`${import.meta.env.VITE_SERVICE_URL}/docs/js-sdk#creating-a-client`}
+            className="page_link icon_link"
+            target="_blank"
+            rel="noreferrer"
+          >
+            creating a new Client
+          </a>
         </p>
       </div>
       <div className="connect_api_box">
@@ -65,7 +74,8 @@ export function APIKeys() {
           <strong className="title">Secret key</strong>
         </div>
         <p className="desc">
-          The secret key allows you to authenticate your API requests on your own backend endpoint.
+          The secret key is used to identify and authenticate your project with administrative privileges. It is used to
+          call REST APIs from the server side.
         </p>
       </div>
       <div className="connect_api_box">

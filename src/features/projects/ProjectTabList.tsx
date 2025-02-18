@@ -36,7 +36,7 @@ export function ProjectTabList() {
     <TabList>
       <TabList.Item to={`/projects/${projectName}`} end>
         <Icon type="chart" />
-        <TabList.Text>Project overview</TabList.Text>
+        <TabList.Text>Overview</TabList.Text>
       </TabList.Item>
       <TabList.Item to={`/projects/${projectName}/documents`}>
         <Icon type="keynote" />
@@ -44,7 +44,7 @@ export function ProjectTabList() {
       </TabList.Item>
       <TabList.Item to={`/projects/${projectName}/apikeys`}>
         <Icon type="key" />
-        <TabList.Text>API</TabList.Text>
+        <TabList.Text>API Keys</TabList.Text>
       </TabList.Item>
       <TabList.Item to={`/projects/${projectName}/settings`}>
         <Icon type="setting" />

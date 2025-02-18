@@ -31,6 +31,17 @@
       content="Yorkie Dashboard is an administrative tool that allows user to manage projects and documents."
     />
 
+    <script>
+      (function () {
+        const theme = window.localStorage.getItem('theme') || 'system';
+        const isDarkMode =
+          theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (isDarkMode) {
+          window.document.documentElement.classList.add('darkmode');
+          window.document.documentElement.style.colorScheme = 'dark';
+        }
+      })();
+    </script>
     <!-- Start Single Page Apps for GitHub Pages -->
     <script type="text/javascript">
       // Single Page Apps for GitHub Pages
