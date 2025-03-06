@@ -2204,17 +2204,27 @@ export class Project extends Message<Project> {
   authWebhookMethods: string[] = [];
 
   /**
-   * @generated from field: string client_deactivate_threshold = 7;
+   * @generated from field: string event_webhook_url = 7;
+   */
+  eventWebhookUrl = "";
+
+  /**
+   * @generated from field: repeated string event_webhook_events = 8;
+   */
+  eventWebhookEvents: string[] = [];
+
+  /**
+   * @generated from field: string client_deactivate_threshold = 9;
    */
   clientDeactivateThreshold = "";
 
   /**
-   * @generated from field: google.protobuf.Timestamp created_at = 8;
+   * @generated from field: google.protobuf.Timestamp created_at = 10;
    */
   createdAt?: Timestamp;
 
   /**
-   * @generated from field: google.protobuf.Timestamp updated_at = 9;
+   * @generated from field: google.protobuf.Timestamp updated_at = 11;
    */
   updatedAt?: Timestamp;
 
@@ -2232,9 +2242,11 @@ export class Project extends Message<Project> {
     { no: 4, name: "secret_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "auth_webhook_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "auth_webhook_methods", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 7, name: "client_deactivate_threshold", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 8, name: "created_at", kind: "message", T: Timestamp },
-    { no: 9, name: "updated_at", kind: "message", T: Timestamp },
+    { no: 7, name: "event_webhook_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: "event_webhook_events", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 9, name: "client_deactivate_threshold", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 10, name: "created_at", kind: "message", T: Timestamp },
+    { no: 11, name: "updated_at", kind: "message", T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Project {
@@ -2274,7 +2286,17 @@ export class UpdatableProjectFields extends Message<UpdatableProjectFields> {
   authWebhookMethods?: UpdatableProjectFields_AuthWebhookMethods;
 
   /**
-   * @generated from field: google.protobuf.StringValue client_deactivate_threshold = 4;
+   * @generated from field: google.protobuf.StringValue event_webhook_url = 4;
+   */
+  eventWebhookUrl?: string;
+
+  /**
+   * @generated from field: yorkie.v1.UpdatableProjectFields.EventWebhookEvents event_webhook_events = 5;
+   */
+  eventWebhookEvents?: UpdatableProjectFields_EventWebhookEvents;
+
+  /**
+   * @generated from field: google.protobuf.StringValue client_deactivate_threshold = 6;
    */
   clientDeactivateThreshold?: string;
 
@@ -2289,7 +2311,9 @@ export class UpdatableProjectFields extends Message<UpdatableProjectFields> {
     { no: 1, name: "name", kind: "message", T: StringValue },
     { no: 2, name: "auth_webhook_url", kind: "message", T: StringValue },
     { no: 3, name: "auth_webhook_methods", kind: "message", T: UpdatableProjectFields_AuthWebhookMethods },
-    { no: 4, name: "client_deactivate_threshold", kind: "message", T: StringValue },
+    { no: 4, name: "event_webhook_url", kind: "message", T: StringValue },
+    { no: 5, name: "event_webhook_events", kind: "message", T: UpdatableProjectFields_EventWebhookEvents },
+    { no: 6, name: "client_deactivate_threshold", kind: "message", T: StringValue },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdatableProjectFields {
@@ -2343,6 +2367,43 @@ export class UpdatableProjectFields_AuthWebhookMethods extends Message<Updatable
 
   static equals(a: UpdatableProjectFields_AuthWebhookMethods | PlainMessage<UpdatableProjectFields_AuthWebhookMethods> | undefined, b: UpdatableProjectFields_AuthWebhookMethods | PlainMessage<UpdatableProjectFields_AuthWebhookMethods> | undefined): boolean {
     return proto3.util.equals(UpdatableProjectFields_AuthWebhookMethods, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.UpdatableProjectFields.EventWebhookEvents
+ */
+export class UpdatableProjectFields_EventWebhookEvents extends Message<UpdatableProjectFields_EventWebhookEvents> {
+  /**
+   * @generated from field: repeated string events = 1;
+   */
+  events: string[] = [];
+
+  constructor(data?: PartialMessage<UpdatableProjectFields_EventWebhookEvents>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.UpdatableProjectFields.EventWebhookEvents";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "events", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdatableProjectFields_EventWebhookEvents {
+    return new UpdatableProjectFields_EventWebhookEvents().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UpdatableProjectFields_EventWebhookEvents {
+    return new UpdatableProjectFields_EventWebhookEvents().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpdatableProjectFields_EventWebhookEvents {
+    return new UpdatableProjectFields_EventWebhookEvents().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: UpdatableProjectFields_EventWebhookEvents | PlainMessage<UpdatableProjectFields_EventWebhookEvents> | undefined, b: UpdatableProjectFields_EventWebhookEvents | PlainMessage<UpdatableProjectFields_EventWebhookEvents> | undefined): boolean {
+    return proto3.util.equals(UpdatableProjectFields_EventWebhookEvents, a, b);
   }
 }
 
