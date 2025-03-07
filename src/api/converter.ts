@@ -16,7 +16,7 @@
 
 import { Timestamp as PbTimestamp } from '@bufbuild/protobuf';
 import { User, Project, DocumentSummary, AuthWebhookMethod, FieldViolation } from './types';
-import { Change, converter, Indexable } from 'yorkie-js-sdk';
+import { Change, converter, Indexable } from '@yorkie-js/sdk';
 import {
   User as PbUser,
   Project as PbProject,
