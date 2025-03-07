@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Document, OpSource, VersionVector } from 'yorkie-js-sdk';
+import { Document, OpSource, VersionVector } from '@yorkie-js/sdk';
 import { createPromiseClient } from '@connectrpc/connect';
 import { createGrpcWebTransport } from '@connectrpc/connect-web';
 import { AdminService } from './yorkie/v1/admin_connect';

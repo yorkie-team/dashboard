@@ -26,7 +26,7 @@ export function Overview() {
   const { project } = useAppSelector(selectProjectDetail);
   const [snippetType, setSnippetType] = useState<Snippet>('npm');
   const snippet = {
-    npm: `import yorkie from 'yorkie-js-sdk';
+    npm: `import yorkie from '@yorkie-js/sdk';
 
 async function main() {
   const client = new yorkie.Client('${import.meta.env.VITE_API_ADDR}', {
@@ -47,7 +47,7 @@ main();`,
     cdn: `<div>There are currently <span id='peersCount'></span> peers!</div>
 
 <!-- include yorkie js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/yorkie-js-sdk/${import.meta.env.VITE_JS_SDK_VERSION}/yorkie-js-sdk.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@yorkie-js/sdk@${import.meta.env.VITE_JS_SDK_VERSION}/dist/yorkie-js-sdk.js"></script>
 <script>
   async function main() {
     const client = new yorkie.Client('${import.meta.env.VITE_API_ADDR}', {
@@ -109,10 +109,10 @@ main();`,
           </div>
           <div className="codeblock_box">
             <div className="codeblock">
-              <CodeBlock.Code code="$ npm install yorkie-js-sdk" language="bash" />
+              <CodeBlock.Code code="$ npm install @yorkie-js/sdk" language="bash" />
             </div>
             <div className="btn_area">
-              <CopyButton value="npm install yorkie-js-sdk" timeout={1000}>
+              <CopyButton value="npm install @yorkie-js/sdk" timeout={1000}>
                 {({ copied, copy }) => (
                   <>
                     <Button icon={<Icon type="copy" />} outline onClick={copy} />
