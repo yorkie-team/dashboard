@@ -35,6 +35,10 @@ export function ProjectTabList() {
   return (
     <TabList>
       <TabList.Item to={`/projects/${projectName}`} end>
+        <Icon type="lightning" />
+        <TabList.Text>Quick Start</TabList.Text>
+      </TabList.Item>
+      <TabList.Item to={`/projects/${projectName}/overview`}>
         <Icon type="chart" />
         <TabList.Text>Overview</TabList.Text>
       </TabList.Item>

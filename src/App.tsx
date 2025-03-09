@@ -27,6 +27,7 @@ import {
   CreateProjectPage,
   DocumentsPage,
   ProjectOverviewPage,
+  ProjectQuickStartPage,
   ProjectAPIKeysPage,
   ProjectSettingsPage,
   CommunityPage,
@@ -79,7 +80,8 @@ function App() {
         <Route element={<PrivateRoute />}>
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/projects/new" element={<CreateProjectPage />} />
-          <Route path="/projects/:projectName" element={<ProjectOverviewPage />} />
+          <Route path="/projects/:projectName" element={<ProjectQuickStartPage />} />
+          <Route path="/projects/:projectName/overview" element={<ProjectOverviewPage />} />
           <Route path="/projects/:projectName/apikeys" element={<ProjectAPIKeysPage />} />
           <Route path="/projects/:projectName/settings" element={<ProjectSettingsPage />} />
           <Route path="/projects/:projectName/documents" element={<DocumentsPage />}>
