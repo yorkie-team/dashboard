@@ -58,9 +58,10 @@ export interface ProjectTimeSeriesMetrics {
 }
 
 export const TIME_RANGE = {
-  oneday: 'Last 24 hours',
   oneweek: 'Last 7 days',
-  onemonth: 'Last 30 days',
+  onemonth: 'Last 4 Weeks',
+  threemonth: 'Last 3 Months',
+  twelvemonth: 'Last 12 Months',
 };
 
 export type UpdatableProjectFields = {

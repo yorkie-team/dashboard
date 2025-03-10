@@ -74,33 +74,18 @@ export function Overview() {
                 <Popover.Dropdown>
                   <Dropdown>
                     <Dropdown.List>
-                      <Dropdown.Item
-                        onClick={() => {
-                          setTimePicker('oneday');
-                          setTimePickerOpened(false);
-                        }}
-                      >
-                        {timePicker === 'oneday' && <Icon type="check" color="orange_0" />}
-                        <Dropdown.Text>{TIME_RANGE.oneday}</Dropdown.Text>
-                      </Dropdown.Item>
-                      <Dropdown.Item
-                        onClick={() => {
-                          setTimePicker('oneweek');
-                          setTimePickerOpened(false);
-                        }}
-                      >
-                        {timePicker === 'oneweek' && <Icon type="check" color="orange_0" />}
-                        <Dropdown.Text>{TIME_RANGE.oneweek}</Dropdown.Text>
-                      </Dropdown.Item>
-                      <Dropdown.Item
-                        onClick={() => {
-                          setTimePicker('onemonth');
-                          setTimePickerOpened(false);
-                        }}
-                      >
-                        {timePicker === 'onemonth' && <Icon type="check" color="orange_0" />}
-                        <Dropdown.Text>{TIME_RANGE.onemonth}</Dropdown.Text>
-                      </Dropdown.Item>
+                      {Object.entries(TIME_RANGE).map(([time, label]) => (
+                        <Dropdown.Item
+                          key={time}
+                          onClick={() => {
+                            setTimePicker(time as keyof typeof TIME_RANGE);
+                            setTimePickerOpened(false);
+                          }}
+                        >
+                          {timePicker === time && <Icon type="check" color="orange_0" />}
+                          <Dropdown.Text>{label}</Dropdown.Text>
+                        </Dropdown.Item>
+                      ))}
                     </Dropdown.List>
                   </Dropdown>
                 </Popover.Dropdown>
