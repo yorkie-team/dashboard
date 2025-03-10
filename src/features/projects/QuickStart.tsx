@@ -27,7 +27,6 @@ export function QuickStart() {
   const [snippetType, setSnippetType] = useState<Snippet>('npm');
   const snippet = {
     npm: `import yorkie from '@yorkie-js/sdk';
-import { QuickStart } from 'features/projects';
 
 async function main() {
   const client = new yorkie.Client('${import.meta.env.VITE_API_ADDR}', {

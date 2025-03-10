@@ -113,10 +113,7 @@ export function Overview() {
                 data={(timeSeriesMetrics?.activeUsers || []).map(({ time, users }) => {
                   const date = new Date(time);
                   return {
-                    time:
-                      timePicker === 'oneday'
-                        ? date.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' })
-                        : date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+                    time: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
                     users,
                   };
                 })}
