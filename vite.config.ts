@@ -8,4 +8,11 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 export default defineConfig({
   base: '/dashboard',
   plugins: [react(), commonjs(), svgr(), tsconfigPaths()],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+      },
+    },
+  },
 });
