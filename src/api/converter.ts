@@ -48,6 +48,7 @@ export function fromProject(pbProject: PbProject): Project {
     authWebhookURL: pbProject.authWebhookUrl,
     authWebhookMethods: pbProject.authWebhookMethods as Array<AuthWebhookMethod>,
     clientDeactivateThreshold: pbProject.clientDeactivateThreshold,
+    subscriptionLimitPerDocument: pbProject.subscriptionLimitPerDocument,
   };
 }
 

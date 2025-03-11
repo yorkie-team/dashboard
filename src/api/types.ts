@@ -40,6 +40,7 @@ export type Project = {
   authWebhookURL: string;
   authWebhookMethods: Array<AuthWebhookMethod>;
   clientDeactivateThreshold: string;
+  subscriptionLimitPerDocument?: number;
   publicKey: string;
   secretKey: string;
   createdAt: number;
@@ -50,6 +51,7 @@ export type UpdatableProjectFields = {
   authWebhookURL?: string;
   authWebhookMethods?: Array<AuthWebhookMethod>;
   clientDeactivateThreshold?: string;
+  subscriptionLimitPerDocument?: number;
 };
 
 export type AuthWebhookMethod =

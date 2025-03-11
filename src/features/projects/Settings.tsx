@@ -55,6 +55,7 @@ export function Settings() {
       authWebhookURL: '',
       authWebhookMethods: [],
       clientDeactivateThreshold: '',
+      subscriptionLimitPerDocument: 0,
     },
   });
 
@@ -71,6 +72,10 @@ export function Settings() {
     control,
     name: 'clientDeactivateThreshold',
   });
+  const { field: subscriptionLimitPerDocument, fieldState: subscriptionLimitPerDocumentState } = useController({
+    control,
+    name: 'subscriptionLimitPerDocument',
+  });
   const checkFieldState = useCallback(
     (fieldName: keyof UpdatableProjectFields | AuthWebhookMethod, state: 'success' | 'error'): boolean => {
       return updateFieldInfo.target === fieldName && updateFieldInfo.state === state;
@@ -82,11 +87,13 @@ export function Settings() {
   }, []);
 
   const resetForm = useCallback(() => {
+    console.log('resetForm', project);
     reset({
       name: project?.name || '',
       authWebhookURL: project?.authWebhookURL || '',
       authWebhookMethods: project?.authWebhookMethods || [],
       clientDeactivateThreshold: project?.clientDeactivateThreshold || '',
+      subscriptionLimitPerDocument: project?.subscriptionLimitPerDocument || 0,
     });
   }, [reset, project]);
 
@@ -113,7 +120,8 @@ export function Settings() {
       updateFieldInfo.state !== 'success' &&
       !nameFieldState.error &&
       !webhookURLFieldState.error &&
-      !clientDeactivateThresholdState.error
+      !clientDeactivateThresholdState.error &&
+      !subscriptionLimitPerDocumentState.error
     ) {
       setUpdateFieldInfo((info) => ({
         ...info,
@@ -121,7 +129,12 @@ export function Settings() {
       }));
       return;
     }
-    if (nameFieldState.error || webhookURLFieldState.error || clientDeactivateThresholdState.error) {
+    if (
+      nameFieldState.error ||
+      webhookURLFieldState.error ||
+      clientDeactivateThresholdState.error ||
+      subscriptionLimitPerDocumentState.error
+    ) {
       setUpdateFieldInfo((info) => ({
         ...info,
         state: 'error',
@@ -135,6 +148,7 @@ export function Settings() {
     nameFieldState.error,
     webhookURLFieldState.error,
     clientDeactivateThresholdState.error,
+    subscriptionLimitPerDocumentState.error,
   ]);
 
   useEffect(() => {
@@ -163,6 +177,7 @@ export function Settings() {
       <Navigator
         navList={[
           { name: 'General', id: 'general' },
+          { name: 'Limits', id: 'limits' },
           { name: 'Webhooks', id: 'webhooks' },
           { name: 'Advanced', id: 'advanced' },
         ]}
@@ -215,6 +230,64 @@ export function Settings() {
                     }
                     helperText={
                       updateFieldInfo.target === 'name' && updateFieldInfo.state !== null
+                        ? updateFieldInfo.message
+                        : undefined
+                    }
+                    onSuccessEnd={resetUpdateFieldInfo}
+                  />
+                </div>
+              </dd>
+            </dl>
+          </div>
+          <div className="section setting_box" id="limits">
+            <div className="setting_title">
+              <strong className="text">Limits</strong>
+            </div>
+            <dl className="sub_info">
+              <dt className="sub_title">Subscriptions Count Limit Per Document</dt>
+              <dd className="sub_desc">
+                <p className="guide">
+                  Set the maximum number of subscriptions allowed per document.
+                </p>
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: checkFieldState('subscriptionLimitPerDocument', 'error'),
+                    is_success: checkFieldState('subscriptionLimitPerDocument', 'success'),
+                  })}
+                >
+                  <InputTextField
+                    reset={() => {
+                      resetForm();
+                      resetUpdateFieldInfo();
+                    }}
+                    {...register('subscriptionLimitPerDocument', {
+                      required: 'Subscriptions Count Limit Per Document is required',
+                      pattern: {
+                        value: /^[0-9]+$/,
+                        message: 'Subscriptions Count Limit Per Document must be a positive integer',
+                      },
+                      onChange: async () => {
+                        await trigger('subscriptionLimitPerDocument');
+                      },
+                    })}
+                    onChange={(e) => {
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'subscriptionLimitPerDocument' }));
+                      subscriptionLimitPerDocument.onChange(e.target.value);
+                    }}
+                    id="subscriptionLimitPerDocument"
+                    label="Subscriptions Count Limit Per Document"
+                    blindLabel={true}
+                    fieldUtil={true}
+                    placeholder="0"
+                    state={
+                      checkFieldState('subscriptionLimitPerDocument', 'success')
+                        ? 'success'
+                        : checkFieldState('subscriptionLimitPerDocument', 'error')
+                          ? 'error'
+                          : undefined
+                    }
+                    helperText={
+                      updateFieldInfo.target === 'subscriptionLimitPerDocument' && updateFieldInfo.state !== null
                         ? updateFieldInfo.message
                         : undefined
                     }
