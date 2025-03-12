@@ -19,12 +19,13 @@ import { createAppThunk } from 'app/appThunk';
 import * as api from 'api';
 import { User, RPCStatusCode, RPCError } from 'api/types';
 import { RootState } from 'app/store';
-import { jwtDecode } from 'jwt-decode';
 
 export interface UsersState {
-  token: string;
   isValidToken: boolean;
   username: string;
+  fetchMe: {
+    status: 'idle' | 'loading' | 'failed';
+  };
   login: {
     isSuccess: boolean;
     status: 'idle' | 'loading' | 'failed';
@@ -90,14 +91,12 @@ export type ChangePasswordFields = {
   confirmPassword: string;
 };
 
-type JWTPayload = {
-  username: string;
-};
-
 const initialState: UsersState = {
-  token: localStorage.getItem('token') || '',
   isValidToken: false,
   username: '',
+  fetchMe: {
+    status: 'idle',
+  },
   login: {
     isSuccess: false,
     status: 'idle',
@@ -131,22 +130,18 @@ const initialState: UsersState = {
   },
 };
 
-if (initialState.token) {
-  api.setToken(initialState.token);
-  initialState.isValidToken = true;
-  try {
-    initialState.username = jwtDecode<JWTPayload>(initialState.token).username;
-  } catch (error) {
-    console.error(`Invalid token format: ${initialState.token}`, error);
-  }
-}
+export const fetchMe = createAppThunk<User, void>('users/me', async () => {
+  return await api.fetchMe();
+});
 
-export const loginUser = createAppThunk<string, LoginFields>('users/login', async ({ username, password }) => {
-  const token = await api.logIn(username, password);
-  // TODO(hackerwins): For security, we need to change the token to be stored in the cookie.
-  // For more information, see https://github.com/yorkie-team/dashboard/issues/42.
-  localStorage.setItem('token', token);
-  return token;
+export const loginUser = createAppThunk<User, LoginFields>('users/login', async ({ username, password }) => {
+  await api.logIn(username, password);
+  const user = await api.fetchMe();
+  return user!;
+});
+
+export const logoutUser = createAppThunk<void, void>('users/logout', async () => {
+  await api.logOut();
 });
 
 export const signupUser = createAppThunk<User, SignupFields>('users/signup', async ({ username, password }) => {
@@ -168,17 +163,6 @@ export const usersSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    logoutUser: (state) => {
-      localStorage.removeItem('token');
-      api.setToken('');
-      state.token = '';
-      state.isValidToken = false;
-      state.username = '';
-      state.login.status = 'idle';
-      state.login.isSuccess = false;
-      state.login.error = null;
-      state.logout.isSuccess = true;
-    },
     setIsValidToken: (state, action: PayloadAction<boolean>) => {
       state.isValidToken = action.payload;
     },
@@ -215,10 +199,19 @@ export const usersSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(loginUser.fulfilled, (state, action) => {
-      state.token = action.payload;
+    builder.addCase(fetchMe.fulfilled, (state, action) => {
       state.isValidToken = true;
-      state.username = jwtDecode<JWTPayload>(action.payload).username;
+      state.username = action.payload.username;
+      state.fetchMe.status = 'idle';
+    });
+    builder.addCase(fetchMe.rejected, (state) => {
+      state.isValidToken = false;
+      state.username = '';
+      state.fetchMe.status = 'failed';
+    });
+    builder.addCase(loginUser.fulfilled, (state, action) => {
+      state.isValidToken = true;
+      state.username = action.payload.username;
       state.login.status = 'idle';
       state.login.isSuccess = true;
     });
@@ -240,6 +233,14 @@ export const usersSlice = createSlice({
         };
         action.meta.isHandledError = true;
       }
+    });
+    builder.addCase(logoutUser.fulfilled, (state) => {
+      state.logout.isSuccess = true;
+      state.isValidToken = false;
+      state.username = '';
+      state.login.status = 'idle';
+      state.login.isSuccess = false;
+      state.login.error = null;
     });
     builder.addCase(signupUser.fulfilled, (state) => {
       state.signup.status = 'idle';
@@ -286,12 +287,6 @@ export const usersSlice = createSlice({
     builder.addCase(deleteUser.fulfilled, (state) => {
       state.deleteAccount.status = 'idle';
       state.deleteAccount.isSuccess = true;
-      localStorage.removeItem('token');
-      api.setToken('');
-      state.token = '';
-      state.isValidToken = false;
-      state.username = '';
-      state.logout.isSuccess = true;
     });
     builder.addCase(changePassword.pending, (state) => {
       state.changePassword.status = 'loading';
@@ -325,12 +320,6 @@ export const usersSlice = createSlice({
     builder.addCase(changePassword.fulfilled, (state) => {
       state.changePassword.status = 'idle';
       state.changePassword.isSuccess = true;
-      localStorage.removeItem('token');
-      api.setToken('');
-      state.token = '';
-      state.isValidToken = false;
-      state.username = '';
-      state.logout.isSuccess = true;
     });
     builder.addCase(deleteUser.pending, (state) => {
       state.deleteAccount.status = 'loading';
@@ -353,14 +342,8 @@ export const usersSlice = createSlice({
   },
 });
 
-export const {
-  logoutUser,
-  setIsValidToken,
-  resetSignupState,
-  toggleUseSystemTheme,
-  toggleUseDarkTheme,
-  toggleUse24HourClock,
-} = usersSlice.actions;
+export const { setIsValidToken, resetSignupState, toggleUseSystemTheme, toggleUseDarkTheme, toggleUse24HourClock } =
+  usersSlice.actions;
 
 export const selectUsers = (state: RootState) => state.users;
 export const selectPreferences = (state: RootState) => state.users.preferences;

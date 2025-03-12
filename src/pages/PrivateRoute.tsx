@@ -18,21 +18,27 @@ import React, { useEffect } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 
 import { useAppSelector, useAppDispatch } from 'app/hooks';
-import { selectUsers } from 'features/users/usersSlice';
+import { fetchMe, selectUsers } from 'features/users/usersSlice';
 
 export function PrivateRoute() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const location = useLocation();
-  const { token, isValidToken, logout } = useAppSelector(selectUsers);
+  const { isValidToken, logout, fetchMe: fetchMeState } = useAppSelector(selectUsers);
 
   useEffect(() => {
     if (logout.isSuccess) {
       window.location.href = `${import.meta.env.VITE_SERVICE_URL}`;
-    } else if (!token || !isValidToken) {
-      navigate('/login', { state: { from: location.pathname } });
     }
-  }, [token, navigate, location, isValidToken, logout, dispatch]);
+
+    if (!isValidToken) {
+      if (fetchMeState.status === 'idle') {
+        dispatch(fetchMe());
+      } else if (fetchMeState.status === 'failed') {
+        navigate('/login', { state: { from: location.pathname } });
+      }
+    }
+  }, [dispatch, navigate, location, isValidToken, logout, fetchMeState]);
 
   return <Outlet />;
 }

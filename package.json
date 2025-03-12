@@ -23,7 +23,6 @@
     "date-fns": "^3.6.0",
     "eslint-plugin-spellcheck": "^0.0.20",
     "husky": "^9.0.11",
-    "jwt-decode": "^4.0.0",
     "lint-staged": "^15.2.7",
     "postcss": "^8.4.38",
     "prettier": "^3.3.2",
