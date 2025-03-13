@@ -1,10 +1,11 @@
 @use '../base/mixins-lib';
 @use '../base/variables';
 @use 'sass:list';
+@use 'sass:map';
 
 @function map-deep-get($map, $keys...) {
   @each $key in $keys {
-    $map: map-get($map, $key);
+    $map: map.get($map, $key);
   }
   @return $map;
 }
@@ -121,13 +122,13 @@ $line: '.btn_line';
 @mixin setColor($range, $name, $value) {
   @if ($name == 'dark') {
     & {
-      background-color: map-get($range, 'dark');
+      background-color: map.get($range, 'dark');
       color: var(--gray-000);
 
       &#{$line} {
-        border-color: map-get($range, '0');
-        background-color: map-get($range, 'alpha_0');
-        color: map-get($range, 'dark');
+        border-color: map.get($range, '0');
+        background-color: map.get($range, 'alpha_0');
+        color: map.get($range, 'dark');
 
         &:disabled,
         &.is_disabled {
@@ -137,20 +138,20 @@ $line: '.btn_line';
     }
   } @else if ($name == '0') {
     & {
-      background-color: map-get($range, '0');
+      background-color: map.get($range, '0');
       color: var(--gray-000);
 
       &:hover {
-        background-color: map-get($range, 'dark');
+        background-color: map.get($range, 'dark');
       }
 
       &#{$line} {
-        border-color: map-get($range, '0');
-        background-color: map-get($range, 'alpha_light');
-        color: map-get($range, 'dark');
+        border-color: map.get($range, '0');
+        background-color: map.get($range, 'alpha_light');
+        color: map.get($range, 'dark');
 
         &:hover {
-          background-color: map-get($range, 'alpha_0');
+          background-color: map.get($range, 'alpha_0');
         }
 
         &:disabled,
@@ -161,13 +162,13 @@ $line: '.btn_line';
     }
   } @else if ($name == 'light') {
     & {
-      background-color: map-get($range, 'light');
+      background-color: map.get($range, 'light');
       color: var(--gray-000);
 
       &#{$line} {
-        border-color: map-get($range, 'alpha_dark');
-        background-color: map-get($range, 'alpha_0');
-        color: map-get($range, 'dark');
+        border-color: map.get($range, 'alpha_dark');
+        background-color: map.get($range, 'alpha_0');
+        color: map.get($range, 'dark');
 
         &:disabled,
         &.is_disabled {
@@ -177,11 +178,11 @@ $line: '.btn_line';
     }
   } @else if ($name == 'alpha_dark') {
     & {
-      background-color: map-get($range, 'alpha_dark');
-      color: map-get($range, 'dark');
+      background-color: map.get($range, 'alpha_dark');
+      color: map.get($range, 'dark');
 
       &#{$line} {
-        border-color: map-get($range, 'alpha_dark');
+        border-color: map.get($range, 'alpha_dark');
 
         &:disabled,
         &.is_disabled {
@@ -191,11 +192,11 @@ $line: '.btn_line';
     }
   } @else if ($name == 'alpha_0') {
     & {
-      background-color: map-get($range, 'alpha_0');
-      color: map-get($range, 'dark');
+      background-color: map.get($range, 'alpha_0');
+      color: map.get($range, 'dark');
 
       &#{$line} {
-        border-color: map-get($range, 'alpha_0');
+        border-color: map.get($range, 'alpha_0');
 
         &:disabled,
         &.is_disabled {
@@ -205,11 +206,11 @@ $line: '.btn_line';
     }
   } @else {
     & {
-      background-color: map-get($range, 'alpha_light');
-      color: map-get($range, '0');
+      background-color: map.get($range, 'alpha_light');
+      color: map.get($range, '0');
 
       &#{$line} {
-        border-color: map-get($range, 'alpha_light');
+        border-color: map.get($range, 'alpha_light');
 
         &:disabled,
         &.is_disabled {
