@@ -60,6 +60,7 @@ import NextSVG from 'assets/icons/icon_next.svg?react';
 import DiscordSVG from 'assets/icons/icon_discord.svg?react';
 import MoreLargeSVG from 'assets/icons/icon_more_large.svg?react';
 import RepeatSVG from 'assets/icons/icon_repeat.svg?react';
+import LightningSVG from 'assets/icons/icon_lightning.svg?react';
 
 const svgMap = {
   shortcut: <ShortcutSVG />,
@@ -106,6 +107,7 @@ const svgMap = {
   discord: <DiscordSVG />,
   moreLarge: <MoreLargeSVG />,
   repeat: <RepeatSVG />,
+  lightning: <LightningSVG />,
 };
 type SVGType = keyof typeof svgMap;
 

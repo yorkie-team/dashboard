@@ -70,14 +70,14 @@
       }
 
       .info_text {
-        @include mixins-lib.rfonts(20, 28, 400);
+        @include mixins-lib.rfonts(20, 28, 500);
       }
     }
 
     &.big_type {
       .title {
         margin-bottom: 10px;
-        font-weight: 600;
+        font-weight: 500;
       }
 
       .icon {
@@ -100,7 +100,7 @@
   .title {
     display: block;
     margin-bottom: 19px;
-    @include mixins-lib.rfonts(14, 22);
+    @include mixins-lib.rfonts(14, 22, 500);
     color: var(--gray-900);
 
     @include mixins-lib.mobileStart() {

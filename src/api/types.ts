@@ -45,6 +45,25 @@ export type Project = {
   createdAt: number;
 };
 
+export interface ProjectSummaryMetrics {
+  monthlyActiveUsers: number;
+  documentTotalCount: number;
+}
+
+export interface ProjectTimeSeriesMetrics {
+  activeUsers: Array<{
+    time: number;
+    users: number;
+  }>;
+}
+
+export const TIME_RANGE = {
+  oneweek: 'Last 7 days',
+  onemonth: 'Last 4 Weeks',
+  threemonth: 'Last 3 Months',
+  twelvemonth: 'Last 12 Months',
+};
+
 export type UpdatableProjectFields = {
   name?: string;
   authWebhookURL?: string;

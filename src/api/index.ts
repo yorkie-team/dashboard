@@ -20,7 +20,16 @@ import { createGrpcWebTransport } from '@connectrpc/connect-web';
 import { AdminService } from './yorkie/v1/admin_connect';
 import { UpdatableProjectFields_AuthWebhookMethods as PbProjectFields_AuthWebhookMethods } from './yorkie/v1/resources_pb';
 import { InterceptorBuilder } from './interceptor';
-import { User, Project, DocumentSummary, UpdatableProjectFields, DocumentHistory } from './types';
+import {
+  User,
+  Project,
+  DocumentSummary,
+  UpdatableProjectFields,
+  DocumentHistory,
+  ProjectSummaryMetrics,
+  ProjectTimeSeriesMetrics,
+  TIME_RANGE,
+} from './types';
 import * as converter from './converter';
 
 export * from './types';
@@ -186,4 +195,433 @@ export async function removeDocumentByAdmin(
     documentKey,
     force: forceRemoveIfAttached,
   });
+}
+
+// getDocumentTotalCount fetches the total count of documents from the admin server.
+async function getDocumentTotalCount(projectName: string): Promise<number> {
+  const res = await client.listDocuments({
+    projectName,
+  });
+  return res.documents.length;
+}
+
+// getProjectMAU fetches the monthly active users of the given document.
+export async function getProjectMAU(projectID: string): Promise<number> {
+  // TODO(chacha912): Get project MAU from StarRocks
+  return 23;
+}
+
+export async function getProjectSummaryMetrics(projectName: string, projectID: string): Promise<ProjectSummaryMetrics> {
+  const [documentTotalCount, projectMAU] = await Promise.all([
+    getDocumentTotalCount(projectName),
+    getProjectMAU(projectID),
+  ]);
+  return { documentTotalCount, monthlyActiveUsers: projectMAU };
+}
+
+const sampleData = {
+  oneweek: [
+    {
+      time: 1740668400000,
+      users: 2,
+    },
+    {
+      time: 1740754800000,
+      users: 1,
+    },
+    {
+      time: 1740841200000,
+      users: 1,
+    },
+    {
+      time: 1741014000000,
+      users: 8,
+    },
+    {
+      time: 1741100400000,
+      users: 12,
+    },
+    {
+      time: 1741186800000,
+      users: 14,
+    },
+    {
+      time: 1741273200000,
+      users: 14,
+    },
+  ],
+  onemonth: [
+    {
+      time: 1738767600000,
+      users: 0,
+    },
+    {
+      time: 1738854000000,
+      users: 0,
+    },
+    {
+      time: 1738940400000,
+      users: 0,
+    },
+    {
+      time: 1739026800000,
+      users: 0,
+    },
+    {
+      time: 1739113200000,
+      users: 0,
+    },
+    {
+      time: 1739199600000,
+      users: 0,
+    },
+    {
+      time: 1739286000000,
+      users: 0,
+    },
+    {
+      time: 1739372400000,
+      users: 0,
+    },
+    {
+      time: 1739458800000,
+      users: 0,
+    },
+    {
+      time: 1739545200000,
+      users: 0,
+    },
+    {
+      time: 1739631600000,
+      users: 0,
+    },
+    {
+      time: 1739718000000,
+      users: 0,
+    },
+    {
+      time: 1739804400000,
+      users: 0,
+    },
+    {
+      time: 1739890800000,
+      users: 0,
+    },
+    {
+      time: 1739977200000,
+      users: 0,
+    },
+    {
+      time: 1740063600000,
+      users: 3,
+    },
+    {
+      time: 1740150000000,
+      users: 1,
+    },
+    {
+      time: 1740236400000,
+      users: 2,
+    },
+    {
+      time: 1740322800000,
+      users: 10,
+    },
+    {
+      time: 1740409200000,
+      users: 8,
+    },
+    {
+      time: 1740495600000,
+      users: 23,
+    },
+    {
+      time: 1740582000000,
+      users: 5,
+    },
+    {
+      time: 1740668400000,
+      users: 8,
+    },
+    {
+      time: 1740754800000,
+      users: 1,
+    },
+    {
+      time: 1740841200000,
+      users: 1,
+    },
+    {
+      time: 1740927600000,
+      users: 0,
+    },
+    {
+      time: 1741014000000,
+      users: 8,
+    },
+    {
+      time: 1741100400000,
+      users: 12,
+    },
+    {
+      time: 1741186800000,
+      users: 14,
+    },
+    {
+      time: 1741273200000,
+      users: 14,
+    },
+  ],
+  threemonth: [
+    {
+      time: 1738767600000,
+      users: 0,
+    },
+    {
+      time: 1738854000000,
+      users: 0,
+    },
+    {
+      time: 1738940400000,
+      users: 0,
+    },
+    {
+      time: 1739026800000,
+      users: 0,
+    },
+    {
+      time: 1739113200000,
+      users: 0,
+    },
+    {
+      time: 1739199600000,
+      users: 0,
+    },
+    {
+      time: 1739286000000,
+      users: 0,
+    },
+    {
+      time: 1739372400000,
+      users: 0,
+    },
+    {
+      time: 1739458800000,
+      users: 0,
+    },
+    {
+      time: 1739545200000,
+      users: 0,
+    },
+    {
+      time: 1739631600000,
+      users: 0,
+    },
+    {
+      time: 1739718000000,
+      users: 0,
+    },
+    {
+      time: 1739804400000,
+      users: 0,
+    },
+    {
+      time: 1739890800000,
+      users: 0,
+    },
+    {
+      time: 1739977200000,
+      users: 0,
+    },
+    {
+      time: 1740063600000,
+      users: 3,
+    },
+    {
+      time: 1740150000000,
+      users: 1,
+    },
+    {
+      time: 1740236400000,
+      users: 2,
+    },
+    {
+      time: 1740322800000,
+      users: 10,
+    },
+    {
+      time: 1740409200000,
+      users: 8,
+    },
+    {
+      time: 1740495600000,
+      users: 23,
+    },
+    {
+      time: 1740582000000,
+      users: 5,
+    },
+    {
+      time: 1740668400000,
+      users: 8,
+    },
+    {
+      time: 1740754800000,
+      users: 1,
+    },
+    {
+      time: 1740841200000,
+      users: 1,
+    },
+    {
+      time: 1740927600000,
+      users: 0,
+    },
+    {
+      time: 1741014000000,
+      users: 8,
+    },
+    {
+      time: 1741100400000,
+      users: 12,
+    },
+    {
+      time: 1741186800000,
+      users: 14,
+    },
+    {
+      time: 1741273200000,
+      users: 14,
+    },
+  ],
+  twelvemonth: [
+    {
+      time: 1738767600000,
+      users: 0,
+    },
+    {
+      time: 1738854000000,
+      users: 0,
+    },
+    {
+      time: 1738940400000,
+      users: 0,
+    },
+    {
+      time: 1739026800000,
+      users: 0,
+    },
+    {
+      time: 1739113200000,
+      users: 0,
+    },
+    {
+      time: 1739199600000,
+      users: 0,
+    },
+    {
+      time: 1739286000000,
+      users: 0,
+    },
+    {
+      time: 1739372400000,
+      users: 0,
+    },
+    {
+      time: 1739458800000,
+      users: 0,
+    },
+    {
+      time: 1739545200000,
+      users: 0,
+    },
+    {
+      time: 1739631600000,
+      users: 0,
+    },
+    {
+      time: 1739718000000,
+      users: 0,
+    },
+    {
+      time: 1739804400000,
+      users: 0,
+    },
+    {
+      time: 1739890800000,
+      users: 0,
+    },
+    {
+      time: 1739977200000,
+      users: 0,
+    },
+    {
+      time: 1740063600000,
+      users: 3,
+    },
+    {
+      time: 1740150000000,
+      users: 1,
+    },
+    {
+      time: 1740236400000,
+      users: 2,
+    },
+    {
+      time: 1740322800000,
+      users: 10,
+    },
+    {
+      time: 1740409200000,
+      users: 8,
+    },
+    {
+      time: 1740495600000,
+      users: 23,
+    },
+    {
+      time: 1740582000000,
+      users: 5,
+    },
+    {
+      time: 1740668400000,
+      users: 8,
+    },
+    {
+      time: 1740754800000,
+      users: 1,
+    },
+    {
+      time: 1740841200000,
+      users: 1,
+    },
+    {
+      time: 1740927600000,
+      users: 0,
+    },
+    {
+      time: 1741014000000,
+      users: 8,
+    },
+    {
+      time: 1741100400000,
+      users: 12,
+    },
+    {
+      time: 1741186800000,
+      users: 14,
+    },
+    {
+      time: 1741273200000,
+      users: 14,
+    },
+  ],
+};
+
+export async function getProjectTimeSeriesMetrics(
+  projectId: string,
+  timeRange: keyof typeof TIME_RANGE,
+): Promise<ProjectTimeSeriesMetrics> {
+  // TODO(chacha912): Get active users from StarRocks
+  return { activeUsers: sampleData[timeRange] };
 }

@@ -29,6 +29,7 @@ export * from './ProjectsPage';
 export * from './CreateProjectPage';
 export * from './DocumentsPage';
 export * from './ProjectOverviewPage';
+export * from './ProjectQuickStartPage';
 export * from './ProjectAPIKeysPage';
 export * from './ProjectSettingsPage';
 
