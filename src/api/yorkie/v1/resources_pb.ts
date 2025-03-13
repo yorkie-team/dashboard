@@ -2219,9 +2219,9 @@ export class Project extends Message<Project> {
   clientDeactivateThreshold = "";
 
   /**
-   * @generated from field: int32 subscription_limit_per_document = 10;
+   * @generated from field: int32 max_subscribers_per_document = 10;
    */
-  subscriptionLimitPerDocument = 0;
+  maxSubscribersPerDocument = 0;
 
   /**
    * @generated from field: google.protobuf.Timestamp created_at = 11;
@@ -2250,7 +2250,7 @@ export class Project extends Message<Project> {
     { no: 7, name: "event_webhook_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 8, name: "event_webhook_events", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
     { no: 9, name: "client_deactivate_threshold", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 10, name: "subscription_limit_per_document", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 10, name: "max_subscribers_per_document", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 11, name: "created_at", kind: "message", T: Timestamp },
     { no: 12, name: "updated_at", kind: "message", T: Timestamp },
   ]);
@@ -2307,9 +2307,9 @@ export class UpdatableProjectFields extends Message<UpdatableProjectFields> {
   clientDeactivateThreshold?: string;
 
   /**
-   * @generated from field: google.protobuf.Int32Value subscription_limit_per_document = 7;
+   * @generated from field: google.protobuf.Int32Value max_subscribers_per_document = 7;
    */
-  subscriptionLimitPerDocument?: number;
+  maxSubscribersPerDocument?: number;
 
   constructor(data?: PartialMessage<UpdatableProjectFields>) {
     super();
@@ -2325,7 +2325,7 @@ export class UpdatableProjectFields extends Message<UpdatableProjectFields> {
     { no: 4, name: "event_webhook_url", kind: "message", T: StringValue },
     { no: 5, name: "event_webhook_events", kind: "message", T: UpdatableProjectFields_EventWebhookEvents },
     { no: 6, name: "client_deactivate_threshold", kind: "message", T: StringValue },
-    { no: 7, name: "subscription_limit_per_document", kind: "message", T: Int32Value },
+    { no: 7, name: "max_subscribers_per_document", kind: "message", T: Int32Value },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdatableProjectFields {
