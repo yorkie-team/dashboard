@@ -19,7 +19,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64, StringValue, Timestamp } from "@bufbuild/protobuf";
+import { Int32Value, Message, proto3, protoInt64, StringValue, Timestamp } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum yorkie.v1.ValueType
@@ -2219,12 +2219,17 @@ export class Project extends Message<Project> {
   clientDeactivateThreshold = "";
 
   /**
-   * @generated from field: google.protobuf.Timestamp created_at = 10;
+   * @generated from field: int32 max_subscribers_per_document = 10;
+   */
+  maxSubscribersPerDocument = 0;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 11;
    */
   createdAt?: Timestamp;
 
   /**
-   * @generated from field: google.protobuf.Timestamp updated_at = 11;
+   * @generated from field: google.protobuf.Timestamp updated_at = 12;
    */
   updatedAt?: Timestamp;
 
@@ -2245,8 +2250,9 @@ export class Project extends Message<Project> {
     { no: 7, name: "event_webhook_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 8, name: "event_webhook_events", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
     { no: 9, name: "client_deactivate_threshold", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 10, name: "created_at", kind: "message", T: Timestamp },
-    { no: 11, name: "updated_at", kind: "message", T: Timestamp },
+    { no: 10, name: "max_subscribers_per_document", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 11, name: "created_at", kind: "message", T: Timestamp },
+    { no: 12, name: "updated_at", kind: "message", T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Project {
@@ -2300,6 +2306,11 @@ export class UpdatableProjectFields extends Message<UpdatableProjectFields> {
    */
   clientDeactivateThreshold?: string;
 
+  /**
+   * @generated from field: google.protobuf.Int32Value max_subscribers_per_document = 7;
+   */
+  maxSubscribersPerDocument?: number;
+
   constructor(data?: PartialMessage<UpdatableProjectFields>) {
     super();
     proto3.util.initPartial(data, this);
@@ -2314,6 +2325,7 @@ export class UpdatableProjectFields extends Message<UpdatableProjectFields> {
     { no: 4, name: "event_webhook_url", kind: "message", T: StringValue },
     { no: 5, name: "event_webhook_events", kind: "message", T: UpdatableProjectFields_EventWebhookEvents },
     { no: 6, name: "client_deactivate_threshold", kind: "message", T: StringValue },
+    { no: 7, name: "max_subscribers_per_document", kind: "message", T: Int32Value },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdatableProjectFields {
