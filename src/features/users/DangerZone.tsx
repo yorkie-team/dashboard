@@ -16,7 +16,7 @@
 
 import React, { useCallback, useState } from 'react';
 import { Button, Icon, Modal, InputTextBox } from 'components';
-import { deleteUser, selectUsers } from './usersSlice';
+import { deleteUser, logoutUser, selectUsers } from './usersSlice';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 
 export function DangerZone() {
@@ -32,9 +32,10 @@ export function DangerZone() {
     setInputValue(event.target.value);
   };
   const handleSubmit = useCallback(
-    (event: React.FormEvent<HTMLFormElement>) => {
+    async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      dispatch(deleteUser({ username, password: inputValue }));
+      await dispatch(deleteUser({ username, password: inputValue }));
+      await dispatch(logoutUser());
       setInputValue('');
     },
     [dispatch, inputValue],

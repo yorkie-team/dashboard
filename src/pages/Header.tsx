@@ -24,7 +24,7 @@ import { selectUsers } from 'features/users/usersSlice';
 import { Breadcrumb, Icon } from 'components';
 
 export function Header({ className }: { className?: string }) {
-  const { token, isValidToken } = useAppSelector(selectUsers);
+  const { isValidToken } = useAppSelector(selectUsers);
 
   return (
     <header className={`header ${className}`}>
@@ -36,7 +36,7 @@ export function Header({ className }: { className?: string }) {
             </a>
             <span className="blind">Yorkie</span>
           </h1>
-          {token && isValidToken && (
+          {isValidToken && (
             <>
               <Breadcrumb.Inner>
                 <Breadcrumb.Item as="link" href="/projects">
@@ -49,7 +49,7 @@ export function Header({ className }: { className?: string }) {
             </>
           )}
         </Breadcrumb>
-        {token && isValidToken && (
+        {isValidToken && (
           <nav className="util_box">
             <ul className="util_list">
               <li className="util_item">
