@@ -88,6 +88,7 @@ export async function updateProject(id: string, fields: UpdatableProjectFields):
       ? new PbProjectFields_AuthWebhookMethods({ methods: fields.authWebhookMethods })
       : undefined,
     clientDeactivateThreshold: fields.clientDeactivateThreshold,
+    maxSubscribersPerDocument: Number(fields.maxSubscribersPerDocument),
   };
   const res = await client.updateProject({ id, fields: pbFields });
   return converter.fromProject(res.project!);
