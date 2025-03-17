@@ -56,6 +56,7 @@ export function Settings() {
       authWebhookMethods: [],
       clientDeactivateThreshold: '',
       maxSubscribersPerDocument: 0,
+      maxAttachmentsPerDocument: 0,
     },
   });
 
@@ -76,6 +77,10 @@ export function Settings() {
     control,
     name: 'maxSubscribersPerDocument',
   });
+  const { field: maxAttachmentsPerDocument, fieldState: maxAttachmentsPerDocumentState } = useController({
+    control,
+    name: 'maxAttachmentsPerDocument',
+  });
   const checkFieldState = useCallback(
     (fieldName: keyof UpdatableProjectFields | AuthWebhookMethod, state: 'success' | 'error'): boolean => {
       return updateFieldInfo.target === fieldName && updateFieldInfo.state === state;
@@ -94,6 +99,7 @@ export function Settings() {
       authWebhookMethods: project?.authWebhookMethods || [],
       clientDeactivateThreshold: project?.clientDeactivateThreshold || '',
       maxSubscribersPerDocument: project?.maxSubscribersPerDocument || 0,
+      maxAttachmentsPerDocument: project?.maxAttachmentsPerDocument || 0,
     });
   }, [reset, project]);
 
@@ -121,7 +127,8 @@ export function Settings() {
       !nameFieldState.error &&
       !webhookURLFieldState.error &&
       !clientDeactivateThresholdState.error &&
-      !maxSubscribersPerDocumentState.error
+      !maxSubscribersPerDocumentState.error &&
+      !maxAttachmentsPerDocumentState.error
     ) {
       setUpdateFieldInfo((info) => ({
         ...info,
@@ -133,7 +140,8 @@ export function Settings() {
       nameFieldState.error ||
       webhookURLFieldState.error ||
       clientDeactivateThresholdState.error ||
-      maxSubscribersPerDocumentState.error
+      maxSubscribersPerDocumentState.error ||
+      maxAttachmentsPerDocumentState.error
     ) {
       setUpdateFieldInfo((info) => ({
         ...info,
@@ -149,6 +157,7 @@ export function Settings() {
     webhookURLFieldState.error,
     clientDeactivateThresholdState.error,
     maxSubscribersPerDocumentState.error,
+    maxAttachmentsPerDocumentState.error,
   ]);
 
   useEffect(() => {
@@ -288,6 +297,57 @@ export function Settings() {
                     }
                     helperText={
                       updateFieldInfo.target === 'maxSubscribersPerDocument' && updateFieldInfo.state !== null
+                        ? updateFieldInfo.message
+                        : undefined
+                    }
+                    onSuccessEnd={resetUpdateFieldInfo}
+                  />
+                </div>
+              </dd>
+              <dt className="sub_title">Max Attachments Per Document</dt>
+              <dd className="sub_desc">
+                <p className="guide">
+                  Set the maximum number of attachments allowed per document.
+                </p>
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: checkFieldState('maxAttachmentsPerDocument', 'error'),
+                    is_success: checkFieldState('maxAttachmentsPerDocument', 'success'),
+                  })}
+                >
+                  <InputTextField
+                    reset={() => {
+                      resetForm();
+                      resetUpdateFieldInfo();
+                    }}
+                    {...register('maxAttachmentsPerDocument', {
+                      required: 'Max Attachments Per Document is required',
+                      pattern: {
+                        value: /^[0-9]+$/,
+                        message: 'Max Attachments Per Document must be a positive integer',
+                      },
+                      onChange: async () => {
+                        await trigger('maxAttachmentsPerDocument');
+                      },
+                    })}
+                    onChange={(e) => {
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'maxAttachmentsPerDocument' }));
+                      maxAttachmentsPerDocument.onChange(e.target.value);
+                    }}
+                    id="maxAttachmentsPerDocument"
+                    label="Max Attachments Per Document"
+                    blindLabel={true}
+                    fieldUtil={true}
+                    placeholder="0"
+                    state={
+                      checkFieldState('maxAttachmentsPerDocument', 'success')
+                        ? 'success'
+                        : checkFieldState('maxAttachmentsPerDocument', 'error')
+                          ? 'error'
+                          : undefined
+                    }
+                    helperText={
+                      updateFieldInfo.target === 'maxAttachmentsPerDocument' && updateFieldInfo.state !== null
                         ? updateFieldInfo.message
                         : undefined
                     }
