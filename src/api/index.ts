@@ -15,8 +15,8 @@
  */
 
 import { Document, OpSource, VersionVector } from '@yorkie-js/sdk';
-import { createPromiseClient } from '@connectrpc/connect';
-import { createGrpcWebTransport } from '@connectrpc/connect-web';
+import { createClient } from '@connectrpc/connect';
+import { createConnectTransport } from '@connectrpc/connect-web';
 import { AdminService } from './yorkie/v1/admin_connect';
 import { UpdatableProjectFields_AuthWebhookMethods as PbProjectFields_AuthWebhookMethods } from './yorkie/v1/resources_pb';
 import { InterceptorBuilder } from './interceptor';
@@ -29,29 +29,79 @@ import {
   ProjectSummaryMetrics,
   ProjectTimeSeriesMetrics,
   TIME_RANGE,
+  RPCError,
+  RPCStatusCode,
 } from './types';
 import * as converter from './converter';
 
 export * from './types';
 
 const interceptor = new InterceptorBuilder();
-const transport = createGrpcWebTransport({
+const transport = createConnectTransport({
   baseUrl: import.meta.env.VITE_API_ADDR!,
   interceptors: [interceptor.createAuthInterceptor(), interceptor.createMetricInterceptor()],
   defaultTimeoutMs: 3000,
+  credentials: 'include',
 });
-const client = createPromiseClient(AdminService, transport);
 
-// setToken sets the token for the current user.
-export function setToken(token: string) {
-  interceptor.setToken(token);
+// TODO(hackerwins): Consider replacing ConnectRPC with Fetch API.
+// For now, we use Fetch API for auth APIs and ConnectRPC for admin APIs.
+// It is cumbersome to maintain two different APIs, so we should consider
+// replacing ConnectRPC with Fetch API.
+const client = createClient(AdminService, transport);
+
+// fetchMe fetches the current user.
+export async function fetchMe(): Promise<User> {
+  const res = await fetch(`${import.meta.env.VITE_API_ADDR!}/auth/me`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+  });
+
+  if (res.status === 401) {
+    throw new RPCError(String(RPCStatusCode.UNAUTHENTICATED), 'Login failed');
+  }
+  if (!res.ok) {
+    throw new RPCError(String(RPCStatusCode.UNKNOWN), 'Unknown error');
+  }
+
+  return (await res.json()) as User;
 }
 
 // logIn logs in the user and returns a token.
-export async function logIn(username: string, password: string): Promise<string> {
-  const res = await client.logIn({ username, password });
-  setToken(res.token);
-  return res.token;
+export async function logIn(username: string, password: string): Promise<void> {
+  const res = await fetch(`${import.meta.env.VITE_API_ADDR!}/auth/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+    body: JSON.stringify({ username, password }),
+  });
+
+  if (res.status === 401) {
+    throw new RPCError(String(RPCStatusCode.UNAUTHENTICATED), 'Login failed');
+  }
+  if (!res.ok) {
+    throw new RPCError(String(RPCStatusCode.UNKNOWN), 'Unknown error');
+  }
+}
+
+// logOut logs out the user.
+export async function logOut(): Promise<void> {
+  const res = await fetch(`${import.meta.env.VITE_API_ADDR!}/auth/logout`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+  });
+
+  if (!res.ok) {
+    throw new RPCError(String(RPCStatusCode.UNKNOWN), 'Unknown error');
+  }
 }
 
 // signUp signs up the user and returns a user.
@@ -97,6 +147,7 @@ export async function updateProject(id: string, fields: UpdatableProjectFields):
       ? new PbProjectFields_AuthWebhookMethods({ methods: fields.authWebhookMethods })
       : undefined,
     clientDeactivateThreshold: fields.clientDeactivateThreshold,
+    maxSubscribersPerDocument: Number(fields.maxSubscribersPerDocument),
   };
   const res = await client.updateProject({ id, fields: pbFields });
   return converter.fromProject(res.project!);

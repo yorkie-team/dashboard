@@ -16,7 +16,7 @@
 
 import React, { useCallback, useState, useEffect } from 'react';
 import { Button, Icon, Modal, InputTextBox } from 'components';
-import { selectUsers, ChangePasswordFields, changePassword } from './usersSlice';
+import { selectUsers, ChangePasswordFields, changePassword, logoutUser } from './usersSlice';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { useForm } from 'react-hook-form';
 
@@ -39,10 +39,11 @@ export function Account() {
   } = useForm<Omit<ChangePasswordFields, 'username'>>();
 
   const onSubmit = useCallback(
-    (data: Omit<ChangePasswordFields, 'username'>) => {
-      dispatch(changePassword({ ...data, username }));
+    async (data: Omit<ChangePasswordFields, 'username'>) => {
+      await dispatch(changePassword({ ...data, username }));
+      await dispatch(logoutUser());
     },
-    [dispatch],
+    [dispatch, username],
   );
 
   const onClose = useCallback(() => {

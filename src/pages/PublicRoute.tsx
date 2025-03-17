@@ -17,19 +17,22 @@
 import React, { useEffect } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 
-import { useAppSelector } from 'app/hooks';
-import { selectUsers } from 'features/users/usersSlice';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { fetchMe, selectUsers } from 'features/users/usersSlice';
 
 export function PublicRoute() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { token, isValidToken } = useAppSelector(selectUsers);
+  const dispatch = useAppDispatch();
+  const { isValidToken } = useAppSelector(selectUsers);
 
   useEffect(() => {
-    if (token && isValidToken && !location.state) {
+    if (isValidToken) {
       navigate('/projects');
+      return;
     }
-  }, [token, isValidToken, navigate, location]);
+
+    dispatch(fetchMe());
+  }, [isValidToken, navigate]);
 
   return <Outlet />;
 }
