@@ -2130,12 +2130,17 @@ export class User extends Message<User> {
   id = "";
 
   /**
-   * @generated from field: string username = 2;
+   * @generated from field: string auth_provider = 2;
+   */
+  authProvider = "";
+
+  /**
+   * @generated from field: string username = 3;
    */
   username = "";
 
   /**
-   * @generated from field: google.protobuf.Timestamp created_at = 3;
+   * @generated from field: google.protobuf.Timestamp created_at = 4;
    */
   createdAt?: Timestamp;
 
@@ -2148,8 +2153,9 @@ export class User extends Message<User> {
   static readonly typeName = "yorkie.v1.User";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "created_at", kind: "message", T: Timestamp },
+    { no: 2, name: "auth_provider", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "created_at", kind: "message", T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): User {

@@ -20,7 +20,7 @@ import { selectUsers, logoutUser } from './usersSlice';
 import { Popover, Dropdown } from 'components';
 
 export function AccountDropdown() {
-  const { username } = useAppSelector(selectUsers);
+  const { username, authProvider } = useAppSelector(selectUsers);
   const [opened, setOpened] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -58,7 +58,9 @@ export function AccountDropdown() {
             <dd className="user_account_text">{username}</dd>
             <dt className="blind">Mail</dt>
             <dd className="user_account_text">
-              <span className="user_account_mail">{username}@yorkie.dev</span>
+              <span className="user_account_mail">
+                {username}@{authProvider === 'github' ? 'GitHub' : 'Local'}
+              </span>
             </dd>
           </dl>
           <Dropdown.List>

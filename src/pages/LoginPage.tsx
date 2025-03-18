@@ -20,13 +20,15 @@ import { PageTemplate } from './PageTemplate';
 import { Icon, Button } from 'components';
 
 export function LoginPage() {
-  const [withUsername, setWithUsername] = useState(false);
+  const githubAuthEnabled = Boolean(import.meta.env.VITE_GITHUB_AUTH_ENABLED);
+  const [withUsername, setWithUsername] = useState(!githubAuthEnabled);
 
+  // TODO(hackerwins): Style up the login page.
   return (
     <PageTemplate className="login_page">
       <Icon type="logo3d" className="icon_logo" fill />
       <h2 className="title">Sign in to Yorkie</h2>
-      {!withUsername && (
+      {!withUsername && githubAuthEnabled && (
         <div style={{ width: 336 }}>
           <div style={{ marginTop: '5rem' }}>
             <Button.Box fullWidth={true}>
@@ -44,7 +46,19 @@ export function LoginPage() {
           </div>
         </div>
       )}
-      {withUsername && <LoginForm />}
+
+      {withUsername && (
+        <>
+          <LoginForm />
+          {githubAuthEnabled && (
+            <div style={{ marginTop: '1rem' }}>
+              <Button.Box fullWidth={true}>
+                <Button onClick={() => setWithUsername(false)}>Back</Button>
+              </Button.Box>
+            </div>
+          )}
+        </>
+      )}
       <div className="box_bottom">
         <Button.Box fullWidth={true}>
           <Button as="link" href="/signup" outline={true}>

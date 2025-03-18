@@ -22,6 +22,7 @@ import { RootState } from 'app/store';
 
 export interface UsersState {
   isValidToken: boolean;
+  authProvider: string;
   username: string;
   fetchMe: {
     status: 'idle' | 'loading' | 'failed';
@@ -93,6 +94,7 @@ export type ChangePasswordFields = {
 
 const initialState: UsersState = {
   isValidToken: false,
+  authProvider: '',
   username: '',
   fetchMe: {
     status: 'idle',
@@ -202,6 +204,7 @@ export const usersSlice = createSlice({
     builder.addCase(fetchMe.fulfilled, (state, action) => {
       state.isValidToken = true;
       state.username = action.payload.username;
+      state.authProvider = action.payload.authProvider;
       state.fetchMe.status = 'idle';
     });
     builder.addCase(fetchMe.rejected, (state) => {
