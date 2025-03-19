@@ -18,7 +18,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ChangePasswordRequest, ChangePasswordResponse, CreateProjectRequest, CreateProjectResponse, DeleteAccountRequest, DeleteAccountResponse, GetDocumentRequest, GetDocumentResponse, GetDocumentsRequest, GetDocumentsResponse, GetProjectRequest, GetProjectResponse, GetServerVersionRequest, GetServerVersionResponse, GetSnapshotMetaRequest, GetSnapshotMetaResponse, ListChangesRequest, ListChangesResponse, ListDocumentsRequest, ListDocumentsResponse, ListProjectsRequest, ListProjectsResponse, LogInRequest, LogInResponse, RemoveDocumentByAdminRequest, RemoveDocumentByAdminResponse, SearchDocumentsRequest, SearchDocumentsResponse, SignUpRequest, SignUpResponse, UpdateProjectRequest, UpdateProjectResponse } from "./admin_pb";
+import { ChangePasswordRequest, ChangePasswordResponse, CreateProjectRequest, CreateProjectResponse, DeleteAccountRequest, DeleteAccountResponse, GetDocumentRequest, GetDocumentResponse, GetDocumentsRequest, GetDocumentsResponse, GetProjectRequest, GetProjectResponse, GetProjectStatsRequest, GetProjectStatsResponse, GetServerVersionRequest, GetServerVersionResponse, GetSnapshotMetaRequest, GetSnapshotMetaResponse, ListChangesRequest, ListChangesResponse, ListDocumentsRequest, ListDocumentsResponse, ListProjectsRequest, ListProjectsResponse, LogInRequest, LogInResponse, RemoveDocumentByAdminRequest, RemoveDocumentByAdminResponse, SearchDocumentsRequest, SearchDocumentsResponse, SignUpRequest, SignUpResponse, UpdateProjectRequest, UpdateProjectResponse } from "./admin_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -99,6 +99,15 @@ export const AdminService = {
       name: "UpdateProject",
       I: UpdateProjectRequest,
       O: UpdateProjectResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.GetProjectStats
+     */
+    getProjectStats: {
+      name: "GetProjectStats",
+      I: GetProjectStatsRequest,
+      O: GetProjectStatsResponse,
       kind: MethodKind.Unary,
     },
     /**

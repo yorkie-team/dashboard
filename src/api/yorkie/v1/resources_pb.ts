@@ -2130,12 +2130,17 @@ export class User extends Message<User> {
   id = "";
 
   /**
-   * @generated from field: string username = 2;
+   * @generated from field: string auth_provider = 2;
+   */
+  authProvider = "";
+
+  /**
+   * @generated from field: string username = 3;
    */
   username = "";
 
   /**
-   * @generated from field: google.protobuf.Timestamp created_at = 3;
+   * @generated from field: google.protobuf.Timestamp created_at = 4;
    */
   createdAt?: Timestamp;
 
@@ -2148,8 +2153,9 @@ export class User extends Message<User> {
   static readonly typeName = "yorkie.v1.User";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "created_at", kind: "message", T: Timestamp },
+    { no: 2, name: "auth_provider", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "created_at", kind: "message", T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): User {
@@ -2224,12 +2230,17 @@ export class Project extends Message<Project> {
   maxSubscribersPerDocument = 0;
 
   /**
-   * @generated from field: google.protobuf.Timestamp created_at = 11;
+   * @generated from field: int32 max_attachments_per_document = 11;
+   */
+  maxAttachmentsPerDocument = 0;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 12;
    */
   createdAt?: Timestamp;
 
   /**
-   * @generated from field: google.protobuf.Timestamp updated_at = 12;
+   * @generated from field: google.protobuf.Timestamp updated_at = 13;
    */
   updatedAt?: Timestamp;
 
@@ -2251,8 +2262,9 @@ export class Project extends Message<Project> {
     { no: 8, name: "event_webhook_events", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
     { no: 9, name: "client_deactivate_threshold", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 10, name: "max_subscribers_per_document", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 11, name: "created_at", kind: "message", T: Timestamp },
-    { no: 12, name: "updated_at", kind: "message", T: Timestamp },
+    { no: 11, name: "max_attachments_per_document", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 12, name: "created_at", kind: "message", T: Timestamp },
+    { no: 13, name: "updated_at", kind: "message", T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Project {
@@ -2269,6 +2281,49 @@ export class Project extends Message<Project> {
 
   static equals(a: Project | PlainMessage<Project> | undefined, b: Project | PlainMessage<Project> | undefined): boolean {
     return proto3.util.equals(Project, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.MetricPoint
+ */
+export class MetricPoint extends Message<MetricPoint> {
+  /**
+   * @generated from field: int64 timestamp = 1;
+   */
+  timestamp = protoInt64.zero;
+
+  /**
+   * @generated from field: int32 value = 2;
+   */
+  value = 0;
+
+  constructor(data?: PartialMessage<MetricPoint>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.MetricPoint";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "timestamp", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 2, name: "value", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MetricPoint {
+    return new MetricPoint().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MetricPoint {
+    return new MetricPoint().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MetricPoint {
+    return new MetricPoint().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: MetricPoint | PlainMessage<MetricPoint> | undefined, b: MetricPoint | PlainMessage<MetricPoint> | undefined): boolean {
+    return proto3.util.equals(MetricPoint, a, b);
   }
 }
 
@@ -2311,6 +2366,11 @@ export class UpdatableProjectFields extends Message<UpdatableProjectFields> {
    */
   maxSubscribersPerDocument?: number;
 
+  /**
+   * @generated from field: google.protobuf.Int32Value max_attachments_per_document = 8;
+   */
+  maxAttachmentsPerDocument?: number;
+
   constructor(data?: PartialMessage<UpdatableProjectFields>) {
     super();
     proto3.util.initPartial(data, this);
@@ -2326,6 +2386,7 @@ export class UpdatableProjectFields extends Message<UpdatableProjectFields> {
     { no: 5, name: "event_webhook_events", kind: "message", T: UpdatableProjectFields_EventWebhookEvents },
     { no: 6, name: "client_deactivate_threshold", kind: "message", T: StringValue },
     { no: 7, name: "max_subscribers_per_document", kind: "message", T: Int32Value },
+    { no: 8, name: "max_attachments_per_document", kind: "message", T: Int32Value },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdatableProjectFields {

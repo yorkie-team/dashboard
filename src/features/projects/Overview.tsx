@@ -19,19 +19,21 @@ import { useAppSelector, useAppDispatch } from 'app/hooks';
 import { getProjectStatsAsync, selectProjectDetail, selectProjectStats } from './projectsSlice';
 import { Icon, Popover, Dropdown, Chart } from 'components';
 import { formatNumber } from 'utils';
-import { TIME_RANGE } from 'api/types';
+import { DATE_RANGE_OPTIONS } from 'api/types';
 
 export function Overview() {
   const { project } = useAppSelector(selectProjectDetail);
   const { stats } = useAppSelector(selectProjectStats);
-  const [timePickerOpened, setTimePickerOpened] = useState(false);
-  const [range, setTimePicker] = useState<keyof typeof TIME_RANGE>('oneweek');
+  const [dateRangePickerOpened, setDateRangePickerOpened] = useState(false);
+  const [range, setDateRange] = useState<keyof typeof DATE_RANGE_OPTIONS>('oneweek');
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!project) return;
-    dispatch(getProjectStatsAsync([project.id, range]));
+    dispatch(getProjectStatsAsync([project.name, range]));
   }, [project, range]);
+
+  console.log(stats);
 
   return (
     <>
@@ -39,7 +41,7 @@ export function Overview() {
         <ul className="usage_list">
           <li className="usage_item link_type">
             <span className="title">Total documents</span>
-            <span className="info_text">{formatNumber(stats?.documentCount)}</span>
+            <span className="info_text">{String(stats?.documentsCount || 0)}</span>
           </li>
         </ul>
       </div>
@@ -47,25 +49,25 @@ export function Overview() {
         <div className="filter">
           <ul className="filter_list">
             <li className="filter_item">
-              <Popover opened={timePickerOpened} onChange={setTimePickerOpened}>
+              <Popover opened={dateRangePickerOpened} onChange={setDateRangePickerOpened}>
                 <Popover.Target>
                   <button type="button" className="btn btn_small filter_desc">
-                    <span className="text">{TIME_RANGE[range]}</span>
+                    <span className="text">{DATE_RANGE_OPTIONS[range]}</span>
                     <Icon type="arrow" className="icon_arrow" />
                   </button>
                 </Popover.Target>
                 <Popover.Dropdown>
                   <Dropdown>
                     <Dropdown.List>
-                      {Object.entries(TIME_RANGE).map(([time, label]) => (
+                      {Object.entries(DATE_RANGE_OPTIONS).map(([dateRange, label]) => (
                         <Dropdown.Item
-                          key={time}
+                          key={dateRange}
                           onClick={() => {
-                            setTimePicker(time as keyof typeof TIME_RANGE);
-                            setTimePickerOpened(false);
+                            setDateRange(dateRange as keyof typeof DATE_RANGE_OPTIONS);
+                            setDateRangePickerOpened(false);
                           }}
                         >
-                          {range === time && <Icon type="check" color="orange_0" />}
+                          {range === dateRange && <Icon type="check" color="orange_0" />}
                           <Dropdown.Text>{label}</Dropdown.Text>
                         </Dropdown.Item>
                       ))}
@@ -86,20 +88,53 @@ export function Overview() {
                   </span>
                   <dl className="info">
                     <dt className="blind">Details</dt>
-                    <dd className="info_text">{formatNumber(stats?.activeUsers?.at(-1)?.value) ?? 0}</dd>
+                    <dd className="info_text">{formatNumber(stats?.activeUsersCount) ?? 0}</dd>
                   </dl>
                 </li>
               </ul>
             </div>
             <div className="chart">
               <Chart
-                data={(stats?.activeUsers || []).map(({ timestamp, value: users }) => {
-                  const date = new Date(timestamp);
-                  return {
-                    timestamp: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-                    users,
-                  };
-                })}
+                data={(() => {
+                  const now = new Date();
+                  const endDate = new Date(now.setHours(0, 0, 0, 0));
+                  const startDate = new Date(endDate);
+
+                  switch (range) {
+                    case 'oneweek':
+                      startDate.setDate(startDate.getDate() - 7);
+                      break;
+                    case 'fourweeks':
+                      startDate.setMonth(startDate.getMonth() - 1);
+                      break;
+                    case 'threemonths':
+                      startDate.setMonth(startDate.getMonth() - 3);
+                      break;
+                    case 'twelvemonths':
+                      startDate.setFullYear(startDate.getFullYear() - 1);
+                      break;
+                  }
+
+                  const allDates = [];
+                  for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+                    allDates.push({
+                      timestamp: d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+                      users: 0,
+                    });
+                  }
+
+                  const actualData = new Map(
+                    (stats?.activeUsers || []).map(({ timestamp, value: users }) => [
+                      new Date(timestamp * 1000).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+                      users,
+                    ]),
+                  );
+
+                  return allDates.map((point) => ({
+                    ...point,
+                    users: actualData.get(point.timestamp) || 0,
+                  }));
+                })()}
                 xKey="timestamp"
                 dataKey="users"
               />

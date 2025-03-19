@@ -47,18 +47,19 @@ export type Project = {
 };
 
 export interface ProjectStats {
-  documentCount: number;
+  documentsCount: number;
+  activeUsersCount: number;
   activeUsers: Array<{
     timestamp: number;
     value: number;
   }>;
 }
 
-export const TIME_RANGE = {
+export const DATE_RANGE_OPTIONS = {
   oneweek: 'Last 7 days',
-  onemonth: 'Last 4 Weeks',
-  threemonth: 'Last 3 Months',
-  twelvemonth: 'Last 12 Months',
+  fourweeks: 'Last 4 Weeks',
+  threemonths: 'Last 3 Months',
+  twelvemonths: 'Last 12 Months',
 };
 
 export type UpdatableProjectFields = {

@@ -26,7 +26,7 @@ import {
   UpdatableProjectFields,
   getProjectStats,
 } from 'api';
-import { RPCStatusCode, AuthWebhookMethod, RPCError, ProjectStats, TIME_RANGE } from 'api/types';
+import { RPCStatusCode, AuthWebhookMethod, RPCError, ProjectStats, DATE_RANGE_OPTIONS } from 'api/types';
 
 export interface ProjectsState {
   list: {
@@ -128,10 +128,10 @@ export const updateProjectAsync = createAppThunk<Project, { id: string; fields: 
   },
 );
 
-export const getProjectStatsAsync = createAppThunk<ProjectStats, [string, keyof typeof TIME_RANGE]>(
+export const getProjectStatsAsync = createAppThunk<ProjectStats, [string, keyof typeof DATE_RANGE_OPTIONS]>(
   'projects/getStats',
-  async ([projectID, range]) => {
-    return await getProjectStats(projectID, range);
+  async ([projectName, dateRange]) => {
+    return await getProjectStats(projectName, dateRange);
   },
 );
 
