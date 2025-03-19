@@ -50,6 +50,7 @@ export function fromProject(pbProject: PbProject): Project {
     authWebhookMethods: pbProject.authWebhookMethods as Array<AuthWebhookMethod>,
     clientDeactivateThreshold: pbProject.clientDeactivateThreshold,
     maxSubscribersPerDocument: pbProject.maxSubscribersPerDocument,
+    maxAttachmentsPerDocument: pbProject.maxAttachmentsPerDocument,
   };
 }
 

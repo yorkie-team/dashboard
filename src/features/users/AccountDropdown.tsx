@@ -59,7 +59,7 @@ export function AccountDropdown() {
             <dt className="blind">Mail</dt>
             <dd className="user_account_text">
               <span className="user_account_mail">
-                {username}@{authProvider === 'github' ? 'GitHub' : 'Local'}
+                {authProvider === 'github' ? 'GitHub Account' : 'Local Account'}
               </span>
             </dd>
           </dl>
