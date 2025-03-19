@@ -25,6 +25,7 @@ export function Account() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const {
     username,
+    authProvider,
     changePassword: { isSuccess, status, error },
   } = useAppSelector(selectUsers);
 
@@ -62,27 +63,39 @@ export function Account() {
       <div className="setting_title">
         <strong className="text">Account</strong>
       </div>
-      <dl className="sub_info">
-        <dt className="sub_title">Change Password</dt>
-        <dd className="sub_desc">
-          <p className="guide">
-            Update your current password to enhance account security.
-            <br />
-            Choose a strong, unique password that you don't use for other accounts.
-          </p>
-          <div className="btn_box">
-            <Button
-              color="primary"
-              icon={<Icon type="repeat" />}
-              onClick={() => {
-                setIsModalOpen(true);
-              }}
-            >
-              Change password
-            </Button>
-          </div>
-        </dd>
-      </dl>
+      {authProvider === 'github' ? (
+        <dl className="sub_info">
+          <dt className="sub_title">GitHub Account</dt>
+          <dd className="sub_desc">
+            <p className="guide">
+              Your account <b>{username}</b> is linked to GitHub. Please visit GitHub's settings page to manage your
+              account configuration.
+            </p>
+          </dd>
+        </dl>
+      ) : (
+        <dl className="sub_info">
+          <dt className="sub_title">Change Password</dt>
+          <dd className="sub_desc">
+            <p className="guide">
+              Update your current password to enhance account security.
+              <br />
+              Choose a strong, unique password that you don't use for other accounts.
+            </p>
+            <div className="btn_box">
+              <Button
+                color="primary"
+                icon={<Icon type="repeat" />}
+                onClick={() => {
+                  setIsModalOpen(true);
+                }}
+              >
+                Change password
+              </Button>
+            </div>
+          </dd>
+        </dl>
+      )}
       {isModalOpen && (
         <Modal>
           <Modal.Top>

@@ -33,6 +33,7 @@ export function fromTimestamp(pbTimestamp: PbTimestamp): number {
 export function fromUser(pbUser: PbUser): User {
   return {
     id: pbUser.id,
+    authProvider: pbUser.authProvider,
     username: pbUser.username,
     createdAt: fromTimestamp(pbUser.createdAt!),
   };

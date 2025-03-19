@@ -14,17 +14,51 @@
  * limitations under the License.
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { LoginForm } from 'features/users';
 import { PageTemplate } from './PageTemplate';
 import { Icon, Button } from 'components';
 
 export function LoginPage() {
+  const githubAuthEnabled = Boolean(import.meta.env.VITE_GITHUB_AUTH_ENABLED);
+  const [withUsername, setWithUsername] = useState(!githubAuthEnabled);
+
+  // TODO(hackerwins): Style up the login page.
   return (
     <PageTemplate className="login_page">
       <Icon type="logo3d" className="icon_logo" fill />
       <h2 className="title">Sign in to Yorkie</h2>
-      <LoginForm />
+      {!withUsername && githubAuthEnabled && (
+        <div style={{ width: 336 }}>
+          <div style={{ marginTop: '5rem' }}>
+            <Button.Box fullWidth={true}>
+              <Button as="link" href={`${import.meta.env.VITE_API_ADDR}/auth/github/login`} outline={true}>
+                Sign in with GitHub
+              </Button>
+            </Button.Box>
+          </div>
+          <div style={{ marginTop: '2rem' }}>
+            <Button.Box fullWidth={true}>
+              <Button onClick={() => setWithUsername(true)} outline={true}>
+                Sign in with Username
+              </Button>
+            </Button.Box>
+          </div>
+        </div>
+      )}
+
+      {withUsername && (
+        <>
+          <LoginForm />
+          {githubAuthEnabled && (
+            <div style={{ marginTop: '1rem' }}>
+              <Button.Box fullWidth={true}>
+                <Button onClick={() => setWithUsername(false)}>Back</Button>
+              </Button.Box>
+            </div>
+          )}
+        </>
+      )}
       <div className="box_bottom">
         <Button.Box fullWidth={true}>
           <Button as="link" href="/signup" outline={true}>

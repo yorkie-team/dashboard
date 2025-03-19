@@ -30,6 +30,7 @@ export type DocumentHistory = {
 
 export type User = {
   id: string;
+  authProvider: string;
   username: string;
   createdAt: number;
 };
