@@ -109,6 +109,27 @@
     }
   }
 
+  .box_signin {
+    & .btn {
+      margin: 10px 0 0;
+      width: 100%;
+      padding: 11px 16px;
+      font-weight: 600;
+
+      &:first-child {
+        margin-top: 5em;
+      }
+    }
+
+    @include mixins-lib.tabletStart() {
+      padding: 0 28px;
+    }
+
+    @include mixins-lib.mobileStart() {
+      padding: 0;
+    }
+  }
+
   .box_bottom {
     display: flex;
     flex-direction: column;
@@ -135,8 +156,6 @@
 
       .btn {
         margin-top: 7px;
-        padding: 4px variables.$spacing_16 2px;
-        @include mixins-lib.rfonts(16, 24, 600);
         color: var(--gray-600);
       }
     }
@@ -418,8 +437,6 @@
 
       .btn {
         margin-top: 7px;
-        padding: 4px variables.$spacing_16 2px;
-        @include mixins-lib.rfonts(16, 24, 600);
         color: var(--gray-600);
       }
     }

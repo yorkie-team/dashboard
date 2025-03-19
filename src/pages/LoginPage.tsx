@@ -23,27 +23,24 @@ export function LoginPage() {
   const githubAuthEnabled = Boolean(import.meta.env.VITE_GITHUB_AUTH_ENABLED);
   const [withUsername, setWithUsername] = useState(!githubAuthEnabled);
 
-  // TODO(hackerwins): Style up the login page.
   return (
     <PageTemplate className="login_page">
       <Icon type="logo3d" className="icon_logo" fill />
       <h2 className="title">Sign in to Yorkie</h2>
       {!withUsername && githubAuthEnabled && (
-        <div style={{ width: 336 }}>
-          <div style={{ marginTop: '5rem' }}>
-            <Button.Box fullWidth={true}>
-              <Button as="link" href={`${import.meta.env.VITE_API_ADDR}/auth/github/login`} outline={true}>
-                Sign in with GitHub
-              </Button>
-            </Button.Box>
-          </div>
-          <div style={{ marginTop: '2rem' }}>
-            <Button.Box fullWidth={true}>
-              <Button onClick={() => setWithUsername(true)} outline={true}>
-                Sign in with Username
-              </Button>
-            </Button.Box>
-          </div>
+        <div className="box_signin">
+          <Button
+            as="link"
+            href={`${import.meta.env.VITE_API_ADDR}/auth/github/login`}
+            icon={<Icon type="github" className="large" />}
+            className="gray800"
+            outline
+          >
+            Sign in with GitHub
+          </Button>
+          <Button onClick={() => setWithUsername(true)} outline>
+            Sign in with Username
+          </Button>
         </div>
       )}
 
@@ -51,17 +48,17 @@ export function LoginPage() {
         <>
           <LoginForm />
           {githubAuthEnabled && (
-            <div style={{ marginTop: '1rem' }}>
-              <Button.Box fullWidth={true}>
-                <Button onClick={() => setWithUsername(false)}>Back</Button>
-              </Button.Box>
-            </div>
+            <Button.Box fullWidth style={{ marginTop: '1rem' }}>
+              <Button icon={<Icon type="arrowBack" />} onClick={() => setWithUsername(false)} outline>
+                Other sign in options
+              </Button>
+            </Button.Box>
           )}
         </>
       )}
       <div className="box_bottom">
-        <Button.Box fullWidth={true}>
-          <Button as="link" href="/signup" outline={true}>
+        <Button.Box fullWidth>
+          <Button as="link" href="/signup" outline>
             Sign up
           </Button>
         </Button.Box>
