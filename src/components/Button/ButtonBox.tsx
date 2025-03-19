@@ -23,12 +23,12 @@ export const ButtonBox = React.forwardRef<
     fullWidth?: boolean;
     children?: ReactNode;
   }
->(({ children, fullWidth }, ref) => {
+>(({ children, fullWidth, ...props }, ref) => {
   const buttonBoxClassName = classNames('btn_box', {
     full_width: fullWidth,
   });
   return (
-    <div ref={ref} className={buttonBoxClassName}>
+    <div ref={ref} className={buttonBoxClassName} {...props}>
       {children}
     </div>
   );
