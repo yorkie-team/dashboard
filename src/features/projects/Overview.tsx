@@ -16,47 +16,30 @@
 
 import React, { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from 'app/hooks';
-import {
-  selectProjectDetail,
-  selectProjectSummaryMetrics,
-  getProjectSummaryMetricsAsync,
-  selectProjectTimeSeriesMetrics,
-  getProjectTimeSeriesMetricsAsync,
-} from './projectsSlice';
+import { getProjectStatsAsync, selectProjectDetail, selectProjectStats } from './projectsSlice';
 import { Icon, Popover, Dropdown, Chart } from 'components';
 import { formatNumber } from 'utils';
 import { TIME_RANGE } from 'api/types';
 
 export function Overview() {
   const { project } = useAppSelector(selectProjectDetail);
-  const summaryMetrics = useAppSelector(selectProjectSummaryMetrics);
-  const timeSeriesMetrics = useAppSelector(selectProjectTimeSeriesMetrics);
+  const { stats } = useAppSelector(selectProjectStats);
   const [timePickerOpened, setTimePickerOpened] = useState(false);
-  const [timePicker, setTimePicker] = useState<keyof typeof TIME_RANGE>('oneweek');
+  const [range, setTimePicker] = useState<keyof typeof TIME_RANGE>('oneweek');
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!project) return;
-    dispatch(getProjectSummaryMetricsAsync([project.name, project.id]));
-    dispatch(getProjectTimeSeriesMetricsAsync([project.id, timePicker]));
-  }, [dispatch, project]);
-
-  useEffect(() => {
-    if (!project) return;
-    dispatch(getProjectTimeSeriesMetricsAsync([project.id, timePicker]));
-  }, [timePicker]);
+    dispatch(getProjectStatsAsync([project.id, range]));
+  }, [project, range]);
 
   return (
     <>
       <div className="usage">
         <ul className="usage_list">
           <li className="usage_item link_type">
-            <span className="title">Monthly Active Users</span>
-            <span className="info_text">{formatNumber(summaryMetrics?.monthlyActiveUsers)}</span>
-          </li>
-          <li className="usage_item link_type">
             <span className="title">Total documents</span>
-            <span className="info_text">{formatNumber(summaryMetrics?.documentTotalCount)}</span>
+            <span className="info_text">{formatNumber(stats?.documentCount)}</span>
           </li>
         </ul>
       </div>
@@ -67,7 +50,7 @@ export function Overview() {
               <Popover opened={timePickerOpened} onChange={setTimePickerOpened}>
                 <Popover.Target>
                   <button type="button" className="btn btn_small filter_desc">
-                    <span className="text">{TIME_RANGE[timePicker]}</span>
+                    <span className="text">{TIME_RANGE[range]}</span>
                     <Icon type="arrow" className="icon_arrow" />
                   </button>
                 </Popover.Target>
@@ -82,7 +65,7 @@ export function Overview() {
                             setTimePickerOpened(false);
                           }}
                         >
-                          {timePicker === time && <Icon type="check" color="orange_0" />}
+                          {range === time && <Icon type="check" color="orange_0" />}
                           <Dropdown.Text>{label}</Dropdown.Text>
                         </Dropdown.Item>
                       ))}
@@ -103,21 +86,21 @@ export function Overview() {
                   </span>
                   <dl className="info">
                     <dt className="blind">Details</dt>
-                    <dd className="info_text">{formatNumber(timeSeriesMetrics?.activeUsers?.at(-1)?.users) ?? 0}</dd>
+                    <dd className="info_text">{formatNumber(stats?.activeUsers?.at(-1)?.value) ?? 0}</dd>
                   </dl>
                 </li>
               </ul>
             </div>
             <div className="chart">
               <Chart
-                data={(timeSeriesMetrics?.activeUsers || []).map(({ time, users }) => {
-                  const date = new Date(time);
+                data={(stats?.activeUsers || []).map(({ timestamp, value: users }) => {
+                  const date = new Date(timestamp);
                   return {
-                    time: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+                    timestamp: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
                     users,
                   };
                 })}
-                xKey="time"
+                xKey="timestamp"
                 dataKey="users"
               />
             </div>

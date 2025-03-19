@@ -24,17 +24,9 @@ import {
   updateProject,
   Project,
   UpdatableProjectFields,
-  getProjectSummaryMetrics,
-  getProjectTimeSeriesMetrics,
+  getProjectStats,
 } from 'api';
-import {
-  RPCStatusCode,
-  AuthWebhookMethod,
-  RPCError,
-  ProjectSummaryMetrics,
-  ProjectTimeSeriesMetrics,
-  TIME_RANGE,
-} from 'api/types';
+import { RPCStatusCode, AuthWebhookMethod, RPCError, ProjectStats, TIME_RANGE } from 'api/types';
 
 export interface ProjectsState {
   list: {
@@ -61,9 +53,8 @@ export interface ProjectsState {
     } | null;
     isSuccess: boolean;
   };
-  metrics: {
-    summary: ProjectSummaryMetrics | null;
-    timeSeries: ProjectTimeSeriesMetrics | null;
+  stats: {
+    stats: ProjectStats | null;
     status: 'idle' | 'loading' | 'failed';
   };
 }
@@ -99,10 +90,9 @@ const initialState: ProjectsState = {
     error: null,
     isSuccess: false,
   },
-  metrics: {
+  stats: {
     status: 'idle',
-    summary: null,
-    timeSeries: null,
+    stats: null,
   },
 };
 
@@ -138,21 +128,12 @@ export const updateProjectAsync = createAppThunk<Project, { id: string; fields: 
   },
 );
 
-export const getProjectSummaryMetricsAsync = createAppThunk<ProjectSummaryMetrics, [string, string]>(
-  'projects/getSummaryMetrics',
-  async ([projectName, projectID]) => {
-    const summaryMetrics = await getProjectSummaryMetrics(projectName, projectID);
-    return summaryMetrics;
+export const getProjectStatsAsync = createAppThunk<ProjectStats, [string, keyof typeof TIME_RANGE]>(
+  'projects/getStats',
+  async ([projectID, range]) => {
+    return await getProjectStats(projectID, range);
   },
 );
-
-export const getProjectTimeSeriesMetricsAsync = createAppThunk<
-  ProjectTimeSeriesMetrics,
-  [string, keyof typeof TIME_RANGE]
->('projects/getTimeSeriesMetrics', async ([projectID, timeRange]) => {
-  const timeSeriesMetrics = await getProjectTimeSeriesMetrics(projectID, timeRange);
-  return timeSeriesMetrics;
-});
 
 export const projectsSlice = createSlice({
   name: 'projects',
@@ -187,25 +168,15 @@ export const projectsSlice = createSlice({
     builder.addCase(getProjectAsync.rejected, (state) => {
       state.detail.status = 'failed';
     });
-    builder.addCase(getProjectSummaryMetricsAsync.pending, (state) => {
-      state.metrics.status = 'loading';
+    builder.addCase(getProjectStatsAsync.pending, (state) => {
+      state.stats.status = 'loading';
     });
-    builder.addCase(getProjectSummaryMetricsAsync.fulfilled, (state, action) => {
-      state.metrics.status = 'idle';
-      state.metrics.summary = action.payload;
+    builder.addCase(getProjectStatsAsync.fulfilled, (state, action) => {
+      state.stats.status = 'idle';
+      state.stats.stats = action.payload;
     });
-    builder.addCase(getProjectSummaryMetricsAsync.rejected, (state) => {
-      state.metrics.status = 'failed';
-    });
-    builder.addCase(getProjectTimeSeriesMetricsAsync.pending, (state) => {
-      state.metrics.status = 'loading';
-    });
-    builder.addCase(getProjectTimeSeriesMetricsAsync.fulfilled, (state, action) => {
-      state.metrics.status = 'idle';
-      state.metrics.timeSeries = action.payload;
-    });
-    builder.addCase(getProjectTimeSeriesMetricsAsync.rejected, (state) => {
-      state.metrics.status = 'failed';
+    builder.addCase(getProjectStatsAsync.rejected, (state) => {
+      state.stats.status = 'failed';
     });
     builder.addCase(createProjectAsync.pending, (state) => {
       state.create.status = 'loading';
@@ -308,7 +279,6 @@ export const selectProjectList = (state: RootState) => state.projects.list;
 export const selectProjectDetail = (state: RootState) => state.projects.detail;
 export const selectProjectCreate = (state: RootState) => state.projects.create;
 export const selectProjectUpdate = (state: RootState) => state.projects.update;
-export const selectProjectSummaryMetrics = (state: RootState) => state.projects.metrics.summary;
-export const selectProjectTimeSeriesMetrics = (state: RootState) => state.projects.metrics.timeSeries;
+export const selectProjectStats = (state: RootState) => state.projects.stats;
 
 export default projectsSlice.reducer;

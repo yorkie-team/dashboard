@@ -70,15 +70,8 @@ main();`,
     <div className="init_area">
       <div className="init_box">
         <div className="title_box ">
-          <Icon type="messageSmile" />
-          <strong className="title">Your project is ready!</strong>
-        </div>
-        <p className="title_desc">Your project is now ready to use with its own APIs.</p>
-      </div>
-      <div className="init_box">
-        <div className="title_box ">
           <Icon type="route" />
-          <strong className="title">Add Yorkie SDK in your app</strong>
+          <strong className="title">Use Yorkie SDK in your App</strong>
         </div>
       </div>
       <div className="codeblock_navigator">

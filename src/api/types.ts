@@ -46,15 +46,11 @@ export type Project = {
   createdAt: number;
 };
 
-export interface ProjectSummaryMetrics {
-  monthlyActiveUsers: number;
-  documentTotalCount: number;
-}
-
-export interface ProjectTimeSeriesMetrics {
+export interface ProjectStats {
+  documentCount: number;
   activeUsers: Array<{
-    time: number;
-    users: number;
+    timestamp: number;
+    value: number;
   }>;
 }
 

@@ -26,11 +26,10 @@ import {
   DocumentSummary,
   UpdatableProjectFields,
   DocumentHistory,
-  ProjectSummaryMetrics,
-  ProjectTimeSeriesMetrics,
   TIME_RANGE,
   RPCError,
   RPCStatusCode,
+  ProjectStats,
 } from './types';
 import * as converter from './converter';
 
@@ -248,431 +247,406 @@ export async function removeDocumentByAdmin(
   });
 }
 
-// getDocumentTotalCount fetches the total count of documents from the admin server.
-async function getDocumentTotalCount(projectName: string): Promise<number> {
-  const res = await client.listDocuments({
-    projectName,
-  });
-  return res.documents.length;
-}
-
-// getProjectMAU fetches the monthly active users of the given document.
-export async function getProjectMAU(projectID: string): Promise<number> {
-  // TODO(chacha912): Get project MAU from StarRocks
-  return 23;
-}
-
-export async function getProjectSummaryMetrics(projectName: string, projectID: string): Promise<ProjectSummaryMetrics> {
-  const [documentTotalCount, projectMAU] = await Promise.all([
-    getDocumentTotalCount(projectName),
-    getProjectMAU(projectID),
-  ]);
-  return { documentTotalCount, monthlyActiveUsers: projectMAU };
+export async function getProjectStats(projectID: string, range: keyof typeof TIME_RANGE): Promise<ProjectStats> {
+  console.log(range);
+  return { documentCount: 10, activeUsers: sampleData[range] };
 }
 
 const sampleData = {
   oneweek: [
     {
-      time: 1740668400000,
-      users: 2,
+      timestamp: 1740668400000,
+      value: 2,
     },
     {
-      time: 1740754800000,
-      users: 1,
+      timestamp: 1740754800000,
+      value: 1,
     },
     {
-      time: 1740841200000,
-      users: 1,
+      timestamp: 1740841200000,
+      value: 1,
     },
     {
-      time: 1741014000000,
-      users: 8,
+      timestamp: 1741014000000,
+      value: 8,
     },
     {
-      time: 1741100400000,
-      users: 12,
+      timestamp: 1741100400000,
+      value: 12,
     },
     {
-      time: 1741186800000,
-      users: 14,
+      timestamp: 1741186800000,
+      value: 14,
     },
     {
-      time: 1741273200000,
-      users: 14,
+      timestamp: 1741273200000,
+      value: 14,
     },
   ],
   onemonth: [
     {
-      time: 1738767600000,
-      users: 0,
+      timestamp: 1738767600000,
+      value: 0,
     },
     {
-      time: 1738854000000,
-      users: 0,
+      timestamp: 1738854000000,
+      value: 0,
     },
     {
-      time: 1738940400000,
-      users: 0,
+      timestamp: 1738940400000,
+      value: 0,
     },
     {
-      time: 1739026800000,
-      users: 0,
+      timestamp: 1739026800000,
+      value: 0,
     },
     {
-      time: 1739113200000,
-      users: 0,
+      timestamp: 1739113200000,
+      value: 0,
     },
     {
-      time: 1739199600000,
-      users: 0,
+      timestamp: 1739199600000,
+      value: 0,
     },
     {
-      time: 1739286000000,
-      users: 0,
+      timestamp: 1739286000000,
+      value: 0,
     },
     {
-      time: 1739372400000,
-      users: 0,
+      timestamp: 1739372400000,
+      value: 0,
     },
     {
-      time: 1739458800000,
-      users: 0,
+      timestamp: 1739458800000,
+      value: 0,
     },
     {
-      time: 1739545200000,
-      users: 0,
+      timestamp: 1739545200000,
+      value: 0,
     },
     {
-      time: 1739631600000,
-      users: 0,
+      timestamp: 1739631600000,
+      value: 0,
     },
     {
-      time: 1739718000000,
-      users: 0,
+      timestamp: 1739718000000,
+      value: 0,
     },
     {
-      time: 1739804400000,
-      users: 0,
+      timestamp: 1739804400000,
+      value: 0,
     },
     {
-      time: 1739890800000,
-      users: 0,
+      timestamp: 1739890800000,
+      value: 0,
     },
     {
-      time: 1739977200000,
-      users: 0,
+      timestamp: 1739977200000,
+      value: 0,
     },
     {
-      time: 1740063600000,
-      users: 3,
+      timestamp: 1740063600000,
+      value: 3,
     },
     {
-      time: 1740150000000,
-      users: 1,
+      timestamp: 1740150000000,
+      value: 1,
     },
     {
-      time: 1740236400000,
-      users: 2,
+      timestamp: 1740236400000,
+      value: 2,
     },
     {
-      time: 1740322800000,
-      users: 10,
+      timestamp: 1740322800000,
+      value: 10,
     },
     {
-      time: 1740409200000,
-      users: 8,
+      timestamp: 1740409200000,
+      value: 8,
     },
     {
-      time: 1740495600000,
-      users: 23,
+      timestamp: 1740495600000,
+      value: 23,
     },
     {
-      time: 1740582000000,
-      users: 5,
+      timestamp: 1740582000000,
+      value: 5,
     },
     {
-      time: 1740668400000,
-      users: 8,
+      timestamp: 1740668400000,
+      value: 8,
     },
     {
-      time: 1740754800000,
-      users: 1,
+      timestamp: 1740754800000,
+      value: 1,
     },
     {
-      time: 1740841200000,
-      users: 1,
+      timestamp: 1740841200000,
+      value: 1,
     },
     {
-      time: 1740927600000,
-      users: 0,
+      timestamp: 1740927600000,
+      value: 0,
     },
     {
-      time: 1741014000000,
-      users: 8,
+      timestamp: 1741014000000,
+      value: 8,
     },
     {
-      time: 1741100400000,
-      users: 12,
+      timestamp: 1741100400000,
+      value: 12,
     },
     {
-      time: 1741186800000,
-      users: 14,
+      timestamp: 1741186800000,
+      value: 14,
     },
     {
-      time: 1741273200000,
-      users: 14,
+      timestamp: 1741273200000,
+      value: 14,
     },
   ],
   threemonth: [
     {
-      time: 1738767600000,
-      users: 0,
+      timestamp: 1738767600000,
+      value: 0,
     },
     {
-      time: 1738854000000,
-      users: 0,
+      timestamp: 1738854000000,
+      value: 0,
     },
     {
-      time: 1738940400000,
-      users: 0,
+      timestamp: 1738940400000,
+      value: 0,
     },
     {
-      time: 1739026800000,
-      users: 0,
+      timestamp: 1739026800000,
+      value: 0,
     },
     {
-      time: 1739113200000,
-      users: 0,
+      timestamp: 1739113200000,
+      value: 0,
     },
     {
-      time: 1739199600000,
-      users: 0,
+      timestamp: 1739199600000,
+      value: 0,
     },
     {
-      time: 1739286000000,
-      users: 0,
+      timestamp: 1739286000000,
+      value: 0,
     },
     {
-      time: 1739372400000,
-      users: 0,
+      timestamp: 1739372400000,
+      value: 0,
     },
     {
-      time: 1739458800000,
-      users: 0,
+      timestamp: 1739458800000,
+      value: 0,
     },
     {
-      time: 1739545200000,
-      users: 0,
+      timestamp: 1739545200000,
+      value: 0,
     },
     {
-      time: 1739631600000,
-      users: 0,
+      timestamp: 1739631600000,
+      value: 0,
     },
     {
-      time: 1739718000000,
-      users: 0,
+      timestamp: 1739718000000,
+      value: 0,
     },
     {
-      time: 1739804400000,
-      users: 0,
+      timestamp: 1739804400000,
+      value: 0,
     },
     {
-      time: 1739890800000,
-      users: 0,
+      timestamp: 1739890800000,
+      value: 0,
     },
     {
-      time: 1739977200000,
-      users: 0,
+      timestamp: 1739977200000,
+      value: 0,
     },
     {
-      time: 1740063600000,
-      users: 3,
+      timestamp: 1740063600000,
+      value: 3,
     },
     {
-      time: 1740150000000,
-      users: 1,
+      timestamp: 1740150000000,
+      value: 1,
     },
     {
-      time: 1740236400000,
-      users: 2,
+      timestamp: 1740236400000,
+      value: 2,
     },
     {
-      time: 1740322800000,
-      users: 10,
+      timestamp: 1740322800000,
+      value: 10,
     },
     {
-      time: 1740409200000,
-      users: 8,
+      timestamp: 1740409200000,
+      value: 8,
     },
     {
-      time: 1740495600000,
-      users: 23,
+      timestamp: 1740495600000,
+      value: 23,
     },
     {
-      time: 1740582000000,
-      users: 5,
+      timestamp: 1740582000000,
+      value: 5,
     },
     {
-      time: 1740668400000,
-      users: 8,
+      timestamp: 1740668400000,
+      value: 8,
     },
     {
-      time: 1740754800000,
-      users: 1,
+      timestamp: 1740754800000,
+      value: 1,
     },
     {
-      time: 1740841200000,
-      users: 1,
+      timestamp: 1740841200000,
+      value: 1,
     },
     {
-      time: 1740927600000,
-      users: 0,
+      timestamp: 1740927600000,
+      value: 0,
     },
     {
-      time: 1741014000000,
-      users: 8,
+      timestamp: 1741014000000,
+      value: 8,
     },
     {
-      time: 1741100400000,
-      users: 12,
+      timestamp: 1741100400000,
+      value: 12,
     },
     {
-      time: 1741186800000,
-      users: 14,
+      timestamp: 1741186800000,
+      value: 14,
     },
     {
-      time: 1741273200000,
-      users: 14,
+      timestamp: 1741273200000,
+      value: 14,
     },
   ],
   twelvemonth: [
     {
-      time: 1738767600000,
-      users: 0,
+      timestamp: 1738767600000,
+      value: 0,
     },
     {
-      time: 1738854000000,
-      users: 0,
+      timestamp: 1738854000000,
+      value: 0,
     },
     {
-      time: 1738940400000,
-      users: 0,
+      timestamp: 1738940400000,
+      value: 0,
     },
     {
-      time: 1739026800000,
-      users: 0,
+      timestamp: 1739026800000,
+      value: 0,
     },
     {
-      time: 1739113200000,
-      users: 0,
+      timestamp: 1739113200000,
+      value: 0,
     },
     {
-      time: 1739199600000,
-      users: 0,
+      timestamp: 1739199600000,
+      value: 0,
     },
     {
-      time: 1739286000000,
-      users: 0,
+      timestamp: 1739286000000,
+      value: 0,
     },
     {
-      time: 1739372400000,
-      users: 0,
+      timestamp: 1739372400000,
+      value: 0,
     },
     {
-      time: 1739458800000,
-      users: 0,
+      timestamp: 1739458800000,
+      value: 0,
     },
     {
-      time: 1739545200000,
-      users: 0,
+      timestamp: 1739545200000,
+      value: 0,
     },
     {
-      time: 1739631600000,
-      users: 0,
+      timestamp: 1739631600000,
+      value: 0,
     },
     {
-      time: 1739718000000,
-      users: 0,
+      timestamp: 1739718000000,
+      value: 0,
     },
     {
-      time: 1739804400000,
-      users: 0,
+      timestamp: 1739804400000,
+      value: 0,
     },
     {
-      time: 1739890800000,
-      users: 0,
+      timestamp: 1739890800000,
+      value: 0,
     },
     {
-      time: 1739977200000,
-      users: 0,
+      timestamp: 1739977200000,
+      value: 0,
     },
     {
-      time: 1740063600000,
-      users: 3,
+      timestamp: 1740063600000,
+      value: 3,
     },
     {
-      time: 1740150000000,
-      users: 1,
+      timestamp: 1740150000000,
+      value: 1,
     },
     {
-      time: 1740236400000,
-      users: 2,
+      timestamp: 1740236400000,
+      value: 2,
     },
     {
-      time: 1740322800000,
-      users: 10,
+      timestamp: 1740322800000,
+      value: 10,
     },
     {
-      time: 1740409200000,
-      users: 8,
+      timestamp: 1740409200000,
+      value: 8,
     },
     {
-      time: 1740495600000,
-      users: 23,
+      timestamp: 1740495600000,
+      value: 23,
     },
     {
-      time: 1740582000000,
-      users: 5,
+      timestamp: 1740582000000,
+      value: 5,
     },
     {
-      time: 1740668400000,
-      users: 8,
+      timestamp: 1740668400000,
+      value: 8,
     },
     {
-      time: 1740754800000,
-      users: 1,
+      timestamp: 1740754800000,
+      value: 1,
     },
     {
-      time: 1740841200000,
-      users: 1,
+      timestamp: 1740841200000,
+      value: 1,
     },
     {
-      time: 1740927600000,
-      users: 0,
+      timestamp: 1740927600000,
+      value: 0,
     },
     {
-      time: 1741014000000,
-      users: 8,
+      timestamp: 1741014000000,
+      value: 8,
     },
     {
-      time: 1741100400000,
-      users: 12,
+      timestamp: 1741100400000,
+      value: 12,
     },
     {
-      time: 1741186800000,
-      users: 14,
+      timestamp: 1741186800000,
+      value: 14,
     },
     {
-      time: 1741273200000,
-      users: 14,
+      timestamp: 1741273200000,
+      value: 14,
     },
   ],
 };
-
-export async function getProjectTimeSeriesMetrics(
-  projectId: string,
-  timeRange: keyof typeof TIME_RANGE,
-): Promise<ProjectTimeSeriesMetrics> {
-  // TODO(chacha912): Get active users from StarRocks
-  return { activeUsers: sampleData[timeRange] };
-}
