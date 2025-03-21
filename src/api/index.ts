@@ -147,6 +147,7 @@ export async function updateProject(id: string, fields: UpdatableProjectFields):
       : undefined,
     clientDeactivateThreshold: fields.clientDeactivateThreshold,
     maxSubscribersPerDocument: Number(fields.maxSubscribersPerDocument),
+    maxAttachmentsPerDocument: Number(fields.maxAttachmentsPerDocument),
   };
   const res = await client.updateProject({ id, fields: pbFields });
   return converter.fromProject(res.project!);

@@ -21,7 +21,7 @@ import { selectUsers, logoutUser } from './usersSlice';
 import { Popover, Dropdown, Icon } from 'components';
 
 export function MobileGnbDropdown() {
-  const { username } = useAppSelector(selectUsers);
+  const { username, authProvider } = useAppSelector(selectUsers);
   const [opened, setOpened] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -75,7 +75,9 @@ export function MobileGnbDropdown() {
             <dd className="user_account_text">{username}</dd>
             <dt className="blind">Mail</dt>
             <dd className="user_account_text">
-              <span className="user_account_mail">{username}@yorkie.dev</span>
+              <span className="user_account_mail">
+                {authProvider === 'github' ? 'GitHub Account' : 'Local Account'}
+              </span>
             </dd>
           </dl>
         </Dropdown>

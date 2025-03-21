@@ -69,6 +69,7 @@ export type ProjectUpdateFields = {
   authWebhookMethods: Array<AuthWebhookMethod>;
   clientDeactivateThreshold: string;
   maxSubscribersPerDocument: number;
+  maxAttachmentsPerDocument: number;
 };
 
 const initialState: ProjectsState = {
@@ -262,6 +263,11 @@ export const projectsSlice = createSlice({
           } else if (field === 'maxSubscribersPerDocument') {
             state.update.error = {
               target: 'maxSubscribersPerDocument',
+              message: description,
+            };
+          } else if (field === 'maxAttachmentsPerDocument') {
+            state.update.error = {
+              target: 'maxAttachmentsPerDocument',
               message: description,
             };
           }
