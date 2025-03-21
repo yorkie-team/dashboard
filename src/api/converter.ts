@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import { DATE_RANGE_OPTIONS } from './types';
 import { Timestamp as PbTimestamp } from '@bufbuild/protobuf';
 import { User, Project, DocumentSummary, AuthWebhookMethod, FieldViolation } from './types';
 import { Change, converter, Indexable } from '@yorkie-js/sdk';
@@ -23,6 +24,7 @@ import {
   DocumentSummary as PbDocumentSummary,
   Change as PbChange,
 } from './yorkie/v1/resources_pb';
+import { GetProjectStatsRequest_DateRange as PbDateRange } from './yorkie/v1/admin_pb';
 import { ConnectError } from '@connectrpc/connect';
 import { BadRequest } from '@buf/googleapis_googleapis.bufbuild_es/google/rpc/error_details_pb';
 
@@ -102,4 +104,19 @@ export function fromErrorDetails(error: ConnectError) {
     }
   }
   return details;
+}
+
+export function toDateRange(range: keyof typeof DATE_RANGE_OPTIONS): PbDateRange {
+  switch (range) {
+    case 'oneweek':
+      return PbDateRange.LAST_1W;
+    case 'fourweeks':
+      return PbDateRange.LAST_4W;
+    case 'threemonths':
+      return PbDateRange.LAST_3M;
+    case 'twelvemonths':
+      return PbDateRange.LAST_12M;
+    default:
+      throw new Error(`unknown range: ${range}`);
+  }
 }

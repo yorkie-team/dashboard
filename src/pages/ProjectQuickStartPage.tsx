@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 The Yorkie Authors. All rights reserved.
+ * Copyright 2025 The Yorkie Authors. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,11 +14,14 @@
  * limitations under the License.
  */
 
-export * from './ProjectList';
-export * from './QuickStart';
-export * from './Overview';
-export * from './RegisterForm';
-export * from './APIKeys';
-export * from './ProjectTabList';
-export * from './ProjectDropdown';
-export * from './Settings';
+import React from 'react';
+import { ProjectPageTemplate } from 'pages';
+import { QuickStart } from 'features/projects';
+
+export function ProjectQuickStartPage() {
+  return (
+    <ProjectPageTemplate className="project_init_page">
+      <QuickStart />
+    </ProjectPageTemplate>
+  );
+}

@@ -26,8 +26,10 @@ import {
   DocumentSummary,
   UpdatableProjectFields,
   DocumentHistory,
+  DATE_RANGE_OPTIONS,
   RPCError,
   RPCStatusCode,
+  ProjectStats,
 } from './types';
 import * as converter from './converter';
 
@@ -244,4 +246,26 @@ export async function removeDocumentByAdmin(
     documentKey,
     force: forceRemoveIfAttached,
   });
+}
+
+export async function getProjectStats(
+  projectName: string,
+  range: keyof typeof DATE_RANGE_OPTIONS,
+): Promise<ProjectStats> {
+  const dateRange = converter.toDateRange(range);
+  const res = await client.getProjectStats({ projectName, dateRange });
+  const activeUsers = res.activeUsers.map((point) => {
+    return {
+      // NOTE(hackerwins): Number can safely represent dates for +285,616 years.
+      // Millisecond precision loss is acceptable for daily stats.
+      timestamp: Number(point.timestamp),
+      value: point.value,
+    };
+  });
+
+  return {
+    documentsCount: Number(res.documentsCount),
+    activeUsersCount: res.activeUsersCount,
+    activeUsers: activeUsers,
+  };
 }

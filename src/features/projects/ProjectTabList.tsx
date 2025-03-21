@@ -38,6 +38,10 @@ export function ProjectTabList() {
         <Icon type="chart" />
         <TabList.Text>Overview</TabList.Text>
       </TabList.Item>
+      <TabList.Item to={`/projects/${projectName}/quickstart`}>
+        <Icon type="lightning" />
+        <TabList.Text>Quick Start</TabList.Text>
+      </TabList.Item>
       <TabList.Item to={`/projects/${projectName}/documents`}>
         <Icon type="keynote" />
         <TabList.Text>Documents</TabList.Text>

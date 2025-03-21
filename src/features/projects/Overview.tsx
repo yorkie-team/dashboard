@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 The Yorkie Authors. All rights reserved.
+ * Copyright 2025 The Yorkie Authors. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,174 +14,134 @@
  * limitations under the License.
  */
 
-import React, { useState } from 'react';
-import classNames from 'classnames';
-import { useAppSelector } from 'app/hooks';
-import { selectProjectDetail } from './projectsSlice';
-import { Icon, CodeBlock, CopyButton, Button } from 'components';
-
-type Snippet = 'npm' | 'cdn';
+import React, { useState, useEffect } from 'react';
+import { useAppSelector, useAppDispatch } from 'app/hooks';
+import { getProjectStatsAsync, selectProjectDetail, selectProjectStats } from './projectsSlice';
+import { Icon, Popover, Dropdown, Chart } from 'components';
+import { formatNumber } from 'utils';
+import { DATE_RANGE_OPTIONS } from 'api/types';
 
 export function Overview() {
   const { project } = useAppSelector(selectProjectDetail);
-  const [snippetType, setSnippetType] = useState<Snippet>('npm');
-  const snippet = {
-    npm: `import yorkie from '@yorkie-js/sdk';
+  const { stats } = useAppSelector(selectProjectStats);
+  const [dateRangePickerOpened, setDateRangePickerOpened] = useState(false);
+  const [range, setDateRange] = useState<keyof typeof DATE_RANGE_OPTIONS>('oneweek');
+  const dispatch = useAppDispatch();
 
-async function main() {
-  const client = new yorkie.Client('${import.meta.env.VITE_API_ADDR}', {
-    apiKey: '${project?.publicKey}',
-  });
-  await client.activate();
+  useEffect(() => {
+    if (!project) return;
+    dispatch(getProjectStatsAsync([project.name, range]));
+  }, [project, range]);
 
-  const doc = new yorkie.Document('my-first-document');
-  doc.subscribe('presence', (event) => {
-    const peers = doc.getPresences();
-    // Add element to HTML as shown below:
-    // <div>There are currently <span id='peersCount'></span> peers!</div>
-    document.getElementById('peersCount').innerHTML = peers.length;
-  })
-  await client.attach(doc);
-}
-main();`,
-    cdn: `<div>There are currently <span id='peersCount'></span> peers!</div>
-
-<!-- include yorkie js -->
-<script src="https://cdn.jsdelivr.net/npm/@yorkie-js/sdk@${import.meta.env.VITE_JS_SDK_VERSION}/dist/yorkie-js-sdk.js"></script>
-<script>
-  async function main() {
-    const client = new yorkie.Client('${import.meta.env.VITE_API_ADDR}', {
-      apiKey: '${project?.publicKey}',
-    });
-    await client.activate();
-
-    const doc = new yorkie.Document('my-first-document');
-    doc.subscribe('presence', (event) => {
-      const peers = doc.getPresences();
-      document.getElementById('peersCount').innerHTML = peers.length;
-    })
-    await client.attach(doc);
-  }
-  main();
-</script>`,
-  };
+  console.log(stats);
 
   return (
-    <div className="init_area">
-      <div className="init_box">
-        <div className="title_box ">
-          <Icon type="messageSmile" />
-          <strong className="title">Your project is ready!</strong>
-        </div>
-        <p className="title_desc">Your project is now ready to use with its own APIs.</p>
+    <>
+      <div className="usage">
+        <ul className="usage_list">
+          <li className="usage_item link_type">
+            <span className="title">Total documents</span>
+            <span className="info_text">{String(stats?.documentsCount || 0)}</span>
+          </li>
+        </ul>
       </div>
-      <div className="init_box">
-        <div className="title_box ">
-          <Icon type="route" />
-          <strong className="title">Add Yorkie SDK in your app</strong>
+      <div className="chart_area">
+        <div className="filter">
+          <ul className="filter_list">
+            <li className="filter_item">
+              <Popover opened={dateRangePickerOpened} onChange={setDateRangePickerOpened}>
+                <Popover.Target>
+                  <button type="button" className="btn btn_small filter_desc">
+                    <span className="text">{DATE_RANGE_OPTIONS[range]}</span>
+                    <Icon type="arrow" className="icon_arrow" />
+                  </button>
+                </Popover.Target>
+                <Popover.Dropdown>
+                  <Dropdown>
+                    <Dropdown.List>
+                      {Object.entries(DATE_RANGE_OPTIONS).map(([dateRange, label]) => (
+                        <Dropdown.Item
+                          key={dateRange}
+                          onClick={() => {
+                            setDateRange(dateRange as keyof typeof DATE_RANGE_OPTIONS);
+                            setDateRangePickerOpened(false);
+                          }}
+                        >
+                          {range === dateRange && <Icon type="check" color="orange_0" />}
+                          <Dropdown.Text>{label}</Dropdown.Text>
+                        </Dropdown.Item>
+                      ))}
+                    </Dropdown.List>
+                  </Dropdown>
+                </Popover.Dropdown>
+              </Popover>
+            </li>
+          </ul>
         </div>
-      </div>
-      <div className="codeblock_navigator">
-        <button
-          className={classNames('item', {
-            is_active: snippetType === 'npm',
-          })}
-          onClick={() => setSnippetType('npm')}
-        >
-          Use npm
-        </button>
-        <button
-          className={classNames('item', {
-            is_active: snippetType === 'cdn',
-          })}
-          onClick={() => setSnippetType('cdn')}
-        >
-          Use a &lt;script&gt; tag
-        </button>
-      </div>
-      {snippetType === 'npm' && (
-        <div className="init_content">
-          <div className="init_box">
-            <div className="title_box title_box_s">
-              <strong className="title">Use npm</strong>
+        <div className="chart_group">
+          <div className="chart_box">
+            <div className="usage">
+              <ul className="usage_list">
+                <li className="usage_item link_type big_type">
+                  <span className="title_box">
+                    <span className="title">Active Users</span>
+                  </span>
+                  <dl className="info">
+                    <dt className="blind">Details</dt>
+                    <dd className="info_text">{formatNumber(stats?.activeUsersCount) ?? 0}</dd>
+                  </dl>
+                </li>
+              </ul>
             </div>
-            <p className="title_desc">Your project is now ready to use with its own APIs.</p>
-          </div>
-          <div className="codeblock_box">
-            <div className="codeblock">
-              <CodeBlock.Code code="$ npm install @yorkie-js/sdk" language="bash" />
-            </div>
-            <div className="btn_area">
-              <CopyButton value="npm install @yorkie-js/sdk" timeout={1000}>
-                {({ copied, copy }) => (
-                  <>
-                    <Button icon={<Icon type="copy" />} outline onClick={copy} />
-                    {copied && (
-                      <div className="toast_box shadow_l">
-                        <Icon type="check" />
-                        Copied
-                      </div>
-                    )}
-                  </>
-                )}
-              </CopyButton>
-            </div>
-          </div>
-          <div className="init_box">
-            <p className="title_desc">Then, import yorkie and begin using the SDKs.</p>
-          </div>
-          <div className="codeblock_box">
-            <div className="codeblock">
-              <CodeBlock.Code code={snippet.npm} language="javascript" withLineNumbers />
-            </div>
-            <div className="btn_area">
-              <CopyButton value={snippet.npm} timeout={1000}>
-                {({ copied, copy }) => (
-                  <>
-                    <Button icon={<Icon type="copy" />} outline onClick={copy} />
-                    {copied && (
-                      <div className="toast_box shadow_l">
-                        <Icon type="check" />
-                        Copied
-                      </div>
-                    )}
-                  </>
-                )}
-              </CopyButton>
-            </div>
-          </div>
-        </div>
-      )}
-      {snippetType === 'cdn' && (
-        <div className="init_content">
-          <div className="init_box">
-            <div className="title_box title_box_s">
-              <strong className="title">Use a &lt;script&gt; tag</strong>
-            </div>
-            <p className="title_desc">Copy and paste the following script into the bottom of your &lt;body&gt; tag.</p>
-          </div>
-          <div className="codeblock_box">
-            <div className="codeblock">
-              <CodeBlock.Code code={snippet.cdn} language="markup" withLineNumbers />
-            </div>
-            <div className="btn_area">
-              <CopyButton value={snippet.cdn} timeout={1000}>
-                {({ copied, copy }) => (
-                  <>
-                    <Button icon={<Icon type="copy" />} outline onClick={copy} />
-                    {copied && (
-                      <div className="toast_box shadow_l">
-                        <Icon type="check" />
-                        Copied
-                      </div>
-                    )}
-                  </>
-                )}
-              </CopyButton>
+            <div className="chart">
+              <Chart
+                data={(() => {
+                  const now = new Date();
+                  const endDate = new Date(now.setHours(0, 0, 0, 0));
+                  const startDate = new Date(endDate);
+
+                  switch (range) {
+                    case 'oneweek':
+                      startDate.setDate(startDate.getDate() - 7);
+                      break;
+                    case 'fourweeks':
+                      startDate.setMonth(startDate.getMonth() - 1);
+                      break;
+                    case 'threemonths':
+                      startDate.setMonth(startDate.getMonth() - 3);
+                      break;
+                    case 'twelvemonths':
+                      startDate.setFullYear(startDate.getFullYear() - 1);
+                      break;
+                  }
+
+                  const allDates = [];
+                  for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+                    allDates.push({
+                      timestamp: d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+                      users: 0,
+                    });
+                  }
+
+                  const actualData = new Map(
+                    (stats?.activeUsers || []).map(({ timestamp, value: users }) => [
+                      new Date(timestamp * 1000).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+                      users,
+                    ]),
+                  );
+
+                  return allDates.map((point) => ({
+                    ...point,
+                    users: actualData.get(point.timestamp) || 0,
+                  }));
+                })()}
+                xKey="timestamp"
+                dataKey="users"
+              />
             </div>
           </div>
         </div>
-      )}
-    </div>
+      </div>
+    </>
   );
 }

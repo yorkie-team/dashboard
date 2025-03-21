@@ -17,8 +17,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createAppThunk } from 'app/appThunk';
 import { RootState } from 'app/store';
-import { listProjects, getProject, createProject, updateProject, Project, UpdatableProjectFields } from 'api';
-import { RPCStatusCode, AuthWebhookMethod, RPCError } from 'api/types';
+import {
+  listProjects,
+  getProject,
+  createProject,
+  updateProject,
+  Project,
+  UpdatableProjectFields,
+  getProjectStats,
+} from 'api';
+import { RPCStatusCode, AuthWebhookMethod, RPCError, ProjectStats, DATE_RANGE_OPTIONS } from 'api/types';
 
 export interface ProjectsState {
   list: {
@@ -44,6 +52,10 @@ export interface ProjectsState {
       message: string;
     } | null;
     isSuccess: boolean;
+  };
+  stats: {
+    stats: ProjectStats | null;
+    status: 'idle' | 'loading' | 'failed';
   };
 }
 
@@ -79,6 +91,10 @@ const initialState: ProjectsState = {
     error: null,
     isSuccess: false,
   },
+  stats: {
+    status: 'idle',
+    stats: null,
+  },
 };
 
 export const listProjectsAsync = createAppThunk<Array<Project>, void>(
@@ -110,6 +126,13 @@ export const updateProjectAsync = createAppThunk<Project, { id: string; fields: 
   async ({ id, fields }) => {
     const project = await updateProject(id, fields);
     return project;
+  },
+);
+
+export const getProjectStatsAsync = createAppThunk<ProjectStats, [string, keyof typeof DATE_RANGE_OPTIONS]>(
+  'projects/getStats',
+  async ([projectName, dateRange]) => {
+    return await getProjectStats(projectName, dateRange);
   },
 );
 
@@ -145,6 +168,16 @@ export const projectsSlice = createSlice({
     });
     builder.addCase(getProjectAsync.rejected, (state) => {
       state.detail.status = 'failed';
+    });
+    builder.addCase(getProjectStatsAsync.pending, (state) => {
+      state.stats.status = 'loading';
+    });
+    builder.addCase(getProjectStatsAsync.fulfilled, (state, action) => {
+      state.stats.status = 'idle';
+      state.stats.stats = action.payload;
+    });
+    builder.addCase(getProjectStatsAsync.rejected, (state) => {
+      state.stats.status = 'failed';
     });
     builder.addCase(createProjectAsync.pending, (state) => {
       state.create.status = 'loading';
@@ -252,5 +285,6 @@ export const selectProjectList = (state: RootState) => state.projects.list;
 export const selectProjectDetail = (state: RootState) => state.projects.detail;
 export const selectProjectCreate = (state: RootState) => state.projects.create;
 export const selectProjectUpdate = (state: RootState) => state.projects.update;
+export const selectProjectStats = (state: RootState) => state.projects.stats;
 
 export default projectsSlice.reducer;

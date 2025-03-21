@@ -48,6 +48,22 @@ export type Project = {
   createdAt: number;
 };
 
+export interface ProjectStats {
+  documentsCount: number;
+  activeUsersCount: number;
+  activeUsers: Array<{
+    timestamp: number;
+    value: number;
+  }>;
+}
+
+export const DATE_RANGE_OPTIONS = {
+  oneweek: 'Last 7 days',
+  fourweeks: 'Last 4 Weeks',
+  threemonths: 'Last 3 Months',
+  twelvemonths: 'Last 12 Months',
+};
+
 export type UpdatableProjectFields = {
   name?: string;
   authWebhookURL?: string;

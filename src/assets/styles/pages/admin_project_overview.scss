@@ -67,13 +67,14 @@
 
   .chart {
     width: 100%;
-    min-width: 272px;
-    height: 144px;
-    margin-top: variables.$spacing_64;
-    background-color: pink;
+    height: 180px;
+    margin-top: variables.$spacing_24;
+    box-sizing: border-box;
+
+    @include mixins-lib.rfonts(12, 16, 400);
 
     @include mixins-lib.tabletStart() {
-      margin-top: variables.$spacing_48;
+      @include mixins-lib.rfonts(13, 18, 400);
     }
 
     @include mixins-lib.mobileStart() {
@@ -105,45 +106,27 @@
     }
 
     &_group {
-      padding-top: variables.$spacing_56;
-      font-size: 0;
+      display: flex;
+      flex-wrap: wrap;
       line-height: normal;
       text-align: center;
-
-      @include mixins-lib.tabletStart() {
-        padding-top: variables.$spacing_24;
-        text-align: left;
-      }
     }
 
     &_box {
-      display: inline-block;
-      width: 272px;
-      margin-left: 60px;
-      vertical-align: top;
+      flex: 0 0 calc((100% - (variables.$spacing_64 * 2)) / 3);
+      margin-top: variables.$spacing_48;
+      margin-right: variables.$spacing_64;
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
 
       @include mixins-lib.tabletStart() {
-        display: block;
-        width: auto;
-        margin-top: variables.$spacing_24;
-        margin-left: 0;
-        padding: variables.$spacing_32;
+        flex: 1 1 100%;
+        margin-right: 0;
       }
 
       @include mixins-lib.mobileStart() {
         padding: variables.$spacing_16;
-      }
-
-      &:first-child {
-        margin-left: 0;
-
-        @include mixins-lib.tabletStart() {
-          margin-top: 0;
-        }
-      }
-
-      &:last-child {
-        margin-right: 0;
       }
 
       .usage {
@@ -153,6 +136,10 @@
           @include mixins-lib.tabletStart() {
             flex-basis: auto;
           }
+        }
+
+        @include mixins-lib.tabletStart() {
+          text-align: left;
         }
       }
     }

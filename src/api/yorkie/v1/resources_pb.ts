@@ -2285,6 +2285,49 @@ export class Project extends Message<Project> {
 }
 
 /**
+ * @generated from message yorkie.v1.MetricPoint
+ */
+export class MetricPoint extends Message<MetricPoint> {
+  /**
+   * @generated from field: int64 timestamp = 1;
+   */
+  timestamp = protoInt64.zero;
+
+  /**
+   * @generated from field: int32 value = 2;
+   */
+  value = 0;
+
+  constructor(data?: PartialMessage<MetricPoint>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.MetricPoint";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "timestamp", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 2, name: "value", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MetricPoint {
+    return new MetricPoint().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MetricPoint {
+    return new MetricPoint().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MetricPoint {
+    return new MetricPoint().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: MetricPoint | PlainMessage<MetricPoint> | undefined, b: MetricPoint | PlainMessage<MetricPoint> | undefined): boolean {
+    return proto3.util.equals(MetricPoint, a, b);
+  }
+}
+
+/**
  * @generated from message yorkie.v1.UpdatableProjectFields
  */
 export class UpdatableProjectFields extends Message<UpdatableProjectFields> {

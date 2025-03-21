@@ -20,7 +20,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Change, DocumentSummary, Project, UpdatableProjectFields, User, VersionVector } from "./resources_pb";
+import { Change, DocumentSummary, MetricPoint, Project, UpdatableProjectFields, User, VersionVector } from "./resources_pb";
 
 /**
  * @generated from message yorkie.v1.SignUpRequest
@@ -629,6 +629,136 @@ export class UpdateProjectResponse extends Message<UpdateProjectResponse> {
 
   static equals(a: UpdateProjectResponse | PlainMessage<UpdateProjectResponse> | undefined, b: UpdateProjectResponse | PlainMessage<UpdateProjectResponse> | undefined): boolean {
     return proto3.util.equals(UpdateProjectResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.GetProjectStatsRequest
+ */
+export class GetProjectStatsRequest extends Message<GetProjectStatsRequest> {
+  /**
+   * @generated from field: string project_name = 1;
+   */
+  projectName = "";
+
+  /**
+   * @generated from field: yorkie.v1.GetProjectStatsRequest.DateRange date_range = 2;
+   */
+  dateRange = GetProjectStatsRequest_DateRange.UNSPECIFIED;
+
+  constructor(data?: PartialMessage<GetProjectStatsRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.GetProjectStatsRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "date_range", kind: "enum", T: proto3.getEnumType(GetProjectStatsRequest_DateRange) },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetProjectStatsRequest {
+    return new GetProjectStatsRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetProjectStatsRequest {
+    return new GetProjectStatsRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetProjectStatsRequest {
+    return new GetProjectStatsRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetProjectStatsRequest | PlainMessage<GetProjectStatsRequest> | undefined, b: GetProjectStatsRequest | PlainMessage<GetProjectStatsRequest> | undefined): boolean {
+    return proto3.util.equals(GetProjectStatsRequest, a, b);
+  }
+}
+
+/**
+ * @generated from enum yorkie.v1.GetProjectStatsRequest.DateRange
+ */
+export enum GetProjectStatsRequest_DateRange {
+  /**
+   * @generated from enum value: DATE_RANGE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: DATE_RANGE_LAST_1W = 1;
+   */
+  LAST_1W = 1,
+
+  /**
+   * @generated from enum value: DATE_RANGE_LAST_4W = 2;
+   */
+  LAST_4W = 2,
+
+  /**
+   * @generated from enum value: DATE_RANGE_LAST_3M = 3;
+   */
+  LAST_3M = 3,
+
+  /**
+   * @generated from enum value: DATE_RANGE_LAST_12M = 4;
+   */
+  LAST_12M = 4,
+}
+// Retrieve enum metadata with: proto3.getEnumType(GetProjectStatsRequest_DateRange)
+proto3.util.setEnumType(GetProjectStatsRequest_DateRange, "yorkie.v1.GetProjectStatsRequest.DateRange", [
+  { no: 0, name: "DATE_RANGE_UNSPECIFIED" },
+  { no: 1, name: "DATE_RANGE_LAST_1W" },
+  { no: 2, name: "DATE_RANGE_LAST_4W" },
+  { no: 3, name: "DATE_RANGE_LAST_3M" },
+  { no: 4, name: "DATE_RANGE_LAST_12M" },
+]);
+
+/**
+ * @generated from message yorkie.v1.GetProjectStatsResponse
+ */
+export class GetProjectStatsResponse extends Message<GetProjectStatsResponse> {
+  /**
+   * @generated from field: int32 active_users_count = 1;
+   */
+  activeUsersCount = 0;
+
+  /**
+   * @generated from field: repeated yorkie.v1.MetricPoint active_users = 2;
+   */
+  activeUsers: MetricPoint[] = [];
+
+  /**
+   * @generated from field: int64 documents_count = 3;
+   */
+  documentsCount = protoInt64.zero;
+
+  constructor(data?: PartialMessage<GetProjectStatsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.GetProjectStatsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "active_users_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "active_users", kind: "message", T: MetricPoint, repeated: true },
+    { no: 3, name: "documents_count", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetProjectStatsResponse {
+    return new GetProjectStatsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetProjectStatsResponse {
+    return new GetProjectStatsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetProjectStatsResponse {
+    return new GetProjectStatsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetProjectStatsResponse | PlainMessage<GetProjectStatsResponse> | undefined, b: GetProjectStatsResponse | PlainMessage<GetProjectStatsResponse> | undefined): boolean {
+    return proto3.util.equals(GetProjectStatsResponse, a, b);
   }
 }
 
