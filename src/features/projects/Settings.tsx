@@ -253,61 +253,19 @@ export function Settings() {
               <strong className="text">Limits</strong>
             </div>
             <dl className="sub_info">
-              <dt className="sub_title">Max Subscribers Per Document</dt>
-              <dd className="sub_desc">
-                <p className="guide">
-                  Set the maximum number of subscribers allowed per document.
-                </p>
-                <div
-                  className={classNames('input_field_box', {
-                    is_error: checkFieldState('maxSubscribersPerDocument', 'error'),
-                    is_success: checkFieldState('maxSubscribersPerDocument', 'success'),
-                  })}
-                >
-                  <InputTextField
-                    reset={() => {
-                      resetForm();
-                      resetUpdateFieldInfo();
-                    }}
-                    {...register('maxSubscribersPerDocument', {
-                      required: 'Max Subscribers Per Document is required',
-                      pattern: {
-                        value: /^[0-9]+$/,
-                        message: 'Max Subscribers Per Document must be a positive integer',
-                      },
-                      onChange: async () => {
-                        await trigger('maxSubscribersPerDocument');
-                      },
-                    })}
-                    onChange={(e) => {
-                      setUpdateFieldInfo((info) => ({ ...info, target: 'maxSubscribersPerDocument' }));
-                      maxSubscribersPerDocument.onChange(e.target.value);
-                    }}
-                    id="maxSubscribersPerDocument"
-                    label="Max Subscribers Per Document"
-                    blindLabel={true}
-                    fieldUtil={true}
-                    placeholder="0"
-                    state={
-                      checkFieldState('maxSubscribersPerDocument', 'success')
-                        ? 'success'
-                        : checkFieldState('maxSubscribersPerDocument', 'error')
-                          ? 'error'
-                          : undefined
-                    }
-                    helperText={
-                      updateFieldInfo.target === 'maxSubscribersPerDocument' && updateFieldInfo.state !== null
-                        ? updateFieldInfo.message
-                        : undefined
-                    }
-                    onSuccessEnd={resetUpdateFieldInfo}
-                  />
-                </div>
-              </dd>
               <dt className="sub_title">Max Attachments Per Document</dt>
               <dd className="sub_desc">
                 <p className="guide">
-                  Set the maximum number of attachments allowed per document.
+                  Set the maximum number of clients that can be attached to a single document simultaneously. When this
+                  limit is reached, new attachment requests will be rejected by the server.{' '}
+                  <a
+                    href="https://yorkie.dev/docs/js-sdk#max-attachments-per-document"
+                    className="page_link icon_link"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Learn more about Max Attachments Per Document.
+                  </a>
                 </p>
                 <div
                   className={classNames('input_field_box', {
@@ -348,6 +306,66 @@ export function Settings() {
                     }
                     helperText={
                       updateFieldInfo.target === 'maxAttachmentsPerDocument' && updateFieldInfo.state !== null
+                        ? updateFieldInfo.message
+                        : undefined
+                    }
+                    onSuccessEnd={resetUpdateFieldInfo}
+                  />
+                </div>
+              </dd>
+              <dt className="sub_title">Max Subscribers Per Document</dt>
+              <dd className="sub_desc">
+                <p className="guide">
+                  Set the maximum number of clients that can be subscribed to a single document simultaneously. When
+                  this limit is reached, new subscription requests will be rejected by the server.{' '}
+                  <a
+                    href="https://yorkie.dev/docs/js-sdk#max-subscribers-per-document"
+                    className="page_link icon_link"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Learn more about Max Subscribers Per Document.
+                  </a>
+                </p>
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: checkFieldState('maxSubscribersPerDocument', 'error'),
+                    is_success: checkFieldState('maxSubscribersPerDocument', 'success'),
+                  })}
+                >
+                  <InputTextField
+                    reset={() => {
+                      resetForm();
+                      resetUpdateFieldInfo();
+                    }}
+                    {...register('maxSubscribersPerDocument', {
+                      required: 'Max Subscribers Per Document is required',
+                      pattern: {
+                        value: /^[0-9]+$/,
+                        message: 'Max Subscribers Per Document must be a positive integer',
+                      },
+                      onChange: async () => {
+                        await trigger('maxSubscribersPerDocument');
+                      },
+                    })}
+                    onChange={(e) => {
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'maxSubscribersPerDocument' }));
+                      maxSubscribersPerDocument.onChange(e.target.value);
+                    }}
+                    id="maxSubscribersPerDocument"
+                    label="Max Subscribers Per Document"
+                    blindLabel={true}
+                    fieldUtil={true}
+                    placeholder="0"
+                    state={
+                      checkFieldState('maxSubscribersPerDocument', 'success')
+                        ? 'success'
+                        : checkFieldState('maxSubscribersPerDocument', 'error')
+                          ? 'error'
+                          : undefined
+                    }
+                    helperText={
+                      updateFieldInfo.target === 'maxSubscribersPerDocument' && updateFieldInfo.state !== null
                         ? updateFieldInfo.message
                         : undefined
                     }
