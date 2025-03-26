@@ -57,6 +57,7 @@ export function Settings() {
       clientDeactivateThreshold: '',
       maxSubscribersPerDocument: 0,
       maxAttachmentsPerDocument: 0,
+      allowedOrigins: '',
     },
   });
 
@@ -81,6 +82,10 @@ export function Settings() {
     control,
     name: 'maxAttachmentsPerDocument',
   });
+  const { field: allowedOrigins, fieldState: allowedOriginsState } = useController({
+    control,
+    name: 'allowedOrigins',
+  });
   const checkFieldState = useCallback(
     (fieldName: keyof UpdatableProjectFields | AuthWebhookMethod, state: 'success' | 'error'): boolean => {
       return updateFieldInfo.target === fieldName && updateFieldInfo.state === state;
@@ -92,7 +97,6 @@ export function Settings() {
   }, []);
 
   const resetForm = useCallback(() => {
-    console.log('resetForm', project);
     reset({
       name: project?.name || '',
       authWebhookURL: project?.authWebhookURL || '',
@@ -100,6 +104,7 @@ export function Settings() {
       clientDeactivateThreshold: project?.clientDeactivateThreshold || '',
       maxSubscribersPerDocument: project?.maxSubscribersPerDocument || 0,
       maxAttachmentsPerDocument: project?.maxAttachmentsPerDocument || 0,
+      allowedOrigins: Array.isArray(project?.allowedOrigins) ? project?.allowedOrigins.join(',') : '',
     });
   }, [reset, project]);
 
@@ -128,7 +133,8 @@ export function Settings() {
       !webhookURLFieldState.error &&
       !clientDeactivateThresholdState.error &&
       !maxSubscribersPerDocumentState.error &&
-      !maxAttachmentsPerDocumentState.error
+      !maxAttachmentsPerDocumentState.error &&
+      !allowedOriginsState.error
     ) {
       setUpdateFieldInfo((info) => ({
         ...info,
@@ -141,7 +147,8 @@ export function Settings() {
       webhookURLFieldState.error ||
       clientDeactivateThresholdState.error ||
       maxSubscribersPerDocumentState.error ||
-      maxAttachmentsPerDocumentState.error
+      maxAttachmentsPerDocumentState.error ||
+      allowedOriginsState.error
     ) {
       setUpdateFieldInfo((info) => ({
         ...info,
@@ -158,6 +165,7 @@ export function Settings() {
     clientDeactivateThresholdState.error,
     maxSubscribersPerDocumentState.error,
     maxAttachmentsPerDocumentState.error,
+    allowedOriginsState.error,
   ]);
 
   useEffect(() => {
@@ -187,7 +195,7 @@ export function Settings() {
         navList={[
           { name: 'General', id: 'general' },
           { name: 'Limits', id: 'limits' },
-          { name: 'Webhooks', id: 'webhooks' },
+          { name: 'Security', id: 'security' },
           { name: 'Advanced', id: 'advanced' },
         ]}
       />
@@ -255,9 +263,7 @@ export function Settings() {
             <dl className="sub_info">
               <dt className="sub_title">Max Subscribers Per Document</dt>
               <dd className="sub_desc">
-                <p className="guide">
-                  Set the maximum number of subscribers allowed per document.
-                </p>
+                <p className="guide">Set the maximum number of subscribers allowed per document.</p>
                 <div
                   className={classNames('input_field_box', {
                     is_error: checkFieldState('maxSubscribersPerDocument', 'error'),
@@ -306,9 +312,7 @@ export function Settings() {
               </dd>
               <dt className="sub_title">Max Attachments Per Document</dt>
               <dd className="sub_desc">
-                <p className="guide">
-                  Set the maximum number of attachments allowed per document.
-                </p>
+                <p className="guide">Set the maximum number of attachments allowed per document.</p>
                 <div
                   className={classNames('input_field_box', {
                     is_error: checkFieldState('maxAttachmentsPerDocument', 'error'),
@@ -357,11 +361,70 @@ export function Settings() {
               </dd>
             </dl>
           </div>
-          <div className="section setting_box webhook" id="webhooks">
+          <div className="section setting_box webhook" id="security">
             <div className="setting_title">
-              <strong className="text">Webhooks</strong>
+              <strong className="text">Security</strong>
             </div>
             <dl className="sub_info">
+              <dt className="sub_title">Allowed Origins</dt>
+              <dd className="sub_desc">
+                <p className="guide">
+                  Set the allowed origins for the client to connect to the server. If you want to allow all origins, use
+                  the wildcard character *. Changes to this setting may take up to 10 minutes to take effect.
+                </p>
+                <div className="input_field_box">
+                  <InputTextField
+                    reset={() => {
+                      resetForm();
+                      resetUpdateFieldInfo();
+                    }}
+                    {...register('allowedOrigins', {
+                      validate: (value: string) => {
+                        if (!value) return true;
+                        const origins = value.split(',').map((origin) => origin.trim());
+                        const validOriginPattern = /^(\*|https?:\/\/[a-zA-Z0-9\-._~:/?#\[\]@!$&'()*+,;=]+)$/;
+                        return (
+                          origins.every((origin) => validOriginPattern.test(origin)) ||
+                          'Invalid origin format. Use valid URLs or * separated by commas'
+                        );
+                      },
+                    })}
+                    onChange={(e) => {
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'allowedOrigins' }));
+                      allowedOrigins.onChange(e);
+                    }}
+                    onBlur={(e) => {
+                      // Normalize input by removing whitespace around commas
+                      const normalizedValue = e.target.value
+                        .split(',')
+                        .map((origin) => origin.trim())
+                        .filter((origin) => origin)
+                        .join(',');
+                      console.log(normalizedValue);
+                      e.target.value = normalizedValue;
+                      allowedOrigins.onBlur();
+                    }}
+                    id="allowedOrigins"
+                    label="allowedOrigins"
+                    blindLabel={true}
+                    fieldUtil={true}
+                    placeholder="*, http://localhost:3000"
+                    state={
+                      checkFieldState('allowedOrigins', 'success')
+                        ? 'success'
+                        : checkFieldState('allowedOrigins', 'error')
+                          ? 'error'
+                          : undefined
+                    }
+                    helperText={
+                      updateFieldInfo.target === 'allowedOrigins' && updateFieldInfo.state !== null
+                        ? updateFieldInfo.message
+                        : undefined
+                    }
+                    onSuccessEnd={resetUpdateFieldInfo}
+                  />
+                </div>
+              </dd>
               <dt className="sub_title">Auth Webhook URL</dt>
               <dd className="sub_desc">
                 <p className="guide">

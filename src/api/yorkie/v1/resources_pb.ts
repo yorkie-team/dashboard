@@ -2235,6 +2235,11 @@ export class Project extends Message<Project> {
   maxAttachmentsPerDocument = 0;
 
   /**
+   * @generated from field: repeated string allowed_origins = 14;
+   */
+  allowedOrigins: string[] = [];
+
+  /**
    * @generated from field: google.protobuf.Timestamp created_at = 12;
    */
   createdAt?: Timestamp;
@@ -2263,6 +2268,7 @@ export class Project extends Message<Project> {
     { no: 9, name: "client_deactivate_threshold", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 10, name: "max_subscribers_per_document", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 11, name: "max_attachments_per_document", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 14, name: "allowed_origins", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
     { no: 12, name: "created_at", kind: "message", T: Timestamp },
     { no: 13, name: "updated_at", kind: "message", T: Timestamp },
   ]);
@@ -2371,6 +2377,11 @@ export class UpdatableProjectFields extends Message<UpdatableProjectFields> {
    */
   maxAttachmentsPerDocument?: number;
 
+  /**
+   * @generated from field: yorkie.v1.UpdatableProjectFields.AllowedOrigins allowed_origins = 9;
+   */
+  allowedOrigins?: UpdatableProjectFields_AllowedOrigins;
+
   constructor(data?: PartialMessage<UpdatableProjectFields>) {
     super();
     proto3.util.initPartial(data, this);
@@ -2387,6 +2398,7 @@ export class UpdatableProjectFields extends Message<UpdatableProjectFields> {
     { no: 6, name: "client_deactivate_threshold", kind: "message", T: StringValue },
     { no: 7, name: "max_subscribers_per_document", kind: "message", T: Int32Value },
     { no: 8, name: "max_attachments_per_document", kind: "message", T: Int32Value },
+    { no: 9, name: "allowed_origins", kind: "message", T: UpdatableProjectFields_AllowedOrigins },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdatableProjectFields {
@@ -2477,6 +2489,43 @@ export class UpdatableProjectFields_EventWebhookEvents extends Message<Updatable
 
   static equals(a: UpdatableProjectFields_EventWebhookEvents | PlainMessage<UpdatableProjectFields_EventWebhookEvents> | undefined, b: UpdatableProjectFields_EventWebhookEvents | PlainMessage<UpdatableProjectFields_EventWebhookEvents> | undefined): boolean {
     return proto3.util.equals(UpdatableProjectFields_EventWebhookEvents, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.UpdatableProjectFields.AllowedOrigins
+ */
+export class UpdatableProjectFields_AllowedOrigins extends Message<UpdatableProjectFields_AllowedOrigins> {
+  /**
+   * @generated from field: repeated string origins = 1;
+   */
+  origins: string[] = [];
+
+  constructor(data?: PartialMessage<UpdatableProjectFields_AllowedOrigins>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.UpdatableProjectFields.AllowedOrigins";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "origins", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdatableProjectFields_AllowedOrigins {
+    return new UpdatableProjectFields_AllowedOrigins().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UpdatableProjectFields_AllowedOrigins {
+    return new UpdatableProjectFields_AllowedOrigins().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpdatableProjectFields_AllowedOrigins {
+    return new UpdatableProjectFields_AllowedOrigins().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: UpdatableProjectFields_AllowedOrigins | PlainMessage<UpdatableProjectFields_AllowedOrigins> | undefined, b: UpdatableProjectFields_AllowedOrigins | PlainMessage<UpdatableProjectFields_AllowedOrigins> | undefined): boolean {
+    return proto3.util.equals(UpdatableProjectFields_AllowedOrigins, a, b);
   }
 }
 
