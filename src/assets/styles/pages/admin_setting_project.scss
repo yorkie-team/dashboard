@@ -127,6 +127,10 @@
       @include mixins-lib.rfonts(13, 18, 400);
       color: var(--gray-500);
 
+      .darkmode & {
+        color: var(--gray-400);
+      }
+
       @include mixins-lib.mobileStart() {
         margin-top: variables.$spacing_16;
       }
