@@ -422,7 +422,6 @@ export function Settings() {
                         .map((origin) => origin.trim())
                         .filter((origin) => origin)
                         .join(',');
-                      console.log(normalizedValue);
                       e.target.value = normalizedValue;
                       allowedOrigins.onBlur();
                     }}
