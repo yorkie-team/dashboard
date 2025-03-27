@@ -158,6 +158,10 @@
       padding-top: variables.$spacing_8;
       @include mixins-lib.rfonts(13, 18, 400);
       color: var(--gray-500);
+
+      .darkmode & {
+        color: var(--gray-400);
+      }
     }
 
     .btn_box {
