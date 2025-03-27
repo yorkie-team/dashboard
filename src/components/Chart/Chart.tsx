@@ -32,7 +32,7 @@ export function Chart({ data, xKey, dataKey }: { data: any[]; xKey: string; data
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey={xKey} tickSize={0} tickMargin={10} />
-        <Tooltip />
+        <Tooltip labelStyle={{ color: '#333' }} />
         <Line type="monotone" dataKey={dataKey} stroke="orange" dot={{ r: 3 }} activeDot={{ stroke: 'none', r: 3 }} />
       </LineChart>
     </ResponsiveContainer>
