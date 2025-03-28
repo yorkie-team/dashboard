@@ -41,8 +41,9 @@ export type Project = {
   authWebhookURL: string;
   authWebhookMethods: Array<AuthWebhookMethod>;
   clientDeactivateThreshold: string;
-  maxSubscribersPerDocument?: number;
-  maxAttachmentsPerDocument?: number;
+  maxSubscribersPerDocument: number;
+  maxAttachmentsPerDocument: number;
+  allowedOrigins: Array<string>;
   publicKey: string;
   secretKey: string;
   createdAt: number;
@@ -71,6 +72,7 @@ export type UpdatableProjectFields = {
   clientDeactivateThreshold?: string;
   maxSubscribersPerDocument?: number;
   maxAttachmentsPerDocument?: number;
+  allowedOrigins?: string;
 };
 
 export type AuthWebhookMethod =

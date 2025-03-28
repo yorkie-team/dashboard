@@ -18,7 +18,10 @@ import { Document, OpSource, VersionVector } from '@yorkie-js/sdk';
 import { createClient } from '@connectrpc/connect';
 import { createConnectTransport } from '@connectrpc/connect-web';
 import { AdminService } from './yorkie/v1/admin_connect';
-import { UpdatableProjectFields_AuthWebhookMethods as PbProjectFields_AuthWebhookMethods } from './yorkie/v1/resources_pb';
+import {
+  UpdatableProjectFields_AuthWebhookMethods as PbProjectFields_AuthWebhookMethods,
+  UpdatableProjectFields_AllowedOrigins as PbProjectFields_AllowedOrigins,
+} from './yorkie/v1/resources_pb';
 import { InterceptorBuilder } from './interceptor';
 import {
   User,
@@ -148,6 +151,9 @@ export async function updateProject(id: string, fields: UpdatableProjectFields):
     clientDeactivateThreshold: fields.clientDeactivateThreshold,
     maxSubscribersPerDocument: Number(fields.maxSubscribersPerDocument),
     maxAttachmentsPerDocument: Number(fields.maxAttachmentsPerDocument),
+    allowedOrigins: fields.allowedOrigins
+      ? new PbProjectFields_AllowedOrigins({ origins: fields.allowedOrigins.split(',') })
+      : undefined,
   };
   const res = await client.updateProject({ id, fields: pbFields });
   return converter.fromProject(res.project!);
