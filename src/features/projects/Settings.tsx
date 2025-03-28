@@ -453,7 +453,7 @@ export function Settings() {
                   client is allowed to access a Document by calling this webhook URL. Changes to this setting may take
                   up to 10 minutes to take effect.{' '}
                   <a
-                    href="https://yorkie.dev/docs/cli#auth-webhook"
+                    href="https://yorkie.dev/docs/security#auth-webhook"
                     className="page_link icon_link"
                     target="_blank"
                     rel="noreferrer"
