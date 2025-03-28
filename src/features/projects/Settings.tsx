@@ -194,9 +194,9 @@ export function Settings() {
       <Navigator
         navList={[
           { name: 'General', id: 'general' },
-          { name: 'Limits', id: 'limits' },
           { name: 'Security', id: 'security' },
-          { name: 'Advanced', id: 'advanced' },
+          { name: 'Limits', id: 'limits' },
+          { name: 'Sessions', id: 'sessions' },
         ]}
       />
       <div className="box_right">
@@ -252,6 +252,177 @@ export function Settings() {
                     }
                     onSuccessEnd={resetUpdateFieldInfo}
                   />
+                </div>
+              </dd>
+            </dl>
+          </div>
+          <div className="section setting_box webhook" id="security">
+            <div className="setting_title">
+              <strong className="text">Security</strong>
+            </div>
+            <dl className="sub_info">
+              <dt className="sub_title">Allowed Origins</dt>
+              <dd className="sub_desc">
+                <p className="guide">
+                  Set the allowed origins for the client to connect to the server. If you want to allow all origins, use
+                  the wildcard character *. Changes to this setting may take up to 10 minutes to take effect.{' '}
+                  <a
+                    href="https://yorkie.dev/docs/security#allowed-origins"
+                    className="page_link icon_link"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Learn more about how to set up and use Allowed Origins.
+                  </a>
+                </p>
+                <div className="input_field_box">
+                  <InputTextField
+                    reset={() => {
+                      resetForm();
+                      resetUpdateFieldInfo();
+                    }}
+                    {...register('allowedOrigins', {
+                      validate: (value: string) => {
+                        if (!value) return true;
+                        const origins = value.split(',').map((origin) => origin.trim());
+                        const validOriginPattern = /^(\*|https?:\/\/[a-zA-Z0-9\-._~:/?#\[\]@!$&'()*+,;=]+)$/;
+                        return (
+                          origins.every((origin) => validOriginPattern.test(origin)) ||
+                          'Invalid origin format. Use valid URLs or * separated by commas'
+                        );
+                      },
+                    })}
+                    onChange={(e) => {
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'allowedOrigins' }));
+                      allowedOrigins.onChange(e);
+                    }}
+                    onBlur={(e) => {
+                      // Normalize input by removing whitespace around commas
+                      const normalizedValue = e.target.value
+                        .split(',')
+                        .map((origin) => origin.trim())
+                        .filter((origin) => origin)
+                        .join(',');
+                      e.target.value = normalizedValue;
+                      allowedOrigins.onBlur();
+                    }}
+                    id="allowedOrigins"
+                    label="allowedOrigins"
+                    blindLabel={true}
+                    fieldUtil={true}
+                    placeholder="*, http://localhost:3000"
+                    state={
+                      checkFieldState('allowedOrigins', 'success')
+                        ? 'success'
+                        : checkFieldState('allowedOrigins', 'error')
+                          ? 'error'
+                          : undefined
+                    }
+                    helperText={
+                      updateFieldInfo.target === 'allowedOrigins' && updateFieldInfo.state !== null
+                        ? updateFieldInfo.message
+                        : undefined
+                    }
+                    onSuccessEnd={resetUpdateFieldInfo}
+                  />
+                </div>
+              </dd>
+              <dt className="sub_title">Auth Webhook URL</dt>
+              <dd className="sub_desc">
+                <p className="guide">
+                  Enter the URL of the endpoint you want to use for authorization. This allows the server to check if a
+                  client is allowed to access a Document by calling this webhook URL. Changes to this setting may take
+                  up to 10 minutes to take effect.{' '}
+                  <a
+                    href="https://yorkie.dev/docs/security#auth-webhook"
+                    className="page_link icon_link"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Learn more about how to set up and use the Auth Webhook.
+                  </a>
+                </p>
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: checkFieldState('authWebhookURL', 'error'),
+                    is_success: checkFieldState('authWebhookURL', 'success'),
+                  })}
+                >
+                  <InputTextField
+                    reset={() => {
+                      resetForm();
+                      resetUpdateFieldInfo();
+                    }}
+                    {...register('authWebhookURL')}
+                    onChange={(e) => {
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'authWebhookURL' }));
+                      webhookURLField.onChange(e.target.value);
+                    }}
+                    id="authWebhookURL"
+                    label="authWebhookURL"
+                    blindLabel={true}
+                    placeholder="http://localhost:8080/auth"
+                    fieldUtil={true}
+                    state={
+                      checkFieldState('authWebhookURL', 'success')
+                        ? 'success'
+                        : checkFieldState('authWebhookURL', 'error')
+                          ? 'error'
+                          : undefined
+                    }
+                    helperText={
+                      updateFieldInfo.target === 'authWebhookURL' && updateFieldInfo.state !== null
+                        ? updateFieldInfo.message
+                        : undefined
+                    }
+                    onSuccessEnd={resetUpdateFieldInfo}
+                  />
+                </div>
+              </dd>
+              <dt className="sub_title">Auth Webhook Methods</dt>
+              <dd className="sub_desc">
+                <p className="guide">
+                  Select which methods require webhook authorization. Only the selected methods will be checked for
+                  authorization.
+                </p>
+                <div className="webhook_methods">
+                  {AUTH_WEBHOOK_METHODS.map((method) => {
+                    return (
+                      <div
+                        className={classNames('input_group', {
+                          is_error: checkFieldState(method, 'error'),
+                          is_success: checkFieldState(method, 'success'),
+                        })}
+                        key={method}
+                      >
+                        <InputToggle
+                          id={method}
+                          label={method}
+                          checked={webhookMethodField.value.includes(method)}
+                          onChange={(e) => {
+                            let newWebhookMethods = [...project?.authWebhookMethods!];
+                            if (e.target.checked) {
+                              newWebhookMethods = newWebhookMethods.includes(method)
+                                ? newWebhookMethods
+                                : [...newWebhookMethods, method];
+                            } else {
+                              newWebhookMethods = newWebhookMethods.filter((newMethod) => newMethod !== method);
+                            }
+                            webhookMethodField.onChange(newWebhookMethods);
+                            setUpdateFieldInfo((info) => ({ ...info, target: method }));
+                            onSubmit({ authWebhookMethods: newWebhookMethods });
+                          }}
+                        />
+                        {updateFieldInfo.target === method && updateFieldInfo.state !== null && (
+                          <InputHelperText
+                            state={updateFieldInfo.state}
+                            message={updateFieldInfo.message}
+                            onSuccessEnd={resetUpdateFieldInfo}
+                          />
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </dd>
             </dl>
@@ -383,171 +554,10 @@ export function Settings() {
               </dd>
             </dl>
           </div>
-          <div className="section setting_box webhook" id="security">
+
+          <div className="section setting_box" id="sessions">
             <div className="setting_title">
-              <strong className="text">Security</strong>
-            </div>
-            <dl className="sub_info">
-              <dt className="sub_title">Allowed Origins</dt>
-              <dd className="sub_desc">
-                <p className="guide">
-                  Set the allowed origins for the client to connect to the server. If you want to allow all origins, use
-                  the wildcard character *. Changes to this setting may take up to 10 minutes to take effect.
-                </p>
-                <div className="input_field_box">
-                  <InputTextField
-                    reset={() => {
-                      resetForm();
-                      resetUpdateFieldInfo();
-                    }}
-                    {...register('allowedOrigins', {
-                      validate: (value: string) => {
-                        if (!value) return true;
-                        const origins = value.split(',').map((origin) => origin.trim());
-                        const validOriginPattern = /^(\*|https?:\/\/[a-zA-Z0-9\-._~:/?#\[\]@!$&'()*+,;=]+)$/;
-                        return (
-                          origins.every((origin) => validOriginPattern.test(origin)) ||
-                          'Invalid origin format. Use valid URLs or * separated by commas'
-                        );
-                      },
-                    })}
-                    onChange={(e) => {
-                      setUpdateFieldInfo((info) => ({ ...info, target: 'allowedOrigins' }));
-                      allowedOrigins.onChange(e);
-                    }}
-                    onBlur={(e) => {
-                      // Normalize input by removing whitespace around commas
-                      const normalizedValue = e.target.value
-                        .split(',')
-                        .map((origin) => origin.trim())
-                        .filter((origin) => origin)
-                        .join(',');
-                      e.target.value = normalizedValue;
-                      allowedOrigins.onBlur();
-                    }}
-                    id="allowedOrigins"
-                    label="allowedOrigins"
-                    blindLabel={true}
-                    fieldUtil={true}
-                    placeholder="*, http://localhost:3000"
-                    state={
-                      checkFieldState('allowedOrigins', 'success')
-                        ? 'success'
-                        : checkFieldState('allowedOrigins', 'error')
-                          ? 'error'
-                          : undefined
-                    }
-                    helperText={
-                      updateFieldInfo.target === 'allowedOrigins' && updateFieldInfo.state !== null
-                        ? updateFieldInfo.message
-                        : undefined
-                    }
-                    onSuccessEnd={resetUpdateFieldInfo}
-                  />
-                </div>
-              </dd>
-              <dt className="sub_title">Auth Webhook URL</dt>
-              <dd className="sub_desc">
-                <p className="guide">
-                  Enter the URL of the endpoint you want to use for authorization. This allows the server to check if a
-                  client is allowed to access a Document by calling this webhook URL. Changes to this setting may take
-                  up to 10 minutes to take effect.{' '}
-                  <a
-                    href="https://yorkie.dev/docs/security#auth-webhook"
-                    className="page_link icon_link"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Learn more about how to set up and use the Auth Webhook.
-                  </a>
-                </p>
-                <div
-                  className={classNames('input_field_box', {
-                    is_error: checkFieldState('authWebhookURL', 'error'),
-                    is_success: checkFieldState('authWebhookURL', 'success'),
-                  })}
-                >
-                  <InputTextField
-                    reset={() => {
-                      resetForm();
-                      resetUpdateFieldInfo();
-                    }}
-                    {...register('authWebhookURL')}
-                    onChange={(e) => {
-                      setUpdateFieldInfo((info) => ({ ...info, target: 'authWebhookURL' }));
-                      webhookURLField.onChange(e.target.value);
-                    }}
-                    id="authWebhookURL"
-                    label="authWebhookURL"
-                    blindLabel={true}
-                    fieldUtil={true}
-                    state={
-                      checkFieldState('authWebhookURL', 'success')
-                        ? 'success'
-                        : checkFieldState('authWebhookURL', 'error')
-                          ? 'error'
-                          : undefined
-                    }
-                    helperText={
-                      updateFieldInfo.target === 'authWebhookURL' && updateFieldInfo.state !== null
-                        ? updateFieldInfo.message
-                        : undefined
-                    }
-                    onSuccessEnd={resetUpdateFieldInfo}
-                  />
-                </div>
-              </dd>
-              <dt className="sub_title">Auth Webhook Methods</dt>
-              <dd className="sub_desc">
-                <p className="guide">
-                  Select which methods require webhook authorization. Only the selected methods will be checked for
-                  authorization.
-                </p>
-                <div className="webhook_methods">
-                  {AUTH_WEBHOOK_METHODS.map((method) => {
-                    return (
-                      <div
-                        className={classNames('input_group', {
-                          is_error: checkFieldState(method, 'error'),
-                          is_success: checkFieldState(method, 'success'),
-                        })}
-                        key={method}
-                      >
-                        <InputToggle
-                          id={method}
-                          label={method}
-                          checked={webhookMethodField.value.includes(method)}
-                          onChange={(e) => {
-                            let newWebhookMethods = [...project?.authWebhookMethods!];
-                            if (e.target.checked) {
-                              newWebhookMethods = newWebhookMethods.includes(method)
-                                ? newWebhookMethods
-                                : [...newWebhookMethods, method];
-                            } else {
-                              newWebhookMethods = newWebhookMethods.filter((newMethod) => newMethod !== method);
-                            }
-                            webhookMethodField.onChange(newWebhookMethods);
-                            setUpdateFieldInfo((info) => ({ ...info, target: method }));
-                            onSubmit({ authWebhookMethods: newWebhookMethods });
-                          }}
-                        />
-                        {updateFieldInfo.target === method && updateFieldInfo.state !== null && (
-                          <InputHelperText
-                            state={updateFieldInfo.state}
-                            message={updateFieldInfo.message}
-                            onSuccessEnd={resetUpdateFieldInfo}
-                          />
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </dd>
-            </dl>
-          </div>
-          <div className="section setting_box" id="advanced">
-            <div className="setting_title">
-              <strong className="text">Advanced</strong>
+              <strong className="text">Sessions</strong>
             </div>
             <dl className="sub_info">
               <dt className="sub_title">Client Deactivate Threshold</dt>
