@@ -2941,3 +2941,64 @@ export class DocEvent extends Message<DocEvent> {
   }
 }
 
+/**
+ * @generated from message yorkie.v1.Schema
+ */
+export class Schema extends Message<Schema> {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id = "";
+
+  /**
+   * @generated from field: string name = 2;
+   */
+  name = "";
+
+  /**
+   * @generated from field: int32 version = 3;
+   */
+  version = 0;
+
+  /**
+   * @generated from field: string body = 4;
+   */
+  body = "";
+
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 5;
+   */
+  createdAt?: Timestamp;
+
+  constructor(data?: PartialMessage<Schema>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.Schema";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "version", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "body", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "created_at", kind: "message", T: Timestamp },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Schema {
+    return new Schema().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Schema {
+    return new Schema().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Schema {
+    return new Schema().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Schema | PlainMessage<Schema> | undefined, b: Schema | PlainMessage<Schema> | undefined): boolean {
+    return proto3.util.equals(Schema, a, b);
+  }
+}
+
