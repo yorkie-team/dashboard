@@ -33,8 +33,10 @@ import {
   RPCError,
   RPCStatusCode,
   ProjectStats,
+  Schema,
 } from './types';
 import * as converter from './converter';
+import { Rule } from 'features/schemas/schemasSlice';
 
 export * from './types';
 
@@ -254,6 +256,7 @@ export async function removeDocumentByAdmin(
   });
 }
 
+// getProjectStats fetches the project stats.
 export async function getProjectStats(
   projectName: string,
   range: keyof typeof DATE_RANGE_OPTIONS,
@@ -275,4 +278,50 @@ export async function getProjectStats(
     activeUsersCount: res.activeUsersCount,
     activeUsers: activeUsers,
   };
+}
+
+// createSchema creates a new schema.
+export async function createSchema(
+  projectName: string,
+  name: string,
+  version: number,
+  body: string,
+  rules: Array<Rule>,
+): Promise<Schema> {
+  const res = await client.createSchema({
+    projectName,
+    schemaName: name,
+    schemaVersion: version,
+    schemaBody: body,
+    rules,
+  });
+
+  return converter.fromSchema(res.schema!);
+}
+
+// listSchemas fetches schemas of the given project.
+export async function listSchemas(projectName: string): Promise<Array<Schema>> {
+  const res = await client.listSchemas({
+    projectName,
+  });
+  return converter.fromSchemas(res.schemas);
+}
+
+// getSchema fetches a schema by the given schema name and version.
+export async function getSchema(projectName: string, schemaName: string, version: number): Promise<Schema> {
+  const res = await client.getSchema({
+    projectName,
+    schemaName,
+    version,
+  });
+  return converter.fromSchema(res.schema!);
+}
+
+// removeSchema removes the schema of the given schema name and version.
+export async function removeSchema(projectName: string, schemaName: string, version: number): Promise<void> {
+  await client.removeSchema({
+    projectName,
+    schemaName,
+    version,
+  });
 }

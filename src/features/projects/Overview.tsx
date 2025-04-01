@@ -33,8 +33,6 @@ export function Overview() {
     dispatch(getProjectStatsAsync([project.name, range]));
   }, [project, range]);
 
-  console.log(stats);
-
   return (
     <>
       <div className="usage">
