@@ -15,22 +15,40 @@
  */
 
 import React from 'react';
-import { useParams, Outlet } from 'react-router-dom';
+import { useParams, useLocation, Outlet, useNavigate } from 'react-router-dom';
 import { ProjectPageTemplate } from 'pages';
 import { SchemaList } from 'features/schemas';
+import { Button } from 'components';
 
 export function SchemasPage() {
   const schemaName = useParams().schemaName || '';
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isCreatePage = location.pathname.endsWith('/new');
+  const shouldShowSidebar = schemaName || isCreatePage;
 
   return (
     <ProjectPageTemplate className="project_document_page">
-      <div className={schemaName ? 'document_detail_area' : 'document_list_area'}>
-        {schemaName ? (
+      <div className={shouldShowSidebar ? 'document_detail_area' : 'document_list_area'}>
+        {shouldShowSidebar ? (
           <div className="sidebar">
             <SchemaList isDetailOpen />
           </div>
         ) : (
-          <SchemaList />
+          <>
+            <div className="btn_area" style={{ right: '0px' }}>
+              <Button
+                type="button"
+                outline
+                onClick={() => {
+                  navigate(`${location.pathname}/new`, { state: { from: location.pathname } });
+                }}
+              >
+                Create
+              </Button>
+            </div>
+            <SchemaList />
+          </>
         )}
         <Outlet />
       </div>

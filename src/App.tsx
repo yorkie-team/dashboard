@@ -90,6 +90,7 @@ function App() {
             <Route path=":documentKey" element={<DocumentDetail />} />
           </Route>
           <Route path="/projects/:projectName/schemas" element={<SchemasPage />}>
+            <Route path="/projects/:projectName/schemas/new" element={<SchemaDetail />} />
             <Route path=":schemaName" element={<SchemaDetail />} />
           </Route>
           <Route path="/settings" element={<SettingsPage />} />

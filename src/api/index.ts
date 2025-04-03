@@ -279,10 +279,11 @@ export async function getProjectStats(
 }
 
 // createSchema creates a new schema.
-export async function createSchema(projectName: string, name: string, body: string): Promise<Schema> {
+export async function createSchema(projectName: string, name: string, version: number, body: string): Promise<Schema> {
   const res = await client.createSchema({
     projectName,
     schemaName: name,
+    schemaVersion: version,
     schemaBody: body,
   });
 

@@ -17,7 +17,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createAppThunk } from 'app/appThunk';
 import { RootState } from 'app/store';
-import { listSchemas, getSchema, removeSchema, Schema } from 'api';
+import { Schema, createSchema, listSchemas, getSchema, removeSchema } from 'api';
 
 export interface SchemasState {
   list: {
@@ -29,9 +29,29 @@ export interface SchemasState {
     schema: Schema | null;
     status: 'idle' | 'loading' | 'failed';
   };
+  create: {
+    status: 'idle' | 'loading' | 'failed';
+    error: {
+      target: keyof SchemaCreateFields;
+      message: string;
+    } | null;
+    isSuccess: boolean;
+  };
 }
 
+export type SchemaCreateFields = {
+  projectName: string;
+  name: string;
+  version: number;
+  body: string;
+};
+
 const initialState: SchemasState = {
+  create: {
+    status: 'idle',
+    error: null,
+    isSuccess: false,
+  },
   list: {
     totalCount: null,
     schemas: [],
@@ -43,6 +63,15 @@ const initialState: SchemasState = {
   },
 };
 
+export const createSchemaAsync = createAppThunk<Schema, SchemaCreateFields>(
+  'schemas/createSchema',
+  async (params: SchemaCreateFields): Promise<Schema> => {
+    const { projectName, name, version, body } = params;
+    const schema = await createSchema(projectName, name, version, body);
+    return schema;
+  },
+);
+
 export const listSchemasAsync = createAppThunk(
   'schemas/listSchemas',
   async (params: {
@@ -52,16 +81,15 @@ export const listSchemasAsync = createAppThunk(
   }> => {
     const { projectName } = params;
     const schemas = await listSchemas(projectName);
-
     return { data: schemas };
   },
 );
 
 export const getSchemaAsync = createAppThunk(
   'schemas/getSchema',
-  async (params: { projectName: string; schemaName: string; version: number }): Promise<Schema> => {
-    const { projectName, schemaName, version } = params;
-    return await getSchema(projectName, schemaName, version);
+  async (params: { projectName: string; schemaName: string; schemaVersion: number }): Promise<Schema> => {
+    const { projectName, schemaName, schemaVersion } = params;
+    return await getSchema(projectName, schemaName, schemaVersion);
   },
 );
 
@@ -76,15 +104,32 @@ export const removeSchemaAsync = createAppThunk(
 export const schemaSlice = createSlice({
   name: 'schemas',
   initialState,
-  reducers: {},
+  reducers: {
+    resetCreateSuccess: (state) => {
+      state.create.isSuccess = false;
+    },
+    resetDetailSuccess: (state) => {
+      state.detail.schema = null;
+      state.detail.status = 'idle';
+    },
+  },
   extraReducers: (builder) => {
+    builder.addCase(createSchemaAsync.pending, (state) => {
+      state.create.status = 'loading';
+      state.create.error = null;
+    });
+    builder.addCase(createSchemaAsync.fulfilled, (state, action) => {
+      state.create.status = 'idle';
+      state.create.isSuccess = true;
+    });
     builder.addCase(listSchemasAsync.pending, (state) => {
       state.list.status = 'loading';
     });
     builder.addCase(listSchemasAsync.fulfilled, (state, action) => {
       const { data } = action.payload;
+      state.list.schemas = data;
       state.list.status = 'idle';
-      state.list.totalCount = null;
+      state.list.totalCount = data.length;
     });
     builder.addCase(listSchemasAsync.rejected, (state) => {
       state.list.status = 'failed';
@@ -102,7 +147,10 @@ export const schemaSlice = createSlice({
   },
 });
 
+export const { resetCreateSuccess, resetDetailSuccess } = schemaSlice.actions;
+
 export const selectSchemaList = (state: RootState) => state.schemas.list;
 export const selectSchemaDetail = (state: RootState) => state.schemas.detail;
+export const selectSchemaCreate = (state: RootState) => state.schemas.create;
 
 export default schemaSlice.reducer;

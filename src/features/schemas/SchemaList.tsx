@@ -34,8 +34,6 @@ export function SchemaList({ isDetailOpen = false }: { isDetailOpen?: boolean })
   const [selectedSchemaNames, setSelectedSchemaNames] = useState<Array<string>>([]);
 
   useEffect(() => {
-    if (prevProjectName === projectName) return;
-
     dispatch(listSchemasAsync({ projectName }));
   }, [dispatch, prevProjectName, projectName]);
 

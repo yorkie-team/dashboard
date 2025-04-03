@@ -1409,9 +1409,9 @@ export class CreateSchemaRequest extends Message<CreateSchemaRequest> {
   schemaName = "";
 
   /**
-   * @generated from field: int32 version = 3;
+   * @generated from field: int32 schema_version = 3;
    */
-  version = 0;
+  schemaVersion = 0;
 
   /**
    * @generated from field: string schema_body = 4;
@@ -1428,7 +1428,7 @@ export class CreateSchemaRequest extends Message<CreateSchemaRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "schema_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "version", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "schema_version", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 4, name: "schema_body", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 

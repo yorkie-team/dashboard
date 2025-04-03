@@ -14,40 +14,128 @@
  * limitations under the License.
  */
 
-import React, { useEffect, useState } from 'react';
-import { fromUnixTime, format } from 'date-fns';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import CodeMirror from '@uiw/react-codemirror';
+import { javascript } from '@codemirror/lang-javascript';
+import { validate } from '@yorkie-js/schema';
+
+import { Button, Icon, InputHelperText, InputTextField } from 'components';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectPreferences } from 'features/users/usersSlice';
-import { selectSchemaDetail, getSchemaAsync, removeSchemaAsync } from './schemasSlice';
-import { Icon, Button, CodeBlock, CopyButton, Popover, Dropdown } from 'components';
+import { linter, lintGutter, Diagnostic } from '@codemirror/lint';
+import { useForm } from 'react-hook-form';
+import {
+  selectSchemaCreate,
+  resetCreateSuccess,
+  createSchemaAsync,
+  SchemaCreateFields,
+  getSchemaAsync,
+  selectSchemaDetail,
+  resetDetailSuccess,
+} from './schemasSlice';
+
+const INITIAL_BODY = `// Document is the root of the document.
+// Every schema must have a Document type.
+type Document = {
+  title: string;
+  shapes: Array<Shape>;
+};
+
+type Shape = {
+  x: number;
+  y: number;
+  color: string;
+};`;
+
+const yorkieLinter = linter((view): Array<Diagnostic> => {
+  const code = view.state.doc.toString();
+  return validate(code).errors.map((error) => {
+    return {
+      from: view.state.doc.line(error.range.start.line).from + error.range.start.column,
+      to: view.state.doc.line(error.range.end.line).from + error.range.end.column,
+      message: error.message,
+      severity: error.severity,
+    };
+  });
+});
 
 export function SchemaDetail() {
   const navigate = useNavigate();
-  const { schema } = useAppSelector(selectSchemaDetail);
-  const { use24HourClock } = useAppSelector(selectPreferences);
   const dispatch = useAppDispatch();
-  const params = useParams();
-  const projectName = params.projectName || '';
-  const schemaName = params.schemaName || '';
-  const schemaJSON = schema ? JSON.parse(schema.body) : {};
-  const schemaJSONStr = JSON.stringify(schemaJSON, null, '\t');
-  const [viewType, SetViewType] = useState('code');
-  const [opened, setOpened] = useState(false);
+  const { projectName, schemaName } = useParams();
+  const { theme } = useAppSelector(selectPreferences);
+  const { isSuccess, error } = useAppSelector(selectSchemaCreate);
+  const { schema } = useAppSelector(selectSchemaDetail);
+  const [schemaBody, setSchemaBody] = useState(INITIAL_BODY);
+
+  const {
+    register,
+    formState: { errors: formErrors },
+    handleSubmit,
+    setError,
+    clearErrors,
+  } = useForm<SchemaCreateFields>();
 
   useEffect(() => {
-    dispatch(
-      getSchemaAsync({
-        projectName,
-        schemaName,
-        version: 0,
-      }),
-    );
-  }, [dispatch, projectName, schemaName]);
+    return () => {
+      dispatch(resetCreateSuccess());
+      dispatch(resetDetailSuccess());
+    };
+  }, [dispatch]);
 
-  if (!schema) {
-    return null;
-  }
+  useEffect(() => {
+    if (!projectName || !schemaName) {
+      return;
+    }
+
+    // TODO(hackerwins): Manage schema version.
+    dispatch(getSchemaAsync({ projectName, schemaName, schemaVersion: 1 }));
+  }, [projectName, schemaName]);
+
+  useEffect(() => {
+    if (schema) {
+      setSchemaBody(schema.body);
+    }
+  }, [schema]);
+
+  useEffect(() => {
+    if (!error) return;
+
+    setError(error.target, { type: 'custom', message: error.message }, { shouldFocus: true });
+  }, [error, setError]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate(`..`);
+    }
+  }, [dispatch, isSuccess, navigate, projectName]);
+
+  const onChange = useCallback(
+    (value: string) => {
+      setSchemaBody(value);
+      if (validate(value).errors.length > 0) {
+        setError('body', {
+          type: 'manual',
+          message: 'Schema contains errors',
+        });
+      } else {
+        clearErrors('body');
+      }
+    },
+    [setError, clearErrors],
+  );
+
+  const onSubmit = useCallback(
+    (data: SchemaCreateFields) => {
+      data.projectName = projectName!;
+      data.version = 1;
+      data.body = schemaBody;
+
+      dispatch(createSchemaAsync(data));
+    },
+    [dispatch, projectName, schemaBody],
+  );
 
   return (
     <div className="detail_content">
@@ -56,82 +144,49 @@ export function SchemaDetail() {
           <Link to="../" state={{ previousProjectName: projectName }} className="btn_back">
             <Icon type="arrowBack" />
           </Link>
-          <div className="title_inner">
-            <strong className="title">{schema?.name}</strong>
-            <span className="date">
-              {format(
-                fromUnixTime(schema?.createdAt!),
-                `MMM d${new Date().getFullYear() === fromUnixTime(schema?.createdAt!).getFullYear() ? '' : ', yyyy'}, ${use24HourClock ? 'HH:mm' : 'h:mm a'}`,
-              )}
-            </span>
-          </div>
-
-          <Popover opened={opened} onChange={setOpened}>
-            <Popover.Target>
-              <button type="button" className="btn btn_more">
-                <Icon type="moreLarge" />
-              </button>
-            </Popover.Target>
-            <Popover.Dropdown>
-              <Dropdown>
-                <Dropdown.Title>More Options</Dropdown.Title>
-                <Dropdown.List>
-                  <Dropdown.Item
-                    onClick={async () => {
-                      await dispatch(removeSchemaAsync({ projectName, schemaName, version: 1 }));
-                      navigate(`..`, { replace: true });
-                    }}
-                  >
-                    <Dropdown.Text highlight>Delete Document</Dropdown.Text>
-                  </Dropdown.Item>
-                </Dropdown.List>
-              </Dropdown>
-            </Popover.Dropdown>
-          </Popover>
         </div>
       </div>
-      <div className="codeblock_header">
-        <div className="box_left"></div>
-        <div className="box_right">
-          <Button
-            icon={<Icon type="codeSnippet" />}
-            color="toggle"
-            onClick={() => SetViewType('code')}
-            className={viewType === 'code' ? 'is_active' : ''}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="title_inner">
+          {schema ? (
+            <h2>
+              {schema.name}@v{schema.version}
+            </h2>
+          ) : (
+            <InputTextField
+              id="name"
+              label=""
+              blindLabel={true}
+              placeholder="Schema Name"
+              {...register('name', { required: 'Schema Name is required' })}
+              autoComplete="off"
+              autoFocus
+              state={formErrors.name ? 'error' : 'normal'}
+              helperText={(formErrors.name && formErrors.name.message) || ''}
+              large
+            />
+          )}
+        </div>
+        <div style={{ marginTop: '20px' }}>
+          <CodeMirror
+            theme={theme.darkMode ? 'dark' : 'light'}
+            value={schemaBody}
+            onChange={onChange}
+            extensions={[javascript({ typescript: true }), yorkieLinter, lintGutter()]}
           />
-          <Button
-            icon={<Icon type="branch" />}
-            color="toggle"
-            onClick={() => SetViewType('tree')}
-            className={viewType === 'tree' ? 'is_active' : ''}
-          />
-          <div className="btn_area">
-            <CopyButton value={schema?.body || ''} timeout={1000}>
-              {({ copied, copy }) => (
-                <>
-                  <Button icon={<Icon type="copy" />} color="toggle" outline onClick={copy} />
-                  {copied && (
-                    <div className="toast_box shadow_l">
-                      <Icon type="check" />
-                      Copied
-                    </div>
-                  )}
-                </>
-              )}
-            </CopyButton>
-          </div>
+          {formErrors.body?.message && <InputHelperText state="error" message={formErrors.body?.message} />}
         </div>
-      </div>
-      {viewType === 'code' && (
-        <div className="codeblock">
-          <CodeBlock.Code code={schemaJSONStr} language="json" withLineNumbers />
+        <div className="btn_area" style={{ marginTop: '20px' }}>
+          <Button.Box>
+            <Button as="link" href="../" outline>
+              Cancel
+            </Button>
+            <Button type="submit" color="info" outline>
+              Create
+            </Button>
+          </Button.Box>
         </div>
-      )}
-      {viewType === 'tree' && (
-        <div className="codeblock_tree_box">
-          <CodeBlock.Tree code={schemaJSON} />
-        </div>
-      )}
+      </form>
     </div>
   );
 }
