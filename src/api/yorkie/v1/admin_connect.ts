@@ -18,7 +18,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ChangePasswordRequest, ChangePasswordResponse, CreateProjectRequest, CreateProjectResponse, DeleteAccountRequest, DeleteAccountResponse, GetDocumentRequest, GetDocumentResponse, GetDocumentsRequest, GetDocumentsResponse, GetProjectRequest, GetProjectResponse, GetProjectStatsRequest, GetProjectStatsResponse, GetServerVersionRequest, GetServerVersionResponse, GetSnapshotMetaRequest, GetSnapshotMetaResponse, ListChangesRequest, ListChangesResponse, ListDocumentsRequest, ListDocumentsResponse, ListProjectsRequest, ListProjectsResponse, LogInRequest, LogInResponse, RemoveDocumentByAdminRequest, RemoveDocumentByAdminResponse, SearchDocumentsRequest, SearchDocumentsResponse, SignUpRequest, SignUpResponse, UpdateProjectRequest, UpdateProjectResponse } from "./admin_pb";
+import { ChangePasswordRequest, ChangePasswordResponse, CreateProjectRequest, CreateProjectResponse, CreateSchemaRequest, CreateSchemaResponse, DeleteAccountRequest, DeleteAccountResponse, GetDocumentRequest, GetDocumentResponse, GetDocumentsRequest, GetDocumentsResponse, GetProjectRequest, GetProjectResponse, GetProjectStatsRequest, GetProjectStatsResponse, GetSchemaRequest, GetSchemaResponse, GetServerVersionRequest, GetServerVersionResponse, GetSnapshotMetaRequest, GetSnapshotMetaResponse, ListChangesRequest, ListChangesResponse, ListDocumentsRequest, ListDocumentsResponse, ListProjectsRequest, ListProjectsResponse, ListSchemasRequest, ListSchemasResponse, LogInRequest, LogInResponse, RemoveDocumentByAdminRequest, RemoveDocumentByAdminResponse, RemoveSchemaRequest, RemoveSchemaResponse, SearchDocumentsRequest, SearchDocumentsResponse, SignUpRequest, SignUpResponse, UpdateProjectRequest, UpdateProjectResponse } from "./admin_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -93,21 +93,21 @@ export const AdminService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc yorkie.v1.AdminService.UpdateProject
-     */
-    updateProject: {
-      name: "UpdateProject",
-      I: UpdateProjectRequest,
-      O: UpdateProjectResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
      * @generated from rpc yorkie.v1.AdminService.GetProjectStats
      */
     getProjectStats: {
       name: "GetProjectStats",
       I: GetProjectStatsRequest,
       O: GetProjectStatsResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.UpdateProject
+     */
+    updateProject: {
+      name: "UpdateProject",
+      I: UpdateProjectRequest,
+      O: UpdateProjectResponse,
       kind: MethodKind.Unary,
     },
     /**
@@ -138,12 +138,12 @@ export const AdminService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc yorkie.v1.AdminService.RemoveDocumentByAdmin
+     * @generated from rpc yorkie.v1.AdminService.SearchDocuments
      */
-    removeDocumentByAdmin: {
-      name: "RemoveDocumentByAdmin",
-      I: RemoveDocumentByAdminRequest,
-      O: RemoveDocumentByAdminResponse,
+    searchDocuments: {
+      name: "SearchDocuments",
+      I: SearchDocumentsRequest,
+      O: SearchDocumentsResponse,
       kind: MethodKind.Unary,
     },
     /**
@@ -156,12 +156,12 @@ export const AdminService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc yorkie.v1.AdminService.SearchDocuments
+     * @generated from rpc yorkie.v1.AdminService.RemoveDocumentByAdmin
      */
-    searchDocuments: {
-      name: "SearchDocuments",
-      I: SearchDocumentsRequest,
-      O: SearchDocumentsResponse,
+    removeDocumentByAdmin: {
+      name: "RemoveDocumentByAdmin",
+      I: RemoveDocumentByAdminRequest,
+      O: RemoveDocumentByAdminResponse,
       kind: MethodKind.Unary,
     },
     /**
@@ -171,6 +171,42 @@ export const AdminService = {
       name: "ListChanges",
       I: ListChangesRequest,
       O: ListChangesResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.CreateSchema
+     */
+    createSchema: {
+      name: "CreateSchema",
+      I: CreateSchemaRequest,
+      O: CreateSchemaResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.ListSchemas
+     */
+    listSchemas: {
+      name: "ListSchemas",
+      I: ListSchemasRequest,
+      O: ListSchemasResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.GetSchema
+     */
+    getSchema: {
+      name: "GetSchema",
+      I: GetSchemaRequest,
+      O: GetSchemaResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.RemoveSchema
+     */
+    removeSchema: {
+      name: "RemoveSchema",
+      I: RemoveSchemaRequest,
+      O: RemoveSchemaResponse,
       kind: MethodKind.Unary,
     },
     /**

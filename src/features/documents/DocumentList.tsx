@@ -128,7 +128,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
         {!isDetailOpen && (
           <div className="thead">
             <span className="th id">Document Key</span>
-            <span className="th updated">Last Updated</span>
+            <span className="th updated">Updated At</span>
             <span className="th select">
               <button
                 type="button"

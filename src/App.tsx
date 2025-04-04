@@ -37,6 +37,8 @@ import { useAppSelector } from 'app/hooks';
 import { DocumentDetail } from 'features/documents';
 import { selectPreferences } from 'features/users/usersSlice';
 import { TestPage, ButtonView, PopoverView, DropdownView, InputView, BreadcrumbView, ModalView } from 'test';
+import { SchemaDetail } from 'features/schemas';
+import { SchemasPage } from 'pages/SchemasPage';
 
 const applyTheme = (theme: 'light' | 'dark') => {
   if (theme === 'light') {
@@ -86,6 +88,10 @@ function App() {
           <Route path="/projects/:projectName/settings" element={<ProjectSettingsPage />} />
           <Route path="/projects/:projectName/documents" element={<DocumentsPage />}>
             <Route path=":documentKey" element={<DocumentDetail />} />
+          </Route>
+          <Route path="/projects/:projectName/schemas" element={<SchemasPage />}>
+            <Route path="/projects/:projectName/schemas/new" element={<SchemaDetail />} />
+            <Route path=":schemaName" element={<SchemaDetail />} />
           </Route>
           <Route path="/settings" element={<SettingsPage />} />
         </Route>
