@@ -183,7 +183,7 @@
   }
 
   .connections {
-    width: 280px;
+    width: 120px;
   }
 
   .select {
@@ -209,15 +209,6 @@
       @include mixins-lib.tabletStart() {
         @include mixins-lib.rfonts(8, 8, 500);
       }
-    }
-  }
-}
-
-.is_edit {
-  .th,
-  .td {
-    &:not(.id, .updated, .select) {
-      display: none;
     }
   }
 }

@@ -21,6 +21,7 @@ import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectPreferences } from 'features/users/usersSlice';
 import { selectDocumentDetail, getDocumentAsync, removeDocumentByAdminAsync } from './documentsSlice';
 import { Icon, Button, CodeBlock, CopyButton, Popover, Dropdown } from 'components';
+import { formatNumber } from 'utils/format';
 
 export function DocumentDetail() {
   const navigate = useNavigate();
@@ -90,6 +91,12 @@ export function DocumentDetail() {
             </Popover.Dropdown>
           </Popover>
         </div>
+        <dl className="info_list">
+          <div className="info_item">
+            <dt className="info_title">Clients</dt>
+            <dd className="info_desc">{formatNumber(document?.attachedClients)}</dd>
+          </div>
+        </dl>
       </div>
       <div className="codeblock_header">
         <div className="box_left"></div>

@@ -18,6 +18,7 @@ export type DocumentSummary = {
   id: string;
   key: string;
   snapshot: string;
+  attachedClients: number;
   createdAt: number;
   accessedAt: number;
   updatedAt: number;

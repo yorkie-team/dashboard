@@ -27,6 +27,7 @@ import {
 } from './documentsSlice';
 import { Button, SearchBar, Icon, Checkbox } from 'components';
 import { selectPreferences } from 'features/users/usersSlice';
+import { formatNumber } from '../../utils/format';
 
 export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean }) {
   const dispatch = useAppDispatch();
@@ -127,8 +128,9 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
       <div className="document_table is_edit">
         {!isDetailOpen && (
           <div className="thead">
-            <span className="th id">Document Key</span>
+            <span className="th id">Key</span>
             <span className="th updated">Last Updated</span>
+            <span className="th connections">Clients</span>
             <span className="th select">
               <button
                 type="button"
@@ -200,7 +202,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
         {status === 'idle' && (
           <ul className="tbody_list">
             {documents.map((document) => {
-              const { key, updatedAt } = document;
+              const { key, attachedClients, updatedAt } = document;
               return (
                 <li key={key} className="tbody_item">
                   <Link
@@ -210,12 +212,15 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
                   >
                     <span className="td id">{key}</span>
                     {!isDetailOpen && (
-                      <span className="td updated">
-                        {format(
-                          fromUnixTime(updatedAt),
-                          `MMM d${new Date().getFullYear() === fromUnixTime(updatedAt).getFullYear() ? '' : ', yyyy'}, ${use24HourClock ? 'HH:mm' : 'h:mm a'}`,
-                        )}
-                      </span>
+                      <>
+                        <span className="td updated">
+                          {format(
+                            fromUnixTime(updatedAt),
+                            `MMM d${new Date().getFullYear() === fromUnixTime(updatedAt).getFullYear() ? '' : ', yyyy'}, ${use24HourClock ? 'HH:mm' : 'h:mm a'}`,
+                          )}
+                        </span>
+                        <span className="td connections">{formatNumber(attachedClients)}</span>
+                      </>
                     )}
                   </Link>
                   {!isDetailOpen && (
@@ -241,7 +246,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
         )}
         {status === 'idle' && documents.length === 0 && (
           <div className="placeholder_box no_bg">
-            <p className="desc">No Document Found</p>
+            <p className="desc">There are no documents.</p>
           </div>
         )}
       </div>
