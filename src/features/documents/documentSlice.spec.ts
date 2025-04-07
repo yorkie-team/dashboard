@@ -26,6 +26,7 @@ for (let i = 0; i < TOTAL_SIZE; i++) {
     id: `${i}`,
     key: `${i}`,
     snapshot: '',
+    attachedClients: 0,
     createdAt: 0,
     accessedAt: 0,
     updatedAt: 0,
