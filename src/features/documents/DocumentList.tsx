@@ -27,6 +27,7 @@ import {
 } from './documentsSlice';
 import { Button, SearchBar, Icon, Checkbox } from 'components';
 import { selectPreferences } from 'features/users/usersSlice';
+import { formatNumber } from '../../utils/format';
 
 export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean }) {
   const dispatch = useAppDispatch();
@@ -128,8 +129,8 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
         {!isDetailOpen && (
           <div className="thead">
             <span className="th id">Key</span>
-            <span className="th updated">Clients</span>
             <span className="th updated">Last Updated</span>
+            <span className="th connections">Clients</span>
             <span className="th select">
               <button
                 type="button"
@@ -212,13 +213,13 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
                     <span className="td id">{key}</span>
                     {!isDetailOpen && (
                       <>
-                        <span className="td updated">{attachedClients}</span>
                         <span className="td updated">
                           {format(
                             fromUnixTime(updatedAt),
                             `MMM d${new Date().getFullYear() === fromUnixTime(updatedAt).getFullYear() ? '' : ', yyyy'}, ${use24HourClock ? 'HH:mm' : 'h:mm a'}`,
                           )}
                         </span>
+                        <span className="td connections">{formatNumber(attachedClients)}</span>
                       </>
                     )}
                   </Link>
