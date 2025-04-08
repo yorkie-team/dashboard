@@ -42,6 +42,10 @@ async function main() {
     document.getElementById('peersCount').innerHTML = peers.length;
   })
   await client.attach(doc);
+
+  window.addEventListener('beforeunload', () => {
+    client.deactivate({keepalive: true});
+  });
 }
 main();`,
     cdn: `<div>There are currently <span id='peersCount'></span> peers!</div>
@@ -61,6 +65,10 @@ main();`,
       document.getElementById('peersCount').innerHTML = peers.length;
     })
     await client.attach(doc);
+
+    window.addEventListener('beforeunload', () => {
+      client.deactivate({keepalive: true});
+    });
   }
   main();
 </script>`,
