@@ -40,8 +40,12 @@ export function Overview() {
       <div className="usage">
         <ul className="usage_list">
           <li className="usage_item link_type">
-            <span className="title">Total documents</span>
+            <span className="title">Documents</span>
             <span className="info_text">{String(stats?.documentsCount || 0)}</span>
+          </li>
+          <li className="usage_item link_type">
+            <span className="title">Clients</span>
+            <span className="info_text">{String(stats?.clientsCount || 0)}</span>
           </li>
         </ul>
       </div>
