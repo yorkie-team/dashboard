@@ -271,6 +271,7 @@ export async function getProjectStats(
 
   return {
     documentsCount: Number(res.documentsCount),
+    clientsCount: Number(res.clientsCount),
     activeUsersCount: res.activeUsersCount,
     activeUsers: activeUsers,
   };

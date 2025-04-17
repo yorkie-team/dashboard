@@ -732,6 +732,11 @@ export class GetProjectStatsResponse extends Message<GetProjectStatsResponse> {
    */
   documentsCount = protoInt64.zero;
 
+  /**
+   * @generated from field: int64 clients_count = 4;
+   */
+  clientsCount = protoInt64.zero;
+
   constructor(data?: PartialMessage<GetProjectStatsResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -743,6 +748,7 @@ export class GetProjectStatsResponse extends Message<GetProjectStatsResponse> {
     { no: 1, name: "active_users_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 2, name: "active_users", kind: "message", T: MetricPoint, repeated: true },
     { no: 3, name: "documents_count", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 4, name: "clients_count", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetProjectStatsResponse {
