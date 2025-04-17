@@ -29,7 +29,8 @@ export function QuickStart() {
     npm: `import yorkie from '@yorkie-js/sdk';
 
 async function main() {
-  const client = new yorkie.Client('${import.meta.env.VITE_API_ADDR}', {
+  const client = new yorkie.Client({
+    rpcAddr: '${import.meta.env.VITE_API_ADDR}',
     apiKey: '${project?.publicKey}',
   });
   await client.activate();
@@ -42,10 +43,6 @@ async function main() {
     document.getElementById('peersCount').innerHTML = peers.length;
   })
   await client.attach(doc);
-
-  window.addEventListener('beforeunload', () => {
-    client.deactivate({keepalive: true});
-  });
 }
 main();`,
     cdn: `<div>There are currently <span id='peersCount'></span> peers!</div>
@@ -54,7 +51,8 @@ main();`,
 <script src="https://cdn.jsdelivr.net/npm/@yorkie-js/sdk@${import.meta.env.VITE_JS_SDK_VERSION}/dist/yorkie-js-sdk.js"></script>
 <script>
   async function main() {
-    const client = new yorkie.Client('${import.meta.env.VITE_API_ADDR}', {
+    const client = new yorkie.Client({
+      rpcAddr: '${import.meta.env.VITE_API_ADDR}',
       apiKey: '${project?.publicKey}',
     });
     await client.activate();
@@ -65,10 +63,6 @@ main();`,
       document.getElementById('peersCount').innerHTML = peers.length;
     })
     await client.attach(doc);
-
-    window.addEventListener('beforeunload', () => {
-      client.deactivate({keepalive: true});
-    });
   }
   main();
 </script>`,
