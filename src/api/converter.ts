@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { DATE_RANGE_OPTIONS } from './types';
+import { DATE_RANGE_OPTIONS, Schema } from './types';
 import { Timestamp as PbTimestamp } from '@bufbuild/protobuf';
 import { User, Project, DocumentSummary, AuthWebhookMethod, FieldViolation } from './types';
 import { Change, converter, Indexable } from '@yorkie-js/sdk';
@@ -22,6 +22,7 @@ import {
   User as PbUser,
   Project as PbProject,
   DocumentSummary as PbDocumentSummary,
+  Schema as PbSchema,
   Change as PbChange,
 } from './yorkie/v1/resources_pb';
 import { GetProjectStatsRequest_DateRange as PbDateRange } from './yorkie/v1/admin_pb';
@@ -91,6 +92,26 @@ export function fromDocumentSummaries(pbDocumentSummaries: Array<PbDocumentSumma
 
 export function fromChanges(pbChanges: Array<PbChange>): Array<Change<Indexable>> {
   return converter.fromChanges(pbChanges as any);
+}
+
+export function fromSchemas(pbSchemas: Array<PbSchema>): Array<Schema> {
+  const schemas: Array<Schema> = [];
+
+  for (const pbSchema of pbSchemas) {
+    schemas.push(fromSchema(pbSchema));
+  }
+
+  return schemas;
+}
+
+export function fromSchema(pbSchema: PbSchema): Schema {
+  return {
+    id: pbSchema.id,
+    name: pbSchema.name,
+    version: pbSchema.version,
+    body: pbSchema.body,
+    createdAt: fromTimestamp(pbSchema.createdAt!),
+  };
 }
 
 /**
