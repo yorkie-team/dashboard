@@ -19,7 +19,7 @@ export type DocumentSummary = {
   key: string;
   snapshot: string;
   attachedClients: number;
-  docSize: DocSize;
+  docSize?: DocSize;
   createdAt: number;
   accessedAt: number;
   updatedAt: number;

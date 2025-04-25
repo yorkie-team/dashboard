@@ -98,8 +98,11 @@ export function DocumentDetail() {
           </div>
           <div className="info_item right_align">
               <dt className="info_title">Size</dt>
-              <dd className="info_desc">live: {humanFileSize(document.docSize.live.data + document.docSize.live.meta)}, gc: {humanFileSize(document.docSize.gc.data + document.docSize.gc.meta)}</dd>
-            </div>
+              <dd className="info_desc">
+                live: {humanFileSize((document.docSize?.live?.data ?? 0) + (document.docSize?.live?.meta ?? 0))},
+                gc: {humanFileSize((document.docSize?.gc?.data ?? 0) + (document.docSize?.gc?.meta ?? 0))}
+              </dd>
+          </div>
         </dl>
       </div>
       <div className="codeblock_header">
