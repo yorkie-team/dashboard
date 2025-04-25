@@ -96,6 +96,10 @@ export function DocumentDetail() {
             <dt className="info_title">Clients</dt>
             <dd className="info_desc">{formatNumber(document?.attachedClients)}</dd>
           </div>
+          <div className="info_item right_align">
+              <dt className="info_title">Size</dt>
+              <dd className="info_desc">live: {formatNumber(document.docSize.live.data + document.docSize.live.meta)}B, gc: {formatNumber(document.docSize.gc.data + document.docSize.gc.meta)}B</dd>
+            </div>
         </dl>
       </div>
       <div className="codeblock_header">
