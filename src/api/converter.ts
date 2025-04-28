@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { DATE_RANGE_OPTIONS } from './types';
+import {DataSize, DATE_RANGE_OPTIONS, DocSize} from './types';
 import { Timestamp as PbTimestamp } from '@bufbuild/protobuf';
 import { User, Project, DocumentSummary, AuthWebhookMethod, FieldViolation } from './types';
 import { Change, converter, Indexable } from '@yorkie-js/sdk';
@@ -22,6 +22,8 @@ import {
   User as PbUser,
   Project as PbProject,
   DocumentSummary as PbDocumentSummary,
+  DataSize as PbDataSize,
+  DocSize as PbDocSize,
   Change as PbChange,
 } from './yorkie/v1/resources_pb';
 import { GetProjectStatsRequest_DateRange as PbDateRange } from './yorkie/v1/admin_pb';
@@ -73,6 +75,7 @@ export function fromDocumentSummary(pbDocumentSummary: PbDocumentSummary): Docum
     key: pbDocumentSummary.key,
     snapshot: pbDocumentSummary.snapshot,
     attachedClients: pbDocumentSummary.attachedClients,
+    docSize: fromPbDocSize(pbDocumentSummary.documentSize),
     createdAt: fromTimestamp(pbDocumentSummary.createdAt!),
     accessedAt: fromTimestamp(pbDocumentSummary.accessedAt!),
     updatedAt: fromTimestamp(pbDocumentSummary.updatedAt!),
@@ -121,4 +124,18 @@ export function toDateRange(range: keyof typeof DATE_RANGE_OPTIONS): PbDateRange
     default:
       throw new Error(`unknown range: ${range}`);
   }
+}
+
+function fromPbDataSize(pbDataSize?: PbDataSize): DataSize {
+  return {
+    data: pbDataSize?.data ?? 0,
+    meta: pbDataSize?.meta ?? 0,
+  };
+}
+
+function fromPbDocSize(pbDocSize?: PbDocSize): DocSize {
+  return {
+    live: fromPbDataSize(pbDocSize?.live),
+    gc: fromPbDataSize(pbDocSize?.gc),
+  };
 }
