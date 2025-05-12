@@ -18,6 +18,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { createAppThunk } from 'app/appThunk';
 import { RootState } from 'app/store';
 import { Schema, createSchema, listSchemas, getSchema, removeSchema } from 'api';
+import { RPCStatusCode, RPCError } from 'api/types';
 
 export interface SchemasState {
   list: {
@@ -113,6 +114,7 @@ export const schemaSlice = createSlice({
   reducers: {
     resetCreateSuccess: (state) => {
       state.create.isSuccess = false;
+      state.create.error = null;
     },
     resetDetailSuccess: (state) => {
       state.detail.schema = null;
@@ -127,6 +129,22 @@ export const schemaSlice = createSlice({
     builder.addCase(createSchemaAsync.fulfilled, (state, action) => {
       state.create.status = 'idle';
       state.create.isSuccess = true;
+    });
+    builder.addCase(createSchemaAsync.rejected, (state, action) => {
+      state.create.status = 'failed';
+      const error = action.payload!.error;
+      if (!(error instanceof RPCError)) {
+        return;
+      }
+      const statusCode = Number(error.code);
+      if (statusCode === RPCStatusCode.ALREADY_EXISTS) {
+        state.create.error = {
+          target: 'name',
+          message: 'The schema name is already in use.',
+        };
+        action.meta.isHandledError = true;
+        return;
+      }
     });
     builder.addCase(listSchemasAsync.pending, (state) => {
       state.list.status = 'loading';

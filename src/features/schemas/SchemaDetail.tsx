@@ -15,10 +15,11 @@
  */
 
 import React, { useCallback, useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams, useLocation } from 'react-router-dom';
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { validate, buildRuleset } from '@yorkie-js/schema';
+import classNames from 'classnames';
 
 import { Button, Icon, InputHelperText, InputTextField } from 'components';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
@@ -57,12 +58,14 @@ const yorkieLinter = linter((view): Array<Diagnostic> => {
 
 export function SchemaDetail() {
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useAppDispatch();
   const { projectName, schemaName } = useParams();
   const { theme } = useAppSelector(selectPreferences);
   const { isSuccess, error } = useAppSelector(selectSchemaCreate);
   const { schema } = useAppSelector(selectSchemaDetail);
   const [schemaBody, setSchemaBody] = useState(INITIAL_BODY);
+  const [createdSchemaName, setCreatedSchemaName] = useState<string | null>(null);
 
   const {
     register,
@@ -73,14 +76,8 @@ export function SchemaDetail() {
   } = useForm<SchemaCreateFields>();
 
   useEffect(() => {
-    return () => {
-      dispatch(resetCreateSuccess());
-      dispatch(resetDetailSuccess());
-    };
-  }, [dispatch]);
-
-  useEffect(() => {
     if (!projectName || !schemaName) {
+      dispatch(resetDetailSuccess());
       return;
     }
 
@@ -91,6 +88,8 @@ export function SchemaDetail() {
   useEffect(() => {
     if (schema) {
       setSchemaBody(schema.body);
+    } else {
+      setSchemaBody(INITIAL_BODY);
     }
   }, [schema]);
 
@@ -101,10 +100,19 @@ export function SchemaDetail() {
   }, [error, setError]);
 
   useEffect(() => {
-    if (isSuccess) {
-      navigate(`..`);
+    if (isSuccess && createdSchemaName) {
+      dispatch(resetCreateSuccess());
+      dispatch(resetDetailSuccess());
+      navigate(`${location.pathname.substring(0, location.pathname.lastIndexOf('/'))}/${createdSchemaName}`);
     }
-  }, [dispatch, isSuccess, navigate, projectName]);
+  }, [isSuccess, createdSchemaName, navigate, location]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetCreateSuccess());
+      dispatch(resetDetailSuccess());
+    };
+  }, []);
 
   const onChange = useCallback(
     (value: string) => {
@@ -134,6 +142,7 @@ export function SchemaDetail() {
         data.ruleset.push(value);
       }
 
+      setCreatedSchemaName(data.name);
       dispatch(createSchemaAsync(data));
     },
     [dispatch, projectName, schemaBody],
@@ -141,35 +150,42 @@ export function SchemaDetail() {
 
   return (
     <div className="detail_content">
-      <div className="document_header">
-        <div className="title_box">
-          <Link to="../" state={{ previousProjectName: projectName }} className="btn_back">
-            <Icon type="arrowBack" />
-          </Link>
-        </div>
-      </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="title_inner">
-          {schema ? (
-            <h2>
-              {schema.name}@v{schema.version}
-            </h2>
-          ) : (
-            <InputTextField
-              id="name"
-              label=""
-              blindLabel={true}
-              placeholder="Schema Name"
-              {...register('name', { required: 'Schema Name is required' })}
-              autoComplete="off"
-              autoFocus
-              state={formErrors.name ? 'error' : 'normal'}
-              helperText={(formErrors.name && formErrors.name.message) || ''}
-              large
-            />
-          )}
+        <div className="document_header">
+          <div className="title_box">
+            <Link to="../" state={{ previousProjectName: projectName }} className="btn_back">
+              <Icon type="arrowBack" />
+            </Link>
+            <div className="title_inner schema_title_inner">
+              {schema ? (
+                <strong className="title">
+                  {schema.name}@v{schema.version}
+                </strong>
+              ) : (
+                <InputTextField
+                  id="name"
+                  label="Schema Name"
+                  blindLabel={true}
+                  placeholder="Schema Name"
+                  {...register('name', {
+                    required: 'The schema name is required',
+                  })}
+                  autoComplete="off"
+                  autoFocus
+                  state={formErrors.name ? 'error' : 'normal'}
+                  helperText={(formErrors.name && formErrors.name.message) || ''}
+                  large
+                />
+              )}
+            </div>
+          </div>
         </div>
-        <div style={{ marginTop: '20px' }}>
+        <div
+          className={classNames('input_box', {
+            is_error: formErrors.body?.message,
+          })}
+          style={{ marginTop: '20px' }}
+        >
           <CodeMirror
             theme={theme.darkMode ? 'dark' : 'light'}
             value={schemaBody}
@@ -179,14 +195,9 @@ export function SchemaDetail() {
           {formErrors.body?.message && <InputHelperText state="error" message={formErrors.body?.message} />}
         </div>
         <div className="btn_area" style={{ marginTop: '20px' }}>
-          <Button.Box>
-            <Button as="link" href="../" outline>
-              Cancel
-            </Button>
-            <Button type="submit" color="info" outline>
-              Create
-            </Button>
-          </Button.Box>
+          <Button type="submit" color="primary">
+            {schema ? 'Update Version (WIP)' : 'Create'}
+          </Button>
         </div>
       </form>
     </div>

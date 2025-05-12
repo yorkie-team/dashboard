@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { fromUnixTime, format } from 'date-fns';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectSchemaList, listSchemasAsync } from './schemasSlice';
-import { Checkbox } from 'components';
 import { selectPreferences } from 'features/users/usersSlice';
+import { Button, Icon } from 'components';
 
 export function SchemaList({ isDetailOpen = false }: { isDetailOpen?: boolean }) {
   const dispatch = useAppDispatch();
@@ -30,36 +30,33 @@ export function SchemaList({ isDetailOpen = false }: { isDetailOpen?: boolean })
   const schemaName = params.schemaName || '';
   const { schemas, status } = useAppSelector(selectSchemaList);
   const { use24HourClock } = useAppSelector(selectPreferences);
-  const prevProjectName = useLocation().state?.previousProjectName;
-  const [selectedSchemaNames, setSelectedSchemaNames] = useState<Array<string>>([]);
+  const url = useLocation().pathname;
 
   useEffect(() => {
     dispatch(listSchemasAsync({ projectName }));
-  }, [dispatch, prevProjectName, projectName]);
+  }, [dispatch, projectName]);
 
   return (
     <>
+      <div className="schemas_header">
+        <span className="title">Schemas</span>
+        <Button
+          as="link"
+          href={`${isDetailOpen ? `${url.substring(0, url.lastIndexOf('/'))}/new` : `${url}/new`}`}
+          className="btn_plus"
+          icon={<Icon type="plus" />}
+          isActive={isDetailOpen}
+          blindText={isDetailOpen}
+          color={isDetailOpen ? 'toggle' : ''}
+        >
+          New Schema
+        </Button>
+      </div>
       <div className="document_table is_edit">
         {!isDetailOpen && (
           <div className="thead">
-            <span className="th id">Schema Name</span>
-            <span className="th updated">Created At</span>
-            <span className="th select">
-              <button
-                type="button"
-                className="btn_all_check"
-                onClick={() => {
-                  if (selectedSchemaNames.length === schemas.length) {
-                    setSelectedSchemaNames([]);
-                    return;
-                  }
-
-                  setSelectedSchemaNames(schemas.map((schema) => schema.name));
-                }}
-              >
-                {schemas.length ? 'Select All' : ''}
-              </button>
-            </span>
+            <span className="th id">Name</span>
+            <span className="th updated">Created</span>
           </div>
         )}
         {status === 'loading' && (
@@ -68,36 +65,24 @@ export function SchemaList({ isDetailOpen = false }: { isDetailOpen?: boolean })
             <div className="box_flex">
               <div className="skeleton"></div>
               <div className="skeleton is_small"></div>
+            </div>
+            <div className="box_flex">
               <div className="skeleton"></div>
               <div className="skeleton is_small"></div>
             </div>
             <div className="box_flex">
               <div className="skeleton"></div>
               <div className="skeleton is_small"></div>
+            </div>
+            <div className="box_flex">
               <div className="skeleton"></div>
               <div className="skeleton is_small"></div>
             </div>
             <div className="box_flex">
               <div className="skeleton"></div>
               <div className="skeleton is_small"></div>
-              <div className="skeleton"></div>
-              <div className="skeleton is_small"></div>
             </div>
             <div className="box_flex">
-              <div className="skeleton"></div>
-              <div className="skeleton is_small"></div>
-              <div className="skeleton"></div>
-              <div className="skeleton is_small"></div>
-            </div>
-            <div className="box_flex">
-              <div className="skeleton"></div>
-              <div className="skeleton is_small"></div>
-              <div className="skeleton"></div>
-              <div className="skeleton is_small"></div>
-            </div>
-            <div className="box_flex">
-              <div className="skeleton"></div>
-              <div className="skeleton is_small"></div>
               <div className="skeleton"></div>
               <div className="skeleton is_small"></div>
             </div>
@@ -133,22 +118,6 @@ export function SchemaList({ isDetailOpen = false }: { isDetailOpen?: boolean })
                       </span>
                     )}
                   </Link>
-                  {!isDetailOpen && (
-                    <span className="td select">
-                      <Checkbox
-                        id={name}
-                        onChange={() => {
-                          setSelectedSchemaNames((prev) => {
-                            if (prev.includes(name)) {
-                              return prev.filter((item) => item !== name);
-                            }
-                            return [...prev, name];
-                          });
-                        }}
-                        checked={selectedSchemaNames.includes(name)}
-                      />
-                    </span>
-                  )}
                 </li>
               );
             })}

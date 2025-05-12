@@ -15,14 +15,12 @@
  */
 
 import React from 'react';
-import { useParams, useLocation, Outlet, useNavigate } from 'react-router-dom';
+import { useParams, useLocation, Outlet } from 'react-router-dom';
 import { ProjectPageTemplate } from 'pages';
 import { SchemaList } from 'features/schemas';
-import { Button } from 'components';
 
 export function SchemasPage() {
   const schemaName = useParams().schemaName || '';
-  const navigate = useNavigate();
   const location = useLocation();
   const isCreatePage = location.pathname.endsWith('/new');
   const shouldShowSidebar = schemaName || isCreatePage;
@@ -35,20 +33,7 @@ export function SchemasPage() {
             <SchemaList isDetailOpen />
           </div>
         ) : (
-          <>
-            <div className="btn_area" style={{ right: '0px' }}>
-              <Button
-                type="button"
-                outline
-                onClick={() => {
-                  navigate(`${location.pathname}/new`, { state: { from: location.pathname } });
-                }}
-              >
-                Create
-              </Button>
-            </div>
-            <SchemaList />
-          </>
+          <SchemaList />
         )}
         <Outlet />
       </div>

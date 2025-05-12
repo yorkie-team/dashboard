@@ -70,7 +70,7 @@
   .document_table {
     overflow-y: auto;
     height: 100%;
-    padding-top: variables.$spacing_16;
+    margin-top: variables.$spacing_16;
 
     @include mixins-lib.tabletStart() {
       padding-top: variables.$spacing_8;
@@ -157,6 +157,24 @@
 
   .pagination {
     margin-top: variables.$spacing_32;
+  }
+
+  .schemas_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 variables.$spacing_16;
+
+    .title {
+      font-size: 1.8rem;
+      line-height: 1.34;
+      font-weight: 600;
+      color: var(--gray-800);
+    }
+  }
+
+  .schema_title_inner input {
+    font-size: 2rem;
   }
 }
 
