@@ -33,9 +33,9 @@ import {
   CommunityPage,
   NotFoundPage,
 } from 'pages';
-import { useAppSelector } from 'app/hooks';
+import { useAppSelector, useAppDispatch } from 'app/hooks';
 import { DocumentDetail } from 'features/documents';
-import { selectPreferences } from 'features/users/usersSlice';
+import { selectPreferences, updateDarkTheme } from 'features/users/usersSlice';
 import { TestPage, ButtonView, PopoverView, DropdownView, InputView, BreadcrumbView, ModalView } from 'test';
 import { SchemaDetail } from 'features/schemas';
 import { SchemasPage } from 'pages/SchemasPage';
@@ -51,6 +51,7 @@ const applyTheme = (theme: 'light' | 'dark') => {
 };
 
 function App() {
+  const dispatch = useAppDispatch();
   const { theme } = useAppSelector(selectPreferences);
   useEffect(() => {
     applyTheme(theme.darkMode ? 'dark' : 'light');
@@ -59,6 +60,7 @@ function App() {
   useEffect(() => {
     const mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)');
     const handleSystemThemeChange = (e: MediaQueryListEvent) => {
+      dispatch(updateDarkTheme(e.matches ? 'dark' : 'light'));
       applyTheme(e.matches ? 'dark' : 'light');
     };
 

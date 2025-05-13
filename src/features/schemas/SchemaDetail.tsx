@@ -18,6 +18,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams, useLocation } from 'react-router-dom';
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
+import { EditorView } from '@codemirror/view';
 import { validate, buildRuleset } from '@yorkie-js/schema';
 import classNames from 'classnames';
 
@@ -34,6 +35,7 @@ import {
   getSchemaAsync,
   selectSchemaDetail,
   resetDetailSuccess,
+  listSchemasAsync,
 } from './schemasSlice';
 
 const INITIAL_BODY = `// Document is the root of the document.
@@ -56,6 +58,20 @@ const yorkieLinter = linter((view): Array<Diagnostic> => {
   });
 });
 
+const scrollStyle = EditorView.theme({
+  '.cm-scroller': {
+    overflowY: 'scroll',
+  },
+  '.cm-scroller::-webkit-scrollbar': {
+    width: '3px',
+    height: '3px',
+  },
+  '.cm-scroller::-webkit-scrollbar-thumb': {
+    background: 'var(--orange-alpha-dark)',
+    borderRadius: '2px',
+  },
+});
+
 export function SchemaDetail() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -73,6 +89,7 @@ export function SchemaDetail() {
     handleSubmit,
     setError,
     clearErrors,
+    reset,
   } = useForm<SchemaCreateFields>();
 
   useEffect(() => {
@@ -86,10 +103,13 @@ export function SchemaDetail() {
   }, [projectName, schemaName]);
 
   useEffect(() => {
+    clearErrors('body');
     if (schema) {
       setSchemaBody(schema.body);
     } else {
+      reset();
       setSchemaBody(INITIAL_BODY);
+      setCreatedSchemaName(null);
     }
   }, [schema]);
 
@@ -103,6 +123,7 @@ export function SchemaDetail() {
     if (isSuccess && createdSchemaName) {
       dispatch(resetCreateSuccess());
       dispatch(resetDetailSuccess());
+      dispatch(listSchemasAsync({ projectName: projectName! }));
       navigate(`${location.pathname.substring(0, location.pathname.lastIndexOf('/'))}/${createdSchemaName}`);
     }
   }, [isSuccess, createdSchemaName, navigate, location]);
@@ -150,7 +171,7 @@ export function SchemaDetail() {
 
   return (
     <div className="detail_content">
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="schema_form">
         <div className="document_header">
           <div className="title_box">
             <Link to="../" state={{ previousProjectName: projectName }} className="btn_back">
@@ -181,20 +202,23 @@ export function SchemaDetail() {
           </div>
         </div>
         <div
-          className={classNames('input_box', {
+          className={classNames('schema_editor_box input_box', {
             is_error: formErrors.body?.message,
           })}
-          style={{ marginTop: '20px' }}
         >
-          <CodeMirror
-            theme={theme.darkMode ? 'dark' : 'light'}
-            value={schemaBody}
-            onChange={onChange}
-            extensions={[javascript({ typescript: true }), yorkieLinter, lintGutter()]}
-          />
+          <div className="schema_editor">
+            <CodeMirror
+              height="100%"
+              style={{ height: '100%' }}
+              theme={theme.darkMode ? 'dark' : 'light'}
+              value={schemaBody}
+              onChange={onChange}
+              extensions={[javascript({ typescript: true }), yorkieLinter, lintGutter(), scrollStyle]}
+            />
+          </div>
           {formErrors.body?.message && <InputHelperText state="error" message={formErrors.body?.message} />}
         </div>
-        <div className="btn_area" style={{ marginTop: '20px' }}>
+        <div className="btn_area">
           <Button type="submit" color="primary">
             {schema ? 'Update Version (WIP)' : 'Create'}
           </Button>

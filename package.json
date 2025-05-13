@@ -22,6 +22,7 @@
     "@uiw/react-codemirror": "^4.23.10",
     "@vitejs/plugin-react": "^4.3.1",
     "@yorkie-js/schema": "^0.6.7-rc",
+    "@yorkie-js/sdk": "^0.6.7",
     "autoprefixer": "^10.4.19",
     "classnames": "^2.5.1",
     "date-fns": "^3.6.0",
@@ -45,7 +46,6 @@
     "vite-plugin-commonjs": "^0.10.1",
     "vite-plugin-svgr": "^4.2.0",
     "vite-tsconfig-paths": "^4.3.2",
-    "@yorkie-js/sdk": "^0.6.7",
     "vitest": "^1.6.0"
   },
   "husky": {
