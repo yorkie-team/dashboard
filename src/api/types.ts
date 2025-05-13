@@ -19,6 +19,7 @@ export type DocumentSummary = {
   key: string;
   snapshot: string;
   attachedClients: number;
+  docSize?: DocSize;
   createdAt: number;
   accessedAt: number;
   updatedAt: number;
@@ -140,3 +141,13 @@ export class RPCError extends Error {
     if (details) this.details = details;
   }
 }
+
+export type DocSize = {
+  live: DataSize;
+  gc: DataSize;
+};
+
+export type DataSize = {
+  data: number;
+  meta: number;
+};

@@ -2560,6 +2560,11 @@ export class DocumentSummary extends Message<DocumentSummary> {
   attachedClients = 0;
 
   /**
+   * @generated from field: yorkie.v1.DocSize document_size = 8;
+   */
+  documentSize?: DocSize;
+
+  /**
    * @generated from field: google.protobuf.Timestamp created_at = 4;
    */
   createdAt?: Timestamp;
@@ -2586,6 +2591,7 @@ export class DocumentSummary extends Message<DocumentSummary> {
     { no: 2, name: "key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "snapshot", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 7, name: "attached_clients", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 8, name: "document_size", kind: "message", T: DocSize },
     { no: 4, name: "created_at", kind: "message", T: Timestamp },
     { no: 5, name: "accessed_at", kind: "message", T: Timestamp },
     { no: 6, name: "updated_at", kind: "message", T: Timestamp },
@@ -2950,6 +2956,92 @@ export class DocEvent extends Message<DocEvent> {
 
   static equals(a: DocEvent | PlainMessage<DocEvent> | undefined, b: DocEvent | PlainMessage<DocEvent> | undefined): boolean {
     return proto3.util.equals(DocEvent, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.DataSize
+ */
+export class DataSize extends Message<DataSize> {
+  /**
+   * @generated from field: int32 data = 1;
+   */
+  data = 0;
+
+  /**
+   * @generated from field: int32 meta = 2;
+   */
+  meta = 0;
+
+  constructor(data?: PartialMessage<DataSize>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.DataSize";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "data", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "meta", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DataSize {
+    return new DataSize().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DataSize {
+    return new DataSize().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DataSize {
+    return new DataSize().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DataSize | PlainMessage<DataSize> | undefined, b: DataSize | PlainMessage<DataSize> | undefined): boolean {
+    return proto3.util.equals(DataSize, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.DocSize
+ */
+export class DocSize extends Message<DocSize> {
+  /**
+   * @generated from field: yorkie.v1.DataSize live = 1;
+   */
+  live?: DataSize;
+
+  /**
+   * @generated from field: yorkie.v1.DataSize gc = 2;
+   */
+  gc?: DataSize;
+
+  constructor(data?: PartialMessage<DocSize>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.DocSize";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "live", kind: "message", T: DataSize },
+    { no: 2, name: "gc", kind: "message", T: DataSize },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DocSize {
+    return new DocSize().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DocSize {
+    return new DocSize().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DocSize {
+    return new DocSize().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DocSize | PlainMessage<DocSize> | undefined, b: DocSize | PlainMessage<DocSize> | undefined): boolean {
+    return proto3.util.equals(DocSize, a, b);
   }
 }
 

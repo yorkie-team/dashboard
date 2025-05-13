@@ -21,7 +21,7 @@ import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectPreferences } from 'features/users/usersSlice';
 import { selectDocumentDetail, getDocumentAsync, removeDocumentByAdminAsync } from './documentsSlice';
 import { Icon, Button, CodeBlock, CopyButton, Popover, Dropdown } from 'components';
-import { formatNumber } from 'utils/format';
+import {formatNumber, humanFileSize} from 'utils/format';
 
 export function DocumentDetail() {
   const navigate = useNavigate();
@@ -95,6 +95,13 @@ export function DocumentDetail() {
           <div className="info_item">
             <dt className="info_title">Clients</dt>
             <dd className="info_desc">{formatNumber(document?.attachedClients)}</dd>
+          </div>
+          <div className="info_item right_align">
+              <dt className="info_title">Size</dt>
+              <dd className="info_desc">
+                live: {humanFileSize((document.docSize?.live?.data ?? 0) + (document.docSize?.live?.meta ?? 0))},
+                gc: {humanFileSize((document.docSize?.gc?.data ?? 0) + (document.docSize?.gc?.meta ?? 0))}
+              </dd>
           </div>
         </dl>
       </div>
