@@ -57,6 +57,7 @@ export function SchemaList({ isDetailOpen = false }: { isDetailOpen?: boolean })
           <div className="thead">
             <span className="th id">Name</span>
             <span className="th updated">Created</span>
+            <span className="th version">Version</span>
           </div>
         )}
         {status === 'loading' && (
@@ -65,25 +66,31 @@ export function SchemaList({ isDetailOpen = false }: { isDetailOpen?: boolean })
             <div className="box_flex">
               <div className="skeleton"></div>
               <div className="skeleton is_small"></div>
-            </div>
-            <div className="box_flex">
-              <div className="skeleton"></div>
               <div className="skeleton is_small"></div>
             </div>
             <div className="box_flex">
               <div className="skeleton"></div>
               <div className="skeleton is_small"></div>
-            </div>
-            <div className="box_flex">
-              <div className="skeleton"></div>
               <div className="skeleton is_small"></div>
             </div>
             <div className="box_flex">
               <div className="skeleton"></div>
               <div className="skeleton is_small"></div>
+              <div className="skeleton is_small"></div>
             </div>
             <div className="box_flex">
               <div className="skeleton"></div>
+              <div className="skeleton is_small"></div>
+              <div className="skeleton is_small"></div>
+            </div>
+            <div className="box_flex">
+              <div className="skeleton"></div>
+              <div className="skeleton is_small"></div>
+              <div className="skeleton is_small"></div>
+            </div>
+            <div className="box_flex">
+              <div className="skeleton"></div>
+              <div className="skeleton is_small"></div>
               <div className="skeleton is_small"></div>
             </div>
           </div>
@@ -100,7 +107,7 @@ export function SchemaList({ isDetailOpen = false }: { isDetailOpen?: boolean })
         {status === 'idle' && (
           <ul className="tbody_list">
             {schemas.map((schema) => {
-              const { name, createdAt } = schema;
+              const { name, createdAt, version } = schema;
               return (
                 <li key={name} className="tbody_item">
                   <Link
@@ -110,12 +117,15 @@ export function SchemaList({ isDetailOpen = false }: { isDetailOpen?: boolean })
                   >
                     <span className="td id">{name}</span>
                     {!isDetailOpen && (
-                      <span className="td updated">
-                        {format(
-                          fromUnixTime(createdAt),
-                          `MMM d${new Date().getFullYear() === fromUnixTime(createdAt).getFullYear() ? '' : ', yyyy'}, ${use24HourClock ? 'HH:mm' : 'h:mm a'}`,
-                        )}
-                      </span>
+                      <>
+                        <span className="td updated">
+                          {format(
+                            fromUnixTime(createdAt),
+                            `MMM d${new Date().getFullYear() === fromUnixTime(createdAt).getFullYear() ? '' : ', yyyy'}, ${use24HourClock ? 'HH:mm' : 'h:mm a'}`,
+                          )}
+                        </span>
+                        <span className="td connections">{version}</span>
+                      </>
                     )}
                   </Link>
                 </li>

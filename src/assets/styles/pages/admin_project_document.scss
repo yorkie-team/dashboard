@@ -117,6 +117,10 @@
       .td {
         padding: variables.$spacing_16 variables.$spacing_32;
       }
+
+      .no_bg .desc {
+        font-size: 1.4rem;
+      }
     }
   }
 
