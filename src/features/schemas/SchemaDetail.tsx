@@ -22,7 +22,7 @@ import { EditorView } from '@codemirror/view';
 import { validate, buildRuleset } from '@yorkie-js/schema';
 import classNames from 'classnames';
 
-import { Button, Icon, InputHelperText, InputTextField } from 'components';
+import { Button, Icon, InputHelperText, InputTextField, Popover, Dropdown } from 'components';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectPreferences } from 'features/users/usersSlice';
 import { linter, lintGutter, Diagnostic } from '@codemirror/lint';
@@ -32,7 +32,7 @@ import {
   resetCreateSuccess,
   createSchemaAsync,
   SchemaCreateFields,
-  getSchemaAsync,
+  getSchemasAsync,
   selectSchemaDetail,
   resetDetailSuccess,
   listSchemasAsync,
@@ -79,9 +79,12 @@ export function SchemaDetail() {
   const { projectName, schemaName } = useParams();
   const { theme } = useAppSelector(selectPreferences);
   const { isSuccess, error } = useAppSelector(selectSchemaCreate);
-  const { schema } = useAppSelector(selectSchemaDetail);
+  const { schemas } = useAppSelector(selectSchemaDetail);
+  const [schemaVersion, setSchemaVersion] = useState<number>(0);
   const [schemaBody, setSchemaBody] = useState(INITIAL_BODY);
   const [createdSchemaName, setCreatedSchemaName] = useState<string | null>(null);
+  const [versionOpened, setVersionOpened] = useState(false);
+  const schemaEditable = schemas.length === 0 || (schemas.length > 0 && schemaVersion === schemas[0].version);
 
   const {
     register,
@@ -98,20 +101,20 @@ export function SchemaDetail() {
       return;
     }
 
-    // TODO(hackerwins): Manage schema version.
-    dispatch(getSchemaAsync({ projectName, schemaName, schemaVersion: 1 }));
+    dispatch(getSchemasAsync({ projectName, schemaName }));
   }, [projectName, schemaName]);
 
   useEffect(() => {
-    clearErrors('body');
-    if (schema) {
-      setSchemaBody(schema.body);
+    reset();
+    if (schemas.length > 0) {
+      setSchemaBody(schemas[0].body);
+      setSchemaVersion(schemas[0].version);
     } else {
-      reset();
       setSchemaBody(INITIAL_BODY);
+      setSchemaVersion(0);
       setCreatedSchemaName(null);
     }
-  }, [schema]);
+  }, [schemas]);
 
   useEffect(() => {
     if (!error) return;
@@ -124,6 +127,7 @@ export function SchemaDetail() {
       dispatch(resetCreateSuccess());
       dispatch(resetDetailSuccess());
       dispatch(listSchemasAsync({ projectName: projectName! }));
+      dispatch(getSchemasAsync({ projectName: projectName!, schemaName: createdSchemaName }));
       navigate(`${location.pathname.substring(0, location.pathname.lastIndexOf('/'))}/${createdSchemaName}`);
     }
   }, [isSuccess, createdSchemaName, navigate, location]);
@@ -152,8 +156,9 @@ export function SchemaDetail() {
 
   const onSubmit = useCallback(
     (data: SchemaCreateFields) => {
+      data.name = schemas.length ? schemas[0].name : data.name;
       data.projectName = projectName!;
-      data.version = 1;
+      data.version = schemas.length ? schemas[0].version + 1 : 1;
       data.body = schemaBody;
       data.ruleset = [];
 
@@ -170,7 +175,7 @@ export function SchemaDetail() {
   );
 
   return (
-    <div className="detail_content">
+    <div className="detail_content schema_detail">
       <form onSubmit={handleSubmit(onSubmit)} className="schema_form">
         <div className="document_header">
           <div className="title_box">
@@ -178,10 +183,40 @@ export function SchemaDetail() {
               <Icon type="arrowBack" />
             </Link>
             <div className="title_inner schema_title_inner">
-              {schema ? (
-                <strong className="title">
-                  {schema.name}@v{schema.version}
-                </strong>
+              {schemas.length ? (
+                <>
+                  <strong className="title">{schemas[0].name}</strong>
+                  <div className="filter_item">
+                    <Popover opened={versionOpened} onChange={setVersionOpened}>
+                      <Popover.Target>
+                        <button type="button" className="btn btn_small filter_desc">
+                          <span className="text">v{schemaVersion}</span>
+                          <Icon type="arrow" className="icon_arrow" />
+                        </button>
+                      </Popover.Target>
+                      <Popover.Dropdown>
+                        <Dropdown>
+                          <Dropdown.List>
+                            {schemas.map(({ version }) => (
+                              <Dropdown.Item
+                                key={version}
+                                onClick={() => {
+                                  reset();
+                                  setSchemaVersion(version);
+                                  setSchemaBody(schemas.find((schema) => schema.version === version)?.body || '');
+                                  setVersionOpened(false);
+                                }}
+                              >
+                                {schemaVersion === version && <Icon type="check" color="orange_0" />}
+                                <Dropdown.Text>v{version}</Dropdown.Text>
+                              </Dropdown.Item>
+                            ))}
+                          </Dropdown.List>
+                        </Dropdown>
+                      </Popover.Dropdown>
+                    </Popover>
+                  </div>
+                </>
               ) : (
                 <InputTextField
                   id="name"
@@ -214,14 +249,18 @@ export function SchemaDetail() {
               value={schemaBody}
               onChange={onChange}
               extensions={[javascript({ typescript: true }), yorkieLinter, lintGutter(), scrollStyle]}
+              editable={schemaEditable}
             />
           </div>
           {formErrors.body?.message && <InputHelperText state="error" message={formErrors.body?.message} />}
         </div>
         <div className="btn_area">
-          <Button type="submit" color="primary">
-            {schema ? 'Update Version (WIP)' : 'Create'}
+          <Button type="submit" color="primary" disabled={!schemaEditable}>
+            {schemas.length ? 'Update Version' : 'Create'}
           </Button>
+          {!schemaEditable && (
+            <span className="desc">Editing is only available in the latest version of the schema.</span>
+          )}
         </div>
       </form>
     </div>

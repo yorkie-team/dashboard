@@ -317,6 +317,15 @@ export async function getSchema(projectName: string, schemaName: string, version
   return converter.fromSchema(res.schema!);
 }
 
+// getSchemas fetches schemas by the given schema name.
+export async function getSchemas(projectName: string, schemaName: string): Promise<Array<Schema>> {
+  const res = await client.getSchemas({
+    projectName,
+    schemaName,
+  });
+  return converter.fromSchemas(res.schemas);
+}
+
 // removeSchema removes the schema of the given schema name and version.
 export async function removeSchema(projectName: string, schemaName: string, version: number): Promise<void> {
   await client.removeSchema({

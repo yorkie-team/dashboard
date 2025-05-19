@@ -226,6 +226,44 @@
       font-family: 'RobotoMono', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
     }
   }
+
+  .schema_detail {
+    .title_inner {
+      align-items: center;
+    }
+    .filter_item {
+      margin-left: variables.$spacing_16;
+      border: 1px solid var(--gray-400);
+      border-radius: 4px;
+
+      .filter_desc {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--gray-800);
+      }
+
+      .icon_arrow {
+        width: 16px;
+        height: 16px;
+        margin-left: variables.$spacing_16;
+        color: var(--gray-600);
+      }
+    }
+    .dropdown {
+      top: 36px;
+      max-height: 400px;
+      overflow: auto;
+    }
+    .btn_area {
+      display: flex;
+      align-items: center;
+    }
+    .desc {
+      padding-left: variables.$spacing_16;
+      @include mixins-lib.rfonts(14, 22, 400);
+      color: var(--red-0);
+    }
+  }
 }
 
 @keyframes toast {

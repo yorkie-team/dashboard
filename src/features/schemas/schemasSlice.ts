@@ -17,7 +17,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createAppThunk } from 'app/appThunk';
 import { RootState } from 'app/store';
-import { Schema, createSchema, listSchemas, getSchema, removeSchema } from 'api';
+import { Schema, createSchema, listSchemas, getSchemas, removeSchema } from 'api';
 import { RPCStatusCode, RPCError } from 'api/types';
 
 export interface SchemasState {
@@ -27,7 +27,7 @@ export interface SchemasState {
     status: 'idle' | 'loading' | 'failed';
   };
   detail: {
-    schema: Schema | null;
+    schemas: Array<Schema>;
     status: 'idle' | 'loading' | 'failed';
   };
   create: {
@@ -65,7 +65,7 @@ const initialState: SchemasState = {
     status: 'idle',
   },
   detail: {
-    schema: null,
+    schemas: [],
     status: 'idle',
   },
 };
@@ -92,11 +92,17 @@ export const listSchemasAsync = createAppThunk(
   },
 );
 
-export const getSchemaAsync = createAppThunk(
-  'schemas/getSchema',
-  async (params: { projectName: string; schemaName: string; schemaVersion: number }): Promise<Schema> => {
-    const { projectName, schemaName, schemaVersion } = params;
-    return await getSchema(projectName, schemaName, schemaVersion);
+export const getSchemasAsync = createAppThunk(
+  'schemas/getSchemas',
+  async (params: {
+    projectName: string;
+    schemaName: string;
+  }): Promise<{
+    data: Array<Schema>;
+  }> => {
+    const { projectName, schemaName } = params;
+    const schemas = await getSchemas(projectName, schemaName);
+    return { data: schemas };
   },
 );
 
@@ -117,7 +123,7 @@ export const schemaSlice = createSlice({
       state.create.error = null;
     },
     resetDetailSuccess: (state) => {
-      state.detail.schema = null;
+      state.detail.schemas = [];
       state.detail.status = 'idle';
     },
   },
@@ -158,14 +164,14 @@ export const schemaSlice = createSlice({
     builder.addCase(listSchemasAsync.rejected, (state) => {
       state.list.status = 'failed';
     });
-    builder.addCase(getSchemaAsync.pending, (state) => {
+    builder.addCase(getSchemasAsync.pending, (state) => {
       state.detail.status = 'loading';
     });
-    builder.addCase(getSchemaAsync.fulfilled, (state, action) => {
+    builder.addCase(getSchemasAsync.fulfilled, (state, action) => {
       state.detail.status = 'idle';
-      state.detail.schema = action.payload;
+      state.detail.schemas = action.payload.data;
     });
-    builder.addCase(getSchemaAsync.rejected, (state) => {
+    builder.addCase(getSchemasAsync.rejected, (state) => {
       state.detail.status = 'failed';
     });
   },
