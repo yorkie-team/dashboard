@@ -57,6 +57,7 @@ export function Settings() {
       clientDeactivateThreshold: '',
       maxSubscribersPerDocument: 0,
       maxAttachmentsPerDocument: 0,
+      maxSizePerDocument: 0,
       allowedOrigins: '',
     },
   });
@@ -82,6 +83,10 @@ export function Settings() {
     control,
     name: 'maxAttachmentsPerDocument',
   });
+  const { field: maxSizePerDocument, fieldState: maxSizePerDocumentState } = useController({
+    control,
+    name: 'maxSizePerDocument',
+  });
   const { field: allowedOrigins, fieldState: allowedOriginsState } = useController({
     control,
     name: 'allowedOrigins',
@@ -104,6 +109,7 @@ export function Settings() {
       clientDeactivateThreshold: project?.clientDeactivateThreshold || '',
       maxSubscribersPerDocument: project?.maxSubscribersPerDocument || 0,
       maxAttachmentsPerDocument: project?.maxAttachmentsPerDocument || 0,
+      maxSizePerDocument: project?.maxSizePerDocument || 0,
       allowedOrigins: Array.isArray(project?.allowedOrigins) ? project?.allowedOrigins.join(',') : '',
     });
   }, [reset, project]);
@@ -134,6 +140,7 @@ export function Settings() {
       !clientDeactivateThresholdState.error &&
       !maxSubscribersPerDocumentState.error &&
       !maxAttachmentsPerDocumentState.error &&
+      !maxSizePerDocumentState.error &&
       !allowedOriginsState.error
     ) {
       setUpdateFieldInfo((info) => ({
@@ -148,6 +155,7 @@ export function Settings() {
       clientDeactivateThresholdState.error ||
       maxSubscribersPerDocumentState.error ||
       maxAttachmentsPerDocumentState.error ||
+      maxSizePerDocumentState.error ||
       allowedOriginsState.error
     ) {
       setUpdateFieldInfo((info) => ({
@@ -165,6 +173,7 @@ export function Settings() {
     clientDeactivateThresholdState.error,
     maxSubscribersPerDocumentState.error,
     maxAttachmentsPerDocumentState.error,
+    maxSizePerDocumentState.error,
     allowedOriginsState.error,
   ]);
 
@@ -545,6 +554,66 @@ export function Settings() {
                     }
                     helperText={
                       updateFieldInfo.target === 'maxSubscribersPerDocument' && updateFieldInfo.state !== null
+                        ? updateFieldInfo.message
+                        : undefined
+                    }
+                    onSuccessEnd={resetUpdateFieldInfo}
+                  />
+                </div>
+              </dd>
+              <dt className="sub_title">Max Document Size Per Document</dt>
+              <dd className="sub_desc">
+                <p className="guide">
+                  Set the maximum size of a document in bytes. When this limit is reached, document edit requests will be
+                  rejected by the server.{' '}
+                  <a
+                    href=""
+                    className="page_link icon_link"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Learn more about Max Document Size Per Document.
+                  </a>
+                </p>
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: checkFieldState('maxSizePerDocument', 'error'),
+                    is_success: checkFieldState('maxSizePerDocument', 'success'),
+                  })}
+                >
+                  <InputTextField
+                    reset={() => {
+                      resetForm();
+                      resetUpdateFieldInfo();
+                    }}
+                    {...register('maxSizePerDocument', {
+                      required: 'Max Size Per Document is required',
+                      pattern: {
+                        value: /^[0-9]+$/,
+                        message: 'Max Size Per Document must be a positive integer',
+                      },
+                      onChange: async () => {
+                        await trigger('maxSizePerDocument');
+                      },
+                    })}
+                    onChange={(e) => {
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'maxSizePerDocument' }));
+                      maxSizePerDocument.onChange(e.target.value);
+                    }}
+                    id="maxSizePerDocument"
+                    label="Max Size Per Document"
+                    blindLabel={true}
+                    fieldUtil={true}
+                    placeholder="0"
+                    state={
+                      checkFieldState('maxSizePerDocument', 'success')
+                        ? 'success'
+                        : checkFieldState('maxSizePerDocument', 'error')
+                          ? 'error'
+                          : undefined
+                    }
+                    helperText={
+                      updateFieldInfo.target === 'maxSizePerDocument' && updateFieldInfo.state !== null
                         ? updateFieldInfo.message
                         : undefined
                     }

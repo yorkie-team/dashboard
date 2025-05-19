@@ -151,6 +151,7 @@ export async function updateProject(id: string, fields: UpdatableProjectFields):
     clientDeactivateThreshold: fields.clientDeactivateThreshold,
     maxSubscribersPerDocument: Number(fields.maxSubscribersPerDocument),
     maxAttachmentsPerDocument: Number(fields.maxAttachmentsPerDocument),
+    maxSizePerDocument: Number(fields.maxSizePerDocument),
     allowedOrigins: fields.allowedOrigins
       ? new PbProjectFields_AllowedOrigins({ origins: fields.allowedOrigins.split(',') })
       : undefined,
