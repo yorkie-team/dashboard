@@ -90,7 +90,8 @@
       }
     }
 
-    &.connections {
+    &.connections,
+    &.version {
       @include mixins-lib.tabletStart() {
         padding-right: 0;
       }
@@ -146,7 +147,8 @@
       }
     }
 
-    &.connections {
+    &.connections,
+    &.version {
       @include mixins-lib.tabletStart() {
         grid-area: item3;
       }
@@ -182,7 +184,8 @@
     max-width: 200px;
   }
 
-  .connections {
+  .connections,
+  .version {
     width: 120px;
   }
 

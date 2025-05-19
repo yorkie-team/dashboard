@@ -46,6 +46,10 @@ export function ProjectTabList() {
         <Icon type="keynote" />
         <TabList.Text>Documents</TabList.Text>
       </TabList.Item>
+      <TabList.Item to={`/projects/${projectName}/schemas`}>
+        <Icon type="viewList" />
+        <TabList.Text>Schemas</TabList.Text>
+      </TabList.Item>
       <TabList.Item to={`/projects/${projectName}/apikeys`}>
         <Icon type="key" />
         <TabList.Text>API Keys</TabList.Text>
