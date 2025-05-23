@@ -561,13 +561,13 @@ export function Settings() {
                   />
                 </div>
               </dd>
-              <dt className="sub_title">Max Document Size Per Document</dt>
+              <dt className="sub_title">Max Size Per Document</dt>
               <dd className="sub_desc">
                 <p className="guide">
                   Set the maximum size of a document in bytes. When this limit is reached, document edit requests will be
                   rejected by the server.{' '}
                   <a
-                    href=""
+                    href="https://yorkie.dev/docs/js-sdk#max-document-size-limit"
                     className="page_link icon_link"
                     target="_blank"
                     rel="noreferrer"
