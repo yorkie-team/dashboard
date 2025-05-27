@@ -150,6 +150,17 @@ export const schemaSlice = createSlice({
         };
         action.meta.isHandledError = true;
         return;
+      } else if (statusCode === RPCStatusCode.INVALID_ARGUMENT) {
+        for (const { field, description } of error.details!) {
+          if (field === 'Name') {
+            state.create.error = {
+              target: 'name',
+              message: description,
+            };
+          }
+        }
+        action.meta.isHandledError = true;
+        return;
       }
     });
     builder.addCase(listSchemasAsync.pending, (state) => {
