@@ -70,6 +70,7 @@ export type ProjectUpdateFields = {
   clientDeactivateThreshold: string;
   maxSubscribersPerDocument: number;
   maxAttachmentsPerDocument: number;
+  maxSizePerDocument: number;
   allowedOrigins: string;
 };
 
@@ -269,6 +270,11 @@ export const projectsSlice = createSlice({
           } else if (field === 'maxAttachmentsPerDocument') {
             state.update.error = {
               target: 'maxAttachmentsPerDocument',
+              message: description,
+            };
+          } else if (field === 'maxSizePerDocument') {
+            state.update.error = {
+              target: 'maxSizePerDocument',
               message: description,
             };
           } else if (field === 'AllowedOrigins') {
