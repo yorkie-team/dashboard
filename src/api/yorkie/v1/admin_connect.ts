@@ -18,7 +18,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ChangePasswordRequest, ChangePasswordResponse, CreateProjectRequest, CreateProjectResponse, CreateSchemaRequest, CreateSchemaResponse, DeleteAccountRequest, DeleteAccountResponse, GetDocumentRequest, GetDocumentResponse, GetDocumentsRequest, GetDocumentsResponse, GetProjectRequest, GetProjectResponse, GetProjectStatsRequest, GetProjectStatsResponse, GetSchemaRequest, GetSchemaResponse, GetSchemasRequest, GetSchemasResponse, GetServerVersionRequest, GetServerVersionResponse, GetSnapshotMetaRequest, GetSnapshotMetaResponse, ListChangesRequest, ListChangesResponse, ListDocumentsRequest, ListDocumentsResponse, ListProjectsRequest, ListProjectsResponse, ListSchemasRequest, ListSchemasResponse, LogInRequest, LogInResponse, RemoveDocumentByAdminRequest, RemoveDocumentByAdminResponse, RemoveSchemaRequest, RemoveSchemaResponse, SearchDocumentsRequest, SearchDocumentsResponse, SignUpRequest, SignUpResponse, UpdateProjectRequest, UpdateProjectResponse } from "./admin_pb";
+import { ChangePasswordRequest, ChangePasswordResponse, CreateDocumentRequest, CreateDocumentResponse, CreateProjectRequest, CreateProjectResponse, CreateSchemaRequest, CreateSchemaResponse, DeleteAccountRequest, DeleteAccountResponse, GetDocumentRequest, GetDocumentResponse, GetDocumentsRequest, GetDocumentsResponse, GetProjectRequest, GetProjectResponse, GetProjectStatsRequest, GetProjectStatsResponse, GetSchemaRequest, GetSchemaResponse, GetSchemasRequest, GetSchemasResponse, GetServerVersionRequest, GetServerVersionResponse, GetSnapshotMetaRequest, GetSnapshotMetaResponse, ListChangesRequest, ListChangesResponse, ListDocumentsRequest, ListDocumentsResponse, ListProjectsRequest, ListProjectsResponse, ListSchemasRequest, ListSchemasResponse, LogInRequest, LogInResponse, RemoveDocumentByAdminRequest, RemoveDocumentByAdminResponse, RemoveSchemaRequest, RemoveSchemaResponse, SearchDocumentsRequest, SearchDocumentsResponse, SignUpRequest, SignUpResponse, UpdateDocumentRequest, UpdateDocumentResponse, UpdateProjectRequest, UpdateProjectResponse } from "./admin_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -111,6 +111,15 @@ export const AdminService = {
       kind: MethodKind.Unary,
     },
     /**
+     * @generated from rpc yorkie.v1.AdminService.CreateDocument
+     */
+    createDocument: {
+      name: "CreateDocument",
+      I: CreateDocumentRequest,
+      O: CreateDocumentResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
      * @generated from rpc yorkie.v1.AdminService.ListDocuments
      */
     listDocuments: {
@@ -138,12 +147,21 @@ export const AdminService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc yorkie.v1.AdminService.SearchDocuments
+     * @generated from rpc yorkie.v1.AdminService.UpdateDocument
      */
-    searchDocuments: {
-      name: "SearchDocuments",
-      I: SearchDocumentsRequest,
-      O: SearchDocumentsResponse,
+    updateDocument: {
+      name: "UpdateDocument",
+      I: UpdateDocumentRequest,
+      O: UpdateDocumentResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.RemoveDocumentByAdmin
+     */
+    removeDocumentByAdmin: {
+      name: "RemoveDocumentByAdmin",
+      I: RemoveDocumentByAdminRequest,
+      O: RemoveDocumentByAdminResponse,
       kind: MethodKind.Unary,
     },
     /**
@@ -156,12 +174,12 @@ export const AdminService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc yorkie.v1.AdminService.RemoveDocumentByAdmin
+     * @generated from rpc yorkie.v1.AdminService.SearchDocuments
      */
-    removeDocumentByAdmin: {
-      name: "RemoveDocumentByAdmin",
-      I: RemoveDocumentByAdminRequest,
-      O: RemoveDocumentByAdminResponse,
+    searchDocuments: {
+      name: "SearchDocuments",
+      I: SearchDocumentsRequest,
+      O: SearchDocumentsResponse,
       kind: MethodKind.Unary,
     },
     /**

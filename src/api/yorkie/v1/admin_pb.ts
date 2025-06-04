@@ -769,6 +769,92 @@ export class GetProjectStatsResponse extends Message<GetProjectStatsResponse> {
 }
 
 /**
+ * @generated from message yorkie.v1.CreateDocumentRequest
+ */
+export class CreateDocumentRequest extends Message<CreateDocumentRequest> {
+  /**
+   * @generated from field: string project_name = 1;
+   */
+  projectName = "";
+
+  /**
+   * @generated from field: string document_key = 2;
+   */
+  documentKey = "";
+
+  /**
+   * @generated from field: string initial_root = 3;
+   */
+  initialRoot = "";
+
+  constructor(data?: PartialMessage<CreateDocumentRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.CreateDocumentRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "document_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "initial_root", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateDocumentRequest {
+    return new CreateDocumentRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateDocumentRequest {
+    return new CreateDocumentRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateDocumentRequest {
+    return new CreateDocumentRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CreateDocumentRequest | PlainMessage<CreateDocumentRequest> | undefined, b: CreateDocumentRequest | PlainMessage<CreateDocumentRequest> | undefined): boolean {
+    return proto3.util.equals(CreateDocumentRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.CreateDocumentResponse
+ */
+export class CreateDocumentResponse extends Message<CreateDocumentResponse> {
+  /**
+   * @generated from field: yorkie.v1.DocumentSummary document = 1;
+   */
+  document?: DocumentSummary;
+
+  constructor(data?: PartialMessage<CreateDocumentResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.CreateDocumentResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "document", kind: "message", T: DocumentSummary },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateDocumentResponse {
+    return new CreateDocumentResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateDocumentResponse {
+    return new CreateDocumentResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateDocumentResponse {
+    return new CreateDocumentResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CreateDocumentResponse | PlainMessage<CreateDocumentResponse> | undefined, b: CreateDocumentResponse | PlainMessage<CreateDocumentResponse> | undefined): boolean {
+    return proto3.util.equals(CreateDocumentResponse, a, b);
+  }
+}
+
+/**
  * @generated from message yorkie.v1.ListDocumentsRequest
  */
 export class ListDocumentsRequest extends Message<ListDocumentsRequest> {
@@ -1029,6 +1115,92 @@ export class GetDocumentsResponse extends Message<GetDocumentsResponse> {
 
   static equals(a: GetDocumentsResponse | PlainMessage<GetDocumentsResponse> | undefined, b: GetDocumentsResponse | PlainMessage<GetDocumentsResponse> | undefined): boolean {
     return proto3.util.equals(GetDocumentsResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.UpdateDocumentRequest
+ */
+export class UpdateDocumentRequest extends Message<UpdateDocumentRequest> {
+  /**
+   * @generated from field: string project_name = 1;
+   */
+  projectName = "";
+
+  /**
+   * @generated from field: string document_key = 2;
+   */
+  documentKey = "";
+
+  /**
+   * @generated from field: string root = 3;
+   */
+  root = "";
+
+  constructor(data?: PartialMessage<UpdateDocumentRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.UpdateDocumentRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "document_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "root", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateDocumentRequest {
+    return new UpdateDocumentRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UpdateDocumentRequest {
+    return new UpdateDocumentRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpdateDocumentRequest {
+    return new UpdateDocumentRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: UpdateDocumentRequest | PlainMessage<UpdateDocumentRequest> | undefined, b: UpdateDocumentRequest | PlainMessage<UpdateDocumentRequest> | undefined): boolean {
+    return proto3.util.equals(UpdateDocumentRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.UpdateDocumentResponse
+ */
+export class UpdateDocumentResponse extends Message<UpdateDocumentResponse> {
+  /**
+   * @generated from field: yorkie.v1.DocumentSummary document = 1;
+   */
+  document?: DocumentSummary;
+
+  constructor(data?: PartialMessage<UpdateDocumentResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.UpdateDocumentResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "document", kind: "message", T: DocumentSummary },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateDocumentResponse {
+    return new UpdateDocumentResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UpdateDocumentResponse {
+    return new UpdateDocumentResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpdateDocumentResponse {
+    return new UpdateDocumentResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: UpdateDocumentResponse | PlainMessage<UpdateDocumentResponse> | undefined, b: UpdateDocumentResponse | PlainMessage<UpdateDocumentResponse> | undefined): boolean {
+    return proto3.util.equals(UpdateDocumentResponse, a, b);
   }
 }
 

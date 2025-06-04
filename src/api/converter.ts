@@ -56,6 +56,7 @@ export function fromProject(pbProject: PbProject): Project {
     clientDeactivateThreshold: pbProject.clientDeactivateThreshold,
     maxSubscribersPerDocument: pbProject.maxSubscribersPerDocument,
     maxAttachmentsPerDocument: pbProject.maxAttachmentsPerDocument,
+    maxSizePerDocument: pbProject.maxSizePerDocument,
     allowedOrigins: pbProject.allowedOrigins,
   };
 }

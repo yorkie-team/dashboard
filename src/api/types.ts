@@ -53,6 +53,7 @@ export type Project = {
   clientDeactivateThreshold: string;
   maxSubscribersPerDocument: number;
   maxAttachmentsPerDocument: number;
+  maxSizePerDocument: number;
   allowedOrigins: Array<string>;
   publicKey: string;
   secretKey: string;
@@ -83,6 +84,7 @@ export type UpdatableProjectFields = {
   clientDeactivateThreshold?: string;
   maxSubscribersPerDocument?: number;
   maxAttachmentsPerDocument?: number;
+  maxSizePerDocument?: number;
   allowedOrigins?: string;
 };
 
