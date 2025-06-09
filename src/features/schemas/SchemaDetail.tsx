@@ -22,7 +22,7 @@ import { EditorView } from '@codemirror/view';
 import { validate, buildRuleset } from '@yorkie-js/schema';
 import classNames from 'classnames';
 
-import { Button, Icon, InputHelperText, InputTextField, Popover, Dropdown } from 'components';
+import { Button, Icon, InputHelperText, InputTextField, Popover, Dropdown, Modal } from 'components';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectPreferences } from 'features/users/usersSlice';
 import { linter, lintGutter, Diagnostic } from '@codemirror/lint';
@@ -36,6 +36,7 @@ import {
   selectSchemaDetail,
   resetDetailSuccess,
   listSchemasAsync,
+  removeSchemaAsync,
 } from './schemasSlice';
 
 const INITIAL_BODY = `// Document is the root of the document.
@@ -83,6 +84,8 @@ export function SchemaDetail() {
   const [schemaVersion, setSchemaVersion] = useState<number>(0);
   const [schemaBody, setSchemaBody] = useState(INITIAL_BODY);
   const [createdSchemaName, setCreatedSchemaName] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [optionOpened, setOptionOpened] = useState(false);
   const [versionOpened, setVersionOpened] = useState(false);
   const schemaEditable = schemas.length === 0 || (schemas.length > 0 && schemaVersion === schemas[0].version);
 
@@ -175,94 +178,154 @@ export function SchemaDetail() {
   );
 
   return (
-    <div className="detail_content schema_detail">
-      <form onSubmit={handleSubmit(onSubmit)} className="schema_form">
-        <div className="document_header">
-          <div className="title_box">
-            <Link to="../" state={{ previousProjectName: projectName }} className="btn_back">
-              <Icon type="arrowBack" />
-            </Link>
-            <div className="title_inner schema_title_inner">
-              {schemas.length ? (
-                <>
-                  <strong className="title">{schemas[0].name}</strong>
-                  <div className="filter_item">
-                    <Popover opened={versionOpened} onChange={setVersionOpened}>
-                      <Popover.Target>
-                        <button type="button" className="btn btn_small filter_desc">
-                          <span className="text">v{schemaVersion}</span>
-                          <Icon type="arrow" className="icon_arrow" />
-                        </button>
-                      </Popover.Target>
-                      <Popover.Dropdown>
-                        <Dropdown>
-                          <Dropdown.List>
-                            {schemas.map(({ version }) => (
-                              <Dropdown.Item
-                                key={version}
-                                onClick={() => {
-                                  reset();
-                                  setSchemaVersion(version);
-                                  setSchemaBody(schemas.find((schema) => schema.version === version)?.body || '');
-                                  setVersionOpened(false);
-                                }}
-                              >
-                                {schemaVersion === version && <Icon type="check" color="orange_0" />}
-                                <Dropdown.Text>v{version}</Dropdown.Text>
-                              </Dropdown.Item>
-                            ))}
-                          </Dropdown.List>
-                        </Dropdown>
-                      </Popover.Dropdown>
-                    </Popover>
-                  </div>
-                </>
-              ) : (
-                <InputTextField
-                  id="name"
-                  label="Schema Name"
-                  blindLabel={true}
-                  placeholder="Schema Name"
-                  {...register('name', {
-                    required: 'The schema name is required',
-                  })}
-                  autoComplete="off"
-                  autoFocus
-                  state={formErrors.name ? 'error' : 'normal'}
-                  helperText={(formErrors.name && formErrors.name.message) || ''}
-                  large
-                />
-              )}
+    <>
+      <div className="detail_content schema_detail">
+        <form onSubmit={handleSubmit(onSubmit)} className="schema_form">
+          <div className="document_header">
+            <div className="title_box">
+              <Link to="../" state={{ previousProjectName: projectName }} className="btn_back">
+                <Icon type="arrowBack" />
+              </Link>
+              <div className="title_inner schema_title_inner">
+                {schemas.length ? (
+                  <>
+                    <strong className="title">{schemas[0].name}</strong>
+                    <div className="filter_item">
+                      <Popover opened={versionOpened} onChange={setVersionOpened}>
+                        <Popover.Target>
+                          <button type="button" className="btn btn_small filter_desc">
+                            <span className="text">v{schemaVersion}</span>
+                            <Icon type="arrow" className="icon_arrow" />
+                          </button>
+                        </Popover.Target>
+                        <Popover.Dropdown>
+                          <Dropdown>
+                            <Dropdown.List>
+                              {schemas.map(({ version }) => (
+                                <Dropdown.Item
+                                  key={version}
+                                  onClick={() => {
+                                    reset();
+                                    setSchemaVersion(version);
+                                    setSchemaBody(schemas.find((schema) => schema.version === version)?.body || '');
+                                    setVersionOpened(false);
+                                  }}
+                                >
+                                  {schemaVersion === version && <Icon type="check" color="orange_0" />}
+                                  <Dropdown.Text>v{version}</Dropdown.Text>
+                                </Dropdown.Item>
+                              ))}
+                            </Dropdown.List>
+                          </Dropdown>
+                        </Popover.Dropdown>
+                      </Popover>
+                    </div>
+                  </>
+                ) : (
+                  <InputTextField
+                    id="name"
+                    label="Schema Name"
+                    blindLabel={true}
+                    placeholder="Schema Name"
+                    {...register('name', {
+                      required: 'The schema name is required',
+                    })}
+                    autoComplete="off"
+                    autoFocus
+                    state={formErrors.name ? 'error' : 'normal'}
+                    helperText={(formErrors.name && formErrors.name.message) || ''}
+                    large
+                  />
+                )}
+                <Popover opened={optionOpened} onChange={setOptionOpened}>
+                  <Popover.Target>
+                    <button type="button" className="btn btn_more">
+                      <Icon type="moreLarge" />
+                    </button>
+                  </Popover.Target>
+                  <Popover.Dropdown>
+                    <Dropdown>
+                      <Dropdown.Title>More Options</Dropdown.Title>
+                      <Dropdown.List>
+                        <Dropdown.Item
+                          onClick={async () => {
+                            setIsModalOpen(true);
+                          }}
+                        >
+                          <Dropdown.Text highlight>Delete Schema</Dropdown.Text>
+                        </Dropdown.Item>
+                      </Dropdown.List>
+                    </Dropdown>
+                  </Popover.Dropdown>
+                </Popover>
+              </div>
             </div>
           </div>
-        </div>
-        <div
-          className={classNames('schema_editor_box input_box', {
-            is_error: formErrors.body?.message,
-          })}
-        >
-          <div className="schema_editor">
-            <CodeMirror
-              height="100%"
-              style={{ height: '100%' }}
-              theme={theme.darkMode ? 'dark' : 'light'}
-              value={schemaBody}
-              onChange={onChange}
-              extensions={[javascript({ typescript: true }), yorkieLinter, lintGutter(), scrollStyle]}
-              editable={schemaEditable}
-            />
+          <div
+            className={classNames('schema_editor_box input_box', {
+              is_error: formErrors.body?.message,
+            })}
+          >
+            <div className="schema_editor">
+              <CodeMirror
+                height="100%"
+                style={{ height: '100%' }}
+                theme={theme.darkMode ? 'dark' : 'light'}
+                value={schemaBody}
+                onChange={onChange}
+                extensions={[javascript({ typescript: true }), yorkieLinter, lintGutter(), scrollStyle]}
+                editable={schemaEditable}
+              />
+            </div>
+            {formErrors.body?.message && <InputHelperText state="error" message={formErrors.body?.message} />}
           </div>
-          {formErrors.body?.message && <InputHelperText state="error" message={formErrors.body?.message} />}
-        </div>
-        <div className="btn_area">
-          <Button type="submit" color="primary" disabled={!schemaEditable}>
-            {schemas.length ? 'Update Version' : 'Create'}
-          </Button>
-          {!schemaEditable && (
-            <span className="desc">Editing is only available in the latest version of the schema.</span>
-          )}
-        </div>
-      </form>
-    </div>
+          <div className="btn_area">
+            <Button type="submit" color="primary" disabled={!schemaEditable}>
+              {schemas.length ? 'Update Version' : 'Create'}
+            </Button>
+            {!schemaEditable && (
+              <span className="desc">Editing is only available in the latest version of the schema.</span>
+            )}
+          </div>
+        </form>
+      </div>
+      {isModalOpen && (
+        <Modal>
+          <Modal.Top>
+            <Icon type="alert" className="red_0" />
+          </Modal.Top>
+          <Modal.Content>
+            <Modal.Title>Are you sure you want to delete this version?</Modal.Title>
+            <Modal.Description>
+              This action cannot be undone. This will permanently delete <strong>v{schemaVersion}</strong> of the{' '}
+              <strong>{schemaName}</strong> schema.
+            </Modal.Description>
+          </Modal.Content>
+          <Modal.Bottom>
+            <Button.Box fullWidth>
+              <Button
+                outline
+                onClick={() => {
+                  setIsModalOpen(false);
+                }}
+              >
+                No, cancel
+              </Button>
+              <Button
+                color="danger"
+                onClick={async () => {
+                  await dispatch(
+                    removeSchemaAsync({ projectName: projectName!, schemaName: schemaName!, version: schemaVersion }),
+                  );
+                  navigate(`..`, { replace: true });
+                }}
+              >
+                Yes, delete v{schemaVersion}
+              </Button>
+            </Button.Box>
+          </Modal.Bottom>
+        </Modal>
+      )}
+    </>
   );
 }

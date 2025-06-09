@@ -20,8 +20,8 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectPreferences } from 'features/users/usersSlice';
 import { selectDocumentDetail, getDocumentAsync, removeDocumentByAdminAsync } from './documentsSlice';
-import { Icon, Button, CodeBlock, CopyButton, Popover, Dropdown } from 'components';
-import {formatNumber, humanFileSize} from 'utils/format';
+import { Icon, Button, CodeBlock, CopyButton, Popover, Dropdown, Modal } from 'components';
+import { formatNumber, humanFileSize } from 'utils/format';
 
 export function DocumentDetail() {
   const navigate = useNavigate();
@@ -35,6 +35,7 @@ export function DocumentDetail() {
   const documentJSONStr = JSON.stringify(documentJSON, null, '\t');
   const [viewType, SetViewType] = useState('code');
   const [opened, setOpened] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     dispatch(
@@ -50,103 +51,133 @@ export function DocumentDetail() {
   }
 
   return (
-    <div className="detail_content">
-      <div className="document_header">
-        <div className="title_box">
-          <Link to="../" state={{ previousProjectName: projectName }} className="btn_back">
-            <Icon type="arrowBack" />
-          </Link>
-          <div className="title_inner">
-            <strong className="title">{document?.key}</strong>
-            <span className="date">
-              {format(
-                fromUnixTime(document?.updatedAt!),
-                `MMM d${new Date().getFullYear() === fromUnixTime(document?.updatedAt!).getFullYear() ? '' : ', yyyy'}, ${use24HourClock ? 'HH:mm' : 'h:mm a'}`,
-              )}
-            </span>
-          </div>
+    <>
+      <div className="detail_content">
+        <div className="document_header">
+          <div className="title_box">
+            <Link to="../" state={{ previousProjectName: projectName }} className="btn_back">
+              <Icon type="arrowBack" />
+            </Link>
+            <div className="title_inner">
+              <strong className="title">{document?.key}</strong>
+              <span className="date">
+                {format(
+                  fromUnixTime(document?.updatedAt!),
+                  `MMM d${new Date().getFullYear() === fromUnixTime(document?.updatedAt!).getFullYear() ? '' : ', yyyy'}, ${use24HourClock ? 'HH:mm' : 'h:mm a'}`,
+                )}
+              </span>
+            </div>
 
-          <Popover opened={opened} onChange={setOpened}>
-            <Popover.Target>
-              <button type="button" className="btn btn_more">
-                <Icon type="moreLarge" />
-              </button>
-            </Popover.Target>
-            <Popover.Dropdown>
-              <Dropdown>
-                <Dropdown.Title>More Options</Dropdown.Title>
-                <Dropdown.List>
-                  <Dropdown.Item
-                    onClick={async () => {
-                      await dispatch(
-                        removeDocumentByAdminAsync({ projectName, documentKey: documentKey, force: false }),
-                      );
-                      navigate(`..`, { replace: true });
-                    }}
-                  >
-                    <Dropdown.Text highlight>Delete Document</Dropdown.Text>
-                  </Dropdown.Item>
-                </Dropdown.List>
-              </Dropdown>
-            </Popover.Dropdown>
-          </Popover>
-        </div>
-        <dl className="info_list">
-          <div className="info_item">
-            <dt className="info_title">Clients</dt>
-            <dd className="info_desc">{formatNumber(document?.attachedClients)}</dd>
+            <Popover opened={opened} onChange={setOpened}>
+              <Popover.Target>
+                <button type="button" className="btn btn_more">
+                  <Icon type="moreLarge" />
+                </button>
+              </Popover.Target>
+              <Popover.Dropdown>
+                <Dropdown>
+                  <Dropdown.Title>More Options</Dropdown.Title>
+                  <Dropdown.List>
+                    <Dropdown.Item
+                      onClick={() => {
+                        setIsModalOpen(true);
+                      }}
+                    >
+                      <Dropdown.Text highlight>Delete Document</Dropdown.Text>
+                    </Dropdown.Item>
+                  </Dropdown.List>
+                </Dropdown>
+              </Popover.Dropdown>
+            </Popover>
           </div>
-          <div className="info_item right_align">
+          <dl className="info_list">
+            <div className="info_item">
+              <dt className="info_title">Clients</dt>
+              <dd className="info_desc">{formatNumber(document?.attachedClients)}</dd>
+            </div>
+            <div className="info_item right_align">
               <dt className="info_title">Size</dt>
               <dd className="info_desc">
-                live: {humanFileSize((document.docSize?.live?.data ?? 0) + (document.docSize?.live?.meta ?? 0))},
-                gc: {humanFileSize((document.docSize?.gc?.data ?? 0) + (document.docSize?.gc?.meta ?? 0))}
+                live: {humanFileSize((document.docSize?.live?.data ?? 0) + (document.docSize?.live?.meta ?? 0))}, gc:{' '}
+                {humanFileSize((document.docSize?.gc?.data ?? 0) + (document.docSize?.gc?.meta ?? 0))}
               </dd>
+            </div>
+          </dl>
+        </div>
+        <div className="codeblock_header">
+          <div className="box_left"></div>
+          <div className="box_right">
+            <Button
+              icon={<Icon type="codeSnippet" />}
+              color="toggle"
+              onClick={() => SetViewType('code')}
+              className={viewType === 'code' ? 'is_active' : ''}
+            />
+            <Button
+              icon={<Icon type="branch" />}
+              color="toggle"
+              onClick={() => SetViewType('tree')}
+              className={viewType === 'tree' ? 'is_active' : ''}
+            />
+            <div className="btn_area">
+              <CopyButton value={document?.snapshot || ''} timeout={1000}>
+                {({ copied, copy }) => (
+                  <>
+                    <Button icon={<Icon type="copy" />} color="toggle" outline onClick={copy} />
+                    {copied && (
+                      <div className="toast_box shadow_l">
+                        <Icon type="check" />
+                        Copied
+                      </div>
+                    )}
+                  </>
+                )}
+              </CopyButton>
+            </div>
           </div>
-        </dl>
-      </div>
-      <div className="codeblock_header">
-        <div className="box_left"></div>
-        <div className="box_right">
-          <Button
-            icon={<Icon type="codeSnippet" />}
-            color="toggle"
-            onClick={() => SetViewType('code')}
-            className={viewType === 'code' ? 'is_active' : ''}
-          />
-          <Button
-            icon={<Icon type="branch" />}
-            color="toggle"
-            onClick={() => SetViewType('tree')}
-            className={viewType === 'tree' ? 'is_active' : ''}
-          />
-          <div className="btn_area">
-            <CopyButton value={document?.snapshot || ''} timeout={1000}>
-              {({ copied, copy }) => (
-                <>
-                  <Button icon={<Icon type="copy" />} color="toggle" outline onClick={copy} />
-                  {copied && (
-                    <div className="toast_box shadow_l">
-                      <Icon type="check" />
-                      Copied
-                    </div>
-                  )}
-                </>
-              )}
-            </CopyButton>
+        </div>
+        {viewType === 'code' && (
+          <div className="codeblock">
+            <CodeBlock.Code code={documentJSONStr} language="json" withLineNumbers />
           </div>
-        </div>
+        )}
+        {viewType === 'tree' && (
+          <div className="codeblock_tree_box">
+            <CodeBlock.Tree code={documentJSON} />
+          </div>
+        )}
       </div>
-      {viewType === 'code' && (
-        <div className="codeblock">
-          <CodeBlock.Code code={documentJSONStr} language="json" withLineNumbers />
-        </div>
+      {isModalOpen && (
+        <Modal>
+          <Modal.Top>
+            <Icon type="alert" className="red_0" />
+          </Modal.Top>
+          <Modal.Content>
+            <Modal.Title>Are you sure you want to delete this document?</Modal.Title>
+          </Modal.Content>
+          <Modal.Bottom>
+            <Button.Box fullWidth>
+              <Button
+                outline
+                onClick={() => {
+                  setIsModalOpen(false);
+                }}
+              >
+                No, cancel
+              </Button>
+              <Button
+                color="danger"
+                onClick={async () => {
+                  await dispatch(removeDocumentByAdminAsync({ projectName, documentKey: documentKey, force: false }));
+                  navigate(`..`, { replace: true });
+                }}
+              >
+                Yes, delete
+              </Button>
+            </Button.Box>
+          </Modal.Bottom>
+        </Modal>
       )}
-      {viewType === 'tree' && (
-        <div className="codeblock_tree_box">
-          <CodeBlock.Tree code={documentJSON} />
-        </div>
-      )}
-    </div>
+    </>
   );
 }
