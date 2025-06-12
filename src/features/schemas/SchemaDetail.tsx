@@ -43,7 +43,7 @@ const INITIAL_BODY = `// Document is the root of the document.
 // Every schema must have a Document type.
 type Document = {
   title: string;
-  content: string;
+  version: integer;
 };
 `;
 
@@ -163,13 +163,7 @@ export function SchemaDetail() {
       data.projectName = projectName!;
       data.version = schemas.length ? schemas[0].version + 1 : 1;
       data.body = schemaBody;
-      data.ruleset = [];
-
-      // TODO(hackerwins): Refactor buildRuleset to return a list.
-      const ruleset = buildRuleset(data.body);
-      for (const [, value] of ruleset.entries()) {
-        data.ruleset.push(value);
-      }
+      data.ruleset = buildRuleset(data.body);
 
       setCreatedSchemaName(data.name);
       dispatch(createSchemaAsync(data));
