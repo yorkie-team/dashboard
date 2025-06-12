@@ -81,6 +81,7 @@ export function fromDocumentSummary(pbDocumentSummary: PbDocumentSummary): Docum
     createdAt: fromTimestamp(pbDocumentSummary.createdAt!),
     accessedAt: fromTimestamp(pbDocumentSummary.accessedAt!),
     updatedAt: fromTimestamp(pbDocumentSummary.updatedAt!),
+    schemaKey: pbDocumentSummary.schemaKey,
   };
 }
 

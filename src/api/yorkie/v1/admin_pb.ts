@@ -2070,3 +2070,77 @@ export class GetServerVersionResponse extends Message<GetServerVersionResponse> 
   }
 }
 
+/**
+ * @generated from message yorkie.v1.RotateProjectKeysRequest
+ */
+export class RotateProjectKeysRequest extends Message<RotateProjectKeysRequest> {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id = "";
+
+  constructor(data?: PartialMessage<RotateProjectKeysRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.RotateProjectKeysRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RotateProjectKeysRequest {
+    return new RotateProjectKeysRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RotateProjectKeysRequest {
+    return new RotateProjectKeysRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RotateProjectKeysRequest {
+    return new RotateProjectKeysRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RotateProjectKeysRequest | PlainMessage<RotateProjectKeysRequest> | undefined, b: RotateProjectKeysRequest | PlainMessage<RotateProjectKeysRequest> | undefined): boolean {
+    return proto3.util.equals(RotateProjectKeysRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.RotateProjectKeysResponse
+ */
+export class RotateProjectKeysResponse extends Message<RotateProjectKeysResponse> {
+  /**
+   * @generated from field: yorkie.v1.Project project = 1;
+   */
+  project?: Project;
+
+  constructor(data?: PartialMessage<RotateProjectKeysResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.RotateProjectKeysResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project", kind: "message", T: Project },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RotateProjectKeysResponse {
+    return new RotateProjectKeysResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RotateProjectKeysResponse {
+    return new RotateProjectKeysResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RotateProjectKeysResponse {
+    return new RotateProjectKeysResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RotateProjectKeysResponse | PlainMessage<RotateProjectKeysResponse> | undefined, b: RotateProjectKeysResponse | PlainMessage<RotateProjectKeysResponse> | undefined): boolean {
+    return proto3.util.equals(RotateProjectKeysResponse, a, b);
+  }
+}
+

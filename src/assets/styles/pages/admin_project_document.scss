@@ -264,6 +264,40 @@
       color: var(--red-0);
     }
   }
+
+  .badge {
+    background-color: var(--gray-200);
+    color: var(--gray-700);
+    font-size: 1.1rem;
+    font-weight: 400;
+    padding: 2px 4px;
+    border-radius: 4px;
+    margin-left: 4px;
+    word-break: keep-all;
+
+    display: inline-block;
+    max-width: 60px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    .icon {
+      color: var(--gray-600);
+    }
+  }
+  .sidebar .badge {
+    margin-left: 0;
+  }
+  .detail_content .badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-overflow: initial;
+    margin-left: 0;
+    max-width: 100%;
+    font-size: 1.3rem;
+    padding: 4px 6px;
+    border-radius: 4px;
+  }
 }
 
 @keyframes toast {

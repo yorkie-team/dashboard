@@ -23,6 +23,7 @@ export type DocumentSummary = {
   createdAt: number;
   accessedAt: number;
   updatedAt: number;
+  schemaKey: string;
 };
 
 export type DocumentHistory = {

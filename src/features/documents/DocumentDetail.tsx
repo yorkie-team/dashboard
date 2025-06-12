@@ -105,7 +105,14 @@ export function DocumentDetail() {
           </dl>
         </div>
         <div className="codeblock_header">
-          <div className="box_left"></div>
+          <div className="box_left">
+            {import.meta.env.DEV && document.schemaKey && (
+              <span className="badge">
+                <Icon type="viewList" />
+                {document.schemaKey}
+              </span>
+            )}
+          </div>
           <div className="box_right">
             <Button
               icon={<Icon type="codeSnippet" />}

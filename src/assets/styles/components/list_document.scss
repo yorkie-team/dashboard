@@ -84,6 +84,13 @@
 
     &:first-child {
       flex: 1;
+      display: flex;
+      align-items: center;
+
+      .sidebar & {
+        gap: 4px;
+        flex-wrap: wrap;
+      }
 
       @include mixins-lib.tabletStart() {
         padding-left: 0;

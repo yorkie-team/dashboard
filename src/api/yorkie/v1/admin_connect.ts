@@ -18,7 +18,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ChangePasswordRequest, ChangePasswordResponse, CreateDocumentRequest, CreateDocumentResponse, CreateProjectRequest, CreateProjectResponse, CreateSchemaRequest, CreateSchemaResponse, DeleteAccountRequest, DeleteAccountResponse, GetDocumentRequest, GetDocumentResponse, GetDocumentsRequest, GetDocumentsResponse, GetProjectRequest, GetProjectResponse, GetProjectStatsRequest, GetProjectStatsResponse, GetSchemaRequest, GetSchemaResponse, GetSchemasRequest, GetSchemasResponse, GetServerVersionRequest, GetServerVersionResponse, GetSnapshotMetaRequest, GetSnapshotMetaResponse, ListChangesRequest, ListChangesResponse, ListDocumentsRequest, ListDocumentsResponse, ListProjectsRequest, ListProjectsResponse, ListSchemasRequest, ListSchemasResponse, LogInRequest, LogInResponse, RemoveDocumentByAdminRequest, RemoveDocumentByAdminResponse, RemoveSchemaRequest, RemoveSchemaResponse, SearchDocumentsRequest, SearchDocumentsResponse, SignUpRequest, SignUpResponse, UpdateDocumentRequest, UpdateDocumentResponse, UpdateProjectRequest, UpdateProjectResponse } from "./admin_pb";
+import { ChangePasswordRequest, ChangePasswordResponse, CreateDocumentRequest, CreateDocumentResponse, CreateProjectRequest, CreateProjectResponse, CreateSchemaRequest, CreateSchemaResponse, DeleteAccountRequest, DeleteAccountResponse, GetDocumentRequest, GetDocumentResponse, GetDocumentsRequest, GetDocumentsResponse, GetProjectRequest, GetProjectResponse, GetProjectStatsRequest, GetProjectStatsResponse, GetSchemaRequest, GetSchemaResponse, GetSchemasRequest, GetSchemasResponse, GetServerVersionRequest, GetServerVersionResponse, GetSnapshotMetaRequest, GetSnapshotMetaResponse, ListChangesRequest, ListChangesResponse, ListDocumentsRequest, ListDocumentsResponse, ListProjectsRequest, ListProjectsResponse, ListSchemasRequest, ListSchemasResponse, LogInRequest, LogInResponse, RemoveDocumentByAdminRequest, RemoveDocumentByAdminResponse, RemoveSchemaRequest, RemoveSchemaResponse, RotateProjectKeysRequest, RotateProjectKeysResponse, SearchDocumentsRequest, SearchDocumentsResponse, SignUpRequest, SignUpResponse, UpdateDocumentRequest, UpdateDocumentResponse, UpdateProjectRequest, UpdateProjectResponse } from "./admin_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -243,6 +243,15 @@ export const AdminService = {
       name: "GetServerVersion",
       I: GetServerVersionRequest,
       O: GetServerVersionResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.RotateProjectKeys
+     */
+    rotateProjectKeys: {
+      name: "RotateProjectKeys",
+      I: RotateProjectKeysRequest,
+      O: RotateProjectKeysResponse,
       kind: MethodKind.Unary,
     },
   }
