@@ -19,6 +19,7 @@ import { createAppThunk } from 'app/appThunk';
 import { RootState } from 'app/store';
 import { Schema, createSchema, listSchemas, getSchemas, removeSchema } from 'api';
 import { RPCStatusCode, RPCError } from 'api/types';
+import { Rule } from '@yorkie-js/schema';
 
 export interface SchemasState {
   list: {
@@ -39,11 +40,6 @@ export interface SchemasState {
     isSuccess: boolean;
   };
 }
-
-export type Rule = {
-  path: string;
-  type: 'string' | 'object' | 'array';
-};
 
 export type SchemaCreateFields = {
   projectName: string;

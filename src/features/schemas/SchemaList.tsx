@@ -110,11 +110,7 @@ export function SchemaList({ isDetailOpen = false }: { isDetailOpen?: boolean })
               const { name, createdAt, version } = schema;
               return (
                 <li key={name} className="tbody_item">
-                  <Link
-                    to={`./${name}`}
-                    state={{ previousProjectName: projectName }}
-                    className={classNames('link', { is_active: name === schemaName })}
-                  >
+                  <Link to={`./${name}`} className={classNames('link', { is_active: name === schemaName })}>
                     <span className="td id">{name}</span>
                     {!isDetailOpen && (
                       <>

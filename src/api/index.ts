@@ -36,7 +36,7 @@ import {
   Schema,
 } from './types';
 import * as converter from './converter';
-import { Rule } from 'features/schemas/schemasSlice';
+import { Rule } from '@yorkie-js/schema';
 
 export * from './types';
 

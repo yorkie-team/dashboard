@@ -183,7 +183,7 @@ export function SchemaDetail() {
         <form onSubmit={handleSubmit(onSubmit)} className="schema_form">
           <div className="document_header">
             <div className="title_box">
-              <Link to="../" state={{ previousProjectName: projectName }} className="btn_back">
+              <Link to="../" className="btn_back">
                 <Icon type="arrowBack" />
               </Link>
               <div className="title_inner schema_title_inner">

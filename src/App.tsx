@@ -91,10 +91,12 @@ function App() {
           <Route path="/projects/:projectName/documents" element={<DocumentsPage />}>
             <Route path=":documentKey" element={<DocumentDetail />} />
           </Route>
-          <Route path="/projects/:projectName/schemas" element={<SchemasPage />}>
-            <Route path="/projects/:projectName/schemas/new" element={<SchemaDetail />} />
-            <Route path=":schemaName" element={<SchemaDetail />} />
-          </Route>
+          {import.meta.env.DEV && (
+            <Route path="/projects/:projectName/schemas" element={<SchemasPage />}>
+              <Route path="/projects/:projectName/schemas/new" element={<SchemaDetail />} />
+              <Route path=":schemaName" element={<SchemaDetail />} />
+            </Route>
+          )}
           <Route path="/settings" element={<SettingsPage />} />
         </Route>
         <Route path="/community" element={<CommunityPage />} />
