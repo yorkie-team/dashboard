@@ -49,7 +49,12 @@ export function LoginPage() {
           <LoginForm />
           {githubAuthEnabled && (
             <Button.Box fullWidth style={{ marginTop: '1rem' }}>
-              <Button icon={<Icon type="arrowBack" />} onClick={() => setWithUsername(false)} outline>
+              <Button
+                icon={<Icon type="arrowBack" />}
+                onClick={() => setWithUsername(false)}
+                outline
+                className="signin_other"
+              >
                 Other sign in options
               </Button>
             </Button.Box>

@@ -130,6 +130,16 @@
     }
   }
 
+  .signin_other {
+    @include mixins-lib.tabletStart() {
+      margin: 0 28px;
+    }
+
+    @include mixins-lib.mobileStart() {
+      margin: 0;
+    }
+  }
+
   .box_bottom {
     display: flex;
     flex-direction: column;
