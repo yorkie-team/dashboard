@@ -74,7 +74,7 @@ function Item({
         </Link>
       )}
       {as === 'button' && (
-        <button onClick={onClick} className="dropdown_menu">
+        <button onClick={onClick} className="dropdown_menu" type="button">
           {children}
         </button>
       )}

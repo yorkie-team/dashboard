@@ -20,7 +20,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Change, DocumentSummary, MetricPoint, Project, UpdatableProjectFields, User, VersionVector } from "./resources_pb";
+import { Change, DocumentSummary, MetricPoint, Project, Rule, Schema, UpdatableProjectFields, User, VersionVector } from "./resources_pb";
 
 /**
  * @generated from message yorkie.v1.SignUpRequest
@@ -1573,6 +1573,424 @@ export class ListChangesResponse extends Message<ListChangesResponse> {
 }
 
 /**
+ * @generated from message yorkie.v1.CreateSchemaRequest
+ */
+export class CreateSchemaRequest extends Message<CreateSchemaRequest> {
+  /**
+   * @generated from field: string project_name = 1;
+   */
+  projectName = "";
+
+  /**
+   * @generated from field: string schema_name = 2;
+   */
+  schemaName = "";
+
+  /**
+   * @generated from field: int32 schema_version = 3;
+   */
+  schemaVersion = 0;
+
+  /**
+   * @generated from field: string schema_body = 4;
+   */
+  schemaBody = "";
+
+  /**
+   * @generated from field: repeated yorkie.v1.Rule rules = 5;
+   */
+  rules: Rule[] = [];
+
+  constructor(data?: PartialMessage<CreateSchemaRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.CreateSchemaRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "schema_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "schema_version", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "schema_body", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "rules", kind: "message", T: Rule, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateSchemaRequest {
+    return new CreateSchemaRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateSchemaRequest {
+    return new CreateSchemaRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateSchemaRequest {
+    return new CreateSchemaRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CreateSchemaRequest | PlainMessage<CreateSchemaRequest> | undefined, b: CreateSchemaRequest | PlainMessage<CreateSchemaRequest> | undefined): boolean {
+    return proto3.util.equals(CreateSchemaRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.CreateSchemaResponse
+ */
+export class CreateSchemaResponse extends Message<CreateSchemaResponse> {
+  /**
+   * @generated from field: yorkie.v1.Schema schema = 1;
+   */
+  schema?: Schema;
+
+  constructor(data?: PartialMessage<CreateSchemaResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.CreateSchemaResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "schema", kind: "message", T: Schema },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateSchemaResponse {
+    return new CreateSchemaResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateSchemaResponse {
+    return new CreateSchemaResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateSchemaResponse {
+    return new CreateSchemaResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CreateSchemaResponse | PlainMessage<CreateSchemaResponse> | undefined, b: CreateSchemaResponse | PlainMessage<CreateSchemaResponse> | undefined): boolean {
+    return proto3.util.equals(CreateSchemaResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.ListSchemasRequest
+ */
+export class ListSchemasRequest extends Message<ListSchemasRequest> {
+  /**
+   * @generated from field: string project_name = 1;
+   */
+  projectName = "";
+
+  constructor(data?: PartialMessage<ListSchemasRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.ListSchemasRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListSchemasRequest {
+    return new ListSchemasRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListSchemasRequest {
+    return new ListSchemasRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListSchemasRequest {
+    return new ListSchemasRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListSchemasRequest | PlainMessage<ListSchemasRequest> | undefined, b: ListSchemasRequest | PlainMessage<ListSchemasRequest> | undefined): boolean {
+    return proto3.util.equals(ListSchemasRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.ListSchemasResponse
+ */
+export class ListSchemasResponse extends Message<ListSchemasResponse> {
+  /**
+   * @generated from field: repeated yorkie.v1.Schema schemas = 1;
+   */
+  schemas: Schema[] = [];
+
+  constructor(data?: PartialMessage<ListSchemasResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.ListSchemasResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "schemas", kind: "message", T: Schema, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListSchemasResponse {
+    return new ListSchemasResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListSchemasResponse {
+    return new ListSchemasResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListSchemasResponse {
+    return new ListSchemasResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListSchemasResponse | PlainMessage<ListSchemasResponse> | undefined, b: ListSchemasResponse | PlainMessage<ListSchemasResponse> | undefined): boolean {
+    return proto3.util.equals(ListSchemasResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.GetSchemaRequest
+ */
+export class GetSchemaRequest extends Message<GetSchemaRequest> {
+  /**
+   * @generated from field: string project_name = 1;
+   */
+  projectName = "";
+
+  /**
+   * @generated from field: string schema_name = 2;
+   */
+  schemaName = "";
+
+  /**
+   * @generated from field: int32 version = 3;
+   */
+  version = 0;
+
+  constructor(data?: PartialMessage<GetSchemaRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.GetSchemaRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "schema_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "version", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSchemaRequest {
+    return new GetSchemaRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetSchemaRequest {
+    return new GetSchemaRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetSchemaRequest {
+    return new GetSchemaRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetSchemaRequest | PlainMessage<GetSchemaRequest> | undefined, b: GetSchemaRequest | PlainMessage<GetSchemaRequest> | undefined): boolean {
+    return proto3.util.equals(GetSchemaRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.GetSchemaResponse
+ */
+export class GetSchemaResponse extends Message<GetSchemaResponse> {
+  /**
+   * @generated from field: yorkie.v1.Schema schema = 1;
+   */
+  schema?: Schema;
+
+  constructor(data?: PartialMessage<GetSchemaResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.GetSchemaResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "schema", kind: "message", T: Schema },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSchemaResponse {
+    return new GetSchemaResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetSchemaResponse {
+    return new GetSchemaResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetSchemaResponse {
+    return new GetSchemaResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetSchemaResponse | PlainMessage<GetSchemaResponse> | undefined, b: GetSchemaResponse | PlainMessage<GetSchemaResponse> | undefined): boolean {
+    return proto3.util.equals(GetSchemaResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.GetSchemasRequest
+ */
+export class GetSchemasRequest extends Message<GetSchemasRequest> {
+  /**
+   * @generated from field: string project_name = 1;
+   */
+  projectName = "";
+
+  /**
+   * @generated from field: string schema_name = 2;
+   */
+  schemaName = "";
+
+  constructor(data?: PartialMessage<GetSchemasRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.GetSchemasRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "schema_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSchemasRequest {
+    return new GetSchemasRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetSchemasRequest {
+    return new GetSchemasRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetSchemasRequest {
+    return new GetSchemasRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetSchemasRequest | PlainMessage<GetSchemasRequest> | undefined, b: GetSchemasRequest | PlainMessage<GetSchemasRequest> | undefined): boolean {
+    return proto3.util.equals(GetSchemasRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.GetSchemasResponse
+ */
+export class GetSchemasResponse extends Message<GetSchemasResponse> {
+  /**
+   * @generated from field: repeated yorkie.v1.Schema schemas = 1;
+   */
+  schemas: Schema[] = [];
+
+  constructor(data?: PartialMessage<GetSchemasResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.GetSchemasResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "schemas", kind: "message", T: Schema, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSchemasResponse {
+    return new GetSchemasResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetSchemasResponse {
+    return new GetSchemasResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetSchemasResponse {
+    return new GetSchemasResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetSchemasResponse | PlainMessage<GetSchemasResponse> | undefined, b: GetSchemasResponse | PlainMessage<GetSchemasResponse> | undefined): boolean {
+    return proto3.util.equals(GetSchemasResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.RemoveSchemaRequest
+ */
+export class RemoveSchemaRequest extends Message<RemoveSchemaRequest> {
+  /**
+   * @generated from field: string project_name = 1;
+   */
+  projectName = "";
+
+  /**
+   * @generated from field: string schema_name = 2;
+   */
+  schemaName = "";
+
+  /**
+   * @generated from field: int32 version = 3;
+   */
+  version = 0;
+
+  constructor(data?: PartialMessage<RemoveSchemaRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.RemoveSchemaRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "schema_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "version", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RemoveSchemaRequest {
+    return new RemoveSchemaRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RemoveSchemaRequest {
+    return new RemoveSchemaRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RemoveSchemaRequest {
+    return new RemoveSchemaRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RemoveSchemaRequest | PlainMessage<RemoveSchemaRequest> | undefined, b: RemoveSchemaRequest | PlainMessage<RemoveSchemaRequest> | undefined): boolean {
+    return proto3.util.equals(RemoveSchemaRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.RemoveSchemaResponse
+ */
+export class RemoveSchemaResponse extends Message<RemoveSchemaResponse> {
+  constructor(data?: PartialMessage<RemoveSchemaResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.RemoveSchemaResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RemoveSchemaResponse {
+    return new RemoveSchemaResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RemoveSchemaResponse {
+    return new RemoveSchemaResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RemoveSchemaResponse {
+    return new RemoveSchemaResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RemoveSchemaResponse | PlainMessage<RemoveSchemaResponse> | undefined, b: RemoveSchemaResponse | PlainMessage<RemoveSchemaResponse> | undefined): boolean {
+    return proto3.util.equals(RemoveSchemaResponse, a, b);
+  }
+}
+
+/**
  * @generated from message yorkie.v1.GetServerVersionRequest
  */
 export class GetServerVersionRequest extends Message<GetServerVersionRequest> {
@@ -1649,6 +2067,80 @@ export class GetServerVersionResponse extends Message<GetServerVersionResponse> 
 
   static equals(a: GetServerVersionResponse | PlainMessage<GetServerVersionResponse> | undefined, b: GetServerVersionResponse | PlainMessage<GetServerVersionResponse> | undefined): boolean {
     return proto3.util.equals(GetServerVersionResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.RotateProjectKeysRequest
+ */
+export class RotateProjectKeysRequest extends Message<RotateProjectKeysRequest> {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id = "";
+
+  constructor(data?: PartialMessage<RotateProjectKeysRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.RotateProjectKeysRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RotateProjectKeysRequest {
+    return new RotateProjectKeysRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RotateProjectKeysRequest {
+    return new RotateProjectKeysRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RotateProjectKeysRequest {
+    return new RotateProjectKeysRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RotateProjectKeysRequest | PlainMessage<RotateProjectKeysRequest> | undefined, b: RotateProjectKeysRequest | PlainMessage<RotateProjectKeysRequest> | undefined): boolean {
+    return proto3.util.equals(RotateProjectKeysRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.RotateProjectKeysResponse
+ */
+export class RotateProjectKeysResponse extends Message<RotateProjectKeysResponse> {
+  /**
+   * @generated from field: yorkie.v1.Project project = 1;
+   */
+  project?: Project;
+
+  constructor(data?: PartialMessage<RotateProjectKeysResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.RotateProjectKeysResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project", kind: "message", T: Project },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RotateProjectKeysResponse {
+    return new RotateProjectKeysResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RotateProjectKeysResponse {
+    return new RotateProjectKeysResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RotateProjectKeysResponse {
+    return new RotateProjectKeysResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RotateProjectKeysResponse | PlainMessage<RotateProjectKeysResponse> | undefined, b: RotateProjectKeysResponse | PlainMessage<RotateProjectKeysResponse> | undefined): boolean {
+    return proto3.util.equals(RotateProjectKeysResponse, a, b);
   }
 }
 

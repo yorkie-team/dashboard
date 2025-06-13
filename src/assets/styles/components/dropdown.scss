@@ -74,7 +74,6 @@
     flex: 1 1 auto;
     @include mixins-lib.rfonts(12, 16);
     color: var(--gray-900);
-    word-break: break-all;
   }
 
   .highlight {
