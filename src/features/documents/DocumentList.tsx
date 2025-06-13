@@ -90,7 +90,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
     if (navigationType !== 'POP' && previousProjectName === projectName) return;
 
     dispatch(listDocumentsAsync({ projectName, isForward: false }));
-  }, [dispatch, previousProjectName, projectName]);
+  }, [dispatch, previousProjectName, projectName, navigationType]);
 
   return (
     <>
