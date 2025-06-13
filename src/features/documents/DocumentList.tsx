@@ -15,7 +15,7 @@
  */
 
 import React, { useState, useCallback, useEffect } from 'react';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams, useNavigationType } from 'react-router-dom';
 import { fromUnixTime, format } from 'date-fns';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
@@ -36,6 +36,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
   const documentKey = params.documentKey || '';
   const { type: queryType, documents, hasPrevious, hasNext, status } = useAppSelector(selectDocumentList);
   const { use24HourClock } = useAppSelector(selectPreferences);
+  const navigationType = useNavigationType();
   const previousProjectName = useLocation().state?.previousProjectName;
   const [selectedDocKeys, setSelectedDocKeys] = useState<Array<string>>([]);
 
@@ -86,7 +87,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
   );
 
   useEffect(() => {
-    if (previousProjectName === projectName) return;
+    if (navigationType !== 'POP' && previousProjectName === projectName) return;
 
     dispatch(listDocumentsAsync({ projectName, isForward: false }));
   }, [dispatch, previousProjectName, projectName]);
