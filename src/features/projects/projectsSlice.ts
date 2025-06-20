@@ -148,6 +148,10 @@ export const projectsSlice = createSlice({
     resetUpdateSuccess: (state) => {
       state.update.isSuccess = false;
     },
+    resetProjectDetail: (state) => {
+      state.detail.project = null;
+      state.detail.status = 'idle';
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(listProjectsAsync.pending, (state) => {
@@ -162,7 +166,6 @@ export const projectsSlice = createSlice({
     });
     builder.addCase(getProjectAsync.pending, (state) => {
       state.detail.status = 'loading';
-      state.detail.project = null;
     });
     builder.addCase(getProjectAsync.fulfilled, (state, action) => {
       state.detail.status = 'idle';
@@ -291,7 +294,7 @@ export const projectsSlice = createSlice({
   },
 });
 
-export const { resetCreateSuccess, resetUpdateSuccess } = projectsSlice.actions;
+export const { resetCreateSuccess, resetUpdateSuccess, resetProjectDetail } = projectsSlice.actions;
 
 export const selectProjectList = (state: RootState) => state.projects.list;
 export const selectProjectDetail = (state: RootState) => state.projects.detail;
