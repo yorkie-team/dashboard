@@ -1,6 +1,6 @@
 {
   "name": "dashboard",
-  "version": "0.6.15",
+  "version": "0.6.17",
   "private": true,
   "type": "module",
   "homepage": "https://yorkie.dev/dashboard",
@@ -42,7 +42,7 @@
     "vite-plugin-svgr": "^4.2.0",
     "vite-tsconfig-paths": "^4.3.2",
     "vitest": "^1.6.0",
-    "@yorkie-js/sdk": "^0.6.15"
+    "@yorkie-js/sdk": "^0.6.17"
   },
   "husky": {
     "hooks": {
