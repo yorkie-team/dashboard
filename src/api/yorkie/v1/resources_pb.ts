@@ -2710,9 +2710,9 @@ proto3.util.setEnumType(PresenceChange_ChangeType, "yorkie.v1.PresenceChange.Cha
  */
 export class Presence extends Message<Presence> {
   /**
-   * @generated from field: map<string, string> data = 1;
+   * @generated from field: repeated string data = 1;
    */
-  data: { [key: string]: string } = {};
+  data: string[] = [];
 
   constructor(data?: PartialMessage<Presence>) {
     super();
@@ -2722,7 +2722,7 @@ export class Presence extends Message<Presence> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "yorkie.v1.Presence";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "data", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 1, name: "data", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Presence {
