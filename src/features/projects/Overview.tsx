@@ -16,7 +16,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from 'app/hooks';
-import { getProjectStatsAsync, selectProjectDetail, selectProjectStats } from './projectsSlice';
+import { getProjectStatsAsync, selectProjectDetail, selectProjectStats, resetProjectDetail } from './projectsSlice';
 import { Icon, Popover, Dropdown, Chart } from 'components';
 import { formatNumber } from 'utils';
 import { DATE_RANGE_OPTIONS } from 'api/types';
@@ -31,7 +31,13 @@ export function Overview() {
   useEffect(() => {
     if (!project) return;
     dispatch(getProjectStatsAsync([project.name, range]));
-  }, [project, range]);
+  }, [project, range, dispatch]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetProjectDetail());
+    };
+  }, [dispatch]);
 
   return (
     <>
