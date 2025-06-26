@@ -159,14 +159,16 @@ export function SchemaDetail() {
 
   const onSubmit = useCallback(
     (data: SchemaCreateFields) => {
-      data.name = schemas.length ? schemas[0].name : data.name;
-      data.projectName = projectName!;
-      data.version = schemas.length ? schemas[0].version + 1 : 1;
-      data.body = schemaBody;
-      data.ruleset = buildRuleset(data.body);
+      const schemaData = {
+        name: schemas.length ? schemas[0].name : data.name,
+        projectName: projectName!,
+        version: schemas.length ? schemas[0].version + 1 : 1,
+        body: schemaBody,
+        ruleset: buildRuleset(schemaBody),
+      };
 
-      setCreatedSchemaName(data.name);
-      dispatch(createSchemaAsync(data));
+      setCreatedSchemaName(schemaData.name);
+      dispatch(createSchemaAsync(schemaData));
     },
     [dispatch, projectName, schemaBody],
   );
