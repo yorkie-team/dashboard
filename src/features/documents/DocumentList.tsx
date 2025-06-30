@@ -203,7 +203,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
         {status === 'idle' && (
           <ul className="tbody_list">
             {documents.map((document) => {
-              const { key, attachedClients, updatedAt } = document;
+              const { key, attachedClients, updatedAt, schemaKey } = document;
               return (
                 <li key={key} className="tbody_item">
                   <Link
@@ -211,7 +211,10 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
                     state={{ previousProjectName: projectName }}
                     className={classNames('link', { is_active: key === documentKey })}
                   >
-                    <span className="td id">{key}</span>
+                    <span className="td id">
+                      {key}
+                      {import.meta.env.DEV && schemaKey && <span className="badge">{schemaKey}</span>}
+                    </span>
                     {!isDetailOpen && (
                       <>
                         <span className="td updated">

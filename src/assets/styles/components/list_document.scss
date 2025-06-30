@@ -84,13 +84,21 @@
 
     &:first-child {
       flex: 1;
+      display: flex;
+      align-items: center;
+
+      .sidebar & {
+        gap: 4px;
+        flex-wrap: wrap;
+      }
 
       @include mixins-lib.tabletStart() {
         padding-left: 0;
       }
     }
 
-    &.connections {
+    &.connections,
+    &.version {
       @include mixins-lib.tabletStart() {
         padding-right: 0;
       }
@@ -146,7 +154,8 @@
       }
     }
 
-    &.connections {
+    &.connections,
+    &.version {
       @include mixins-lib.tabletStart() {
         grid-area: item3;
       }
@@ -182,7 +191,8 @@
     max-width: 200px;
   }
 
-  .connections {
+  .connections,
+  .version {
     width: 120px;
   }
 

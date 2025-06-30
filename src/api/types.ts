@@ -23,11 +23,20 @@ export type DocumentSummary = {
   createdAt: number;
   accessedAt: number;
   updatedAt: number;
+  schemaKey: string;
 };
 
 export type DocumentHistory = {
   serverSeq: bigint;
   snapshot: string;
+};
+
+export type Schema = {
+  id: string;
+  name: string;
+  version: number;
+  body: string;
+  createdAt: number;
 };
 
 export type User = {

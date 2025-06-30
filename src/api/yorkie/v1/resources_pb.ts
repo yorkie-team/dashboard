@@ -2581,6 +2581,11 @@ export class DocumentSummary extends Message<DocumentSummary> {
   documentSize?: DocSize;
 
   /**
+   * @generated from field: string schema_key = 9;
+   */
+  schemaKey = "";
+
+  /**
    * @generated from field: google.protobuf.Timestamp created_at = 4;
    */
   createdAt?: Timestamp;
@@ -2608,6 +2613,7 @@ export class DocumentSummary extends Message<DocumentSummary> {
     { no: 3, name: "snapshot", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 7, name: "attached_clients", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 8, name: "document_size", kind: "message", T: DocSize },
+    { no: 9, name: "schema_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "created_at", kind: "message", T: Timestamp },
     { no: 5, name: "accessed_at", kind: "message", T: Timestamp },
     { no: 6, name: "updated_at", kind: "message", T: Timestamp },
@@ -3058,6 +3064,116 @@ export class DocSize extends Message<DocSize> {
 
   static equals(a: DocSize | PlainMessage<DocSize> | undefined, b: DocSize | PlainMessage<DocSize> | undefined): boolean {
     return proto3.util.equals(DocSize, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.Schema
+ */
+export class Schema extends Message<Schema> {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id = "";
+
+  /**
+   * @generated from field: string name = 2;
+   */
+  name = "";
+
+  /**
+   * @generated from field: int32 version = 3;
+   */
+  version = 0;
+
+  /**
+   * @generated from field: string body = 4;
+   */
+  body = "";
+
+  /**
+   * @generated from field: repeated yorkie.v1.Rule rules = 5;
+   */
+  rules: Rule[] = [];
+
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 6;
+   */
+  createdAt?: Timestamp;
+
+  constructor(data?: PartialMessage<Schema>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.Schema";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "version", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "body", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "rules", kind: "message", T: Rule, repeated: true },
+    { no: 6, name: "created_at", kind: "message", T: Timestamp },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Schema {
+    return new Schema().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Schema {
+    return new Schema().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Schema {
+    return new Schema().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Schema | PlainMessage<Schema> | undefined, b: Schema | PlainMessage<Schema> | undefined): boolean {
+    return proto3.util.equals(Schema, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.Rule
+ */
+export class Rule extends Message<Rule> {
+  /**
+   * @generated from field: string path = 1;
+   */
+  path = "";
+
+  /**
+   * @generated from field: string type = 2;
+   */
+  type = "";
+
+  constructor(data?: PartialMessage<Rule>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.Rule";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Rule {
+    return new Rule().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Rule {
+    return new Rule().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Rule {
+    return new Rule().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Rule | PlainMessage<Rule> | undefined, b: Rule | PlainMessage<Rule> | undefined): boolean {
+    return proto3.util.equals(Rule, a, b);
   }
 }
 

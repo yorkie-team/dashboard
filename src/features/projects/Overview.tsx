@@ -55,8 +55,8 @@ export function Overview() {
       </div>
       <div className="chart_area">
         <div className="filter">
-          <ul className="filter_list">
-            <li className="filter_item">
+          <div className="filter_list">
+            <div className="filter_item">
               <Popover opened={dateRangePickerOpened} onChange={setDateRangePickerOpened}>
                 <Popover.Target>
                   <button type="button" className="btn btn_small filter_desc">
@@ -83,14 +83,14 @@ export function Overview() {
                   </Dropdown>
                 </Popover.Dropdown>
               </Popover>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
         <div className="chart_group">
           <div className="chart_box">
             <div className="usage">
-              <ul className="usage_list">
-                <li className="usage_item link_type big_type">
+              <div className="usage_list">
+                <div className="usage_item link_type big_type">
                   <span className="title_box">
                     <span className="title">Active Users</span>
                   </span>
@@ -98,8 +98,8 @@ export function Overview() {
                     <dt className="blind">Details</dt>
                     <dd className="info_text">{formatNumber(stats?.activeUsersCount) ?? 0}</dd>
                   </dl>
-                </li>
-              </ul>
+                </div>
+              </div>
             </div>
             <div className="chart">
               <Chart
