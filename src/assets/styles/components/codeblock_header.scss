@@ -12,11 +12,6 @@
   border-radius: 4px 4px 0 0;
   box-sizing: border-box;
 
-  @include mixins-lib.tabletStart() {
-    padding: 10px variables.$spacing_8 6px;
-    align-items: flex-end;
-  }
-
   @include mixins-lib.mobileStart() {
     flex-wrap: wrap;
   }
@@ -27,7 +22,6 @@
 
     @include mixins-lib.tabletStart() {
       flex-direction: column;
-      align-items: flex-start;
     }
 
     @include mixins-lib.mobileStart() {
@@ -84,10 +78,6 @@
 
   .box_right {
     display: flex;
-
-    @include mixins-lib.mobileStart() {
-      margin-top: variables.$spacing_8;
-    }
 
     .btn_area {
       position: relative;

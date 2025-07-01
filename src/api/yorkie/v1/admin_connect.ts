@@ -18,7 +18,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ChangePasswordRequest, ChangePasswordResponse, CreateDocumentRequest, CreateDocumentResponse, CreateProjectRequest, CreateProjectResponse, DeleteAccountRequest, DeleteAccountResponse, GetDocumentRequest, GetDocumentResponse, GetDocumentsRequest, GetDocumentsResponse, GetProjectRequest, GetProjectResponse, GetProjectStatsRequest, GetProjectStatsResponse, GetServerVersionRequest, GetServerVersionResponse, GetSnapshotMetaRequest, GetSnapshotMetaResponse, ListChangesRequest, ListChangesResponse, ListDocumentsRequest, ListDocumentsResponse, ListProjectsRequest, ListProjectsResponse, LogInRequest, LogInResponse, RemoveDocumentByAdminRequest, RemoveDocumentByAdminResponse, SearchDocumentsRequest, SearchDocumentsResponse, SignUpRequest, SignUpResponse, UpdateDocumentRequest, UpdateDocumentResponse, UpdateProjectRequest, UpdateProjectResponse } from "./admin_pb";
+import { ChangePasswordRequest, ChangePasswordResponse, CreateDocumentRequest, CreateDocumentResponse, CreateProjectRequest, CreateProjectResponse, CreateSchemaRequest, CreateSchemaResponse, DeleteAccountRequest, DeleteAccountResponse, GetDocumentRequest, GetDocumentResponse, GetDocumentsRequest, GetDocumentsResponse, GetProjectRequest, GetProjectResponse, GetProjectStatsRequest, GetProjectStatsResponse, GetSchemaRequest, GetSchemaResponse, GetSchemasRequest, GetSchemasResponse, GetServerVersionRequest, GetServerVersionResponse, GetSnapshotMetaRequest, GetSnapshotMetaResponse, ListChangesRequest, ListChangesResponse, ListDocumentsRequest, ListDocumentsResponse, ListProjectsRequest, ListProjectsResponse, ListSchemasRequest, ListSchemasResponse, LogInRequest, LogInResponse, RemoveDocumentByAdminRequest, RemoveDocumentByAdminResponse, RemoveSchemaRequest, RemoveSchemaResponse, RotateProjectKeysRequest, RotateProjectKeysResponse, SearchDocumentsRequest, SearchDocumentsResponse, SignUpRequest, SignUpResponse, UpdateDocumentRequest, UpdateDocumentResponse, UpdateProjectRequest, UpdateProjectResponse } from "./admin_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -93,21 +93,21 @@ export const AdminService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc yorkie.v1.AdminService.UpdateProject
-     */
-    updateProject: {
-      name: "UpdateProject",
-      I: UpdateProjectRequest,
-      O: UpdateProjectResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
      * @generated from rpc yorkie.v1.AdminService.GetProjectStats
      */
     getProjectStats: {
       name: "GetProjectStats",
       I: GetProjectStatsRequest,
       O: GetProjectStatsResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.UpdateProject
+     */
+    updateProject: {
+      name: "UpdateProject",
+      I: UpdateProjectRequest,
+      O: UpdateProjectResponse,
       kind: MethodKind.Unary,
     },
     /**
@@ -192,12 +192,66 @@ export const AdminService = {
       kind: MethodKind.Unary,
     },
     /**
+     * @generated from rpc yorkie.v1.AdminService.CreateSchema
+     */
+    createSchema: {
+      name: "CreateSchema",
+      I: CreateSchemaRequest,
+      O: CreateSchemaResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.ListSchemas
+     */
+    listSchemas: {
+      name: "ListSchemas",
+      I: ListSchemasRequest,
+      O: ListSchemasResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.GetSchema
+     */
+    getSchema: {
+      name: "GetSchema",
+      I: GetSchemaRequest,
+      O: GetSchemaResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.GetSchemas
+     */
+    getSchemas: {
+      name: "GetSchemas",
+      I: GetSchemasRequest,
+      O: GetSchemasResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.RemoveSchema
+     */
+    removeSchema: {
+      name: "RemoveSchema",
+      I: RemoveSchemaRequest,
+      O: RemoveSchemaResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
      * @generated from rpc yorkie.v1.AdminService.GetServerVersion
      */
     getServerVersion: {
       name: "GetServerVersion",
       I: GetServerVersionRequest,
       O: GetServerVersionResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.RotateProjectKeys
+     */
+    rotateProjectKeys: {
+      name: "RotateProjectKeys",
+      I: RotateProjectKeysRequest,
+      O: RotateProjectKeysResponse,
       kind: MethodKind.Unary,
     },
   }

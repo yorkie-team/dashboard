@@ -195,6 +195,9 @@ export const usersSlice = createSlice({
       state.preferences.theme.darkMode = true;
       localStorage.setItem('theme', 'dark');
     },
+    updateDarkTheme: (state, action: PayloadAction<string>) => {
+      state.preferences.theme.darkMode = action.payload === 'dark';
+    },
     toggleUse24HourClock: (state) => {
       state.preferences.use24HourClock = !state.preferences.use24HourClock;
       localStorage.setItem('clock', state.preferences.use24HourClock ? '24' : '12');
@@ -345,8 +348,14 @@ export const usersSlice = createSlice({
   },
 });
 
-export const { setIsValidToken, resetSignupState, toggleUseSystemTheme, toggleUseDarkTheme, toggleUse24HourClock } =
-  usersSlice.actions;
+export const {
+  setIsValidToken,
+  resetSignupState,
+  toggleUseSystemTheme,
+  toggleUseDarkTheme,
+  updateDarkTheme,
+  toggleUse24HourClock,
+} = usersSlice.actions;
 
 export const selectUsers = (state: RootState) => state.users;
 export const selectPreferences = (state: RootState) => state.users.preferences;

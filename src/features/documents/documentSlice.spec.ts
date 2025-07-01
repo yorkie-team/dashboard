@@ -30,6 +30,7 @@ for (let i = 0; i < TOTAL_SIZE; i++) {
     createdAt: 0,
     accessedAt: 0,
     updatedAt: 0,
+    schemaKey: '',
   });
 }
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {DataSize, DATE_RANGE_OPTIONS, DocSize} from './types';
+import { DataSize, DATE_RANGE_OPTIONS, DocSize, Schema } from './types';
 import { Timestamp as PbTimestamp } from '@bufbuild/protobuf';
 import { User, Project, DocumentSummary, AuthWebhookMethod, FieldViolation } from './types';
 import { Change, converter, Indexable } from '@yorkie-js/sdk';
@@ -24,6 +24,7 @@ import {
   DocumentSummary as PbDocumentSummary,
   DataSize as PbDataSize,
   DocSize as PbDocSize,
+  Schema as PbSchema,
   Change as PbChange,
 } from './yorkie/v1/resources_pb';
 import { GetProjectStatsRequest_DateRange as PbDateRange } from './yorkie/v1/admin_pb';
@@ -80,6 +81,7 @@ export function fromDocumentSummary(pbDocumentSummary: PbDocumentSummary): Docum
     createdAt: fromTimestamp(pbDocumentSummary.createdAt!),
     accessedAt: fromTimestamp(pbDocumentSummary.accessedAt!),
     updatedAt: fromTimestamp(pbDocumentSummary.updatedAt!),
+    schemaKey: pbDocumentSummary.schemaKey,
   };
 }
 
@@ -95,6 +97,26 @@ export function fromDocumentSummaries(pbDocumentSummaries: Array<PbDocumentSumma
 
 export function fromChanges(pbChanges: Array<PbChange>): Array<Change<Indexable>> {
   return converter.fromChanges(pbChanges as any);
+}
+
+export function fromSchemas(pbSchemas: Array<PbSchema>): Array<Schema> {
+  const schemas: Array<Schema> = [];
+
+  for (const pbSchema of pbSchemas) {
+    schemas.push(fromSchema(pbSchema));
+  }
+
+  return schemas;
+}
+
+export function fromSchema(pbSchema: PbSchema): Schema {
+  return {
+    id: pbSchema.id,
+    name: pbSchema.name,
+    version: pbSchema.version,
+    body: pbSchema.body,
+    createdAt: fromTimestamp(pbSchema.createdAt!),
+  };
 }
 
 /**
