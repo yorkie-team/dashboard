@@ -2566,9 +2566,9 @@ export class DocumentSummary extends Message<DocumentSummary> {
   key = "";
 
   /**
-   * @generated from field: string snapshot = 3;
+   * @generated from field: string root = 3;
    */
-  snapshot = "";
+  root = "";
 
   /**
    * @generated from field: int32 attached_clients = 7;
@@ -2584,6 +2584,11 @@ export class DocumentSummary extends Message<DocumentSummary> {
    * @generated from field: string schema_key = 9;
    */
   schemaKey = "";
+
+  /**
+   * @generated from field: map<string, yorkie.v1.Presence> presences = 10;
+   */
+  presences: { [key: string]: Presence } = {};
 
   /**
    * @generated from field: google.protobuf.Timestamp created_at = 4;
@@ -2610,10 +2615,11 @@ export class DocumentSummary extends Message<DocumentSummary> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "snapshot", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "root", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 7, name: "attached_clients", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 8, name: "document_size", kind: "message", T: DocSize },
     { no: 9, name: "schema_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 10, name: "presences", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: Presence} },
     { no: 4, name: "created_at", kind: "message", T: Timestamp },
     { no: 5, name: "accessed_at", kind: "message", T: Timestamp },
     { no: 6, name: "updated_at", kind: "message", T: Timestamp },

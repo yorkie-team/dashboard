@@ -17,7 +17,7 @@
 export type DocumentSummary = {
   id: string;
   key: string;
-  snapshot: string;
+  root: string;
   attachedClients: number;
   docSize?: DocSize;
   createdAt: number;

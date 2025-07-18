@@ -25,7 +25,7 @@ for (let i = 0; i < TOTAL_SIZE; i++) {
   sampleDocumentData.push({
     id: `${i}`,
     key: `${i}`,
-    snapshot: '',
+    root: '',
     attachedClients: 0,
     createdAt: 0,
     accessedAt: 0,
