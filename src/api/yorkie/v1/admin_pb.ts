@@ -879,9 +879,9 @@ export class ListDocumentsRequest extends Message<ListDocumentsRequest> {
   isForward = false;
 
   /**
-   * @generated from field: bool include_snapshot = 5;
+   * @generated from field: bool include_root = 5;
    */
-  includeSnapshot = false;
+  includeRoot = false;
 
   constructor(data?: PartialMessage<ListDocumentsRequest>) {
     super();
@@ -895,7 +895,7 @@ export class ListDocumentsRequest extends Message<ListDocumentsRequest> {
     { no: 2, name: "previous_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "page_size", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 4, name: "is_forward", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 5, name: "include_snapshot", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 5, name: "include_root", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListDocumentsRequest {
@@ -1047,9 +1047,14 @@ export class GetDocumentsRequest extends Message<GetDocumentsRequest> {
   documentKeys: string[] = [];
 
   /**
-   * @generated from field: bool include_snapshot = 3;
+   * @generated from field: bool include_root = 3;
    */
-  includeSnapshot = false;
+  includeRoot = false;
+
+  /**
+   * @generated from field: bool include_presences = 4;
+   */
+  includePresences = false;
 
   constructor(data?: PartialMessage<GetDocumentsRequest>) {
     super();
@@ -1061,7 +1066,8 @@ export class GetDocumentsRequest extends Message<GetDocumentsRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "document_keys", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 3, name: "include_snapshot", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "include_root", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "include_presences", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetDocumentsRequest {
@@ -1137,6 +1143,11 @@ export class UpdateDocumentRequest extends Message<UpdateDocumentRequest> {
    */
   root = "";
 
+  /**
+   * @generated from field: string schema_key = 4;
+   */
+  schemaKey = "";
+
   constructor(data?: PartialMessage<UpdateDocumentRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1148,6 +1159,7 @@ export class UpdateDocumentRequest extends Message<UpdateDocumentRequest> {
     { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "document_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "root", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "schema_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateDocumentRequest {

@@ -188,7 +188,7 @@ export const documentSlice = createSlice({
   initialState,
   reducers: {
     setHistory: (state, action: PayloadAction<number>) => {
-      state.detail.document!.snapshot = state.history.histories[action.payload].snapshot;
+      state.detail.document!.root = state.history.histories[action.payload].snapshot;
     },
     resetHistory: (state) => {
       state.history.status = 'idle';
@@ -241,7 +241,7 @@ export const documentSlice = createSlice({
       const { data, hasPrevious, hasNext } = action.payload;
       state.history.status = 'idle';
       state.history.histories = data;
-      state.detail.document!.snapshot = data[data.length - 1].snapshot;
+      state.detail.document!.root = data[data.length - 1].snapshot;
       state.history.hasNext = hasNext;
       state.history.hasPrevious = hasPrevious;
     });

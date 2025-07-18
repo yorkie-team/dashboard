@@ -75,7 +75,7 @@ export function fromDocumentSummary(pbDocumentSummary: PbDocumentSummary): Docum
   return {
     id: pbDocumentSummary.id,
     key: pbDocumentSummary.key,
-    snapshot: pbDocumentSummary.snapshot,
+    root: pbDocumentSummary.root,
     attachedClients: pbDocumentSummary.attachedClients,
     docSize: fromPbDocSize(pbDocumentSummary.documentSize),
     createdAt: fromTimestamp(pbDocumentSummary.createdAt!),

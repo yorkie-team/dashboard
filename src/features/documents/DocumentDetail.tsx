@@ -31,7 +31,7 @@ export function DocumentDetail() {
   const params = useParams();
   const projectName = params.projectName || '';
   const documentKey = params.documentKey || '';
-  const documentJSON = document ? JSON.parse(document.snapshot) : {};
+  const documentJSON = document ? JSON.parse(document.root) : {};
   const documentJSONStr = JSON.stringify(documentJSON, null, '\t');
   const [viewType, SetViewType] = useState('code');
   const [opened, setOpened] = useState(false);
@@ -127,7 +127,7 @@ export function DocumentDetail() {
               className={viewType === 'tree' ? 'is_active' : ''}
             />
             <div className="btn_area">
-              <CopyButton value={document?.snapshot || ''} timeout={1000}>
+              <CopyButton value={document?.root || ''} timeout={1000}>
                 {({ copied, copy }) => (
                   <>
                     <Button icon={<Icon type="copy" />} color="toggle" outline onClick={copy} />
