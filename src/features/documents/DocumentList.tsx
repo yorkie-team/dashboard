@@ -213,7 +213,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
                   >
                     <span className="td id">
                       {key}
-                      {import.meta.env.DEV && schemaKey && <span className="badge">{schemaKey}</span>}
+                      {schemaKey && <span className="badge">{schemaKey}</span>}
                     </span>
                     {!isDetailOpen && (
                       <>
