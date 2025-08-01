@@ -33,7 +33,7 @@ export function Preferences() {
   }, [dispatch]);
 
   return (
-    <div className="setting_box">
+    <div className="setting_box" id="preferences">
       <div className="setting_title">
         <strong className="text">Preferences</strong>
       </div>
