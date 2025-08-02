@@ -59,7 +59,7 @@ export function Account() {
   }, [error, setError]);
 
   return (
-    <div className="setting_box" id="danger">
+    <div className="setting_box" id="account">
       <div className="setting_title">
         <strong className="text">Account</strong>
       </div>
