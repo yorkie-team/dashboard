@@ -27,7 +27,6 @@ import {
   getProjectStats,
 } from 'api';
 import { RPCStatusCode, AuthWebhookMethod, EventWebhookEvent, RPCError, ProjectStats, DATE_RANGE_OPTIONS } from 'api/types';
-import { stat } from 'fs';
 
 export interface ProjectsState {
   list: {
