@@ -51,6 +51,8 @@ export type Project = {
   name: string;
   authWebhookURL: string;
   authWebhookMethods: Array<AuthWebhookMethod>;
+  eventWebhookURL: string;
+  eventWebhookEvents?: Array<EventWebhookEvent>;
   clientDeactivateThreshold: string;
   maxSubscribersPerDocument: number;
   maxAttachmentsPerDocument: number;
@@ -82,6 +84,8 @@ export type UpdatableProjectFields = {
   name?: string;
   authWebhookURL?: string;
   authWebhookMethods?: Array<AuthWebhookMethod>;
+  eventWebhookURL?: string;
+  eventWebhookEvents?: Array<EventWebhookEvent>;
   clientDeactivateThreshold?: string;
   maxSubscribersPerDocument?: number;
   maxAttachmentsPerDocument?: number;
@@ -95,7 +99,11 @@ export type AuthWebhookMethod =
   | 'AttachDocument'
   | 'DetachDocument'
   | 'PushPull'
-  | 'WatchDocuments';
+  | 'WatchDocuments'
+  | 'Broadcast';
+
+export type EventWebhookEvent =
+  | 'DocumentRootChanged';
 
 export const AUTH_WEBHOOK_METHODS: Array<AuthWebhookMethod> = [
   'ActivateClient',
@@ -104,6 +112,11 @@ export const AUTH_WEBHOOK_METHODS: Array<AuthWebhookMethod> = [
   'DetachDocument',
   'PushPull',
   'WatchDocuments',
+  'Broadcast',
+];
+
+export const EVENT_WEBHOOK_EVENTS: Array<EventWebhookEvent> = [
+  'DocumentRootChanged',
 ];
 
 export enum RPCStatusCode {

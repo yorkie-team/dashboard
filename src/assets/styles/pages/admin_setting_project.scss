@@ -197,7 +197,8 @@
   }
 
   .webhook {
-    .webhook_methods {
+    .webhook_methods,
+    .webhook_events {
       margin-top: variables.$spacing_24;
       padding: 0 variables.$spacing_8;
 

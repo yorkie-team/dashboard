@@ -16,7 +16,7 @@
 
 import { DataSize, DATE_RANGE_OPTIONS, DocSize, Schema } from './types';
 import { Timestamp as PbTimestamp } from '@bufbuild/protobuf';
-import { User, Project, DocumentSummary, AuthWebhookMethod, FieldViolation } from './types';
+import { User, Project, DocumentSummary, AuthWebhookMethod, EventWebhookEvent, FieldViolation } from './types';
 import { Change, converter, Indexable } from '@yorkie-js/sdk';
 import {
   User as PbUser,
@@ -53,6 +53,8 @@ export function fromProject(pbProject: PbProject): Project {
     createdAt: fromTimestamp(pbProject.createdAt!),
     authWebhookURL: pbProject.authWebhookUrl,
     authWebhookMethods: pbProject.authWebhookMethods as Array<AuthWebhookMethod>,
+    eventWebhookURL: pbProject.eventWebhookUrl,
+    eventWebhookEvents: pbProject.eventWebhookEvents as Array<EventWebhookEvent>,
     clientDeactivateThreshold: pbProject.clientDeactivateThreshold,
     maxSubscribersPerDocument: pbProject.maxSubscribersPerDocument,
     maxAttachmentsPerDocument: pbProject.maxAttachmentsPerDocument,

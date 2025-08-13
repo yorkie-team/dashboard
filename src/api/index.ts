@@ -20,6 +20,7 @@ import { createConnectTransport } from '@connectrpc/connect-web';
 import { AdminService } from './yorkie/v1/admin_connect';
 import {
   UpdatableProjectFields_AuthWebhookMethods as PbProjectFields_AuthWebhookMethods,
+  UpdatableProjectFields_EventWebhookEvents as PbProjectFields_EventWebhookEvents,
   UpdatableProjectFields_AllowedOrigins as PbProjectFields_AllowedOrigins,
 } from './yorkie/v1/resources_pb';
 import { InterceptorBuilder } from './interceptor';
@@ -149,6 +150,10 @@ export async function updateProject(id: string, fields: UpdatableProjectFields):
     authWebhookUrl: fields.authWebhookURL,
     authWebhookMethods: fields.authWebhookMethods
       ? new PbProjectFields_AuthWebhookMethods({ methods: fields.authWebhookMethods })
+      : undefined,
+    eventWebhookUrl: fields.eventWebhookURL,
+    eventWebhookEvents: fields.eventWebhookEvents
+      ? new PbProjectFields_EventWebhookEvents({ events: fields.eventWebhookEvents })
       : undefined,
     clientDeactivateThreshold: fields.clientDeactivateThreshold,
     maxSubscribersPerDocument: Number(fields.maxSubscribersPerDocument),

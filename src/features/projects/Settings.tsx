@@ -27,11 +27,17 @@ import {
   resetUpdateSuccess,
   listProjectsAsync,
 } from './projectsSlice';
-import { AUTH_WEBHOOK_METHODS, UpdatableProjectFields, AuthWebhookMethod } from 'api/types';
+import {
+  AUTH_WEBHOOK_METHODS,
+  EVENT_WEBHOOK_EVENTS,
+  UpdatableProjectFields,
+  AuthWebhookMethod,
+  EventWebhookEvent,
+} from 'api/types';
 import { InputToggle, InputHelperText, InputTextField, Navigator } from 'components';
 
 export type UpdateFieldInfo = {
-  target: keyof UpdatableProjectFields | AuthWebhookMethod | null;
+  target: keyof UpdatableProjectFields | AuthWebhookMethod | EventWebhookEvent | null;
   state: 'success' | 'error' | null;
   message: string;
 };
@@ -54,6 +60,8 @@ export function Settings() {
       name: '',
       authWebhookURL: '',
       authWebhookMethods: [],
+      eventWebhookURL: '',
+      eventWebhookEvents: [],
       clientDeactivateThreshold: '',
       maxSubscribersPerDocument: 0,
       maxAttachmentsPerDocument: 0,
@@ -63,13 +71,21 @@ export function Settings() {
   });
 
   const { field: nameField, fieldState: nameFieldState } = useController({ control, name: 'name' });
-  const { field: webhookURLField, fieldState: webhookURLFieldState } = useController({
+  const { field: authWebhookURLField, fieldState: authWebhookURLFieldState } = useController({
     control,
     name: 'authWebhookURL',
   });
   const { field: webhookMethodField } = useController({
     control,
     name: 'authWebhookMethods',
+  });
+  const { field: eventWebhookURLField, fieldState: eventWebhookURLFieldState } = useController({
+    control,
+    name: 'eventWebhookURL',
+  });
+  const { field: webhookEventField } = useController({
+    control,
+    name: 'eventWebhookEvents',
   });
   const { field: clientDeactivateThreshold, fieldState: clientDeactivateThresholdState } = useController({
     control,
@@ -92,7 +108,10 @@ export function Settings() {
     name: 'allowedOrigins',
   });
   const checkFieldState = useCallback(
-    (fieldName: keyof UpdatableProjectFields | AuthWebhookMethod, state: 'success' | 'error'): boolean => {
+    (
+      fieldName: keyof UpdatableProjectFields | AuthWebhookMethod | EventWebhookEvent,
+      state: 'success' | 'error',
+    ): boolean => {
       return updateFieldInfo.target === fieldName && updateFieldInfo.state === state;
     },
     [updateFieldInfo],
@@ -106,6 +125,8 @@ export function Settings() {
       name: project?.name || '',
       authWebhookURL: project?.authWebhookURL || '',
       authWebhookMethods: project?.authWebhookMethods || [],
+      eventWebhookURL: project?.eventWebhookURL || '',
+      eventWebhookEvents: project?.eventWebhookEvents || [],
       clientDeactivateThreshold: project?.clientDeactivateThreshold || '',
       maxSubscribersPerDocument: project?.maxSubscribersPerDocument || 0,
       maxAttachmentsPerDocument: project?.maxAttachmentsPerDocument || 0,
@@ -136,7 +157,8 @@ export function Settings() {
     if (
       updateFieldInfo.state !== 'success' &&
       !nameFieldState.error &&
-      !webhookURLFieldState.error &&
+      !authWebhookURLFieldState.error &&
+      !eventWebhookURLFieldState.error &&
       !clientDeactivateThresholdState.error &&
       !maxSubscribersPerDocumentState.error &&
       !maxAttachmentsPerDocumentState.error &&
@@ -151,7 +173,8 @@ export function Settings() {
     }
     if (
       nameFieldState.error ||
-      webhookURLFieldState.error ||
+      authWebhookURLFieldState.error ||
+      eventWebhookURLFieldState.error ||
       clientDeactivateThresholdState.error ||
       maxSubscribersPerDocumentState.error ||
       maxAttachmentsPerDocumentState.error ||
@@ -169,7 +192,8 @@ export function Settings() {
     updateFieldInfo.state,
     updateFieldInfo.target,
     nameFieldState.error,
-    webhookURLFieldState.error,
+    authWebhookURLFieldState.error,
+    eventWebhookURLFieldState.error,
     clientDeactivateThresholdState.error,
     maxSubscribersPerDocumentState.error,
     maxAttachmentsPerDocumentState.error,
@@ -203,6 +227,7 @@ export function Settings() {
       <Navigator
         navList={[
           { name: 'General', id: 'general' },
+          { name: 'Webhooks', id: 'webhooks' },
           { name: 'Security', id: 'security' },
           { name: 'Limits', id: 'limits' },
           { name: 'Sessions', id: 'sessions' },
@@ -261,6 +286,102 @@ export function Settings() {
                     }
                     onSuccessEnd={resetUpdateFieldInfo}
                   />
+                </div>
+              </dd>
+            </dl>
+          </div>
+          <div className="section setting_box webhook" id="webhooks">
+            <div className="setting_title">
+              <strong className="text">Webhooks</strong>
+            </div>
+            <dl className="sub_info">
+              <dt className="sub_title">Webhook URL</dt>
+              <dd className="sub_desc">
+                <p className="guide">
+                  Enter the URL of the endpoint you want to use for event. When a document in this project is changed,
+                  server will send a request to this webhook URL. Changes to this setting may take up to 10 minutes to
+                  take effect.{' '}
+                </p>
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: checkFieldState('eventWebhookURL', 'error'),
+                    is_success: checkFieldState('eventWebhookURL', 'success'),
+                  })}
+                >
+                  <InputTextField
+                    reset={() => {
+                      resetForm();
+                      resetUpdateFieldInfo();
+                    }}
+                    {...register('eventWebhookURL')}
+                    onChange={(e) => {
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'eventWebhookURL' }));
+                      eventWebhookURLField.onChange(e.target.value);
+                    }}
+                    id="eventWebhookURL"
+                    label="eventWebhookURL"
+                    blindLabel={true}
+                    placeholder="http://localhost:8080/event"
+                    fieldUtil={true}
+                    state={
+                      checkFieldState('eventWebhookURL', 'success')
+                        ? 'success'
+                        : checkFieldState('eventWebhookURL', 'error')
+                          ? 'error'
+                          : undefined
+                    }
+                    helperText={
+                      updateFieldInfo.target === 'eventWebhookURL' && updateFieldInfo.state !== null
+                        ? updateFieldInfo.message
+                        : undefined
+                    }
+                    onSuccessEnd={resetUpdateFieldInfo}
+                  />
+                </div>
+              </dd>
+              <dt className="sub_title">Webhook Events</dt>
+              <dd className="sub_desc">
+                <p className="guide">
+                  Select which events require webhook event. Only the selected events will be checked for event.
+                </p>
+                <div className="webhook_events">
+                  {EVENT_WEBHOOK_EVENTS.map((event) => {
+                    return (
+                      <div
+                        className={classNames('input_group', {
+                          is_error: checkFieldState(event, 'error'),
+                          is_success: checkFieldState(event, 'success'),
+                        })}
+                        key={event}
+                      >
+                        <InputToggle
+                          id={event}
+                          label={event}
+                          checked={webhookEventField.value.includes(event)}
+                          onChange={(e) => {
+                            let newWebhookEvents = [...project?.eventWebhookEvents!];
+                            if (e.target.checked) {
+                              newWebhookEvents = newWebhookEvents.includes(event)
+                                ? newWebhookEvents
+                                : [...newWebhookEvents, event];
+                            } else {
+                              newWebhookEvents = newWebhookEvents.filter((newEvent) => newEvent !== event);
+                            }
+                            webhookEventField.onChange(newWebhookEvents);
+                            setUpdateFieldInfo((info) => ({ ...info, target: event }));
+                            onSubmit({ eventWebhookEvents: newWebhookEvents });
+                          }}
+                        />
+                        {updateFieldInfo.target === event && updateFieldInfo.state !== null && (
+                          <InputHelperText
+                            state={updateFieldInfo.state}
+                            message={updateFieldInfo.message}
+                            onSuccessEnd={resetUpdateFieldInfo}
+                          />
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </dd>
             </dl>
@@ -365,7 +486,7 @@ export function Settings() {
                     {...register('authWebhookURL')}
                     onChange={(e) => {
                       setUpdateFieldInfo((info) => ({ ...info, target: 'authWebhookURL' }));
-                      webhookURLField.onChange(e.target.value);
+                      authWebhookURLField.onChange(e.target.value);
                     }}
                     id="authWebhookURL"
                     label="authWebhookURL"
@@ -564,8 +685,8 @@ export function Settings() {
               <dt className="sub_title">Max Size Per Document</dt>
               <dd className="sub_desc">
                 <p className="guide">
-                  Set the maximum size of a document in bytes. When this limit is reached, document edit requests will be
-                  rejected by the server.{' '}
+                  Set the maximum size of a document in bytes. When this limit is reached, document edit requests will
+                  be rejected by the server.{' '}
                   <a
                     href="https://yorkie.dev/docs/js-sdk#max-document-size-limit"
                     className="page_link icon_link"

@@ -26,7 +26,7 @@ import {
   UpdatableProjectFields,
   getProjectStats,
 } from 'api';
-import { RPCStatusCode, AuthWebhookMethod, RPCError, ProjectStats, DATE_RANGE_OPTIONS } from 'api/types';
+import { RPCStatusCode, AuthWebhookMethod, EventWebhookEvent, RPCError, ProjectStats, DATE_RANGE_OPTIONS } from 'api/types';
 
 export interface ProjectsState {
   list: {
@@ -67,6 +67,8 @@ export type ProjectUpdateFields = {
   name: string;
   authWebhookURL: string;
   authWebhookMethods: Array<AuthWebhookMethod>;
+  eventWebhookURL: string;
+  eventWebhookEvents: Array<EventWebhookEvent>;
   clientDeactivateThreshold: string;
   maxSubscribersPerDocument: number;
   maxAttachmentsPerDocument: number;
@@ -258,6 +260,16 @@ export const projectsSlice = createSlice({
           } else if (field === 'AuthWebhookMethods') {
             state.update.error = {
               target: 'authWebhookMethods',
+              message: description,
+            };
+          } else if (field === 'EventWebhookURL') {
+            state.update.error = {
+              target: 'eventWebhookURL',
+              message: description,
+            };
+          } else if (field === 'EventWebhookEvents') {
+            state.update.error = {
+              target: 'eventWebhookEvents',
               message: description,
             };
           } else if (field === 'ClientDeactivateThreshold') {
