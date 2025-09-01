@@ -41,7 +41,10 @@ import { Rule } from '@yorkie-js/schema';
 
 export * from './types';
 
+// Export the interceptor instance so it can be used elsewhere
 const interceptor = new InterceptorBuilder();
+export { interceptor };
+
 const transport = createConnectTransport({
   baseUrl: import.meta.env.VITE_API_ADDR!,
   interceptors: [interceptor.createAuthInterceptor(), interceptor.createMetricInterceptor()],
@@ -75,7 +78,7 @@ export async function fetchMe(): Promise<User> {
   return (await res.json()) as User;
 }
 
-// logIn logs in the user and returns a token.
+// logIn logs in the user.
 export async function logIn(username: string, password: string): Promise<void> {
   const res = await fetch(`${import.meta.env.VITE_API_ADDR!}/auth/login`, {
     method: 'POST',
@@ -169,13 +172,11 @@ export async function updateProject(id: string, fields: UpdatableProjectFields):
 
 // listDocuments fetches documents from the admin server.
 export async function listDocuments(
-  projectName: string,
   previousID: string,
   pageSize: number,
   isForward: boolean,
 ): Promise<Array<DocumentSummary>> {
   const res = await client.listDocuments({
-    projectName,
     previousId: previousID,
     pageSize,
     isForward,
@@ -188,21 +189,20 @@ export async function listDocuments(
 }
 
 // getDocument fetches a document of the given ID from the admin server.
-export async function getDocument(projectName: string, documentKey: string): Promise<DocumentSummary> {
-  const res = await client.getDocument({ projectName, documentKey });
+export async function getDocument(documentKey: string): Promise<DocumentSummary> {
+  const res = await client.getDocument({ documentKey });
   return converter.fromDocumentSummary(res.document!);
 }
 
 // searchDocuments fetches documents that match the query parameters.
 export async function searchDocuments(
-  projectName: string,
   documentQuery: string,
   pageSize: number,
 ): Promise<{
   totalCount: number;
   documents: Array<DocumentSummary>;
 }> {
-  const res = await client.searchDocuments({ projectName, query: documentQuery, pageSize });
+  const res = await client.searchDocuments({ query: documentQuery, pageSize });
   const summaries = converter.fromDocumentSummaries(res.documents);
   return {
     totalCount: res.totalCount,
@@ -212,14 +212,12 @@ export async function searchDocuments(
 
 // listDocumentHistories lists of changes for the given document.
 export async function listDocumentHistories(
-  projectName: string,
   documentKey: string,
   previousSeq: bigint,
   pageSize: number,
   isForward: boolean,
 ): Promise<Array<DocumentHistory>> {
   const res = await client.listChanges({
-    projectName,
     documentKey,
     previousSeq,
     pageSize,
@@ -230,7 +228,6 @@ export async function listDocumentHistories(
 
   const seq = pbChanges[0].id!.serverSeq - 1n;
   const snapshotMeta = await client.getSnapshotMeta({
-    projectName,
     documentKey,
     serverSeq: seq,
   });
@@ -250,25 +247,17 @@ export async function listDocumentHistories(
 }
 
 // removeDocumentByAdmin removes the document of the given document.
-export async function removeDocumentByAdmin(
-  projectName: string,
-  documentKey: string,
-  forceRemoveIfAttached: boolean = true,
-): Promise<void> {
+export async function removeDocumentByAdmin(documentKey: string, forceRemoveIfAttached: boolean = true): Promise<void> {
   await client.removeDocumentByAdmin({
-    projectName,
     documentKey,
     force: forceRemoveIfAttached,
   });
 }
 
 // getProjectStats fetches the project stats.
-export async function getProjectStats(
-  projectName: string,
-  range: keyof typeof DATE_RANGE_OPTIONS,
-): Promise<ProjectStats> {
+export async function getProjectStats(range: keyof typeof DATE_RANGE_OPTIONS): Promise<ProjectStats> {
   const dateRange = converter.toDateRange(range);
-  const res = await client.getProjectStats({ projectName, dateRange });
+  const res = await client.getProjectStats({ dateRange });
   const activeUsers = res.activeUsers.map((point) => {
     return {
       // NOTE(hackerwins): Number can safely represent dates for +285,616 years.
@@ -287,15 +276,8 @@ export async function getProjectStats(
 }
 
 // createSchema creates a new schema.
-export async function createSchema(
-  projectName: string,
-  name: string,
-  version: number,
-  body: string,
-  rules: Array<Rule>,
-): Promise<Schema> {
+export async function createSchema(name: string, version: number, body: string, rules: Array<Rule>): Promise<Schema> {
   const res = await client.createSchema({
-    projectName,
     schemaName: name,
     schemaVersion: version,
     schemaBody: body,
@@ -306,17 +288,14 @@ export async function createSchema(
 }
 
 // listSchemas fetches schemas of the given project.
-export async function listSchemas(projectName: string): Promise<Array<Schema>> {
-  const res = await client.listSchemas({
-    projectName,
-  });
+export async function listSchemas(): Promise<Array<Schema>> {
+  const res = await client.listSchemas({});
   return converter.fromSchemas(res.schemas);
 }
 
 // getSchema fetches a schema by the given schema name and version.
-export async function getSchema(projectName: string, schemaName: string, version: number): Promise<Schema> {
+export async function getSchema(schemaName: string, version: number): Promise<Schema> {
   const res = await client.getSchema({
-    projectName,
     schemaName,
     version,
   });
@@ -324,19 +303,23 @@ export async function getSchema(projectName: string, schemaName: string, version
 }
 
 // getSchemas fetches schemas by the given schema name.
-export async function getSchemas(projectName: string, schemaName: string): Promise<Array<Schema>> {
+export async function getSchemas(schemaName: string): Promise<Array<Schema>> {
   const res = await client.getSchemas({
-    projectName,
     schemaName,
   });
   return converter.fromSchemas(res.schemas);
 }
 
 // removeSchema removes the schema of the given schema name and version.
-export async function removeSchema(projectName: string, schemaName: string, version: number): Promise<void> {
+export async function removeSchema(schemaName: string, version: number): Promise<void> {
   await client.removeSchema({
-    projectName,
     schemaName,
     version,
   });
+}
+
+// rotateProjectKeys rotates the API keys of the project.
+export async function rotateProjectKeys(projectId: string): Promise<Project> {
+  const res = await client.rotateProjectKeys({ id: projectId });
+  return converter.fromProject(res.project!);
 }

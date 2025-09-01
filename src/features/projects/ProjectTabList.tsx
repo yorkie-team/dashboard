@@ -16,21 +16,41 @@
 
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAppDispatch } from 'app/hooks';
-import { getProjectAsync } from './projectsSlice';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { getProjectAsync, setCurrentProjectAsync, selectCurrentProject, selectProjectDetail } from './projectsSlice';
 import { Icon, TabList } from 'components';
 
 export function ProjectTabList() {
   let { projectName } = useParams();
   const dispatch = useAppDispatch();
+  const currentProject = useAppSelector(selectCurrentProject);
+  const projectDetail = useAppSelector(selectProjectDetail);
 
   useEffect(() => {
     if (!projectName) {
       return;
     }
 
-    dispatch(getProjectAsync(projectName));
-  }, [dispatch, projectName]);
+    // Only set current project if it's different from the current one and not loading
+    if (currentProject.project?.name !== projectName && currentProject.status === 'idle') {
+      dispatch(setCurrentProjectAsync(projectName)).then(() => {
+        // Only get project details if we don't have them and not loading
+        if (projectDetail.project?.name !== projectName && projectDetail.status === 'idle') {
+          dispatch(getProjectAsync(projectName));
+        }
+      });
+    } else if (projectDetail.project?.name !== projectName && projectDetail.status === 'idle') {
+      // If current project is already set, just get details if needed
+      dispatch(getProjectAsync(projectName));
+    }
+  }, [
+    dispatch,
+    projectName,
+    currentProject.project?.name,
+    currentProject.status,
+    projectDetail.project?.name,
+    projectDetail.status,
+  ]);
 
   return (
     <TabList>

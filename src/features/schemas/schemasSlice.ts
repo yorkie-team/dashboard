@@ -42,7 +42,6 @@ export interface SchemasState {
 }
 
 export type SchemaCreateFields = {
-  projectName: string;
   name: string;
   version: number;
   body: string;
@@ -69,21 +68,23 @@ const initialState: SchemasState = {
 export const createSchemaAsync = createAppThunk<Schema, SchemaCreateFields>(
   'schemas/createSchema',
   async (params: SchemaCreateFields): Promise<Schema> => {
-    const { projectName, name, version, body, ruleset } = params;
-    const schema = await createSchema(projectName, name, version, body, ruleset);
+    const { name, version, body, ruleset } = params;
+    const schema = await createSchema(name, version, body, ruleset);
     return schema;
   },
 );
 
-export const listSchemasAsync = createAppThunk(
+export const listSchemasAsync = createAppThunk<
+  {
+    data: Array<Schema>;
+  },
+  void
+>(
   'schemas/listSchemas',
-  async (params: {
-    projectName: string;
-  }): Promise<{
+  async (): Promise<{
     data: Array<Schema>;
   }> => {
-    const { projectName } = params;
-    const schemas = await listSchemas(projectName);
+    const schemas = await listSchemas();
     return { data: schemas };
   },
 );
@@ -91,22 +92,21 @@ export const listSchemasAsync = createAppThunk(
 export const getSchemasAsync = createAppThunk(
   'schemas/getSchemas',
   async (params: {
-    projectName: string;
     schemaName: string;
   }): Promise<{
     data: Array<Schema>;
   }> => {
-    const { projectName, schemaName } = params;
-    const schemas = await getSchemas(projectName, schemaName);
+    const { schemaName } = params;
+    const schemas = await getSchemas(schemaName);
     return { data: schemas };
   },
 );
 
 export const removeSchemaAsync = createAppThunk(
   'schemas/removeSchema',
-  async (params: { projectName: string; schemaName: string; version: number }): Promise<void> => {
-    const { projectName, schemaName, version } = params;
-    await removeSchema(projectName, schemaName, version);
+  async (params: { schemaName: string; version: number }): Promise<void> => {
+    const { schemaName, version } = params;
+    await removeSchema(schemaName, version);
   },
 );
 

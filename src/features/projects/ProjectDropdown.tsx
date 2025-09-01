@@ -20,17 +20,20 @@ import { useParams, Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { Project } from 'api/types';
 import { Popover, Dropdown, Icon, Breadcrumb } from 'components';
-import { selectProjectList, listProjectsAsync } from './projectsSlice';
+import { selectProjectList, listProjectsAsync, setCurrentProjectAsync } from './projectsSlice';
 
 export function ProjectDropdown({ size = 'small' }: { size?: 'small' | 'large' }) {
   const { projectName } = useParams();
-  const { projects } = useAppSelector(selectProjectList);
+  const { projects, status } = useAppSelector(selectProjectList);
   const dispatch = useAppDispatch();
   const [opened, setOpened] = useState(false);
 
   useEffect(() => {
-    dispatch(listProjectsAsync());
-  }, [dispatch]);
+    // Only fetch if we don't have projects and we're not already loading
+    if (projects.length === 0 && status === 'idle') {
+      dispatch(listProjectsAsync());
+    }
+  }, [dispatch, projects.length, status]);
 
   useEffect(() => {
     return () => {

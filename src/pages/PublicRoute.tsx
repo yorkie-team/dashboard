@@ -23,16 +23,19 @@ import { fetchMe, selectUsers } from 'features/users/usersSlice';
 export function PublicRoute() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { isValidToken } = useAppSelector(selectUsers);
+  const { isAuthenticated, fetchMe: fetchMeState } = useAppSelector(selectUsers);
 
   useEffect(() => {
-    if (isValidToken) {
+    if (isAuthenticated) {
       navigate('/projects');
       return;
     }
 
-    dispatch(fetchMe());
-  }, [isValidToken, navigate]);
+    // Only fetch if not already loading, failed, or processing
+    if (fetchMeState.status === 'idle') {
+      dispatch(fetchMe());
+    }
+  }, [isAuthenticated, navigate, fetchMeState.status, dispatch]);
 
   return <Outlet />;
 }

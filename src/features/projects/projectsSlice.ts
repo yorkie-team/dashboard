@@ -25,8 +25,16 @@ import {
   Project,
   UpdatableProjectFields,
   getProjectStats,
+  interceptor,
 } from 'api';
-import { RPCStatusCode, AuthWebhookMethod, EventWebhookEvent, RPCError, ProjectStats, DATE_RANGE_OPTIONS } from 'api/types';
+import {
+  RPCStatusCode,
+  AuthWebhookMethod,
+  EventWebhookEvent,
+  RPCError,
+  ProjectStats,
+  DATE_RANGE_OPTIONS,
+} from 'api/types';
 
 export interface ProjectsState {
   list: {
@@ -34,6 +42,10 @@ export interface ProjectsState {
     status: 'idle' | 'loading' | 'failed';
   };
   detail: {
+    project: Project | null;
+    status: 'idle' | 'loading' | 'failed';
+  };
+  current: {
     project: Project | null;
     status: 'idle' | 'loading' | 'failed';
   };
@@ -85,6 +97,10 @@ const initialState: ProjectsState = {
     project: null,
     status: 'idle',
   },
+  current: {
+    project: null,
+    status: 'idle',
+  },
   create: {
     status: 'idle',
     error: null,
@@ -133,12 +149,30 @@ export const updateProjectAsync = createAppThunk<Project, { id: string; fields: 
   },
 );
 
-export const getProjectStatsAsync = createAppThunk<ProjectStats, [string, keyof typeof DATE_RANGE_OPTIONS]>(
+export const getProjectStatsAsync = createAppThunk<ProjectStats, keyof typeof DATE_RANGE_OPTIONS>(
   'projects/getStats',
-  async ([projectName, dateRange]) => {
-    return await getProjectStats(projectName, dateRange);
+  async (dateRange) => {
+    return await getProjectStats(dateRange);
   },
 );
+
+// Set current project and configure interceptor for project-specific API calls
+export const setCurrentProjectAsync = createAppThunk<Project, string>(
+  'projects/setCurrentProject',
+  async (projectName): Promise<Project> => {
+    const project = await getProject(projectName);
+
+    // Set the project secret key for API authentication
+    interceptor.setProjectSecretKey(project.secretKey);
+
+    return project;
+  },
+);
+
+// Clear current project and reset interceptor
+export const clearCurrentProject = createAppThunk<void, void>('projects/clearCurrentProject', async () => {
+  interceptor.clearProjectSecretKey();
+});
 
 export const projectsSlice = createSlice({
   name: 'projects',
@@ -194,6 +228,8 @@ export const projectsSlice = createSlice({
       state.create.status = 'idle';
       state.create.isSuccess = true;
       state.detail.project = action.payload;
+      // Add the new project to the list
+      state.list.projects.unshift(action.payload);
     });
     builder.addCase(createProjectAsync.rejected, (state, action) => {
       state.create.status = 'failed';
@@ -230,6 +266,11 @@ export const projectsSlice = createSlice({
       state.update.status = 'idle';
       state.update.isSuccess = true;
       state.detail.project = action.payload;
+      // Update the project in the list
+      const projectIndex = state.list.projects.findIndex((p) => p.id === action.payload.id);
+      if (projectIndex !== -1) {
+        state.list.projects[projectIndex] = action.payload;
+      }
     });
     builder.addCase(updateProjectAsync.rejected, (state, action) => {
       state.update.status = 'failed';
@@ -303,6 +344,20 @@ export const projectsSlice = createSlice({
         return;
       }
     });
+    builder.addCase(setCurrentProjectAsync.pending, (state) => {
+      state.current.status = 'loading';
+    });
+    builder.addCase(setCurrentProjectAsync.fulfilled, (state, action) => {
+      state.current.status = 'idle';
+      state.current.project = action.payload;
+    });
+    builder.addCase(setCurrentProjectAsync.rejected, (state) => {
+      state.current.status = 'failed';
+    });
+    builder.addCase(clearCurrentProject.fulfilled, (state) => {
+      state.current.project = null;
+      state.current.status = 'idle';
+    });
   },
 });
 
@@ -310,6 +365,7 @@ export const { resetCreateSuccess, resetUpdateSuccess, resetProjectDetail } = pr
 
 export const selectProjectList = (state: RootState) => state.projects.list;
 export const selectProjectDetail = (state: RootState) => state.projects.detail;
+export const selectCurrentProject = (state: RootState) => state.projects.current;
 export const selectProjectCreate = (state: RootState) => state.projects.create;
 export const selectProjectUpdate = (state: RootState) => state.projects.update;
 export const selectProjectStats = (state: RootState) => state.projects.stats;

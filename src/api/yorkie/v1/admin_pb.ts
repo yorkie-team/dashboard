@@ -637,12 +637,7 @@ export class UpdateProjectResponse extends Message<UpdateProjectResponse> {
  */
 export class GetProjectStatsRequest extends Message<GetProjectStatsRequest> {
   /**
-   * @generated from field: string project_name = 1;
-   */
-  projectName = "";
-
-  /**
-   * @generated from field: yorkie.v1.GetProjectStatsRequest.DateRange date_range = 2;
+   * @generated from field: yorkie.v1.GetProjectStatsRequest.DateRange date_range = 1;
    */
   dateRange = GetProjectStatsRequest_DateRange.UNSPECIFIED;
 
@@ -654,8 +649,7 @@ export class GetProjectStatsRequest extends Message<GetProjectStatsRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "yorkie.v1.GetProjectStatsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "date_range", kind: "enum", T: proto3.getEnumType(GetProjectStatsRequest_DateRange) },
+    { no: 1, name: "date_range", kind: "enum", T: proto3.getEnumType(GetProjectStatsRequest_DateRange) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetProjectStatsRequest {
@@ -773,17 +767,12 @@ export class GetProjectStatsResponse extends Message<GetProjectStatsResponse> {
  */
 export class CreateDocumentRequest extends Message<CreateDocumentRequest> {
   /**
-   * @generated from field: string project_name = 1;
-   */
-  projectName = "";
-
-  /**
-   * @generated from field: string document_key = 2;
+   * @generated from field: string document_key = 1;
    */
   documentKey = "";
 
   /**
-   * @generated from field: string initial_root = 3;
+   * @generated from field: string initial_root = 2;
    */
   initialRoot = "";
 
@@ -795,9 +784,8 @@ export class CreateDocumentRequest extends Message<CreateDocumentRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "yorkie.v1.CreateDocumentRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "document_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "initial_root", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "document_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "initial_root", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateDocumentRequest {
@@ -859,27 +847,22 @@ export class CreateDocumentResponse extends Message<CreateDocumentResponse> {
  */
 export class ListDocumentsRequest extends Message<ListDocumentsRequest> {
   /**
-   * @generated from field: string project_name = 1;
-   */
-  projectName = "";
-
-  /**
-   * @generated from field: string previous_id = 2;
+   * @generated from field: string previous_id = 1;
    */
   previousId = "";
 
   /**
-   * @generated from field: int32 page_size = 3;
+   * @generated from field: int32 page_size = 2;
    */
   pageSize = 0;
 
   /**
-   * @generated from field: bool is_forward = 4;
+   * @generated from field: bool is_forward = 3;
    */
   isForward = false;
 
   /**
-   * @generated from field: bool include_root = 5;
+   * @generated from field: bool include_root = 4;
    */
   includeRoot = false;
 
@@ -891,11 +874,10 @@ export class ListDocumentsRequest extends Message<ListDocumentsRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "yorkie.v1.ListDocumentsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "previous_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "page_size", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 4, name: "is_forward", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 5, name: "include_root", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: "previous_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "page_size", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "is_forward", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: "include_root", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListDocumentsRequest {
@@ -957,12 +939,7 @@ export class ListDocumentsResponse extends Message<ListDocumentsResponse> {
  */
 export class GetDocumentRequest extends Message<GetDocumentRequest> {
   /**
-   * @generated from field: string project_name = 1;
-   */
-  projectName = "";
-
-  /**
-   * @generated from field: string document_key = 2;
+   * @generated from field: string document_key = 1;
    */
   documentKey = "";
 
@@ -974,8 +951,7 @@ export class GetDocumentRequest extends Message<GetDocumentRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "yorkie.v1.GetDocumentRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "document_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "document_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetDocumentRequest {
@@ -1037,22 +1013,17 @@ export class GetDocumentResponse extends Message<GetDocumentResponse> {
  */
 export class GetDocumentsRequest extends Message<GetDocumentsRequest> {
   /**
-   * @generated from field: string project_name = 1;
-   */
-  projectName = "";
-
-  /**
-   * @generated from field: repeated string document_keys = 2;
+   * @generated from field: repeated string document_keys = 1;
    */
   documentKeys: string[] = [];
 
   /**
-   * @generated from field: bool include_root = 3;
+   * @generated from field: bool include_root = 2;
    */
   includeRoot = false;
 
   /**
-   * @generated from field: bool include_presences = 4;
+   * @generated from field: bool include_presences = 3;
    */
   includePresences = false;
 
@@ -1064,10 +1035,9 @@ export class GetDocumentsRequest extends Message<GetDocumentsRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "yorkie.v1.GetDocumentsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "document_keys", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 3, name: "include_root", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 4, name: "include_presences", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: "document_keys", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 2, name: "include_root", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: "include_presences", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetDocumentsRequest {
@@ -1129,22 +1099,17 @@ export class GetDocumentsResponse extends Message<GetDocumentsResponse> {
  */
 export class UpdateDocumentRequest extends Message<UpdateDocumentRequest> {
   /**
-   * @generated from field: string project_name = 1;
-   */
-  projectName = "";
-
-  /**
-   * @generated from field: string document_key = 2;
+   * @generated from field: string document_key = 1;
    */
   documentKey = "";
 
   /**
-   * @generated from field: string root = 3;
+   * @generated from field: string root = 2;
    */
   root = "";
 
   /**
-   * @generated from field: string schema_key = 4;
+   * @generated from field: string schema_key = 3;
    */
   schemaKey = "";
 
@@ -1156,10 +1121,9 @@ export class UpdateDocumentRequest extends Message<UpdateDocumentRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "yorkie.v1.UpdateDocumentRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "document_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "root", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "schema_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "document_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "root", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "schema_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateDocumentRequest {
@@ -1221,17 +1185,12 @@ export class UpdateDocumentResponse extends Message<UpdateDocumentResponse> {
  */
 export class RemoveDocumentByAdminRequest extends Message<RemoveDocumentByAdminRequest> {
   /**
-   * @generated from field: string project_name = 1;
-   */
-  projectName = "";
-
-  /**
-   * @generated from field: string document_key = 2;
+   * @generated from field: string document_key = 1;
    */
   documentKey = "";
 
   /**
-   * @generated from field: bool force = 3;
+   * @generated from field: bool force = 2;
    */
   force = false;
 
@@ -1243,9 +1202,8 @@ export class RemoveDocumentByAdminRequest extends Message<RemoveDocumentByAdminR
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "yorkie.v1.RemoveDocumentByAdminRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "document_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "force", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: "document_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "force", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RemoveDocumentByAdminRequest {
@@ -1301,17 +1259,12 @@ export class RemoveDocumentByAdminResponse extends Message<RemoveDocumentByAdmin
  */
 export class GetSnapshotMetaRequest extends Message<GetSnapshotMetaRequest> {
   /**
-   * @generated from field: string project_name = 1;
-   */
-  projectName = "";
-
-  /**
-   * @generated from field: string document_key = 2;
+   * @generated from field: string document_key = 1;
    */
   documentKey = "";
 
   /**
-   * @generated from field: int64 server_seq = 3;
+   * @generated from field: int64 server_seq = 2;
    */
   serverSeq = protoInt64.zero;
 
@@ -1323,9 +1276,8 @@ export class GetSnapshotMetaRequest extends Message<GetSnapshotMetaRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "yorkie.v1.GetSnapshotMetaRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "document_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "server_seq", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: "document_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "server_seq", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSnapshotMetaRequest {
@@ -1399,17 +1351,12 @@ export class GetSnapshotMetaResponse extends Message<GetSnapshotMetaResponse> {
  */
 export class SearchDocumentsRequest extends Message<SearchDocumentsRequest> {
   /**
-   * @generated from field: string project_name = 1;
-   */
-  projectName = "";
-
-  /**
-   * @generated from field: string query = 2;
+   * @generated from field: string query = 1;
    */
   query = "";
 
   /**
-   * @generated from field: int32 page_size = 3;
+   * @generated from field: int32 page_size = 2;
    */
   pageSize = 0;
 
@@ -1421,9 +1368,8 @@ export class SearchDocumentsRequest extends Message<SearchDocumentsRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "yorkie.v1.SearchDocumentsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "page_size", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 1, name: "query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "page_size", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SearchDocumentsRequest {
@@ -1491,27 +1437,22 @@ export class SearchDocumentsResponse extends Message<SearchDocumentsResponse> {
  */
 export class ListChangesRequest extends Message<ListChangesRequest> {
   /**
-   * @generated from field: string project_name = 1;
-   */
-  projectName = "";
-
-  /**
-   * @generated from field: string document_key = 2;
+   * @generated from field: string document_key = 1;
    */
   documentKey = "";
 
   /**
-   * @generated from field: int64 previous_seq = 3;
+   * @generated from field: int64 previous_seq = 2;
    */
   previousSeq = protoInt64.zero;
 
   /**
-   * @generated from field: int32 page_size = 4;
+   * @generated from field: int32 page_size = 3;
    */
   pageSize = 0;
 
   /**
-   * @generated from field: bool is_forward = 5;
+   * @generated from field: bool is_forward = 4;
    */
   isForward = false;
 
@@ -1523,11 +1464,10 @@ export class ListChangesRequest extends Message<ListChangesRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "yorkie.v1.ListChangesRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "document_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "previous_seq", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 4, name: "page_size", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 5, name: "is_forward", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: "document_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "previous_seq", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 3, name: "page_size", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: "is_forward", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListChangesRequest {
@@ -1589,27 +1529,22 @@ export class ListChangesResponse extends Message<ListChangesResponse> {
  */
 export class CreateSchemaRequest extends Message<CreateSchemaRequest> {
   /**
-   * @generated from field: string project_name = 1;
-   */
-  projectName = "";
-
-  /**
-   * @generated from field: string schema_name = 2;
+   * @generated from field: string schema_name = 1;
    */
   schemaName = "";
 
   /**
-   * @generated from field: int32 schema_version = 3;
+   * @generated from field: int32 schema_version = 2;
    */
   schemaVersion = 0;
 
   /**
-   * @generated from field: string schema_body = 4;
+   * @generated from field: string schema_body = 3;
    */
   schemaBody = "";
 
   /**
-   * @generated from field: repeated yorkie.v1.Rule rules = 5;
+   * @generated from field: repeated yorkie.v1.Rule rules = 4;
    */
   rules: Rule[] = [];
 
@@ -1621,11 +1556,10 @@ export class CreateSchemaRequest extends Message<CreateSchemaRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "yorkie.v1.CreateSchemaRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "schema_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "schema_version", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 4, name: "schema_body", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "rules", kind: "message", T: Rule, repeated: true },
+    { no: 1, name: "schema_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "schema_version", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "schema_body", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "rules", kind: "message", T: Rule, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateSchemaRequest {
@@ -1686,11 +1620,6 @@ export class CreateSchemaResponse extends Message<CreateSchemaResponse> {
  * @generated from message yorkie.v1.ListSchemasRequest
  */
 export class ListSchemasRequest extends Message<ListSchemasRequest> {
-  /**
-   * @generated from field: string project_name = 1;
-   */
-  projectName = "";
-
   constructor(data?: PartialMessage<ListSchemasRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1699,7 +1628,6 @@ export class ListSchemasRequest extends Message<ListSchemasRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "yorkie.v1.ListSchemasRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListSchemasRequest {
@@ -1761,17 +1689,12 @@ export class ListSchemasResponse extends Message<ListSchemasResponse> {
  */
 export class GetSchemaRequest extends Message<GetSchemaRequest> {
   /**
-   * @generated from field: string project_name = 1;
-   */
-  projectName = "";
-
-  /**
-   * @generated from field: string schema_name = 2;
+   * @generated from field: string schema_name = 1;
    */
   schemaName = "";
 
   /**
-   * @generated from field: int32 version = 3;
+   * @generated from field: int32 version = 2;
    */
   version = 0;
 
@@ -1783,9 +1706,8 @@ export class GetSchemaRequest extends Message<GetSchemaRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "yorkie.v1.GetSchemaRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "schema_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "version", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 1, name: "schema_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "version", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSchemaRequest {
@@ -1847,12 +1769,7 @@ export class GetSchemaResponse extends Message<GetSchemaResponse> {
  */
 export class GetSchemasRequest extends Message<GetSchemasRequest> {
   /**
-   * @generated from field: string project_name = 1;
-   */
-  projectName = "";
-
-  /**
-   * @generated from field: string schema_name = 2;
+   * @generated from field: string schema_name = 1;
    */
   schemaName = "";
 
@@ -1864,8 +1781,7 @@ export class GetSchemasRequest extends Message<GetSchemasRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "yorkie.v1.GetSchemasRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "schema_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "schema_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSchemasRequest {
@@ -1927,17 +1843,12 @@ export class GetSchemasResponse extends Message<GetSchemasResponse> {
  */
 export class RemoveSchemaRequest extends Message<RemoveSchemaRequest> {
   /**
-   * @generated from field: string project_name = 1;
-   */
-  projectName = "";
-
-  /**
-   * @generated from field: string schema_name = 2;
+   * @generated from field: string schema_name = 1;
    */
   schemaName = "";
 
   /**
-   * @generated from field: int32 version = 3;
+   * @generated from field: int32 version = 2;
    */
   version = 0;
 
@@ -1949,9 +1860,8 @@ export class RemoveSchemaRequest extends Message<RemoveSchemaRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "yorkie.v1.RemoveSchemaRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "schema_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "version", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 1, name: "schema_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "version", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RemoveSchemaRequest {

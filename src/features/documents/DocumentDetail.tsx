@@ -20,16 +20,17 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectPreferences } from 'features/users/usersSlice';
 import { selectDocumentDetail, getDocumentAsync, removeDocumentByAdminAsync } from './documentsSlice';
+import { selectCurrentProject } from 'features/projects/projectsSlice';
 import { Icon, Button, CodeBlock, CopyButton, Popover, Dropdown, Modal } from 'components';
 import { formatNumber, humanFileSize } from 'utils/format';
 
 export function DocumentDetail() {
   const navigate = useNavigate();
   const { document } = useAppSelector(selectDocumentDetail);
+  const { project: currentProject } = useAppSelector(selectCurrentProject);
   const { use24HourClock } = useAppSelector(selectPreferences);
   const dispatch = useAppDispatch();
   const params = useParams();
-  const projectName = params.projectName || '';
   const documentKey = params.documentKey || '';
   const documentJSON = document ? JSON.parse(document.root) : {};
   const documentJSONStr = JSON.stringify(documentJSON, null, '\t');
@@ -38,13 +39,14 @@ export function DocumentDetail() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
+    if (!currentProject || !documentKey) return;
+
     dispatch(
       getDocumentAsync({
-        projectName,
         documentKey,
       }),
     );
-  }, [dispatch, projectName, documentKey]);
+  }, [dispatch, currentProject, documentKey]);
 
   if (!document) {
     return null;
@@ -55,7 +57,7 @@ export function DocumentDetail() {
       <div className="detail_content">
         <div className="document_header">
           <div className="title_box">
-            <Link to="../" state={{ previousProjectName: projectName }} className="btn_back">
+            <Link to="../" className="btn_back">
               <Icon type="arrowBack" />
             </Link>
             <div className="title_inner">
@@ -175,7 +177,7 @@ export function DocumentDetail() {
               <Button
                 color="danger"
                 onClick={async () => {
-                  await dispatch(removeDocumentByAdminAsync({ projectName, documentKey: documentKey, force: false }));
+                  await dispatch(removeDocumentByAdminAsync({ documentKey: documentKey, force: false }));
                   navigate(`..`, { replace: true });
                 }}
               >

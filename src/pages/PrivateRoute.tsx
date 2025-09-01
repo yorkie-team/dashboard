@@ -24,21 +24,21 @@ export function PrivateRoute() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const location = useLocation();
-  const { isValidToken, logout, fetchMe: fetchMeState } = useAppSelector(selectUsers);
+  const { isAuthenticated, logout, fetchMe: fetchMeState } = useAppSelector(selectUsers);
 
   useEffect(() => {
     if (logout.isSuccess) {
       window.location.href = `${import.meta.env.VITE_SERVICE_URL}`;
+      return;
     }
 
-    if (!isValidToken) {
-      if (fetchMeState.status === 'idle') {
-        dispatch(fetchMe());
-      } else if (fetchMeState.status === 'failed') {
-        navigate('/login', { state: { from: location.pathname } });
-      }
+    // Only try to fetch user info if token is invalid and we're not already loading/processing
+    if (!isAuthenticated && fetchMeState.status === 'idle') {
+      dispatch(fetchMe());
+    } else if (!isAuthenticated && fetchMeState.status === 'failed') {
+      navigate('/login', { state: { from: location.pathname } });
     }
-  }, [dispatch, navigate, location, isValidToken, logout, fetchMeState]);
+  }, [dispatch, navigate, location, isAuthenticated, logout.isSuccess, fetchMeState.status]);
 
   return <Outlet />;
 }

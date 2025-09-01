@@ -130,6 +130,7 @@ export function ProjectList() {
   );
 
   useEffect(() => {
+    // Always fetch projects when component mounts to ensure we have the latest list
     dispatch(listProjectsAsync());
   }, [dispatch]);
 
