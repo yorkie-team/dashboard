@@ -75,7 +75,6 @@ const HISTORIES_LIMIT = 20;
 export const listDocumentsAsync = createAppThunk(
   'documents/listDocuments',
   async (params: {
-    projectName: string;
     isForward: boolean;
     previousID?: string;
   }): Promise<{
@@ -83,8 +82,8 @@ export const listDocumentsAsync = createAppThunk(
     hasNext: boolean;
     hasPrevious: boolean;
   }> => {
-    const { projectName, isForward, previousID = '' } = params;
-    const documents = await listDocuments(projectName, previousID, DOCUMENTS_LIMIT + 1, isForward);
+    const { isForward, previousID = '' } = params;
+    const documents = await listDocuments(previousID, DOCUMENTS_LIMIT + 1, isForward);
 
     return getPaginationData({ data: documents, isForward, previousID, pageSize: DOCUMENTS_LIMIT });
   },
@@ -92,9 +91,9 @@ export const listDocumentsAsync = createAppThunk(
 
 export const getDocumentAsync = createAppThunk(
   'documents/getDocument',
-  async (params: { projectName: string; documentKey: string }): Promise<DocumentSummary> => {
-    const { projectName, documentKey } = params;
-    const document = await getDocument(projectName, documentKey);
+  async (params: { documentKey: string }): Promise<DocumentSummary> => {
+    const { documentKey } = params;
+    const document = await getDocument(documentKey);
     return document;
   },
 );
@@ -102,14 +101,13 @@ export const getDocumentAsync = createAppThunk(
 export const searchDocumentsAsync = createAppThunk(
   'documents/searchDocuments',
   async (params: {
-    projectName: string;
     documentQuery: string;
   }): Promise<{
     totalCount: number;
     documents: Array<DocumentSummary>;
   }> => {
-    const { projectName, documentQuery } = params;
-    const res = await searchDocuments(projectName, documentQuery, DOCUMENTS_LIMIT);
+    const { documentQuery } = params;
+    const res = await searchDocuments(documentQuery, DOCUMENTS_LIMIT);
 
     return {
       totalCount: res.totalCount,
@@ -121,7 +119,6 @@ export const searchDocumentsAsync = createAppThunk(
 export const listDocumentHistoriesAsync = createAppThunk(
   'documents/listDocumentHistories',
   async (params: {
-    projectName: string;
     documentKey: string;
     isForward: boolean;
     previousSeq?: bigint;
@@ -130,14 +127,8 @@ export const listDocumentHistoriesAsync = createAppThunk(
     hasNext: boolean;
     hasPrevious: boolean;
   }> => {
-    const { projectName, documentKey, isForward, previousSeq = 0n } = params;
-    const histories = await listDocumentHistories(
-      projectName,
-      documentKey,
-      previousSeq,
-      HISTORIES_LIMIT + 1,
-      isForward,
-    );
+    const { documentKey, isForward, previousSeq = 0n } = params;
+    const histories = await listDocumentHistories(documentKey, previousSeq, HISTORIES_LIMIT + 1, isForward);
 
     return getPaginationData({
       data: histories,
@@ -151,9 +142,9 @@ export const listDocumentHistoriesAsync = createAppThunk(
 
 export const removeDocumentByAdminAsync = createAppThunk(
   'documents/removeDocumentByAdmin',
-  async (params: { projectName: string; documentKey: string; force: boolean }): Promise<void> => {
-    const { projectName, documentKey, force } = params;
-    await removeDocumentByAdmin(projectName, documentKey, force);
+  async (params: { documentKey: string; force: boolean }): Promise<void> => {
+    const { documentKey, force } = params;
+    await removeDocumentByAdmin(documentKey, force);
   },
 );
 

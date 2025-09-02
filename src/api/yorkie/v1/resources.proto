@@ -58,7 +58,7 @@ message Change {
 
 message ChangeID {
   uint32 client_seq = 1;
-  int64 server_seq = 2;
+  int64 server_seq = 2; 
   int64 lamport = 3;
   bytes actor_id = 4;
   VersionVector version_vector = 5;
@@ -100,16 +100,6 @@ message Operation {
     string content = 5;
     TimeTicket executed_at = 6;
     map<string, string> attributes = 7;
-  }
-  // NOTE(hackerwins): Select Operation is not used in the current version.
-  // In the previous version, it was used to represent selection of Text.
-  // However, it has been replaced by Presence now. It is retained for backward
-  // compatibility purposes.
-  message Select {
-    TimeTicket parent_created_at = 1;
-    TextNodePos from = 2;
-    TextNodePos to = 3;
-    TimeTicket executed_at = 4;
   }
   message Style {
     TimeTicket parent_created_at = 1;
@@ -155,7 +145,6 @@ message Operation {
     Move move = 3;
     Remove remove = 4;
     Edit edit = 5;
-    Select select = 6;
     Style style = 7;
     Increase increase = 8;
     TreeEdit tree_edit = 9;

@@ -21,7 +21,7 @@ import { User, RPCStatusCode, RPCError } from 'api/types';
 import { RootState } from 'app/store';
 
 export interface UsersState {
-  isValidToken: boolean;
+  isAuthenticated: boolean;
   authProvider: string;
   username: string;
   fetchMe: {
@@ -93,7 +93,7 @@ export type ChangePasswordFields = {
 };
 
 const initialState: UsersState = {
-  isValidToken: false,
+  isAuthenticated: false,
   authProvider: '',
   username: '',
   fetchMe: {
@@ -165,8 +165,8 @@ export const usersSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    setIsValidToken: (state, action: PayloadAction<boolean>) => {
-      state.isValidToken = action.payload;
+    setIsAuthenticated: (state, action: PayloadAction<boolean>) => {
+      state.isAuthenticated = action.payload;
     },
     resetSignupState: (state) => {
       state.signup.isSuccess = false;
@@ -204,19 +204,22 @@ export const usersSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(fetchMe.pending, (state) => {
+      state.fetchMe.status = 'loading';
+    });
     builder.addCase(fetchMe.fulfilled, (state, action) => {
-      state.isValidToken = true;
+      state.isAuthenticated = true;
       state.username = action.payload.username;
       state.authProvider = action.payload.authProvider;
       state.fetchMe.status = 'idle';
     });
     builder.addCase(fetchMe.rejected, (state) => {
-      state.isValidToken = false;
+      state.isAuthenticated = false;
       state.username = '';
       state.fetchMe.status = 'failed';
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
-      state.isValidToken = true;
+      state.isAuthenticated = true;
       state.username = action.payload.username;
       state.login.status = 'idle';
       state.login.isSuccess = true;
@@ -242,7 +245,7 @@ export const usersSlice = createSlice({
     });
     builder.addCase(logoutUser.fulfilled, (state) => {
       state.logout.isSuccess = true;
-      state.isValidToken = false;
+      state.isAuthenticated = false;
       state.username = '';
       state.login.status = 'idle';
       state.login.isSuccess = false;
@@ -349,7 +352,7 @@ export const usersSlice = createSlice({
 });
 
 export const {
-  setIsValidToken,
+  setIsAuthenticated,
   resetSignupState,
   toggleUseSystemTheme,
   toggleUseDarkTheme,

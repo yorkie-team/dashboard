@@ -38,6 +38,7 @@ import {
   listSchemasAsync,
   removeSchemaAsync,
 } from './schemasSlice';
+import { selectCurrentProject } from 'features/projects/projectsSlice';
 
 const INITIAL_BODY = `// Document is the root of the document.
 // Every schema must have a Document type.
@@ -77,10 +78,11 @@ export function SchemaDetail() {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useAppDispatch();
-  const { projectName, schemaName } = useParams();
+  const { schemaName } = useParams();
   const { theme } = useAppSelector(selectPreferences);
   const { isSuccess, error } = useAppSelector(selectSchemaCreate);
   const { schemas } = useAppSelector(selectSchemaDetail);
+  const { project: currentProject } = useAppSelector(selectCurrentProject);
   const [schemaVersion, setSchemaVersion] = useState<number>(0);
   const [schemaBody, setSchemaBody] = useState(INITIAL_BODY);
   const [createdSchemaName, setCreatedSchemaName] = useState<string | null>(null);
@@ -99,13 +101,13 @@ export function SchemaDetail() {
   } = useForm<SchemaCreateFields>();
 
   useEffect(() => {
-    if (!projectName || !schemaName) {
+    if (!currentProject || !schemaName) {
       dispatch(resetDetailSuccess());
       return;
     }
 
-    dispatch(getSchemasAsync({ projectName, schemaName }));
-  }, [projectName, schemaName]);
+    dispatch(getSchemasAsync({ schemaName }));
+  }, [currentProject, schemaName]);
 
   useEffect(() => {
     reset();
@@ -129,8 +131,8 @@ export function SchemaDetail() {
     if (isSuccess && createdSchemaName) {
       dispatch(resetCreateSuccess());
       dispatch(resetDetailSuccess());
-      dispatch(listSchemasAsync({ projectName: projectName! }));
-      dispatch(getSchemasAsync({ projectName: projectName!, schemaName: createdSchemaName }));
+      dispatch(listSchemasAsync());
+      dispatch(getSchemasAsync({ schemaName: createdSchemaName }));
       navigate(`${location.pathname.substring(0, location.pathname.lastIndexOf('/'))}/${createdSchemaName}`);
     }
   }, [isSuccess, createdSchemaName, navigate, location]);
@@ -161,7 +163,6 @@ export function SchemaDetail() {
     (data: SchemaCreateFields) => {
       const schemaData = {
         name: schemas.length ? schemas[0].name : data.name,
-        projectName: projectName!,
         version: schemas.length ? schemas[0].version + 1 : 1,
         body: schemaBody,
         ruleset: buildRuleset(schemaBody),
@@ -170,7 +171,7 @@ export function SchemaDetail() {
       setCreatedSchemaName(schemaData.name);
       dispatch(createSchemaAsync(schemaData));
     },
-    [dispatch, projectName, schemaBody],
+    [dispatch, schemaBody],
   );
 
   return (
@@ -310,9 +311,7 @@ export function SchemaDetail() {
               <Button
                 color="danger"
                 onClick={async () => {
-                  await dispatch(
-                    removeSchemaAsync({ projectName: projectName!, schemaName: schemaName!, version: schemaVersion }),
-                  );
+                  await dispatch(removeSchemaAsync({ schemaName: schemaName!, version: schemaVersion }));
                   navigate(`..`, { replace: true });
                 }}
               >

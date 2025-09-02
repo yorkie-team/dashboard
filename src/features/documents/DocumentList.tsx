@@ -25,6 +25,7 @@ import {
   searchDocumentsAsync,
   removeDocumentByAdminAsync,
 } from './documentsSlice';
+import { selectCurrentProject } from 'features/projects/projectsSlice';
 import { Button, SearchBar, Icon, Checkbox } from 'components';
 import { selectPreferences } from 'features/users/usersSlice';
 import { formatNumber } from '../../utils/format';
@@ -32,9 +33,9 @@ import { formatNumber } from '../../utils/format';
 export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean }) {
   const dispatch = useAppDispatch();
   const params = useParams();
-  const projectName = params.projectName || '';
   const documentKey = params.documentKey || '';
   const { type: queryType, documents, hasPrevious, hasNext, status } = useAppSelector(selectDocumentList);
+  const { project: currentProject } = useAppSelector(selectCurrentProject);
   const { use24HourClock } = useAppSelector(selectPreferences);
   const navigationType = useNavigationType();
   const previousProjectName = useLocation().state?.previousProjectName;
@@ -48,49 +49,55 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
   const handlePrevBtnClicked = useCallback(() => {
     dispatch(
       listDocumentsAsync({
-        projectName,
         isForward: true,
         previousID: documents[0].id,
       }),
     );
-  }, [dispatch, projectName, documents]);
+  }, [dispatch, documents]);
 
   const handleNextBtnClicked = useCallback(() => {
     const lastDocument = documents[documents.length - 1];
     dispatch(
       listDocumentsAsync({
-        projectName,
         isForward: false,
         previousID: lastDocument.id,
       }),
     );
-  }, [dispatch, projectName, documents]);
+  }, [dispatch, documents]);
 
   const handleSearch = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (query === null || query === '') {
-        dispatch(listDocumentsAsync({ projectName, isForward: false }));
+        dispatch(listDocumentsAsync({ isForward: false }));
         return;
       }
 
       dispatch(
         searchDocumentsAsync({
-          projectName,
           documentQuery: query,
         }),
       );
 
       SetQuery('');
     },
-    [dispatch, projectName, query],
+    [dispatch, query],
   );
 
+  // Load initial documents when component mounts or current project changes
   useEffect(() => {
-    if (navigationType !== 'POP' && previousProjectName === projectName) return;
+    if (!currentProject) return;
 
-    dispatch(listDocumentsAsync({ projectName, isForward: false }));
-  }, [dispatch, previousProjectName, projectName, navigationType]);
+    // Load documents on initial mount or when project changes
+    dispatch(listDocumentsAsync({ isForward: false }));
+  }, [dispatch, currentProject]);
+
+  // Handle browser navigation (back/forward)
+  useEffect(() => {
+    if (navigationType !== 'POP' || !currentProject) return;
+
+    dispatch(listDocumentsAsync({ isForward: false }));
+  }, [dispatch, navigationType, currentProject]);
 
   return (
     <>
@@ -110,12 +117,12 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
               onClick={async () => {
                 await Promise.all(
                   selectedDocKeys.map((docKey) =>
-                    dispatch(removeDocumentByAdminAsync({ projectName, documentKey: docKey, force: false })),
+                    dispatch(removeDocumentByAdminAsync({ documentKey: docKey, force: false })),
                   ),
                 );
                 setSelectedDocKeys([]);
                 // TODO(hackerwins): need to keep the current page after deleting documents.
-                dispatch(listDocumentsAsync({ projectName, isForward: false }));
+                dispatch(listDocumentsAsync({ isForward: false }));
               }}
             >
               Delete
@@ -206,11 +213,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
               const { key, attachedClients, updatedAt, schemaKey } = document;
               return (
                 <li key={key} className="tbody_item">
-                  <Link
-                    to={`./${key}`}
-                    state={{ previousProjectName: projectName }}
-                    className={classNames('link', { is_active: key === documentKey })}
-                  >
+                  <Link to={`./${key}`} className={classNames('link', { is_active: key === documentKey })}>
                     <span className="td id">
                       {key}
                       {schemaKey && <span className="badge">{schemaKey}</span>}

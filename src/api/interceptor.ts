@@ -18,27 +18,57 @@ import pkg from '../../package.json';
 import { Interceptor } from '@connectrpc/connect';
 
 export class InterceptorBuilder {
-  private token?: string;
+  private projectSecretKey?: string;
 
-  constructor(token?: string) {
-    this.token = token;
+  /**
+   * `setProjectSecretKey` sets the project secret key for project-related API calls.
+   * @param projectSecretKey The project secret key to set.
+   */
+  public setProjectSecretKey(projectSecretKey: string) {
+    this.projectSecretKey = projectSecretKey;
   }
 
   /**
-   * `setToken` sets the token to the interceptor builder.
-   * @param token The token to set.
+   * `clearProjectSecretKey` clears the project secret key.
    */
-  public setToken(token: string) {
-    this.token = token;
+  public clearProjectSecretKey() {
+    this.projectSecretKey = undefined;
   }
 
   public createAuthInterceptor(): Interceptor {
     return (next) => async (req) => {
-      if (this.token) {
-        req.header.set('authorization', this.token);
+      // Check if this is a project-related API call
+      if (this.isProjectRelatedAPI(req.url) && this.projectSecretKey) {
+        req.header.set('authorization', `API-Key ${this.projectSecretKey}`);
       }
       return await next(req);
     };
+  }
+
+  /**
+   * `isProjectRelatedAPI` determines if the given URL is a project-related API.
+   * @param url The request URL to check.
+   * @returns true if the URL is for a project-related API.
+   */
+  private isProjectRelatedAPI(url: string): boolean {
+    const projectRelatedAPIs = [
+      'ListDocuments',
+      'GetDocument',
+      'GetDocuments',
+      'UpdateDocument',
+      'RemoveDocumentByAdmin',
+      'GetSnapshotMeta',
+      'SearchDocuments',
+      'ListChanges',
+      'GetProjectStats',
+      'CreateSchema',
+      'ListSchemas',
+      'GetSchema',
+      'GetSchemas',
+      'RemoveSchema',
+    ];
+
+    return projectRelatedAPIs.some((api) => url.includes(api));
   }
 
   /**

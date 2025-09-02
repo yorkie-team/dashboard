@@ -14,24 +14,44 @@
  * limitations under the License.
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useAppSelector, useAppDispatch } from 'app/hooks';
-import { getProjectStatsAsync, selectProjectDetail, selectProjectStats, resetProjectDetail } from './projectsSlice';
+import {
+  getProjectStatsAsync,
+  selectProjectDetail,
+  selectProjectStats,
+  selectCurrentProject,
+  resetProjectDetail,
+} from './projectsSlice';
 import { Icon, Popover, Dropdown, Chart } from 'components';
 import { formatNumber } from 'utils';
 import { DATE_RANGE_OPTIONS } from 'api/types';
 
 export function Overview() {
   const { project } = useAppSelector(selectProjectDetail);
-  const { stats } = useAppSelector(selectProjectStats);
+  const { project: currentProject } = useAppSelector(selectCurrentProject);
+  const { stats, status } = useAppSelector(selectProjectStats);
   const [dateRangePickerOpened, setDateRangePickerOpened] = useState(false);
   const [range, setDateRange] = useState<keyof typeof DATE_RANGE_OPTIONS>('oneweek');
   const dispatch = useAppDispatch();
+  const lastFetchedRange = useRef<string | null>(null);
+  const lastFetchedProject = useRef<string | null>(null);
 
   useEffect(() => {
-    if (!project) return;
-    dispatch(getProjectStatsAsync([project.name, range]));
-  }, [project, range, dispatch]);
+    // Wait for both project detail and current project to be set
+    // currentProject ensures that the interceptor secret key is configured
+    if (!project || !currentProject || project.name !== currentProject.name) return;
+
+    const currentKey = `${project.name}-${range}`;
+    const lastKey = `${lastFetchedProject.current}-${lastFetchedRange.current}`;
+
+    // Only fetch if we haven't fetched this combination before and not currently loading
+    if (currentKey !== lastKey && status !== 'loading') {
+      lastFetchedProject.current = project.name;
+      lastFetchedRange.current = range;
+      dispatch(getProjectStatsAsync(range));
+    }
+  }, [project, currentProject, range, dispatch, status]);
 
   useEffect(() => {
     return () => {

@@ -462,12 +462,6 @@ export class Operation extends Message<Operation> {
     case: "edit";
   } | {
     /**
-     * @generated from field: yorkie.v1.Operation.Select select = 6;
-     */
-    value: Operation_Select;
-    case: "select";
-  } | {
-    /**
      * @generated from field: yorkie.v1.Operation.Style style = 7;
      */
     value: Operation_Style;
@@ -511,7 +505,6 @@ export class Operation extends Message<Operation> {
     { no: 3, name: "move", kind: "message", T: Operation_Move, oneof: "body" },
     { no: 4, name: "remove", kind: "message", T: Operation_Remove, oneof: "body" },
     { no: 5, name: "edit", kind: "message", T: Operation_Edit, oneof: "body" },
-    { no: 6, name: "select", kind: "message", T: Operation_Select, oneof: "body" },
     { no: 7, name: "style", kind: "message", T: Operation_Style, oneof: "body" },
     { no: 8, name: "increase", kind: "message", T: Operation_Increase, oneof: "body" },
     { no: 9, name: "tree_edit", kind: "message", T: Operation_TreeEdit, oneof: "body" },
@@ -822,66 +815,6 @@ export class Operation_Edit extends Message<Operation_Edit> {
 
   static equals(a: Operation_Edit | PlainMessage<Operation_Edit> | undefined, b: Operation_Edit | PlainMessage<Operation_Edit> | undefined): boolean {
     return proto3.util.equals(Operation_Edit, a, b);
-  }
-}
-
-/**
- * NOTE(hackerwins): Select Operation is not used in the current version.
- * In the previous version, it was used to represent selection of Text.
- * However, it has been replaced by Presence now. It is retained for backward
- * compatibility purposes.
- *
- * @generated from message yorkie.v1.Operation.Select
- */
-export class Operation_Select extends Message<Operation_Select> {
-  /**
-   * @generated from field: yorkie.v1.TimeTicket parent_created_at = 1;
-   */
-  parentCreatedAt?: TimeTicket;
-
-  /**
-   * @generated from field: yorkie.v1.TextNodePos from = 2;
-   */
-  from?: TextNodePos;
-
-  /**
-   * @generated from field: yorkie.v1.TextNodePos to = 3;
-   */
-  to?: TextNodePos;
-
-  /**
-   * @generated from field: yorkie.v1.TimeTicket executed_at = 4;
-   */
-  executedAt?: TimeTicket;
-
-  constructor(data?: PartialMessage<Operation_Select>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "yorkie.v1.Operation.Select";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "parent_created_at", kind: "message", T: TimeTicket },
-    { no: 2, name: "from", kind: "message", T: TextNodePos },
-    { no: 3, name: "to", kind: "message", T: TextNodePos },
-    { no: 4, name: "executed_at", kind: "message", T: TimeTicket },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Operation_Select {
-    return new Operation_Select().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Operation_Select {
-    return new Operation_Select().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Operation_Select {
-    return new Operation_Select().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: Operation_Select | PlainMessage<Operation_Select> | undefined, b: Operation_Select | PlainMessage<Operation_Select> | undefined): boolean {
-    return proto3.util.equals(Operation_Select, a, b);
   }
 }
 

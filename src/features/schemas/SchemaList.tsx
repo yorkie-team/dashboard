@@ -20,21 +20,24 @@ import { fromUnixTime, format } from 'date-fns';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectSchemaList, listSchemasAsync } from './schemasSlice';
+import { selectCurrentProject } from 'features/projects/projectsSlice';
 import { selectPreferences } from 'features/users/usersSlice';
 import { Button, Icon } from 'components';
 
 export function SchemaList({ isDetailOpen = false }: { isDetailOpen?: boolean }) {
   const dispatch = useAppDispatch();
   const params = useParams();
-  const projectName = params.projectName || '';
   const schemaName = params.schemaName || '';
   const { schemas, status } = useAppSelector(selectSchemaList);
+  const { project: currentProject } = useAppSelector(selectCurrentProject);
   const { use24HourClock } = useAppSelector(selectPreferences);
   const url = useLocation().pathname;
 
   useEffect(() => {
-    dispatch(listSchemasAsync({ projectName }));
-  }, [dispatch, projectName]);
+    if (!currentProject) return;
+
+    dispatch(listSchemasAsync());
+  }, [dispatch, currentProject]);
 
   return (
     <>
