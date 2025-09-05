@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectGlobalError, resetGlobalError } from './globalErrorSlice';
 import { Modal, Icon } from 'components';

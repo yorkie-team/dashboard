@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { ReactNode, InputHTMLAttributes } from 'react';
+import { ReactNode, InputHTMLAttributes, forwardRef } from 'react';
 import classNames from 'classnames';
 import { InputHelperText } from './InputHelperText';
 
@@ -31,7 +31,7 @@ type InputTextBoxProps = {
   fullWidth?: boolean;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-export const InputTextBox = React.forwardRef((props: InputTextBoxProps, ref) => {
+export const InputTextBox = forwardRef((props: InputTextBoxProps, ref) => {
   return <InputTextBoxInner {...props} inputRef={ref} />;
 });
 InputTextBox.displayName = 'InputTextBox';

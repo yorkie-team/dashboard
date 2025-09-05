@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { fromUnixTime, format } from 'date-fns';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
@@ -34,18 +34,14 @@ export function DocumentDetail() {
   const documentKey = params.documentKey || '';
   const documentJSON = document ? JSON.parse(document.root) : {};
   const documentJSONStr = JSON.stringify(documentJSON, null, '\t');
-  const [viewType, SetViewType] = useState('code');
+  const [showContent, setShowContent] = useState<'root' | 'presence'>('root');
   const [opened, setOpened] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     if (!currentProject || !documentKey) return;
 
-    dispatch(
-      getDocumentAsync({
-        documentKey,
-      }),
-    );
+    dispatch(getDocumentAsync({ documentKey }));
   }, [dispatch, currentProject, documentKey]);
 
   if (!document) {
@@ -117,16 +113,16 @@ export function DocumentDetail() {
           </div>
           <div className="box_right">
             <Button
-              icon={<Icon type="codeSnippet" />}
-              color="toggle"
-              onClick={() => SetViewType('code')}
-              className={viewType === 'code' ? 'is_active' : ''}
-            />
-            <Button
               icon={<Icon type="branch" />}
               color="toggle"
-              onClick={() => SetViewType('tree')}
-              className={viewType === 'tree' ? 'is_active' : ''}
+              onClick={() => setShowContent('root')}
+              className={showContent === 'root' ? 'is_active' : ''}
+            />
+            <Button
+              icon={<Icon type="addMember" />}
+              color="toggle"
+              onClick={() => setShowContent('presence')}
+              className={showContent === 'presence' ? 'is_active' : ''}
             />
             <div className="btn_area">
               <CopyButton value={document?.root || ''} timeout={1000}>
@@ -145,14 +141,18 @@ export function DocumentDetail() {
             </div>
           </div>
         </div>
-        {viewType === 'code' && (
+        {showContent === 'root' && (
           <div className="codeblock">
             <CodeBlock.Code code={documentJSONStr} language="json" withLineNumbers />
           </div>
         )}
-        {viewType === 'tree' && (
-          <div className="codeblock_tree_box">
-            <CodeBlock.Tree code={documentJSON} />
+        {showContent === 'presence' && (
+          <div className="codeblock">
+            <CodeBlock.Code
+              code={JSON.stringify(document.presences, null, '\t') || '{}'}
+              language="json"
+              withLineNumbers
+            />
           </div>
         )}
       </div>

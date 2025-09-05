@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useCallback, useState, useEffect } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import { Button, Icon, Modal, InputTextBox } from 'components';
 import { selectUsers, ChangePasswordFields, changePassword, logoutUser } from './usersSlice';
 import { useAppDispatch, useAppSelector } from 'app/hooks';

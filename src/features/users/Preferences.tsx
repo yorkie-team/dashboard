@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { InputToggle } from 'components';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectPreferences, toggleUseSystemTheme, toggleUseDarkTheme, toggleUse24HourClock } from './usersSlice';

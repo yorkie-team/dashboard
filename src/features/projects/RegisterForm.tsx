@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useEffect, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
@@ -39,9 +39,12 @@ export function RegisterForm() {
   const { isSuccess, error } = useAppSelector(selectProjectCreate);
   const { project } = useAppSelector(selectProjectDetail);
 
-  const onSubmit = useCallback((data: ProjectCreateFields) => {
-    dispatch(createProjectAsync(data));
-  }, [dispatch]);
+  const onSubmit = useCallback(
+    (data: ProjectCreateFields) => {
+      dispatch(createProjectAsync(data));
+    },
+    [dispatch],
+  );
 
   useEffect(() => {
     if (!error) return;
@@ -76,7 +79,9 @@ export function RegisterForm() {
           </div>
         </div>
         <Button.Box>
-          <Button type="submit" className="orange_0">Create</Button>
+          <Button type="submit" className="orange_0">
+            Create
+          </Button>
         </Button.Box>
       </fieldset>
     </form>

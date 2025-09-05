@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { ReactNode } from 'react';
+import { forwardRef, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
@@ -28,7 +28,7 @@ type DropdownProps = {
 };
 type DropdownRef = HTMLDivElement;
 
-export const Dropdown = React.forwardRef<DropdownRef, DropdownProps>(({ children, large, shadow, className }, ref) => {
+export const Dropdown = forwardRef<DropdownRef, DropdownProps>(({ children, large, shadow, className }, ref) => {
   const shadowClass = shadow ? `shadow_${shadow}` : '';
 
   return (

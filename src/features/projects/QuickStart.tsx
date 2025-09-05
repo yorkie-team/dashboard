@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import classNames from 'classnames';
 import { useAppSelector } from 'app/hooks';
 import { selectProjectDetail } from './projectsSlice';

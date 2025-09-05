@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { getProjectAsync, setCurrentProjectAsync, selectCurrentProject, selectProjectDetail } from './projectsSlice';

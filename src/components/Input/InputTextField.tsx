@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useCallback, useRef, useState } from 'react';
+import { forwardRef, useCallback, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { Icon, Button, InputHelperText } from 'components';
 import { useOutsideClick, useAreaBlur } from 'hooks';
@@ -35,7 +35,7 @@ type InputTextFieldProps = {
   onSuccessEnd?: () => void;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
-export const InputTextField = React.forwardRef<HTMLInputElement, InputTextFieldProps>(
+export const InputTextField = forwardRef<HTMLInputElement, InputTextFieldProps>(
   (
     {
       type = 'text',

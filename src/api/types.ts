@@ -14,10 +14,15 @@
  * limitations under the License.
  */
 
+export type Presence = {
+  [key: string]: string;
+};
+
 export type DocumentSummary = {
   id: string;
   key: string;
   root: string;
+  presences?: { [key: string]: Presence };
   attachedClients: number;
   docSize?: DocSize;
   createdAt: number;
@@ -102,8 +107,7 @@ export type AuthWebhookMethod =
   | 'WatchDocuments'
   | 'Broadcast';
 
-export type EventWebhookEvent =
-  | 'DocumentRootChanged';
+export type EventWebhookEvent = 'DocumentRootChanged';
 
 export const AUTH_WEBHOOK_METHODS: Array<AuthWebhookMethod> = [
   'ActivateClient',
@@ -115,9 +119,7 @@ export const AUTH_WEBHOOK_METHODS: Array<AuthWebhookMethod> = [
   'Broadcast',
 ];
 
-export const EVENT_WEBHOOK_EVENTS: Array<EventWebhookEvent> = [
-  'DocumentRootChanged',
-];
+export const EVENT_WEBHOOK_EVENTS: Array<EventWebhookEvent> = ['DocumentRootChanged'];
 
 export enum RPCStatusCode {
   OK = 0,

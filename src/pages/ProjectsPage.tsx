@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ProjectList } from 'features/projects';
 import BannerSVG from 'assets/images/@tmp/sample_banner_icon.svg?react';
 import { Button, Icon } from 'components';
