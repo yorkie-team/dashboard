@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';

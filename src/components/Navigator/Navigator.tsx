@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import classNames from 'classnames';
 
 export const Navigator = ({ navList }: { navList: Array<{ name: string; id: string }> }) => {

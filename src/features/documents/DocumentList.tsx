@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Link, useLocation, useParams, useNavigationType } from 'react-router-dom';
 import { fromUnixTime, format } from 'date-fns';
 import classNames from 'classnames';

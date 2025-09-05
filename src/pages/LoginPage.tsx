@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { LoginForm } from 'features/users';
 import { PageTemplate } from './PageTemplate';
 import { Icon, Button } from 'components';

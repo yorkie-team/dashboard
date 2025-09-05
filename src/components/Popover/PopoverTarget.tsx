@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { cloneElement } from 'react';
+import { cloneElement } from 'react';
 import { isElement } from 'utils';
 import { usePopoverContext } from './Popover.context';
 

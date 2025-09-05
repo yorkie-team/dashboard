@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { DataSize, DATE_RANGE_OPTIONS, DocSize, Schema } from './types';
+import { DataSize, DATE_RANGE_OPTIONS, DocSize, Presence, Schema } from './types';
 import { Timestamp as PbTimestamp } from '@bufbuild/protobuf';
 import { User, Project, DocumentSummary, AuthWebhookMethod, EventWebhookEvent, FieldViolation } from './types';
 import { Change, converter, Indexable } from '@yorkie-js/sdk';
@@ -74,7 +74,7 @@ export function fromProjects(pbProjects: Array<PbProject>): Array<Project> {
 }
 
 export function fromDocumentSummary(pbDocumentSummary: PbDocumentSummary): DocumentSummary {
-  return {
+  const summary: DocumentSummary = {
     id: pbDocumentSummary.id,
     key: pbDocumentSummary.key,
     root: pbDocumentSummary.root,
@@ -85,6 +85,28 @@ export function fromDocumentSummary(pbDocumentSummary: PbDocumentSummary): Docum
     updatedAt: fromTimestamp(pbDocumentSummary.updatedAt!),
     schemaKey: pbDocumentSummary.schemaKey,
   };
+
+  // Convert presences if they exist
+  if (pbDocumentSummary.presences && Object.keys(pbDocumentSummary.presences).length > 0) {
+    summary.presences = {};
+    for (const [key, pbPresence] of Object.entries(pbDocumentSummary.presences)) {
+      if (!pbPresence || !pbPresence.data) {
+        continue;
+      }
+
+      const presence: Presence = {};
+      for (const [dataKey, value] of Object.entries(pbPresence.data)) {
+        try {
+          presence[dataKey] = JSON.parse(value);
+        } catch {
+          presence[dataKey] = value;
+        }
+      }
+      summary.presences[key] = presence;
+    }
+  }
+
+  return summary;
 }
 
 export function fromDocumentSummaries(pbDocumentSummaries: Array<PbDocumentSummary>): Array<DocumentSummary> {

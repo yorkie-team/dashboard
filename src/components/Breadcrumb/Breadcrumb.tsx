@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { ReactNode } from 'react';
+import { forwardRef, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 
 export function Breadcrumb({ children }: { children: ReactNode }) {
@@ -25,7 +25,7 @@ function Inner({ children }: { children: ReactNode }) {
   return <div className="breadcrumb_inner">{children}</div>;
 }
 
-const Item = React.forwardRef(
+const Item = forwardRef(
   (
     {
       as = 'button',

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useCallback, useState, useEffect } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 import { selectUsers, logoutUser } from './usersSlice';
 import { Popover, Dropdown } from 'components';

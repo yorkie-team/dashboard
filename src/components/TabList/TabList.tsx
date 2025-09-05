@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { NavLink as Link } from 'react-router-dom';
 import classNames from 'classnames';
 

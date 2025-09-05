@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import './assets/styles/style.scss';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import {

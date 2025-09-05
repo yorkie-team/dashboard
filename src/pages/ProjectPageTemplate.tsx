@@ -14,14 +14,11 @@
  * limitations under the License.
  */
 
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { ProjectTabList, ProjectDropdown } from 'features/projects';
 import { PageTemplate } from './PageTemplate';
 
-export function ProjectPageTemplate({ className, children }: {
-  className: string;
-  children: ReactNode;
-}) {
+export function ProjectPageTemplate({ className, children }: { className: string; children: ReactNode }) {
   return (
     <PageTemplate className={className}>
       <div className="box_top">

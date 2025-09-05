@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { forwardRef, ReactNode, AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
+import { forwardRef, ReactNode, AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { ButtonBox } from './ButtonBox';

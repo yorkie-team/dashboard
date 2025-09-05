@@ -190,8 +190,18 @@ export async function listDocuments(
 
 // getDocument fetches a document of the given ID from the admin server.
 export async function getDocument(documentKey: string): Promise<DocumentSummary> {
-  const res = await client.getDocument({ documentKey });
-  return converter.fromDocumentSummary(res.document!);
+  // Use getDocuments API with include_presences to get presence information
+  const res = await client.getDocuments({
+    documentKeys: [documentKey],
+    includeRoot: true,
+    includePresences: true,
+  });
+
+  if (!res.documents || res.documents.length === 0) {
+    throw new RPCError(String(RPCStatusCode.NOT_FOUND), 'Document not found');
+  }
+
+  return converter.fromDocumentSummary(res.documents[0]);
 }
 
 // searchDocuments fetches documents that match the query parameters.

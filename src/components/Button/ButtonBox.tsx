@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import React, { ReactNode } from 'react';
+import { ReactNode, forwardRef } from 'react';
 import classNames from 'classnames';
 
-export const ButtonBox = React.forwardRef<
+export const ButtonBox = forwardRef<
   HTMLDivElement,
   {
     fullWidth?: boolean;

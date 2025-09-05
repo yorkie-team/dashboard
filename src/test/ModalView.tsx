@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Modal, Icon, Button, Popover } from 'components';
 
 export function ModalView() {

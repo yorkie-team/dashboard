@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useEffect, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { SignupFields, selectUsers, signupUser, resetSignupState } from './usersSlice';
