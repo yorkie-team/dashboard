@@ -19,7 +19,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Int32Value, Message, proto3, protoInt64, StringValue, Timestamp } from "@bufbuild/protobuf";
+import { BoolValue, Int32Value, Message, proto3, protoInt64, StringValue, Timestamp } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum yorkie.v1.ValueType
@@ -2183,6 +2183,11 @@ export class Project extends Message<Project> {
   maxSizePerDocument = 0;
 
   /**
+   * @generated from field: bool remove_on_detach = 16;
+   */
+  removeOnDetach = false;
+
+  /**
    * @generated from field: repeated string allowed_origins = 14;
    */
   allowedOrigins: string[] = [];
@@ -2217,6 +2222,7 @@ export class Project extends Message<Project> {
     { no: 10, name: "max_subscribers_per_document", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 11, name: "max_attachments_per_document", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 15, name: "max_size_per_document", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 16, name: "remove_on_detach", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 14, name: "allowed_origins", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
     { no: 12, name: "created_at", kind: "message", T: Timestamp },
     { no: 13, name: "updated_at", kind: "message", T: Timestamp },
@@ -2332,6 +2338,11 @@ export class UpdatableProjectFields extends Message<UpdatableProjectFields> {
   maxSizePerDocument?: number;
 
   /**
+   * @generated from field: google.protobuf.BoolValue remove_on_detach = 11;
+   */
+  removeOnDetach?: boolean;
+
+  /**
    * @generated from field: yorkie.v1.UpdatableProjectFields.AllowedOrigins allowed_origins = 9;
    */
   allowedOrigins?: UpdatableProjectFields_AllowedOrigins;
@@ -2353,6 +2364,7 @@ export class UpdatableProjectFields extends Message<UpdatableProjectFields> {
     { no: 7, name: "max_subscribers_per_document", kind: "message", T: Int32Value },
     { no: 8, name: "max_attachments_per_document", kind: "message", T: Int32Value },
     { no: 10, name: "max_size_per_document", kind: "message", T: Int32Value },
+    { no: 11, name: "remove_on_detach", kind: "message", T: BoolValue },
     { no: 9, name: "allowed_origins", kind: "message", T: UpdatableProjectFields_AllowedOrigins },
   ]);
 

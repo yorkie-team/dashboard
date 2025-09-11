@@ -59,6 +59,7 @@ export function fromProject(pbProject: PbProject): Project {
     maxSubscribersPerDocument: pbProject.maxSubscribersPerDocument,
     maxAttachmentsPerDocument: pbProject.maxAttachmentsPerDocument,
     maxSizePerDocument: pbProject.maxSizePerDocument,
+    removeOnDetach: pbProject.removeOnDetach,
     allowedOrigins: pbProject.allowedOrigins,
   };
 }

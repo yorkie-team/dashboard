@@ -85,6 +85,7 @@ export type ProjectUpdateFields = {
   maxSubscribersPerDocument: number;
   maxAttachmentsPerDocument: number;
   maxSizePerDocument: number;
+  removeOnDetach: boolean;
   allowedOrigins: string;
 };
 
@@ -331,6 +332,11 @@ export const projectsSlice = createSlice({
           } else if (field === 'maxSizePerDocument') {
             state.update.error = {
               target: 'maxSizePerDocument',
+              message: description,
+            };
+          } else if (field === 'removeOnDetach') {
+            state.update.error = {
+              target: 'removeOnDetach',
               message: description,
             };
           } else if (field === 'AllowedOrigins') {

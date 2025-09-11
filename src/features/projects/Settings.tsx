@@ -66,6 +66,7 @@ export function Settings() {
       maxSubscribersPerDocument: 0,
       maxAttachmentsPerDocument: 0,
       maxSizePerDocument: 0,
+      removeOnDetach: false,
       allowedOrigins: '',
     },
   });
@@ -103,6 +104,10 @@ export function Settings() {
     control,
     name: 'maxSizePerDocument',
   });
+  const { field: removeOnDetach, fieldState: removeOnDetachState } = useController({
+    control,
+    name: 'removeOnDetach',
+  });
   const { field: allowedOrigins, fieldState: allowedOriginsState } = useController({
     control,
     name: 'allowedOrigins',
@@ -131,6 +136,7 @@ export function Settings() {
       maxSubscribersPerDocument: project?.maxSubscribersPerDocument || 0,
       maxAttachmentsPerDocument: project?.maxAttachmentsPerDocument || 0,
       maxSizePerDocument: project?.maxSizePerDocument || 0,
+      removeOnDetach: project?.removeOnDetach || false,
       allowedOrigins: Array.isArray(project?.allowedOrigins) ? project?.allowedOrigins.join(',') : '',
     });
   }, [reset, project]);
@@ -163,6 +169,7 @@ export function Settings() {
       !maxSubscribersPerDocumentState.error &&
       !maxAttachmentsPerDocumentState.error &&
       !maxSizePerDocumentState.error &&
+      !removeOnDetachState.error &&
       !allowedOriginsState.error
     ) {
       setUpdateFieldInfo((info) => ({
@@ -179,6 +186,7 @@ export function Settings() {
       maxSubscribersPerDocumentState.error ||
       maxAttachmentsPerDocumentState.error ||
       maxSizePerDocumentState.error ||
+      removeOnDetachState.error ||
       allowedOriginsState.error
     ) {
       setUpdateFieldInfo((info) => ({
@@ -198,6 +206,7 @@ export function Settings() {
     maxSubscribersPerDocumentState.error,
     maxAttachmentsPerDocumentState.error,
     maxSizePerDocumentState.error,
+    removeOnDetachState.error,
     allowedOriginsState.error,
   ]);
 
@@ -230,7 +239,7 @@ export function Settings() {
           { name: 'Webhooks', id: 'webhooks' },
           { name: 'Security', id: 'security' },
           { name: 'Limits', id: 'limits' },
-          { name: 'Sessions', id: 'sessions' },
+          { name: 'Resources', id: 'resources' },
         ]}
       />
       <div className="box_right">
@@ -745,9 +754,9 @@ export function Settings() {
             </dl>
           </div>
 
-          <div className="section setting_box" id="sessions">
+          <div className="section setting_box" id="resources">
             <div className="setting_title">
-              <strong className="text">Sessions</strong>
+              <strong className="text">Resources</strong>
             </div>
             <dl className="sub_info">
               <dt className="sub_title">Client Deactivate Threshold</dt>
@@ -809,6 +818,44 @@ export function Settings() {
                     }
                     onSuccessEnd={resetUpdateFieldInfo}
                   />
+                </div>
+              </dd>
+              <dt className="sub_title">Remove On Detach</dt>
+              <dd className="sub_desc">
+                <p className="guide">
+                  Set whether to remove the document when all clients are detached from the document.{' '}
+                  <a
+                    href="https://yorkie.dev/docs/js-sdk#detaching-the-document"
+                    className="page_link icon_link"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Learn more about detaching the document.
+                  </a>
+                </p>
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: checkFieldState('removeOnDetach', 'error'),
+                    is_success: checkFieldState('removeOnDetach', 'success'),
+                  })}
+                >
+                  <InputToggle
+                    id="removeOnDetach"
+                    label=""
+                    checked={removeOnDetach.value}
+                    onChange={(e) => {
+                      removeOnDetach.onChange(e.target.checked);
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'removeOnDetach' }));
+                      onSubmit({ removeOnDetach: e.target.checked });
+                    }}
+                  />
+                  {updateFieldInfo.target === 'removeOnDetach' && updateFieldInfo.state !== null && (
+                    <InputHelperText
+                      state={updateFieldInfo.state}
+                      message={updateFieldInfo.message}
+                      onSuccessEnd={resetUpdateFieldInfo}
+                    />
+                  )}
                 </div>
               </dd>
             </dl>

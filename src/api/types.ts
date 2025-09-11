@@ -62,6 +62,7 @@ export type Project = {
   maxSubscribersPerDocument: number;
   maxAttachmentsPerDocument: number;
   maxSizePerDocument: number;
+  removeOnDetach: boolean;
   allowedOrigins: Array<string>;
   publicKey: string;
   secretKey: string;
@@ -95,6 +96,7 @@ export type UpdatableProjectFields = {
   maxSubscribersPerDocument?: number;
   maxAttachmentsPerDocument?: number;
   maxSizePerDocument?: number;
+  removeOnDetach?: boolean;
   allowedOrigins?: string;
 };
 
