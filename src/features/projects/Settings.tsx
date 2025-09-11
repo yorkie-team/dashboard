@@ -838,7 +838,6 @@ export function Settings() {
                     is_error: checkFieldState('removeOnDetach', 'error'),
                     is_success: checkFieldState('removeOnDetach', 'success'),
                   })}
-                  key={'removeOnDetach'}
                 >
                   <InputToggle
                     id="removeOnDetach"
