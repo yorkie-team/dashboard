@@ -240,7 +240,6 @@ export function Settings() {
           { name: 'Security', id: 'security' },
           { name: 'Limits', id: 'limits' },
           { name: 'Resources', id: 'resources' },
-          { name: 'Sessions', id: 'sessions' },
         ]}
       />
       <div className="box_right">
@@ -760,50 +759,6 @@ export function Settings() {
               <strong className="text">Resources</strong>
             </div>
             <dl className="sub_info">
-              <dt className="sub_title">Remove On Detach</dt>
-              <dd className="sub_desc">
-                <p className="guide">Set whether to remove the document when all clients are detached from the document. {' '}
-                  <a
-                    href="https://yorkie.dev/docs/js-sdk#detaching-the-document"
-                    className="page_link icon_link"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Learn more about detaching the document.
-                  </a></p>
-                <div
-                  className={classNames('input_field_box', {
-                    is_error: checkFieldState('removeOnDetach', 'error'),
-                    is_success: checkFieldState('removeOnDetach', 'success'),
-                  })}
-                  key={'removeOnDetach'}
-                >
-                  <InputToggle
-                    id="removeOnDetach"
-                    label=""
-                    checked={removeOnDetach.value}
-                    onChange={(e) => {
-                      removeOnDetach.onChange(e.target.checked);
-                      setUpdateFieldInfo((info) => ({ ...info, target: 'removeOnDetach' }));
-                      onSubmit({ removeOnDetach: e.target.checked });
-                    }}
-                  />
-                  {updateFieldInfo.target === 'removeOnDetach' && updateFieldInfo.state !== null && (
-                    <InputHelperText
-                      state={updateFieldInfo.state}
-                      message={updateFieldInfo.message}
-                      onSuccessEnd={resetUpdateFieldInfo}
-                    />
-                  )}
-                </div>
-              </dd>
-            </dl>
-          </div>
-          <div className="section setting_box" id="sessions">
-            <div className="setting_title">
-              <strong className="text">Sessions</strong>
-            </div>
-            <dl className="sub_info">
               <dt className="sub_title">Client Deactivate Threshold</dt>
               <dd className="sub_desc">
                 <p className="guide">
@@ -863,6 +818,45 @@ export function Settings() {
                     }
                     onSuccessEnd={resetUpdateFieldInfo}
                   />
+                </div>
+              </dd>
+              <dt className="sub_title">Remove On Detach</dt>
+              <dd className="sub_desc">
+                <p className="guide">
+                  Set whether to remove the document when all clients are detached from the document.{' '}
+                  <a
+                    href="https://yorkie.dev/docs/js-sdk#detaching-the-document"
+                    className="page_link icon_link"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Learn more about detaching the document.
+                  </a>
+                </p>
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: checkFieldState('removeOnDetach', 'error'),
+                    is_success: checkFieldState('removeOnDetach', 'success'),
+                  })}
+                  key={'removeOnDetach'}
+                >
+                  <InputToggle
+                    id="removeOnDetach"
+                    label=""
+                    checked={removeOnDetach.value}
+                    onChange={(e) => {
+                      removeOnDetach.onChange(e.target.checked);
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'removeOnDetach' }));
+                      onSubmit({ removeOnDetach: e.target.checked });
+                    }}
+                  />
+                  {updateFieldInfo.target === 'removeOnDetach' && updateFieldInfo.state !== null && (
+                    <InputHelperText
+                      state={updateFieldInfo.state}
+                      message={updateFieldInfo.message}
+                      onSuccessEnd={resetUpdateFieldInfo}
+                    />
+                  )}
                 </div>
               </dd>
             </dl>
