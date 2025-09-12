@@ -20,20 +20,27 @@ import { useParams, Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { Project } from 'api/types';
 import { Popover, Dropdown, Icon, Breadcrumb } from 'components';
-import { selectProjectList, listProjectsAsync, setCurrentProjectAsync } from './projectsSlice';
+import {
+  selectProjectList,
+  listProjectsAsync,
+  setCurrentProjectAsync,
+  resetProjectsInitialized,
+} from './projectsSlice';
+import { selectUsers } from 'features/users/usersSlice';
 
 export function ProjectDropdown({ size = 'small' }: { size?: 'small' | 'large' }) {
   const { projectName } = useParams();
-  const { projects, status } = useAppSelector(selectProjectList);
+  const { projects, status, isInitialized } = useAppSelector(selectProjectList);
+  const { isAuthenticated } = useAppSelector(selectUsers);
   const dispatch = useAppDispatch();
   const [opened, setOpened] = useState(false);
 
   useEffect(() => {
-    // Only fetch if we don't have projects and we're not already loading
-    if (projects.length === 0 && status === 'idle') {
+    // Only fetch if we haven't initialized and authenticated
+    if (!isInitialized && status === 'idle' && isAuthenticated) {
       dispatch(listProjectsAsync());
     }
-  }, [dispatch, projects.length, status]);
+  }, [dispatch, isInitialized, status, isAuthenticated]);
 
   useEffect(() => {
     return () => {

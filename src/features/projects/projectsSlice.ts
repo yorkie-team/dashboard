@@ -40,6 +40,7 @@ export interface ProjectsState {
   list: {
     projects: Array<Project>;
     status: 'idle' | 'loading' | 'failed';
+    isInitialized: boolean;
   };
   detail: {
     project: Project | null;
@@ -93,6 +94,7 @@ const initialState: ProjectsState = {
   list: {
     projects: [],
     status: 'idle',
+    isInitialized: false,
   },
   detail: {
     project: null,
@@ -189,6 +191,10 @@ export const projectsSlice = createSlice({
       state.detail.project = null;
       state.detail.status = 'idle';
     },
+    resetProjectsInitialized: (state) => {
+      state.list.isInitialized = false;
+      state.list.status = 'idle';
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(listProjectsAsync.pending, (state) => {
@@ -197,9 +203,23 @@ export const projectsSlice = createSlice({
     builder.addCase(listProjectsAsync.fulfilled, (state, action) => {
       state.list.status = 'idle';
       state.list.projects = action.payload;
+      state.list.isInitialized = true;
     });
-    builder.addCase(listProjectsAsync.rejected, (state) => {
+    builder.addCase(listProjectsAsync.rejected, (state, action) => {
       state.list.status = 'failed';
+
+      // Don't mark as initialized if it's an authentication error
+      // so it can retry after user logs in
+      const error = action.payload?.error;
+      if (error instanceof RPCError) {
+        const statusCode = Number(error.code);
+        if (statusCode === RPCStatusCode.UNAUTHENTICATED) {
+          // Keep isInitialized as false for auth errors to allow retry after login
+          return;
+        }
+      }
+
+      state.list.isInitialized = true;
     });
     builder.addCase(getProjectAsync.pending, (state) => {
       state.detail.status = 'loading';
@@ -367,7 +387,8 @@ export const projectsSlice = createSlice({
   },
 });
 
-export const { resetCreateSuccess, resetUpdateSuccess, resetProjectDetail } = projectsSlice.actions;
+export const { resetCreateSuccess, resetUpdateSuccess, resetProjectDetail, resetProjectsInitialized } =
+  projectsSlice.actions;
 
 export const selectProjectList = (state: RootState) => state.projects.list;
 export const selectProjectDetail = (state: RootState) => state.projects.detail;
