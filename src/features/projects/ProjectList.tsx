@@ -20,7 +20,8 @@ import { fromUnixTime, format } from 'date-fns';
 import classNames from 'classnames';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { selectProjectList, listProjectsAsync } from './projectsSlice';
+import { selectProjectList, listProjectsAsync, resetProjectsInitialized } from './projectsSlice';
+import { selectUsers } from 'features/users/usersSlice';
 import { Project } from 'api/types';
 import { Button, Icon, Popover, Dropdown, SearchBar } from 'components';
 
@@ -101,7 +102,8 @@ const SORT_OPTION = {
 export function ProjectList() {
   const dispatch = useAppDispatch();
   const [projects, setProjects] = useState<Array<Project>>([]);
-  const { projects: allProjects, status } = useAppSelector(selectProjectList);
+  const { projects: allProjects, status, isInitialized } = useAppSelector(selectProjectList);
+  const { isAuthenticated } = useAppSelector(selectUsers);
   const [query, setQuery] = useState<string | null>(null);
   const [viewType, setViewType] = useState<'list' | 'card'>('card');
   const [sortOpened, setSortOpened] = useState(false);
@@ -130,9 +132,13 @@ export function ProjectList() {
   );
 
   useEffect(() => {
-    // Always fetch projects when component mounts to ensure we have the latest list
-    dispatch(listProjectsAsync());
-  }, [dispatch]);
+    // Only fetch projects if not already initialized and authenticated
+    if (!isInitialized && status === 'idle' && isAuthenticated) {
+      dispatch(listProjectsAsync());
+    }
+  }, [dispatch, isInitialized, status, isAuthenticated]);
+
+  // No longer need the auth change detection - let the first useEffect handle it
 
   useEffect(() => {
     handleProjectSort(allProjects, SORT_OPTION.createdAt);
