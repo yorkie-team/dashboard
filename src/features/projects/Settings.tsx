@@ -60,9 +60,19 @@ export function Settings() {
       name: '',
       authWebhookURL: '',
       authWebhookMethods: [],
+      authWebhookMaxRetries: '',
+      authWebhookMinWaitInterval: '',
+      authWebhookMaxWaitInterval: '',
+      authWebhookRequestTimeout: '',
       eventWebhookURL: '',
       eventWebhookEvents: [],
+      eventWebhookMaxRetries: '',
+      eventWebhookMinWaitInterval: '',
+      eventWebhookMaxWaitInterval: '',
+      eventWebhookRequestTimeout: '',
       clientDeactivateThreshold: '',
+      snapshotThreshold: '',
+      snapshotInterval: '',
       maxSubscribersPerDocument: 0,
       maxAttachmentsPerDocument: 0,
       maxSizePerDocument: 0,
@@ -80,6 +90,22 @@ export function Settings() {
     control,
     name: 'authWebhookMethods',
   });
+  const { field: authWebhookMaxRetries, fieldState: authWebhookMaxRetriesState } = useController({
+    control,
+    name: 'authWebhookMaxRetries',
+  });
+  const { field: authWebhookMinWaitInterval, fieldState: authWebhookMinWaitIntervalState } = useController({
+    control,
+    name: 'authWebhookMinWaitInterval',
+  });
+  const { field: authWebhookMaxWaitInterval, fieldState: authWebhookMaxWaitIntervalState } = useController({
+    control,
+    name: 'authWebhookMaxWaitInterval',
+  });
+  const { field: authWebhookRequestTimeout, fieldState: authWebhookRequestTimeoutState } = useController({
+    control,
+    name: 'authWebhookRequestTimeout',
+  });
   const { field: eventWebhookURLField, fieldState: eventWebhookURLFieldState } = useController({
     control,
     name: 'eventWebhookURL',
@@ -88,9 +114,33 @@ export function Settings() {
     control,
     name: 'eventWebhookEvents',
   });
+  const { field: eventWebhookMaxRetries, fieldState: eventWebhookMaxRetriesState } = useController({
+    control,
+    name: 'eventWebhookMaxRetries',
+  });
+  const { field: eventWebhookMinWaitInterval, fieldState: eventWebhookMinWaitIntervalState } = useController({
+    control,
+    name: 'eventWebhookMinWaitInterval',
+  });
+  const { field: eventWebhookMaxWaitInterval, fieldState: eventWebhookMaxWaitIntervalState } = useController({
+    control,
+    name: 'eventWebhookMaxWaitInterval',
+  });
+  const { field: eventWebhookRequestTimeout, fieldState: eventWebhookRequestTimeoutState } = useController({
+    control,
+    name: 'eventWebhookRequestTimeout',
+  });
   const { field: clientDeactivateThreshold, fieldState: clientDeactivateThresholdState } = useController({
     control,
     name: 'clientDeactivateThreshold',
+  });
+  const { field: snapshotThreshold, fieldState: snapshotThresholdState } = useController({
+    control,
+    name: 'snapshotThreshold',
+  });
+  const { field: snapshotInterval, fieldState: snapshotIntervalState } = useController({
+    control,
+    name: 'snapshotInterval',
   });
   const { field: maxSubscribersPerDocument, fieldState: maxSubscribersPerDocumentState } = useController({
     control,
@@ -130,9 +180,19 @@ export function Settings() {
       name: project?.name || '',
       authWebhookURL: project?.authWebhookURL || '',
       authWebhookMethods: project?.authWebhookMethods || [],
+      authWebhookMaxRetries: project?.authWebhookMaxRetries || '',
+      authWebhookMinWaitInterval: project?.authWebhookMinWaitInterval || '',
+      authWebhookMaxWaitInterval: project?.authWebhookMaxWaitInterval || '',
+      authWebhookRequestTimeout: project?.authWebhookRequestTimeout || '',
       eventWebhookURL: project?.eventWebhookURL || '',
       eventWebhookEvents: project?.eventWebhookEvents || [],
+      eventWebhookMaxRetries: project?.eventWebhookMaxRetries || '',
+      eventWebhookMinWaitInterval: project?.eventWebhookMinWaitInterval || '',
+      eventWebhookMaxWaitInterval: project?.eventWebhookMaxWaitInterval || '',
+      eventWebhookRequestTimeout: project?.eventWebhookRequestTimeout || '',
       clientDeactivateThreshold: project?.clientDeactivateThreshold || '',
+      snapshotThreshold: project?.snapshotThreshold || '',
+      snapshotInterval: project?.snapshotInterval || '',
       maxSubscribersPerDocument: project?.maxSubscribersPerDocument || 0,
       maxAttachmentsPerDocument: project?.maxAttachmentsPerDocument || 0,
       maxSizePerDocument: project?.maxSizePerDocument || 0,
@@ -164,8 +224,18 @@ export function Settings() {
       updateFieldInfo.state !== 'success' &&
       !nameFieldState.error &&
       !authWebhookURLFieldState.error &&
+      !authWebhookMaxRetriesState.error &&
+      !authWebhookMinWaitIntervalState.error &&
+      !authWebhookMaxWaitIntervalState.error &&
+      !authWebhookRequestTimeoutState.error &&
       !eventWebhookURLFieldState.error &&
+      !eventWebhookMaxRetriesState.error &&
+      !eventWebhookMinWaitIntervalState.error &&
+      !eventWebhookMaxWaitIntervalState.error &&
+      !eventWebhookRequestTimeoutState.error &&
       !clientDeactivateThresholdState.error &&
+      !snapshotThresholdState.error &&
+      !snapshotIntervalState.error &&
       !maxSubscribersPerDocumentState.error &&
       !maxAttachmentsPerDocumentState.error &&
       !maxSizePerDocumentState.error &&
@@ -181,8 +251,18 @@ export function Settings() {
     if (
       nameFieldState.error ||
       authWebhookURLFieldState.error ||
+      authWebhookMaxRetriesState.error ||
+      authWebhookMinWaitIntervalState.error ||
+      authWebhookMaxWaitIntervalState.error ||
+      authWebhookRequestTimeoutState.error ||
       eventWebhookURLFieldState.error ||
+      eventWebhookMaxRetriesState.error ||
+      eventWebhookMinWaitIntervalState.error ||
+      eventWebhookMaxWaitIntervalState.error ||
+      eventWebhookRequestTimeoutState.error ||
       clientDeactivateThresholdState.error ||
+      snapshotThresholdState.error ||
+      snapshotIntervalState.error ||
       maxSubscribersPerDocumentState.error ||
       maxAttachmentsPerDocumentState.error ||
       maxSizePerDocumentState.error ||
@@ -201,8 +281,18 @@ export function Settings() {
     updateFieldInfo.target,
     nameFieldState.error,
     authWebhookURLFieldState.error,
+    authWebhookMaxRetriesState.error,
+    authWebhookMinWaitIntervalState.error,
+    authWebhookMaxWaitIntervalState.error,
+    authWebhookRequestTimeoutState.error,
     eventWebhookURLFieldState.error,
+    eventWebhookMaxRetriesState.error,
+    eventWebhookMinWaitIntervalState.error,
+    eventWebhookMaxWaitIntervalState.error,
+    eventWebhookRequestTimeoutState.error,
     clientDeactivateThresholdState.error,
+    snapshotThresholdState.error,
+    snapshotIntervalState.error,
     maxSubscribersPerDocumentState.error,
     maxAttachmentsPerDocumentState.error,
     maxSizePerDocumentState.error,
@@ -393,6 +483,198 @@ export function Settings() {
                   })}
                 </div>
               </dd>
+              <dt className="sub_title">Event Webhook Max Retries</dt>
+              <dd className="sub_desc">
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: checkFieldState('eventWebhookMaxRetries', 'error'),
+                    is_success: checkFieldState('eventWebhookMaxRetries', 'success'),
+                  })}
+                >
+                  <InputTextField
+                    reset={() => {
+                      resetForm();
+                      resetUpdateFieldInfo();
+                    }}
+                    {...register('eventWebhookMaxRetries', {
+                      required: 'Event Webhook Max Retries is required',
+                      pattern: {
+                        value: /^[0-9]+$/,
+                        message: 'Event Webhook Max Retries must be a positive integer',
+                      },
+                      onChange: async () => {
+                        await trigger('eventWebhookMaxRetries');
+                      },
+                    })}
+                    onChange={(e) => {
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'eventWebhookMaxRetries' }));
+                      eventWebhookMaxRetries.onChange(e.target.value);
+                    }}
+                    id="eventWebhookMaxRetries"
+                    label="Event Webhook Max Retries"
+                    blindLabel={true}
+                    fieldUtil={true}
+                    placeholder="0"
+                    state={
+                      checkFieldState('eventWebhookMaxRetries', 'success')
+                        ? 'success'
+                        : checkFieldState('eventWebhookMaxRetries', 'error')
+                          ? 'error'
+                          : undefined
+                    }
+                    helperText={
+                      updateFieldInfo.target === 'eventWebhookMaxRetries' && updateFieldInfo.state !== null
+                        ? updateFieldInfo.message
+                        : undefined
+                    }
+                    onSuccessEnd={resetUpdateFieldInfo}
+                  />
+                </div>
+              </dd>
+              <dt className="sub_title">Event Webhook Min Wait Interval</dt>
+              <dd className="sub_desc">
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: checkFieldState('eventWebhookMinWaitInterval', 'error'),
+                    is_success: checkFieldState('eventWebhookMinWaitInterval', 'success'),
+                  })}
+                >
+                  <InputTextField
+                    reset={() => {
+                      resetForm();
+                      resetUpdateFieldInfo();
+                    }}
+                    {...register('eventWebhookMinWaitInterval', {
+                      required: 'Event Webhook Min Wait Interval is required',
+                      pattern: {
+                        value: /^(\d{1,2}h\s?)?(\d{1,2}m\s?)?(\d{1,2}s)?$/,
+                        message: 'Event Webhook Min Wait Interval should be a signed sequence of decimal numbers, each with a unit suffix, such as "23h30m10s" or "2h45m',
+                      },
+                      onChange: async () => {
+                        await trigger('eventWebhookMinWaitInterval');
+                      },
+                    })}
+                    onChange={(e) => {
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'eventWebhookMinWaitInterval' }));
+                      eventWebhookMinWaitInterval.onChange(e.target.value);
+                    }}
+                    id="eventWebhookMinWaitInterval"
+                    label="Event Webhook Min Wait Interval"
+                    blindLabel={true}
+                    fieldUtil={true}
+                    placeholder="0"
+                    state={
+                      checkFieldState('eventWebhookMinWaitInterval', 'success')
+                        ? 'success'
+                        : checkFieldState('eventWebhookMinWaitInterval', 'error')
+                          ? 'error'
+                          : undefined
+                    }
+                    helperText={
+                      updateFieldInfo.target === 'eventWebhookMinWaitInterval' && updateFieldInfo.state !== null
+                        ? updateFieldInfo.message
+                        : undefined
+                    }
+                    onSuccessEnd={resetUpdateFieldInfo}
+                  />
+                </div>
+              </dd>
+              <dt className="sub_title">Event Webhook Max Wait Interval</dt>
+              <dd className="sub_desc">
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: checkFieldState('eventWebhookMaxWaitInterval', 'error'),
+                    is_success: checkFieldState('eventWebhookMaxWaitInterval', 'success'),
+                  })}
+                >
+                  <InputTextField
+                    reset={() => {
+                      resetForm();
+                      resetUpdateFieldInfo();
+                    }}
+                    {...register('eventWebhookMaxWaitInterval', {
+                      required: 'Event Webhook Max Wait Interval is required',
+                      pattern: {
+                        value: /^(\d{1,2}h\s?)?(\d{1,2}m\s?)?(\d{1,2}s)?$/,
+                        message: 'Event Webhook Max Wait Interval should be a signed sequence of decimal numbers, each with a unit suffix, such as "23h30m10s" or "2h45m',
+                      },
+                      onChange: async () => {
+                        await trigger('eventWebhookMaxWaitInterval');
+                      },
+                    })}
+                    onChange={(e) => {
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'eventWebhookMaxWaitInterval' }));
+                      eventWebhookMaxWaitInterval.onChange(e.target.value);
+                    }}
+                    id="eventWebhookMaxWaitInterval"
+                    label="Event Webhook Max Wait Interval"
+                    blindLabel={true}
+                    fieldUtil={true}
+                    placeholder="0"
+                    state={
+                      checkFieldState('eventWebhookMaxWaitInterval', 'success')
+                        ? 'success'
+                        : checkFieldState('eventWebhookMaxWaitInterval', 'error')
+                          ? 'error'
+                          : undefined
+                    }
+                    helperText={
+                      updateFieldInfo.target === 'eventWebhookMaxWaitInterval' && updateFieldInfo.state !== null
+                        ? updateFieldInfo.message
+                        : undefined
+                    }
+                    onSuccessEnd={resetUpdateFieldInfo}
+                  />
+                </div>
+              </dd>
+              <dt className="sub_title">Event Webhook Request Timeout</dt>
+              <dd className="sub_desc">
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: checkFieldState('eventWebhookRequestTimeout', 'error'),
+                    is_success: checkFieldState('eventWebhookRequestTimeout', 'success'),
+                  })}
+                >
+                  <InputTextField
+                    reset={() => {
+                      resetForm();
+                      resetUpdateFieldInfo();
+                    }}
+                    {...register('eventWebhookRequestTimeout', {
+                      required: 'Event Webhook Request Timeout is required',
+                      pattern: {
+                        value: /^(\d{1,2}h\s?)?(\d{1,2}m\s?)?(\d{1,2}s)?$/,
+                        message: 'Event Webhook Request Timeout should be a signed sequence of decimal numbers, each with a unit suffix, such as "23h30m10s" or "2h45m',
+                      },
+                      onChange: async () => {
+                        await trigger('eventWebhookRequestTimeout');
+                      },
+                    })}
+                    onChange={(e) => {
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'eventWebhookRequestTimeout' }));
+                      eventWebhookRequestTimeout.onChange(e.target.value);
+                    }}
+                    id="eventWebhookRequestTimeout"
+                    label="Event Webhook Request Timeout"
+                    blindLabel={true}
+                    fieldUtil={true}
+                    placeholder="0"
+                    state={
+                      checkFieldState('eventWebhookRequestTimeout', 'success')
+                        ? 'success'
+                        : checkFieldState('eventWebhookRequestTimeout', 'error')
+                          ? 'error'
+                          : undefined
+                    }
+                    helperText={
+                      updateFieldInfo.target === 'eventWebhookRequestTimeout' && updateFieldInfo.state !== null
+                        ? updateFieldInfo.message
+                        : undefined
+                    }
+                    onSuccessEnd={resetUpdateFieldInfo}
+                  />
+                </div>
+              </dd>
             </dl>
           </div>
           <div className="section setting_box webhook" id="security">
@@ -562,6 +844,198 @@ export function Settings() {
                       </div>
                     );
                   })}
+                </div>
+              </dd>
+              <dt className="sub_title">Auth Webhook Max Retries</dt>
+              <dd className="sub_desc">
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: checkFieldState('authWebhookMaxRetries', 'error'),
+                    is_success: checkFieldState('authWebhookMaxRetries', 'success'),
+                  })}
+                >
+                  <InputTextField
+                    reset={() => {
+                      resetForm();
+                      resetUpdateFieldInfo();
+                    }}
+                    {...register('authWebhookMaxRetries', {
+                      required: 'Auth Webhook Max Retries is required',
+                      pattern: {
+                        value: /^[0-9]+$/,
+                        message: 'Auth Webhook Max Retries must be a positive integer',
+                      },
+                      onChange: async () => {
+                        await trigger('authWebhookMaxRetries');
+                      },
+                    })}
+                    onChange={(e) => {
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'authWebhookMaxRetries' }));
+                      authWebhookMaxRetries.onChange(e.target.value);
+                    }}
+                    id="authWebhookMaxRetries"
+                    label="Auth Webhook Max Retries"
+                    blindLabel={true}
+                    fieldUtil={true}
+                    placeholder="0"
+                    state={
+                      checkFieldState('authWebhookMaxRetries', 'success')
+                        ? 'success'
+                        : checkFieldState('authWebhookMaxRetries', 'error')
+                          ? 'error'
+                          : undefined
+                    }
+                    helperText={
+                      updateFieldInfo.target === 'authWebhookMaxRetries' && updateFieldInfo.state !== null
+                        ? updateFieldInfo.message
+                        : undefined
+                    }
+                    onSuccessEnd={resetUpdateFieldInfo}
+                  />
+                </div>
+              </dd>
+              <dt className="sub_title">Auth Webhook Min Wait Interval</dt>
+              <dd className="sub_desc">
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: checkFieldState('authWebhookMinWaitInterval', 'error'),
+                    is_success: checkFieldState('authWebhookMinWaitInterval', 'success'),
+                  })}
+                >
+                  <InputTextField
+                    reset={() => {
+                      resetForm();
+                      resetUpdateFieldInfo();
+                    }}
+                    {...register('authWebhookMinWaitInterval', {
+                      required: 'Auth Webhook Min Wait Interval is required',
+                      pattern: {
+                        value: /^(\d{1,2}h\s?)?(\d{1,2}m\s?)?(\d{1,2}s)?$/,
+                        message: 'Auth Webhook Min Wait Interval should be a signed sequence of decimal numbers, each with a unit suffix, such as "23h30m10s" or "2h45m',
+                      },
+                      onChange: async () => {
+                        await trigger('authWebhookMinWaitInterval');
+                      },
+                    })}
+                    onChange={(e) => {
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'authWebhookMinWaitInterval' }));
+                      authWebhookMinWaitInterval.onChange(e.target.value);
+                    }}
+                    id="authWebhookMinWaitInterval"
+                    label="Auth Webhook Min Wait Interval"
+                    blindLabel={true}
+                    fieldUtil={true}
+                    placeholder="0"
+                    state={
+                      checkFieldState('authWebhookMinWaitInterval', 'success')
+                        ? 'success'
+                        : checkFieldState('authWebhookMinWaitInterval', 'error')
+                          ? 'error'
+                          : undefined
+                    }
+                    helperText={
+                      updateFieldInfo.target === 'authWebhookMinWaitInterval' && updateFieldInfo.state !== null
+                        ? updateFieldInfo.message
+                        : undefined
+                    }
+                    onSuccessEnd={resetUpdateFieldInfo}
+                  />
+                </div>
+              </dd>
+              <dt className="sub_title">Auth Webhook Max Wait Interval</dt>
+              <dd className="sub_desc">
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: checkFieldState('authWebhookMaxWaitInterval', 'error'),
+                    is_success: checkFieldState('authWebhookMaxWaitInterval', 'success'),
+                  })}
+                >
+                  <InputTextField
+                    reset={() => {
+                      resetForm();
+                      resetUpdateFieldInfo();
+                    }}
+                    {...register('authWebhookMaxWaitInterval', {
+                      required: 'Auth Webhook Max Wait Interval is required',
+                      pattern: {
+                        value: /^(\d{1,2}h\s?)?(\d{1,2}m\s?)?(\d{1,2}s)?$/,
+                        message: 'Auth Webhook Max Wait Interval should be a signed sequence of decimal numbers, each with a unit suffix, such as "23h30m10s" or "2h45m',
+                      },
+                      onChange: async () => {
+                        await trigger('authWebhookMaxWaitInterval');
+                      },
+                    })}
+                    onChange={(e) => {
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'authWebhookMaxWaitInterval' }));
+                      authWebhookMaxWaitInterval.onChange(e.target.value);
+                    }}
+                    id="authWebhookMaxWaitInterval"
+                    label="Auth Webhook Max Wait Interval"
+                    blindLabel={true}
+                    fieldUtil={true}
+                    placeholder="0"
+                    state={
+                      checkFieldState('authWebhookMaxWaitInterval', 'success')
+                        ? 'success'
+                        : checkFieldState('authWebhookMaxWaitInterval', 'error')
+                          ? 'error'
+                          : undefined
+                    }
+                    helperText={
+                      updateFieldInfo.target === 'authWebhookMaxWaitInterval' && updateFieldInfo.state !== null
+                        ? updateFieldInfo.message
+                        : undefined
+                    }
+                    onSuccessEnd={resetUpdateFieldInfo}
+                  />
+                </div>
+              </dd>
+              <dt className="sub_title">Auth Webhook Request Timeout</dt>
+              <dd className="sub_desc">
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: checkFieldState('authWebhookRequestTimeout', 'error'),
+                    is_success: checkFieldState('authWebhookRequestTimeout', 'success'),
+                  })}
+                >
+                  <InputTextField
+                    reset={() => {
+                      resetForm();
+                      resetUpdateFieldInfo();
+                    }}
+                    {...register('authWebhookRequestTimeout', {
+                      required: 'Auth Webhook Request Timeout is required',
+                      pattern: {
+                        value: /^(\d{1,2}h\s?)?(\d{1,2}m\s?)?(\d{1,2}s)?$/,
+                        message: 'Auth Webhook Request Timeout should be a signed sequence of decimal numbers, each with a unit suffix, such as "23h30m10s" or "2h45m',
+                      },
+                      onChange: async () => {
+                        await trigger('authWebhookRequestTimeout');
+                      },
+                    })}
+                    onChange={(e) => {
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'authWebhookRequestTimeout' }));
+                      authWebhookRequestTimeout.onChange(e.target.value);
+                    }}
+                    id="authWebhookRequestTimeout"
+                    label="Auth Webhook Request Timeout"
+                    blindLabel={true}
+                    fieldUtil={true}
+                    placeholder="0"
+                    state={
+                      checkFieldState('authWebhookRequestTimeout', 'success')
+                        ? 'success'
+                        : checkFieldState('authWebhookRequestTimeout', 'error')
+                          ? 'error'
+                          : undefined
+                    }
+                    helperText={
+                      updateFieldInfo.target === 'authWebhookRequestTimeout' && updateFieldInfo.state !== null
+                        ? updateFieldInfo.message
+                        : undefined
+                    }
+                    onSuccessEnd={resetUpdateFieldInfo}
+                  />
                 </div>
               </dd>
             </dl>
@@ -813,6 +1287,102 @@ export function Settings() {
                     }
                     helperText={
                       updateFieldInfo.target === 'clientDeactivateThreshold' && updateFieldInfo.state !== null
+                        ? updateFieldInfo.message
+                        : undefined
+                    }
+                    onSuccessEnd={resetUpdateFieldInfo}
+                  />
+                </div>
+              </dd>
+              <dt className="sub_title">Snapshot Interval</dt>
+              <dd className="sub_desc">
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: checkFieldState('snapshotInterval', 'error'),
+                    is_success: checkFieldState('snapshotInterval', 'success'),
+                  })}
+                >
+                  <InputTextField
+                    reset={() => {
+                      resetForm();
+                      resetUpdateFieldInfo();
+                    }}
+                    {...register('snapshotInterval', {
+                      required: 'Snapshot Interval is required',
+                      pattern: {
+                        value: /^[0-9]+$/,
+                        message: 'Snapshot Interval must be a positive integer',
+                      },
+                      onChange: async () => {
+                        await trigger('snapshotInterval');
+                      },
+                    })}
+                    onChange={(e) => {
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'snapshotInterval' }));
+                      snapshotInterval.onChange(e.target.value);
+                    }}
+                    id="snapshotInterval"
+                    label="Snapshot Interval"
+                    blindLabel={true}
+                    fieldUtil={true}
+                    placeholder="0"
+                    state={
+                      checkFieldState('snapshotInterval', 'success')
+                        ? 'success'
+                        : checkFieldState('snapshotInterval', 'error')
+                          ? 'error'
+                          : undefined
+                    }
+                    helperText={
+                      updateFieldInfo.target === 'snapshotInterval' && updateFieldInfo.state !== null
+                        ? updateFieldInfo.message
+                        : undefined
+                    }
+                    onSuccessEnd={resetUpdateFieldInfo}
+                  />
+                </div>
+              </dd>
+              <dt className="sub_title">Snapshot Threshold</dt>
+              <dd className="sub_desc">
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: checkFieldState('snapshotThreshold', 'error'),
+                    is_success: checkFieldState('snapshotThreshold', 'success'),
+                  })}
+                >
+                  <InputTextField
+                    reset={() => {
+                      resetForm();
+                      resetUpdateFieldInfo();
+                    }}
+                    {...register('snapshotThreshold', {
+                      required: 'Snapshot Threshold is required',
+                      pattern: {
+                        value: /^[0-9]+$/,
+                        message: 'Snapshot Threshold must be a positive integer',
+                      },
+                      onChange: async () => {
+                        await trigger('snapshotThreshold');
+                      },
+                    })}
+                    onChange={(e) => {
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'snapshotThreshold' }));
+                      snapshotThreshold.onChange(e.target.value);
+                    }}
+                    id="snapshotThreshold"
+                    label="Snapshot Threshold"
+                    blindLabel={true}
+                    fieldUtil={true}
+                    placeholder="0"
+                    state={
+                      checkFieldState('snapshotThreshold', 'success')
+                        ? 'success'
+                        : checkFieldState('snapshotThreshold', 'error')
+                          ? 'error'
+                          : undefined
+                    }
+                    helperText={
+                      updateFieldInfo.target === 'snapshotThreshold' && updateFieldInfo.state !== null
                         ? updateFieldInfo.message
                         : undefined
                     }
