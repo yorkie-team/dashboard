@@ -154,11 +154,29 @@ export async function updateProject(id: string, fields: UpdatableProjectFields):
     authWebhookMethods: fields.authWebhookMethods
       ? new PbProjectFields_AuthWebhookMethods({ methods: fields.authWebhookMethods })
       : undefined,
+    authWebhookMaxRetries: fields.authWebhookMaxRetries !== undefined
+      ? BigInt(fields.authWebhookMaxRetries)
+      : undefined,
+    authWebhookMinWaitInterval: fields.authWebhookMinWaitInterval,
+    authWebhookMaxWaitInterval: fields.authWebhookMaxWaitInterval,
+    authWebhookRequestTimeout: fields.authWebhookRequestTimeout,
     eventWebhookUrl: fields.eventWebhookURL,
     eventWebhookEvents: fields.eventWebhookEvents
       ? new PbProjectFields_EventWebhookEvents({ events: fields.eventWebhookEvents })
       : undefined,
+    eventWebhookMaxRetries: fields.eventWebhookMaxRetries !== undefined
+      ? BigInt(fields.eventWebhookMaxRetries)
+      : undefined,
+    eventWebhookMinWaitInterval: fields.eventWebhookMinWaitInterval,
+    eventWebhookMaxWaitInterval: fields.eventWebhookMaxWaitInterval,
+    eventWebhookRequestTimeout: fields.eventWebhookRequestTimeout,
     clientDeactivateThreshold: fields.clientDeactivateThreshold,
+    snapshotThreshold: fields.snapshotThreshold !== undefined
+      ? BigInt(fields.snapshotThreshold)
+      : undefined,
+    snapshotInterval: fields.snapshotInterval !== undefined
+      ? BigInt(fields.snapshotInterval)
+      : undefined,
     maxSubscribersPerDocument:
       fields.maxSubscribersPerDocument !== null ? Number(fields.maxSubscribersPerDocument) : undefined,
     maxAttachmentsPerDocument:
