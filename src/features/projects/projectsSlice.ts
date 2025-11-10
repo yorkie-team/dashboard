@@ -83,6 +83,8 @@ export type ProjectUpdateFields = {
   eventWebhookURL: string;
   eventWebhookEvents: Array<EventWebhookEvent>;
   clientDeactivateThreshold: string;
+  snapshotThreshold: number;
+  snapshotInterval: number;
   maxSubscribersPerDocument: number;
   maxAttachmentsPerDocument: number;
   maxSizePerDocument: number;
@@ -332,6 +334,16 @@ export const projectsSlice = createSlice({
           } else if (field === 'EventWebhookEvents') {
             state.update.error = {
               target: 'eventWebhookEvents',
+              message: description,
+            };
+          } else if (field === 'SnapshotThreshold') {
+            state.update.error = {
+              target: 'snapshotThreshold',
+              message: description,
+            };
+          } else if (field === 'SnapshotInterval') {
+            state.update.error = {
+              target: 'snapshotInterval',
               message: description,
             };
           } else if (field === 'ClientDeactivateThreshold') {

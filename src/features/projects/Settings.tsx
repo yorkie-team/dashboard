@@ -63,6 +63,8 @@ export function Settings() {
       eventWebhookURL: '',
       eventWebhookEvents: [],
       clientDeactivateThreshold: '',
+      snapshotInterval: 0,
+      snapshotThreshold: 0,
       maxSubscribersPerDocument: 0,
       maxAttachmentsPerDocument: 0,
       maxSizePerDocument: 0,
@@ -100,6 +102,14 @@ export function Settings() {
     control,
     name: 'maxAttachmentsPerDocument',
   });
+  const { field: snapshotThreshold, fieldState: snapshotThresholdState } = useController({
+    control,
+    name: 'snapshotThreshold',
+  });
+  const { field: snapshotInterval, fieldState: snapshotIntervalState } = useController({
+    control,
+    name: 'snapshotInterval',
+  });
   const { field: maxSizePerDocument, fieldState: maxSizePerDocumentState } = useController({
     control,
     name: 'maxSizePerDocument',
@@ -135,6 +145,8 @@ export function Settings() {
       clientDeactivateThreshold: project?.clientDeactivateThreshold || '',
       maxSubscribersPerDocument: project?.maxSubscribersPerDocument || 0,
       maxAttachmentsPerDocument: project?.maxAttachmentsPerDocument || 0,
+      snapshotInterval: project?.snapshotInterval || 0,
+      snapshotThreshold: project?.snapshotThreshold || 0,
       maxSizePerDocument: project?.maxSizePerDocument || 0,
       removeOnDetach: project?.removeOnDetach || false,
       allowedOrigins: Array.isArray(project?.allowedOrigins) ? project?.allowedOrigins.join(',') : '',
@@ -169,6 +181,8 @@ export function Settings() {
       !maxSubscribersPerDocumentState.error &&
       !maxAttachmentsPerDocumentState.error &&
       !maxSizePerDocumentState.error &&
+      !snapshotIntervalState.error &&
+      !snapshotThresholdState.error &&
       !removeOnDetachState.error &&
       !allowedOriginsState.error
     ) {
@@ -186,6 +200,8 @@ export function Settings() {
       maxSubscribersPerDocumentState.error ||
       maxAttachmentsPerDocumentState.error ||
       maxSizePerDocumentState.error ||
+      snapshotIntervalState.error ||
+      snapshotThresholdState.error ||
       removeOnDetachState.error ||
       allowedOriginsState.error
     ) {
@@ -813,6 +829,111 @@ export function Settings() {
                     }
                     helperText={
                       updateFieldInfo.target === 'clientDeactivateThreshold' && updateFieldInfo.state !== null
+                        ? updateFieldInfo.message
+                        : undefined
+                    }
+                    onSuccessEnd={resetUpdateFieldInfo}
+                  />
+                </div>
+              </dd>
+              <dt className="sub_title">Snapshot Threshold</dt>
+              <dd className="sub_desc">
+                <p className="guide">
+                  Set the threshold (in number of operations) whether the server returns snapshots to clients for
+                  documents in this project. If the number of operations since the last snapshot exceeds this threshold,
+                  the server will return the latest snapshot to the client when the client requests the document.
+                </p>
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: checkFieldState('snapshotThreshold', 'error'),
+                    is_success: checkFieldState('snapshotThreshold', 'success'),
+                  })}
+                >
+                  <InputTextField
+                    reset={() => {
+                      resetForm();
+                      resetUpdateFieldInfo();
+                    }}
+                    {...register('snapshotThreshold', {
+                      required: 'Snapshot Threshold is required',
+                      pattern: {
+                        value: /^[0-9]+$/,
+                        message: 'Snapshot Threshold must be a positive integer',
+                      },
+                      onChange: async () => {
+                        await trigger('snapshotThreshold');
+                      },
+                    })}
+                    onChange={(e) => {
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'snapshotThreshold' }));
+                      snapshotThreshold.onChange(e.target.value);
+                    }}
+                    id="snapshotThreshold"
+                    label="Snapshot Threshold"
+                    blindLabel={true}
+                    fieldUtil={true}
+                    placeholder="0"
+                    state={
+                      checkFieldState('snapshotThreshold', 'success')
+                        ? 'success'
+                        : checkFieldState('snapshotThreshold', 'error')
+                          ? 'error'
+                          : undefined
+                    }
+                    helperText={
+                      updateFieldInfo.target === 'snapshotThreshold' && updateFieldInfo.state !== null
+                        ? updateFieldInfo.message
+                        : undefined
+                    }
+                    onSuccessEnd={resetUpdateFieldInfo}
+                  />
+                </div>
+              </dd>
+              <dt className="sub_title">Snapshot Interval</dt>
+              <dd className="sub_desc">
+                <p className="guide">
+                  Set the interval (in number of operations) at which snapshots are created in server for documents in
+                  this project. If the interval is set to 500, the server creates a snapshot every 500 operations.
+                </p>
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: checkFieldState('snapshotInterval', 'error'),
+                    is_success: checkFieldState('snapshotInterval', 'success'),
+                  })}
+                >
+                  <InputTextField
+                    reset={() => {
+                      resetForm();
+                      resetUpdateFieldInfo();
+                    }}
+                    {...register('snapshotInterval', {
+                      required: 'Snapshot Interval is required',
+                      pattern: {
+                        value: /^[0-9]+$/,
+                        message: 'Snapshot Interval must be a positive integer',
+                      },
+                      onChange: async () => {
+                        await trigger('snapshotInterval');
+                      },
+                    })}
+                    onChange={(e) => {
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'snapshotInterval' }));
+                      snapshotInterval.onChange(e.target.value);
+                    }}
+                    id="snapshotInterval"
+                    label="Snapshot Interval"
+                    blindLabel={true}
+                    fieldUtil={true}
+                    placeholder="0"
+                    state={
+                      checkFieldState('snapshotInterval', 'success')
+                        ? 'success'
+                        : checkFieldState('snapshotInterval', 'error')
+                          ? 'error'
+                          : undefined
+                    }
+                    helperText={
+                      updateFieldInfo.target === 'snapshotInterval' && updateFieldInfo.state !== null
                         ? updateFieldInfo.message
                         : undefined
                     }

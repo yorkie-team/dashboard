@@ -19,7 +19,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { BoolValue, Int32Value, Message, proto3, protoInt64, StringValue, Timestamp } from "@bufbuild/protobuf";
+import { BoolValue, Int32Value, Int64Value, Message, proto3, protoInt64, StringValue, Timestamp, UInt64Value } from "@bufbuild/protobuf";
 
 /**
  * @generated from enum yorkie.v1.ValueType
@@ -2153,6 +2153,26 @@ export class Project extends Message<Project> {
   authWebhookMethods: string[] = [];
 
   /**
+   * @generated from field: uint64 auth_webhook_max_retries = 17;
+   */
+  authWebhookMaxRetries = protoInt64.zero;
+
+  /**
+   * @generated from field: string auth_webhook_min_wait_interval = 18;
+   */
+  authWebhookMinWaitInterval = "";
+
+  /**
+   * @generated from field: string auth_webhook_max_wait_interval = 19;
+   */
+  authWebhookMaxWaitInterval = "";
+
+  /**
+   * @generated from field: string auth_webhook_request_timeout = 20;
+   */
+  authWebhookRequestTimeout = "";
+
+  /**
    * @generated from field: string event_webhook_url = 7;
    */
   eventWebhookUrl = "";
@@ -2163,9 +2183,39 @@ export class Project extends Message<Project> {
   eventWebhookEvents: string[] = [];
 
   /**
+   * @generated from field: uint64 event_webhook_max_retries = 21;
+   */
+  eventWebhookMaxRetries = protoInt64.zero;
+
+  /**
+   * @generated from field: string event_webhook_min_wait_interval = 22;
+   */
+  eventWebhookMinWaitInterval = "";
+
+  /**
+   * @generated from field: string event_webhook_max_wait_interval = 23;
+   */
+  eventWebhookMaxWaitInterval = "";
+
+  /**
+   * @generated from field: string event_webhook_request_timeout = 24;
+   */
+  eventWebhookRequestTimeout = "";
+
+  /**
    * @generated from field: string client_deactivate_threshold = 9;
    */
   clientDeactivateThreshold = "";
+
+  /**
+   * @generated from field: int64 snapshot_threshold = 25;
+   */
+  snapshotThreshold = protoInt64.zero;
+
+  /**
+   * @generated from field: int64 snapshot_interval = 26;
+   */
+  snapshotInterval = protoInt64.zero;
 
   /**
    * @generated from field: int32 max_subscribers_per_document = 10;
@@ -2216,9 +2266,19 @@ export class Project extends Message<Project> {
     { no: 4, name: "secret_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "auth_webhook_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "auth_webhook_methods", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 17, name: "auth_webhook_max_retries", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 18, name: "auth_webhook_min_wait_interval", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 19, name: "auth_webhook_max_wait_interval", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 20, name: "auth_webhook_request_timeout", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 7, name: "event_webhook_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 8, name: "event_webhook_events", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 21, name: "event_webhook_max_retries", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 22, name: "event_webhook_min_wait_interval", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 23, name: "event_webhook_max_wait_interval", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 24, name: "event_webhook_request_timeout", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 9, name: "client_deactivate_threshold", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 25, name: "snapshot_threshold", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 26, name: "snapshot_interval", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 10, name: "max_subscribers_per_document", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 11, name: "max_attachments_per_document", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 15, name: "max_size_per_document", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
@@ -2308,6 +2368,26 @@ export class UpdatableProjectFields extends Message<UpdatableProjectFields> {
   authWebhookMethods?: UpdatableProjectFields_AuthWebhookMethods;
 
   /**
+   * @generated from field: google.protobuf.UInt64Value auth_webhook_max_retries = 12;
+   */
+  authWebhookMaxRetries?: bigint;
+
+  /**
+   * @generated from field: google.protobuf.StringValue auth_webhook_min_wait_interval = 13;
+   */
+  authWebhookMinWaitInterval?: string;
+
+  /**
+   * @generated from field: google.protobuf.StringValue auth_webhook_max_wait_interval = 14;
+   */
+  authWebhookMaxWaitInterval?: string;
+
+  /**
+   * @generated from field: google.protobuf.StringValue auth_webhook_request_timeout = 15;
+   */
+  authWebhookRequestTimeout?: string;
+
+  /**
    * @generated from field: google.protobuf.StringValue event_webhook_url = 4;
    */
   eventWebhookUrl?: string;
@@ -2316,6 +2396,36 @@ export class UpdatableProjectFields extends Message<UpdatableProjectFields> {
    * @generated from field: yorkie.v1.UpdatableProjectFields.EventWebhookEvents event_webhook_events = 5;
    */
   eventWebhookEvents?: UpdatableProjectFields_EventWebhookEvents;
+
+  /**
+   * @generated from field: google.protobuf.UInt64Value event_webhook_max_retries = 16;
+   */
+  eventWebhookMaxRetries?: bigint;
+
+  /**
+   * @generated from field: google.protobuf.StringValue event_webhook_min_wait_interval = 17;
+   */
+  eventWebhookMinWaitInterval?: string;
+
+  /**
+   * @generated from field: google.protobuf.StringValue event_webhook_max_wait_interval = 18;
+   */
+  eventWebhookMaxWaitInterval?: string;
+
+  /**
+   * @generated from field: google.protobuf.StringValue event_webhook_request_timeout = 19;
+   */
+  eventWebhookRequestTimeout?: string;
+
+  /**
+   * @generated from field: google.protobuf.Int64Value snapshot_threshold = 20;
+   */
+  snapshotThreshold?: bigint;
+
+  /**
+   * @generated from field: google.protobuf.Int64Value snapshot_interval = 21;
+   */
+  snapshotInterval?: bigint;
 
   /**
    * @generated from field: google.protobuf.StringValue client_deactivate_threshold = 6;
@@ -2358,8 +2468,18 @@ export class UpdatableProjectFields extends Message<UpdatableProjectFields> {
     { no: 1, name: "name", kind: "message", T: StringValue },
     { no: 2, name: "auth_webhook_url", kind: "message", T: StringValue },
     { no: 3, name: "auth_webhook_methods", kind: "message", T: UpdatableProjectFields_AuthWebhookMethods },
+    { no: 12, name: "auth_webhook_max_retries", kind: "message", T: UInt64Value },
+    { no: 13, name: "auth_webhook_min_wait_interval", kind: "message", T: StringValue },
+    { no: 14, name: "auth_webhook_max_wait_interval", kind: "message", T: StringValue },
+    { no: 15, name: "auth_webhook_request_timeout", kind: "message", T: StringValue },
     { no: 4, name: "event_webhook_url", kind: "message", T: StringValue },
     { no: 5, name: "event_webhook_events", kind: "message", T: UpdatableProjectFields_EventWebhookEvents },
+    { no: 16, name: "event_webhook_max_retries", kind: "message", T: UInt64Value },
+    { no: 17, name: "event_webhook_min_wait_interval", kind: "message", T: StringValue },
+    { no: 18, name: "event_webhook_max_wait_interval", kind: "message", T: StringValue },
+    { no: 19, name: "event_webhook_request_timeout", kind: "message", T: StringValue },
+    { no: 20, name: "snapshot_threshold", kind: "message", T: Int64Value },
+    { no: 21, name: "snapshot_interval", kind: "message", T: Int64Value },
     { no: 6, name: "client_deactivate_threshold", kind: "message", T: StringValue },
     { no: 7, name: "max_subscribers_per_document", kind: "message", T: Int32Value },
     { no: 8, name: "max_attachments_per_document", kind: "message", T: Int32Value },
@@ -2700,6 +2820,49 @@ export class Presence extends Message<Presence> {
 }
 
 /**
+ * @generated from message yorkie.v1.ChannelSummary
+ */
+export class ChannelSummary extends Message<ChannelSummary> {
+  /**
+   * @generated from field: string key = 1;
+   */
+  key = "";
+
+  /**
+   * @generated from field: int32 presence_count = 2;
+   */
+  presenceCount = 0;
+
+  constructor(data?: PartialMessage<ChannelSummary>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.ChannelSummary";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "presence_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ChannelSummary {
+    return new ChannelSummary().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ChannelSummary {
+    return new ChannelSummary().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ChannelSummary {
+    return new ChannelSummary().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ChannelSummary | PlainMessage<ChannelSummary> | undefined, b: ChannelSummary | PlainMessage<ChannelSummary> | undefined): boolean {
+    return proto3.util.equals(ChannelSummary, a, b);
+  }
+}
+
+/**
  * @generated from message yorkie.v1.Checkpoint
  */
 export class Checkpoint extends Message<Checkpoint> {
@@ -2931,6 +3094,99 @@ export class DocEvent extends Message<DocEvent> {
     return proto3.util.equals(DocEvent, a, b);
   }
 }
+
+/**
+ * @generated from message yorkie.v1.ChannelEvent
+ */
+export class ChannelEvent extends Message<ChannelEvent> {
+  /**
+   * @generated from field: yorkie.v1.ChannelEvent.Type type = 1;
+   */
+  type = ChannelEvent_Type.UNSPECIFIED;
+
+  /**
+   * @generated from field: string publisher = 2;
+   */
+  publisher = "";
+
+  /**
+   * @generated from field: int64 count = 3;
+   */
+  count = protoInt64.zero;
+
+  /**
+   * @generated from field: int64 seq = 4;
+   */
+  seq = protoInt64.zero;
+
+  /**
+   * @generated from field: string topic = 5;
+   */
+  topic = "";
+
+  /**
+   * @generated from field: bytes payload = 6;
+   */
+  payload = new Uint8Array(0);
+
+  constructor(data?: PartialMessage<ChannelEvent>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.ChannelEvent";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "type", kind: "enum", T: proto3.getEnumType(ChannelEvent_Type) },
+    { no: 2, name: "publisher", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "count", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 4, name: "seq", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 5, name: "topic", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "payload", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ChannelEvent {
+    return new ChannelEvent().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ChannelEvent {
+    return new ChannelEvent().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ChannelEvent {
+    return new ChannelEvent().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ChannelEvent | PlainMessage<ChannelEvent> | undefined, b: ChannelEvent | PlainMessage<ChannelEvent> | undefined): boolean {
+    return proto3.util.equals(ChannelEvent, a, b);
+  }
+}
+
+/**
+ * @generated from enum yorkie.v1.ChannelEvent.Type
+ */
+export enum ChannelEvent_Type {
+  /**
+   * @generated from enum value: TYPE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: TYPE_PRESENCE = 1;
+   */
+  PRESENCE = 1,
+
+  /**
+   * @generated from enum value: TYPE_BROADCAST = 2;
+   */
+  BROADCAST = 2,
+}
+// Retrieve enum metadata with: proto3.getEnumType(ChannelEvent_Type)
+proto3.util.setEnumType(ChannelEvent_Type, "yorkie.v1.ChannelEvent.Type", [
+  { no: 0, name: "TYPE_UNSPECIFIED" },
+  { no: 1, name: "TYPE_PRESENCE" },
+  { no: 2, name: "TYPE_BROADCAST" },
+]);
 
 /**
  * @generated from message yorkie.v1.DataSize

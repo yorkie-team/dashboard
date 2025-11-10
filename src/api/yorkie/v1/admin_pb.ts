@@ -20,7 +20,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Change, DocumentSummary, MetricPoint, Project, Rule, Schema, UpdatableProjectFields, User, VersionVector } from "./resources_pb";
+import { Change, ChannelSummary, DocumentSummary, MetricPoint, Project, Rule, Schema, UpdatableProjectFields, User, VersionVector } from "./resources_pb";
 
 /**
  * @generated from message yorkie.v1.SignUpRequest
@@ -1429,6 +1429,86 @@ export class SearchDocumentsResponse extends Message<SearchDocumentsResponse> {
 
   static equals(a: SearchDocumentsResponse | PlainMessage<SearchDocumentsResponse> | undefined, b: SearchDocumentsResponse | PlainMessage<SearchDocumentsResponse> | undefined): boolean {
     return proto3.util.equals(SearchDocumentsResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.GetChannelsRequest
+ */
+export class GetChannelsRequest extends Message<GetChannelsRequest> {
+  /**
+   * @generated from field: repeated string channel_keys = 1;
+   */
+  channelKeys: string[] = [];
+
+  /**
+   * @generated from field: bool include_sub_path = 2;
+   */
+  includeSubPath = false;
+
+  constructor(data?: PartialMessage<GetChannelsRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.GetChannelsRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "channel_keys", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 2, name: "include_sub_path", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetChannelsRequest {
+    return new GetChannelsRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetChannelsRequest {
+    return new GetChannelsRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetChannelsRequest {
+    return new GetChannelsRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetChannelsRequest | PlainMessage<GetChannelsRequest> | undefined, b: GetChannelsRequest | PlainMessage<GetChannelsRequest> | undefined): boolean {
+    return proto3.util.equals(GetChannelsRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.GetChannelsResponse
+ */
+export class GetChannelsResponse extends Message<GetChannelsResponse> {
+  /**
+   * @generated from field: repeated yorkie.v1.ChannelSummary channels = 1;
+   */
+  channels: ChannelSummary[] = [];
+
+  constructor(data?: PartialMessage<GetChannelsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.GetChannelsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "channels", kind: "message", T: ChannelSummary, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetChannelsResponse {
+    return new GetChannelsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetChannelsResponse {
+    return new GetChannelsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetChannelsResponse {
+    return new GetChannelsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetChannelsResponse | PlainMessage<GetChannelsResponse> | undefined, b: GetChannelsResponse | PlainMessage<GetChannelsResponse> | undefined): boolean {
+    return proto3.util.equals(GetChannelsResponse, a, b);
   }
 }
 
