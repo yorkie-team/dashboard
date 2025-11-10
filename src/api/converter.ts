@@ -56,6 +56,8 @@ export function fromProject(pbProject: PbProject): Project {
     eventWebhookURL: pbProject.eventWebhookUrl,
     eventWebhookEvents: pbProject.eventWebhookEvents as Array<EventWebhookEvent>,
     clientDeactivateThreshold: pbProject.clientDeactivateThreshold,
+    snapshotInterval: Number(pbProject.snapshotInterval),
+    snapshotThreshold: Number(pbProject.snapshotThreshold),
     maxSubscribersPerDocument: pbProject.maxSubscribersPerDocument,
     maxAttachmentsPerDocument: pbProject.maxAttachmentsPerDocument,
     maxSizePerDocument: pbProject.maxSizePerDocument,

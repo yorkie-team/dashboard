@@ -159,12 +159,12 @@ export async function updateProject(id: string, fields: UpdatableProjectFields):
       ? new PbProjectFields_EventWebhookEvents({ events: fields.eventWebhookEvents })
       : undefined,
     clientDeactivateThreshold: fields.clientDeactivateThreshold,
-    maxSubscribersPerDocument:
-      fields.maxSubscribersPerDocument !== null ? Number(fields.maxSubscribersPerDocument) : undefined,
-    maxAttachmentsPerDocument:
-      fields.maxAttachmentsPerDocument !== null ? Number(fields.maxAttachmentsPerDocument) : undefined,
-    maxSizePerDocument: fields.maxSizePerDocument !== null ? Number(fields.maxSizePerDocument) : undefined,
-    removeOnDetach: fields.removeOnDetach !== null ? Boolean(fields.removeOnDetach) : undefined,
+    snapshotThreshold: fields.snapshotThreshold ? BigInt(fields.snapshotThreshold) : undefined,
+    snapshotInterval: fields.snapshotInterval ? BigInt(fields.snapshotInterval) : undefined,
+    maxSubscribersPerDocument: fields.maxSubscribersPerDocument,
+    maxAttachmentsPerDocument: fields.maxAttachmentsPerDocument,
+    maxSizePerDocument: fields.maxSizePerDocument,
+    removeOnDetach: fields.removeOnDetach && Boolean(fields.removeOnDetach),
     allowedOrigins: fields.allowedOrigins
       ? new PbProjectFields_AllowedOrigins({ origins: fields.allowedOrigins.split(',') })
       : undefined,

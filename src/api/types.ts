@@ -59,6 +59,8 @@ export type Project = {
   eventWebhookURL: string;
   eventWebhookEvents?: Array<EventWebhookEvent>;
   clientDeactivateThreshold: string;
+  snapshotThreshold: number;
+  snapshotInterval: number;
   maxSubscribersPerDocument: number;
   maxAttachmentsPerDocument: number;
   maxSizePerDocument: number;
@@ -93,6 +95,8 @@ export type UpdatableProjectFields = {
   eventWebhookURL?: string;
   eventWebhookEvents?: Array<EventWebhookEvent>;
   clientDeactivateThreshold?: string;
+  snapshotThreshold?: number;
+  snapshotInterval?: number;
   maxSubscribersPerDocument?: number;
   maxAttachmentsPerDocument?: number;
   maxSizePerDocument?: number;
