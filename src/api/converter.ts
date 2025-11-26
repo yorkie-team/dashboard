@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { DataSize, DATE_RANGE_OPTIONS, DocSize, Presence, Schema } from './types';
+import { DataSize, DATE_RANGE_OPTIONS, DocSize, Presence, Schema, RevisionSummary } from './types';
 import { Timestamp as PbTimestamp } from '@bufbuild/protobuf';
 import { User, Project, DocumentSummary, AuthWebhookMethod, EventWebhookEvent, FieldViolation } from './types';
 import { Change, converter, Indexable } from '@yorkie-js/sdk';
@@ -26,6 +26,7 @@ import {
   DocSize as PbDocSize,
   Schema as PbSchema,
   Change as PbChange,
+  RevisionSummary as PbRevisionSummary,
 } from './yorkie/v1/resources_pb';
 import { GetProjectStatsRequest_DateRange as PbDateRange } from './yorkie/v1/admin_pb';
 import { ConnectError } from '@connectrpc/connect';
@@ -188,4 +189,19 @@ function fromPbDocSize(pbDocSize?: PbDocSize): DocSize {
     live: fromPbDataSize(pbDocSize?.live),
     gc: fromPbDataSize(pbDocSize?.gc),
   };
+}
+
+export function fromRevisionSummary(pbRevision: PbRevisionSummary): RevisionSummary {
+  return {
+    id: pbRevision.id,
+    seq: pbRevision.seq,
+    label: pbRevision.label,
+    description: pbRevision.description,
+    snapshot: pbRevision.snapshot,
+    createdAt: fromTimestamp(pbRevision.createdAt!),
+  };
+}
+
+export function fromRevisionSummaries(pbRevisions: Array<any>): Array<RevisionSummary> {
+  return pbRevisions.map((pbRevision) => fromRevisionSummary(pbRevision));
 }

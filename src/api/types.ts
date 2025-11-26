@@ -36,6 +36,15 @@ export type DocumentHistory = {
   snapshot: string;
 };
 
+export type RevisionSummary = {
+  id: string;
+  seq: bigint;
+  label: string;
+  description: string;
+  snapshot: string;
+  createdAt: number;
+};
+
 export type Schema = {
   id: string;
   name: string;

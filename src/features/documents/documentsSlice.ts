@@ -25,6 +25,10 @@ import {
   listDocumentHistories,
   DocumentHistory,
   removeDocumentByAdmin,
+  listRevisions,
+  getRevision,
+  restoreRevision,
+  RevisionSummary,
 } from 'api';
 
 export interface DocumentsState {
@@ -46,6 +50,15 @@ export interface DocumentsState {
     hasNext: boolean;
     status: 'idle' | 'loading' | 'failed';
   };
+  revisions: {
+    list: Array<RevisionSummary>;
+    totalCount: number;
+    selectedRevision: RevisionSummary | null;
+    status: 'idle' | 'loading' | 'failed';
+    hasMore: boolean;
+    isLoadingMore: boolean;
+    offset: number;
+  };
 }
 
 const initialState: DocumentsState = {
@@ -66,6 +79,15 @@ const initialState: DocumentsState = {
     hasPrevious: false,
     hasNext: false,
     status: 'idle',
+  },
+  revisions: {
+    list: [],
+    totalCount: 0,
+    selectedRevision: null,
+    status: 'idle',
+    hasMore: true,
+    isLoadingMore: false,
+    offset: 0,
   },
 };
 
@@ -145,6 +167,43 @@ export const removeDocumentByAdminAsync = createAppThunk(
   async (params: { documentKey: string; force: boolean }): Promise<void> => {
     const { documentKey, force } = params;
     await removeDocumentByAdmin(documentKey, force);
+  },
+);
+
+export const listRevisionsAsync = createAppThunk(
+  'documents/listRevisions',
+  async (params: {
+    projectName: string;
+    documentKey: string;
+    pageSize: number;
+    offset: number;
+    isForward: boolean;
+    append?: boolean;
+  }): Promise<{
+    revisions: Array<RevisionSummary>;
+    totalCount: number;
+    append: boolean;
+  }> => {
+    const { projectName, documentKey, pageSize, offset, isForward, append = false } = params;
+    const result = await listRevisions(projectName, documentKey, pageSize, offset, isForward);
+    return { ...result, append };
+  },
+);
+
+export const getRevisionAsync = createAppThunk(
+  'documents/getRevision',
+  async (params: { projectName: string; documentKey: string; revisionId: string }): Promise<RevisionSummary> => {
+    const { projectName, documentKey, revisionId } = params;
+    const revision = await getRevision(projectName, documentKey, revisionId);
+    return revision;
+  },
+);
+
+export const restoreRevisionAsync = createAppThunk(
+  'documents/restoreRevision',
+  async (params: { projectName: string; documentKey: string; revisionId: string }): Promise<void> => {
+    const { projectName, documentKey, revisionId } = params;
+    await restoreRevision(projectName, documentKey, revisionId);
   },
 );
 
@@ -239,6 +298,47 @@ export const documentSlice = createSlice({
     builder.addCase(listDocumentHistoriesAsync.rejected, (state) => {
       state.history.status = 'failed';
     });
+    builder.addCase(listRevisionsAsync.pending, (state, action) => {
+      const isAppend = action.meta.arg.append;
+      if (isAppend) {
+        state.revisions.isLoadingMore = true;
+      } else {
+        state.revisions.status = 'loading';
+      }
+    });
+    builder.addCase(listRevisionsAsync.fulfilled, (state, action) => {
+      const { revisions, totalCount, append } = action.payload;
+      state.revisions.status = 'idle';
+      state.revisions.isLoadingMore = false;
+
+      if (append) {
+        state.revisions.list = [...state.revisions.list, ...revisions];
+      } else {
+        state.revisions.list = revisions;
+      }
+
+      state.revisions.totalCount = totalCount;
+      state.revisions.offset = state.revisions.list.length;
+      state.revisions.hasMore = state.revisions.list.length < totalCount;
+    });
+    builder.addCase(listRevisionsAsync.rejected, (state, action) => {
+      const isAppend = action.meta.arg.append;
+      if (isAppend) {
+        state.revisions.isLoadingMore = false;
+      } else {
+        state.revisions.status = 'failed';
+      }
+    });
+    builder.addCase(getRevisionAsync.pending, (state) => {
+      state.revisions.status = 'loading';
+    });
+    builder.addCase(getRevisionAsync.fulfilled, (state, action) => {
+      state.revisions.status = 'idle';
+      state.revisions.selectedRevision = action.payload;
+    });
+    builder.addCase(getRevisionAsync.rejected, (state) => {
+      state.revisions.status = 'failed';
+    });
   },
 });
 
@@ -247,5 +347,6 @@ export const { setHistory, resetHistory } = documentSlice.actions;
 export const selectDocumentList = (state: RootState) => state.documents.list;
 export const selectDocumentDetail = (state: RootState) => state.documents.detail;
 export const selectDocumentHistory = (state: RootState) => state.documents.history;
+export const selectDocumentRevisions = (state: RootState) => state.documents.revisions;
 
 export default documentSlice.reducer;

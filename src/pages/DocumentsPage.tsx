@@ -15,21 +15,25 @@
  */
 
 import React from 'react';
-import { useParams, Outlet } from 'react-router-dom';
+import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { ProjectPageTemplate } from 'pages';
 import { DocumentList } from 'features/documents';
 
 export function DocumentsPage() {
   const documentKey = useParams().documentKey || '';
+  const location = useLocation();
+  const isHistoryPage = location.pathname.endsWith('/history');
 
   return (
     <ProjectPageTemplate className="project_document_page">
-      <div className={documentKey ? "document_detail_area" : "document_list_area"}>
-        {
-          documentKey ? (
-            <div className="sidebar"><DocumentList isDetailOpen /></div>
-          ) : <DocumentList />
-        }
+      <div className={documentKey ? 'document_detail_area' : 'document_list_area'}>
+        {documentKey && !isHistoryPage ? (
+          <div className="sidebar">
+            <DocumentList isDetailOpen />
+          </div>
+        ) : !documentKey ? (
+          <DocumentList />
+        ) : null}
         <Outlet />
       </div>
     </ProjectPageTemplate>

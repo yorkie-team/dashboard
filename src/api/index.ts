@@ -35,6 +35,7 @@ import {
   RPCStatusCode,
   ProjectStats,
   Schema,
+  RevisionSummary,
 } from './types';
 import * as converter from './converter';
 import { Rule } from '@yorkie-js/schema';
@@ -325,4 +326,53 @@ export async function removeSchema(schemaName: string, version: number): Promise
 export async function rotateProjectKeys(projectId: string): Promise<Project> {
   const res = await client.rotateProjectKeys({ id: projectId });
   return converter.fromProject(res.project!);
+}
+
+// listRevisions fetches revisions for the given document.
+export async function listRevisions(
+  projectName: string,
+  documentKey: string,
+  pageSize: number,
+  offset: number,
+  isForward: boolean,
+): Promise<{
+  revisions: Array<RevisionSummary>;
+  totalCount: number;
+}> {
+  const res = await client.listRevisionsByAdmin({
+    projectName,
+    documentKey,
+    pageSize,
+    offset,
+    isForward,
+  });
+
+  return {
+    revisions: converter.fromRevisionSummaries(res.revisions),
+    totalCount: res.totalCount,
+  };
+}
+
+// getRevision fetches a specific revision by ID.
+export async function getRevision(
+  projectName: string,
+  documentKey: string,
+  revisionId: string,
+): Promise<RevisionSummary> {
+  const res = await client.getRevisionByAdmin({
+    projectName,
+    documentKey,
+    revisionId,
+  });
+
+  return converter.fromRevisionSummary(res.revision!);
+}
+
+// restoreRevision restores a document to a specific revision.
+export async function restoreRevision(projectName: string, documentKey: string, revisionId: string): Promise<void> {
+  await client.restoreRevisionByAdmin({
+    projectName,
+    documentKey,
+    revisionId,
+  });
 }
