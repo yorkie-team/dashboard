@@ -16,3 +16,4 @@
 
 export * from './DocumentList';
 export * from './DocumentDetail';
+export * from './DocumentHistory';

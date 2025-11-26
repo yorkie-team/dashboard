@@ -104,6 +104,10 @@ export function DocumentDetail() {
         </div>
         <div className="codeblock_header">
           <div className="box_left">
+            <Link to="history" className="badge" style={{ cursor: 'pointer', textDecoration: 'none' }}>
+              <Icon type="play" />
+              History
+            </Link>
             {document.schemaKey && (
               <span className="badge">
                 <Icon type="viewList" />

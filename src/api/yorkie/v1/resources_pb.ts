@@ -3384,3 +3384,70 @@ export class Rule extends Message<Rule> {
   }
 }
 
+/**
+ * @generated from message yorkie.v1.RevisionSummary
+ */
+export class RevisionSummary extends Message<RevisionSummary> {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id = "";
+
+  /**
+   * @generated from field: int64 seq = 2;
+   */
+  seq = protoInt64.zero;
+
+  /**
+   * @generated from field: string label = 3;
+   */
+  label = "";
+
+  /**
+   * @generated from field: string description = 4;
+   */
+  description = "";
+
+  /**
+   * @generated from field: string snapshot = 5;
+   */
+  snapshot = "";
+
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 6;
+   */
+  createdAt?: Timestamp;
+
+  constructor(data?: PartialMessage<RevisionSummary>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.RevisionSummary";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "seq", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 3, name: "label", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "snapshot", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "created_at", kind: "message", T: Timestamp },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RevisionSummary {
+    return new RevisionSummary().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RevisionSummary {
+    return new RevisionSummary().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RevisionSummary {
+    return new RevisionSummary().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RevisionSummary | PlainMessage<RevisionSummary> | undefined, b: RevisionSummary | PlainMessage<RevisionSummary> | undefined): boolean {
+    return proto3.util.equals(RevisionSummary, a, b);
+  }
+}
+

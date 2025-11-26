@@ -34,7 +34,7 @@ import {
   NotFoundPage,
 } from 'pages';
 import { useAppSelector, useAppDispatch } from 'app/hooks';
-import { DocumentDetail } from 'features/documents';
+import { DocumentDetail, DocumentHistory } from 'features/documents';
 import { selectPreferences, updateDarkTheme } from 'features/users/usersSlice';
 import { TestPage, ButtonView, PopoverView, DropdownView, InputView, BreadcrumbView, ModalView } from 'test';
 import { SchemaDetail } from 'features/schemas';
@@ -90,6 +90,7 @@ function App() {
           <Route path="/projects/:projectName/settings" element={<ProjectSettingsPage />} />
           <Route path="/projects/:projectName/documents" element={<DocumentsPage />}>
             <Route path=":documentKey" element={<DocumentDetail />} />
+            <Route path=":documentKey/history" element={<DocumentHistory />} />
           </Route>
           <Route path="/projects/:projectName/schemas" element={<SchemasPage />}>
             <Route path="/projects/:projectName/schemas/new" element={<SchemaDetail />} />
