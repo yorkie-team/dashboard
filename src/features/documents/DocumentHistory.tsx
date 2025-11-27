@@ -114,7 +114,7 @@ export function DocumentHistory() {
 
       alert(`Successfully restored to revision #${Number(selectedRevision.seq)}`);
       setShowRestoreModal(false);
-      navigate('..');
+      navigate('..', { relative: 'path' });
     } catch (error) {
       alert('Failed to restore revision. Please try again.');
     } finally {
