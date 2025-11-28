@@ -23,8 +23,11 @@ import {
   selectCurrentProject,
   resetProjectDetail,
 } from './projectsSlice';
-import { Icon, Popover, Dropdown, Chart } from 'components';
-import { formatNumber } from 'utils';
+import { ActiveUserChart } from './charts/ActiveUserChart';
+import { ChannelChart } from './charts/ChannelChart';
+import { SessionChart } from './charts/SessionChart';
+import { PeakSessionChart } from './charts/PeakSessionChart';
+import { Icon, Popover, Dropdown } from 'components';
 import { DATE_RANGE_OPTIONS } from 'api/types';
 
 export function Overview() {
@@ -107,67 +110,10 @@ export function Overview() {
           </div>
         </div>
         <div className="chart_group">
-          <div className="chart_box">
-            <div className="usage">
-              <div className="usage_list">
-                <div className="usage_item link_type big_type">
-                  <span className="title_box">
-                    <span className="title">Active Users</span>
-                  </span>
-                  <dl className="info">
-                    <dt className="blind">Details</dt>
-                    <dd className="info_text">{formatNumber(stats?.activeUsersCount) ?? 0}</dd>
-                  </dl>
-                </div>
-              </div>
-            </div>
-            <div className="chart">
-              <Chart
-                data={(() => {
-                  const now = new Date();
-                  const endDate = new Date(now.setHours(0, 0, 0, 0));
-                  const startDate = new Date(endDate);
-
-                  switch (range) {
-                    case 'oneweek':
-                      startDate.setDate(startDate.getDate() - 7);
-                      break;
-                    case 'fourweeks':
-                      startDate.setMonth(startDate.getMonth() - 1);
-                      break;
-                    case 'threemonths':
-                      startDate.setMonth(startDate.getMonth() - 3);
-                      break;
-                    case 'twelvemonths':
-                      startDate.setFullYear(startDate.getFullYear() - 1);
-                      break;
-                  }
-
-                  const allDates = [];
-                  for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
-                    allDates.push({
-                      timestamp: d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-                      users: 0,
-                    });
-                  }
-
-                  const actualData = new Map(
-                    (stats?.activeUsers || []).map(({ timestamp, value: users }) => [
-                      new Date(timestamp * 1000).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-                      users,
-                    ]),
-                  );
-
-                  return allDates.map((point) => ({
-                    ...point,
-                    users: actualData.get(point.timestamp) || 0,
-                  }));
-                })()}
-                xKey="timestamp"
-                dataKey="users"
-              />
-            </div>
-          </div>
+          <ActiveUserChart stats={stats} range={range} />
+          <ChannelChart stats={stats} range={range} />
+          <SessionChart stats={stats} range={range} />
+          <PeakSessionChart stats={stats} range={range} />
         </div>
       </div>
     </>
