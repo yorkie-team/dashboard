@@ -194,7 +194,6 @@ function fromPbDocSize(pbDocSize?: PbDocSize): DocSize {
 export function fromRevisionSummary(pbRevision: PbRevisionSummary): RevisionSummary {
   return {
     id: pbRevision.id,
-    seq: pbRevision.seq,
     label: pbRevision.label,
     description: pbRevision.description,
     snapshot: pbRevision.snapshot,

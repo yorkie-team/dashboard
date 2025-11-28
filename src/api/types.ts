@@ -38,7 +38,6 @@ export type DocumentHistory = {
 
 export type RevisionSummary = {
   id: string;
-  seq: bigint;
   label: string;
   description: string;
   snapshot: string;
