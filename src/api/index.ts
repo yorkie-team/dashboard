@@ -166,6 +166,7 @@ export async function updateProject(id: string, fields: UpdatableProjectFields):
     maxAttachmentsPerDocument: fields.maxAttachmentsPerDocument,
     maxSizePerDocument: fields.maxSizePerDocument,
     removeOnDetach: fields.removeOnDetach && Boolean(fields.removeOnDetach),
+    autoRevisionEnabled: fields.autoRevisionEnabled !== undefined ? Boolean(fields.autoRevisionEnabled) : undefined,
     allowedOrigins: fields.allowedOrigins
       ? new PbProjectFields_AllowedOrigins({ origins: fields.allowedOrigins.split(',') })
       : undefined,

@@ -63,6 +63,7 @@ export function fromProject(pbProject: PbProject): Project {
     maxAttachmentsPerDocument: pbProject.maxAttachmentsPerDocument,
     maxSizePerDocument: pbProject.maxSizePerDocument,
     removeOnDetach: pbProject.removeOnDetach,
+    autoRevisionEnabled: pbProject.autoRevisionEnabled,
     allowedOrigins: pbProject.allowedOrigins,
   };
 }
