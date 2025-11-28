@@ -112,7 +112,7 @@ export function DocumentHistory() {
         }),
       ).unwrap();
 
-      alert(`Successfully restored to revision #${Number(selectedRevision.seq)}`);
+      alert(`Successfully restored to revision ${selectedRevision.label || selectedRevision.id}`);
       setShowRestoreModal(false);
       navigate('..', { relative: 'path' });
     } catch (error) {
@@ -166,8 +166,7 @@ export function DocumentHistory() {
           <div className="revision_title">
             {selectedRevision && (
               <>
-                Revision #{Number(selectedRevision.seq)}
-                {selectedRevision.label && ` - ${selectedRevision.label}`}
+                Revision {selectedRevision.label && ` - ${selectedRevision.label}`}
                 <span className="revision_date">
                   {format(fromUnixTime(selectedRevision.createdAt), `MMM d, ${use24HourClock ? 'HH:mm' : 'h:mm a'}`)}
                 </span>
@@ -209,14 +208,9 @@ export function DocumentHistory() {
               <div className="slider_labels">
                 {list.length > 0 && (
                   <>
-                    <span>
-                      #{Number(list[0].seq)} {list[0].label && `(${list[0].label})`}
-                    </span>
+                    <span>{list[0].label && `(${list[0].label})`}</span>
                     {list.length > 1 && (
-                      <span>
-                        #{Number(list[list.length - 1].seq)}{' '}
-                        {list[list.length - 1].label && `(${list[list.length - 1].label})`}
-                      </span>
+                      <span>{list[list.length - 1].label && `(${list[list.length - 1].label})`}</span>
                     )}
                   </>
                 )}
@@ -286,7 +280,7 @@ export function DocumentHistory() {
           </Modal.Top>
           <Modal.Content>
             <Modal.Description>
-              Are you sure you want to restore this document to revision #{Number(selectedRevision?.seq)}?
+              Are you sure you want to restore this document to this revision?
               {selectedRevision?.label && ` (${selectedRevision.label})`}
               <br />
               <br />

@@ -89,6 +89,7 @@ export type ProjectUpdateFields = {
   maxAttachmentsPerDocument: number;
   maxSizePerDocument: number;
   removeOnDetach: boolean;
+  autoRevisionEnabled: boolean;
   allowedOrigins: string;
 };
 
