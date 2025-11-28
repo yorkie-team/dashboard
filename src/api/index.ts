@@ -270,11 +270,44 @@ export async function getProjectStats(range: keyof typeof DATE_RANGE_OPTIONS): P
     };
   });
 
+  const activeChannels = res.activeChannels.map((channel) => {
+    return {
+      // NOTE(hackerwins): Number can safely represent dates for +285,616 years.
+      // Millisecond precision loss is acceptable for daily stats.
+      timestamp: Number(channel.timestamp),
+      value: channel.value,
+    };
+  });
+
+  const sessions = res.sessions.map((session) => {
+    return {
+      // NOTE(hackerwins): Number can safely represent dates for +285,616 years.
+      // Millisecond precision loss is acceptable for daily stats.
+      timestamp: Number(session.timestamp),
+      value: session.value,
+    };
+  });
+
+  const peakSessionsPerChannel = res.peakSessionsPerChannel.map((point) => {
+    return {
+      // NOTE(hackerwins): Number can safely represent dates for +285,616 years.
+      // Millisecond precision loss is acceptable for daily stats.
+      timestamp: Number(point.timestamp),
+      value: point.value,
+    };
+  });
+
   return {
     documentsCount: Number(res.documentsCount),
     clientsCount: Number(res.clientsCount),
     activeUsersCount: res.activeUsersCount,
     activeUsers: activeUsers,
+    activeChannelsCount: Number(res.activeChannelsCount),
+    activeChannels: activeChannels,
+    sessionsCount: Number(res.sessionsCount),
+    sessions: sessions,
+    peakSessionsPerChannelCount: Number(res.peakSessionsPerChannelCount),
+    peakSessionsPerChannel: peakSessionsPerChannel,
   };
 }
 
