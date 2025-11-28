@@ -731,6 +731,36 @@ export class GetProjectStatsResponse extends Message<GetProjectStatsResponse> {
    */
   clientsCount = protoInt64.zero;
 
+  /**
+   * @generated from field: int32 active_channels_count = 5;
+   */
+  activeChannelsCount = 0;
+
+  /**
+   * @generated from field: repeated yorkie.v1.MetricPoint active_channels = 6;
+   */
+  activeChannels: MetricPoint[] = [];
+
+  /**
+   * @generated from field: int32 sessions_count = 7;
+   */
+  sessionsCount = 0;
+
+  /**
+   * @generated from field: repeated yorkie.v1.MetricPoint sessions = 8;
+   */
+  sessions: MetricPoint[] = [];
+
+  /**
+   * @generated from field: int32 peak_sessions_per_channel_count = 9;
+   */
+  peakSessionsPerChannelCount = 0;
+
+  /**
+   * @generated from field: repeated yorkie.v1.MetricPoint peak_sessions_per_channel = 10;
+   */
+  peakSessionsPerChannel: MetricPoint[] = [];
+
   constructor(data?: PartialMessage<GetProjectStatsResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -743,6 +773,12 @@ export class GetProjectStatsResponse extends Message<GetProjectStatsResponse> {
     { no: 2, name: "active_users", kind: "message", T: MetricPoint, repeated: true },
     { no: 3, name: "documents_count", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 4, name: "clients_count", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 5, name: "active_channels_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 6, name: "active_channels", kind: "message", T: MetricPoint, repeated: true },
+    { no: 7, name: "sessions_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 8, name: "sessions", kind: "message", T: MetricPoint, repeated: true },
+    { no: 9, name: "peak_sessions_per_channel_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 10, name: "peak_sessions_per_channel", kind: "message", T: MetricPoint, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetProjectStatsResponse {
