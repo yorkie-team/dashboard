@@ -63,6 +63,7 @@ export function fromProject(pbProject: PbProject): Project {
     maxAttachmentsPerDocument: pbProject.maxAttachmentsPerDocument,
     maxSizePerDocument: pbProject.maxSizePerDocument,
     removeOnDetach: pbProject.removeOnDetach,
+    autoRevisionEnabled: pbProject.autoRevisionEnabled,
     allowedOrigins: pbProject.allowedOrigins,
   };
 }
@@ -194,7 +195,6 @@ function fromPbDocSize(pbDocSize?: PbDocSize): DocSize {
 export function fromRevisionSummary(pbRevision: PbRevisionSummary): RevisionSummary {
   return {
     id: pbRevision.id,
-    seq: pbRevision.seq,
     label: pbRevision.label,
     description: pbRevision.description,
     snapshot: pbRevision.snapshot,

@@ -38,7 +38,6 @@ export type DocumentHistory = {
 
 export type RevisionSummary = {
   id: string;
-  seq: bigint;
   label: string;
   description: string;
   snapshot: string;
@@ -74,6 +73,7 @@ export type Project = {
   maxAttachmentsPerDocument: number;
   maxSizePerDocument: number;
   removeOnDetach: boolean;
+  autoRevisionEnabled: boolean;
   allowedOrigins: Array<string>;
   publicKey: string;
   secretKey: string;
@@ -125,6 +125,7 @@ export type UpdatableProjectFields = {
   maxAttachmentsPerDocument?: number;
   maxSizePerDocument?: number;
   removeOnDetach?: boolean;
+  autoRevisionEnabled?: boolean;
   allowedOrigins?: string;
 };
 

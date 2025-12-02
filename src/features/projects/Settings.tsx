@@ -69,6 +69,7 @@ export function Settings() {
       maxAttachmentsPerDocument: 0,
       maxSizePerDocument: 0,
       removeOnDetach: false,
+      autoRevisionEnabled: false,
       allowedOrigins: '',
     },
   });
@@ -118,6 +119,10 @@ export function Settings() {
     control,
     name: 'removeOnDetach',
   });
+  const { field: autoRevisionEnabled, fieldState: autoRevisionEnabledState } = useController({
+    control,
+    name: 'autoRevisionEnabled',
+  });
   const { field: allowedOrigins, fieldState: allowedOriginsState } = useController({
     control,
     name: 'allowedOrigins',
@@ -149,6 +154,7 @@ export function Settings() {
       snapshotThreshold: project?.snapshotThreshold || 0,
       maxSizePerDocument: project?.maxSizePerDocument || 0,
       removeOnDetach: project?.removeOnDetach || false,
+      autoRevisionEnabled: project?.autoRevisionEnabled || false,
       allowedOrigins: Array.isArray(project?.allowedOrigins) ? project?.allowedOrigins.join(',') : '',
     });
   }, [reset, project]);
@@ -184,6 +190,7 @@ export function Settings() {
       !snapshotIntervalState.error &&
       !snapshotThresholdState.error &&
       !removeOnDetachState.error &&
+      !autoRevisionEnabledState.error &&
       !allowedOriginsState.error
     ) {
       setUpdateFieldInfo((info) => ({
@@ -203,6 +210,7 @@ export function Settings() {
       snapshotIntervalState.error ||
       snapshotThresholdState.error ||
       removeOnDetachState.error ||
+      autoRevisionEnabledState.error ||
       allowedOriginsState.error
     ) {
       setUpdateFieldInfo((info) => ({
@@ -223,6 +231,7 @@ export function Settings() {
     maxAttachmentsPerDocumentState.error,
     maxSizePerDocumentState.error,
     removeOnDetachState.error,
+    autoRevisionEnabledState.error,
     allowedOriginsState.error,
   ]);
 
@@ -841,7 +850,7 @@ export function Settings() {
                 <p className="guide">
                   Set the threshold (in number of operations) whether the server returns snapshots to clients for
                   documents in this project. If the number of operations since the last snapshot exceeds this threshold,
-                  the server will return the latest snapshot to the client when the client requests the document.
+                  the server will return the latest snapshot to the client.
                 </p>
                 <div
                   className={classNames('input_field_box', {
@@ -939,6 +948,37 @@ export function Settings() {
                     }
                     onSuccessEnd={resetUpdateFieldInfo}
                   />
+                </div>
+              </dd>
+              <dt className="sub_title">Auto Revision Enabled</dt>
+              <dd className="sub_desc">
+                <p className="guide">
+                  Enable automatic creation of revisions for documents in this project. When enabled, revisions will be
+                  automatically created at Snapshot Intervals.{' '}
+                </p>
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: checkFieldState('autoRevisionEnabled', 'error'),
+                    is_success: checkFieldState('autoRevisionEnabled', 'success'),
+                  })}
+                >
+                  <InputToggle
+                    id="autoRevisionEnabled"
+                    label=""
+                    checked={autoRevisionEnabled.value}
+                    onChange={(e) => {
+                      autoRevisionEnabled.onChange(e.target.checked);
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'autoRevisionEnabled' }));
+                      onSubmit({ autoRevisionEnabled: e.target.checked });
+                    }}
+                  />
+                  {updateFieldInfo.target === 'autoRevisionEnabled' && updateFieldInfo.state !== null && (
+                    <InputHelperText
+                      state={updateFieldInfo.state}
+                      message={updateFieldInfo.message}
+                      onSuccessEnd={resetUpdateFieldInfo}
+                    />
+                  )}
                 </div>
               </dd>
               <dt className="sub_title">Remove On Detach</dt>

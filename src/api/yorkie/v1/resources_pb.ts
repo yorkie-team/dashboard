@@ -2238,6 +2238,11 @@ export class Project extends Message<Project> {
   removeOnDetach = false;
 
   /**
+   * @generated from field: bool auto_revision_enabled = 27;
+   */
+  autoRevisionEnabled = false;
+
+  /**
    * @generated from field: repeated string allowed_origins = 14;
    */
   allowedOrigins: string[] = [];
@@ -2283,6 +2288,7 @@ export class Project extends Message<Project> {
     { no: 11, name: "max_attachments_per_document", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 15, name: "max_size_per_document", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 16, name: "remove_on_detach", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 27, name: "auto_revision_enabled", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 14, name: "allowed_origins", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
     { no: 12, name: "created_at", kind: "message", T: Timestamp },
     { no: 13, name: "updated_at", kind: "message", T: Timestamp },
@@ -2453,6 +2459,11 @@ export class UpdatableProjectFields extends Message<UpdatableProjectFields> {
   removeOnDetach?: boolean;
 
   /**
+   * @generated from field: google.protobuf.BoolValue auto_revision_enabled = 22;
+   */
+  autoRevisionEnabled?: boolean;
+
+  /**
    * @generated from field: yorkie.v1.UpdatableProjectFields.AllowedOrigins allowed_origins = 9;
    */
   allowedOrigins?: UpdatableProjectFields_AllowedOrigins;
@@ -2485,6 +2496,7 @@ export class UpdatableProjectFields extends Message<UpdatableProjectFields> {
     { no: 8, name: "max_attachments_per_document", kind: "message", T: Int32Value },
     { no: 10, name: "max_size_per_document", kind: "message", T: Int32Value },
     { no: 11, name: "remove_on_detach", kind: "message", T: BoolValue },
+    { no: 22, name: "auto_revision_enabled", kind: "message", T: BoolValue },
     { no: 9, name: "allowed_origins", kind: "message", T: UpdatableProjectFields_AllowedOrigins },
   ]);
 
@@ -3394,27 +3406,22 @@ export class RevisionSummary extends Message<RevisionSummary> {
   id = "";
 
   /**
-   * @generated from field: int64 seq = 2;
-   */
-  seq = protoInt64.zero;
-
-  /**
-   * @generated from field: string label = 3;
+   * @generated from field: string label = 2;
    */
   label = "";
 
   /**
-   * @generated from field: string description = 4;
+   * @generated from field: string description = 3;
    */
   description = "";
 
   /**
-   * @generated from field: string snapshot = 5;
+   * @generated from field: string snapshot = 4;
    */
   snapshot = "";
 
   /**
-   * @generated from field: google.protobuf.Timestamp created_at = 6;
+   * @generated from field: google.protobuf.Timestamp created_at = 5;
    */
   createdAt?: Timestamp;
 
@@ -3427,11 +3434,10 @@ export class RevisionSummary extends Message<RevisionSummary> {
   static readonly typeName = "yorkie.v1.RevisionSummary";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "seq", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 3, name: "label", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "snapshot", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "created_at", kind: "message", T: Timestamp },
+    { no: 2, name: "label", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "snapshot", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "created_at", kind: "message", T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RevisionSummary {
