@@ -88,6 +88,21 @@ export interface ProjectStats {
     timestamp: number;
     value: number;
   }>;
+  activeChannelsCount: number;
+  activeChannels: Array<{
+    timestamp: number;
+    value: number;
+  }>;
+  sessionsCount: number;
+  sessions: Array<{
+    timestamp: number;
+    value: number;
+  }>;
+  peakSessionsPerChannelCount: number;
+  peakSessionsPerChannel: Array<{
+    timestamp: number;
+    value: number;
+  }>;
 }
 
 export const DATE_RANGE_OPTIONS = {
