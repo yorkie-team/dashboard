@@ -31,11 +31,6 @@ export type DocumentSummary = {
   schemaKey: string;
 };
 
-export type DocumentHistory = {
-  serverSeq: bigint;
-  snapshot: string;
-};
-
 export type RevisionSummary = {
   id: string;
   label: string;

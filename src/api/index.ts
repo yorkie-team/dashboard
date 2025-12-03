@@ -29,7 +29,6 @@ import {
   Project,
   DocumentSummary,
   UpdatableProjectFields,
-  DocumentHistory,
   DATE_RANGE_OPTIONS,
   RPCError,
   RPCStatusCode,
@@ -213,42 +212,6 @@ export async function searchDocuments(
     totalCount: res.totalCount,
     documents: summaries,
   };
-}
-
-// listDocumentHistories lists of changes for the given document.
-export async function listDocumentHistories(
-  documentKey: string,
-  previousSeq: bigint,
-  pageSize: number,
-  isForward: boolean,
-): Promise<Array<DocumentHistory>> {
-  const res = await client.listChanges({
-    documentKey,
-    previousSeq,
-    pageSize,
-    isForward,
-  });
-  const pbChanges = res.changes;
-  const changes = converter.fromChanges(pbChanges);
-
-  const seq = pbChanges[0].id!.serverSeq - 1n;
-  const snapshotMeta = await client.getSnapshotMeta({
-    documentKey,
-    serverSeq: seq,
-  });
-
-  const document = new Document(documentKey);
-  document.applySnapshot(seq, new VersionVector(new Map()), snapshotMeta.snapshot);
-
-  const histories: Array<DocumentHistory> = [];
-  for (let i = 0; i < changes.length; i++) {
-    document.applyChanges([changes[i]], OpSource.Remote);
-    histories.push({
-      serverSeq: pbChanges[i].id!.serverSeq,
-      snapshot: document.toJSON(),
-    });
-  }
-  return histories;
 }
 
 // removeDocumentByAdmin removes the document of the given document.

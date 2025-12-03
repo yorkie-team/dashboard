@@ -20,7 +20,13 @@ import { fromUnixTime, format } from 'date-fns';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectPreferences } from 'features/users/usersSlice';
 import { selectCurrentProject } from 'features/projects/projectsSlice';
-import { selectDocumentRevisions, listRevisionsAsync, getRevisionAsync, restoreRevisionAsync } from './documentsSlice';
+import {
+  selectDocumentRevisions,
+  listRevisionsAsync,
+  getRevisionAsync,
+  restoreRevisionAsync,
+  resetRevisions,
+} from './documentsSlice';
 import { Icon, Button, CodeBlock, Modal } from 'components';
 import { useClipboard } from 'hooks';
 import { formatYSON } from 'utils';
@@ -39,38 +45,43 @@ export function DocumentHistory() {
   const [isRestoring, setIsRestoring] = useState(false);
   const clipboard = useClipboard();
 
-  // Reset selection when project or document changes
+  // Reset selection and revisions state when project or document changes
   useEffect(() => {
     setSelectedRevisionId(null);
-  }, [currentProject?.id, documentKey]);
+    dispatch(resetRevisions());
+  }, [dispatch, currentProject?.id, documentKey]);
 
+  // Load revisions when project or document changes
   useEffect(() => {
     if (!currentProject || !documentKey) return;
 
-    dispatch(
-      listRevisionsAsync({
-        projectName: currentProject.name,
-        documentKey,
-        pageSize: 100,
-        offset: 0,
-        isForward: false,
-      }),
-    );
-  }, [dispatch, currentProject, documentKey]);
-
-  useEffect(() => {
-    if (list.length > 0 && !selectedRevisionId && currentProject) {
-      const latestRevision = list[0];
-      setSelectedRevisionId(latestRevision.id);
-      dispatch(
-        getRevisionAsync({
+    const loadRevisions = async () => {
+      const result = await dispatch(
+        listRevisionsAsync({
           projectName: currentProject.name,
           documentKey,
-          revisionId: latestRevision.id,
+          pageSize: 100,
+          offset: 0,
+          isForward: false,
         }),
-      );
-    }
-  }, [list, selectedRevisionId, dispatch, currentProject, documentKey]);
+      ).unwrap();
+
+      // After loading revisions, select the first one
+      if (result.revisions.length > 0) {
+        const latestRevision = result.revisions[0];
+        setSelectedRevisionId(latestRevision.id);
+        dispatch(
+          getRevisionAsync({
+            projectName: currentProject.name,
+            documentKey,
+            revisionId: latestRevision.id,
+          }),
+        );
+      }
+    };
+
+    loadRevisions();
+  }, [dispatch, currentProject, documentKey]);
 
   const handleRevisionClick = (revisionId: string) => {
     if (!currentProject) return;
