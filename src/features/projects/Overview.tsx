@@ -24,7 +24,7 @@ import {
   resetProjectDetail,
 } from './projectsSlice';
 import { ActiveUserChart } from './charts/ActiveUserChart';
-import { ChannelChart } from './charts/ChannelChart';
+import { ActiveChannelChart } from './charts/ActiveChannelChart';
 import { SessionChart } from './charts/SessionChart';
 import { PeakSessionChart } from './charts/PeakSessionChart';
 import { Icon, Popover, Dropdown } from 'components';
@@ -111,7 +111,7 @@ export function Overview() {
         </div>
         <div className="chart_group">
           <ActiveUserChart stats={stats} range={range} />
-          <ChannelChart stats={stats} range={range} />
+          <ActiveChannelChart stats={stats} range={range} />
           <SessionChart stats={stats} range={range} />
           <PeakSessionChart stats={stats} range={range} />
         </div>

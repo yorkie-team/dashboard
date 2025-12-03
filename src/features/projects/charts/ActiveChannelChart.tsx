@@ -6,10 +6,10 @@ interface ChannelChartProps {
   range: keyof typeof DATE_RANGE_OPTIONS;
 }
 
-export function ChannelChart({ stats, range }: ChannelChartProps) {
+export function ActiveChannelChart({ stats, range }: ChannelChartProps) {
   return (
     <UsageChart
-      title="Channels"
+      title="Active Channels"
       details=""
       count={stats?.activeChannelsCount || 0}
       data={stats?.activeChannels || []}

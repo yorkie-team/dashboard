@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { createAppThunk } from 'app/appThunk';
 import { RootState } from 'app/store';
 import {
@@ -22,8 +22,6 @@ import {
   listDocuments,
   DocumentSummary,
   searchDocuments,
-  listDocumentHistories,
-  DocumentHistory,
   removeDocumentByAdmin,
   listRevisions,
   getRevision,
@@ -42,12 +40,6 @@ export interface DocumentsState {
   };
   detail: {
     document: DocumentSummary | null;
-    status: 'idle' | 'loading' | 'failed';
-  };
-  history: {
-    histories: Array<DocumentHistory>;
-    hasPrevious: boolean;
-    hasNext: boolean;
     status: 'idle' | 'loading' | 'failed';
   };
   revisions: {
@@ -72,12 +64,6 @@ const initialState: DocumentsState = {
   },
   detail: {
     document: null,
-    status: 'idle',
-  },
-  history: {
-    histories: [],
-    hasPrevious: false,
-    hasNext: false,
     status: 'idle',
   },
   revisions: {
@@ -135,30 +121,6 @@ export const searchDocumentsAsync = createAppThunk(
       totalCount: res.totalCount,
       documents: res.documents,
     };
-  },
-);
-
-export const listDocumentHistoriesAsync = createAppThunk(
-  'documents/listDocumentHistories',
-  async (params: {
-    documentKey: string;
-    isForward: boolean;
-    previousSeq?: bigint;
-  }): Promise<{
-    data: Array<DocumentHistory>;
-    hasNext: boolean;
-    hasPrevious: boolean;
-  }> => {
-    const { documentKey, isForward, previousSeq = 0n } = params;
-    const histories = await listDocumentHistories(documentKey, previousSeq, HISTORIES_LIMIT + 1, isForward);
-
-    return getPaginationData({
-      data: histories,
-      isForward,
-      previousID: String(previousSeq),
-      pageSize: HISTORIES_LIMIT,
-      reverse: true,
-    });
   },
 );
 
@@ -237,12 +199,8 @@ export const documentSlice = createSlice({
   name: 'documents',
   initialState,
   reducers: {
-    setHistory: (state, action: PayloadAction<number>) => {
-      state.detail.document!.root = state.history.histories[action.payload].snapshot;
-    },
-    resetHistory: (state) => {
-      state.history.status = 'idle';
-      state.history.histories = [];
+    resetRevisions: (state) => {
+      state.revisions = initialState.revisions;
     },
   },
   extraReducers: (builder) => {
@@ -283,20 +241,6 @@ export const documentSlice = createSlice({
     });
     builder.addCase(getDocumentAsync.rejected, (state) => {
       state.detail.status = 'failed';
-    });
-    builder.addCase(listDocumentHistoriesAsync.pending, (state) => {
-      state.history.status = 'loading';
-    });
-    builder.addCase(listDocumentHistoriesAsync.fulfilled, (state, action) => {
-      const { data, hasPrevious, hasNext } = action.payload;
-      state.history.status = 'idle';
-      state.history.histories = data;
-      state.detail.document!.root = data[data.length - 1].snapshot;
-      state.history.hasNext = hasNext;
-      state.history.hasPrevious = hasPrevious;
-    });
-    builder.addCase(listDocumentHistoriesAsync.rejected, (state) => {
-      state.history.status = 'failed';
     });
     builder.addCase(listRevisionsAsync.pending, (state, action) => {
       const isAppend = action.meta.arg.append;
@@ -342,11 +286,10 @@ export const documentSlice = createSlice({
   },
 });
 
-export const { setHistory, resetHistory } = documentSlice.actions;
+export const { resetRevisions } = documentSlice.actions;
 
 export const selectDocumentList = (state: RootState) => state.documents.list;
 export const selectDocumentDetail = (state: RootState) => state.documents.detail;
-export const selectDocumentHistory = (state: RootState) => state.documents.history;
 export const selectDocumentRevisions = (state: RootState) => state.documents.revisions;
 
 export default documentSlice.reducer;
