@@ -21,7 +21,6 @@ import {
   getChannel,
   listChannels,
   ChannelSummary,
-  searchChannels,
   removeChannelByAdmin,
 } from 'api';
 
@@ -57,8 +56,9 @@ const initialState: ChannelsState = {
 
 export const listChannelsAsync = createAppThunk(
   'channels/listChannels',
-  async (limit: number): Promise<Array<ChannelSummary>> => {
-    const channels = await listChannels(limit);
+  async (params: { channelQuery: string, limit: number }): Promise<Array<ChannelSummary>> => {
+    const { channelQuery, limit } = params;
+    const channels = await listChannels(channelQuery, limit);
     return channels;
   },
 );
@@ -69,18 +69,6 @@ export const getChannelAsync = createAppThunk(
     const { channelKey } = params;
     const channel = await getChannel(channelKey);
     return channel;
-  },
-);
-
-export const searchChannelsAsync = createAppThunk(
-  'channels/searchChannels',
-  async (params: {
-    channelQuery: string;
-    limit: number;
-  }): Promise<Array<ChannelSummary>> => {
-    const { channelQuery, limit } = params;
-    const channels = await searchChannels(channelQuery, limit);
-    return channels;
   },
 );
 
@@ -115,18 +103,6 @@ export const channelSlice = createSlice({
       state.list.currentPage = 1;
     });
     builder.addCase(listChannelsAsync.rejected, (state) => {
-      state.list.status = 'failed';
-    });
-    builder.addCase(searchChannelsAsync.pending, (state) => {
-      state.list.type = 'search';
-      state.list.status = 'loading';
-    });
-    builder.addCase(searchChannelsAsync.fulfilled, (state, action) => {
-      state.list.status = 'idle';
-      state.list.allChannels = action.payload;
-      state.list.currentPage = 1;
-    });
-    builder.addCase(searchChannelsAsync.rejected, (state) => {
       state.list.status = 'failed';
     });
     builder.addCase(getChannelAsync.pending, (state) => {

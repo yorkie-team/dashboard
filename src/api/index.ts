@@ -225,9 +225,11 @@ export async function removeDocumentByAdmin(documentKey: string, forceRemoveIfAt
 
 // listChannels fetches channels from the admin server.
 export async function listChannels(
+  channelQuery: string,
   limit: number,
 ): Promise<Array<ChannelSummary>> {
   const res = await client.listChannels({
+    query: channelQuery, 
     limit,
   });
   const summaries = converter.fromChannelSummaries(res.channels);
@@ -244,19 +246,6 @@ export async function getChannel(channelKey: string): Promise<ChannelSummary> {
     throw new RPCError(String(RPCStatusCode.NOT_FOUND), 'Channel not found');
   }
   return converter.fromChannelSummary(res.channels[0]);
-}
-
-// searchChannels fetches channels that match the query parameters.
-export async function searchChannels(
-  channelQuery: string,
-  limit: number,
-): Promise<Array<ChannelSummary>> {
-  const res = await client.searchChannels({ 
-    query: channelQuery, 
-    limit, 
-  });
-  const summaries = converter.fromChannelSummaries(res.channels);
-  return summaries;
 }
 
 // removeChannelByAdmin removes the channel of the given channel.

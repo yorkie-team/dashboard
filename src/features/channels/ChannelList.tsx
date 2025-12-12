@@ -20,7 +20,6 @@ import { useAppDispatch, useAppSelector } from 'app/hooks';
 import {
   selectChannelList,
   listChannelsAsync,
-  searchChannelsAsync,
   setCurrentPage,
   setLimit,
 } from './channelsSlice';
@@ -55,12 +54,15 @@ export function ChannelList() {
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (query === null || query === '') {
-        dispatch(listChannelsAsync(limit));
+        dispatch(listChannelsAsync({
+          channelQuery: '',
+          limit,
+        }));
         return;
       }
 
       dispatch(
-        searchChannelsAsync({
+        listChannelsAsync({
           channelQuery: query,
           limit,
         }),
@@ -78,13 +80,16 @@ export function ChannelList() {
       // Reload channels with new limit
       if (query) {
         dispatch(
-          searchChannelsAsync({
+          listChannelsAsync({
             channelQuery: query,
             limit: newLimit,
           }),
         );
       } else {
-        dispatch(listChannelsAsync(newLimit));
+        dispatch(listChannelsAsync({
+          channelQuery: '',
+          limit: newLimit,
+        }));
       }
     },
     [dispatch, query],
@@ -95,14 +100,20 @@ export function ChannelList() {
     if (!currentProject) return;
 
     // Load channels on initial mount or when project changes
-    dispatch(listChannelsAsync(limit));
+    dispatch(listChannelsAsync({
+      channelQuery: '',
+      limit,
+    }));
   }, [dispatch, currentProject, limit]);
 
   // Handle browser navigation (back/forward)
   useEffect(() => {
     if (navigationType !== 'POP' || !currentProject) return;
 
-    dispatch(listChannelsAsync(limit));
+    dispatch(listChannelsAsync({
+      channelQuery: '',
+      limit,
+    }));
   }, [dispatch, navigationType, currentProject, limit]);
 
   // Close dropdown when clicking outside

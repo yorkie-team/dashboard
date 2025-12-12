@@ -62,7 +62,6 @@ export class InterceptorBuilder {
       'ListChanges',
       'ListChannels',
       'GetChannels',
-      'SearchChannels',
       'GetProjectStats',
       'CreateSchema',
       'ListSchemas',
