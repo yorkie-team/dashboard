@@ -14,9 +14,17 @@
  * limitations under the License.
  */
 
-export { default as usersReducer } from './users/usersSlice';
-export { default as projectsReducer } from './projects/projectsSlice';
-export { default as documentsReducer } from './documents/documentsSlice';
-export { default as channelsReducer } from './channels/channelsSlice';
-export { default as schemasReducer } from './schemas/schemasSlice';
-export { default as globalErrorReducer } from './globalError/globalErrorSlice';
+import React from 'react';
+import { ProjectPageTemplate } from 'pages';
+import { ChannelList } from 'features/channels';
+
+export function ChannelsPage() {
+  return (
+    <ProjectPageTemplate className="project_channel_page">
+      <div className="channel_list_area">
+        <ChannelList />
+      </div>
+    </ProjectPageTemplate>
+  );
+}
+

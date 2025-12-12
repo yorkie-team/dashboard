@@ -3,7 +3,8 @@
 @use '../base/mixins-lib';
 @use '../base/variables';
 
-.project_document_page {
+.project_document_page,
+.project_channel_page {
   @include mixins-lib.setContainerPC(variables.$spacing_72, variables.$spacing_72);
 
   .container {
@@ -41,7 +42,8 @@
     }
   }
 
-  .document_list_area {
+  .document_list_area,
+  .channel_list_area {
     display: flex;
     flex-direction: column;
     overflow-y: auto;

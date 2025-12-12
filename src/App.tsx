@@ -26,6 +26,7 @@ import {
   ProjectsPage,
   CreateProjectPage,
   DocumentsPage,
+  ChannelsPage,
   ProjectOverviewPage,
   ProjectQuickStartPage,
   ProjectAPIKeysPage,
@@ -92,6 +93,7 @@ function App() {
             <Route path=":documentKey" element={<DocumentDetail />} />
             <Route path=":documentKey/history" element={<DocumentHistory />} />
           </Route>
+          <Route path="/projects/:projectName/channels" element={<ChannelsPage />} />
           <Route path="/projects/:projectName/schemas" element={<SchemasPage />}>
             <Route path="/projects/:projectName/schemas/new" element={<SchemaDetail />} />
             <Route path=":schemaName" element={<SchemaDetail />} />

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { DataSize, DATE_RANGE_OPTIONS, DocSize, Presence, Schema, RevisionSummary } from './types';
+import { DataSize, DATE_RANGE_OPTIONS, DocSize, Presence, Schema, RevisionSummary, ChannelSummary } from './types';
 import { Timestamp as PbTimestamp } from '@bufbuild/protobuf';
 import { User, Project, DocumentSummary, AuthWebhookMethod, EventWebhookEvent, FieldViolation } from './types';
 import { Change, converter, Indexable } from '@yorkie-js/sdk';
@@ -22,6 +22,7 @@ import {
   User as PbUser,
   Project as PbProject,
   DocumentSummary as PbDocumentSummary,
+  ChannelSummary as PbChannelSummary,
   DataSize as PbDataSize,
   DocSize as PbDocSize,
   Schema as PbSchema,
@@ -122,6 +123,23 @@ export function fromDocumentSummaries(pbDocumentSummaries: Array<PbDocumentSumma
   }
 
   return documentSummaries;
+}
+
+export function fromChannelSummary(pbChannelSummary: PbChannelSummary): ChannelSummary {
+  return {
+    key: pbChannelSummary.key,
+    presenceCount: pbChannelSummary.presenceCount,
+  };
+}
+
+export function fromChannelSummaries(pbChannelSummaries: Array<PbChannelSummary>): Array<ChannelSummary> {
+  const channelSummaries: Array<ChannelSummary> = [];
+
+  for (const pbChannelSummary of pbChannelSummaries) {
+    channelSummaries.push(fromChannelSummary(pbChannelSummary));
+  }
+
+  return channelSummaries;
 }
 
 export function fromChanges(pbChanges: Array<PbChange>): Array<Change<Indexable>> {

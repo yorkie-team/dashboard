@@ -28,6 +28,7 @@ export * from './SettingsPage';
 export * from './ProjectsPage';
 export * from './CreateProjectPage';
 export * from './DocumentsPage';
+export * from './ChannelsPage';
 export * from './ProjectOverviewPage';
 export * from './ProjectQuickStartPage';
 export * from './ProjectAPIKeysPage';

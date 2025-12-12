@@ -60,6 +60,8 @@ export class InterceptorBuilder {
       'GetSnapshotMeta',
       'SearchDocuments',
       'ListChanges',
+      'ListChannels',
+      'GetChannels',
       'GetProjectStats',
       'CreateSchema',
       'ListSchemas',

@@ -61,6 +61,8 @@ import DiscordSVG from 'assets/icons/icon_discord.svg?react';
 import MoreLargeSVG from 'assets/icons/icon_more_large.svg?react';
 import RepeatSVG from 'assets/icons/icon_repeat.svg?react';
 import LightningSVG from 'assets/icons/icon_lightning.svg?react';
+import MessageSquareSVG from 'assets/icons/icon_message_square.svg?react';
+import MessageSquareSmallSVG from 'assets/icons/icon_message_square_small.svg?react';
 
 const svgMap = {
   shortcut: <ShortcutSVG />,
@@ -108,6 +110,8 @@ const svgMap = {
   moreLarge: <MoreLargeSVG />,
   repeat: <RepeatSVG />,
   lightning: <LightningSVG />,
+  messageSquare: <MessageSquareSVG />,
+  messageSquareSmall: <MessageSquareSmallSVG />,
 };
 type SVGType = keyof typeof svgMap;
 

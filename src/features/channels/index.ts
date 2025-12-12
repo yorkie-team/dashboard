@@ -14,9 +14,5 @@
  * limitations under the License.
  */
 
-export { default as usersReducer } from './users/usersSlice';
-export { default as projectsReducer } from './projects/projectsSlice';
-export { default as documentsReducer } from './documents/documentsSlice';
-export { default as channelsReducer } from './channels/channelsSlice';
-export { default as schemasReducer } from './schemas/schemasSlice';
-export { default as globalErrorReducer } from './globalError/globalErrorSlice';
+export * from './ChannelList';
+
