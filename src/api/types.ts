@@ -31,6 +31,11 @@ export type DocumentSummary = {
   schemaKey: string;
 };
 
+export type ChannelSummary = {
+  key: string;
+  presenceCount: number;
+};
+
 export type RevisionSummary = {
   id: string;
   label: string;
