@@ -155,10 +155,18 @@ export async function updateProject(id: string, fields: UpdatableProjectFields):
     authWebhookMethods: fields.authWebhookMethods
       ? new PbProjectFields_AuthWebhookMethods({ methods: fields.authWebhookMethods })
       : undefined,
+    authWebhookMaxRetries: fields.authWebhookMaxRetries ? BigInt(fields.authWebhookMaxRetries) : undefined,
+    authWebhookMinWaitInterval: fields.authWebhookMinWaitInterval,
+    authWebhookMaxWaitInterval: fields.authWebhookMaxWaitInterval,
+    authWebhookRequestTimeout: fields.authWebhookRequestTimeout,
     eventWebhookUrl: fields.eventWebhookURL,
     eventWebhookEvents: fields.eventWebhookEvents
       ? new PbProjectFields_EventWebhookEvents({ events: fields.eventWebhookEvents })
       : undefined,
+    eventWebhookMaxRetries: fields.eventWebhookMaxRetries ? BigInt(fields.eventWebhookMaxRetries) : undefined,
+    eventWebhookMinWaitInterval: fields.eventWebhookMinWaitInterval,
+    eventWebhookMaxWaitInterval: fields.eventWebhookMaxWaitInterval,
+    eventWebhookRequestTimeout: fields.eventWebhookRequestTimeout,
     clientDeactivateThreshold: fields.clientDeactivateThreshold,
     snapshotThreshold: fields.snapshotThreshold ? BigInt(fields.snapshotThreshold) : undefined,
     snapshotInterval: fields.snapshotInterval ? BigInt(fields.snapshotInterval) : undefined,
