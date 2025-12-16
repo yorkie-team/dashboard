@@ -21,7 +21,6 @@ import {
   getChannel,
   listChannels,
   ChannelSummary,
-  removeChannelByAdmin,
 } from 'api';
 
 export interface ChannelsState {
@@ -69,14 +68,6 @@ export const getChannelAsync = createAppThunk(
     const { channelKey } = params;
     const channel = await getChannel(channelKey);
     return channel;
-  },
-);
-
-export const removeChannelByAdminAsync = createAppThunk(
-  'channels/removeChannelByAdmin',
-  async (params: { channelKey: string; force: boolean }): Promise<void> => {
-    const { channelKey, force } = params;
-    await removeChannelByAdmin(channelKey, force);
   },
 );
 

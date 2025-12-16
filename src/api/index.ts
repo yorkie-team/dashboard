@@ -248,14 +248,6 @@ export async function getChannel(channelKey: string): Promise<ChannelSummary> {
   return converter.fromChannelSummary(res.channels[0]);
 }
 
-// removeChannelByAdmin removes the channel of the given channel.
-// Note: This is a placeholder implementation.
-// TODO: Update to use proper removeChannelByAdmin API when available.
-export async function removeChannelByAdmin(channelKey: string, forceRemoveIfAttached: boolean = true): Promise<void> {
-  // This API is not yet available in the protobuf definition
-  throw new RPCError(String(RPCStatusCode.UNIMPLEMENTED), 'removeChannelByAdmin is not yet implemented');
-}
-
 // getProjectStats fetches the project stats.
 export async function getProjectStats(range: keyof typeof DATE_RANGE_OPTIONS): Promise<ProjectStats> {
   const dateRange = converter.toDateRange(range);
