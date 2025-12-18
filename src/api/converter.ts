@@ -128,7 +128,7 @@ export function fromDocumentSummaries(pbDocumentSummaries: Array<PbDocumentSumma
 export function fromChannelSummary(pbChannelSummary: PbChannelSummary): ChannelSummary {
   return {
     key: pbChannelSummary.key,
-    presenceCount: pbChannelSummary.presenceCount,
+    sessionCount: pbChannelSummary.sessionCount,
   };
 }
 

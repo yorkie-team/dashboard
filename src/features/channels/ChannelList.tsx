@@ -228,12 +228,12 @@ export function ChannelList() {
         {status === 'idle' && (
           <ul className="tbody_list">
             {channels.map((channel) => {
-              const { key, presenceCount } = channel;
+              const { key, sessionCount } = channel;
               return (
                 <li key={key} className="tbody_item">
                   <div className="link">
                     <span className="td id">{key}</span>
-                    <span className="td connections">{formatNumber(presenceCount)}</span>
+                    <span className="td connections">{formatNumber(sessionCount)}</span>
                   </div>
                 </li>
               );

@@ -33,7 +33,7 @@ export type DocumentSummary = {
 
 export type ChannelSummary = {
   key: string;
-  presenceCount: number;
+  sessionCount: number;
 };
 
 export type RevisionSummary = {
