@@ -78,8 +78,14 @@ export type Project = {
 export interface ProjectStats {
   documentsCount: number;
   clientsCount: number;
+  channelsCount: number;
   activeUsersCount: number;
   activeUsers: Array<{
+    timestamp: number;
+    value: number;
+  }>;
+  activeDocumentsCount: number;
+  activeDocuments: Array<{
     timestamp: number;
     value: number;
   }>;
