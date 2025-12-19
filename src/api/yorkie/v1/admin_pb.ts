@@ -712,54 +712,69 @@ proto3.util.setEnumType(GetProjectStatsRequest_DateRange, "yorkie.v1.GetProjectS
  */
 export class GetProjectStatsResponse extends Message<GetProjectStatsResponse> {
   /**
-   * @generated from field: int32 active_users_count = 1;
-   */
-  activeUsersCount = 0;
-
-  /**
-   * @generated from field: repeated yorkie.v1.MetricPoint active_users = 2;
-   */
-  activeUsers: MetricPoint[] = [];
-
-  /**
-   * @generated from field: int64 documents_count = 3;
+   * @generated from field: int64 documents_count = 1;
    */
   documentsCount = protoInt64.zero;
 
   /**
-   * @generated from field: int64 clients_count = 4;
+   * @generated from field: int64 clients_count = 2;
    */
   clientsCount = protoInt64.zero;
 
   /**
-   * @generated from field: int32 active_channels_count = 5;
+   * @generated from field: int64 channels_count = 3;
+   */
+  channelsCount = protoInt64.zero;
+
+  /**
+   * @generated from field: int32 active_users_count = 4;
+   */
+  activeUsersCount = 0;
+
+  /**
+   * @generated from field: repeated yorkie.v1.MetricPoint active_users = 5;
+   */
+  activeUsers: MetricPoint[] = [];
+
+  /**
+   * @generated from field: int32 active_channels_count = 6;
    */
   activeChannelsCount = 0;
 
   /**
-   * @generated from field: repeated yorkie.v1.MetricPoint active_channels = 6;
+   * @generated from field: repeated yorkie.v1.MetricPoint active_channels = 7;
    */
   activeChannels: MetricPoint[] = [];
 
   /**
-   * @generated from field: int32 sessions_count = 7;
+   * @generated from field: int32 sessions_count = 8;
    */
   sessionsCount = 0;
 
   /**
-   * @generated from field: repeated yorkie.v1.MetricPoint sessions = 8;
+   * @generated from field: repeated yorkie.v1.MetricPoint sessions = 9;
    */
   sessions: MetricPoint[] = [];
 
   /**
-   * @generated from field: int32 peak_sessions_per_channel_count = 9;
+   * @generated from field: int32 peak_sessions_per_channel_count = 10;
    */
   peakSessionsPerChannelCount = 0;
 
   /**
-   * @generated from field: repeated yorkie.v1.MetricPoint peak_sessions_per_channel = 10;
+   * @generated from field: repeated yorkie.v1.MetricPoint peak_sessions_per_channel = 11;
    */
   peakSessionsPerChannel: MetricPoint[] = [];
+
+  /**
+   * @generated from field: int32 active_documents_count = 12;
+   */
+  activeDocumentsCount = 0;
+
+  /**
+   * @generated from field: repeated yorkie.v1.MetricPoint active_documents = 13;
+   */
+  activeDocuments: MetricPoint[] = [];
 
   constructor(data?: PartialMessage<GetProjectStatsResponse>) {
     super();
@@ -769,16 +784,19 @@ export class GetProjectStatsResponse extends Message<GetProjectStatsResponse> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "yorkie.v1.GetProjectStatsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "active_users_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 2, name: "active_users", kind: "message", T: MetricPoint, repeated: true },
-    { no: 3, name: "documents_count", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 4, name: "clients_count", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 5, name: "active_channels_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 6, name: "active_channels", kind: "message", T: MetricPoint, repeated: true },
-    { no: 7, name: "sessions_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 8, name: "sessions", kind: "message", T: MetricPoint, repeated: true },
-    { no: 9, name: "peak_sessions_per_channel_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 10, name: "peak_sessions_per_channel", kind: "message", T: MetricPoint, repeated: true },
+    { no: 1, name: "documents_count", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 2, name: "clients_count", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 3, name: "channels_count", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 4, name: "active_users_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 5, name: "active_users", kind: "message", T: MetricPoint, repeated: true },
+    { no: 6, name: "active_channels_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 7, name: "active_channels", kind: "message", T: MetricPoint, repeated: true },
+    { no: 8, name: "sessions_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 9, name: "sessions", kind: "message", T: MetricPoint, repeated: true },
+    { no: 10, name: "peak_sessions_per_channel_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 11, name: "peak_sessions_per_channel", kind: "message", T: MetricPoint, repeated: true },
+    { no: 12, name: "active_documents_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 13, name: "active_documents", kind: "message", T: MetricPoint, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetProjectStatsResponse {
