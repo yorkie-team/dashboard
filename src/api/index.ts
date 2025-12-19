@@ -28,6 +28,7 @@ import {
   User,
   Project,
   DocumentSummary,
+  ChannelSummary,
   UpdatableProjectFields,
   DATE_RANGE_OPTIONS,
   RPCError,
@@ -220,6 +221,31 @@ export async function removeDocumentByAdmin(documentKey: string, forceRemoveIfAt
     documentKey,
     force: forceRemoveIfAttached,
   });
+}
+
+// listChannels fetches channels from the admin server.
+export async function listChannels(
+  channelQuery: string,
+  limit: number,
+): Promise<Array<ChannelSummary>> {
+  const res = await client.listChannels({
+    query: channelQuery, 
+    limit,
+  });
+  const summaries = converter.fromChannelSummaries(res.channels);
+  return summaries;
+}
+
+// getChannel fetches a channel of the given ID from the admin server.
+export async function getChannel(channelKey: string): Promise<ChannelSummary> {
+  const res = await client.getChannels({ 
+    channelKeys: [channelKey],
+    includeSubPath: false,
+  });
+  if (res.channels.length === 0) {
+    throw new RPCError(String(RPCStatusCode.NOT_FOUND), 'Channel not found');
+  }
+  return converter.fromChannelSummary(res.channels[0]);
 }
 
 // getProjectStats fetches the project stats.

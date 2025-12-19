@@ -18,7 +18,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ChangePasswordRequest, ChangePasswordResponse, CreateDocumentRequest, CreateDocumentResponse, CreateProjectRequest, CreateProjectResponse, CreateSchemaRequest, CreateSchemaResponse, DeleteAccountRequest, DeleteAccountResponse, GetChannelsRequest, GetChannelsResponse, GetDocumentRequest, GetDocumentResponse, GetDocumentsRequest, GetDocumentsResponse, GetProjectRequest, GetProjectResponse, GetProjectStatsRequest, GetProjectStatsResponse, GetRevisionByAdminRequest, GetRevisionByAdminResponse, GetSchemaRequest, GetSchemaResponse, GetSchemasRequest, GetSchemasResponse, GetServerVersionRequest, GetServerVersionResponse, GetSnapshotMetaRequest, GetSnapshotMetaResponse, ListChangesRequest, ListChangesResponse, ListDocumentsRequest, ListDocumentsResponse, ListProjectsRequest, ListProjectsResponse, ListRevisionsByAdminRequest, ListRevisionsByAdminResponse, ListSchemasRequest, ListSchemasResponse, LogInRequest, LogInResponse, RemoveDocumentByAdminRequest, RemoveDocumentByAdminResponse, RemoveSchemaRequest, RemoveSchemaResponse, RestoreRevisionByAdminRequest, RestoreRevisionByAdminResponse, RotateProjectKeysRequest, RotateProjectKeysResponse, SearchDocumentsRequest, SearchDocumentsResponse, SignUpRequest, SignUpResponse, UpdateDocumentRequest, UpdateDocumentResponse, UpdateProjectRequest, UpdateProjectResponse } from "./admin_pb";
+import { ChangePasswordRequest, ChangePasswordResponse, CreateDocumentRequest, CreateDocumentResponse, CreateProjectRequest, CreateProjectResponse, CreateSchemaRequest, CreateSchemaResponse, DeleteAccountRequest, DeleteAccountResponse, GetChannelsRequest, GetChannelsResponse, GetDocumentRequest, GetDocumentResponse, GetDocumentsRequest, GetDocumentsResponse, GetProjectRequest, GetProjectResponse, GetProjectStatsRequest, GetProjectStatsResponse, GetRevisionByAdminRequest, GetRevisionByAdminResponse, GetSchemaRequest, GetSchemaResponse, GetSchemasRequest, GetSchemasResponse, GetServerVersionRequest, GetServerVersionResponse, GetSnapshotMetaRequest, GetSnapshotMetaResponse, ListChangesRequest, ListChangesResponse, ListChannelsRequest, ListChannelsResponse, ListDocumentsRequest, ListDocumentsResponse, ListProjectsRequest, ListProjectsResponse, ListRevisionsByAdminRequest, ListRevisionsByAdminResponse, ListSchemasRequest, ListSchemasResponse, LogInRequest, LogInResponse, RemoveDocumentByAdminRequest, RemoveDocumentByAdminResponse, RemoveSchemaRequest, RemoveSchemaResponse, RestoreRevisionByAdminRequest, RestoreRevisionByAdminResponse, RotateProjectKeysRequest, RotateProjectKeysResponse, SearchDocumentsRequest, SearchDocumentsResponse, SignUpRequest, SignUpResponse, UpdateDocumentRequest, UpdateDocumentResponse, UpdateProjectRequest, UpdateProjectResponse } from "./admin_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -270,6 +270,15 @@ export const AdminService = {
       name: "RestoreRevisionByAdmin",
       I: RestoreRevisionByAdminRequest,
       O: RestoreRevisionByAdminResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.ListChannels
+     */
+    listChannels: {
+      name: "ListChannels",
+      I: ListChannelsRequest,
+      O: ListChannelsResponse,
       kind: MethodKind.Unary,
     },
     /**

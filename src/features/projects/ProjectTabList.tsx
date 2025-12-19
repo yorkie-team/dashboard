@@ -70,6 +70,10 @@ export function ProjectTabList() {
         <Icon type="viewList" />
         <TabList.Text>Schemas</TabList.Text>
       </TabList.Item>
+      <TabList.Item to={`/projects/${projectName}/channels`}>
+        <Icon type="messageSquareSmall" />
+        <TabList.Text>Channels</TabList.Text>
+      </TabList.Item>
       <TabList.Item to={`/projects/${projectName}/apikeys`}>
         <Icon type="key" />
         <TabList.Text>API Keys</TabList.Text>

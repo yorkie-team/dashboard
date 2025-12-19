@@ -2841,9 +2841,9 @@ export class ChannelSummary extends Message<ChannelSummary> {
   key = "";
 
   /**
-   * @generated from field: int32 presence_count = 2;
+   * @generated from field: int32 session_count = 2;
    */
-  presenceCount = 0;
+  sessionCount = 0;
 
   constructor(data?: PartialMessage<ChannelSummary>) {
     super();
@@ -2854,7 +2854,7 @@ export class ChannelSummary extends Message<ChannelSummary> {
   static readonly typeName = "yorkie.v1.ChannelSummary";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "presence_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "session_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ChannelSummary {

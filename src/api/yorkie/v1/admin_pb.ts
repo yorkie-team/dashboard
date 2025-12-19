@@ -1487,6 +1487,86 @@ export class SearchDocumentsResponse extends Message<SearchDocumentsResponse> {
 }
 
 /**
+ * @generated from message yorkie.v1.ListChannelsRequest
+ */
+export class ListChannelsRequest extends Message<ListChannelsRequest> {
+  /**
+   * @generated from field: string query = 1;
+   */
+  query = "";
+
+  /**
+   * @generated from field: int32 limit = 2;
+   */
+  limit = 0;
+
+  constructor(data?: PartialMessage<ListChannelsRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.ListChannelsRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListChannelsRequest {
+    return new ListChannelsRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListChannelsRequest {
+    return new ListChannelsRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListChannelsRequest {
+    return new ListChannelsRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListChannelsRequest | PlainMessage<ListChannelsRequest> | undefined, b: ListChannelsRequest | PlainMessage<ListChannelsRequest> | undefined): boolean {
+    return proto3.util.equals(ListChannelsRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.ListChannelsResponse
+ */
+export class ListChannelsResponse extends Message<ListChannelsResponse> {
+  /**
+   * @generated from field: repeated yorkie.v1.ChannelSummary channels = 1;
+   */
+  channels: ChannelSummary[] = [];
+
+  constructor(data?: PartialMessage<ListChannelsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.ListChannelsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "channels", kind: "message", T: ChannelSummary, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListChannelsResponse {
+    return new ListChannelsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListChannelsResponse {
+    return new ListChannelsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListChannelsResponse {
+    return new ListChannelsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListChannelsResponse | PlainMessage<ListChannelsResponse> | undefined, b: ListChannelsResponse | PlainMessage<ListChannelsResponse> | undefined): boolean {
+    return proto3.util.equals(ListChannelsResponse, a, b);
+  }
+}
+
+/**
  * @generated from message yorkie.v1.GetChannelsRequest
  */
 export class GetChannelsRequest extends Message<GetChannelsRequest> {
