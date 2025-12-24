@@ -141,11 +141,8 @@ export function ResourcesSection({
                   }
                   return true;
                 },
-                onChange: async () => {
-                  await trigger('clientDeactivateThreshold');
-                },
               })}
-              onChange={(e) => {
+              onChange={async (e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
                   target: makeTarget.field('clientDeactivateThreshold'),
@@ -153,6 +150,7 @@ export function ResourcesSection({
                   message: '',
                 }));
                 clientDeactivateThreshold.onChange(e.target.value);
+                await trigger('clientDeactivateThreshold');
               }}
               id="clientDeactivateThreshold"
               label="clientDeactivateThreshold"
@@ -199,11 +197,8 @@ export function ResourcesSection({
                   value: /^[0-9]+$/,
                   message: 'Snapshot Threshold must be a positive integer',
                 },
-                onChange: async () => {
-                  await trigger('snapshotThreshold');
-                },
               })}
-              onChange={(e) => {
+              onChange={async (e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
                   target: makeTarget.field('snapshotThreshold'),
@@ -211,6 +206,7 @@ export function ResourcesSection({
                   message: '',
                 }));
                 snapshotThreshold.onChange(e.target.value);
+                await trigger('snapshotThreshold');
               }}
               id="snapshotThreshold"
               label="Snapshot Threshold"
@@ -256,11 +252,8 @@ export function ResourcesSection({
                   value: /^[0-9]+$/,
                   message: 'Snapshot Interval must be a positive integer',
                 },
-                onChange: async () => {
-                  await trigger('snapshotInterval');
-                },
               })}
-              onChange={(e) => {
+              onChange={async (e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
                   target: makeTarget.field('snapshotInterval'),
@@ -268,6 +261,7 @@ export function ResourcesSection({
                   message: '',
                 }));
                 snapshotInterval.onChange(e.target.value);
+                await trigger('snapshotInterval');
               }}
               id="snapshotInterval"
               label="Snapshot Interval"

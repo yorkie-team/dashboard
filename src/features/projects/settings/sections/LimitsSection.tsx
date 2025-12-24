@@ -131,11 +131,8 @@ export function LimitsSection({
                   value: /^[0-9]+$/,
                   message: 'Max Attachments Per Document must be a positive integer',
                 },
-                onChange: async () => {
-                  await trigger('maxAttachmentsPerDocument');
-                },
               })}
-              onChange={(e) => {
+              onChange={async (e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
                   target: makeTarget.field('maxAttachmentsPerDocument'),
@@ -143,6 +140,7 @@ export function LimitsSection({
                   message: '',
                 }));
                 maxAttachmentsPerDocument.onChange(e.target.value);
+                await trigger('maxAttachmentsPerDocument');
               }}
               id="maxAttachmentsPerDocument"
               label="Max Attachments Per Document"
@@ -196,11 +194,8 @@ export function LimitsSection({
                   value: /^[0-9]+$/,
                   message: 'Max Subscribers Per Document must be a positive integer',
                 },
-                onChange: async () => {
-                  await trigger('maxSubscribersPerDocument');
-                },
               })}
-              onChange={(e) => {
+              onChange={async (e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
                   target: makeTarget.field('maxSubscribersPerDocument'),
@@ -208,6 +203,7 @@ export function LimitsSection({
                   message: '',
                 }));
                 maxSubscribersPerDocument.onChange(e.target.value);
+                await trigger('maxSubscribersPerDocument');
               }}
               id="maxSubscribersPerDocument"
               label="Max Subscribers Per Document"
@@ -261,11 +257,8 @@ export function LimitsSection({
                   value: /^[0-9]+$/,
                   message: 'Max Size Per Document must be a positive integer',
                 },
-                onChange: async () => {
-                  await trigger('maxSizePerDocument');
-                },
               })}
-              onChange={(e) => {
+              onChange={async (e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
                   target: makeTarget.field('maxSizePerDocument'),
@@ -273,6 +266,7 @@ export function LimitsSection({
                   message: '',
                 }));
                 maxSizePerDocument.onChange(e.target.value);
+                await trigger('maxSizePerDocument');
               }}
               id="maxSizePerDocument"
               label="Max Size Per Document"

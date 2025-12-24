@@ -261,11 +261,8 @@ export function WebhooksSection({
                   value: /^[0-9]+$/,
                   message: 'Event Webhook Max Retries must be a positive integer',
                 },
-                onChange: async () => {
-                  await trigger('eventWebhookMaxRetries');
-                },
               })}
-              onChange={(e) => {
+              onChange={async (e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
                   target: makeTarget.field('eventWebhookMaxRetries'),
@@ -273,6 +270,7 @@ export function WebhooksSection({
                   message: '',
                 }));
                 eventWebhookMaxRetries.onChange(e.target.value);
+                await trigger('eventWebhookMaxRetries');
               }}
               id="eventWebhookMaxRetries"
               label="Event Webhook Max Retries"
@@ -321,11 +319,8 @@ export function WebhooksSection({
                   }
                   return true;
                 },
-                onChange: async () => {
-                  await trigger('eventWebhookMinWaitInterval');
-                },
               })}
-              onChange={(e) => {
+              onChange={async (e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
                   target: makeTarget.field('eventWebhookMinWaitInterval'),
@@ -333,6 +328,7 @@ export function WebhooksSection({
                   message: '',
                 }));
                 eventWebhookMinWaitInterval.onChange(e.target.value);
+                await trigger('eventWebhookMinWaitInterval');
               }}
               id="eventWebhookMinWaitInterval"
               label="Event Webhook Min Wait Interval"
@@ -381,11 +377,8 @@ export function WebhooksSection({
                   }
                   return true;
                 },
-                onChange: async () => {
-                  await trigger('eventWebhookMaxWaitInterval');
-                },
               })}
-              onChange={(e) => {
+              onChange={async (e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
                   target: makeTarget.field('eventWebhookMaxWaitInterval'),
@@ -393,6 +386,7 @@ export function WebhooksSection({
                   message: '',
                 }));
                 eventWebhookMaxWaitInterval.onChange(e.target.value);
+                await trigger('eventWebhookMaxWaitInterval');
               }}
               id="eventWebhookMaxWaitInterval"
               label="Event Webhook Max Wait Interval"
@@ -441,11 +435,8 @@ export function WebhooksSection({
                   }
                   return true;
                 },
-                onChange: async () => {
-                  await trigger('eventWebhookRequestTimeout');
-                },
               })}
-              onChange={(e) => {
+              onChange={async (e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
                   target: makeTarget.field('eventWebhookRequestTimeout'),
@@ -453,6 +444,7 @@ export function WebhooksSection({
                   message: '',
                 }));
                 eventWebhookRequestTimeout.onChange(e.target.value);
+                await trigger('eventWebhookRequestTimeout');
               }}
               id="eventWebhookRequestTimeout"
               label="Event Webhook Request Timeout"

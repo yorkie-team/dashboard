@@ -74,11 +74,8 @@ export function GeneralSection({
                   message:
                     'Project name should only contain 2 to 30 characters with alphabets, numbers, hyphen(-), period(.), underscore(_), and tilde(~)',
                 },
-                onChange: async () => {
-                  await trigger('name');
-                },
               })}
-              onChange={(e) => {
+              onChange={async (e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
                   target: makeTarget.field('name'),
@@ -86,6 +83,7 @@ export function GeneralSection({
                   message: '',
                 }));
                 nameField.onChange(e.target.value);
+                await trigger('name');
               }}
               id="name"
               label="Project name"

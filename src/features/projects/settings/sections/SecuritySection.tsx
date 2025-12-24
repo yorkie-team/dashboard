@@ -182,11 +182,8 @@ export function SecuritySection({
                     'Invalid origin format. Use valid URLs or * separated by commas'
                   );
                 },
-                onChange: async () => {
-                  await trigger('allowedOrigins');
-                },
               })}
-              onChange={(e) => {
+              onChange={async (e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
                   target: makeTarget.field('allowedOrigins'),
@@ -194,6 +191,7 @@ export function SecuritySection({
                   message: '',
                 }));
                 allowedOrigins.onChange(e);
+                await trigger('allowedOrigins');
               }}
               onBlur={(e) => {
                 const normalizedValue = e.target.value
@@ -348,11 +346,8 @@ export function SecuritySection({
                   value: /^[0-9]+$/,
                   message: 'Auth Webhook Max Retries must be a positive integer',
                 },
-                onChange: async () => {
-                  await trigger('authWebhookMaxRetries');
-                },
               })}
-              onChange={(e) => {
+              onChange={async (e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
                   target: makeTarget.field('authWebhookMaxRetries'),
@@ -360,6 +355,7 @@ export function SecuritySection({
                   message: '',
                 }));
                 authWebhookMaxRetries.onChange(e.target.value);
+                await trigger('authWebhookMaxRetries');
               }}
               id="authWebhookMaxRetries"
               label="Auth Webhook Max Retries"
@@ -408,11 +404,8 @@ export function SecuritySection({
                   }
                   return true;
                 },
-                onChange: async () => {
-                  await trigger('authWebhookMinWaitInterval');
-                },
               })}
-              onChange={(e) => {
+              onChange={async (e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
                   target: makeTarget.field('authWebhookMinWaitInterval'),
@@ -420,6 +413,7 @@ export function SecuritySection({
                   message: '',
                 }));
                 authWebhookMinWaitInterval.onChange(e.target.value);
+                await trigger('authWebhookMinWaitInterval');
               }}
               id="authWebhookMinWaitInterval"
               label="Auth Webhook Min Wait Interval"
@@ -468,11 +462,8 @@ export function SecuritySection({
                   }
                   return true;
                 },
-                onChange: async () => {
-                  await trigger('authWebhookMaxWaitInterval');
-                },
               })}
-              onChange={(e) => {
+              onChange={async (e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
                   target: makeTarget.field('authWebhookMaxWaitInterval'),
@@ -480,6 +471,7 @@ export function SecuritySection({
                   message: '',
                 }));
                 authWebhookMaxWaitInterval.onChange(e.target.value);
+                await trigger('authWebhookMaxWaitInterval');
               }}
               id="authWebhookMaxWaitInterval"
               label="Auth Webhook Max Wait Interval"
@@ -528,11 +520,8 @@ export function SecuritySection({
                   }
                   return true;
                 },
-                onChange: async () => {
-                  await trigger('authWebhookRequestTimeout');
-                },
               })}
-              onChange={(e) => {
+              onChange={async (e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
                   target: makeTarget.field('authWebhookRequestTimeout'),
@@ -540,6 +529,7 @@ export function SecuritySection({
                   message: '',
                 }));
                 authWebhookRequestTimeout.onChange(e.target.value);
+                await trigger('authWebhookRequestTimeout');
               }}
               id="authWebhookRequestTimeout"
               label="Auth Webhook Request Timeout"
