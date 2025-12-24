@@ -18,7 +18,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ChangePasswordRequest, ChangePasswordResponse, CreateDocumentRequest, CreateDocumentResponse, CreateProjectRequest, CreateProjectResponse, CreateSchemaRequest, CreateSchemaResponse, DeleteAccountRequest, DeleteAccountResponse, GetChannelsRequest, GetChannelsResponse, GetDocumentRequest, GetDocumentResponse, GetDocumentsRequest, GetDocumentsResponse, GetProjectRequest, GetProjectResponse, GetProjectStatsRequest, GetProjectStatsResponse, GetRevisionByAdminRequest, GetRevisionByAdminResponse, GetSchemaRequest, GetSchemaResponse, GetSchemasRequest, GetSchemasResponse, GetServerVersionRequest, GetServerVersionResponse, GetSnapshotMetaRequest, GetSnapshotMetaResponse, ListChangesRequest, ListChangesResponse, ListChannelsRequest, ListChannelsResponse, ListDocumentsRequest, ListDocumentsResponse, ListProjectsRequest, ListProjectsResponse, ListRevisionsByAdminRequest, ListRevisionsByAdminResponse, ListSchemasRequest, ListSchemasResponse, LogInRequest, LogInResponse, RemoveDocumentByAdminRequest, RemoveDocumentByAdminResponse, RemoveSchemaRequest, RemoveSchemaResponse, RestoreRevisionByAdminRequest, RestoreRevisionByAdminResponse, RotateProjectKeysRequest, RotateProjectKeysResponse, SearchDocumentsRequest, SearchDocumentsResponse, SignUpRequest, SignUpResponse, UpdateDocumentRequest, UpdateDocumentResponse, UpdateProjectRequest, UpdateProjectResponse } from "./admin_pb";
+import { ChangePasswordRequest, ChangePasswordResponse, CreateDocumentRequest, CreateDocumentResponse, CreateProjectRequest, CreateProjectResponse, CreateSchemaRequest, CreateSchemaResponse, DeleteAccountRequest, DeleteAccountResponse, GetChannelsRequest, GetChannelsResponse, GetDocumentRequest, GetDocumentResponse, GetDocumentsRequest, GetDocumentsResponse, GetProjectRequest, GetProjectResponse, GetProjectStatsRequest, GetProjectStatsResponse, GetRevisionByAdminRequest, GetRevisionByAdminResponse, GetSchemaRequest, GetSchemaResponse, GetSchemasRequest, GetSchemasResponse, GetServerVersionRequest, GetServerVersionResponse, GetSnapshotMetaRequest, GetSnapshotMetaResponse, InviteMemberRequest, InviteMemberResponse, ListChangesRequest, ListChangesResponse, ListChannelsRequest, ListChannelsResponse, ListDocumentsRequest, ListDocumentsResponse, ListMembersRequest, ListMembersResponse, ListProjectsRequest, ListProjectsResponse, ListRevisionsByAdminRequest, ListRevisionsByAdminResponse, ListSchemasRequest, ListSchemasResponse, LogInRequest, LogInResponse, RemoveDocumentByAdminRequest, RemoveDocumentByAdminResponse, RemoveMemberRequest, RemoveMemberResponse, RemoveSchemaRequest, RemoveSchemaResponse, RestoreRevisionByAdminRequest, RestoreRevisionByAdminResponse, RotateProjectKeysRequest, RotateProjectKeysResponse, SearchDocumentsRequest, SearchDocumentsResponse, SignUpRequest, SignUpResponse, UpdateDocumentRequest, UpdateDocumentResponse, UpdateMemberRoleRequest, UpdateMemberRoleResponse, UpdateProjectRequest, UpdateProjectResponse } from "./admin_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -117,6 +117,42 @@ export const AdminService = {
       name: "RotateProjectKeys",
       I: RotateProjectKeysRequest,
       O: RotateProjectKeysResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.InviteMember
+     */
+    inviteMember: {
+      name: "InviteMember",
+      I: InviteMemberRequest,
+      O: InviteMemberResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.RemoveMember
+     */
+    removeMember: {
+      name: "RemoveMember",
+      I: RemoveMemberRequest,
+      O: RemoveMemberResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.ListMembers
+     */
+    listMembers: {
+      name: "ListMembers",
+      I: ListMembersRequest,
+      O: ListMembersResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.UpdateMemberRole
+     */
+    updateMemberRole: {
+      name: "UpdateMemberRole",
+      I: UpdateMemberRoleRequest,
+      O: UpdateMemberRoleResponse,
       kind: MethodKind.Unary,
     },
     /**

@@ -15,7 +15,15 @@
  */
 
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import { usersReducer, projectsReducer, documentsReducer, channelsReducer, schemasReducer, globalErrorReducer } from 'features';
+import {
+  usersReducer,
+  projectsReducer,
+  documentsReducer,
+  channelsReducer,
+  schemasReducer,
+  globalErrorReducer,
+  membersReducer,
+} from 'features';
 import { globalErrorHandler } from './middleware';
 
 export const store = configureStore({
@@ -25,6 +33,7 @@ export const store = configureStore({
     documents: documentsReducer,
     channels: channelsReducer,
     schemas: schemasReducer,
+    members: membersReducer,
     globalError: globalErrorReducer,
   },
   middleware: (getDefaultMiddleware) =>

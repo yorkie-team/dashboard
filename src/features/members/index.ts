@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 The Yorkie Authors. All rights reserved.
+ * Copyright 2025 The Yorkie Authors. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,10 +14,5 @@
  * limitations under the License.
  */
 
-export { default as usersReducer } from './users/usersSlice';
-export { default as projectsReducer } from './projects/projectsSlice';
-export { default as documentsReducer } from './documents/documentsSlice';
-export { default as channelsReducer } from './channels/channelsSlice';
-export { default as schemasReducer } from './schemas/schemasSlice';
-export { default as membersReducer } from './members/membersSlice';
-export { default as globalErrorReducer } from './globalError/globalErrorSlice';
+export * from './MembersList';
+export * from './InviteMember';

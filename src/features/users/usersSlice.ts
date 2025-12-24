@@ -361,6 +361,14 @@ export const {
 } = usersSlice.actions;
 
 export const selectUsers = (state: RootState) => state.users;
+export const selectCurrentUser = (state: RootState) => ({
+  user: state.users.isAuthenticated
+    ? {
+        username: state.users.username,
+        authProvider: state.users.authProvider,
+      }
+    : null,
+});
 export const selectPreferences = (state: RootState) => state.users.preferences;
 
 export default usersSlice.reducer;
