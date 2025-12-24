@@ -80,8 +80,16 @@ export type ProjectUpdateFields = {
   name: string;
   authWebhookURL: string;
   authWebhookMethods: Array<AuthWebhookMethod>;
+  authWebhookMaxRetries: number;
+  authWebhookMinWaitInterval: string;
+  authWebhookMaxWaitInterval: string;
+  authWebhookRequestTimeout: string;
   eventWebhookURL: string;
   eventWebhookEvents: Array<EventWebhookEvent>;
+  eventWebhookMaxRetries: number;
+  eventWebhookMinWaitInterval: string;
+  eventWebhookMaxWaitInterval: string;
+  eventWebhookRequestTimeout: string;
   clientDeactivateThreshold: string;
   snapshotThreshold: number;
   snapshotInterval: number;
@@ -327,6 +335,26 @@ export const projectsSlice = createSlice({
               target: 'authWebhookMethods',
               message: description,
             };
+          } else if (field === 'AuthWebhookMaxRetries') {
+            state.update.error = {
+              target: 'authWebhookMaxRetries',
+              message: description,
+            }
+          } else if (field === 'AuthWebhookMinWaitInterval') {
+            state.update.error = {
+              target: 'authWebhookMinWaitInterval',
+              message: description,
+            }
+          } else if (field === 'AuthWebhookMaxWaitInterval') {
+            state.update.error = {
+              target: 'authWebhookMaxWaitInterval',
+              message: description,
+            }
+          } else if (field === 'AuthWebhookRequestTimeout') {
+            state.update.error = {
+              target: 'authWebhookRequestTimeout',
+              message: description,
+            }
           } else if (field === 'EventWebhookURL') {
             state.update.error = {
               target: 'eventWebhookURL',
@@ -337,6 +365,26 @@ export const projectsSlice = createSlice({
               target: 'eventWebhookEvents',
               message: description,
             };
+          } else if (field === 'EventWebhookMaxRetries') {
+            state.update.error = {
+              target: 'eventWebhookMaxRetries',
+              message: description,
+            }
+          } else if (field === 'EventWebhookMinWaitInterval') {
+            state.update.error = {
+              target: 'eventWebhookMinWaitInterval',
+              message: description,
+            }
+          } else if (field === 'EventWebhookMaxWaitInterval') {
+            state.update.error = {
+              target: 'eventWebhookMaxWaitInterval',
+              message: description,
+            }
+          } else if (field === 'EventWebhookRequestTimeout') {
+            state.update.error = {
+              target: 'eventWebhookRequestTimeout',
+              message: description,
+            }
           } else if (field === 'SnapshotThreshold') {
             state.update.error = {
               target: 'snapshotThreshold',
