@@ -17,7 +17,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Navigator } from 'components';
-import { useProjectSettingsForm, UpdateFieldInfo } from 'hooks/useProjectSettingsForm';
+import { useProjectSettingsForm, UpdateFieldInfo, UpdateFieldTarget, makeTarget } from 'hooks/useProjectSettingsForm';
 import { ProjectUpdateFields, selectProjectUpdate } from '../projectsSlice';
 import { Project } from 'api/types';
 import { GeneralSection } from './sections/GeneralSection';
@@ -48,7 +48,7 @@ export function SettingsForm({ project, updateState, onUpdate, onSuccessSideEffe
       const firstError = formErrors[firstKey];
       setUpdateFieldInfo((info) => ({
         ...info,
-        target: firstKey as UpdateFieldInfo['target'],
+        target: makeTarget.field(firstKey as keyof ProjectUpdateFields),
         state: 'error',
         message: firstError?.message?.toString() || '',
       }));
@@ -66,7 +66,7 @@ export function SettingsForm({ project, updateState, onUpdate, onSuccessSideEffe
       setError(error.target, { type: 'custom', message: error.message }, { shouldFocus: true });
       setUpdateFieldInfo((info) => ({
         ...info,
-        target: error.target,
+        target: makeTarget.field(error.target),
         state: 'error',
         message: error.message,
       }));
@@ -117,7 +117,7 @@ export type SettingsFormSectionProps = {
   project: Project | null;
   onSubmit: (fields: Partial<ProjectUpdateFields>) => void;
   updateFieldInfo: UpdateFieldInfo;
-  checkFieldState: (fieldName: UpdateFieldInfo['target'], state: 'success' | 'error') => boolean;
+  checkFieldState: (target: UpdateFieldTarget, state: 'success' | 'error') => boolean;
   resetUpdateFieldInfo: () => void;
   resetForm: () => void;
   setUpdateFieldInfo: React.Dispatch<React.SetStateAction<UpdateFieldInfo>>;

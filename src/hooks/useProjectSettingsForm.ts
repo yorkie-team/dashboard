@@ -19,11 +19,46 @@ import { useForm, UseFormReturn } from 'react-hook-form';
 import { ProjectUpdateFields } from 'features/projects/projectsSlice';
 import { Project, UpdatableProjectFields, AuthWebhookMethod, EventWebhookEvent } from 'api/types';
 
+export type UpdateFieldTarget =
+  | { kind: 'field'; name: keyof ProjectUpdateFields }
+  | { kind: 'authWebhookMethod'; value: AuthWebhookMethod }
+  | { kind: 'eventWebhookEvent'; value: EventWebhookEvent };
+
 export type UpdateFieldInfo = {
-  target: keyof UpdatableProjectFields | AuthWebhookMethod | EventWebhookEvent | null;
+  target: UpdateFieldTarget | null;
   state: 'success' | 'error' | null;
   message: string;
 };
+
+export const makeTarget = {
+  field: (name: keyof ProjectUpdateFields): UpdateFieldTarget => ({ kind: 'field', name }),
+  authWebhookMethod: (value: AuthWebhookMethod): UpdateFieldTarget => ({ kind: 'authWebhookMethod', value }),
+  eventWebhookEvent: (value: EventWebhookEvent): UpdateFieldTarget => ({ kind: 'eventWebhookEvent', value }),
+} as const;
+
+export function isFieldTarget(
+  target: UpdateFieldTarget | null,
+  fieldName?: keyof ProjectUpdateFields,
+): target is { kind: 'field'; name: keyof ProjectUpdateFields } {
+  if (!target || target.kind !== 'field') return false;
+  return fieldName === undefined || target.name === fieldName;
+}
+
+export function isAuthWebhookMethodTarget(
+  target: UpdateFieldTarget | null,
+  method?: AuthWebhookMethod,
+): target is { kind: 'authWebhookMethod'; value: AuthWebhookMethod } {
+  if (!target || target.kind !== 'authWebhookMethod') return false;
+  return method === undefined || target.value === method;
+}
+
+export function isEventWebhookEventTarget(
+  target: UpdateFieldTarget | null,
+  event?: EventWebhookEvent,
+): target is { kind: 'eventWebhookEvent'; value: EventWebhookEvent } {
+  if (!target || target.kind !== 'eventWebhookEvent') return false;
+  return event === undefined || target.value === event;
+}
 
 type UseProjectSettingsFormParams = {
   project: Project | null;
@@ -34,7 +69,7 @@ type UseProjectSettingsFormResult = {
   form: UseFormReturn<ProjectUpdateFields>;
   updateFieldInfo: UpdateFieldInfo;
   setUpdateFieldInfo: React.Dispatch<React.SetStateAction<UpdateFieldInfo>>;
-  checkFieldState: (fieldName: UpdateFieldInfo['target'], state: 'success' | 'error') => boolean;
+  checkFieldState: (target: UpdateFieldTarget, state: 'success' | 'error') => boolean;
   resetUpdateFieldInfo: () => void;
   resetForm: () => void;
   onSubmit: (fields: Partial<ProjectUpdateFields>) => void;
@@ -112,8 +147,21 @@ export function useProjectSettingsForm({
   );
 
   const checkFieldState = useCallback(
-    (fieldName: UpdateFieldInfo['target'], state: 'success' | 'error'): boolean => {
-      return updateFieldInfo.target === fieldName && updateFieldInfo.state === state;
+    (target: UpdateFieldTarget, state: 'success' | 'error'): boolean => {
+      const current = updateFieldInfo.target;
+      if (!current) return false;
+      if (current.kind !== target.kind) return false;
+
+      let same = false;
+      if (target.kind === 'field' && current.kind === 'field') {
+        same = current.name === target.name;
+      } else if (target.kind === 'authWebhookMethod' && current.kind === 'authWebhookMethod') {
+        same = current.value === target.value;
+      } else if (target.kind === 'eventWebhookEvent' && current.kind === 'eventWebhookEvent') {
+        same = current.value === target.value;
+      }
+
+      return same && updateFieldInfo.state === state;
     },
     [updateFieldInfo],
   );
@@ -134,10 +182,11 @@ export function useProjectSettingsForm({
       setUpdateFieldInfo((info) => ({ ...info, state: null, message: '' }));
       return;
     }
-    if (!updateFieldInfo.target) {
-      return;
-    }
-    const targetError = errors[updateFieldInfo.target as keyof ProjectUpdateFields];
+
+    const target = updateFieldInfo.target;
+    if (!target || target.kind !== 'field') return;
+
+    const targetError = errors[target.name];
     if (targetError) {
       setUpdateFieldInfo((info) => ({
         ...info,

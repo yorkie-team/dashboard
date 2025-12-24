@@ -19,6 +19,7 @@ import classNames from 'classnames';
 import { InputHelperText, InputTextField, InputToggle } from 'components';
 import { useController } from 'react-hook-form';
 import { SettingsFormSectionProps } from '../SettingsForm';
+import { makeTarget, isFieldTarget } from 'hooks/useProjectSettingsForm';
 
 export function ResourcesSection({
   register,
@@ -50,7 +51,7 @@ export function ResourcesSection({
     if (updateFieldInfo.state === 'success') return;
     const target = updateFieldInfo.target;
 
-    if (target === 'clientDeactivateThreshold') {
+    if (isFieldTarget(target, 'clientDeactivateThreshold')) {
       if (clientDeactivateThresholdState.error?.message) {
         setUpdateFieldInfo((info) => ({
           ...info,
@@ -63,7 +64,7 @@ export function ResourcesSection({
       return;
     }
 
-    if (target === 'snapshotThreshold') {
+    if (isFieldTarget(target, 'snapshotThreshold')) {
       if (snapshotThresholdState.error?.message) {
         setUpdateFieldInfo((info) => ({
           ...info,
@@ -76,7 +77,7 @@ export function ResourcesSection({
       return;
     }
 
-    if (target === 'snapshotInterval') {
+    if (isFieldTarget(target, 'snapshotInterval')) {
       if (snapshotIntervalState.error?.message) {
         setUpdateFieldInfo((info) => ({
           ...info,
@@ -118,8 +119,8 @@ export function ResourcesSection({
           </p>
           <div
             className={classNames('input_field_box', {
-              is_error: checkFieldState('clientDeactivateThreshold', 'error'),
-              is_success: checkFieldState('clientDeactivateThreshold', 'success'),
+              is_error: checkFieldState(makeTarget.field('clientDeactivateThreshold'), 'error'),
+              is_success: checkFieldState(makeTarget.field('clientDeactivateThreshold'), 'success'),
             })}
           >
             <InputTextField
@@ -129,10 +130,16 @@ export function ResourcesSection({
               }}
               {...register('clientDeactivateThreshold', {
                 required: 'Client Deactivate Threshold is required',
-                pattern: {
-                  value: /^(\d{1,2}h\s?)?(\d{1,2}m\s?)?(\d{1,2}s)?$/,
-                  message:
-                    'Client Deactivate Threshold should be a signed sequence of decimal numbers, each with a unit suffix, such as "23h30m10s" or "2h45m"',
+                validate: (value: string) => {
+                  if (!value.trim()) return 'Client Deactivate Threshold is required';
+                  const pattern = /^(\d+h\s*)?([0-5]?[0-9]m\s*)?([0-5]?[0-9]s\s*)?(\d+ms\s*)?$/;
+                  if (!pattern.test(value)) {
+                    return 'Client Deactivate Threshold should be a valid duration, such as "24h0m0s", "100ms", or "3s" (minutes/seconds: 0-59)';
+                  }
+                  if (!/(\d+h|\d+m|\d+s|\d+ms)/.test(value)) {
+                    return 'Client Deactivate Threshold must include at least one time unit (h, m, s, or ms)';
+                  }
+                  return true;
                 },
                 onChange: async () => {
                   await trigger('clientDeactivateThreshold');
@@ -141,7 +148,7 @@ export function ResourcesSection({
               onChange={(e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
-                  target: 'clientDeactivateThreshold',
+                  target: makeTarget.field('clientDeactivateThreshold'),
                   state: null,
                   message: '',
                 }));
@@ -153,14 +160,14 @@ export function ResourcesSection({
               fieldUtil={true}
               placeholder={'24h00m00s'}
               state={
-                checkFieldState('clientDeactivateThreshold', 'success')
+                checkFieldState(makeTarget.field('clientDeactivateThreshold'), 'success')
                   ? 'success'
-                  : checkFieldState('clientDeactivateThreshold', 'error')
+                  : checkFieldState(makeTarget.field('clientDeactivateThreshold'), 'error')
                     ? 'error'
                     : undefined
               }
               helperText={
-                updateFieldInfo.target === 'clientDeactivateThreshold' && updateFieldInfo.state !== null
+                isFieldTarget(updateFieldInfo.target, 'clientDeactivateThreshold') && updateFieldInfo.state !== null
                   ? updateFieldInfo.message
                   : undefined
               }
@@ -177,8 +184,8 @@ export function ResourcesSection({
           </p>
           <div
             className={classNames('input_field_box', {
-              is_error: checkFieldState('snapshotThreshold', 'error'),
-              is_success: checkFieldState('snapshotThreshold', 'success'),
+              is_error: checkFieldState(makeTarget.field('snapshotThreshold'), 'error'),
+              is_success: checkFieldState(makeTarget.field('snapshotThreshold'), 'success'),
             })}
           >
             <InputTextField
@@ -197,7 +204,12 @@ export function ResourcesSection({
                 },
               })}
               onChange={(e) => {
-                setUpdateFieldInfo((info) => ({ ...info, target: 'snapshotThreshold', state: null, message: '' }));
+                setUpdateFieldInfo((info) => ({
+                  ...info,
+                  target: makeTarget.field('snapshotThreshold'),
+                  state: null,
+                  message: '',
+                }));
                 snapshotThreshold.onChange(e.target.value);
               }}
               id="snapshotThreshold"
@@ -206,14 +218,14 @@ export function ResourcesSection({
               fieldUtil={true}
               placeholder="0"
               state={
-                checkFieldState('snapshotThreshold', 'success')
+                checkFieldState(makeTarget.field('snapshotThreshold'), 'success')
                   ? 'success'
-                  : checkFieldState('snapshotThreshold', 'error')
+                  : checkFieldState(makeTarget.field('snapshotThreshold'), 'error')
                     ? 'error'
                     : undefined
               }
               helperText={
-                updateFieldInfo.target === 'snapshotThreshold' && updateFieldInfo.state !== null
+                isFieldTarget(updateFieldInfo.target, 'snapshotThreshold') && updateFieldInfo.state !== null
                   ? updateFieldInfo.message
                   : undefined
               }
@@ -229,8 +241,8 @@ export function ResourcesSection({
           </p>
           <div
             className={classNames('input_field_box', {
-              is_error: checkFieldState('snapshotInterval', 'error'),
-              is_success: checkFieldState('snapshotInterval', 'success'),
+              is_error: checkFieldState(makeTarget.field('snapshotInterval'), 'error'),
+              is_success: checkFieldState(makeTarget.field('snapshotInterval'), 'success'),
             })}
           >
             <InputTextField
@@ -249,7 +261,12 @@ export function ResourcesSection({
                 },
               })}
               onChange={(e) => {
-                setUpdateFieldInfo((info) => ({ ...info, target: 'snapshotInterval', state: null, message: '' }));
+                setUpdateFieldInfo((info) => ({
+                  ...info,
+                  target: makeTarget.field('snapshotInterval'),
+                  state: null,
+                  message: '',
+                }));
                 snapshotInterval.onChange(e.target.value);
               }}
               id="snapshotInterval"
@@ -258,14 +275,14 @@ export function ResourcesSection({
               fieldUtil={true}
               placeholder="0"
               state={
-                checkFieldState('snapshotInterval', 'success')
+                checkFieldState(makeTarget.field('snapshotInterval'), 'success')
                   ? 'success'
-                  : checkFieldState('snapshotInterval', 'error')
+                  : checkFieldState(makeTarget.field('snapshotInterval'), 'error')
                     ? 'error'
                     : undefined
               }
               helperText={
-                updateFieldInfo.target === 'snapshotInterval' && updateFieldInfo.state !== null
+                isFieldTarget(updateFieldInfo.target, 'snapshotInterval') && updateFieldInfo.state !== null
                   ? updateFieldInfo.message
                   : undefined
               }
@@ -281,8 +298,8 @@ export function ResourcesSection({
           </p>
           <div
             className={classNames('input_field_box', {
-              is_error: checkFieldState('autoRevisionEnabled', 'error'),
-              is_success: checkFieldState('autoRevisionEnabled', 'success'),
+              is_error: checkFieldState(makeTarget.field('autoRevisionEnabled'), 'error'),
+              is_success: checkFieldState(makeTarget.field('autoRevisionEnabled'), 'success'),
             })}
           >
             <InputToggle
@@ -291,11 +308,11 @@ export function ResourcesSection({
               checked={autoRevisionEnabled.value}
               onChange={(e) => {
                 autoRevisionEnabled.onChange(e.target.checked);
-                setUpdateFieldInfo((info) => ({ ...info, target: 'autoRevisionEnabled' }));
+                setUpdateFieldInfo((info) => ({ ...info, target: makeTarget.field('autoRevisionEnabled') }));
                 onSubmit({ autoRevisionEnabled: e.target.checked });
               }}
             />
-            {updateFieldInfo.target === 'autoRevisionEnabled' && updateFieldInfo.state !== null && (
+            {isFieldTarget(updateFieldInfo.target, 'autoRevisionEnabled') && updateFieldInfo.state !== null && (
               <InputHelperText
                 state={updateFieldInfo.state}
                 message={updateFieldInfo.message}
@@ -319,8 +336,8 @@ export function ResourcesSection({
           </p>
           <div
             className={classNames('input_field_box', {
-              is_error: checkFieldState('removeOnDetach', 'error'),
-              is_success: checkFieldState('removeOnDetach', 'success'),
+              is_error: checkFieldState(makeTarget.field('removeOnDetach'), 'error'),
+              is_success: checkFieldState(makeTarget.field('removeOnDetach'), 'success'),
             })}
           >
             <InputToggle
@@ -329,11 +346,11 @@ export function ResourcesSection({
               checked={removeOnDetach.value}
               onChange={(e) => {
                 removeOnDetach.onChange(e.target.checked);
-                setUpdateFieldInfo((info) => ({ ...info, target: 'removeOnDetach' }));
+                setUpdateFieldInfo((info) => ({ ...info, target: makeTarget.field('removeOnDetach') }));
                 onSubmit({ removeOnDetach: e.target.checked });
               }}
             />
-            {updateFieldInfo.target === 'removeOnDetach' && updateFieldInfo.state !== null && (
+            {isFieldTarget(updateFieldInfo.target, 'removeOnDetach') && updateFieldInfo.state !== null && (
               <InputHelperText
                 state={updateFieldInfo.state}
                 message={updateFieldInfo.message}

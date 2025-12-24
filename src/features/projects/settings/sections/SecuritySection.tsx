@@ -20,6 +20,7 @@ import { InputHelperText, InputTextField, InputToggle } from 'components';
 import { useController } from 'react-hook-form';
 import { AUTH_WEBHOOK_METHODS } from 'api/types';
 import { SettingsFormSectionProps } from '../SettingsForm';
+import { makeTarget, isFieldTarget, isAuthWebhookMethodTarget } from 'hooks/useProjectSettingsForm';
 
 export function SecuritySection({
   register,
@@ -62,7 +63,7 @@ export function SecuritySection({
   useEffect(() => {
     if (updateFieldInfo.state === 'success') return;
     const target = updateFieldInfo.target;
-    if (target === 'allowedOrigins') {
+    if (isFieldTarget(target, 'allowedOrigins')) {
       if (allowedOriginsState.error?.message) {
         setUpdateFieldInfo((info) => ({
           ...info,
@@ -74,7 +75,7 @@ export function SecuritySection({
       if (updateFieldInfo.state === 'error') setUpdateFieldInfo((info) => ({ ...info, state: null, message: '' }));
       return;
     }
-    if (target === 'authWebhookURL') {
+    if (isFieldTarget(target, 'authWebhookURL')) {
       if (authWebhookURLState.error?.message) {
         setUpdateFieldInfo((info) => ({
           ...info,
@@ -86,7 +87,7 @@ export function SecuritySection({
       if (updateFieldInfo.state === 'error') setUpdateFieldInfo((info) => ({ ...info, state: null, message: '' }));
       return;
     }
-    if (target === 'authWebhookMaxRetries') {
+    if (isFieldTarget(target, 'authWebhookMaxRetries')) {
       if (authWebhookMaxRetriesState.error?.message) {
         setUpdateFieldInfo((info) => ({
           ...info,
@@ -98,7 +99,7 @@ export function SecuritySection({
       if (updateFieldInfo.state === 'error') setUpdateFieldInfo((info) => ({ ...info, state: null, message: '' }));
       return;
     }
-    if (target === 'authWebhookMinWaitInterval') {
+    if (isFieldTarget(target, 'authWebhookMinWaitInterval')) {
       if (authWebhookMinWaitIntervalState.error?.message) {
         setUpdateFieldInfo((info) => ({
           ...info,
@@ -110,7 +111,7 @@ export function SecuritySection({
       if (updateFieldInfo.state === 'error') setUpdateFieldInfo((info) => ({ ...info, state: null, message: '' }));
       return;
     }
-    if (target === 'authWebhookMaxWaitInterval') {
+    if (isFieldTarget(target, 'authWebhookMaxWaitInterval')) {
       if (authWebhookMaxWaitIntervalState.error?.message) {
         setUpdateFieldInfo((info) => ({
           ...info,
@@ -122,7 +123,7 @@ export function SecuritySection({
       if (updateFieldInfo.state === 'error') setUpdateFieldInfo((info) => ({ ...info, state: null, message: '' }));
       return;
     }
-    if (target === 'authWebhookRequestTimeout') {
+    if (isFieldTarget(target, 'authWebhookRequestTimeout')) {
       if (authWebhookRequestTimeoutState.error?.message) {
         setUpdateFieldInfo((info) => ({
           ...info,
@@ -186,7 +187,12 @@ export function SecuritySection({
                 },
               })}
               onChange={(e) => {
-                setUpdateFieldInfo((info) => ({ ...info, target: 'allowedOrigins', state: null, message: '' }));
+                setUpdateFieldInfo((info) => ({
+                  ...info,
+                  target: makeTarget.field('allowedOrigins'),
+                  state: null,
+                  message: '',
+                }));
                 allowedOrigins.onChange(e);
               }}
               onBlur={(e) => {
@@ -204,14 +210,14 @@ export function SecuritySection({
               fieldUtil={true}
               placeholder="*, http://localhost:3000"
               state={
-                checkFieldState('allowedOrigins', 'success')
+                checkFieldState(makeTarget.field('allowedOrigins'), 'success')
                   ? 'success'
-                  : checkFieldState('allowedOrigins', 'error')
+                  : checkFieldState(makeTarget.field('allowedOrigins'), 'error')
                     ? 'error'
                     : undefined
               }
               helperText={
-                updateFieldInfo.target === 'allowedOrigins' && updateFieldInfo.state !== null
+                isFieldTarget(updateFieldInfo.target, 'allowedOrigins') && updateFieldInfo.state !== null
                   ? updateFieldInfo.message
                   : undefined
               }
@@ -236,8 +242,8 @@ export function SecuritySection({
           </p>
           <div
             className={classNames('input_field_box', {
-              is_error: checkFieldState('authWebhookURL', 'error'),
-              is_success: checkFieldState('authWebhookURL', 'success'),
+              is_error: checkFieldState(makeTarget.field('authWebhookURL'), 'error'),
+              is_success: checkFieldState(makeTarget.field('authWebhookURL'), 'success'),
             })}
           >
             <InputTextField
@@ -247,7 +253,12 @@ export function SecuritySection({
               }}
               {...register('authWebhookURL')}
               onChange={(e) => {
-                setUpdateFieldInfo((info) => ({ ...info, target: 'authWebhookURL', state: null, message: '' }));
+                setUpdateFieldInfo((info) => ({
+                  ...info,
+                  target: makeTarget.field('authWebhookURL'),
+                  state: null,
+                  message: '',
+                }));
                 authWebhookURLField.onChange(e.target.value);
               }}
               id="authWebhookURL"
@@ -256,14 +267,14 @@ export function SecuritySection({
               placeholder="http://localhost:8080/auth"
               fieldUtil={true}
               state={
-                checkFieldState('authWebhookURL', 'success')
+                checkFieldState(makeTarget.field('authWebhookURL'), 'success')
                   ? 'success'
-                  : checkFieldState('authWebhookURL', 'error')
+                  : checkFieldState(makeTarget.field('authWebhookURL'), 'error')
                     ? 'error'
                     : undefined
               }
               helperText={
-                updateFieldInfo.target === 'authWebhookURL' && updateFieldInfo.state !== null
+                isFieldTarget(updateFieldInfo.target, 'authWebhookURL') && updateFieldInfo.state !== null
                   ? updateFieldInfo.message
                   : undefined
               }
@@ -282,8 +293,8 @@ export function SecuritySection({
               return (
                 <div
                   className={classNames('input_group', {
-                    is_error: checkFieldState(method, 'error'),
-                    is_success: checkFieldState(method, 'success'),
+                    is_error: checkFieldState(makeTarget.authWebhookMethod(method), 'error'),
+                    is_success: checkFieldState(makeTarget.authWebhookMethod(method), 'success'),
                   })}
                   key={method}
                 >
@@ -292,7 +303,8 @@ export function SecuritySection({
                     label={method}
                     checked={webhookMethodField.value.includes(method)}
                     onChange={(e) => {
-                      let newWebhookMethods = [...project?.authWebhookMethods!];
+                      const baseMethods = Array.isArray(webhookMethodField.value) ? webhookMethodField.value : [];
+                      let newWebhookMethods = [...baseMethods];
                       if (e.target.checked) {
                         newWebhookMethods = newWebhookMethods.includes(method)
                           ? newWebhookMethods
@@ -301,11 +313,11 @@ export function SecuritySection({
                         newWebhookMethods = newWebhookMethods.filter((newMethod) => newMethod !== method);
                       }
                       webhookMethodField.onChange(newWebhookMethods);
-                      setUpdateFieldInfo((info) => ({ ...info, target: method }));
+                      setUpdateFieldInfo((info) => ({ ...info, target: makeTarget.authWebhookMethod(method) }));
                       onSubmit({ authWebhookMethods: newWebhookMethods });
                     }}
                   />
-                  {updateFieldInfo.target === method && updateFieldInfo.state !== null && (
+                  {isAuthWebhookMethodTarget(updateFieldInfo.target, method) && updateFieldInfo.state !== null && (
                     <InputHelperText
                       state={updateFieldInfo.state}
                       message={updateFieldInfo.message}
@@ -321,8 +333,8 @@ export function SecuritySection({
         <dd className="sub_desc">
           <div
             className={classNames('input_field_box', {
-              is_error: checkFieldState('authWebhookMaxRetries', 'error'),
-              is_success: checkFieldState('authWebhookMaxRetries', 'success'),
+              is_error: checkFieldState(makeTarget.field('authWebhookMaxRetries'), 'error'),
+              is_success: checkFieldState(makeTarget.field('authWebhookMaxRetries'), 'success'),
             })}
           >
             <InputTextField
@@ -341,7 +353,12 @@ export function SecuritySection({
                 },
               })}
               onChange={(e) => {
-                setUpdateFieldInfo((info) => ({ ...info, target: 'authWebhookMaxRetries', state: null, message: '' }));
+                setUpdateFieldInfo((info) => ({
+                  ...info,
+                  target: makeTarget.field('authWebhookMaxRetries'),
+                  state: null,
+                  message: '',
+                }));
                 authWebhookMaxRetries.onChange(e.target.value);
               }}
               id="authWebhookMaxRetries"
@@ -350,14 +367,14 @@ export function SecuritySection({
               fieldUtil={true}
               placeholder="0"
               state={
-                checkFieldState('authWebhookMaxRetries', 'success')
+                checkFieldState(makeTarget.field('authWebhookMaxRetries'), 'success')
                   ? 'success'
-                  : checkFieldState('authWebhookMaxRetries', 'error')
+                  : checkFieldState(makeTarget.field('authWebhookMaxRetries'), 'error')
                     ? 'error'
                     : undefined
               }
               helperText={
-                updateFieldInfo.target === 'authWebhookMaxRetries' && updateFieldInfo.state !== null
+                isFieldTarget(updateFieldInfo.target, 'authWebhookMaxRetries') && updateFieldInfo.state !== null
                   ? updateFieldInfo.message
                   : undefined
               }
@@ -369,8 +386,8 @@ export function SecuritySection({
         <dd className="sub_desc">
           <div
             className={classNames('input_field_box', {
-              is_error: checkFieldState('authWebhookMinWaitInterval', 'error'),
-              is_success: checkFieldState('authWebhookMinWaitInterval', 'success'),
+              is_error: checkFieldState(makeTarget.field('authWebhookMinWaitInterval'), 'error'),
+              is_success: checkFieldState(makeTarget.field('authWebhookMinWaitInterval'), 'success'),
             })}
           >
             <InputTextField
@@ -380,10 +397,16 @@ export function SecuritySection({
               }}
               {...register('authWebhookMinWaitInterval', {
                 required: 'Auth Webhook Min Wait Interval is required',
-                pattern: {
-                  value: /^(\d+h\s*)?(\d+m\s*)?(\d+s\s*)?(\d+ms\s*)?$/,
-                  message:
-                    'Auth Webhook Min Wait Interval should be a signed sequence of decimal numbers, each with a unit suffix, such as "23h30m10s" or "2h45m"',
+                validate: (value: string) => {
+                  if (!value.trim()) return 'Auth Webhook Min Wait Interval is required';
+                  const pattern = /^(\d+h\s*)?([0-5]?[0-9]m\s*)?([0-5]?[0-9]s\s*)?(\d+ms\s*)?$/;
+                  if (!pattern.test(value)) {
+                    return 'Auth Webhook Min Wait Interval should be a valid duration, such as "24h0m0s", "100ms", or "3s" (minutes/seconds: 0-59)';
+                  }
+                  if (!/(\d+h|\d+m|\d+s|\d+ms)/.test(value)) {
+                    return 'Auth Webhook Min Wait Interval must include at least one time unit (h, m, s, or ms)';
+                  }
+                  return true;
                 },
                 onChange: async () => {
                   await trigger('authWebhookMinWaitInterval');
@@ -392,7 +415,7 @@ export function SecuritySection({
               onChange={(e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
-                  target: 'authWebhookMinWaitInterval',
+                  target: makeTarget.field('authWebhookMinWaitInterval'),
                   state: null,
                   message: '',
                 }));
@@ -404,14 +427,14 @@ export function SecuritySection({
               fieldUtil={true}
               placeholder="0"
               state={
-                checkFieldState('authWebhookMinWaitInterval', 'success')
+                checkFieldState(makeTarget.field('authWebhookMinWaitInterval'), 'success')
                   ? 'success'
-                  : checkFieldState('authWebhookMinWaitInterval', 'error')
+                  : checkFieldState(makeTarget.field('authWebhookMinWaitInterval'), 'error')
                     ? 'error'
                     : undefined
               }
               helperText={
-                updateFieldInfo.target === 'authWebhookMinWaitInterval' && updateFieldInfo.state !== null
+                isFieldTarget(updateFieldInfo.target, 'authWebhookMinWaitInterval') && updateFieldInfo.state !== null
                   ? updateFieldInfo.message
                   : undefined
               }
@@ -423,8 +446,8 @@ export function SecuritySection({
         <dd className="sub_desc">
           <div
             className={classNames('input_field_box', {
-              is_error: checkFieldState('authWebhookMaxWaitInterval', 'error'),
-              is_success: checkFieldState('authWebhookMaxWaitInterval', 'success'),
+              is_error: checkFieldState(makeTarget.field('authWebhookMaxWaitInterval'), 'error'),
+              is_success: checkFieldState(makeTarget.field('authWebhookMaxWaitInterval'), 'success'),
             })}
           >
             <InputTextField
@@ -434,10 +457,16 @@ export function SecuritySection({
               }}
               {...register('authWebhookMaxWaitInterval', {
                 required: 'Auth Webhook Max Wait Interval is required',
-                pattern: {
-                  value: /^(\d+h\s*)?(\d+m\s*)?(\d+s\s*)?(\d+ms\s*)?$/,
-                  message:
-                    'Auth Webhook Max Wait Interval should be a signed sequence of decimal numbers, each with a unit suffix, such as "23h30m10s" or "2h45m"',
+                validate: (value: string) => {
+                  if (!value.trim()) return 'Auth Webhook Max Wait Interval is required';
+                  const pattern = /^(\d+h\s*)?([0-5]?[0-9]m\s*)?([0-5]?[0-9]s\s*)?(\d+ms\s*)?$/;
+                  if (!pattern.test(value)) {
+                    return 'Auth Webhook Max Wait Interval should be a valid duration, such as "24h0m0s", "100ms", or "3s" (minutes/seconds: 0-59)';
+                  }
+                  if (!/(\d+h|\d+m|\d+s|\d+ms)/.test(value)) {
+                    return 'Auth Webhook Max Wait Interval must include at least one time unit (h, m, s, or ms)';
+                  }
+                  return true;
                 },
                 onChange: async () => {
                   await trigger('authWebhookMaxWaitInterval');
@@ -446,7 +475,7 @@ export function SecuritySection({
               onChange={(e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
-                  target: 'authWebhookMaxWaitInterval',
+                  target: makeTarget.field('authWebhookMaxWaitInterval'),
                   state: null,
                   message: '',
                 }));
@@ -458,14 +487,14 @@ export function SecuritySection({
               fieldUtil={true}
               placeholder="0"
               state={
-                checkFieldState('authWebhookMaxWaitInterval', 'success')
+                checkFieldState(makeTarget.field('authWebhookMaxWaitInterval'), 'success')
                   ? 'success'
-                  : checkFieldState('authWebhookMaxWaitInterval', 'error')
+                  : checkFieldState(makeTarget.field('authWebhookMaxWaitInterval'), 'error')
                     ? 'error'
                     : undefined
               }
               helperText={
-                updateFieldInfo.target === 'authWebhookMaxWaitInterval' && updateFieldInfo.state !== null
+                isFieldTarget(updateFieldInfo.target, 'authWebhookMaxWaitInterval') && updateFieldInfo.state !== null
                   ? updateFieldInfo.message
                   : undefined
               }
@@ -477,8 +506,8 @@ export function SecuritySection({
         <dd className="sub_desc">
           <div
             className={classNames('input_field_box', {
-              is_error: checkFieldState('authWebhookRequestTimeout', 'error'),
-              is_success: checkFieldState('authWebhookRequestTimeout', 'success'),
+              is_error: checkFieldState(makeTarget.field('authWebhookRequestTimeout'), 'error'),
+              is_success: checkFieldState(makeTarget.field('authWebhookRequestTimeout'), 'success'),
             })}
           >
             <InputTextField
@@ -488,10 +517,16 @@ export function SecuritySection({
               }}
               {...register('authWebhookRequestTimeout', {
                 required: 'Auth Webhook Request Timeout is required',
-                pattern: {
-                  value: /^(\d+h\s*)?(\d+m\s*)?(\d+s\s*)?(\d+ms\s*)?$/,
-                  message:
-                    'Auth Webhook Request Timeout should be a signed sequence of decimal numbers, each with a unit suffix, such as "23h30m10s" or "2h45m"',
+                validate: (value: string) => {
+                  if (!value.trim()) return 'Auth Webhook Request Timeout is required';
+                  const pattern = /^(\d+h\s*)?([0-5]?[0-9]m\s*)?([0-5]?[0-9]s\s*)?(\d+ms\s*)?$/;
+                  if (!pattern.test(value)) {
+                    return 'Auth Webhook Request Timeout should be a valid duration, such as "24h0m0s", "100ms", or "3s" (minutes/seconds: 0-59)';
+                  }
+                  if (!/(\d+h|\d+m|\d+s|\d+ms)/.test(value)) {
+                    return 'Auth Webhook Request Timeout must include at least one time unit (h, m, s, or ms)';
+                  }
+                  return true;
                 },
                 onChange: async () => {
                   await trigger('authWebhookRequestTimeout');
@@ -500,7 +535,7 @@ export function SecuritySection({
               onChange={(e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
-                  target: 'authWebhookRequestTimeout',
+                  target: makeTarget.field('authWebhookRequestTimeout'),
                   state: null,
                   message: '',
                 }));
@@ -512,14 +547,14 @@ export function SecuritySection({
               fieldUtil={true}
               placeholder="0"
               state={
-                checkFieldState('authWebhookRequestTimeout', 'success')
+                checkFieldState(makeTarget.field('authWebhookRequestTimeout'), 'success')
                   ? 'success'
-                  : checkFieldState('authWebhookRequestTimeout', 'error')
+                  : checkFieldState(makeTarget.field('authWebhookRequestTimeout'), 'error')
                     ? 'error'
                     : undefined
               }
               helperText={
-                updateFieldInfo.target === 'authWebhookRequestTimeout' && updateFieldInfo.state !== null
+                isFieldTarget(updateFieldInfo.target, 'authWebhookRequestTimeout') && updateFieldInfo.state !== null
                   ? updateFieldInfo.message
                   : undefined
               }

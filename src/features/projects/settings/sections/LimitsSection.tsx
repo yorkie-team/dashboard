@@ -19,6 +19,7 @@ import classNames from 'classnames';
 import { InputTextField } from 'components';
 import { useController } from 'react-hook-form';
 import { SettingsFormSectionProps } from '../SettingsForm';
+import { makeTarget, isFieldTarget } from 'hooks/useProjectSettingsForm';
 
 export function LimitsSection({
   register,
@@ -47,7 +48,7 @@ export function LimitsSection({
     if (updateFieldInfo.state === 'success') return;
     const target = updateFieldInfo.target;
 
-    if (target === 'maxAttachmentsPerDocument') {
+    if (isFieldTarget(target, 'maxAttachmentsPerDocument')) {
       if (maxAttachmentsPerDocumentState.error?.message) {
         setUpdateFieldInfo((info) => ({
           ...info,
@@ -60,7 +61,7 @@ export function LimitsSection({
       return;
     }
 
-    if (target === 'maxSubscribersPerDocument') {
+    if (isFieldTarget(target, 'maxSubscribersPerDocument')) {
       if (maxSubscribersPerDocumentState.error?.message) {
         setUpdateFieldInfo((info) => ({
           ...info,
@@ -73,7 +74,7 @@ export function LimitsSection({
       return;
     }
 
-    if (target === 'maxSizePerDocument') {
+    if (isFieldTarget(target, 'maxSizePerDocument')) {
       if (maxSizePerDocumentState.error?.message) {
         setUpdateFieldInfo((info) => ({
           ...info,
@@ -115,8 +116,8 @@ export function LimitsSection({
           </p>
           <div
             className={classNames('input_field_box', {
-              is_error: checkFieldState('maxAttachmentsPerDocument', 'error'),
-              is_success: checkFieldState('maxAttachmentsPerDocument', 'success'),
+              is_error: checkFieldState(makeTarget.field('maxAttachmentsPerDocument'), 'error'),
+              is_success: checkFieldState(makeTarget.field('maxAttachmentsPerDocument'), 'success'),
             })}
           >
             <InputTextField
@@ -137,7 +138,7 @@ export function LimitsSection({
               onChange={(e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
-                  target: 'maxAttachmentsPerDocument',
+                  target: makeTarget.field('maxAttachmentsPerDocument'),
                   state: null,
                   message: '',
                 }));
@@ -149,14 +150,14 @@ export function LimitsSection({
               fieldUtil={true}
               placeholder="0"
               state={
-                checkFieldState('maxAttachmentsPerDocument', 'success')
+                checkFieldState(makeTarget.field('maxAttachmentsPerDocument'), 'success')
                   ? 'success'
-                  : checkFieldState('maxAttachmentsPerDocument', 'error')
+                  : checkFieldState(makeTarget.field('maxAttachmentsPerDocument'), 'error')
                     ? 'error'
                     : undefined
               }
               helperText={
-                updateFieldInfo.target === 'maxAttachmentsPerDocument' && updateFieldInfo.state !== null
+                isFieldTarget(updateFieldInfo.target, 'maxAttachmentsPerDocument') && updateFieldInfo.state !== null
                   ? updateFieldInfo.message
                   : undefined
               }
@@ -180,8 +181,8 @@ export function LimitsSection({
           </p>
           <div
             className={classNames('input_field_box', {
-              is_error: checkFieldState('maxSubscribersPerDocument', 'error'),
-              is_success: checkFieldState('maxSubscribersPerDocument', 'success'),
+              is_error: checkFieldState(makeTarget.field('maxSubscribersPerDocument'), 'error'),
+              is_success: checkFieldState(makeTarget.field('maxSubscribersPerDocument'), 'success'),
             })}
           >
             <InputTextField
@@ -202,7 +203,7 @@ export function LimitsSection({
               onChange={(e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
-                  target: 'maxSubscribersPerDocument',
+                  target: makeTarget.field('maxSubscribersPerDocument'),
                   state: null,
                   message: '',
                 }));
@@ -214,14 +215,14 @@ export function LimitsSection({
               fieldUtil={true}
               placeholder="0"
               state={
-                checkFieldState('maxSubscribersPerDocument', 'success')
+                checkFieldState(makeTarget.field('maxSubscribersPerDocument'), 'success')
                   ? 'success'
-                  : checkFieldState('maxSubscribersPerDocument', 'error')
+                  : checkFieldState(makeTarget.field('maxSubscribersPerDocument'), 'error')
                     ? 'error'
                     : undefined
               }
               helperText={
-                updateFieldInfo.target === 'maxSubscribersPerDocument' && updateFieldInfo.state !== null
+                isFieldTarget(updateFieldInfo.target, 'maxSubscribersPerDocument') && updateFieldInfo.state !== null
                   ? updateFieldInfo.message
                   : undefined
               }
@@ -245,8 +246,8 @@ export function LimitsSection({
           </p>
           <div
             className={classNames('input_field_box', {
-              is_error: checkFieldState('maxSizePerDocument', 'error'),
-              is_success: checkFieldState('maxSizePerDocument', 'success'),
+              is_error: checkFieldState(makeTarget.field('maxSizePerDocument'), 'error'),
+              is_success: checkFieldState(makeTarget.field('maxSizePerDocument'), 'success'),
             })}
           >
             <InputTextField
@@ -265,7 +266,12 @@ export function LimitsSection({
                 },
               })}
               onChange={(e) => {
-                setUpdateFieldInfo((info) => ({ ...info, target: 'maxSizePerDocument', state: null, message: '' }));
+                setUpdateFieldInfo((info) => ({
+                  ...info,
+                  target: makeTarget.field('maxSizePerDocument'),
+                  state: null,
+                  message: '',
+                }));
                 maxSizePerDocument.onChange(e.target.value);
               }}
               id="maxSizePerDocument"
@@ -274,14 +280,14 @@ export function LimitsSection({
               fieldUtil={true}
               placeholder="0"
               state={
-                checkFieldState('maxSizePerDocument', 'success')
+                checkFieldState(makeTarget.field('maxSizePerDocument'), 'success')
                   ? 'success'
-                  : checkFieldState('maxSizePerDocument', 'error')
+                  : checkFieldState(makeTarget.field('maxSizePerDocument'), 'error')
                     ? 'error'
                     : undefined
               }
               helperText={
-                updateFieldInfo.target === 'maxSizePerDocument' && updateFieldInfo.state !== null
+                isFieldTarget(updateFieldInfo.target, 'maxSizePerDocument') && updateFieldInfo.state !== null
                   ? updateFieldInfo.message
                   : undefined
               }

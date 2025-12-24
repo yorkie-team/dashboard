@@ -19,6 +19,7 @@ import classNames from 'classnames';
 import { InputTextField } from 'components';
 import { useController } from 'react-hook-form';
 import { SettingsFormSectionProps } from '../SettingsForm';
+import { makeTarget, isFieldTarget } from 'hooks/useProjectSettingsForm';
 
 export function GeneralSection({
   register,
@@ -33,7 +34,7 @@ export function GeneralSection({
   const { field: nameField, fieldState: nameFieldState } = useController({ control, name: 'name' });
 
   useEffect(() => {
-    if (updateFieldInfo.target !== 'name' || updateFieldInfo.state === 'success') return;
+    if (!isFieldTarget(updateFieldInfo.target, 'name') || updateFieldInfo.state === 'success') return;
     if (nameFieldState.error?.message) {
       setUpdateFieldInfo((info) => ({
         ...info,
@@ -57,8 +58,8 @@ export function GeneralSection({
         <dd className="sub_desc">
           <div
             className={classNames('input_field_box', {
-              is_error: checkFieldState('name', 'error'),
-              is_success: checkFieldState('name', 'success'),
+              is_error: checkFieldState(makeTarget.field('name'), 'error'),
+              is_success: checkFieldState(makeTarget.field('name'), 'success'),
             })}
           >
             <InputTextField
@@ -78,7 +79,12 @@ export function GeneralSection({
                 },
               })}
               onChange={(e) => {
-                setUpdateFieldInfo((info) => ({ ...info, target: 'name', state: null, message: '' }));
+                setUpdateFieldInfo((info) => ({
+                  ...info,
+                  target: makeTarget.field('name'),
+                  state: null,
+                  message: '',
+                }));
                 nameField.onChange(e.target.value);
               }}
               id="name"
@@ -86,10 +92,14 @@ export function GeneralSection({
               blindLabel={true}
               fieldUtil={true}
               state={
-                checkFieldState('name', 'success') ? 'success' : checkFieldState('name', 'error') ? 'error' : undefined
+                checkFieldState(makeTarget.field('name'), 'success')
+                  ? 'success'
+                  : checkFieldState(makeTarget.field('name'), 'error')
+                    ? 'error'
+                    : undefined
               }
               helperText={
-                updateFieldInfo.target === 'name' && updateFieldInfo.state !== null
+                isFieldTarget(updateFieldInfo.target, 'name') && updateFieldInfo.state !== null
                   ? updateFieldInfo.message
                   : undefined
               }

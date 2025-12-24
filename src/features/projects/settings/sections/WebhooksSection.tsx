@@ -18,8 +18,9 @@ import React, { useEffect } from 'react';
 import classNames from 'classnames';
 import { InputHelperText, InputTextField, InputToggle } from 'components';
 import { useController } from 'react-hook-form';
-import { AUTH_WEBHOOK_METHODS, EVENT_WEBHOOK_EVENTS } from 'api/types';
+import { EVENT_WEBHOOK_EVENTS } from 'api/types';
 import { SettingsFormSectionProps } from '../SettingsForm';
+import { makeTarget, isFieldTarget, isEventWebhookEventTarget } from 'hooks/useProjectSettingsForm';
 
 export function WebhooksSection({
   register,
@@ -57,36 +58,12 @@ export function WebhooksSection({
     control,
     name: 'eventWebhookRequestTimeout',
   });
-  const { field: authWebhookURLField, fieldState: authWebhookURLState } = useController({
-    control,
-    name: 'authWebhookURL',
-  });
-  const { field: webhookMethodField } = useController({
-    control,
-    name: 'authWebhookMethods',
-  });
-  const { field: authWebhookMaxRetries, fieldState: authWebhookMaxRetriesState } = useController({
-    control,
-    name: 'authWebhookMaxRetries',
-  });
-  const { field: authWebhookMinWaitInterval, fieldState: authWebhookMinWaitIntervalState } = useController({
-    control,
-    name: 'authWebhookMinWaitInterval',
-  });
-  const { field: authWebhookMaxWaitInterval, fieldState: authWebhookMaxWaitIntervalState } = useController({
-    control,
-    name: 'authWebhookMaxWaitInterval',
-  });
-  const { field: authWebhookRequestTimeout, fieldState: authWebhookRequestTimeoutState } = useController({
-    control,
-    name: 'authWebhookRequestTimeout',
-  });
 
   useEffect(() => {
     if (updateFieldInfo.state === 'success') return;
     const target = updateFieldInfo.target;
 
-    if (target === 'eventWebhookURL') {
+    if (isFieldTarget(target, 'eventWebhookURL')) {
       if (eventWebhookURLState.error?.message) {
         setUpdateFieldInfo((info) => ({
           ...info,
@@ -99,7 +76,7 @@ export function WebhooksSection({
       return;
     }
 
-    if (target === 'eventWebhookMaxRetries') {
+    if (isFieldTarget(target, 'eventWebhookMaxRetries')) {
       if (eventWebhookMaxRetriesState.error?.message) {
         setUpdateFieldInfo((info) => ({
           ...info,
@@ -112,7 +89,7 @@ export function WebhooksSection({
       return;
     }
 
-    if (target === 'eventWebhookMinWaitInterval') {
+    if (isFieldTarget(target, 'eventWebhookMinWaitInterval')) {
       if (eventWebhookMinWaitIntervalState.error?.message) {
         setUpdateFieldInfo((info) => ({
           ...info,
@@ -125,7 +102,7 @@ export function WebhooksSection({
       return;
     }
 
-    if (target === 'eventWebhookMaxWaitInterval') {
+    if (isFieldTarget(target, 'eventWebhookMaxWaitInterval')) {
       if (eventWebhookMaxWaitIntervalState.error?.message) {
         setUpdateFieldInfo((info) => ({
           ...info,
@@ -138,7 +115,7 @@ export function WebhooksSection({
       return;
     }
 
-    if (target === 'eventWebhookRequestTimeout') {
+    if (isFieldTarget(target, 'eventWebhookRequestTimeout')) {
       if (eventWebhookRequestTimeoutState.error?.message) {
         setUpdateFieldInfo((info) => ({
           ...info,
@@ -150,76 +127,7 @@ export function WebhooksSection({
       if (updateFieldInfo.state === 'error') setUpdateFieldInfo((info) => ({ ...info, state: null, message: '' }));
       return;
     }
-
-    if (target === 'authWebhookURL') {
-      if (authWebhookURLState.error?.message) {
-        setUpdateFieldInfo((info) => ({
-          ...info,
-          state: 'error',
-          message: authWebhookURLState.error?.message?.toString() || '',
-        }));
-        return;
-      }
-      if (updateFieldInfo.state === 'error') setUpdateFieldInfo((info) => ({ ...info, state: null, message: '' }));
-      return;
-    }
-
-    if (target === 'authWebhookMaxRetries') {
-      if (authWebhookMaxRetriesState.error?.message) {
-        setUpdateFieldInfo((info) => ({
-          ...info,
-          state: 'error',
-          message: authWebhookMaxRetriesState.error?.message?.toString() || '',
-        }));
-        return;
-      }
-      if (updateFieldInfo.state === 'error') setUpdateFieldInfo((info) => ({ ...info, state: null, message: '' }));
-      return;
-    }
-
-    if (target === 'authWebhookMinWaitInterval') {
-      if (authWebhookMinWaitIntervalState.error?.message) {
-        setUpdateFieldInfo((info) => ({
-          ...info,
-          state: 'error',
-          message: authWebhookMinWaitIntervalState.error?.message?.toString() || '',
-        }));
-        return;
-      }
-      if (updateFieldInfo.state === 'error') setUpdateFieldInfo((info) => ({ ...info, state: null, message: '' }));
-      return;
-    }
-
-    if (target === 'authWebhookMaxWaitInterval') {
-      if (authWebhookMaxWaitIntervalState.error?.message) {
-        setUpdateFieldInfo((info) => ({
-          ...info,
-          state: 'error',
-          message: authWebhookMaxWaitIntervalState.error?.message?.toString() || '',
-        }));
-        return;
-      }
-      if (updateFieldInfo.state === 'error') setUpdateFieldInfo((info) => ({ ...info, state: null, message: '' }));
-      return;
-    }
-
-    if (target === 'authWebhookRequestTimeout') {
-      if (authWebhookRequestTimeoutState.error?.message) {
-        setUpdateFieldInfo((info) => ({
-          ...info,
-          state: 'error',
-          message: authWebhookRequestTimeoutState.error?.message?.toString() || '',
-        }));
-        return;
-      }
-      if (updateFieldInfo.state === 'error') setUpdateFieldInfo((info) => ({ ...info, state: null, message: '' }));
-    }
   }, [
-    authWebhookMaxRetriesState.error?.message,
-    authWebhookMaxWaitIntervalState.error?.message,
-    authWebhookMinWaitIntervalState.error?.message,
-    authWebhookRequestTimeoutState.error?.message,
-    authWebhookURLState.error?.message,
     eventWebhookMaxRetriesState.error?.message,
     eventWebhookMaxWaitIntervalState.error?.message,
     eventWebhookMinWaitIntervalState.error?.message,
@@ -245,8 +153,8 @@ export function WebhooksSection({
           </p>
           <div
             className={classNames('input_field_box', {
-              is_error: checkFieldState('eventWebhookURL', 'error'),
-              is_success: checkFieldState('eventWebhookURL', 'success'),
+              is_error: checkFieldState(makeTarget.field('eventWebhookURL'), 'error'),
+              is_success: checkFieldState(makeTarget.field('eventWebhookURL'), 'success'),
             })}
           >
             <InputTextField
@@ -256,7 +164,12 @@ export function WebhooksSection({
               }}
               {...register('eventWebhookURL')}
               onChange={(e) => {
-                setUpdateFieldInfo((info) => ({ ...info, target: 'eventWebhookURL', state: null, message: '' }));
+                setUpdateFieldInfo((info) => ({
+                  ...info,
+                  target: makeTarget.field('eventWebhookURL'),
+                  state: null,
+                  message: '',
+                }));
                 eventWebhookURLField.onChange(e.target.value);
               }}
               id="eventWebhookURL"
@@ -265,14 +178,14 @@ export function WebhooksSection({
               placeholder="http://localhost:8080/event"
               fieldUtil={true}
               state={
-                checkFieldState('eventWebhookURL', 'success')
+                checkFieldState(makeTarget.field('eventWebhookURL'), 'success')
                   ? 'success'
-                  : checkFieldState('eventWebhookURL', 'error')
+                  : checkFieldState(makeTarget.field('eventWebhookURL'), 'error')
                     ? 'error'
                     : undefined
               }
               helperText={
-                updateFieldInfo.target === 'eventWebhookURL' && updateFieldInfo.state !== null
+                isFieldTarget(updateFieldInfo.target, 'eventWebhookURL') && updateFieldInfo.state !== null
                   ? updateFieldInfo.message
                   : undefined
               }
@@ -290,8 +203,8 @@ export function WebhooksSection({
               return (
                 <div
                   className={classNames('input_group', {
-                    is_error: checkFieldState(event, 'error'),
-                    is_success: checkFieldState(event, 'success'),
+                    is_error: checkFieldState(makeTarget.eventWebhookEvent(event), 'error'),
+                    is_success: checkFieldState(makeTarget.eventWebhookEvent(event), 'success'),
                   })}
                   key={event}
                 >
@@ -300,7 +213,8 @@ export function WebhooksSection({
                     label={event}
                     checked={webhookEventField.value.includes(event)}
                     onChange={(e) => {
-                      let newWebhookEvents = [...project?.eventWebhookEvents!];
+                      const baseEvents = Array.isArray(webhookEventField.value) ? webhookEventField.value : [];
+                      let newWebhookEvents = [...baseEvents];
                       if (e.target.checked) {
                         newWebhookEvents = newWebhookEvents.includes(event)
                           ? newWebhookEvents
@@ -309,11 +223,14 @@ export function WebhooksSection({
                         newWebhookEvents = newWebhookEvents.filter((newEvent) => newEvent !== event);
                       }
                       webhookEventField.onChange(newWebhookEvents);
-                      setUpdateFieldInfo((info) => ({ ...info, target: event }));
+                      setUpdateFieldInfo((info) => ({
+                        ...info,
+                        target: makeTarget.eventWebhookEvent(event),
+                      }));
                       onSubmit({ eventWebhookEvents: newWebhookEvents });
                     }}
                   />
-                  {updateFieldInfo.target === event && updateFieldInfo.state !== null && (
+                  {isEventWebhookEventTarget(updateFieldInfo.target, event) && updateFieldInfo.state !== null && (
                     <InputHelperText
                       state={updateFieldInfo.state}
                       message={updateFieldInfo.message}
@@ -329,8 +246,8 @@ export function WebhooksSection({
         <dd className="sub_desc">
           <div
             className={classNames('input_field_box', {
-              is_error: checkFieldState('eventWebhookMaxRetries', 'error'),
-              is_success: checkFieldState('eventWebhookMaxRetries', 'success'),
+              is_error: checkFieldState(makeTarget.field('eventWebhookMaxRetries'), 'error'),
+              is_success: checkFieldState(makeTarget.field('eventWebhookMaxRetries'), 'success'),
             })}
           >
             <InputTextField
@@ -349,7 +266,12 @@ export function WebhooksSection({
                 },
               })}
               onChange={(e) => {
-                setUpdateFieldInfo((info) => ({ ...info, target: 'eventWebhookMaxRetries', state: null, message: '' }));
+                setUpdateFieldInfo((info) => ({
+                  ...info,
+                  target: makeTarget.field('eventWebhookMaxRetries'),
+                  state: null,
+                  message: '',
+                }));
                 eventWebhookMaxRetries.onChange(e.target.value);
               }}
               id="eventWebhookMaxRetries"
@@ -358,14 +280,14 @@ export function WebhooksSection({
               fieldUtil={true}
               placeholder="0"
               state={
-                checkFieldState('eventWebhookMaxRetries', 'success')
+                checkFieldState(makeTarget.field('eventWebhookMaxRetries'), 'success')
                   ? 'success'
-                  : checkFieldState('eventWebhookMaxRetries', 'error')
+                  : checkFieldState(makeTarget.field('eventWebhookMaxRetries'), 'error')
                     ? 'error'
                     : undefined
               }
               helperText={
-                updateFieldInfo.target === 'eventWebhookMaxRetries' && updateFieldInfo.state !== null
+                isFieldTarget(updateFieldInfo.target, 'eventWebhookMaxRetries') && updateFieldInfo.state !== null
                   ? updateFieldInfo.message
                   : undefined
               }
@@ -377,8 +299,8 @@ export function WebhooksSection({
         <dd className="sub_desc">
           <div
             className={classNames('input_field_box', {
-              is_error: checkFieldState('eventWebhookMinWaitInterval', 'error'),
-              is_success: checkFieldState('eventWebhookMinWaitInterval', 'success'),
+              is_error: checkFieldState(makeTarget.field('eventWebhookMinWaitInterval'), 'error'),
+              is_success: checkFieldState(makeTarget.field('eventWebhookMinWaitInterval'), 'success'),
             })}
           >
             <InputTextField
@@ -388,10 +310,16 @@ export function WebhooksSection({
               }}
               {...register('eventWebhookMinWaitInterval', {
                 required: 'Event Webhook Min Wait Interval is required',
-                pattern: {
-                  value: /^(\d+h\s*)?(\d+m\s*)?(\d+s\s*)?(\d+ms\s*)?$/,
-                  message:
-                    'Event Webhook Min Wait Interval should be a signed sequence of decimal numbers, each with a unit suffix, such as "23h30m10s" or "2h45m"',
+                validate: (value: string) => {
+                  if (!value.trim()) return 'Event Webhook Min Wait Interval is required';
+                  const pattern = /^(\d+h\s*)?([0-5]?[0-9]m\s*)?([0-5]?[0-9]s\s*)?(\d+ms\s*)?$/;
+                  if (!pattern.test(value)) {
+                    return 'Event Webhook Min Wait Interval should be a valid duration, such as "24h0m0s", "100ms", or "3s" (minutes/seconds: 0-59)';
+                  }
+                  if (!/(\d+h|\d+m|\d+s|\d+ms)/.test(value)) {
+                    return 'Event Webhook Min Wait Interval must include at least one time unit (h, m, s, or ms)';
+                  }
+                  return true;
                 },
                 onChange: async () => {
                   await trigger('eventWebhookMinWaitInterval');
@@ -400,7 +328,7 @@ export function WebhooksSection({
               onChange={(e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
-                  target: 'eventWebhookMinWaitInterval',
+                  target: makeTarget.field('eventWebhookMinWaitInterval'),
                   state: null,
                   message: '',
                 }));
@@ -412,14 +340,14 @@ export function WebhooksSection({
               fieldUtil={true}
               placeholder="0"
               state={
-                checkFieldState('eventWebhookMinWaitInterval', 'success')
+                checkFieldState(makeTarget.field('eventWebhookMinWaitInterval'), 'success')
                   ? 'success'
-                  : checkFieldState('eventWebhookMinWaitInterval', 'error')
+                  : checkFieldState(makeTarget.field('eventWebhookMinWaitInterval'), 'error')
                     ? 'error'
                     : undefined
               }
               helperText={
-                updateFieldInfo.target === 'eventWebhookMinWaitInterval' && updateFieldInfo.state !== null
+                isFieldTarget(updateFieldInfo.target, 'eventWebhookMinWaitInterval') && updateFieldInfo.state !== null
                   ? updateFieldInfo.message
                   : undefined
               }
@@ -431,8 +359,8 @@ export function WebhooksSection({
         <dd className="sub_desc">
           <div
             className={classNames('input_field_box', {
-              is_error: checkFieldState('eventWebhookMaxWaitInterval', 'error'),
-              is_success: checkFieldState('eventWebhookMaxWaitInterval', 'success'),
+              is_error: checkFieldState(makeTarget.field('eventWebhookMaxWaitInterval'), 'error'),
+              is_success: checkFieldState(makeTarget.field('eventWebhookMaxWaitInterval'), 'success'),
             })}
           >
             <InputTextField
@@ -442,10 +370,16 @@ export function WebhooksSection({
               }}
               {...register('eventWebhookMaxWaitInterval', {
                 required: 'Event Webhook Max Wait Interval is required',
-                pattern: {
-                  value: /^(\d+h\s*)?(\d+m\s*)?(\d+s\s*)?(\d+ms\s*)?$/,
-                  message:
-                    'Event Webhook Max Wait Interval should be a signed sequence of decimal numbers, each with a unit suffix, such as "23h30m10s" or "2h45m"',
+                validate: (value: string) => {
+                  if (!value.trim()) return 'Event Webhook Max Wait Interval is required';
+                  const pattern = /^(\d+h\s*)?([0-5]?[0-9]m\s*)?([0-5]?[0-9]s\s*)?(\d+ms\s*)?$/;
+                  if (!pattern.test(value)) {
+                    return 'Event Webhook Max Wait Interval should be a valid duration, such as "24h0m0s", "100ms", or "3s" (minutes/seconds: 0-59)';
+                  }
+                  if (!/(\d+h|\d+m|\d+s|\d+ms)/.test(value)) {
+                    return 'Event Webhook Max Wait Interval must include at least one time unit (h, m, s, or ms)';
+                  }
+                  return true;
                 },
                 onChange: async () => {
                   await trigger('eventWebhookMaxWaitInterval');
@@ -454,7 +388,7 @@ export function WebhooksSection({
               onChange={(e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
-                  target: 'eventWebhookMaxWaitInterval',
+                  target: makeTarget.field('eventWebhookMaxWaitInterval'),
                   state: null,
                   message: '',
                 }));
@@ -466,14 +400,14 @@ export function WebhooksSection({
               fieldUtil={true}
               placeholder="0"
               state={
-                checkFieldState('eventWebhookMaxWaitInterval', 'success')
+                checkFieldState(makeTarget.field('eventWebhookMaxWaitInterval'), 'success')
                   ? 'success'
-                  : checkFieldState('eventWebhookMaxWaitInterval', 'error')
+                  : checkFieldState(makeTarget.field('eventWebhookMaxWaitInterval'), 'error')
                     ? 'error'
                     : undefined
               }
               helperText={
-                updateFieldInfo.target === 'eventWebhookMaxWaitInterval' && updateFieldInfo.state !== null
+                isFieldTarget(updateFieldInfo.target, 'eventWebhookMaxWaitInterval') && updateFieldInfo.state !== null
                   ? updateFieldInfo.message
                   : undefined
               }
@@ -485,8 +419,8 @@ export function WebhooksSection({
         <dd className="sub_desc">
           <div
             className={classNames('input_field_box', {
-              is_error: checkFieldState('eventWebhookRequestTimeout', 'error'),
-              is_success: checkFieldState('eventWebhookRequestTimeout', 'success'),
+              is_error: checkFieldState(makeTarget.field('eventWebhookRequestTimeout'), 'error'),
+              is_success: checkFieldState(makeTarget.field('eventWebhookRequestTimeout'), 'success'),
             })}
           >
             <InputTextField
@@ -496,10 +430,16 @@ export function WebhooksSection({
               }}
               {...register('eventWebhookRequestTimeout', {
                 required: 'Event Webhook Request Timeout is required',
-                pattern: {
-                  value: /^(\d+h\s*)?(\d+m\s*)?(\d+s\s*)?(\d+ms\s*)?$/,
-                  message:
-                    'Event Webhook Request Timeout should be a signed sequence of decimal numbers, each with a unit suffix, such as "23h30m10s" or "2h45m"',
+                validate: (value: string) => {
+                  if (!value.trim()) return 'Event Webhook Request Timeout is required';
+                  const pattern = /^(\d+h\s*)?([0-5]?[0-9]m\s*)?([0-5]?[0-9]s\s*)?(\d+ms\s*)?$/;
+                  if (!pattern.test(value)) {
+                    return 'Event Webhook Request Timeout should be a valid duration, such as "24h0m0s", "100ms", or "3s" (minutes/seconds: 0-59)';
+                  }
+                  if (!/(\d+h|\d+m|\d+s|\d+ms)/.test(value)) {
+                    return 'Event Webhook Request Timeout must include at least one time unit (h, m, s, or ms)';
+                  }
+                  return true;
                 },
                 onChange: async () => {
                   await trigger('eventWebhookRequestTimeout');
@@ -508,7 +448,7 @@ export function WebhooksSection({
               onChange={(e) => {
                 setUpdateFieldInfo((info) => ({
                   ...info,
-                  target: 'eventWebhookRequestTimeout',
+                  target: makeTarget.field('eventWebhookRequestTimeout'),
                   state: null,
                   message: '',
                 }));
@@ -520,14 +460,14 @@ export function WebhooksSection({
               fieldUtil={true}
               placeholder="0"
               state={
-                checkFieldState('eventWebhookRequestTimeout', 'success')
+                checkFieldState(makeTarget.field('eventWebhookRequestTimeout'), 'success')
                   ? 'success'
-                  : checkFieldState('eventWebhookRequestTimeout', 'error')
+                  : checkFieldState(makeTarget.field('eventWebhookRequestTimeout'), 'error')
                     ? 'error'
                     : undefined
               }
               helperText={
-                updateFieldInfo.target === 'eventWebhookRequestTimeout' && updateFieldInfo.state !== null
+                isFieldTarget(updateFieldInfo.target, 'eventWebhookRequestTimeout') && updateFieldInfo.state !== null
                   ? updateFieldInfo.message
                   : undefined
               }
