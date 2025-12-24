@@ -2119,6 +2119,73 @@ export class User extends Message<User> {
 }
 
 /**
+ * @generated from message yorkie.v1.Member
+ */
+export class Member extends Message<Member> {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id = "";
+
+  /**
+   * @generated from field: string project_id = 2;
+   */
+  projectId = "";
+
+  /**
+   * @generated from field: string user_id = 3;
+   */
+  userId = "";
+
+  /**
+   * @generated from field: string username = 4;
+   */
+  username = "";
+
+  /**
+   * @generated from field: string role = 5;
+   */
+  role = "";
+
+  /**
+   * @generated from field: google.protobuf.Timestamp invited_at = 6;
+   */
+  invitedAt?: Timestamp;
+
+  constructor(data?: PartialMessage<Member>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.Member";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "project_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "user_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "role", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "invited_at", kind: "message", T: Timestamp },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Member {
+    return new Member().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Member {
+    return new Member().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Member {
+    return new Member().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Member | PlainMessage<Member> | undefined, b: Member | PlainMessage<Member> | undefined): boolean {
+    return proto3.util.equals(Member, a, b);
+  }
+}
+
+/**
  * @generated from message yorkie.v1.Project
  */
 export class Project extends Message<Project> {
