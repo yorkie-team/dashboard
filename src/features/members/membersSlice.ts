@@ -17,7 +17,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createAppThunk } from 'app/appThunk';
 import { RootState } from 'app/store';
-import { listMembers, createInvite, acceptInvite, removeMember, updateMemberRole, InviteExpireOption, Member } from 'api';
+import {
+  listMembers,
+  createInvite,
+  acceptInvite,
+  removeMember,
+  updateMemberRole,
+  InviteExpireOption,
+  Member,
+} from 'api';
 
 export interface MembersState {
   list: {

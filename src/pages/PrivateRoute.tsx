@@ -36,7 +36,7 @@ export function PrivateRoute() {
     if (!isAuthenticated && fetchMeState.status === 'idle') {
       dispatch(fetchMe());
     } else if (!isAuthenticated && fetchMeState.status === 'failed') {
-      navigate('/login', { state: { from: `${location.pathname}${location.search}` } });
+      navigate('/login', { state: { from: `${location.pathname}${location.search}${location.hash}` } });
     }
   }, [dispatch, navigate, location, isAuthenticated, logout.isSuccess, fetchMeState.status]);
 
