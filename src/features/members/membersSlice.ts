@@ -144,7 +144,7 @@ export const membersSlice = createSlice({
       })
       .addCase(listMembersAsync.rejected, (state, action) => {
         state.list.status = 'failed';
-        state.list.error = action.error.message || 'Failed to load members';
+        state.list.error = action.payload?.error?.message || 'Failed to load members';
       })
       // Create invite
       .addCase(createInviteAsync.pending, (state) => {
@@ -160,7 +160,7 @@ export const membersSlice = createSlice({
       })
       .addCase(createInviteAsync.rejected, (state, action) => {
         state.createInvite.status = 'failed';
-        state.createInvite.error = action.error.message || 'Failed to create invite';
+        state.createInvite.error = action.payload?.error?.message || 'Failed to create invite';
       })
       // Accept invite
       .addCase(acceptInviteAsync.pending, (state) => {
@@ -176,7 +176,7 @@ export const membersSlice = createSlice({
       })
       .addCase(acceptInviteAsync.rejected, (state, action) => {
         state.acceptInvite.status = 'failed';
-        state.acceptInvite.error = action.error.message || 'Failed to accept invite';
+        state.acceptInvite.error = action.payload?.error?.message || 'Failed to accept invite';
       })
       // Remove member
       .addCase(removeMemberAsync.pending, (state) => {
@@ -190,7 +190,7 @@ export const membersSlice = createSlice({
       })
       .addCase(removeMemberAsync.rejected, (state, action) => {
         state.remove.status = 'failed';
-        state.remove.error = action.error.message || 'Failed to remove member';
+        state.remove.error = action.payload?.error?.message || 'Failed to remove member';
       })
       // Update member role
       .addCase(updateMemberRoleAsync.pending, (state) => {
@@ -206,7 +206,7 @@ export const membersSlice = createSlice({
       })
       .addCase(updateMemberRoleAsync.rejected, (state, action) => {
         state.updateRole.status = 'failed';
-        state.updateRole.error = action.error.message || 'Failed to update member role';
+        state.updateRole.error = action.payload?.error?.message || 'Failed to update member role';
       });
   },
 });

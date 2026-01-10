@@ -65,7 +65,7 @@ export type Member = {
   userId: string;
   username: string;
   role: string;
-  invitedAt: number;
+  invitedAt?: number;
 };
 
 export type Project = {

@@ -49,6 +49,7 @@ export function MembersList() {
 
   const [memberToRemove, setMemberToRemove] = useState<Member | null>(null);
   const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
+  const [removeError, setRemoveError] = useState<string | null>(null);
   const [roleDropdownOpenFor, setRoleDropdownOpenFor] = useState<string | null>(null);
 
   useEffect(() => {
@@ -68,19 +69,31 @@ export function MembersList() {
   const handleRemoveMember = useCallback((member: Member) => {
     setMemberToRemove(member);
     setIsRemoveModalOpen(true);
+    setRemoveError(null);
   }, []);
 
-  const confirmRemoveMember = useCallback(() => {
+  const confirmRemoveMember = useCallback(async () => {
     if (!projectName || !memberToRemove) return;
-    dispatch(removeMemberAsync({ projectName, username: memberToRemove.username })).then(() => {
+    setRemoveError(null);
+    try {
+      await dispatch(removeMemberAsync({ projectName, username: memberToRemove.username })).unwrap();
       setIsRemoveModalOpen(false);
       setMemberToRemove(null);
-    });
+    } catch (err: unknown) {
+      const fallback = 'Failed to remove member. Please try again.';
+      const maybeObj = err as any;
+      const message =
+        (maybeObj?.error && typeof maybeObj.error.message === 'string' && maybeObj.error.message) ||
+        (typeof maybeObj?.message === 'string' && maybeObj.message) ||
+        fallback;
+      setRemoveError(message);
+    }
   }, [dispatch, projectName, memberToRemove]);
 
   const cancelRemoveMember = useCallback(() => {
     setIsRemoveModalOpen(false);
     setMemberToRemove(null);
+    setRemoveError(null);
   }, []);
 
   const isCurrentUser = useCallback(
@@ -187,7 +200,9 @@ export function MembersList() {
                         </div>
                       </td>
                       <td className="col_date">
-                        <span className="member_date">{format(fromUnixTime(member.invitedAt), 'MMM d, yyyy')}</span>
+                        <span className="member_date">
+                          {member.invitedAt ? format(fromUnixTime(member.invitedAt), 'MMM d, yyyy') : '-'}
+                        </span>
                       </td>
                       <td className="col_actions">
                         {isCurrentUser(member) && <span className="text_caption">-</span>}
@@ -224,6 +239,7 @@ export function MembersList() {
               Are you sure you want to remove <strong>{memberToRemove?.username}</strong> from this project?
             </p>
             <p className="text_caption">This action cannot be undone.</p>
+            {removeError && <p className="text_error">{removeError}</p>}
           </Modal.Content>
           <Modal.Bottom>
             <Button type="tertiary" onClick={cancelRemoveMember}>

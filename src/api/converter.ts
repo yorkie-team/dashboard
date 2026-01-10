@@ -241,7 +241,7 @@ export function fromMember(pbMember: PbMember): Member {
     userId: pbMember.userId,
     username: pbMember.username,
     role: pbMember.role,
-    invitedAt: fromTimestamp(pbMember.invitedAt!),
+    invitedAt: pbMember.invitedAt ? fromTimestamp(pbMember.invitedAt) : undefined,
   };
 }
 
