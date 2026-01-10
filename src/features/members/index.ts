@@ -15,4 +15,4 @@
  */
 
 export * from './MembersList';
-export * from './InviteMember';
+export * from './InviteLink';

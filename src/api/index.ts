@@ -23,6 +23,7 @@ import {
   UpdatableProjectFields_EventWebhookEvents as PbProjectFields_EventWebhookEvents,
   UpdatableProjectFields_AllowedOrigins as PbProjectFields_AllowedOrigins,
 } from './yorkie/v1/resources_pb';
+import { InviteExpireOption } from './yorkie/v1/admin_pb';
 import { InterceptorBuilder } from './interceptor';
 import {
   User,
@@ -41,6 +42,7 @@ import * as converter from './converter';
 import { Rule } from '@yorkie-js/schema';
 
 export * from './types';
+export { InviteExpireOption };
 
 // Export the interceptor instance so it can be used elsewhere
 const interceptor = new InterceptorBuilder();
@@ -409,13 +411,22 @@ export async function restoreRevision(projectName: string, documentKey: string, 
   });
 }
 
-// inviteMember invites a member to the project.
-export async function inviteMember(projectName: string, username: string, role: string) {
-  const res = await client.inviteMember({
+// createInvite creates an invite token to join a project as a member.
+export async function createInvite(
+  projectName: string,
+  role: string,
+  expireOption: InviteExpireOption,
+): Promise<string> {
+  const res = await client.createInvite({
     projectName,
-    username,
     role,
+    expireOption,
   });
+  return res.token;
+}
+
+export async function acceptInvite(token: string) {
+  const res = await client.acceptInvite({ token });
   return converter.fromMember(res.member!);
 }
 

@@ -34,5 +34,7 @@ export * from './ProjectQuickStartPage';
 export * from './ProjectAPIKeysPage';
 export * from './ProjectSettingsPage';
 
+export * from './AcceptInvitePage';
+
 export * from './CommunityPage';
 export * from './NotFoundPage';

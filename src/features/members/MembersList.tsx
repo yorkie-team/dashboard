@@ -30,7 +30,7 @@ import { selectCurrentProject } from 'features/projects/projectsSlice';
 import { selectCurrentUser } from 'features/users/usersSlice';
 import { Button, Icon, Dropdown, Modal, Popover } from 'components';
 import { Member } from 'api';
-import { InviteMember } from './InviteMember';
+import { InviteLink } from './InviteLink';
 
 const ROLES = [
   { value: 'admin', label: 'Admin' },
@@ -126,7 +126,7 @@ export function MembersList() {
       {status === 'idle' && (
         <div className="members_container">
           <div className="members_header_action">
-            <InviteMember />
+            <InviteLink />
           </div>
           {members.length === 0 ? (
             <div className="placeholder_box no_bg">

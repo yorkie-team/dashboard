@@ -18,7 +18,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ChangePasswordRequest, ChangePasswordResponse, CreateDocumentRequest, CreateDocumentResponse, CreateProjectRequest, CreateProjectResponse, CreateSchemaRequest, CreateSchemaResponse, DeleteAccountRequest, DeleteAccountResponse, GetChannelsRequest, GetChannelsResponse, GetDocumentRequest, GetDocumentResponse, GetDocumentsRequest, GetDocumentsResponse, GetProjectRequest, GetProjectResponse, GetProjectStatsRequest, GetProjectStatsResponse, GetRevisionByAdminRequest, GetRevisionByAdminResponse, GetSchemaRequest, GetSchemaResponse, GetSchemasRequest, GetSchemasResponse, GetServerVersionRequest, GetServerVersionResponse, GetSnapshotMetaRequest, GetSnapshotMetaResponse, InviteMemberRequest, InviteMemberResponse, ListChangesRequest, ListChangesResponse, ListChannelsRequest, ListChannelsResponse, ListDocumentsRequest, ListDocumentsResponse, ListMembersRequest, ListMembersResponse, ListProjectsRequest, ListProjectsResponse, ListRevisionsByAdminRequest, ListRevisionsByAdminResponse, ListSchemasRequest, ListSchemasResponse, LogInRequest, LogInResponse, RemoveDocumentByAdminRequest, RemoveDocumentByAdminResponse, RemoveMemberRequest, RemoveMemberResponse, RemoveSchemaRequest, RemoveSchemaResponse, RestoreRevisionByAdminRequest, RestoreRevisionByAdminResponse, RotateProjectKeysRequest, RotateProjectKeysResponse, SearchDocumentsRequest, SearchDocumentsResponse, SignUpRequest, SignUpResponse, UpdateDocumentRequest, UpdateDocumentResponse, UpdateMemberRoleRequest, UpdateMemberRoleResponse, UpdateProjectRequest, UpdateProjectResponse } from "./admin_pb";
+import { AcceptInviteRequest, AcceptInviteResponse, ChangePasswordRequest, ChangePasswordResponse, CreateDocumentRequest, CreateDocumentResponse, CreateInviteRequest, CreateInviteResponse, CreateProjectRequest, CreateProjectResponse, CreateSchemaRequest, CreateSchemaResponse, DeleteAccountRequest, DeleteAccountResponse, GetChannelsRequest, GetChannelsResponse, GetDocumentRequest, GetDocumentResponse, GetDocumentsRequest, GetDocumentsResponse, GetProjectRequest, GetProjectResponse, GetProjectStatsRequest, GetProjectStatsResponse, GetRevisionByAdminRequest, GetRevisionByAdminResponse, GetSchemaRequest, GetSchemaResponse, GetSchemasRequest, GetSchemasResponse, GetServerVersionRequest, GetServerVersionResponse, GetSnapshotMetaRequest, GetSnapshotMetaResponse, ListChangesRequest, ListChangesResponse, ListChannelsRequest, ListChannelsResponse, ListDocumentsRequest, ListDocumentsResponse, ListMembersRequest, ListMembersResponse, ListProjectsRequest, ListProjectsResponse, ListRevisionsByAdminRequest, ListRevisionsByAdminResponse, ListSchemasRequest, ListSchemasResponse, LogInRequest, LogInResponse, RemoveDocumentByAdminRequest, RemoveDocumentByAdminResponse, RemoveMemberRequest, RemoveMemberResponse, RemoveSchemaRequest, RemoveSchemaResponse, RestoreRevisionByAdminRequest, RestoreRevisionByAdminResponse, RotateProjectKeysRequest, RotateProjectKeysResponse, SearchDocumentsRequest, SearchDocumentsResponse, SignUpRequest, SignUpResponse, UpdateDocumentRequest, UpdateDocumentResponse, UpdateMemberRoleRequest, UpdateMemberRoleResponse, UpdateProjectRequest, UpdateProjectResponse } from "./admin_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -120,15 +120,6 @@ export const AdminService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc yorkie.v1.AdminService.InviteMember
-     */
-    inviteMember: {
-      name: "InviteMember",
-      I: InviteMemberRequest,
-      O: InviteMemberResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
      * @generated from rpc yorkie.v1.AdminService.RemoveMember
      */
     removeMember: {
@@ -153,6 +144,24 @@ export const AdminService = {
       name: "UpdateMemberRole",
       I: UpdateMemberRoleRequest,
       O: UpdateMemberRoleResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.CreateInvite
+     */
+    createInvite: {
+      name: "CreateInvite",
+      I: CreateInviteRequest,
+      O: CreateInviteResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc yorkie.v1.AdminService.AcceptInvite
+     */
+    acceptInvite: {
+      name: "AcceptInvite",
+      I: AcceptInviteRequest,
+      O: AcceptInviteResponse,
       kind: MethodKind.Unary,
     },
     /**

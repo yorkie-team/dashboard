@@ -17,7 +17,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createAppThunk } from 'app/appThunk';
 import { RootState } from 'app/store';
-import { listMembers, inviteMember, removeMember, updateMemberRole, Member } from 'api';
+import { listMembers, createInvite, acceptInvite, removeMember, updateMemberRole, InviteExpireOption, Member } from 'api';
 
 export interface MembersState {
   list: {
@@ -25,10 +25,17 @@ export interface MembersState {
     status: 'idle' | 'loading' | 'failed';
     error: string | null;
   };
-  invite: {
+  createInvite: {
     status: 'idle' | 'loading' | 'failed';
     error: string | null;
     isSuccess: boolean;
+    token: string | null;
+  };
+  acceptInvite: {
+    status: 'idle' | 'loading' | 'failed';
+    error: string | null;
+    isSuccess: boolean;
+    member: Member | null;
   };
   remove: {
     status: 'idle' | 'loading' | 'failed';
@@ -46,10 +53,17 @@ const initialState: MembersState = {
     status: 'idle',
     error: null,
   },
-  invite: {
+  createInvite: {
     status: 'idle',
     error: null,
     isSuccess: false,
+    token: null,
+  },
+  acceptInvite: {
+    status: 'idle',
+    error: null,
+    isSuccess: false,
+    member: null,
   },
   remove: {
     status: 'idle',
@@ -69,10 +83,18 @@ export const listMembersAsync = createAppThunk<Array<Member>, { projectName: str
   },
 );
 
-export const inviteMemberAsync = createAppThunk<Member, { projectName: string; username: string; role: string }>(
-  'members/inviteMember',
-  async ({ projectName, username, role }): Promise<Member> => {
-    const member = await inviteMember(projectName, username, role);
+export const createInviteAsync = createAppThunk<
+  string,
+  { projectName: string; role: string; expireOption: InviteExpireOption }
+>('members/createInvite', async ({ projectName, role, expireOption }): Promise<string> => {
+  const token = await createInvite(projectName, role, expireOption);
+  return token;
+});
+
+export const acceptInviteAsync = createAppThunk<Member, { token: string }>(
+  'members/acceptInvite',
+  async ({ token }): Promise<Member> => {
+    const member = await acceptInvite(token);
     return member;
   },
 );
@@ -96,10 +118,17 @@ export const membersSlice = createSlice({
   name: 'members',
   initialState,
   reducers: {
-    resetInviteStatus: (state) => {
-      state.invite.status = 'idle';
-      state.invite.error = null;
-      state.invite.isSuccess = false;
+    resetCreateInviteStatus: (state) => {
+      state.createInvite.status = 'idle';
+      state.createInvite.error = null;
+      state.createInvite.isSuccess = false;
+      state.createInvite.token = null;
+    },
+    resetAcceptInviteStatus: (state) => {
+      state.acceptInvite.status = 'idle';
+      state.acceptInvite.error = null;
+      state.acceptInvite.isSuccess = false;
+      state.acceptInvite.member = null;
     },
   },
   extraReducers: (builder) => {
@@ -117,20 +146,37 @@ export const membersSlice = createSlice({
         state.list.status = 'failed';
         state.list.error = action.error.message || 'Failed to load members';
       })
-      // Invite member
-      .addCase(inviteMemberAsync.pending, (state) => {
-        state.invite.status = 'loading';
-        state.invite.error = null;
-        state.invite.isSuccess = false;
+      // Create invite
+      .addCase(createInviteAsync.pending, (state) => {
+        state.createInvite.status = 'loading';
+        state.createInvite.error = null;
+        state.createInvite.isSuccess = false;
+        state.createInvite.token = null;
       })
-      .addCase(inviteMemberAsync.fulfilled, (state, action) => {
-        state.invite.status = 'idle';
-        state.invite.isSuccess = true;
-        state.list.members.push(action.payload);
+      .addCase(createInviteAsync.fulfilled, (state, action) => {
+        state.createInvite.status = 'idle';
+        state.createInvite.isSuccess = true;
+        state.createInvite.token = action.payload;
       })
-      .addCase(inviteMemberAsync.rejected, (state, action) => {
-        state.invite.status = 'failed';
-        state.invite.error = action.error.message || 'Failed to invite member';
+      .addCase(createInviteAsync.rejected, (state, action) => {
+        state.createInvite.status = 'failed';
+        state.createInvite.error = action.error.message || 'Failed to create invite';
+      })
+      // Accept invite
+      .addCase(acceptInviteAsync.pending, (state) => {
+        state.acceptInvite.status = 'loading';
+        state.acceptInvite.error = null;
+        state.acceptInvite.isSuccess = false;
+        state.acceptInvite.member = null;
+      })
+      .addCase(acceptInviteAsync.fulfilled, (state, action) => {
+        state.acceptInvite.status = 'idle';
+        state.acceptInvite.isSuccess = true;
+        state.acceptInvite.member = action.payload;
+      })
+      .addCase(acceptInviteAsync.rejected, (state, action) => {
+        state.acceptInvite.status = 'failed';
+        state.acceptInvite.error = action.error.message || 'Failed to accept invite';
       })
       // Remove member
       .addCase(removeMemberAsync.pending, (state) => {
@@ -165,10 +211,11 @@ export const membersSlice = createSlice({
   },
 });
 
-export const { resetInviteStatus } = membersSlice.actions;
+export const { resetCreateInviteStatus, resetAcceptInviteStatus } = membersSlice.actions;
 
 export const selectMembersList = (state: RootState) => state.members.list;
-export const selectInviteStatus = (state: RootState) => state.members.invite;
+export const selectCreateInviteStatus = (state: RootState) => state.members.createInvite;
+export const selectAcceptInviteStatus = (state: RootState) => state.members.acceptInvite;
 export const selectRemoveStatus = (state: RootState) => state.members.remove;
 export const selectUpdateRoleStatus = (state: RootState) => state.members.updateRole;
 
