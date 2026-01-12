@@ -21,10 +21,7 @@ import { createInviteAsync, selectCreateInviteStatus, resetCreateInviteStatus } 
 import { InviteExpireOption } from 'api';
 import { Button, Icon, Modal, Dropdown, CopyButton, Popover, CodeBlock } from 'components';
 
-const ROLES = [
-  { value: 'member', label: 'Member' },
-  { value: 'admin', label: 'Admin' },
-];
+const INVITE_ROLE = 'member';
 
 const EXPIRE_OPTIONS: Array<{ value: InviteExpireOption; label: string }> = [
   { value: InviteExpireOption.ONE_HOUR, label: '1 hour' },
@@ -48,9 +45,7 @@ export function InviteLink() {
   const createInviteStatus = useAppSelector(selectCreateInviteStatus);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [role, setRole] = useState('member');
   const [expireOption, setExpireOption] = useState<InviteExpireOption>(InviteExpireOption.TWENTY_FOUR_HOURS);
-  const [roleDropdownOpen, setRoleDropdownOpen] = useState(false);
   const [expireDropdownOpen, setExpireDropdownOpen] = useState(false);
 
   const openModal = useCallback(() => {
@@ -60,14 +55,11 @@ export function InviteLink() {
 
   const closeModal = useCallback(() => {
     setIsModalOpen(false);
-    setRole('member');
     setExpireOption(InviteExpireOption.TWENTY_FOUR_HOURS);
-    setRoleDropdownOpen(false);
     setExpireDropdownOpen(false);
     dispatch(resetCreateInviteStatus());
   }, [dispatch]);
 
-  const selectedRole = ROLES.find((r) => r.value === role);
   const selectedExpire = EXPIRE_OPTIONS.find((o) => o.value === expireOption);
 
   const token = createInviteStatus.token || '';
@@ -78,11 +70,11 @@ export function InviteLink() {
     dispatch(
       createInviteAsync({
         projectName,
-        role,
+        role: INVITE_ROLE,
         expireOption,
       }),
     );
-  }, [dispatch, projectName, role, expireOption]);
+  }, [dispatch, projectName, expireOption]);
 
   return (
     <>
@@ -104,49 +96,6 @@ export function InviteLink() {
             <Modal.CloseButton onClick={closeModal} />
           </Modal.Top>
           <Modal.Content>
-            <div className="form_group" style={{ marginBottom: '16px' }}>
-              <label htmlFor="role" className="form_label">
-                Role
-              </label>
-              <Popover opened={roleDropdownOpen} onChange={setRoleDropdownOpen}>
-                <div style={{ position: 'relative', marginTop: '6px' }}>
-                  <Popover.Target>
-                    <Button
-                      type="button"
-                      outline
-                      disabled={createInviteStatus.status === 'loading'}
-                      style={{ width: '100%', justifyContent: 'space-between' }}
-                    >
-                      {selectedRole?.label || 'Select role'}
-                      <Icon type="openSelector" />
-                    </Button>
-                  </Popover.Target>
-                  <Popover.Dropdown>
-                    <div
-                      style={{ position: 'absolute', top: 'calc(100% + 8px)', left: 0, zIndex: 1000, width: '100%' }}
-                    >
-                      <Dropdown shadow="s">
-                        <Dropdown.List>
-                          {ROLES.map((r) => (
-                            <Dropdown.Item
-                              key={r.value}
-                              onClick={() => {
-                                setRole(r.value);
-                                setRoleDropdownOpen(false);
-                              }}
-                            >
-                              <Dropdown.Text>{r.label}</Dropdown.Text>
-                              {role === r.value && <Icon type="check" color="orange_0" />}
-                            </Dropdown.Item>
-                          ))}
-                        </Dropdown.List>
-                      </Dropdown>
-                    </div>
-                  </Popover.Dropdown>
-                </div>
-              </Popover>
-            </div>
-
             <div className="form_group">
               <label htmlFor="expire" className="form_label">
                 Expiration
