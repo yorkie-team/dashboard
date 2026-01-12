@@ -19,7 +19,7 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { createInviteAsync, selectCreateInviteStatus, resetCreateInviteStatus } from './membersSlice';
 import { InviteExpireOption } from 'api';
-import { Button, Icon, Modal, Dropdown, CopyButton, Popover } from 'components';
+import { Button, Icon, Modal, Dropdown, CopyButton, Popover, CodeBlock } from 'components';
 
 const ROLES = [
   { value: 'member', label: 'Member' },
@@ -95,13 +95,13 @@ export function InviteLink() {
         outline
         style={{ borderColor: 'var(--orange-dark)' }}
       >
-        Create Invite Link
+        Invite Member
       </Button>
 
       {isModalOpen && (
         <Modal>
           <Modal.Top>
-            <Modal.Title>Create Invite Link</Modal.Title>
+            <Modal.Title>Invite Member</Modal.Title>
             <Modal.CloseButton onClick={closeModal} />
           </Modal.Top>
           <Modal.Content>
@@ -136,8 +136,8 @@ export function InviteLink() {
                                 setRoleDropdownOpen(false);
                               }}
                             >
-                              {role === r.value && <Icon type="check" color="orange_0" />}
                               <Dropdown.Text>{r.label}</Dropdown.Text>
+                              {role === r.value && <Icon type="check" color="orange_0" />}
                             </Dropdown.Item>
                           ))}
                         </Dropdown.List>
@@ -150,7 +150,7 @@ export function InviteLink() {
 
             <div className="form_group">
               <label htmlFor="expire" className="form_label">
-                Expire
+                Expiration
               </label>
               <Popover opened={expireDropdownOpen} onChange={setExpireDropdownOpen}>
                 <div style={{ position: 'relative', marginTop: '6px' }}>
@@ -179,8 +179,8 @@ export function InviteLink() {
                                 setExpireDropdownOpen(false);
                               }}
                             >
-                              {expireOption === o.value && <Icon type="check" color="orange_0" />}
                               <Dropdown.Text>{o.label}</Dropdown.Text>
+                              {expireOption === o.value && <Icon type="check" color="orange_0" />}
                             </Dropdown.Item>
                           ))}
                         </Dropdown.List>
@@ -193,72 +193,44 @@ export function InviteLink() {
 
             {createInviteStatus.error && <p className="text_error">{createInviteStatus.error}</p>}
 
-            {inviteURL && (
-              <div className="form_group" style={{ marginTop: '20px' }}>
-                <div
-                  style={{
-                    padding: '12px',
-                    border: '1px solid var(--gray-200)',
-                    borderRadius: '8px',
-                    background: 'var(--gray-50)',
-                  }}
-                >
-                  <div className="box_flex" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div className="box_flex" style={{ alignItems: 'center', gap: '8px' }}>
-                      <Icon type="check" color="orange_0" />
-                      <strong className="desc" style={{ margin: 0 }}>
-                        Invite link generated
-                      </strong>
-                      <CopyButton value={inviteURL}>
-                        {({ copy, copied }) => (
-                          <Button
-                            type="button"
-                            onClick={copy}
-                            outline
-                            style={{
-                              borderColor: 'var(--orange-dark)',
-                              paddingLeft: '10px',
-                              paddingRight: '10px',
-                              backgroundColor: copied ? 'var(--orange-alpha-light)' : undefined,
-                              color: copied ? 'var(--orange-dark)' : undefined,
-                            }}
-                            aria-label={copied ? 'Copied' : 'Copy URL'}
-                            title="Copy URL"
-                            icon={<Icon type={copied ? 'check' : 'copy'} />}
-                            blindText
-                          >
-                            {copied ? 'Copied' : 'Copy URL'}
-                          </Button>
+            <div className="form_group" style={{ marginTop: '20px' }}>
+              <label htmlFor="expire" className="form_label">
+                Invite Link
+              </label>
+
+              {inviteURL === '' && (
+                <p style={{ marginTop: '6px', fontSize: '13px', lineHeight: '18px', color: 'var(--gray-500)' }}>
+                  Click the "Generate" button to create an invitation link.
+                </p>
+              )}
+              {inviteURL && (
+                <>
+                  <div className="codeblock_box" style={{ marginTop: '12px' }}>
+                    <div className="codeblock">
+                      <CodeBlock.Code code={inviteURL} language="" />
+                    </div>
+                    <div className="btn_area">
+                      <CopyButton value={inviteURL} timeout={1000}>
+                        {({ copied, copy }) => (
+                          <>
+                            <Button icon={<Icon type="copy" />} outline onClick={copy} />
+                            {copied && (
+                              <div className="toast_box shadow_l">
+                                <Icon type="check" />
+                                Copied
+                              </div>
+                            )}
+                          </>
                         )}
                       </CopyButton>
                     </div>
                   </div>
-
-                  <div
-                    style={{
-                      marginTop: '12px',
-                      padding: '12px',
-                      border: '1px solid var(--gray-300)',
-                      borderRadius: '6px',
-                      background: 'var(--gray-000)',
-                      color: 'var(--gray-900)',
-                      whiteSpace: 'pre-wrap',
-                      wordBreak: 'break-all',
-                      fontFamily: 'var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace)',
-                      fontSize: '12px',
-                      lineHeight: '18px',
-                      userSelect: 'text',
-                    }}
-                  >
-                    {inviteURL}
-                  </div>
-                </div>
-
-                <p className="text_caption" style={{ marginTop: '10px' }}>
-                  Share this link to invite someone to the project. Anyone with the link can request to join.
-                </p>
-              </div>
-            )}
+                  <p style={{ marginTop: '8px', fontSize: '13px', lineHeight: '18px', color: 'var(--gray-500)' }}>
+                    Share this link to invite someone to the project. Anyone with the link can request to join.
+                  </p>
+                </>
+              )}
+            </div>
           </Modal.Content>
           <Modal.Bottom>
             <Button type="button" onClick={closeModal} outline>

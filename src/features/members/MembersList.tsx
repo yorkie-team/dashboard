@@ -232,22 +232,25 @@ export function MembersList() {
         <Modal>
           <Modal.Top>
             <Modal.Title>Remove Member</Modal.Title>
-            <Modal.CloseButton onClick={cancelRemoveMember} />
           </Modal.Top>
           <Modal.Content>
-            <p>
+            <Modal.Description>
               Are you sure you want to remove <strong>{memberToRemove?.username}</strong> from this project?
-            </p>
-            <p className="text_caption">This action cannot be undone.</p>
+              <br />
+              <br />
+              This action cannot be undone.
+            </Modal.Description>
             {removeError && <p className="text_error">{removeError}</p>}
           </Modal.Content>
           <Modal.Bottom>
-            <Button type="tertiary" onClick={cancelRemoveMember}>
-              Cancel
-            </Button>
-            <Button type="danger" onClick={confirmRemoveMember} disabled={removeStatus.status === 'loading'}>
-              {removeStatus.status === 'loading' ? 'Removing...' : 'Remove'}
-            </Button>
+            <Button.Box fullWidth>
+              <Button outline onClick={cancelRemoveMember}>
+                Cancel
+              </Button>
+              <Button color="danger" onClick={confirmRemoveMember} disabled={removeStatus.status === 'loading'}>
+                {removeStatus.status === 'loading' ? 'Removing...' : 'Remove'}
+              </Button>
+            </Button.Box>
           </Modal.Bottom>
         </Modal>
       )}

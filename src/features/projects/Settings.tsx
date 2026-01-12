@@ -322,14 +322,18 @@ export function Settings() {
                   />
                 </div>
               </dd>
-              <dt className="sub_title">Members</dt>
-              <dd className="sub_desc">
-                <p className="guide">
-                  Manage project members and their roles. Members can collaborate on documents and access project
-                  resources based on their assigned roles.
-                </p>
-                <MembersList />
-              </dd>
+              {import.meta.env.DEV && (
+                <>
+                  <dt className="sub_title">Members</dt>
+                  <dd className="sub_desc">
+                    <p className="guide">
+                      Manage project members and their roles. Members can collaborate on documents and access project
+                      resources based on their assigned roles.
+                    </p>
+                    <MembersList />
+                  </dd>
+                </>
+              )}
             </dl>
           </div>
           <div className="section setting_box webhook" id="webhooks">
