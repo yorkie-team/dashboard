@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { fromUnixTime, format } from 'date-fns';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
@@ -51,19 +51,107 @@ export function MembersList() {
   const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
   const [removeError, setRemoveError] = useState<string | null>(null);
   const [roleDropdownOpenFor, setRoleDropdownOpenFor] = useState<string | null>(null);
+  const [dropdownPosition, setDropdownPosition] = useState<{ top: number; left: number } | null>(null);
+  const [roleUpdateFeedback, setRoleUpdateFeedback] = useState<{
+    memberId: string;
+    type: 'success' | 'error';
+    message: string;
+  } | null>(null);
+  const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
+
+  // Close dropdown when clicking outside or scrolling
+  useEffect(() => {
+    if (!roleDropdownOpenFor) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      // Check if click is outside the dropdown and button
+      if (!target.closest('.member_role') && !target.closest('.role_dropdown_menu')) {
+        setRoleDropdownOpenFor(null);
+        setDropdownPosition(null);
+      }
+    };
+
+    const handleScroll = () => {
+      setRoleDropdownOpenFor(null);
+      setDropdownPosition(null);
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    window.addEventListener('scroll', handleScroll, true); // Use capture to catch all scroll events
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('scroll', handleScroll, true);
+    };
+  }, [roleDropdownOpenFor]);
 
   useEffect(() => {
     if (!currentProject || !projectName) return;
     dispatch(listMembersAsync({ projectName }));
   }, [dispatch, currentProject, projectName]);
 
+  const currentUsername = currentUser.user?.username || '';
+  const normalizeRole = (role?: string) => (role || '').toLowerCase();
+  const isCurrentUsername = (m: Member) => currentUsername !== '' && m.username === currentUsername;
+
+  const currentMemberRole = normalizeRole(members.find((m) => isCurrentUsername(m))?.role);
+  const isCurrentUserOwner = currentMemberRole === 'owner';
+  const isCurrentUserAdmin = currentMemberRole === 'admin';
+  const isCurrentUserMember = currentMemberRole === 'member' || currentMemberRole === '';
+
+  const canSeeInviteLink = isCurrentUserOwner || isCurrentUserAdmin;
+  const canRemoveMembers = isCurrentUserOwner;
+  const canEditRoles = isCurrentUserOwner || isCurrentUserAdmin;
+
+  const getRoleLabel = (role: string) => {
+    if (!role) return '-';
+    return role.charAt(0).toUpperCase() + role.slice(1);
+  };
+
+  const canEditTargetRole = (target: Member) => {
+    if (!canEditRoles) return false;
+    if (isCurrentUserMember) return false;
+    if (normalizeRole(target.role) === 'owner') return false; // Owner cannot be changed by anyone
+    if (isCurrentUsername(target)) return false; // Prevent changing self (keeps existing behavior)
+    return true;
+  };
+
   const handleRoleChange = useCallback(
-    (member: Member, newRole: string) => {
-      if (!projectName || member.role === newRole) return;
-      dispatch(updateMemberRoleAsync({ projectName, username: member.username, role: newRole }));
-      setRoleDropdownOpenFor(null); // Close dropdown after selection
+    async (member: Member, newRole: string) => {
+      console.log('handleRoleChange called:', { username: member.username, currentRole: member.role, newRole });
+
+      if (!projectName || member.role === newRole) {
+        console.log('Early return:', { projectName, sameRole: member.role === newRole });
+        return;
+      }
+      if (!canEditTargetRole(member)) {
+        console.log('Cannot edit target role');
+        return;
+      }
+
+      setRoleUpdateFeedback(null);
+      try {
+        console.log('Dispatching updateMemberRoleAsync...');
+        const result = await dispatch(
+          updateMemberRoleAsync({ projectName, username: member.username, role: newRole }),
+        ).unwrap();
+        console.log('updateMemberRoleAsync success:', result);
+        setRoleDropdownOpenFor(null);
+        setDropdownPosition(null);
+        setRoleUpdateFeedback({ memberId: member.id, type: 'success', message: 'Role updated.' });
+        window.setTimeout(() => setRoleUpdateFeedback(null), 1500);
+      } catch (err: unknown) {
+        console.error('updateMemberRoleAsync failed:', err);
+        const fallback = 'Failed to update role.';
+        const maybeObj = err as any;
+        const message =
+          (maybeObj?.error && typeof maybeObj.error.message === 'string' && maybeObj.error.message) ||
+          (typeof maybeObj?.message === 'string' && maybeObj.message) ||
+          fallback;
+        setRoleUpdateFeedback({ memberId: member.id, type: 'error', message });
+      }
     },
-    [dispatch, projectName],
+    [dispatch, projectName, canEditTargetRole],
   );
 
   const handleRemoveMember = useCallback((member: Member) => {
@@ -96,12 +184,7 @@ export function MembersList() {
     setRemoveError(null);
   }, []);
 
-  const isCurrentUser = useCallback(
-    (member: Member) => {
-      return currentUser.user?.username === member.username;
-    },
-    [currentUser.user],
-  );
+  const isCurrentUser = useCallback((member: Member) => isCurrentUsername(member), [currentUsername]);
 
   return (
     <div style={{ width: '100%', maxWidth: 'none' }}>
@@ -138,9 +221,7 @@ export function MembersList() {
 
       {status === 'idle' && (
         <div className="members_container">
-          <div className="members_header_action">
-            <InviteLink />
-          </div>
+          <div className="members_header_action">{canSeeInviteLink && <InviteLink />}</div>
           {members.length === 0 ? (
             <div className="placeholder_box no_bg">
               <p className="desc">No members in this project yet.</p>
@@ -167,36 +248,44 @@ export function MembersList() {
                       </td>
                       <td className="col_role">
                         <div className="member_role">
-                          <Popover
-                            opened={roleDropdownOpenFor === member.id}
-                            onChange={(isOpen) => setRoleDropdownOpenFor(isOpen ? member.id : null)}
+                          <button
+                            type="button"
+                            className="btn_role"
+                            ref={(el) => (buttonRefs.current[member.id] = el)}
+                            disabled={!canEditTargetRole(member) || updateRoleStatus.status === 'loading'}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+
+                              if (roleDropdownOpenFor === member.id) {
+                                setRoleDropdownOpenFor(null);
+                                setDropdownPosition(null);
+                              } else {
+                                const button = buttonRefs.current[member.id];
+                                if (button) {
+                                  const rect = button.getBoundingClientRect();
+                                  setDropdownPosition({
+                                    top: rect.bottom + 8,
+                                    left: rect.left,
+                                  });
+                                }
+                                setRoleDropdownOpenFor(member.id);
+                              }
+                            }}
                           >
-                            <Popover.Target>
-                              <button
-                                type="button"
-                                className="btn_role"
-                                disabled={isCurrentUser(member) || updateRoleStatus.status === 'loading'}
-                              >
-                                <span>{member.role.charAt(0).toUpperCase() + member.role.slice(1)}</span>
-                                <Icon type="openSelector" />
-                              </button>
-                            </Popover.Target>
-                            <Popover.Dropdown>
-                              <Dropdown shadow="s">
-                                <Dropdown.List>
-                                  {ROLES.map((role) => (
-                                    <Dropdown.Item
-                                      key={role.value}
-                                      onClick={() => handleRoleChange(member, role.value)}
-                                    >
-                                      {member.role === role.value && <Icon type="check" color="orange_0" />}
-                                      <Dropdown.Text>{role.label}</Dropdown.Text>
-                                    </Dropdown.Item>
-                                  ))}
-                                </Dropdown.List>
-                              </Dropdown>
-                            </Popover.Dropdown>
-                          </Popover>
+                            <span>{getRoleLabel(member.role)}</span>
+                            <Icon type="openSelector" />
+                          </button>
+                          {roleUpdateFeedback?.memberId === member.id && roleUpdateFeedback.type === 'error' && (
+                            <p className="text_error" style={{ marginTop: '6px' }}>
+                              {roleUpdateFeedback.message}
+                            </p>
+                          )}
+                          {roleUpdateFeedback?.memberId === member.id && roleUpdateFeedback.type === 'success' && (
+                            <p className="text_caption" style={{ marginTop: '6px', color: 'var(--green-0)' }}>
+                              {roleUpdateFeedback.message}
+                            </p>
+                          )}
                         </div>
                       </td>
                       <td className="col_date">
@@ -205,14 +294,14 @@ export function MembersList() {
                         </span>
                       </td>
                       <td className="col_actions">
-                        {isCurrentUser(member) && <span className="text_caption">-</span>}
-                        {!isCurrentUser(member) && (
+                        {(!canRemoveMembers || isCurrentUser(member)) && <span className="text_caption">-</span>}
+                        {canRemoveMembers && !isCurrentUser(member) && (
                           <Button
                             type="text"
                             icon={<Icon type="trash" />}
                             size="small"
                             className="btn_remove_member"
-                            disabled={isCurrentUser(member) || removeStatus.status === 'loading'}
+                            disabled={removeStatus.status === 'loading'}
                             onClick={() => handleRemoveMember(member)}
                           >
                             Remove
@@ -227,6 +316,52 @@ export function MembersList() {
           )}
         </div>
       )}
+
+      {roleDropdownOpenFor &&
+        dropdownPosition &&
+        (() => {
+          const targetMember = members.find((m) => m.id === roleDropdownOpenFor);
+          console.log('Rendering dropdown for:', {
+            roleDropdownOpenFor,
+            targetMember,
+            allMemberIds: members.map((m) => m.id),
+          });
+
+          if (!targetMember) {
+            console.error('Target member not found!');
+            return null;
+          }
+
+          return (
+            <div
+              className="role_dropdown_menu"
+              style={{
+                position: 'fixed',
+                top: `${dropdownPosition.top}px`,
+                left: `${dropdownPosition.left}px`,
+                zIndex: 1000,
+                minWidth: '160px',
+              }}
+            >
+              <Dropdown shadow="s">
+                <Dropdown.List>
+                  {ROLES.map((role) => (
+                    <Dropdown.Item
+                      key={role.value}
+                      onClick={() => {
+                        console.log('Dropdown item clicked:', role.value);
+                        handleRoleChange(targetMember, role.value);
+                      }}
+                    >
+                      {targetMember.role === role.value && <Icon type="check" color="orange_0" />}
+                      <Dropdown.Text>{role.label}</Dropdown.Text>
+                    </Dropdown.Item>
+                  ))}
+                </Dropdown.List>
+              </Dropdown>
+            </div>
+          );
+        })()}
 
       {isRemoveModalOpen && (
         <Modal>
