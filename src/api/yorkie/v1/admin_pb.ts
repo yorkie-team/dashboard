@@ -45,11 +45,6 @@ export enum InviteExpireOption {
    * @generated from enum value: INVITE_EXPIRE_OPTION_SEVEN_DAYS = 3;
    */
   SEVEN_DAYS = 3,
-
-  /**
-   * @generated from enum value: INVITE_EXPIRE_OPTION_NEVER = 4;
-   */
-  NEVER = 4,
 }
 // Retrieve enum metadata with: proto3.getEnumType(InviteExpireOption)
 proto3.util.setEnumType(InviteExpireOption, "yorkie.v1.InviteExpireOption", [
@@ -57,7 +52,6 @@ proto3.util.setEnumType(InviteExpireOption, "yorkie.v1.InviteExpireOption", [
   { no: 1, name: "INVITE_EXPIRE_OPTION_ONE_HOUR" },
   { no: 2, name: "INVITE_EXPIRE_OPTION_TWENTY_FOUR_HOURS" },
   { no: 3, name: "INVITE_EXPIRE_OPTION_SEVEN_DAYS" },
-  { no: 4, name: "INVITE_EXPIRE_OPTION_NEVER" },
 ]);
 
 /**

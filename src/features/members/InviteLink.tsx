@@ -30,7 +30,6 @@ const EXPIRE_OPTIONS: Array<{ value: InviteExpireOption; label: string }> = [
   { value: InviteExpireOption.ONE_HOUR, label: '1 hour' },
   { value: InviteExpireOption.TWENTY_FOUR_HOURS, label: '24 hours' },
   { value: InviteExpireOption.SEVEN_DAYS, label: '7 days' },
-  { value: InviteExpireOption.NEVER, label: 'Never' },
 ];
 
 function buildInviteURL(token: string): string {
