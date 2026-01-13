@@ -118,30 +118,17 @@ export function MembersList() {
 
   const handleRoleChange = useCallback(
     async (member: Member, newRole: string) => {
-      console.log('handleRoleChange called:', { username: member.username, currentRole: member.role, newRole });
-
-      if (!projectName || member.role === newRole) {
-        console.log('Early return:', { projectName, sameRole: member.role === newRole });
-        return;
-      }
-      if (!canEditTargetRole(member)) {
-        console.log('Cannot edit target role');
-        return;
-      }
+      if (!projectName || member.role === newRole) return;
+      if (!canEditTargetRole(member)) return;
 
       setRoleUpdateFeedback(null);
       try {
-        console.log('Dispatching updateMemberRoleAsync...');
-        const result = await dispatch(
-          updateMemberRoleAsync({ projectName, username: member.username, role: newRole }),
-        ).unwrap();
-        console.log('updateMemberRoleAsync success:', result);
+        await dispatch(updateMemberRoleAsync({ projectName, username: member.username, role: newRole })).unwrap();
         setRoleDropdownOpenFor(null);
         setDropdownPosition(null);
         setRoleUpdateFeedback({ memberId: member.id, type: 'success', message: 'Role updated.' });
         window.setTimeout(() => setRoleUpdateFeedback(null), 1500);
       } catch (err: unknown) {
-        console.error('updateMemberRoleAsync failed:', err);
         const fallback = 'Failed to update role.';
         const maybeObj = err as any;
         const message =
@@ -321,16 +308,7 @@ export function MembersList() {
         dropdownPosition &&
         (() => {
           const targetMember = members.find((m) => m.id === roleDropdownOpenFor);
-          console.log('Rendering dropdown for:', {
-            roleDropdownOpenFor,
-            targetMember,
-            allMemberIds: members.map((m) => m.id),
-          });
-
-          if (!targetMember) {
-            console.error('Target member not found!');
-            return null;
-          }
+          if (!targetMember) return null;
 
           return (
             <div
@@ -346,13 +324,7 @@ export function MembersList() {
               <Dropdown shadow="s">
                 <Dropdown.List>
                   {ROLES.map((role) => (
-                    <Dropdown.Item
-                      key={role.value}
-                      onClick={() => {
-                        console.log('Dropdown item clicked:', role.value);
-                        handleRoleChange(targetMember, role.value);
-                      }}
-                    >
+                    <Dropdown.Item key={role.value} onClick={() => handleRoleChange(targetMember, role.value)}>
                       {targetMember.role === role.value && <Icon type="check" color="orange_0" />}
                       <Dropdown.Text>{role.label}</Dropdown.Text>
                     </Dropdown.Item>
