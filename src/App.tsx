@@ -31,6 +31,7 @@ import {
   ProjectQuickStartPage,
   ProjectAPIKeysPage,
   ProjectSettingsPage,
+  AcceptInvitePage,
   CommunityPage,
   NotFoundPage,
 } from 'pages';
@@ -83,6 +84,7 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
         </Route>
         <Route element={<PrivateRoute />}>
+          <Route path="/invite" element={<AcceptInvitePage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/projects/new" element={<CreateProjectPage />} />
           <Route path="/projects/:projectName" element={<ProjectOverviewPage />} />

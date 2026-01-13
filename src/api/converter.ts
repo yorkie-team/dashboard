@@ -14,13 +14,23 @@
  * limitations under the License.
  */
 
-import { DataSize, DATE_RANGE_OPTIONS, DocSize, Presence, Schema, RevisionSummary, ChannelSummary } from './types';
+import {
+  DataSize,
+  DATE_RANGE_OPTIONS,
+  DocSize,
+  Presence,
+  Schema,
+  RevisionSummary,
+  ChannelSummary,
+  Member,
+} from './types';
 import { Timestamp as PbTimestamp } from '@bufbuild/protobuf';
 import { User, Project, DocumentSummary, AuthWebhookMethod, EventWebhookEvent, FieldViolation } from './types';
 import { Change, converter, Indexable } from '@yorkie-js/sdk';
 import {
   User as PbUser,
   Project as PbProject,
+  Member as PbMember,
   DocumentSummary as PbDocumentSummary,
   ChannelSummary as PbChannelSummary,
   DataSize as PbDataSize,
@@ -222,4 +232,19 @@ export function fromRevisionSummary(pbRevision: PbRevisionSummary): RevisionSumm
 
 export function fromRevisionSummaries(pbRevisions: Array<any>): Array<RevisionSummary> {
   return pbRevisions.map((pbRevision) => fromRevisionSummary(pbRevision));
+}
+
+export function fromMember(pbMember: PbMember): Member {
+  return {
+    id: pbMember.id,
+    projectId: pbMember.projectId,
+    userId: pbMember.userId,
+    username: pbMember.username,
+    role: pbMember.role,
+    invitedAt: pbMember.invitedAt ? fromTimestamp(pbMember.invitedAt) : undefined,
+  };
+}
+
+export function fromMembers(pbMembers: Array<PbMember>): Array<Member> {
+  return pbMembers.map((pbMember) => fromMember(pbMember));
 }

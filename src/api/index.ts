@@ -23,6 +23,7 @@ import {
   UpdatableProjectFields_EventWebhookEvents as PbProjectFields_EventWebhookEvents,
   UpdatableProjectFields_AllowedOrigins as PbProjectFields_AllowedOrigins,
 } from './yorkie/v1/resources_pb';
+import { InviteExpireOption } from './yorkie/v1/admin_pb';
 import { InterceptorBuilder } from './interceptor';
 import {
   User,
@@ -41,6 +42,7 @@ import * as converter from './converter';
 import { Rule } from '@yorkie-js/schema';
 
 export * from './types';
+export { InviteExpireOption };
 
 // Export the interceptor instance so it can be used elsewhere
 const interceptor = new InterceptorBuilder();
@@ -224,12 +226,9 @@ export async function removeDocumentByAdmin(documentKey: string, forceRemoveIfAt
 }
 
 // listChannels fetches channels from the admin server.
-export async function listChannels(
-  channelQuery: string,
-  limit: number,
-): Promise<Array<ChannelSummary>> {
+export async function listChannels(channelQuery: string, limit: number): Promise<Array<ChannelSummary>> {
   const res = await client.listChannels({
-    query: channelQuery, 
+    query: channelQuery,
     limit,
   });
   const summaries = converter.fromChannelSummaries(res.channels);
@@ -238,7 +237,7 @@ export async function listChannels(
 
 // getChannel fetches a channel of the given ID from the admin server.
 export async function getChannel(channelKey: string): Promise<ChannelSummary> {
-  const res = await client.getChannels({ 
+  const res = await client.getChannels({
     channelKeys: [channelKey],
     includeSubPath: false,
   });
@@ -410,4 +409,49 @@ export async function restoreRevision(projectName: string, documentKey: string, 
     documentKey,
     revisionId,
   });
+}
+
+// createInvite creates an invite token to join a project as a member.
+export async function createInvite(
+  projectName: string,
+  role: string,
+  expireOption: InviteExpireOption,
+): Promise<string> {
+  const res = await client.createInvite({
+    projectName,
+    role,
+    expireOption,
+  });
+  return res.token;
+}
+
+export async function acceptInvite(token: string) {
+  const res = await client.acceptInvite({ token });
+  return converter.fromMember(res.member!);
+}
+
+// removeMember removes a member from the project.
+export async function removeMember(projectName: string, username: string): Promise<void> {
+  await client.removeMember({
+    projectName,
+    username,
+  });
+}
+
+// listMembers fetches all members of the project.
+export async function listMembers(projectName: string) {
+  const res = await client.listMembers({
+    projectName,
+  });
+  return converter.fromMembers(res.members);
+}
+
+// updateMemberRole updates the role of a project member.
+export async function updateMemberRole(projectName: string, username: string, role: string) {
+  const res = await client.updateMemberRole({
+    projectName,
+    username,
+    role,
+  });
+  return converter.fromMember(res.member!);
 }

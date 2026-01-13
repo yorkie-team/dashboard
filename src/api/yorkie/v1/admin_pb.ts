@@ -20,7 +20,199 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Change, ChannelSummary, DocumentSummary, MetricPoint, Project, RevisionSummary, Rule, Schema, UpdatableProjectFields, User, VersionVector } from "./resources_pb";
+import { Change, ChannelSummary, DocumentSummary, Member, MetricPoint, Project, RevisionSummary, Rule, Schema, UpdatableProjectFields, User, VersionVector } from "./resources_pb";
+
+/**
+ * @generated from enum yorkie.v1.InviteExpireOption
+ */
+export enum InviteExpireOption {
+  /**
+   * @generated from enum value: INVITE_EXPIRE_OPTION_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: INVITE_EXPIRE_OPTION_ONE_HOUR = 1;
+   */
+  ONE_HOUR = 1,
+
+  /**
+   * @generated from enum value: INVITE_EXPIRE_OPTION_TWENTY_FOUR_HOURS = 2;
+   */
+  TWENTY_FOUR_HOURS = 2,
+
+  /**
+   * @generated from enum value: INVITE_EXPIRE_OPTION_SEVEN_DAYS = 3;
+   */
+  SEVEN_DAYS = 3,
+}
+// Retrieve enum metadata with: proto3.getEnumType(InviteExpireOption)
+proto3.util.setEnumType(InviteExpireOption, "yorkie.v1.InviteExpireOption", [
+  { no: 0, name: "INVITE_EXPIRE_OPTION_UNSPECIFIED" },
+  { no: 1, name: "INVITE_EXPIRE_OPTION_ONE_HOUR" },
+  { no: 2, name: "INVITE_EXPIRE_OPTION_TWENTY_FOUR_HOURS" },
+  { no: 3, name: "INVITE_EXPIRE_OPTION_SEVEN_DAYS" },
+]);
+
+/**
+ * @generated from message yorkie.v1.CreateInviteRequest
+ */
+export class CreateInviteRequest extends Message<CreateInviteRequest> {
+  /**
+   * @generated from field: string project_name = 1;
+   */
+  projectName = "";
+
+  /**
+   * @generated from field: string role = 2;
+   */
+  role = "";
+
+  /**
+   * @generated from field: yorkie.v1.InviteExpireOption expire_option = 3;
+   */
+  expireOption = InviteExpireOption.UNSPECIFIED;
+
+  constructor(data?: PartialMessage<CreateInviteRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.CreateInviteRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "role", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "expire_option", kind: "enum", T: proto3.getEnumType(InviteExpireOption) },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateInviteRequest {
+    return new CreateInviteRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateInviteRequest {
+    return new CreateInviteRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateInviteRequest {
+    return new CreateInviteRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CreateInviteRequest | PlainMessage<CreateInviteRequest> | undefined, b: CreateInviteRequest | PlainMessage<CreateInviteRequest> | undefined): boolean {
+    return proto3.util.equals(CreateInviteRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.CreateInviteResponse
+ */
+export class CreateInviteResponse extends Message<CreateInviteResponse> {
+  /**
+   * @generated from field: string token = 1;
+   */
+  token = "";
+
+  constructor(data?: PartialMessage<CreateInviteResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.CreateInviteResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateInviteResponse {
+    return new CreateInviteResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateInviteResponse {
+    return new CreateInviteResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateInviteResponse {
+    return new CreateInviteResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CreateInviteResponse | PlainMessage<CreateInviteResponse> | undefined, b: CreateInviteResponse | PlainMessage<CreateInviteResponse> | undefined): boolean {
+    return proto3.util.equals(CreateInviteResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.AcceptInviteRequest
+ */
+export class AcceptInviteRequest extends Message<AcceptInviteRequest> {
+  /**
+   * @generated from field: string token = 1;
+   */
+  token = "";
+
+  constructor(data?: PartialMessage<AcceptInviteRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.AcceptInviteRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AcceptInviteRequest {
+    return new AcceptInviteRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AcceptInviteRequest {
+    return new AcceptInviteRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AcceptInviteRequest {
+    return new AcceptInviteRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: AcceptInviteRequest | PlainMessage<AcceptInviteRequest> | undefined, b: AcceptInviteRequest | PlainMessage<AcceptInviteRequest> | undefined): boolean {
+    return proto3.util.equals(AcceptInviteRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.AcceptInviteResponse
+ */
+export class AcceptInviteResponse extends Message<AcceptInviteResponse> {
+  /**
+   * @generated from field: yorkie.v1.Member member = 1;
+   */
+  member?: Member;
+
+  constructor(data?: PartialMessage<AcceptInviteResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.AcceptInviteResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "member", kind: "message", T: Member },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AcceptInviteResponse {
+    return new AcceptInviteResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AcceptInviteResponse {
+    return new AcceptInviteResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AcceptInviteResponse {
+    return new AcceptInviteResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: AcceptInviteResponse | PlainMessage<AcceptInviteResponse> | undefined, b: AcceptInviteResponse | PlainMessage<AcceptInviteResponse> | undefined): boolean {
+    return proto3.util.equals(AcceptInviteResponse, a, b);
+  }
+}
 
 /**
  * @generated from message yorkie.v1.SignUpRequest
@@ -813,6 +1005,240 @@ export class GetProjectStatsResponse extends Message<GetProjectStatsResponse> {
 
   static equals(a: GetProjectStatsResponse | PlainMessage<GetProjectStatsResponse> | undefined, b: GetProjectStatsResponse | PlainMessage<GetProjectStatsResponse> | undefined): boolean {
     return proto3.util.equals(GetProjectStatsResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.RemoveMemberRequest
+ */
+export class RemoveMemberRequest extends Message<RemoveMemberRequest> {
+  /**
+   * @generated from field: string project_name = 1;
+   */
+  projectName = "";
+
+  /**
+   * @generated from field: string username = 2;
+   */
+  username = "";
+
+  constructor(data?: PartialMessage<RemoveMemberRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.RemoveMemberRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RemoveMemberRequest {
+    return new RemoveMemberRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RemoveMemberRequest {
+    return new RemoveMemberRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RemoveMemberRequest {
+    return new RemoveMemberRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RemoveMemberRequest | PlainMessage<RemoveMemberRequest> | undefined, b: RemoveMemberRequest | PlainMessage<RemoveMemberRequest> | undefined): boolean {
+    return proto3.util.equals(RemoveMemberRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.RemoveMemberResponse
+ */
+export class RemoveMemberResponse extends Message<RemoveMemberResponse> {
+  constructor(data?: PartialMessage<RemoveMemberResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.RemoveMemberResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RemoveMemberResponse {
+    return new RemoveMemberResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RemoveMemberResponse {
+    return new RemoveMemberResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RemoveMemberResponse {
+    return new RemoveMemberResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RemoveMemberResponse | PlainMessage<RemoveMemberResponse> | undefined, b: RemoveMemberResponse | PlainMessage<RemoveMemberResponse> | undefined): boolean {
+    return proto3.util.equals(RemoveMemberResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.ListMembersRequest
+ */
+export class ListMembersRequest extends Message<ListMembersRequest> {
+  /**
+   * @generated from field: string project_name = 1;
+   */
+  projectName = "";
+
+  constructor(data?: PartialMessage<ListMembersRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.ListMembersRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListMembersRequest {
+    return new ListMembersRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListMembersRequest {
+    return new ListMembersRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListMembersRequest {
+    return new ListMembersRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListMembersRequest | PlainMessage<ListMembersRequest> | undefined, b: ListMembersRequest | PlainMessage<ListMembersRequest> | undefined): boolean {
+    return proto3.util.equals(ListMembersRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.ListMembersResponse
+ */
+export class ListMembersResponse extends Message<ListMembersResponse> {
+  /**
+   * @generated from field: repeated yorkie.v1.Member members = 1;
+   */
+  members: Member[] = [];
+
+  constructor(data?: PartialMessage<ListMembersResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.ListMembersResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "members", kind: "message", T: Member, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListMembersResponse {
+    return new ListMembersResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListMembersResponse {
+    return new ListMembersResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListMembersResponse {
+    return new ListMembersResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListMembersResponse | PlainMessage<ListMembersResponse> | undefined, b: ListMembersResponse | PlainMessage<ListMembersResponse> | undefined): boolean {
+    return proto3.util.equals(ListMembersResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.UpdateMemberRoleRequest
+ */
+export class UpdateMemberRoleRequest extends Message<UpdateMemberRoleRequest> {
+  /**
+   * @generated from field: string project_name = 1;
+   */
+  projectName = "";
+
+  /**
+   * @generated from field: string username = 2;
+   */
+  username = "";
+
+  /**
+   * @generated from field: string role = 3;
+   */
+  role = "";
+
+  constructor(data?: PartialMessage<UpdateMemberRoleRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.UpdateMemberRoleRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "project_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "role", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateMemberRoleRequest {
+    return new UpdateMemberRoleRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UpdateMemberRoleRequest {
+    return new UpdateMemberRoleRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpdateMemberRoleRequest {
+    return new UpdateMemberRoleRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: UpdateMemberRoleRequest | PlainMessage<UpdateMemberRoleRequest> | undefined, b: UpdateMemberRoleRequest | PlainMessage<UpdateMemberRoleRequest> | undefined): boolean {
+    return proto3.util.equals(UpdateMemberRoleRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.UpdateMemberRoleResponse
+ */
+export class UpdateMemberRoleResponse extends Message<UpdateMemberRoleResponse> {
+  /**
+   * @generated from field: yorkie.v1.Member member = 1;
+   */
+  member?: Member;
+
+  constructor(data?: PartialMessage<UpdateMemberRoleResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.UpdateMemberRoleResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "member", kind: "message", T: Member },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateMemberRoleResponse {
+    return new UpdateMemberRoleResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UpdateMemberRoleResponse {
+    return new UpdateMemberRoleResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpdateMemberRoleResponse {
+    return new UpdateMemberRoleResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: UpdateMemberRoleResponse | PlainMessage<UpdateMemberRoleResponse> | undefined, b: UpdateMemberRoleResponse | PlainMessage<UpdateMemberRoleResponse> | undefined): boolean {
+    return proto3.util.equals(UpdateMemberRoleResponse, a, b);
   }
 }
 

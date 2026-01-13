@@ -59,6 +59,15 @@ export type User = {
   createdAt: number;
 };
 
+export type Member = {
+  id: string;
+  projectId: string;
+  userId: string;
+  username: string;
+  role: string;
+  invitedAt?: number;
+};
+
 export type Project = {
   id: string;
   name: string;

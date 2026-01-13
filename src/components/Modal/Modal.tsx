@@ -15,6 +15,7 @@
  */
 
 import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Icon } from 'components';
 import classNames from 'classnames';
 
@@ -26,11 +27,12 @@ export function Modal({ children, large }: { children: React.ReactNode; large?: 
     };
   }, []);
 
-  return (
+  return createPortal(
     <>
       <div className="dimmed"></div>
       <div className={classNames('modal', { modal_l: large })}>{children}</div>
-    </>
+    </>,
+    document.body,
   );
 }
 
