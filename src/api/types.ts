@@ -150,7 +150,7 @@ export type AuthWebhookMethod =
   | 'AttachDocument'
   | 'DetachDocument'
   | 'PushPull'
-  | 'WatchDocuments'
+  | 'WatchDocument'
   | 'Broadcast';
 
 export type EventWebhookEvent = 'DocumentRootChanged';
@@ -161,7 +161,7 @@ export const AUTH_WEBHOOK_METHODS: Array<AuthWebhookMethod> = [
   'AttachDocument',
   'DetachDocument',
   'PushPull',
-  'WatchDocuments',
+  'WatchDocument',
   'Broadcast',
 ];
 
