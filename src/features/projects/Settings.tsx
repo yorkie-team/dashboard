@@ -340,9 +340,17 @@ export function Settings() {
               <dt className="sub_title">Webhook URL</dt>
               <dd className="sub_desc">
                 <p className="guide">
-                  Enter the URL of the endpoint you want to use for event. When a document in this project is changed,
-                  server will send a request to this webhook URL. Changes to this setting may take up to 10 minutes to
-                  take effect.{' '}
+                  Set the webhook URL for event notifications. When enabled events occur (e.g., document content
+                  changes), Yorkie sends a POST request to this endpoint with event details. Use this for integrations,
+                  notifications, or syncing with external systems. Changes may take up to 10 minutes to take effect.{' '}
+                  <a
+                    href="https://yorkie.dev/docs/advanced/event-webhook"
+                    className="page_link icon_link"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Learn more about Event Webhook.
+                  </a>
                 </p>
                 <div
                   className={classNames('input_field_box', {
@@ -436,15 +444,16 @@ export function Settings() {
               <dt className="sub_title">Allowed Origins</dt>
               <dd className="sub_desc">
                 <p className="guide">
-                  Set the allowed origins for the client to connect to the server. If you want to allow all origins, use
-                  the wildcard character *. Changes to this setting may take up to 10 minutes to take effect.{' '}
+                  Configure CORS (Cross-Origin Resource Sharing) by specifying which origins can connect to the Yorkie
+                  server. Use the wildcard character * to allow all origins, or specify individual origins separated by
+                  commas. Changes to this setting may take up to 10 minutes to take effect.{' '}
                   <a
-                    href="https://yorkie.dev/docs/security#allowed-origins"
+                    href="https://yorkie.dev/docs/advanced/security#allowed-origins"
                     className="page_link icon_link"
                     target="_blank"
                     rel="noreferrer"
                   >
-                    Learn more about how to set up and use Allowed Origins.
+                    Learn more about Allowed Origins.
                   </a>
                 </p>
                 <div className="input_field_box">
@@ -502,16 +511,17 @@ export function Settings() {
               <dt className="sub_title">Auth Webhook URL</dt>
               <dd className="sub_desc">
                 <p className="guide">
-                  Enter the URL of the endpoint you want to use for authorization. This allows the server to check if a
-                  client is allowed to access a Document by calling this webhook URL. Changes to this setting may take
-                  up to 10 minutes to take effect.{' '}
+                  Set the webhook URL for client authorization. When configured, Yorkie validates each client request by
+                  calling this endpoint with the client&apos;s token and requested action. Your server can then allow or
+                  deny access based on your custom authorization logic. Changes may take up to 10 minutes to take
+                  effect.{' '}
                   <a
-                    href="https://yorkie.dev/docs/security#auth-webhook"
+                    href="https://yorkie.dev/docs/advanced/security#auth-webhook"
                     className="page_link icon_link"
                     target="_blank"
                     rel="noreferrer"
                   >
-                    Learn more about how to set up and use the Auth Webhook.
+                    Learn more about Auth Webhook.
                   </a>
                 </p>
                 <div
@@ -607,15 +617,16 @@ export function Settings() {
               <dt className="sub_title">Client Deactivate Threshold</dt>
               <dd className="sub_desc">
                 <p className="guide">
-                  Set the duration for automatic client deactivation on documents in this project. To improve garbage
-                  collection efficiency, clients inactive for this period will be automatically deactivated.{' '}
+                  Set the duration after which inactive clients are automatically deactivated. This improves garbage
+                  collection efficiency by cleaning up stale client connections. Format: &quot;24h0m0s&quot; for 24
+                  hours, &quot;1h30m&quot; for 1 hour 30 minutes.{' '}
                   <a
-                    href="https://github.com/yorkie-team/yorkie/blob/main/design/housekeeping.md"
+                    href="https://yorkie.dev/docs/advanced/resources#clientdeactivatethreshold"
                     className="page_link icon_link"
                     target="_blank"
                     rel="noreferrer"
                   >
-                    Learn more about deactivating outdated clients and improving GC efficiency.
+                    Learn more about Client Deactivate Threshold.
                   </a>
                 </p>
                 <div
@@ -668,9 +679,17 @@ export function Settings() {
               <dt className="sub_title">Snapshot Threshold</dt>
               <dd className="sub_desc">
                 <p className="guide">
-                  Set the threshold (in number of operations) whether the server returns snapshots to clients for
-                  documents in this project. If the number of operations since the last snapshot exceeds this threshold,
-                  the server will return the latest snapshot to the client.
+                  Set the number of changes that triggers snapshot delivery instead of individual changes. When a client
+                  needs to sync more changes than this threshold, the server sends a complete document snapshot for
+                  better performance. Default: 500.{' '}
+                  <a
+                    href="https://yorkie.dev/docs/advanced/resources#snapshotthreshold"
+                    className="page_link icon_link"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Learn more about Snapshot Threshold.
+                  </a>
                 </p>
                 <div
                   className={classNames('input_field_box', {
@@ -721,8 +740,17 @@ export function Settings() {
               <dt className="sub_title">Snapshot Interval</dt>
               <dd className="sub_desc">
                 <p className="guide">
-                  Set the interval (in number of operations) at which snapshots are created in server for documents in
-                  this project. If the interval is set to 500, the server creates a snapshot every 500 operations.
+                  Set the interval (in number of changes) at which the server creates and stores document snapshots.
+                  Lower values create snapshots more frequently, using more storage but improving sync performance for
+                  reconnecting clients. Default: 500.{' '}
+                  <a
+                    href="https://yorkie.dev/docs/advanced/resources#snapshotinterval"
+                    className="page_link icon_link"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Learn more about Snapshot Interval.
+                  </a>
                 </p>
                 <div
                   className={classNames('input_field_box', {
@@ -774,10 +802,11 @@ export function Settings() {
               <dt className="sub_title">Max Attachments Per Document</dt>
               <dd className="sub_desc">
                 <p className="guide">
-                  Set the maximum number of clients that can be attached to a single document simultaneously. When this
-                  limit is reached, new attachment requests will be rejected by the server.{' '}
+                  Limit the number of clients that can attach to a single document simultaneously. When exceeded, new
+                  attachment requests are rejected and must be manually retried. Set to 0 for unlimited. Use this to
+                  control resource usage in high-traffic scenarios.{' '}
                   <a
-                    href="https://yorkie.dev/docs/js-sdk#max-attachments-per-document"
+                    href="https://yorkie.dev/docs/advanced/resources#maxattachmentsperdocument"
                     className="page_link icon_link"
                     target="_blank"
                     rel="noreferrer"
@@ -835,10 +864,11 @@ export function Settings() {
               <dt className="sub_title">Max Subscribers Per Document</dt>
               <dd className="sub_desc">
                 <p className="guide">
-                  Set the maximum number of clients that can be subscribed to a single document simultaneously. When
-                  this limit is reached, new subscription requests will be rejected by the server.{' '}
+                  Limit the number of clients that can subscribe (watch for changes) to a single document simultaneously.
+                  When exceeded, the SDK auto-retries subscription once per second. Set to 0 for unlimited. Use this to
+                  prevent resource exhaustion from too many concurrent watchers.{' '}
                   <a
-                    href="https://yorkie.dev/docs/js-sdk#max-subscribers-per-document"
+                    href="https://yorkie.dev/docs/advanced/resources#maxsubscribersperdocument"
                     className="page_link icon_link"
                     target="_blank"
                     rel="noreferrer"
@@ -895,15 +925,16 @@ export function Settings() {
               <dt className="sub_title">Max Size Per Document</dt>
               <dd className="sub_desc">
                 <p className="guide">
-                  Set the maximum size of a document in bytes. When this limit is reached, document edit requests will
-                  be rejected by the server.{' '}
+                  Set the maximum document size in bytes. Document size includes both content and CRDT metadata for
+                  synchronization, so the actual size may exceed visible content. Local updates exceeding this limit are
+                  rejected; remote updates are always applied to ensure consistency. Default: 10 MiB.{' '}
                   <a
-                    href="https://yorkie.dev/docs/js-sdk#max-document-size-limit"
+                    href="https://yorkie.dev/docs/advanced/resources#maxsizeperdocument"
                     className="page_link icon_link"
                     target="_blank"
                     rel="noreferrer"
                   >
-                    Learn more about Max Document Size Per Document.
+                    Learn more about Max Size Per Document.
                   </a>
                 </p>
                 <div
@@ -955,8 +986,17 @@ export function Settings() {
               <dt className="sub_title">Auto Revision Enabled</dt>
               <dd className="sub_desc">
                 <p className="guide">
-                  Enable automatic creation of revisions for documents in this project. When enabled, revisions will be
-                  automatically created at Snapshot Intervals.{' '}
+                  Enable automatic revision creation during snapshot creation. Revisions allow you to browse document
+                  history and restore previous versions. When enabled, a revision is saved each time a snapshot is
+                  created (based on Snapshot Interval). Default: enabled.{' '}
+                  <a
+                    href="https://yorkie.dev/docs/advanced/resources#autorevisionenabled"
+                    className="page_link icon_link"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Learn more about Auto Revision.
+                  </a>
                 </p>
                 <div
                   className={classNames('input_field_box', {
@@ -986,14 +1026,16 @@ export function Settings() {
               <dt className="sub_title">Remove On Detach</dt>
               <dd className="sub_desc">
                 <p className="guide">
-                  Set whether to remove the document when all clients are detached from the document.{' '}
+                  Automatically delete documents when the last client detaches. Useful for temporary collaboration
+                  sessions where you don&apos;t need to persist documents after editing ends. Warning: Once enabled,
+                  documents are permanently deleted when all clients detach and cannot be recovered.{' '}
                   <a
-                    href="https://yorkie.dev/docs/js-sdk#detaching-the-document"
+                    href="https://yorkie.dev/docs/advanced/resources#removeondetach"
                     className="page_link icon_link"
                     target="_blank"
                     rel="noreferrer"
                   >
-                    Learn more about detaching the document.
+                    Learn more about Remove On Detach.
                   </a>
                 </p>
                 <div
