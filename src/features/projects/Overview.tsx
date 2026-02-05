@@ -30,6 +30,7 @@ import { PeakSessionChart } from './charts/PeakSessionChart';
 import { Icon, Popover, Dropdown } from 'components';
 import { DATE_RANGE_OPTIONS } from 'api/types';
 import { ActiveDocumentChart } from './charts/ActiveDocumentChart';
+import { ActiveClientChart } from './charts/ActiveClientChart';
 
 export function Overview() {
   const { project } = useAppSelector(selectProjectDetail);
@@ -116,6 +117,7 @@ export function Overview() {
         </div>
         <div className="chart_group">
           <ActiveUserChart stats={stats} range={range} />
+          <ActiveClientChart stats={stats} range={range} />
           <ActiveDocumentChart stats={stats} range={range} />
           <ActiveChannelChart stats={stats} range={range} />
           <SessionChart stats={stats} range={range} />

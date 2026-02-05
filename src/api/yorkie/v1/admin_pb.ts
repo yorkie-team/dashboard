@@ -968,6 +968,16 @@ export class GetProjectStatsResponse extends Message<GetProjectStatsResponse> {
    */
   activeDocuments: MetricPoint[] = [];
 
+  /**
+   * @generated from field: int32 active_clients_count = 14;
+   */
+  activeClientsCount = 0;
+
+  /**
+   * @generated from field: repeated yorkie.v1.MetricPoint active_clients = 15;
+   */
+  activeClients: MetricPoint[] = [];
+
   constructor(data?: PartialMessage<GetProjectStatsResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -989,6 +999,8 @@ export class GetProjectStatsResponse extends Message<GetProjectStatsResponse> {
     { no: 11, name: "peak_sessions_per_channel", kind: "message", T: MetricPoint, repeated: true },
     { no: 12, name: "active_documents_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 13, name: "active_documents", kind: "message", T: MetricPoint, repeated: true },
+    { no: 14, name: "active_clients_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 15, name: "active_clients", kind: "message", T: MetricPoint, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetProjectStatsResponse {

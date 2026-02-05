@@ -103,6 +103,11 @@ export interface ProjectStats {
     timestamp: number;
     value: number;
   }>;
+  activeClientsCount: number;
+  activeClients: Array<{
+    timestamp: number;
+    value: number;
+  }>;
   activeChannelsCount: number;
   activeChannels: Array<{
     timestamp: number;
