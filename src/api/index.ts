@@ -269,6 +269,15 @@ export async function getProjectStats(range: keyof typeof DATE_RANGE_OPTIONS): P
     };
   });
 
+  const activeClients = res.activeClients.map((client) => {
+    return {
+      // NOTE(hackerwins): Number can safely represent dates for +285,616 years.
+      // Millisecond precision loss is acceptable for daily stats.
+      timestamp: Number(client.timestamp),
+      value: client.value,
+    };
+  });
+
   const activeChannels = res.activeChannels.map((channel) => {
     return {
       // NOTE(hackerwins): Number can safely represent dates for +285,616 years.
@@ -304,6 +313,8 @@ export async function getProjectStats(range: keyof typeof DATE_RANGE_OPTIONS): P
     activeUsers: activeUsers,
     activeDocumentsCount: Number(res.activeDocumentsCount),
     activeDocuments: activeDocuments,
+    activeClientsCount: Number(res.activeClientsCount),
+    activeClients: activeClients,
     activeChannelsCount: Number(res.activeChannelsCount),
     activeChannels: activeChannels,
     sessionsCount: Number(res.sessionsCount),
