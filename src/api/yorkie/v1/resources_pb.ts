@@ -3189,9 +3189,9 @@ export class ChannelEvent extends Message<ChannelEvent> {
   publisher = "";
 
   /**
-   * @generated from field: int64 count = 3;
+   * @generated from field: int64 session_count = 3;
    */
-  count = protoInt64.zero;
+  sessionCount = protoInt64.zero;
 
   /**
    * @generated from field: int64 seq = 4;
@@ -3218,7 +3218,7 @@ export class ChannelEvent extends Message<ChannelEvent> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "type", kind: "enum", T: proto3.getEnumType(ChannelEvent_Type) },
     { no: 2, name: "publisher", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "count", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 3, name: "session_count", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 4, name: "seq", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 5, name: "topic", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "payload", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
