@@ -854,6 +854,11 @@ export class Operation_Style extends Message<Operation_Style> {
    */
   createdAtMapByActor: { [key: string]: TimeTicket } = {};
 
+  /**
+   * @generated from field: repeated string attributes_to_remove = 7;
+   */
+  attributesToRemove: string[] = [];
+
   constructor(data?: PartialMessage<Operation_Style>) {
     super();
     proto3.util.initPartial(data, this);
@@ -868,6 +873,7 @@ export class Operation_Style extends Message<Operation_Style> {
     { no: 4, name: "attributes", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
     { no: 5, name: "executed_at", kind: "message", T: TimeTicket },
     { no: 6, name: "created_at_map_by_actor", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: TimeTicket} },
+    { no: 7, name: "attributes_to_remove", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Operation_Style {
