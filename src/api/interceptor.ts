@@ -57,6 +57,7 @@ export class InterceptorBuilder {
       'GetDocuments',
       'UpdateDocument',
       'RemoveDocumentByAdmin',
+      'CompactDocumentByAdmin',
       'GetSnapshotMeta',
       'SearchDocuments',
       'ListChanges',

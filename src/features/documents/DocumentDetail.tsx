@@ -38,6 +38,14 @@ export function DocumentDetail() {
   const [opened, setOpened] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCompactModalOpen, setIsCompactModalOpen] = useState(false);
+  const [compactSuccess, setCompactSuccess] = useState(false);
+
+  useEffect(() => {
+    if (compactSuccess) {
+      const timer = setTimeout(() => setCompactSuccess(false), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [compactSuccess]);
 
   useEffect(() => {
     if (!currentProject || !documentKey) return;
@@ -51,7 +59,32 @@ export function DocumentDetail() {
 
   return (
     <>
-      <div className="detail_content">
+      <div className="detail_content" style={{ position: 'relative' }}>
+        {compactSuccess && (
+          <div
+            className="shadow_l"
+            style={{
+              position: 'fixed',
+              top: 80,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              zIndex: 1000,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 8,
+              padding: 8,
+              borderRadius: 8,
+              background: 'var(--gray-800)',
+              color: 'var(--gray-000)',
+              fontSize: 12,
+              fontWeight: 500,
+              width: 'max-content',
+            }}
+          >
+            <Icon type="check" />
+            Document compacted
+          </div>
+        )}
         <div className="document_header">
           <div className="title_box">
             <Link to="../" className="btn_back">
@@ -79,6 +112,7 @@ export function DocumentDetail() {
                   <Dropdown.List>
                     <Dropdown.Item
                       onClick={async () => {
+                        setOpened(false);
                         if (document && document.attachedClients > 0) {
                           setIsCompactModalOpen(true);
                         } else {
@@ -88,6 +122,7 @@ export function DocumentDetail() {
                           if (compactDocumentAsync.fulfilled.match(result) && result.payload === false) {
                             setIsCompactModalOpen(true);
                           } else if (compactDocumentAsync.fulfilled.match(result)) {
+                            setCompactSuccess(true);
                             await dispatch(getDocumentAsync({ documentKey }));
                           }
                         }
@@ -237,6 +272,7 @@ export function DocumentDetail() {
                 onClick={async () => {
                   setIsCompactModalOpen(false);
                   await dispatch(compactDocumentAsync({ documentKey, force: true }));
+                  setCompactSuccess(true);
                   await dispatch(getDocumentAsync({ documentKey }));
                 }}
               >
