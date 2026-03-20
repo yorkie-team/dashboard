@@ -19,7 +19,7 @@ import { fromUnixTime, format } from 'date-fns';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectPreferences } from 'features/users/usersSlice';
-import { selectDocumentDetail, getDocumentAsync, removeDocumentByAdminAsync } from './documentsSlice';
+import { selectDocumentDetail, getDocumentAsync, removeDocumentByAdminAsync, compactDocumentAsync } from './documentsSlice';
 import { selectCurrentProject } from 'features/projects/projectsSlice';
 import { Icon, Button, CodeBlock, CopyButton, Popover, Dropdown, Modal } from 'components';
 import { formatNumber, humanFileSize } from 'utils/format';
@@ -37,6 +37,7 @@ export function DocumentDetail() {
   const [showContent, setShowContent] = useState<'root' | 'presence'>('root');
   const [opened, setOpened] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCompactModalOpen, setIsCompactModalOpen] = useState(false);
 
   useEffect(() => {
     if (!currentProject || !documentKey) return;
@@ -76,6 +77,24 @@ export function DocumentDetail() {
                 <Dropdown>
                   <Dropdown.Title>More Options</Dropdown.Title>
                   <Dropdown.List>
+                    <Dropdown.Item
+                      onClick={async () => {
+                        if (document && document.attachedClients > 0) {
+                          setIsCompactModalOpen(true);
+                        } else {
+                          const result = await dispatch(
+                            compactDocumentAsync({ documentKey, force: false }),
+                          );
+                          if (compactDocumentAsync.fulfilled.match(result) && result.payload === false) {
+                            setIsCompactModalOpen(true);
+                          } else if (compactDocumentAsync.fulfilled.match(result)) {
+                            await dispatch(getDocumentAsync({ documentKey }));
+                          }
+                        }
+                      }}
+                    >
+                      <Dropdown.Text>Compact Document</Dropdown.Text>
+                    </Dropdown.Item>
                     <Dropdown.Item
                       onClick={() => {
                         setIsModalOpen(true);
@@ -186,6 +205,42 @@ export function DocumentDetail() {
                 }}
               >
                 Yes, delete
+              </Button>
+            </Button.Box>
+          </Modal.Bottom>
+        </Modal>
+      )}
+      {isCompactModalOpen && (
+        <Modal>
+          <Modal.Top>
+            <Icon type="alert" className="orange_0" />
+          </Modal.Top>
+          <Modal.Content>
+            <Modal.Title>
+              {document && document.attachedClients > 0
+                ? `Currently ${document.attachedClients} client(s) attached. Force compaction?`
+                : 'Compaction was not performed. Retry with force?'}
+            </Modal.Title>
+          </Modal.Content>
+          <Modal.Bottom>
+            <Button.Box fullWidth>
+              <Button
+                outline
+                onClick={() => {
+                  setIsCompactModalOpen(false);
+                }}
+              >
+                Cancel
+              </Button>
+              <Button
+                color="primary"
+                onClick={async () => {
+                  setIsCompactModalOpen(false);
+                  await dispatch(compactDocumentAsync({ documentKey, force: true }));
+                  await dispatch(getDocumentAsync({ documentKey }));
+                }}
+              >
+                Force Compact
               </Button>
             </Button.Box>
           </Modal.Bottom>
