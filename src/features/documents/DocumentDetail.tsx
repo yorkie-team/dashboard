@@ -63,6 +63,9 @@ export function DocumentDetail() {
         {compactSuccess && (
           <div
             className="shadow_l"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
             style={{
               position: 'fixed',
               top: 80,
@@ -271,9 +274,13 @@ export function DocumentDetail() {
                 color="primary"
                 onClick={async () => {
                   setIsCompactModalOpen(false);
-                  await dispatch(compactDocumentAsync({ documentKey, force: true }));
-                  setCompactSuccess(true);
-                  await dispatch(getDocumentAsync({ documentKey }));
+                  const result = await dispatch(
+                    compactDocumentAsync({ documentKey, force: true }),
+                  );
+                  if (compactDocumentAsync.fulfilled.match(result) && result.payload) {
+                    setCompactSuccess(true);
+                    await dispatch(getDocumentAsync({ documentKey }));
+                  }
                 }}
               >
                 Force Compact
