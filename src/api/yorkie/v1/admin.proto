@@ -68,6 +68,8 @@ service AdminService {
   rpc ListChannels (ListChannelsRequest) returns (ListChannelsResponse) {}
   rpc GetChannels (GetChannelsRequest) returns (GetChannelsResponse) {}
   
+  rpc CompactDocumentByAdmin (CompactDocumentByAdminRequest) returns (CompactDocumentByAdminResponse) {}
+
   rpc GetServerVersion (GetServerVersionRequest) returns (GetServerVersionResponse) {}
 }
 
@@ -411,4 +413,13 @@ message RestoreRevisionByAdminRequest {
 }
 
 message RestoreRevisionByAdminResponse {
+}
+
+message CompactDocumentByAdminRequest {
+  string document_key = 1;
+  bool force = 2;
+}
+
+message CompactDocumentByAdminResponse {
+  bool compacted = 1;
 }

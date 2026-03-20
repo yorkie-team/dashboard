@@ -225,6 +225,18 @@ export async function removeDocumentByAdmin(documentKey: string, forceRemoveIfAt
   });
 }
 
+// compactDocumentByAdmin compacts the document of the given document.
+export async function compactDocumentByAdmin(
+  documentKey: string,
+  force: boolean,
+): Promise<boolean> {
+  const res = await client.compactDocumentByAdmin({
+    documentKey,
+    force,
+  });
+  return res.compacted;
+}
+
 // listChannels fetches channels from the admin server.
 export async function listChannels(channelQuery: string, limit: number): Promise<Array<ChannelSummary>> {
   const res = await client.listChannels({
