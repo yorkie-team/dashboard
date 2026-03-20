@@ -23,6 +23,7 @@ import {
   DocumentSummary,
   searchDocuments,
   removeDocumentByAdmin,
+  compactDocumentByAdmin,
   listRevisions,
   getRevision,
   restoreRevision,
@@ -129,6 +130,14 @@ export const removeDocumentByAdminAsync = createAppThunk(
   async (params: { documentKey: string; force: boolean }): Promise<void> => {
     const { documentKey, force } = params;
     await removeDocumentByAdmin(documentKey, force);
+  },
+);
+
+export const compactDocumentAsync = createAppThunk(
+  'documents/compactDocument',
+  async (params: { documentKey: string; force: boolean }): Promise<boolean> => {
+    const { documentKey, force } = params;
+    return await compactDocumentByAdmin(documentKey, force);
   },
 );
 

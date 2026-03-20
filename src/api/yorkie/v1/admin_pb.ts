@@ -2988,3 +2988,83 @@ export class RestoreRevisionByAdminResponse extends Message<RestoreRevisionByAdm
   }
 }
 
+/**
+ * @generated from message yorkie.v1.CompactDocumentByAdminRequest
+ */
+export class CompactDocumentByAdminRequest extends Message<CompactDocumentByAdminRequest> {
+  /**
+   * @generated from field: string document_key = 1;
+   */
+  documentKey = "";
+
+  /**
+   * @generated from field: bool force = 2;
+   */
+  force = false;
+
+  constructor(data?: PartialMessage<CompactDocumentByAdminRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.CompactDocumentByAdminRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "document_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "force", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CompactDocumentByAdminRequest {
+    return new CompactDocumentByAdminRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CompactDocumentByAdminRequest {
+    return new CompactDocumentByAdminRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CompactDocumentByAdminRequest {
+    return new CompactDocumentByAdminRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CompactDocumentByAdminRequest | PlainMessage<CompactDocumentByAdminRequest> | undefined, b: CompactDocumentByAdminRequest | PlainMessage<CompactDocumentByAdminRequest> | undefined): boolean {
+    return proto3.util.equals(CompactDocumentByAdminRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message yorkie.v1.CompactDocumentByAdminResponse
+ */
+export class CompactDocumentByAdminResponse extends Message<CompactDocumentByAdminResponse> {
+  /**
+   * @generated from field: bool compacted = 1;
+   */
+  compacted = false;
+
+  constructor(data?: PartialMessage<CompactDocumentByAdminResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.CompactDocumentByAdminResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "compacted", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CompactDocumentByAdminResponse {
+    return new CompactDocumentByAdminResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CompactDocumentByAdminResponse {
+    return new CompactDocumentByAdminResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CompactDocumentByAdminResponse {
+    return new CompactDocumentByAdminResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CompactDocumentByAdminResponse | PlainMessage<CompactDocumentByAdminResponse> | undefined, b: CompactDocumentByAdminResponse | PlainMessage<CompactDocumentByAdminResponse> | undefined): boolean {
+    return proto3.util.equals(CompactDocumentByAdminResponse, a, b);
+  }
+}
+
