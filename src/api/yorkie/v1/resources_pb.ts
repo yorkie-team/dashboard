@@ -3427,6 +3427,61 @@ export class Schema extends Message<Schema> {
 }
 
 /**
+ * @generated from message yorkie.v1.TreeNodeRule
+ */
+export class TreeNodeRule extends Message<TreeNodeRule> {
+  /**
+   * @generated from field: string node_type = 1;
+   */
+  nodeType = "";
+
+  /**
+   * @generated from field: string content = 2;
+   */
+  content = "";
+
+  /**
+   * @generated from field: string marks = 3;
+   */
+  marks = "";
+
+  /**
+   * @generated from field: string group = 4;
+   */
+  group = "";
+
+  constructor(data?: PartialMessage<TreeNodeRule>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "yorkie.v1.TreeNodeRule";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "node_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "content", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "marks", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "group", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TreeNodeRule {
+    return new TreeNodeRule().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TreeNodeRule {
+    return new TreeNodeRule().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TreeNodeRule {
+    return new TreeNodeRule().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TreeNodeRule | PlainMessage<TreeNodeRule> | undefined, b: TreeNodeRule | PlainMessage<TreeNodeRule> | undefined): boolean {
+    return proto3.util.equals(TreeNodeRule, a, b);
+  }
+}
+
+/**
  * @generated from message yorkie.v1.Rule
  */
 export class Rule extends Message<Rule> {
@@ -3440,6 +3495,11 @@ export class Rule extends Message<Rule> {
    */
   type = "";
 
+  /**
+   * @generated from field: repeated yorkie.v1.TreeNodeRule tree_nodes = 3;
+   */
+  treeNodes: TreeNodeRule[] = [];
+
   constructor(data?: PartialMessage<Rule>) {
     super();
     proto3.util.initPartial(data, this);
@@ -3450,6 +3510,7 @@ export class Rule extends Message<Rule> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "tree_nodes", kind: "message", T: TreeNodeRule, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Rule {
