@@ -19,6 +19,12 @@ Always run before submitting:
 npm run build && npm run test
 ```
 
+## Project Docs
+
+- **Design docs**: `docs/design/` for architectural context. New docs use [TEMPLATE.md](docs/design/TEMPLATE.md).
+- **Task tracking**: `docs/tasks/active/` for in-progress, `docs/tasks/archive/` for completed. Use `YYYYMMDD-<slug>-{todo,lessons}.md` pairs.
+- **Setup**: Run `bash scripts/setup.sh` to enable commit message validation hook.
+
 ## Gotchas
 
 - Base URL is `/dashboard` (set in Vite config) — all routes are nested under this path

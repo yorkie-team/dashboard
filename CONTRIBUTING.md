@@ -26,6 +26,12 @@ This is a rough outline of what a contributor's workflow looks like:
 
 Thanks for contributing!
 
+To enable automatic commit message validation, run:
+
+```sh
+bash scripts/setup.sh
+```
+
 ### Format of the commit message
 
 We follow a rough convention for commit messages that is designed to answer two questions: what changed and why. The subject line should feature the what and the body of the commit should describe the why.
