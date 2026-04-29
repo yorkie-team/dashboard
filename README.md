@@ -45,3 +45,10 @@ $ npm run dev
 ## Contributing
 
 See [CONTRIBUTING](CONTRIBUTING.md) for details on submitting patches and the contribution workflow.
+
+## Documentation
+
+- [docs/design/](docs/design/README.md) — Architectural design documents
+- [docs/tasks/](docs/tasks/README.md) — Task tracking (active and archived)
+- [MAINTAINING.md](MAINTAINING.md) — Release and maintenance procedures
+- [CLAUDE.md](CLAUDE.md) — Agent instructions for AI-assisted development
