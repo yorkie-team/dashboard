@@ -64,6 +64,7 @@ export function Settings() {
       eventWebhookURL: '',
       eventWebhookEvents: [],
       clientDeactivateThreshold: '',
+      channelSessionTtl: '',
       snapshotInterval: 0,
       snapshotThreshold: 0,
       maxSubscribersPerDocument: 0,
@@ -95,6 +96,10 @@ export function Settings() {
   const { field: clientDeactivateThreshold, fieldState: clientDeactivateThresholdState } = useController({
     control,
     name: 'clientDeactivateThreshold',
+  });
+  const { field: channelSessionTtl, fieldState: channelSessionTtlState } = useController({
+    control,
+    name: 'channelSessionTtl',
   });
   const { field: maxSubscribersPerDocument, fieldState: maxSubscribersPerDocumentState } = useController({
     control,
@@ -149,6 +154,7 @@ export function Settings() {
       eventWebhookURL: project?.eventWebhookURL || '',
       eventWebhookEvents: project?.eventWebhookEvents || [],
       clientDeactivateThreshold: project?.clientDeactivateThreshold || '',
+      channelSessionTtl: project?.channelSessionTtl || '',
       maxSubscribersPerDocument: project?.maxSubscribersPerDocument || 0,
       maxAttachmentsPerDocument: project?.maxAttachmentsPerDocument || 0,
       snapshotInterval: project?.snapshotInterval || 0,
@@ -185,6 +191,7 @@ export function Settings() {
       !authWebhookURLFieldState.error &&
       !eventWebhookURLFieldState.error &&
       !clientDeactivateThresholdState.error &&
+      !channelSessionTtlState.error &&
       !maxSubscribersPerDocumentState.error &&
       !maxAttachmentsPerDocumentState.error &&
       !maxSizePerDocumentState.error &&
@@ -205,6 +212,7 @@ export function Settings() {
       authWebhookURLFieldState.error ||
       eventWebhookURLFieldState.error ||
       clientDeactivateThresholdState.error ||
+      channelSessionTtlState.error ||
       maxSubscribersPerDocumentState.error ||
       maxAttachmentsPerDocumentState.error ||
       maxSizePerDocumentState.error ||
@@ -228,6 +236,7 @@ export function Settings() {
     authWebhookURLFieldState.error,
     eventWebhookURLFieldState.error,
     clientDeactivateThresholdState.error,
+    channelSessionTtlState.error,
     maxSubscribersPerDocumentState.error,
     maxAttachmentsPerDocumentState.error,
     maxSizePerDocumentState.error,
@@ -669,6 +678,59 @@ export function Settings() {
                     }
                     helperText={
                       updateFieldInfo.target === 'clientDeactivateThreshold' && updateFieldInfo.state !== null
+                        ? updateFieldInfo.message
+                        : undefined
+                    }
+                    onSuccessEnd={resetUpdateFieldInfo}
+                  />
+                </div>
+              </dd>
+              <dt className="sub_title">Channel Session TTL</dt>
+              <dd className="sub_desc">
+                <p className="guide">
+                  Set how long a channel session is retained after a user leaves (1s–5m). Longer values keep users
+                  counted in presence longer after they disconnect, increasing the apparent live presence count.
+                  Format: &quot;15s&quot; for 15 seconds, &quot;1m30s&quot; for 1 minute 30 seconds.
+                </p>
+                <div
+                  className={classNames('input_field_box', {
+                    is_error: checkFieldState('channelSessionTtl', 'error'),
+                    is_success: checkFieldState('channelSessionTtl', 'success'),
+                  })}
+                >
+                  <InputTextField
+                    reset={() => {
+                      resetForm();
+                      resetUpdateFieldInfo();
+                    }}
+                    {...register('channelSessionTtl', {
+                      required: 'Channel Session TTL is required',
+                      pattern: {
+                        value: /^(\d{1,2}h\s?)?(\d{1,2}m\s?)?(\d{1,2}s)?$/,
+                        message: 'Channel Session TTL should be a duration string such as "15s" or "1m30s" (1s–5m)',
+                      },
+                      onChange: async () => {
+                        await trigger('channelSessionTtl');
+                      },
+                    })}
+                    onChange={(e) => {
+                      setUpdateFieldInfo((info) => ({ ...info, target: 'channelSessionTtl' }));
+                      channelSessionTtl.onChange(e.target.value);
+                    }}
+                    id="channelSessionTtl"
+                    label="channelSessionTtl"
+                    blindLabel={true}
+                    fieldUtil={true}
+                    placeholder={'15s'}
+                    state={
+                      checkFieldState('channelSessionTtl', 'success')
+                        ? 'success'
+                        : checkFieldState('channelSessionTtl', 'error')
+                          ? 'error'
+                          : undefined
+                    }
+                    helperText={
+                      updateFieldInfo.target === 'channelSessionTtl' && updateFieldInfo.state !== null
                         ? updateFieldInfo.message
                         : undefined
                     }
