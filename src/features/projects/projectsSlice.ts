@@ -353,7 +353,7 @@ export const projectsSlice = createSlice({
               target: 'clientDeactivateThreshold',
               message: description,
             };
-          } else if (field === 'ChannelSessionTtl') {
+          } else if (field === 'ChannelSessionTTL') {
             state.update.error = {
               target: 'channelSessionTtl',
               message: description,
