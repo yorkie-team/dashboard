@@ -162,6 +162,7 @@ export async function updateProject(id: string, fields: UpdatableProjectFields):
       ? new PbProjectFields_EventWebhookEvents({ events: fields.eventWebhookEvents })
       : undefined,
     clientDeactivateThreshold: fields.clientDeactivateThreshold,
+    channelSessionTtl: fields.channelSessionTtl,
     snapshotThreshold: fields.snapshotThreshold ? BigInt(fields.snapshotThreshold) : undefined,
     snapshotInterval: fields.snapshotInterval ? BigInt(fields.snapshotInterval) : undefined,
     maxSubscribersPerDocument: fields.maxSubscribersPerDocument,

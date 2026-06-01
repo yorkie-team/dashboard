@@ -48,3 +48,6 @@ tags
 [._]*.un~
 
 # End of https://www.toptal.com/developers/gitignore/api/vim
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat

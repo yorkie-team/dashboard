@@ -2316,6 +2316,11 @@ export class Project extends Message<Project> {
   autoRevisionEnabled = false;
 
   /**
+   * @generated from field: string channel_session_ttl = 28;
+   */
+  channelSessionTtl = "";
+
+  /**
    * @generated from field: repeated string allowed_origins = 14;
    */
   allowedOrigins: string[] = [];
@@ -2362,6 +2367,7 @@ export class Project extends Message<Project> {
     { no: 15, name: "max_size_per_document", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 16, name: "remove_on_detach", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
     { no: 27, name: "auto_revision_enabled", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 28, name: "channel_session_ttl", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 14, name: "allowed_origins", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
     { no: 12, name: "created_at", kind: "message", T: Timestamp },
     { no: 13, name: "updated_at", kind: "message", T: Timestamp },
@@ -2537,6 +2543,11 @@ export class UpdatableProjectFields extends Message<UpdatableProjectFields> {
   autoRevisionEnabled?: boolean;
 
   /**
+   * @generated from field: google.protobuf.StringValue channel_session_ttl = 23;
+   */
+  channelSessionTtl?: string;
+
+  /**
    * @generated from field: yorkie.v1.UpdatableProjectFields.AllowedOrigins allowed_origins = 9;
    */
   allowedOrigins?: UpdatableProjectFields_AllowedOrigins;
@@ -2570,6 +2581,7 @@ export class UpdatableProjectFields extends Message<UpdatableProjectFields> {
     { no: 10, name: "max_size_per_document", kind: "message", T: Int32Value },
     { no: 11, name: "remove_on_detach", kind: "message", T: BoolValue },
     { no: 22, name: "auto_revision_enabled", kind: "message", T: BoolValue },
+    { no: 23, name: "channel_session_ttl", kind: "message", T: StringValue },
     { no: 9, name: "allowed_origins", kind: "message", T: UpdatableProjectFields_AllowedOrigins },
   ]);
 
