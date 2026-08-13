@@ -28,6 +28,7 @@ import { ActiveChannelChart } from './charts/ActiveChannelChart';
 import { SessionChart } from './charts/SessionChart';
 import { PeakSessionChart } from './charts/PeakSessionChart';
 import { Icon, Popover, Dropdown } from 'components';
+import { formatNumber } from 'utils';
 import { DATE_RANGE_OPTIONS } from 'api/types';
 import { ActiveDocumentChart } from './charts/ActiveDocumentChart';
 import { ActiveClientChart } from './charts/ActiveClientChart';
@@ -70,15 +71,15 @@ export function Overview() {
         <ul className="usage_list">
           <li className="usage_item link_type">
             <span className="title">Documents</span>
-            <span className="info_text">{String(stats?.documentsCount || 0)}</span>
+            <span className="info_text">{formatNumber(stats?.documentsCount)}</span>
           </li>
           <li className="usage_item link_type">
             <span className="title">Clients</span>
-            <span className="info_text">{String(stats?.clientsCount || 0)}</span>
+            <span className="info_text">{formatNumber(stats?.clientsCount)}</span>
           </li>
           <li className="usage_item link_type">
             <span className="title">Channels</span>
-            <span className="info_text">{String(stats?.channelsCount || 0)}</span>
+            <span className="info_text">{formatNumber(stats?.channelsCount)}</span>
           </li>
         </ul>
       </div>
