@@ -53,6 +53,51 @@
     }
   }
 
+  // Read-only notice shown to Members, who cannot edit the project config.
+  .setting_readonly_notice {
+    display: flex;
+    align-items: center;
+    gap: variables.$spacing_8;
+    margin-top: variables.$spacing_24;
+    padding: variables.$spacing_16;
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    background: var(--gray-100);
+    color: var(--gray-700);
+
+    svg {
+      flex-shrink: 0;
+    }
+
+    p {
+      margin: 0;
+      font-size: 1.3rem;
+      line-height: 1.5;
+    }
+  }
+
+  // Wraps the whole project-config form so a single `disabled` attribute puts
+  // every control into read-only mode for Members.
+  .setting_form_fieldset {
+    min-inline-size: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    &:disabled {
+      .input {
+        border-color: var(--gray-300);
+        color: var(--gray-300);
+        -webkit-text-fill-color: var(--gray-300);
+        cursor: not-allowed;
+
+        &::placeholder {
+          color: var(--gray-300);
+        }
+      }
+    }
+  }
+
   .setting {
     $set: '.setting';
 
