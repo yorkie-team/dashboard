@@ -223,10 +223,7 @@ export const { resetCreateInviteStatus, resetAcceptInviteStatus } = membersSlice
 
 export const selectMembersList = (state: RootState) => state.members.list;
 
-// selectCurrentMemberRole returns the current user's normalized role in the
-// active project ('owner' | 'admin' | 'member'), or '' when it is not yet known
-// (e.g. the members list has not loaded). Callers should treat '' as no edit
-// permission so that access defaults to read-only until the role is resolved.
+// Current user's lowercased role in the active project, or '' if not yet resolved (treat as read-only).
 export const selectCurrentMemberRole = (state: RootState): string => {
   const username = state.users.isAuthenticated ? state.users.username : '';
   if (!username) return '';

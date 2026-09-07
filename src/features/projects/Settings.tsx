@@ -48,15 +48,10 @@ export function Settings() {
   const dispatch = useAppDispatch();
   const { project } = useAppSelector(selectProjectDetail);
   const { isSuccess, error } = useAppSelector(selectProjectUpdate);
-  // Project config is editable only by Owners and Admins. Members get a
-  // read-only view. The role is resolved from the members list (loaded by the
-  // <MembersList /> below); until it is known we default to read-only so that
-  // access never briefly opens up for a Member. The Admin API enforces the same
-  // rule, so this only gates the UI. See yorkie-team/yorkie feat/update-project-rbac.
+  // Only Owners and Admins can edit; unknown/other roles default to read-only until resolved.
   const currentMemberRole = useAppSelector(selectCurrentMemberRole);
   const canEditConfig = currentMemberRole === 'owner' || currentMemberRole === 'admin';
   const isReadOnly = !canEditConfig;
-  const isMember = currentMemberRole === 'member';
   const [updateFieldInfo, setUpdateFieldInfo] = useState<UpdateFieldInfo>({ target: null, state: null, message: '' });
   const {
     register,
@@ -178,9 +173,7 @@ export function Settings() {
 
   const onSubmit = useCallback(
     (fields: Partial<ProjectUpdateFields>) => {
-      // Guard against edits from users without permission (e.g. Members). The
-      // fields are disabled in the UI, but this keeps the client honest even if
-      // a control is triggered programmatically. The server enforces this too.
+      // UI already disables the fields; guard here too in case a control fires programmatically.
       if (!canEditConfig) return;
 
       const updateFields: Partial<ProjectUpdateFields> = {};
@@ -292,7 +285,7 @@ export function Settings() {
         ]}
       />
       <div className="box_right">
-        {isMember && (
+        {isReadOnly && (
           <div className="setting_readonly_notice" role="note">
             <Icon type="lockSmall" />
             <p>
