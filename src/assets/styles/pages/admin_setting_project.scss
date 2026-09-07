@@ -86,6 +86,7 @@
     &:disabled {
       .input {
         border-color: var(--gray-300);
+
         // Keep values readable in read-only mode (not just a faint disabled grey).
         color: var(--gray-600);
         -webkit-text-fill-color: var(--gray-600);
