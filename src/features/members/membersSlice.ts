@@ -222,6 +222,14 @@ export const membersSlice = createSlice({
 export const { resetCreateInviteStatus, resetAcceptInviteStatus } = membersSlice.actions;
 
 export const selectMembersList = (state: RootState) => state.members.list;
+
+// Current user's lowercased role in the active project, or '' if not yet resolved (treat as read-only).
+export const selectCurrentMemberRole = (state: RootState): string => {
+  const username = state.users.isAuthenticated ? state.users.username : '';
+  if (!username) return '';
+  const me = state.members.list.members.find((member) => member.username === username);
+  return (me?.role || '').toLowerCase();
+};
 export const selectCreateInviteStatus = (state: RootState) => state.members.createInvite;
 export const selectAcceptInviteStatus = (state: RootState) => state.members.acceptInvite;
 export const selectRemoveStatus = (state: RootState) => state.members.remove;
