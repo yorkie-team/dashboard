@@ -18,9 +18,11 @@ import { describe, it, expect } from 'vitest';
 import { buildChartData, formatDay, formatDayWithYear } from './chartData';
 
 // NOTE(hackerwins): The buckets are derived in UTC, so they must not move with
-// the viewer's timezone. Both instants fall on 2026-09-16 in UTC while sitting
-// on a different calendar day in every zone behind UTC (`NOW`) and ahead of it
-// (`NOW_LATE`), so a local derivation breaks the expectations below.
+// the viewer's timezone. `npm test` pins the suite to America/New_York, where
+// `NOW` reads as the previous calendar day; `NOW_LATE` covers the other
+// direction for anyone running vitest straight from a zone ahead of UTC. Both
+// instants fall on 2026-09-16 in UTC, so a local derivation breaks the
+// expectations below.
 const NOW = new Date('2026-09-16T02:30:00Z');
 const NOW_LATE = new Date('2026-09-16T20:00:00Z');
 
