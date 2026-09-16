@@ -63,7 +63,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
-    "test": "vitest run",
+    "test": "TZ=America/New_York vitest run",
     "build:proto": "npx buf generate",
     "fetch:ui": "./scripts/fetch-ui.sh"
   },

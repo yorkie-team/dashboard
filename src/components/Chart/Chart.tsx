@@ -18,7 +18,19 @@ import React from 'react';
 import { LineChart, Line, XAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { formatNumber } from 'utils';
 
-export function Chart({ data, xKey, dataKey }: { data: any[]; xKey: string; dataKey: string }) {
+export function Chart({
+  data,
+  xKey,
+  dataKey,
+  tickFormatter,
+  labelFormatter,
+}: {
+  data: any[];
+  xKey: string;
+  dataKey: string;
+  tickFormatter?: (value: any) => string;
+  labelFormatter?: (value: any) => string;
+}) {
   return (
     <ResponsiveContainer width="100%" height="100%">
       <LineChart
@@ -32,8 +44,12 @@ export function Chart({ data, xKey, dataKey }: { data: any[]; xKey: string; data
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey={xKey} tickSize={0} tickMargin={10} />
-        <Tooltip labelStyle={{ color: '#333' }} formatter={(value) => formatNumber(value as number)} />
+        <XAxis dataKey={xKey} tickSize={0} tickMargin={10} tickFormatter={tickFormatter} />
+        <Tooltip
+          labelStyle={{ color: '#333' }}
+          formatter={(value) => formatNumber(value as number)}
+          labelFormatter={labelFormatter}
+        />
         <Line type="monotone" dataKey={dataKey} stroke="orange" dot={{ r: 3 }} activeDot={{ stroke: 'none', r: 3 }} />
       </LineChart>
     </ResponsiveContainer>
