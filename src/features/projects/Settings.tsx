@@ -221,17 +221,38 @@ export function Settings() {
   const onSubmitField = useCallback(
     async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      const { target } = updateFieldInfo;
+      // Save the field the submit came from, not the last edited one: clicking away only closes
+      // the Save buttons, so another input may still hold an unsaved edit. Enter submits from the
+      // focused input; a click submits from the Save button next to its input.
+      const active = document.activeElement;
+      const submitter = (e.nativeEvent as SubmitEvent).submitter;
+      const input =
+        active instanceof HTMLInputElement && e.currentTarget.contains(active)
+          ? active
+          : submitter?.closest('.input_inner')?.querySelector('input');
+      const target = input?.name as UpdateFieldInfo['target'];
       if (!isTextInputField(target)) return;
 
+      setUpdateFieldInfo((info) => ({ ...info, target }));
       const isValid = await trigger(target);
       if (!isValid) return;
       onSubmit({ [target]: getValues(target) });
     },
-    [updateFieldInfo, trigger, getValues, onSubmit],
+    [trigger, getValues, onSubmit],
   );
 
   useEffect(() => {
+    // A text input reflects only its own error, so an error left in another input does not mark
+    // the one being edited as failed and disable its Save.
+    if (isTextInputField(updateFieldInfo.target)) {
+      const error = formErrors[updateFieldInfo.target];
+      if (error) {
+        setUpdateFieldInfo((info) => ({ ...info, state: 'error', message: error.message || '' }));
+      } else if (updateFieldInfo.state !== 'success') {
+        setUpdateFieldInfo((info) => ({ ...info, state: null }));
+      }
+      return;
+    }
     if (
       updateFieldInfo.state !== 'success' &&
       !nameFieldState.error &&
