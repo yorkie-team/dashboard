@@ -18,11 +18,6 @@ import { Document, OpSource, VersionVector } from '@yorkie-js/sdk';
 import { createClient } from '@connectrpc/connect';
 import { createConnectTransport } from '@connectrpc/connect-web';
 import { AdminService } from './yorkie/v1/admin_connect';
-import {
-  UpdatableProjectFields_AuthWebhookMethods as PbProjectFields_AuthWebhookMethods,
-  UpdatableProjectFields_EventWebhookEvents as PbProjectFields_EventWebhookEvents,
-  UpdatableProjectFields_AllowedOrigins as PbProjectFields_AllowedOrigins,
-} from './yorkie/v1/resources_pb';
 import { InviteExpireOption } from './yorkie/v1/admin_pb';
 import { InterceptorBuilder } from './interceptor';
 import {
@@ -151,40 +146,7 @@ export async function getProject(name: string): Promise<Project> {
 
 // UpdateProject updates a project info.
 export async function updateProject(id: string, fields: UpdatableProjectFields): Promise<Project> {
-  const pbFields = {
-    name: fields.name,
-    authWebhookUrl: fields.authWebhookURL,
-    authWebhookMethods: fields.authWebhookMethods
-      ? new PbProjectFields_AuthWebhookMethods({ methods: fields.authWebhookMethods })
-      : undefined,
-    eventWebhookUrl: fields.eventWebhookURL,
-    eventWebhookEvents: fields.eventWebhookEvents
-      ? new PbProjectFields_EventWebhookEvents({ events: fields.eventWebhookEvents })
-      : undefined,
-    clientDeactivateThreshold: fields.clientDeactivateThreshold,
-    channelSessionTtl: fields.channelSessionTtl,
-    snapshotThreshold: fields.snapshotThreshold ? BigInt(fields.snapshotThreshold) : undefined,
-    snapshotInterval: fields.snapshotInterval ? BigInt(fields.snapshotInterval) : undefined,
-    // Form inputs deliver strings at runtime; Int32Value wrappers only accept numbers when encoding.
-    maxSubscribersPerDocument:
-      fields.maxSubscribersPerDocument !== undefined ? Number(fields.maxSubscribersPerDocument) : undefined,
-    maxAttachmentsPerDocument:
-      fields.maxAttachmentsPerDocument !== undefined ? Number(fields.maxAttachmentsPerDocument) : undefined,
-    maxSizePerDocument: fields.maxSizePerDocument !== undefined ? Number(fields.maxSizePerDocument) : undefined,
-    removeOnDetach: fields.removeOnDetach && Boolean(fields.removeOnDetach),
-    autoRevisionEnabled: fields.autoRevisionEnabled !== undefined ? Boolean(fields.autoRevisionEnabled) : undefined,
-    // An empty input clears the list, which the server treats as allowing all origins.
-    allowedOrigins:
-      fields.allowedOrigins !== undefined
-        ? new PbProjectFields_AllowedOrigins({
-            origins: fields.allowedOrigins
-              .split(',')
-              .map((origin) => origin.trim())
-              .filter((origin) => origin),
-          })
-        : undefined,
-  };
-  const res = await client.updateProject({ id, fields: pbFields });
+  const res = await client.updateProject({ id, fields: converter.toUpdatableProjectFields(fields) });
   return converter.fromProject(res.project!);
 }
 
