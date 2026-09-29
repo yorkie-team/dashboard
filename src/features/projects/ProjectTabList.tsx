@@ -39,15 +39,23 @@ export function ProjectTabList() {
           dispatch(getProjectAsync(projectName));
         }
       });
-    } else if (projectDetail.project?.name !== projectName && projectDetail.status === 'idle') {
-      // If current project is already set, just get details if needed
+    } else if (
+      projectDetail.project?.name !== projectName &&
+      projectDetail.project?.id !== currentProject.project?.id &&
+      projectDetail.status === 'idle'
+    ) {
+      // If current project is already set, just get details if needed.
+      // Skip when the detail is the same project under a new name: it was just renamed, and
+      // fetching by the old name in the URL would fail before Settings navigates to the new one.
       dispatch(getProjectAsync(projectName));
     }
   }, [
     dispatch,
     projectName,
+    currentProject.project?.id,
     currentProject.project?.name,
     currentProject.status,
+    projectDetail.project?.id,
     projectDetail.project?.name,
     projectDetail.status,
   ]);

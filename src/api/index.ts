@@ -165,14 +165,24 @@ export async function updateProject(id: string, fields: UpdatableProjectFields):
     channelSessionTtl: fields.channelSessionTtl,
     snapshotThreshold: fields.snapshotThreshold ? BigInt(fields.snapshotThreshold) : undefined,
     snapshotInterval: fields.snapshotInterval ? BigInt(fields.snapshotInterval) : undefined,
-    maxSubscribersPerDocument: fields.maxSubscribersPerDocument,
-    maxAttachmentsPerDocument: fields.maxAttachmentsPerDocument,
-    maxSizePerDocument: fields.maxSizePerDocument,
+    // Form inputs deliver strings at runtime; Int32Value wrappers only accept numbers when encoding.
+    maxSubscribersPerDocument:
+      fields.maxSubscribersPerDocument !== undefined ? Number(fields.maxSubscribersPerDocument) : undefined,
+    maxAttachmentsPerDocument:
+      fields.maxAttachmentsPerDocument !== undefined ? Number(fields.maxAttachmentsPerDocument) : undefined,
+    maxSizePerDocument: fields.maxSizePerDocument !== undefined ? Number(fields.maxSizePerDocument) : undefined,
     removeOnDetach: fields.removeOnDetach && Boolean(fields.removeOnDetach),
     autoRevisionEnabled: fields.autoRevisionEnabled !== undefined ? Boolean(fields.autoRevisionEnabled) : undefined,
-    allowedOrigins: fields.allowedOrigins
-      ? new PbProjectFields_AllowedOrigins({ origins: fields.allowedOrigins.split(',') })
-      : undefined,
+    // An empty input clears the list, which the server treats as allowing all origins.
+    allowedOrigins:
+      fields.allowedOrigins !== undefined
+        ? new PbProjectFields_AllowedOrigins({
+            origins: fields.allowedOrigins
+              .split(',')
+              .map((origin) => origin.trim())
+              .filter((origin) => origin),
+          })
+        : undefined,
   };
   const res = await client.updateProject({ id, fields: pbFields });
   return converter.fromProject(res.project!);

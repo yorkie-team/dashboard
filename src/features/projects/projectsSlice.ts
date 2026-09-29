@@ -358,22 +358,22 @@ export const projectsSlice = createSlice({
               target: 'channelSessionTtl',
               message: description,
             };
-          } else if (field === 'maxSubscribersPerDocument') {
+          } else if (field === 'MaxSubscribersPerDocument') {
             state.update.error = {
               target: 'maxSubscribersPerDocument',
               message: description,
             };
-          } else if (field === 'maxAttachmentsPerDocument') {
+          } else if (field === 'MaxAttachmentsPerDocument') {
             state.update.error = {
               target: 'maxAttachmentsPerDocument',
               message: description,
             };
-          } else if (field === 'maxSizePerDocument') {
+          } else if (field === 'MaxSizePerDocument') {
             state.update.error = {
               target: 'maxSizePerDocument',
               message: description,
             };
-          } else if (field === 'removeOnDetach') {
+          } else if (field === 'RemoveOnDetach') {
             state.update.error = {
               target: 'removeOnDetach',
               message: description,
@@ -385,7 +385,11 @@ export const projectsSlice = createSlice({
             };
           }
         }
-        action.meta.isHandledError = true;
+        // Errors without a known field (e.g. a value the server cannot decode) fall through to
+        // the global error modal instead of being silently swallowed.
+        if (state.update.error) {
+          action.meta.isHandledError = true;
+        }
         return;
       }
     });
