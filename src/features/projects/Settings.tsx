@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { useCallback, useEffect, useState } from 'react';
+import { FormEvent, useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm, useController } from 'react-hook-form';
 import classNames from 'classnames';
@@ -43,6 +43,29 @@ export type UpdateFieldInfo = {
   state: 'success' | 'error' | null;
   message: string;
 };
+
+// Text inputs are saved one at a time, like the toggles, so an invalid or empty value
+// in another field (e.g. a legacy project without Channel Session TTL) cannot block the save.
+const TEXT_INPUT_FIELDS: ReadonlyArray<keyof UpdatableProjectFields> = [
+  'name',
+  'eventWebhookURL',
+  'allowedOrigins',
+  'authWebhookURL',
+  'clientDeactivateThreshold',
+  'channelSessionTtl',
+  'snapshotThreshold',
+  'snapshotInterval',
+  'maxAttachmentsPerDocument',
+  'maxSubscribersPerDocument',
+  'maxSizePerDocument',
+];
+// Max-per-document fields are int32 and snapshot fields are int64 on the server.
+const INT32_MAX = 2147483647;
+const INT64_MAX = BigInt('9223372036854775807');
+
+const isTextInputField = (target: UpdateFieldInfo['target']): target is keyof UpdatableProjectFields =>
+  TEXT_INPUT_FIELDS.includes(target as keyof UpdatableProjectFields);
+
 export function Settings() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -56,12 +79,15 @@ export function Settings() {
   const {
     register,
     formState: { errors: formErrors },
-    handleSubmit,
     setError,
     reset,
     trigger,
+    getValues,
     control,
   } = useForm<ProjectUpdateFields>({
+    // Fields are saved individually rather than via handleSubmit, so validate as the user types;
+    // otherwise an error would stick (and keep Save disabled) until the input is cancelled.
+    mode: 'onChange',
     defaultValues: {
       name: '',
       authWebhookURL: '',
@@ -192,7 +218,41 @@ export function Settings() {
     [dispatch, project?.id, canEditConfig],
   );
 
+  const onSubmitField = useCallback(
+    async (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      // Save the field the submit came from, not the last edited one: clicking away only closes
+      // the Save buttons, so another input may still hold an unsaved edit. Enter submits from the
+      // focused input; a click submits from the Save button next to its input.
+      const active = document.activeElement;
+      const submitter = (e.nativeEvent as SubmitEvent).submitter;
+      const input =
+        active instanceof HTMLInputElement && e.currentTarget.contains(active)
+          ? active
+          : submitter?.closest('.input_inner')?.querySelector('input');
+      const target = input?.name as UpdateFieldInfo['target'];
+      if (!isTextInputField(target)) return;
+
+      setUpdateFieldInfo((info) => ({ ...info, target }));
+      const isValid = await trigger(target);
+      if (!isValid) return;
+      onSubmit({ [target]: getValues(target) });
+    },
+    [trigger, getValues, onSubmit],
+  );
+
   useEffect(() => {
+    // A text input reflects only its own error, so an error left in another input does not mark
+    // the one being edited as failed and disable its Save.
+    if (isTextInputField(updateFieldInfo.target)) {
+      const error = formErrors[updateFieldInfo.target];
+      if (error) {
+        setUpdateFieldInfo((info) => ({ ...info, state: 'error', message: error.message || '' }));
+      } else if (updateFieldInfo.state !== 'success') {
+        setUpdateFieldInfo((info) => ({ ...info, state: null }));
+      }
+      return;
+    }
     if (
       updateFieldInfo.state !== 'success' &&
       !nameFieldState.error &&
@@ -248,6 +308,8 @@ export function Settings() {
     maxSubscribersPerDocumentState.error,
     maxAttachmentsPerDocumentState.error,
     maxSizePerDocumentState.error,
+    snapshotIntervalState.error,
+    snapshotThresholdState.error,
     removeOnDetachState.error,
     autoRevisionEnabledState.error,
     allowedOriginsState.error,
@@ -294,7 +356,7 @@ export function Settings() {
             </p>
           </div>
         )}
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={onSubmitField}>
           <fieldset className="setting_form_fieldset" disabled={isReadOnly}>
             <div className="section setting_box" id="general">
               <div className="setting_title">
@@ -709,7 +771,7 @@ export function Settings() {
                   <p className="guide">
                     Set how long a channel session is retained after a user leaves (1s–5m). Longer values keep users
                     counted in presence longer after they disconnect, increasing the apparent live presence count.
-                    Format: &quot;15s&quot; for 15 seconds, &quot;1m30s&quot; for 1 minute 30 seconds.
+                    Format: &quot;15s&quot; for 15 seconds, &quot;1m30s&quot; for 1 minute 30 seconds. Default: 15s.
                   </p>
                   <div
                     className={classNames('input_field_box', {
@@ -789,6 +851,7 @@ export function Settings() {
                           value: /^[0-9]+$/,
                           message: 'Snapshot Threshold must be a positive integer',
                         },
+                        validate: (value) => BigInt(value) <= INT64_MAX || 'Snapshot Threshold is too large',
                         onChange: async () => {
                           await trigger('snapshotThreshold');
                         },
@@ -850,6 +913,7 @@ export function Settings() {
                           value: /^[0-9]+$/,
                           message: 'Snapshot Interval must be a positive integer',
                         },
+                        validate: (value) => BigInt(value) <= INT64_MAX || 'Snapshot Interval is too large',
                         onChange: async () => {
                           await trigger('snapshotInterval');
                         },
@@ -911,6 +975,10 @@ export function Settings() {
                         pattern: {
                           value: /^[0-9]+$/,
                           message: 'Max Attachments Per Document must be a positive integer',
+                        },
+                        max: {
+                          value: INT32_MAX,
+                          message: `Max Attachments Per Document must be at most ${INT32_MAX.toLocaleString('en-US')}`,
                         },
                         onChange: async () => {
                           await trigger('maxAttachmentsPerDocument');
@@ -974,6 +1042,10 @@ export function Settings() {
                           value: /^[0-9]+$/,
                           message: 'Max Subscribers Per Document must be a positive integer',
                         },
+                        max: {
+                          value: INT32_MAX,
+                          message: `Max Subscribers Per Document must be at most ${INT32_MAX.toLocaleString('en-US')}`,
+                        },
                         onChange: async () => {
                           await trigger('maxSubscribersPerDocument');
                         },
@@ -1034,6 +1106,10 @@ export function Settings() {
                         pattern: {
                           value: /^[0-9]+$/,
                           message: 'Max Size Per Document must be a positive integer',
+                        },
+                        max: {
+                          value: INT32_MAX,
+                          message: `Max Size Per Document must be at most ${INT32_MAX.toLocaleString('en-US')}`,
                         },
                         onChange: async () => {
                           await trigger('maxSizePerDocument');

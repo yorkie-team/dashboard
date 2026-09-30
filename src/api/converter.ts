@@ -25,7 +25,15 @@ import {
   Member,
 } from './types';
 import { Timestamp as PbTimestamp } from '@bufbuild/protobuf';
-import { User, Project, DocumentSummary, AuthWebhookMethod, EventWebhookEvent, FieldViolation } from './types';
+import {
+  User,
+  Project,
+  DocumentSummary,
+  AuthWebhookMethod,
+  EventWebhookEvent,
+  FieldViolation,
+  UpdatableProjectFields,
+} from './types';
 import { Change, converter, Indexable } from '@yorkie-js/sdk';
 import {
   User as PbUser,
@@ -38,6 +46,10 @@ import {
   Schema as PbSchema,
   Change as PbChange,
   RevisionSummary as PbRevisionSummary,
+  UpdatableProjectFields as PbUpdatableProjectFields,
+  UpdatableProjectFields_AuthWebhookMethods as PbProjectFields_AuthWebhookMethods,
+  UpdatableProjectFields_EventWebhookEvents as PbProjectFields_EventWebhookEvents,
+  UpdatableProjectFields_AllowedOrigins as PbProjectFields_AllowedOrigins,
 } from './yorkie/v1/resources_pb';
 import { GetProjectStatsRequest_DateRange as PbDateRange } from './yorkie/v1/admin_pb';
 import { ConnectError } from '@connectrpc/connect';
@@ -190,6 +202,43 @@ export function fromErrorDetails(error: ConnectError) {
     }
   }
   return details;
+}
+
+// toUpdatableProjectFields converts the given model format to Protobuf format.
+export function toUpdatableProjectFields(fields: UpdatableProjectFields): PbUpdatableProjectFields {
+  return new PbUpdatableProjectFields({
+    name: fields.name,
+    authWebhookUrl: fields.authWebhookURL,
+    authWebhookMethods: fields.authWebhookMethods
+      ? new PbProjectFields_AuthWebhookMethods({ methods: fields.authWebhookMethods })
+      : undefined,
+    eventWebhookUrl: fields.eventWebhookURL,
+    eventWebhookEvents: fields.eventWebhookEvents
+      ? new PbProjectFields_EventWebhookEvents({ events: fields.eventWebhookEvents })
+      : undefined,
+    clientDeactivateThreshold: fields.clientDeactivateThreshold,
+    channelSessionTtl: fields.channelSessionTtl,
+    snapshotThreshold: fields.snapshotThreshold ? BigInt(fields.snapshotThreshold) : undefined,
+    snapshotInterval: fields.snapshotInterval ? BigInt(fields.snapshotInterval) : undefined,
+    // Form inputs deliver strings at runtime; Int32Value wrappers only accept numbers when encoding.
+    maxSubscribersPerDocument:
+      fields.maxSubscribersPerDocument !== undefined ? Number(fields.maxSubscribersPerDocument) : undefined,
+    maxAttachmentsPerDocument:
+      fields.maxAttachmentsPerDocument !== undefined ? Number(fields.maxAttachmentsPerDocument) : undefined,
+    maxSizePerDocument: fields.maxSizePerDocument !== undefined ? Number(fields.maxSizePerDocument) : undefined,
+    removeOnDetach: fields.removeOnDetach && Boolean(fields.removeOnDetach),
+    autoRevisionEnabled: fields.autoRevisionEnabled !== undefined ? Boolean(fields.autoRevisionEnabled) : undefined,
+    // An empty input clears the list, which the server treats as allowing all origins.
+    allowedOrigins:
+      fields.allowedOrigins !== undefined
+        ? new PbProjectFields_AllowedOrigins({
+            origins: fields.allowedOrigins
+              .split(',')
+              .map((origin) => origin.trim())
+              .filter((origin) => origin),
+          })
+        : undefined,
+  });
 }
 
 export function toDateRange(range: keyof typeof DATE_RANGE_OPTIONS): PbDateRange {
