@@ -27,6 +27,29 @@ describe('AUTH_WEBHOOK_METHODS', () => {
   it('has no duplicates', () => {
     expect(new Set(AUTH_WEBHOOK_METHODS).size).toBe(AUTH_WEBHOOK_METHODS.length);
   });
+
+  it('lists every non-deprecated server method', () => {
+    expect([...AUTH_WEBHOOK_METHODS].sort()).toEqual(
+      [
+        'ActivateClient',
+        'DeactivateClient',
+        'AttachDocument',
+        'DetachDocument',
+        'RemoveDocument',
+        'PushPull',
+        'Watch',
+        'CreateRevision',
+        'GetRevision',
+        'ListRevisions',
+        'RestoreRevision',
+        'AttachChannel',
+        'DetachChannel',
+        'RefreshChannel',
+        'PeekChannel',
+        'Broadcast',
+      ].sort(),
+    );
+  });
 });
 
 describe('toggleAuthWebhookMethod', () => {

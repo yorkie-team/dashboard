@@ -174,27 +174,21 @@ export type AuthWebhookMethod =
 
 export type EventWebhookEvent = 'DocumentRootChanged';
 
-// AUTH_WEBHOOK_METHODS lists the methods shown as toggles. The deprecated aliases WatchDocument and
-// WatchChannel are left out: the server matches them when Watch is enabled. A project that still
-// stores them keeps them on save, since toggling only adds or removes the toggled method.
-export const AUTH_WEBHOOK_METHODS: Array<AuthWebhookMethod> = [
-  'ActivateClient',
-  'DeactivateClient',
-  'AttachDocument',
-  'DetachDocument',
-  'RemoveDocument',
-  'PushPull',
-  'Watch',
-  'CreateRevision',
-  'GetRevision',
-  'ListRevisions',
-  'RestoreRevision',
-  'AttachChannel',
-  'DetachChannel',
-  'RefreshChannel',
-  'PeekChannel',
-  'Broadcast',
+// AUTH_WEBHOOK_METHOD_GROUPS lists the methods shown as toggles, grouped by the resource they act on.
+// The deprecated aliases WatchDocument and WatchChannel are left out: the server matches them when
+// Watch is enabled. A project that still stores them keeps them on save, since toggling only adds or
+// removes the toggled method.
+export const AUTH_WEBHOOK_METHOD_GROUPS: Array<{ label: string; methods: Array<AuthWebhookMethod> }> = [
+  { label: 'Client', methods: ['ActivateClient', 'DeactivateClient'] },
+  { label: 'Document', methods: ['AttachDocument', 'DetachDocument', 'RemoveDocument', 'PushPull', 'Watch'] },
+  { label: 'Revision', methods: ['CreateRevision', 'GetRevision', 'ListRevisions', 'RestoreRevision'] },
+  { label: 'Channel', methods: ['AttachChannel', 'DetachChannel', 'RefreshChannel', 'PeekChannel', 'Broadcast'] },
 ];
+
+// AUTH_WEBHOOK_METHODS lists every method that has a toggle.
+export const AUTH_WEBHOOK_METHODS: Array<AuthWebhookMethod> = AUTH_WEBHOOK_METHOD_GROUPS.flatMap(
+  ({ methods }) => methods,
+);
 
 // toggleAuthWebhookMethod returns the given methods with method added or removed, keeping every
 // other method, including ones without a toggle.

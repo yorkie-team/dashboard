@@ -28,7 +28,7 @@ import {
   listProjectsAsync,
 } from './projectsSlice';
 import {
-  AUTH_WEBHOOK_METHODS,
+  AUTH_WEBHOOK_METHOD_GROUPS,
   EVENT_WEBHOOK_EVENTS,
   UpdatableProjectFields,
   AuthWebhookMethod,
@@ -659,40 +659,45 @@ export function Settings() {
                     authorization.
                   </p>
                   <div className="webhook_methods">
-                    {AUTH_WEBHOOK_METHODS.map((method) => {
-                      return (
-                        <div
-                          className={classNames('input_group', {
-                            is_error: checkFieldState(method, 'error'),
-                            is_success: checkFieldState(method, 'success'),
-                          })}
-                          key={method}
-                        >
-                          <InputToggle
-                            id={method}
-                            label={method}
-                            checked={webhookMethodField.value.includes(method)}
-                            onChange={(e) => {
-                              const newWebhookMethods = toggleAuthWebhookMethod(
-                                project?.authWebhookMethods || [],
-                                method,
-                                e.target.checked,
-                              );
-                              webhookMethodField.onChange(newWebhookMethods);
-                              setUpdateFieldInfo((info) => ({ ...info, target: method }));
-                              onSubmit({ authWebhookMethods: newWebhookMethods });
-                            }}
-                          />
-                          {updateFieldInfo.target === method && updateFieldInfo.state !== null && (
-                            <InputHelperText
-                              state={updateFieldInfo.state}
-                              message={updateFieldInfo.message}
-                              onSuccessEnd={resetUpdateFieldInfo}
-                            />
-                          )}
+                    {AUTH_WEBHOOK_METHOD_GROUPS.map(({ label, methods }) => (
+                      <div className="webhook_method_group" key={label}>
+                        <strong className="webhook_method_group_title">{label}</strong>
+                        <div className="webhook_method_list">
+                          {methods.map((method) => (
+                            <div
+                              className={classNames('input_group', {
+                                is_error: checkFieldState(method, 'error'),
+                                is_success: checkFieldState(method, 'success'),
+                              })}
+                              key={method}
+                            >
+                              <InputToggle
+                                id={method}
+                                label={method}
+                                checked={webhookMethodField.value.includes(method)}
+                                onChange={(e) => {
+                                  const newWebhookMethods = toggleAuthWebhookMethod(
+                                    project?.authWebhookMethods || [],
+                                    method,
+                                    e.target.checked,
+                                  );
+                                  webhookMethodField.onChange(newWebhookMethods);
+                                  setUpdateFieldInfo((info) => ({ ...info, target: method }));
+                                  onSubmit({ authWebhookMethods: newWebhookMethods });
+                                }}
+                              />
+                              {updateFieldInfo.target === method && updateFieldInfo.state !== null && (
+                                <InputHelperText
+                                  state={updateFieldInfo.state}
+                                  message={updateFieldInfo.message}
+                                  onSuccessEnd={resetUpdateFieldInfo}
+                                />
+                              )}
+                            </div>
+                          ))}
                         </div>
-                      );
-                    })}
+                      </div>
+                    ))}
                   </div>
                 </dd>
               </dl>
