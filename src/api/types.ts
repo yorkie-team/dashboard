@@ -151,26 +151,63 @@ export type UpdatableProjectFields = {
   allowedOrigins?: string;
 };
 
+// AuthWebhookMethod mirrors the server's AuthMethods() in api/types/auth_webhook.go.
 export type AuthWebhookMethod =
   | 'ActivateClient'
   | 'DeactivateClient'
   | 'AttachDocument'
   | 'DetachDocument'
+  | 'RemoveDocument'
   | 'PushPull'
   | 'Watch'
+  | 'WatchDocument' // Deprecated: use Watch
+  | 'WatchChannel' // Deprecated: use Watch
+  | 'CreateRevision'
+  | 'GetRevision'
+  | 'ListRevisions'
+  | 'RestoreRevision'
+  | 'AttachChannel'
+  | 'DetachChannel'
+  | 'RefreshChannel'
+  | 'PeekChannel'
   | 'Broadcast';
 
 export type EventWebhookEvent = 'DocumentRootChanged';
 
+// AUTH_WEBHOOK_METHODS lists the methods shown as toggles. The deprecated aliases WatchDocument and
+// WatchChannel are left out: the server matches them when Watch is enabled. A project that still
+// stores them keeps them on save, since toggling only adds or removes the toggled method.
 export const AUTH_WEBHOOK_METHODS: Array<AuthWebhookMethod> = [
   'ActivateClient',
   'DeactivateClient',
   'AttachDocument',
   'DetachDocument',
+  'RemoveDocument',
   'PushPull',
   'Watch',
+  'CreateRevision',
+  'GetRevision',
+  'ListRevisions',
+  'RestoreRevision',
+  'AttachChannel',
+  'DetachChannel',
+  'RefreshChannel',
+  'PeekChannel',
   'Broadcast',
 ];
+
+// toggleAuthWebhookMethod returns the given methods with method added or removed, keeping every
+// other method, including ones without a toggle.
+export function toggleAuthWebhookMethod(
+  methods: Array<AuthWebhookMethod>,
+  method: AuthWebhookMethod,
+  enabled: boolean,
+): Array<AuthWebhookMethod> {
+  if (enabled) {
+    return methods.includes(method) ? [...methods] : [...methods, method];
+  }
+  return methods.filter((m) => m !== method);
+}
 
 export const EVENT_WEBHOOK_EVENTS: Array<EventWebhookEvent> = ['DocumentRootChanged'];
 

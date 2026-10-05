@@ -33,6 +33,7 @@ import {
   UpdatableProjectFields,
   AuthWebhookMethod,
   EventWebhookEvent,
+  toggleAuthWebhookMethod,
 } from 'api/types';
 import { Icon, InputToggle, InputHelperText, InputTextField, Navigator } from 'components';
 import { MembersList } from 'features/members';
@@ -672,14 +673,11 @@ export function Settings() {
                             label={method}
                             checked={webhookMethodField.value.includes(method)}
                             onChange={(e) => {
-                              let newWebhookMethods = [...project?.authWebhookMethods!];
-                              if (e.target.checked) {
-                                newWebhookMethods = newWebhookMethods.includes(method)
-                                  ? newWebhookMethods
-                                  : [...newWebhookMethods, method];
-                              } else {
-                                newWebhookMethods = newWebhookMethods.filter((newMethod) => newMethod !== method);
-                              }
+                              const newWebhookMethods = toggleAuthWebhookMethod(
+                                project?.authWebhookMethods || [],
+                                method,
+                                e.target.checked,
+                              );
                               webhookMethodField.onChange(newWebhookMethods);
                               setUpdateFieldInfo((info) => ({ ...info, target: method }));
                               onSubmit({ authWebhookMethods: newWebhookMethods });
