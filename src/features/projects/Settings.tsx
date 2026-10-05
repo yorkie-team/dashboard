@@ -71,7 +71,7 @@ export function Settings() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { project } = useAppSelector(selectProjectDetail);
-  const { isSuccess, error } = useAppSelector(selectProjectUpdate);
+  const { isSuccess, error, status: updateStatus } = useAppSelector(selectProjectUpdate);
   // Only Owners and Admins can edit; unknown/other roles default to read-only until resolved.
   const currentMemberRole = useAppSelector(selectCurrentMemberRole);
   const canEditConfig = currentMemberRole === 'owner' || currentMemberRole === 'admin';
@@ -675,6 +675,10 @@ export function Settings() {
                                 id={method}
                                 label={method}
                                 checked={webhookMethodField.value.includes(method)}
+                                // Each toggle saves the whole list built from the stored project, so a
+                                // toggle made while a save is in flight would drop that save's change.
+                                // Wait for it: the stored project is updated when the save completes.
+                                disabled={updateStatus === 'loading'}
                                 onChange={(e) => {
                                   const newWebhookMethods = toggleAuthWebhookMethod(
                                     project?.authWebhookMethods || [],
