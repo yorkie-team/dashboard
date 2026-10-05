@@ -252,6 +252,46 @@
         padding: 0;
       }
     }
+
+    .webhook_method_group + .webhook_method_group {
+      margin-top: variables.$spacing_24;
+    }
+
+    .webhook_method_group_title {
+      display: block;
+      @include mixins-lib.rfonts(12, 16, 500);
+      color: var(--gray-500);
+
+      .darkmode & {
+        color: var(--gray-400);
+      }
+    }
+
+    .webhook_method_list {
+      display: grid;
+      // Wide enough for the longest label plus the "Success" helper text the
+      // toggle shows beside it after a save.
+      grid-template-columns: repeat(2, minmax(0, 300px));
+      gap: variables.$spacing_16 variables.$spacing_24;
+      margin-top: variables.$spacing_8;
+
+      @include mixins-lib.mobileStart() {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      // The grid gap spaces the rows; the stacked .input_group margin would
+      // push every cell but the first one down.
+      .input_group {
+        margin-top: 0;
+      }
+
+      // The stacked layout reserves 258px for the toggle so helper texts line
+      // up; in a cell that leaves the helper text no room and it wraps per
+      // letter. Let the toggle take only its own width.
+      .input_toggle_box {
+        min-width: auto;
+      }
+    }
   }
 
   .danger_zone {

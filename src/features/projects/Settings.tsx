@@ -28,11 +28,12 @@ import {
   listProjectsAsync,
 } from './projectsSlice';
 import {
-  AUTH_WEBHOOK_METHODS,
+  AUTH_WEBHOOK_METHOD_GROUPS,
   EVENT_WEBHOOK_EVENTS,
   UpdatableProjectFields,
   AuthWebhookMethod,
   EventWebhookEvent,
+  toggleAuthWebhookMethod,
 } from 'api/types';
 import { Icon, InputToggle, InputHelperText, InputTextField, Navigator } from 'components';
 import { MembersList } from 'features/members';
@@ -70,7 +71,7 @@ export function Settings() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { project } = useAppSelector(selectProjectDetail);
-  const { isSuccess, error } = useAppSelector(selectProjectUpdate);
+  const { isSuccess, error, status: updateStatus } = useAppSelector(selectProjectUpdate);
   // Only Owners and Admins can edit; unknown/other roles default to read-only until resolved.
   const currentMemberRole = useAppSelector(selectCurrentMemberRole);
   const canEditConfig = currentMemberRole === 'owner' || currentMemberRole === 'admin';
@@ -658,43 +659,49 @@ export function Settings() {
                     authorization.
                   </p>
                   <div className="webhook_methods">
-                    {AUTH_WEBHOOK_METHODS.map((method) => {
-                      return (
-                        <div
-                          className={classNames('input_group', {
-                            is_error: checkFieldState(method, 'error'),
-                            is_success: checkFieldState(method, 'success'),
-                          })}
-                          key={method}
-                        >
-                          <InputToggle
-                            id={method}
-                            label={method}
-                            checked={webhookMethodField.value.includes(method)}
-                            onChange={(e) => {
-                              let newWebhookMethods = [...project?.authWebhookMethods!];
-                              if (e.target.checked) {
-                                newWebhookMethods = newWebhookMethods.includes(method)
-                                  ? newWebhookMethods
-                                  : [...newWebhookMethods, method];
-                              } else {
-                                newWebhookMethods = newWebhookMethods.filter((newMethod) => newMethod !== method);
-                              }
-                              webhookMethodField.onChange(newWebhookMethods);
-                              setUpdateFieldInfo((info) => ({ ...info, target: method }));
-                              onSubmit({ authWebhookMethods: newWebhookMethods });
-                            }}
-                          />
-                          {updateFieldInfo.target === method && updateFieldInfo.state !== null && (
-                            <InputHelperText
-                              state={updateFieldInfo.state}
-                              message={updateFieldInfo.message}
-                              onSuccessEnd={resetUpdateFieldInfo}
-                            />
-                          )}
+                    {AUTH_WEBHOOK_METHOD_GROUPS.map(({ label, methods }) => (
+                      <div className="webhook_method_group" key={label}>
+                        <strong className="webhook_method_group_title">{label}</strong>
+                        <div className="webhook_method_list">
+                          {methods.map((method) => (
+                            <div
+                              className={classNames('input_group', {
+                                is_error: checkFieldState(method, 'error'),
+                                is_success: checkFieldState(method, 'success'),
+                              })}
+                              key={method}
+                            >
+                              <InputToggle
+                                id={method}
+                                label={method}
+                                checked={webhookMethodField.value.includes(method)}
+                                // Each toggle saves the whole list built from the stored project, so a
+                                // toggle made while a save is in flight would drop that save's change.
+                                // Wait for it: the stored project is updated when the save completes.
+                                disabled={updateStatus === 'loading'}
+                                onChange={(e) => {
+                                  const newWebhookMethods = toggleAuthWebhookMethod(
+                                    project?.authWebhookMethods || [],
+                                    method,
+                                    e.target.checked,
+                                  );
+                                  webhookMethodField.onChange(newWebhookMethods);
+                                  setUpdateFieldInfo((info) => ({ ...info, target: method }));
+                                  onSubmit({ authWebhookMethods: newWebhookMethods });
+                                }}
+                              />
+                              {updateFieldInfo.target === method && updateFieldInfo.state !== null && (
+                                <InputHelperText
+                                  state={updateFieldInfo.state}
+                                  message={updateFieldInfo.message}
+                                  onSuccessEnd={resetUpdateFieldInfo}
+                                />
+                              )}
+                            </div>
+                          ))}
                         </div>
-                      );
-                    })}
+                      </div>
+                    ))}
                   </div>
                 </dd>
               </dl>
