@@ -44,6 +44,21 @@ describe('InterceptorBuilder.createAuthInterceptor', () => {
     expect(header.get(ProjectNameHeader)).toBe('my-project');
   });
 
+  it('drops the previous project credential when switching projects', async () => {
+    const builder = new InterceptorBuilder();
+    builder.setProject('admin-project', 'secret');
+    builder.setProject('member-project', '');
+
+    const toMember = await send(builder, 'ListDocuments');
+    expect(toMember.get('authorization')).toBeNull();
+    expect(toMember.get(ProjectNameHeader)).toBe('member-project');
+
+    builder.setProject('admin-project', 'secret');
+    const toAdmin = await send(builder, 'ListDocuments');
+    expect(toAdmin.get('authorization')).toBe('API-Key secret');
+    expect(toAdmin.get(ProjectNameHeader)).toBeNull();
+  });
+
   it('leaves user-scoped calls and cleared projects untouched', async () => {
     const builder = new InterceptorBuilder();
     builder.setProject('my-project', 'secret');
