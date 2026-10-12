@@ -24,6 +24,8 @@ import { Link } from 'react-router-dom';
 export function APIKeys() {
   const { project } = useAppSelector(selectProjectDetail);
   const [revealSecretKey, setRevealSecretKey] = useState(false);
+  // The server leaves the secret key empty for roles below admin.
+  const isSecretKeyHidden = !!project && !project.secretKey;
 
   return (
     <section className="api_area">
@@ -81,7 +83,13 @@ export function APIKeys() {
       <div className="connect_api_box">
         <div className="api_box">
           <div className="api">
-            {!revealSecretKey && (
+            {isSecretKeyHidden && (
+              <span className="value">
+                <Icon type="lockSmall" />
+                Only project owners and admins can view the secret key.
+              </span>
+            )}
+            {!isSecretKeyHidden && !revealSecretKey && (
               <button
                 type="button"
                 className="btn_cover"
@@ -93,24 +101,26 @@ export function APIKeys() {
                 Click to reveal secret key
               </button>
             )}
-            {revealSecretKey && <span className="value">{project?.secretKey}</span>}
+            {!isSecretKeyHidden && revealSecretKey && <span className="value">{project?.secretKey}</span>}
           </div>
         </div>
-        <CopyButton value={project?.secretKey!} timeout={1000}>
-          {({ copied, copy }) => (
-            <div className="btn_area">
-              <Button outline icon={<Icon type="copy" />} onClick={copy}>
-                Copy
-              </Button>
-              {copied && (
-                <div className="toast_box shadow_l">
-                  <Icon type="check" />
-                  Copied
-                </div>
-              )}
-            </div>
-          )}
-        </CopyButton>
+        {!isSecretKeyHidden && (
+          <CopyButton value={project?.secretKey!} timeout={1000}>
+            {({ copied, copy }) => (
+              <div className="btn_area">
+                <Button outline icon={<Icon type="copy" />} onClick={copy}>
+                  Copy
+                </Button>
+                {copied && (
+                  <div className="toast_box shadow_l">
+                    <Icon type="check" />
+                    Copied
+                  </div>
+                )}
+              </div>
+            )}
+          </CopyButton>
+        )}
       </div>
     </section>
   );

@@ -46,6 +46,10 @@ export const globalErrorSlice = createSlice({
           state.title = 'Authentication failed';
           state.message = 'You do not have permission to access or your session has timed out. Please sign in.';
           break;
+        case RPCStatusCode.PERMISSION_DENIED:
+          state.title = 'Permission denied';
+          state.message = 'Your role in this project does not allow this action. Ask a project owner or admin.';
+          break;
         default:
           state.title = 'Error';
           state.message = errorMessage;
