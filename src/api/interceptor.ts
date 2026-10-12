@@ -17,29 +17,41 @@
 import pkg from '../../package.json';
 import { Interceptor } from '@connectrpc/connect';
 
+// The server returns the project secret key only to owners and admins. A member
+// gets an empty key and reaches the project-scoped methods with its session
+// cookie instead, naming the project in this header.
+export const ProjectNameHeader = 'x-yorkie-project';
+
 export class InterceptorBuilder {
-  private projectSecretKey?: string;
+  private project?: { name: string; secretKey: string };
 
   /**
-   * `setProjectSecretKey` sets the project secret key for project-related API calls.
-   * @param projectSecretKey The project secret key to set.
+   * `setProject` sets the project that project-related API calls act on.
+   * @param name The name of the project.
+   * @param secretKey The project secret key, or an empty string when the
+   * current user's role cannot read it.
    */
-  public setProjectSecretKey(projectSecretKey: string) {
-    this.projectSecretKey = projectSecretKey;
+  public setProject(name: string, secretKey: string) {
+    this.project = { name, secretKey };
   }
 
   /**
-   * `clearProjectSecretKey` clears the project secret key.
+   * `clearProject` clears the project that project-related API calls act on.
    */
-  public clearProjectSecretKey() {
-    this.projectSecretKey = undefined;
+  public clearProject() {
+    this.project = undefined;
   }
 
   public createAuthInterceptor(): Interceptor {
     return (next) => async (req) => {
-      // Check if this is a project-related API call
-      if (this.isProjectRelatedAPI(req.url) && this.projectSecretKey) {
-        req.header.set('authorization', `API-Key ${this.projectSecretKey}`);
+      if (this.project && this.isProjectRelatedAPI(req.url)) {
+        if (this.project.secretKey) {
+          req.header.set('authorization', `API-Key ${this.project.secretKey}`);
+        } else {
+          // The session cookie authenticates the user; the server checks the
+          // user's role in the named project.
+          req.header.set(ProjectNameHeader, this.project.name);
+        }
       }
       return await next(req);
     };
