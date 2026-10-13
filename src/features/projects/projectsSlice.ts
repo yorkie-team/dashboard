@@ -169,8 +169,9 @@ export const setCurrentProjectAsync = createAppThunk<Project, string>(
   async (projectName): Promise<Project> => {
     const project = await getProject(projectName);
 
-    // Set the project secret key for API authentication
-    interceptor.setProjectSecretKey(project.secretKey);
+    // Authenticate project-scoped calls with the secret key, or with the
+    // session and the project name when the user's role cannot read the key.
+    interceptor.setProject(project.name, project.secretKey);
 
     return project;
   },
@@ -178,7 +179,7 @@ export const setCurrentProjectAsync = createAppThunk<Project, string>(
 
 // Clear current project and reset interceptor
 export const clearCurrentProject = createAppThunk<void, void>('projects/clearCurrentProject', async () => {
-  interceptor.clearProjectSecretKey();
+  interceptor.clearProject();
 });
 
 export const projectsSlice = createSlice({
