@@ -58,7 +58,7 @@
     display: flex;
     align-items: center;
     gap: variables.$spacing_8;
-    margin-top: variables.$spacing_24;
+    margin-bottom: variables.$spacing_48;
     padding: variables.$spacing_16;
     border: 1px solid var(--gray-300);
     border-radius: 8px;
@@ -73,6 +73,12 @@
       margin: 0;
       font-size: 1.3rem;
       line-height: 1.5;
+    }
+
+    // `.setting_box` already has top padding on tablet and below.
+    @include mixins-lib.tabletStart() {
+      margin-top: variables.$spacing_24;
+      margin-bottom: 0;
     }
   }
 
