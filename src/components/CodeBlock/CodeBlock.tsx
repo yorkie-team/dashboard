@@ -53,6 +53,7 @@ Prism.languages.json = {
 // only the lines in view. https://github.com/yorkie-team/dashboard/issues/326
 const VIRTUALIZE_MIN_LENGTH = 100 * 1024;
 // Keep in step with the line-height of .line-number and .line-content in codeblock.scss.
+// Lines must not wrap (white-space: pre on .is_virtualized), or rows grow past it.
 const LINE_HEIGHT = 24;
 const OVERSCAN_LINES = 50;
 
@@ -138,7 +139,7 @@ function VirtualizedCode({
   return (
     <div ref={ref} style={{ position: 'relative', height: lines.length * LINE_HEIGHT }}>
       <pre
-        className={`prism-code language-${language}`}
+        className={`prism-code is_virtualized language-${language}`}
         style={{ position: 'absolute', top: range.start * LINE_HEIGHT, left: 0 }}
       >
         {lines.slice(range.start, range.end).map((line, i) => (
