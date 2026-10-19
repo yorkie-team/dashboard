@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { fromUnixTime, format } from 'date-fns';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
@@ -32,8 +32,13 @@ export function DocumentDetail() {
   const dispatch = useAppDispatch();
   const params = useParams();
   const documentKey = params.documentKey || '';
-  const documentJSON = document ? JSON.parse(document.root) : {};
-  const documentJSONStr = JSON.stringify(documentJSON, null, '\t');
+  // NOTE(chacha912): Re-formatting a large root on every render is costly, so
+  // only redo it when the document itself changes.
+  const documentJSONStr = useMemo(
+    () => JSON.stringify(document ? JSON.parse(document.root) : {}, null, '\t'),
+    [document],
+  );
+  const presencesJSONStr = useMemo(() => JSON.stringify(document?.presences, null, '\t') || '{}', [document]);
   const [showContent, setShowContent] = useState<'root' | 'presence'>('root');
   const [opened, setOpened] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -209,11 +214,7 @@ export function DocumentDetail() {
         )}
         {showContent === 'presence' && (
           <div className="codeblock">
-            <CodeBlock.Code
-              code={JSON.stringify(document.presences, null, '\t') || '{}'}
-              language="json"
-              withLineNumbers
-            />
+            <CodeBlock.Code code={presencesJSONStr} language="json" withLineNumbers />
           </div>
         )}
       </div>

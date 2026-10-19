@@ -61,6 +61,11 @@
       .token {
         white-space: pre-wrap;
       }
+
+      // Virtualized code positions every line at a fixed height, so it must not wrap.
+      &.is_virtualized .token {
+        white-space: pre;
+      }
     }
   }
 

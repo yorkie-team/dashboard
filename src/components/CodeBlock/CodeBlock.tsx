@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import ReactJson, { ReactJsonViewProps } from 'react-json-view';
 import { Prism, Highlight, Language } from 'prism-react-renderer';
 import theme from './prismThemeLight';
@@ -47,7 +47,55 @@ Prism.languages.json = {
   },
 };
 
-function CodeBlockCode({
+// NOTE(chacha912): Highlight tokenizes the whole text and renders an element per
+// token, which blocks the main thread for seconds on large documents and lets
+// pending requests hit their deadline. Above this length, highlight and render
+// only the lines in view. https://github.com/yorkie-team/dashboard/issues/326
+const VIRTUALIZE_MIN_LENGTH = 100 * 1024;
+// Keep in step with the line-height of .line-number and .line-content in codeblock.scss.
+// Lines must not wrap (white-space: pre on .is_virtualized), or rows grow past it.
+const LINE_HEIGHT = 24;
+const OVERSCAN_LINES = 50;
+
+function getScrollParent(el: HTMLElement): HTMLElement | Window {
+  for (let node = el.parentElement; node; node = node.parentElement) {
+    if (/(auto|scroll)/.test(getComputedStyle(node).overflowY)) return node;
+  }
+  return window;
+}
+
+const CodeLine = React.memo(function CodeLine({
+  line,
+  language,
+  lineNumber,
+  lineNumberWidth,
+}: {
+  line: string;
+  language: Language;
+  lineNumber?: number;
+  lineNumberWidth?: string;
+}) {
+  return (
+    <Highlight code={line} theme={theme} language={language}>
+      {({ tokens, getLineProps, getTokenProps }) => (
+        <div {...getLineProps({ line: tokens[0] })}>
+          {lineNumber !== undefined && (
+            <span className="line-number" style={{ width: lineNumberWidth }}>
+              {lineNumber}
+            </span>
+          )}
+          <span className="line-content">
+            {tokens[0].map((token, key) => (
+              <span key={key} {...getTokenProps({ token })} />
+            ))}
+          </span>
+        </div>
+      )}
+    </Highlight>
+  );
+});
+
+function VirtualizedCode({
   code,
   language,
   withLineNumbers,
@@ -56,6 +104,71 @@ function CodeBlockCode({
   language: Language;
   withLineNumbers?: boolean;
 }) {
+  const lines = useMemo(() => code.split('\n'), [code]);
+  const ref = useRef<HTMLDivElement>(null);
+  const [range, setRange] = useState({ start: 0, end: OVERSCAN_LINES * 2 });
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const parent = getScrollParent(el);
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const top = el.getBoundingClientRect().top;
+      const viewTop = parent === window ? 0 : (parent as HTMLElement).getBoundingClientRect().top;
+      const viewHeight = parent === window ? window.innerHeight : (parent as HTMLElement).clientHeight;
+      const end = Math.min(lines.length, Math.ceil((viewTop + viewHeight - top) / LINE_HEIGHT) + OVERSCAN_LINES);
+      const start = Math.min(end, Math.max(0, Math.floor((viewTop - top) / LINE_HEIGHT) - OVERSCAN_LINES));
+      setRange((prev) => (prev.start === start && prev.end === end ? prev : { start, end }));
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    parent.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    return () => {
+      cancelAnimationFrame(frame);
+      parent.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', schedule);
+    };
+  }, [lines]);
+
+  const lineNumberWidth = `${String(lines.length).length}ch`;
+  return (
+    <div ref={ref} style={{ position: 'relative', height: lines.length * LINE_HEIGHT }}>
+      <pre
+        className={`prism-code is_virtualized language-${language}`}
+        style={{ position: 'absolute', top: range.start * LINE_HEIGHT, left: 0 }}
+      >
+        {lines.slice(range.start, range.end).map((line, i) => (
+          <CodeLine
+            key={range.start + i}
+            line={line}
+            language={language}
+            lineNumber={withLineNumbers ? range.start + i + 1 : undefined}
+            lineNumberWidth={lineNumberWidth}
+          />
+        ))}
+      </pre>
+    </div>
+  );
+}
+
+const CodeBlockCode = React.memo(function CodeBlockCode({
+  code,
+  language,
+  withLineNumbers,
+}: {
+  code: string;
+  language: Language;
+  withLineNumbers?: boolean;
+}) {
+  if (code.length > VIRTUALIZE_MIN_LENGTH) {
+    return <VirtualizedCode code={code} language={language} withLineNumbers={withLineNumbers} />;
+  }
+
   return (
     <Highlight code={code} theme={theme} language={language}>
       {({ className, tokens, getLineProps, getTokenProps }) => (
@@ -74,7 +187,7 @@ function CodeBlockCode({
       )}
     </Highlight>
   );
-}
+});
 
 function CodeBlockTree({ code, ...restProps }: { code: object } & Omit<ReactJsonViewProps, 'src'>) {
   return (
