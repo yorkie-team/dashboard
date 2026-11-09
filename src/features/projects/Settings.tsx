@@ -37,6 +37,7 @@ import {
 } from 'api/types';
 import { Icon, InputToggle, InputHelperText, InputTextField, Navigator } from 'components';
 import { MembersList } from 'features/members';
+import { parseGoDuration } from 'utils';
 import { selectCurrentMemberRole } from 'features/members/membersSlice';
 
 export type UpdateFieldInfo = {
@@ -54,6 +55,7 @@ const TEXT_INPUT_FIELDS: ReadonlyArray<keyof UpdatableProjectFields> = [
   'authWebhookURL',
   'clientDeactivateThreshold',
   'channelSessionTtl',
+  'channelBatchWindow',
   'snapshotThreshold',
   'snapshotInterval',
   'maxAttachmentsPerDocument',
@@ -63,6 +65,8 @@ const TEXT_INPUT_FIELDS: ReadonlyArray<keyof UpdatableProjectFields> = [
 // Max-per-document fields are int32 and snapshot fields are int64 on the server.
 const INT32_MAX = 2147483647;
 const INT64_MAX = BigInt('9223372036854775807');
+// The server bounds the channel batch window to [0s, 1s].
+const MAX_CHANNEL_BATCH_WINDOW_NANOS = 1e9;
 
 const isTextInputField = (target: UpdateFieldInfo['target']): target is keyof UpdatableProjectFields =>
   TEXT_INPUT_FIELDS.includes(target as keyof UpdatableProjectFields);
@@ -97,6 +101,7 @@ export function Settings() {
       eventWebhookEvents: [],
       clientDeactivateThreshold: '',
       channelSessionTtl: '',
+      channelBatchWindow: '',
       snapshotInterval: 0,
       snapshotThreshold: 0,
       maxSubscribersPerDocument: 0,
@@ -132,6 +137,10 @@ export function Settings() {
   const { field: channelSessionTtl, fieldState: channelSessionTtlState } = useController({
     control,
     name: 'channelSessionTtl',
+  });
+  const { field: channelBatchWindow, fieldState: channelBatchWindowState } = useController({
+    control,
+    name: 'channelBatchWindow',
   });
   const { field: maxSubscribersPerDocument, fieldState: maxSubscribersPerDocumentState } = useController({
     control,
@@ -187,6 +196,7 @@ export function Settings() {
       eventWebhookEvents: project?.eventWebhookEvents || [],
       clientDeactivateThreshold: project?.clientDeactivateThreshold || '',
       channelSessionTtl: project?.channelSessionTtl || '',
+      channelBatchWindow: project?.channelBatchWindow || '',
       maxSubscribersPerDocument: project?.maxSubscribersPerDocument || 0,
       maxAttachmentsPerDocument: project?.maxAttachmentsPerDocument || 0,
       snapshotInterval: project?.snapshotInterval || 0,
@@ -261,6 +271,7 @@ export function Settings() {
       !eventWebhookURLFieldState.error &&
       !clientDeactivateThresholdState.error &&
       !channelSessionTtlState.error &&
+      !channelBatchWindowState.error &&
       !maxSubscribersPerDocumentState.error &&
       !maxAttachmentsPerDocumentState.error &&
       !maxSizePerDocumentState.error &&
@@ -282,6 +293,7 @@ export function Settings() {
       eventWebhookURLFieldState.error ||
       clientDeactivateThresholdState.error ||
       channelSessionTtlState.error ||
+      channelBatchWindowState.error ||
       maxSubscribersPerDocumentState.error ||
       maxAttachmentsPerDocumentState.error ||
       maxSizePerDocumentState.error ||
@@ -306,6 +318,7 @@ export function Settings() {
     eventWebhookURLFieldState.error,
     clientDeactivateThresholdState.error,
     channelSessionTtlState.error,
+    channelBatchWindowState.error,
     maxSubscribersPerDocumentState.error,
     maxAttachmentsPerDocumentState.error,
     maxSizePerDocumentState.error,
@@ -819,6 +832,64 @@ export function Settings() {
                       }
                       helperText={
                         updateFieldInfo.target === 'channelSessionTtl' && updateFieldInfo.state !== null
+                          ? updateFieldInfo.message
+                          : undefined
+                      }
+                      onSuccessEnd={resetUpdateFieldInfo}
+                    />
+                  </div>
+                </dd>
+                <dt className="sub_title">Channel Batch Window</dt>
+                <dd className="sub_desc">
+                  <p className="guide">
+                    Set how long channel events can wait to be delivered together (0s–1s). An event on an idle channel
+                    is delivered at once; a busy channel delivers at most once per window. Smaller values lower
+                    broadcast latency, and &quot;0s&quot; delivers every event as it arrives. Format: &quot;10ms&quot;,
+                    &quot;0.5s&quot;. Leave it empty to use the server default (100ms unless the server sets another).
+                  </p>
+                  <div
+                    className={classNames('input_field_box', {
+                      is_error: checkFieldState('channelBatchWindow', 'error'),
+                      is_success: checkFieldState('channelBatchWindow', 'success'),
+                    })}
+                  >
+                    <InputTextField
+                      reset={() => {
+                        resetForm();
+                        resetUpdateFieldInfo();
+                      }}
+                      {...register('channelBatchWindow', {
+                        // Not required: saving it empty clears the project value back to the server default.
+                        validate: (value) => {
+                          if (value === '') return true;
+                          const nanos = parseGoDuration(value);
+                          return (
+                            (nanos !== undefined && nanos >= 0 && nanos <= MAX_CHANNEL_BATCH_WINDOW_NANOS) ||
+                            'Channel Batch Window should be a duration string such as "10ms" or "0.5s" (0s–1s)'
+                          );
+                        },
+                        onChange: async () => {
+                          await trigger('channelBatchWindow');
+                        },
+                      })}
+                      onChange={(e) => {
+                        setUpdateFieldInfo((info) => ({ ...info, target: 'channelBatchWindow' }));
+                        channelBatchWindow.onChange(e.target.value);
+                      }}
+                      id="channelBatchWindow"
+                      label="channelBatchWindow"
+                      blindLabel={true}
+                      fieldUtil={true}
+                      placeholder={'Server default'}
+                      state={
+                        checkFieldState('channelBatchWindow', 'success')
+                          ? 'success'
+                          : checkFieldState('channelBatchWindow', 'error')
+                            ? 'error'
+                            : undefined
+                      }
+                      helperText={
+                        updateFieldInfo.target === 'channelBatchWindow' && updateFieldInfo.state !== null
                           ? updateFieldInfo.message
                           : undefined
                       }
