@@ -81,6 +81,7 @@ export function fromProject(pbProject: PbProject): Project {
     eventWebhookEvents: pbProject.eventWebhookEvents as Array<EventWebhookEvent>,
     clientDeactivateThreshold: pbProject.clientDeactivateThreshold,
     channelSessionTtl: pbProject.channelSessionTtl,
+    channelBatchWindow: pbProject.channelBatchWindow,
     snapshotInterval: Number(pbProject.snapshotInterval),
     snapshotThreshold: Number(pbProject.snapshotThreshold),
     maxSubscribersPerDocument: pbProject.maxSubscribersPerDocument,
@@ -218,6 +219,8 @@ export function toUpdatableProjectFields(fields: UpdatableProjectFields): PbUpda
       : undefined,
     clientDeactivateThreshold: fields.clientDeactivateThreshold,
     channelSessionTtl: fields.channelSessionTtl,
+    // An empty window is sent as is: the server clears it back to its default.
+    channelBatchWindow: fields.channelBatchWindow,
     snapshotThreshold: fields.snapshotThreshold ? BigInt(fields.snapshotThreshold) : undefined,
     snapshotInterval: fields.snapshotInterval ? BigInt(fields.snapshotInterval) : undefined,
     // Form inputs deliver strings at runtime; Int32Value wrappers only accept numbers when encoding.

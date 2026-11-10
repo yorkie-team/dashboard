@@ -84,6 +84,7 @@ export type ProjectUpdateFields = {
   eventWebhookEvents: Array<EventWebhookEvent>;
   clientDeactivateThreshold: string;
   channelSessionTtl: string;
+  channelBatchWindow: string;
   snapshotThreshold: number;
   snapshotInterval: number;
   maxSubscribersPerDocument: number;
@@ -357,6 +358,11 @@ export const projectsSlice = createSlice({
           } else if (field === 'ChannelSessionTTL') {
             state.update.error = {
               target: 'channelSessionTtl',
+              message: description,
+            };
+          } else if (field === 'ChannelBatchWindow') {
+            state.update.error = {
+              target: 'channelBatchWindow',
               message: description,
             };
           } else if (field === 'MaxSubscribersPerDocument') {

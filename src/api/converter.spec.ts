@@ -17,6 +17,7 @@
 import { describe, it, expect } from 'vitest';
 import { UpdatableProjectFields } from './types';
 import { toUpdatableProjectFields } from './converter';
+import { UpdatableProjectFields as PbUpdatableProjectFields } from './yorkie/v1/resources_pb';
 
 // Text inputs hand their values to the API as strings even where the type says number.
 const fromInput = (fields: Record<string, string>) => fields as unknown as UpdatableProjectFields;
@@ -70,5 +71,26 @@ describe('toUpdatableProjectFields', () => {
     const pbFields = toUpdatableProjectFields({ name: 'new-name' });
 
     expect(pbFields.allowedOrigins).toBeUndefined();
+  });
+
+  it('sends the channel batch window', () => {
+    const pbFields = toUpdatableProjectFields({ channelBatchWindow: '10ms' });
+
+    expect(pbFields.toJson()).toEqual({ channelBatchWindow: '10ms' });
+  });
+
+  it('sends an empty channel batch window to clear it back to the server default', () => {
+    const pbFields = toUpdatableProjectFields({ channelBatchWindow: '' });
+
+    // The Connect transport sends JSON by default; check binary too so either format keeps it.
+    expect(pbFields.toJson()).toEqual({ channelBatchWindow: '' });
+    expect(PbUpdatableProjectFields.fromBinary(pbFields.toBinary()).channelBatchWindow).toBe('');
+  });
+
+  it('leaves the channel batch window unset when not given', () => {
+    const pbFields = toUpdatableProjectFields({ name: 'new-name' });
+    const decoded = PbUpdatableProjectFields.fromBinary(pbFields.toBinary());
+
+    expect(decoded.channelBatchWindow).toBeUndefined();
   });
 });

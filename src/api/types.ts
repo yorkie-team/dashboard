@@ -77,6 +77,7 @@ export type Project = {
   eventWebhookEvents?: Array<EventWebhookEvent>;
   clientDeactivateThreshold: string;
   channelSessionTtl: string;
+  channelBatchWindow: string;
   snapshotThreshold: number;
   snapshotInterval: number;
   maxSubscribersPerDocument: number;
@@ -141,6 +142,7 @@ export type UpdatableProjectFields = {
   eventWebhookEvents?: Array<EventWebhookEvent>;
   clientDeactivateThreshold?: string;
   channelSessionTtl?: string;
+  channelBatchWindow?: string;
   snapshotThreshold?: number;
   snapshotInterval?: number;
   maxSubscribersPerDocument?: number;
