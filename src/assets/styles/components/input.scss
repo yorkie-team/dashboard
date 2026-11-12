@@ -626,6 +626,7 @@
 
 .input_check_box {
   display: inline-flex;
+  position: relative;
   align-items: center;
 
   &.is_large {
