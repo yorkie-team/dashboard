@@ -40,7 +40,7 @@
     padding: 0 12px;
     height: 32px;
     @include mixins-lib.rfonts(12, 16, 400);
-    color: var(--gray-600);
+    color: var(--gray-700);
     transform: translateY(-50%);
 
     @include mixins-lib.mobileXS() {
@@ -62,6 +62,6 @@
   .desc {
     margin-top: 10px;
     @include mixins-lib.rfonts(12, 16, 400);
-    color: var(--gray-600);
+    color: var(--gray-700);
   }
 }

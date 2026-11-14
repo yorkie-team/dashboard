@@ -107,7 +107,7 @@ $line: '.btn_line';
         ($name == 'gray50') or
         ($name == 'white')
     ) {
-      color: var(--gray-600);
+      color: var(--gray-700);
     }
   }
 
@@ -239,7 +239,7 @@ $line: '.btn_line';
   border: 1px solid transparent;
   border-radius: 4px;
   background-color: var(--gray-000);
-  color: var(--gray-600);
+  color: var(--gray-700);
   vertical-align: top;
   cursor: pointer;
   transition: background-color 0.2s;
@@ -370,6 +370,42 @@ $line: '.btn_line';
     }
   }
 
+  // Filled blue and green: dark ink reaches 4.5:1 where white is 3:1 or less.
+  &.blue_0,
+  &.green_0 {
+    &:not(.btn_line):not(:disabled):not(.is_disabled) {
+      color: var(--ink-on-accent);
+    }
+  }
+
+  &.blue_0:not(.btn_line):not(:disabled):not(.is_disabled):hover {
+    background-color: color-mix(in srgb, var(--blue-0) 85%, #{variables.$white});
+  }
+
+  &.green_0:not(.btn_line):not(:disabled):not(.is_disabled):hover {
+    background-color: color-mix(in srgb, var(--green-0) 85%, #{variables.$white});
+  }
+
+  // Neither ink nor white reaches 4.5:1 on the red fill, so filled red buttons use a darker red with white text.
+  &.red_0:not(.btn_line):not(:disabled):not(.is_disabled) {
+    background-color: #d62c38;
+    color: variables.$white;
+
+    &:hover {
+      background-color: #c92532;
+    }
+  }
+
+  // Outlined hue buttons: the hue's dark step on its own tint is about 2.3:1 to 3.5:1 as text.
+  // The label uses the ink color and the hue stays in the border and fill.
+  @each $hue in ('orange', 'yellow', 'green', 'blue', 'red', 'purple') {
+    @each $step in ('dark', '0', 'light') {
+      &.#{$hue}_#{$step}.btn_line:not(:disabled):not(.is_disabled) {
+        color: var(--gray-900);
+      }
+    }
+  }
+
   @each $name, $value in $yellow_map {
     &.yellow_#{$name} {
       @include setColor($yellow_map, $name, $value);
@@ -421,11 +457,11 @@ $line: '.btn_line';
     padding: 7px 11px 7px 10px;
     @include mixins-lib.rfonts(12, 16, 500);
     background-color: var(--blue-0);
-    color: var(--gray-000);
+    color: var(--ink-on-accent);
 
     &:hover {
-      background-color: var(--blue-dark);
-      color: var(--gray-000);
+      background-color: color-mix(in srgb, var(--blue-0) 85%, #{variables.$white});
+      color: var(--ink-on-accent);
     }
 
     .icon {

@@ -29,7 +29,7 @@
       padding-right: 10px;
       box-sizing: border-box;
       @include mixins-lib.rfonts(12, 16, 500);
-      color: var(--gray-600);
+      color: var(--gray-700);
       word-break: break-all;
 
       @include mixins-lib.tabletStart() {
@@ -117,7 +117,7 @@
   .value {
     padding: 0 variables.$spacing_24;
     @include mixins-lib.rfonts(12, 16, 500);
-    color: var(--gray-600);
+    color: var(--gray-700);
   }
 
   .btn_area {
@@ -146,7 +146,8 @@
     border-radius: 6px;
     background: var(--gray-400);
     @include mixins-lib.rfonts(12, 16, 500);
-    color: var(--gray-800);
+    // gray-400 is the same in both themes, so the label needs a fixed dark ink.
+    color: var(--ink-on-accent);
     z-index: 1;
 
     .icon {

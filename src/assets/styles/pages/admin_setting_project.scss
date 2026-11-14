@@ -94,7 +94,7 @@
         border-color: var(--gray-300);
 
         // Keep values readable in read-only mode (not just a faint disabled grey).
-        color: var(--gray-600);
+        color: var(--gray-700);
         -webkit-text-fill-color: var(--gray-600);
         cursor: not-allowed;
 
@@ -370,7 +370,7 @@
 
         th {
           @include mixins-lib.rfonts(12, 16, 500);
-          color: var(--gray-600);
+          color: var(--gray-700);
           font-weight: 500;
           text-transform: uppercase;
           letter-spacing: 0.05em;
@@ -396,10 +396,6 @@
 
         td {
           color: var(--gray-800);
-
-          .darkmode & {
-            color: var(--gray-200);
-          }
         }
       }
 
@@ -430,8 +426,8 @@
 
         .badge_you {
           padding: 2px 8px;
-          background-color: var(--orange-alpha);
-          color: var(--orange-0);
+          background-color: var(--orange-alpha-light);
+          color: var(--gray-900);
           border-radius: 4px;
           @include mixins-lib.rfonts(11, 16, 500);
           text-transform: uppercase;
@@ -458,7 +454,6 @@
 
           .darkmode & {
             border-color: var(--gray-600);
-            color: var(--gray-200);
           }
 
           &:hover:not(:disabled) {
@@ -484,7 +479,7 @@
       }
 
       .member_date {
-        color: var(--gray-600);
+        color: var(--gray-700);
 
         .darkmode & {
           color: var(--gray-400);

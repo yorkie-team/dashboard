@@ -414,7 +414,8 @@ $shadow: (
 }
 
 .page_link {
-  color: var(--orange-0);
+  // Ink text with the orange underline: orange text on the page background is about 2.4:1.
+  color: var(--gray-900);
   border-bottom: 1px solid var(--orange-0);
 
   &.icon_link {

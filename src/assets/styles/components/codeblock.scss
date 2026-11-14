@@ -86,7 +86,7 @@
 
   .line-number {
     @include mixins-lib.rfonts(12, 24, 400);
-    color: var(--gray-500);
+    color: var(--gray-700);
     text-align: right;
     user-select: none;
   }
@@ -98,11 +98,11 @@
   &.language-json {
     .token {
       &.property {
-        color: var(--blue-dark);
+        color: var(--code-blue);
       }
 
       &.number {
-        color: var(--orange-dark);
+        color: var(--code-orange);
       }
     }
   }
@@ -117,7 +117,7 @@
   border: 1px solid var(--gray-400);
   border-radius: 0 0 4px 4px;
   background: var(--gray-000);
-  color: var(--gray-600);
+  color: var(--gray-700);
   word-break: break-all;
 
   .react-json-view {

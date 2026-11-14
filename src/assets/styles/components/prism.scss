@@ -52,18 +52,24 @@ pre[class*="language-"] {
   overflow: auto;
   box-sizing: border-box;
 
-  --code-slategray: var(--gray-500);
-  --code-gray: var(--gray-600);
-  --code-purple: var(--purple-dark);
-  --code-blue: var(--blue-dark);
-  --code-orange: var(--orange-dark);
-  --code-brown: #9a6e3a;
-  --code-green: var(--green-dark);
+  // Light theme: darker steps of the peer hues so every token reaches 4.5:1 on the paper background.
+  --code-slategray: var(--gray-700);
+  --code-gray: var(--gray-800);
+  --code-purple: #6a3fdb;
+  --code-blue: #1466b8;
+  --code-orange: #ad500c;
+  --code-brown: #8a5f2e;
+  --code-green: #0b7a45;
 }
 
 .darkmode pre[class*="language-"] {
   --code-slategray: var(--gray-300);
+  --code-gray: var(--gray-600);
+  --code-purple: var(--purple-dark);
+  --code-blue: var(--blue-dark);
+  --code-orange: var(--orange-dark);
   --code-brown: #face9b;
+  --code-green: var(--green-dark);
   color: var(--code-gray);
 }
 

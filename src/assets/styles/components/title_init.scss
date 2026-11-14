@@ -39,7 +39,7 @@
     &_desc {
       margin-top: variables.$spacing_16;
       @include mixins-lib.rfonts(12, 16, 400);
-      color: var(--gray-600);
+      color: var(--gray-700);
     }
   }
 }

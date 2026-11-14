@@ -58,7 +58,7 @@
 
       .info_text {
         margin-left: 0;
-        color: var(--gray-600);
+        color: var(--gray-700);
       }
     }
 
@@ -131,7 +131,8 @@
       }
 
       &.highlight {
-        color: var(--orange-0);
+        color: var(--gray-900);
+        font-weight: 600;
       }
     }
   }

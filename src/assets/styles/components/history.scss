@@ -63,7 +63,7 @@
   .date {
     padding: 0 0 3px variables.$spacing_16;
     @include mixins-lib.rfonts(12, 16, 400);
-    color: var(--gray-600);
+    color: var(--gray-700);
 
     @include mixins-lib.mobileStart() {
       display: block;
@@ -86,7 +86,7 @@
 
     .date {
       @include mixins-lib.rfonts(12, 16, 400);
-      color: var(--gray-600);
+      color: var(--gray-700);
     }
   }
 
@@ -259,7 +259,7 @@
       flex: none;
       padding-bottom: 3px;
       @include mixins-lib.rfonts(8, 8, 400);
-      color: var(--gray-600);
+      color: var(--gray-700);
     }
   }
 }
