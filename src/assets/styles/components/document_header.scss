@@ -34,6 +34,10 @@
   }
 
   .btn {
+    // Icon buttons follow the small button size (32px) instead of shrinking to their icon.
+    min-width: 32px;
+    min-height: 32px;
+
     .icon {
       width: 24px;
       height: 24px;

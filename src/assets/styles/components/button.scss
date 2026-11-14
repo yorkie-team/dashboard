@@ -455,6 +455,8 @@ $line: '.btn_line';
   }
 
   &_plus {
+    // Stays at the small button height (32px) when combined with other variants.
+    min-height: 32px;
     margin-left: variables.$spacing_32;
     padding: 7px 11px 7px 10px;
     @include mixins-lib.rfonts(12, 16, 500);
