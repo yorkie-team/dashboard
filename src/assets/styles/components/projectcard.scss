@@ -201,7 +201,7 @@
       flex: 0 0 auto;
       margin-right: variables.$spacing_32;
       @include mixins-lib.rfonts(14, 22, 500);
-      color: var(--gray-600);
+      color: var(--gray-700);
       white-space: nowrap;
 
       &:last-of-type {

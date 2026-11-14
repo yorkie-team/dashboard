@@ -21,7 +21,7 @@
   }
 
   &::placeholder {
-    color: var(--gray-600);
+    color: var(--gray-700);
     opacity: 1;
     font-weight: 500;
     font-style: italic;
@@ -467,8 +467,9 @@
         }
       }
 
+      // The checked control carries the blue; blue label text is 2.7:1 on the card.
       & ~ .label {
-        color: var(--blue-dark);
+        color: var(--gray-900);
       }
     }
 
@@ -555,6 +556,7 @@
       width: 12px;
       height: 12px;
       padding: 2px;
+      // Matches the ball so the check stays hidden while the toggle is off.
       color: var(--gray-600);
       transform: scale(0.5);
       transition:
@@ -599,7 +601,7 @@
       }
 
       & ~ .label {
-        color: var(--blue-0);
+        color: var(--gray-900);
       }
     }
 
@@ -689,7 +691,7 @@
       }
 
       & ~ .label {
-        color: var(--blue-0);
+        color: var(--gray-900);
       }
     }
 

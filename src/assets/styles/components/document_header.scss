@@ -70,7 +70,7 @@
   .date {
     padding: 0 0 3px variables.$spacing_16;
     @include mixins-lib.rfonts(12, 16, 400);
-    color: var(--gray-600);
+    color: var(--gray-700);
     flex: none;
   }
 
@@ -111,7 +111,7 @@
   .info_title {
     margin-right: 24px;
     @include mixins-lib.rfonts(12, 16, 600);
-    color: var(--gray-600);
+    color: var(--gray-700);
   }
 
   .info_desc {

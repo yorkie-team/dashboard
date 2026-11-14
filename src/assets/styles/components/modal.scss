@@ -212,7 +212,7 @@
 
     #{$md}_desc {
       @include mixins-lib.rfonts(14, 22);
-      color: var(--gray-600);
+      color: var(--gray-700);
     }
 
     .textarea_box {
@@ -383,7 +383,7 @@
       width: 12px;
       height: 12px;
       margin-left: variables.$spacing_16;
-      color: var(--gray-600);
+      color: var(--gray-700);
 
       svg {
         vertical-align: top;

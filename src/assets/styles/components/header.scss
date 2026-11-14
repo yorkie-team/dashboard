@@ -186,7 +186,7 @@
       display: block;
       margin-top: 2px;
       @include mixins-lib.rfonts(10, 12);
-      color: var(--gray-600);
+      color: var(--gray-700);
       word-break: break-all;
 
       @include mixins-lib.tabletStart() {

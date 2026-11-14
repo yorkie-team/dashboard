@@ -13,7 +13,7 @@
     flex: 1;
     width: 100%;
     @include mixins-lib.rfonts(12, 16, 600);
-    color: var(--gray-600);
+    color: var(--gray-700);
 
     @include mixins-lib.tabletStart() {
       padding-right: 0;
@@ -146,7 +146,7 @@
         padding-top: 3px;
 
         @include mixins-lib.rfonts(12, 16, 400);
-        color: var(--gray-600);
+        color: var(--gray-700);
       }
     }
   }

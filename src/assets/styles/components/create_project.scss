@@ -366,7 +366,7 @@
 
       .text {
         @include mixins-lib.rfonts(14, 22, 500);
-        color: var(--gray-600);
+        color: var(--gray-700);
       }
     }
   }
