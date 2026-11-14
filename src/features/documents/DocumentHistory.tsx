@@ -209,17 +209,17 @@ export function DocumentHistory() {
               disabled={selectedIndex <= 0}
               onClick={() => selectedIndex > 0 && handleRevisionClick(list[selectedIndex - 1].id)}
               style={{ minWidth: '32px', minHeight: '32px', padding: '4px 8px' }}
-              aria-label="Previous revision"
+              aria-label="Newer revision"
             />
 
             <div className="slider_wrapper">
               <input
                 type="range"
                 className="revision_slider"
-                aria-label="Revision"
+                aria-label="Revision, newest first"
                 aria-valuetext={
-                  selectedRevision
-                    ? `${selectedRevision.label || 'Unlabeled revision'}, ${selectedIndex + 1} of ${list.length}`
+                  selectedIndex >= 0
+                    ? `${list[selectedIndex].label || 'Unlabeled revision'}, ${selectedIndex + 1} of ${list.length}`
                     : undefined
                 }
                 min="0"
@@ -249,7 +249,7 @@ export function DocumentHistory() {
               disabled={selectedIndex >= list.length - 1}
               onClick={() => selectedIndex < list.length - 1 && handleRevisionClick(list[selectedIndex + 1].id)}
               style={{ minWidth: '32px', minHeight: '32px', padding: '4px 8px', transform: 'rotate(180deg)' }}
-              aria-label="Next revision"
+              aria-label="Older revision"
             />
           </div>
         )}
@@ -357,12 +357,17 @@ export function DocumentHistory() {
           display: flex;
           justify-content: space-between;
           align-items: center;
+          /* A long label and the count wrap onto separate lines instead of overflowing. */
+          flex-wrap: wrap;
+          gap: 4px 12px;
         }
         
         .revision_title {
           font-size: 13px;
           font-weight: 600;
           color: var(--gray-900);
+          min-width: 0;
+          overflow-wrap: anywhere;
         }
         
         .revision_date {
@@ -377,7 +382,6 @@ export function DocumentHistory() {
           color: var(--gray-700);
           /* Stay on one line beside a long revision label. */
           flex: none;
-          margin-left: 12px;
           white-space: nowrap;
         }
         
