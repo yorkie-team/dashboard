@@ -15,12 +15,18 @@
  */
 
 import { ReactNode } from 'react';
+import { useLocation } from 'react-router-dom';
+import { getPageTitle } from 'utils/pageTitle';
 import { ProjectTabList, ProjectDropdown } from 'features/projects';
 import { PageTemplate } from './PageTemplate';
 
 export function ProjectPageTemplate({ className, children }: { className: string; children: ReactNode }) {
+  const { pathname } = useLocation();
+
   return (
     <PageTemplate className={className}>
+      {/* The visible title is the project switcher, so the page itself needs a heading to land on. */}
+      <h2 className="blind">{getPageTitle(pathname)}</h2>
       <div className="box_top">
         <div className="project_area">
           <div className="title_group">

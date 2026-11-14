@@ -29,7 +29,6 @@ export function APIKeys() {
 
   return (
     <section className="api_area">
-      <h2 className="blind">Project API Key</h2>
       <div className="title_box">
         <strong className="title">API Keys</strong>
       </div>

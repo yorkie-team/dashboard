@@ -50,7 +50,7 @@ export function Header({ className }: { className?: string }) {
           )}
         </Breadcrumb>
         {isAuthenticated && (
-          <nav className="util_box">
+          <nav className="util_box" aria-label="Help and account">
             <ul className="util_list">
               <li className="util_item">
                 <a href={`${import.meta.env.VITE_SERVICE_URL}/docs`} className="util_menu">
