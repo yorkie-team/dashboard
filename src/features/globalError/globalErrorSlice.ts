@@ -50,6 +50,11 @@ export const globalErrorSlice = createSlice({
           state.title = 'Permission denied';
           state.message = 'Your role in this project does not allow this action. Ask a project owner or admin.';
           break;
+        case RPCStatusCode.NOT_FOUND:
+          // The server prefixes its message with the code, e.g. "[not_found] key: document not found".
+          state.title = 'Not found';
+          state.message = errorMessage.replace(/^\[[a-z_]+\]\s*/i, '');
+          break;
         default:
           state.title = 'Error';
           state.message = errorMessage;
