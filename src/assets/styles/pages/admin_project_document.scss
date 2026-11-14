@@ -206,6 +206,11 @@
       flex: 1;
       min-height: 0;
     }
+    .schema_editor_hint {
+      margin-top: variables.$spacing_8;
+      @include mixins-lib.rfonts(12, 16);
+      color: var(--gray-700);
+    }
   }
 
   .cm-editor {
@@ -217,8 +222,11 @@
     line-height: 1.5;
     tab-size: 4;
 
+    // The editor is one tab stop; show it the way buttons and links show focus.
+    // The ring sits inside the edge because the surrounding box clips overflow.
     &.cm-focused {
-      outline: none;
+      outline: 2px solid var(--gray-900);
+      outline-offset: -2px;
     }
 
     .cm-gutters {

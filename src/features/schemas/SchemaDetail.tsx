@@ -61,6 +61,13 @@ const yorkieLinter = linter((view): Array<Diagnostic> => {
   });
 });
 
+// Tab indents inside the editor, so the name and the way out both have to be announced.
+const EDITOR_HINT_ID = 'schema-editor-hint';
+const editorLabels = EditorView.contentAttributes.of({
+  'aria-label': 'Schema definition',
+  'aria-describedby': EDITOR_HINT_ID,
+});
+
 const scrollStyle = EditorView.theme({
   '.cm-scroller': {
     overflowY: 'scroll',
@@ -272,10 +279,13 @@ export function SchemaDetail() {
                 theme={editorTheme}
                 value={schemaBody}
                 onChange={onChange}
-                extensions={[javascript({ typescript: true }), yorkieLinter, lintGutter(), scrollStyle]}
+                extensions={[javascript({ typescript: true }), yorkieLinter, lintGutter(), scrollStyle, editorLabels]}
                 editable={schemaEditable}
               />
             </div>
+            <p id={EDITOR_HINT_ID} className="schema_editor_hint" hidden={!schemaEditable}>
+              Press Esc, then Tab to move focus out of the editor.
+            </p>
             {formErrors.body?.message && <InputHelperText state="error" message={formErrors.body?.message} />}
           </div>
           <div className="btn_area">
