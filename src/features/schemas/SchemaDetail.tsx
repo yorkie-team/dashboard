@@ -19,6 +19,7 @@ import { Link, useNavigate, useParams, useLocation } from 'react-router-dom';
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { EditorView } from '@codemirror/view';
+import { Prec } from '@codemirror/state';
 import { validate, buildRuleset } from '@yorkie-js/schema';
 import classNames from 'classnames';
 
@@ -63,10 +64,20 @@ const yorkieLinter = linter((view): Array<Diagnostic> => {
 
 // Tab indents inside the editor, so the name and the way out both have to be announced.
 const EDITOR_HINT_ID = 'schema-editor-hint';
-const editorLabels = EditorView.contentAttributes.of({
-  'aria-label': 'Schema definition',
-  'aria-describedby': EDITOR_HINT_ID,
-});
+const editorName = EditorView.contentAttributes.of({ 'aria-label': 'Schema definition' });
+const editorHint = EditorView.contentAttributes.of({ 'aria-describedby': EDITOR_HINT_ID });
+
+// CodeMirror lets Esc then Tab leave the editor, but only when nothing else
+// handles the Esc first (an open completion list, a selection). Arm it here,
+// ahead of those handlers, and let them run too, so the hint is always true.
+const escapeThenTab = Prec.highest(
+  EditorView.domEventHandlers({
+    keydown(event, view) {
+      if (event.key === 'Escape') view.setTabFocusMode(2000);
+      return false;
+    },
+  }),
+);
 
 const scrollStyle = EditorView.theme({
   '.cm-scroller': {
@@ -183,6 +194,19 @@ export function SchemaDetail() {
     [dispatch, schemaBody],
   );
 
+  // A read-only version takes no focus from Tab, so it has no exit to describe.
+  const editorExtensions = useMemo(
+    () => [
+      javascript({ typescript: true }),
+      yorkieLinter,
+      lintGutter(),
+      scrollStyle,
+      editorName,
+      ...(schemaEditable ? [editorHint, escapeThenTab] : []),
+    ],
+    [schemaEditable],
+  );
+
   return (
     <>
       <div className="detail_content schema_detail">
@@ -279,7 +303,7 @@ export function SchemaDetail() {
                 theme={editorTheme}
                 value={schemaBody}
                 onChange={onChange}
-                extensions={[javascript({ typescript: true }), yorkieLinter, lintGutter(), scrollStyle, editorLabels]}
+                extensions={editorExtensions}
                 editable={schemaEditable}
               />
             </div>
