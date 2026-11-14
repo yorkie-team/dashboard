@@ -177,7 +177,7 @@
     .guide {
       margin-top: variables.$spacing_8;
       @include mixins-lib.rfonts(13, 18, 400);
-      color: var(--gray-500);
+      color: var(--gray-700);
 
       .darkmode & {
         color: var(--gray-400);
@@ -266,7 +266,7 @@
     .webhook_method_group_title {
       display: block;
       @include mixins-lib.rfonts(12, 16, 500);
-      color: var(--gray-500);
+      color: var(--gray-700);
 
       .darkmode & {
         color: var(--gray-400);

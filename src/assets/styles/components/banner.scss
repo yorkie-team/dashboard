@@ -127,3 +127,11 @@
     }
   }
 }
+
+// The gradient banner stays light in both themes, so its text uses the fixed ink instead of the inverting gray scale.
+.banner[class*='gradient_'] {
+  .banner_title,
+  .banner_desc {
+    color: var(--ink-on-accent);
+  }
+}
