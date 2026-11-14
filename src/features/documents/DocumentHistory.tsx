@@ -208,7 +208,7 @@ export function DocumentHistory() {
               outline
               disabled={selectedIndex <= 0}
               onClick={() => selectedIndex > 0 && handleRevisionClick(list[selectedIndex - 1].id)}
-              style={{ minWidth: '32px', padding: '4px 8px' }}
+              style={{ minWidth: '32px', minHeight: '32px', padding: '4px 8px' }}
               aria-label="Previous revision"
             />
 
@@ -216,6 +216,12 @@ export function DocumentHistory() {
               <input
                 type="range"
                 className="revision_slider"
+                aria-label="Revision"
+                aria-valuetext={
+                  selectedRevision
+                    ? `${selectedRevision.label || 'Unlabeled revision'}, ${selectedIndex + 1} of ${list.length}`
+                    : undefined
+                }
                 min="0"
                 max={list.length - 1}
                 value={selectedIndex >= 0 ? selectedIndex : 0}
@@ -242,7 +248,7 @@ export function DocumentHistory() {
               outline
               disabled={selectedIndex >= list.length - 1}
               onClick={() => selectedIndex < list.length - 1 && handleRevisionClick(list[selectedIndex + 1].id)}
-              style={{ minWidth: '32px', padding: '4px 8px', transform: 'rotate(180deg)' }}
+              style={{ minWidth: '32px', minHeight: '32px', padding: '4px 8px', transform: 'rotate(180deg)' }}
               aria-label="Next revision"
             />
           </div>
@@ -273,6 +279,7 @@ export function DocumentHistory() {
                   outline
                   disabled={selectedIndex === 0}
                   title={selectedIndex === 0 ? 'Already at latest revision' : 'Restore to this revision'}
+                  aria-label="Restore to this revision"
                 />
               </>
             )}
@@ -362,18 +369,22 @@ export function DocumentHistory() {
           margin-left: 12px;
           font-size: 12px;
           font-weight: 400;
-          color: var(--gray-600);
+          color: var(--gray-700);
         }
         
         .revision_count {
           font-size: 12px;
-          color: var(--gray-600);
+          color: var(--gray-700);
+          /* Stay on one line beside a long revision label. */
+          flex: none;
+          margin-left: 12px;
+          white-space: nowrap;
         }
         
         .loading_more {
           margin-left: 8px;
           font-style: italic;
-          color: var(--gray-500);
+          color: var(--gray-700);
         }
         
         .no_revisions {
@@ -398,13 +409,19 @@ export function DocumentHistory() {
           cursor: pointer;
           accent-color: var(--gray-900);
         }
+
+        .revision_slider:focus-visible {
+          outline: 2px solid var(--gray-900);
+          outline-offset: 4px;
+          border-radius: 4px;
+        }
         
         .slider_labels {
           display: flex;
           justify-content: space-between;
           margin-top: 8px;
           font-size: 11px;
-          color: var(--gray-500);
+          color: var(--gray-700);
         }
         
         .revision_detail .codeblock_header {
@@ -428,7 +445,7 @@ export function DocumentHistory() {
         
         .revision_description {
           font-size: 13px;
-          color: var(--gray-600);
+          color: var(--gray-700);
           font-weight: 400;
         }
         
@@ -448,7 +465,7 @@ export function DocumentHistory() {
         
         .loading_text {
           text-align: center;
-          color: var(--gray-500);
+          color: var(--gray-700);
         }
         
         .empty_state {
