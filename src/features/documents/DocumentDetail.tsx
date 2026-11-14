@@ -95,7 +95,7 @@ export function DocumentDetail() {
         )}
         <div className="document_header">
           <div className="title_box">
-            <Link to="../" className="btn_back">
+            <Link to="../" className="btn_back" aria-label="Back to documents">
               <Icon type="arrowBack" />
             </Link>
             <div className="title_inner">
@@ -110,7 +110,7 @@ export function DocumentDetail() {
 
             <Popover opened={opened} onChange={setOpened}>
               <Popover.Target>
-                <button type="button" className="btn btn_more">
+                <button type="button" className="btn btn_more" aria-label="More actions">
                   <Icon type="moreLarge" />
                 </button>
               </Popover.Target>

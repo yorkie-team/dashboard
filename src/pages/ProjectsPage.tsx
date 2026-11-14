@@ -59,6 +59,7 @@ export function ProjectsPage() {
           <Button
             icon={<Icon type="close" />}
             className="btn_close"
+            aria-label="Close welcome banner"
             onClick={() => {
               setShowBanner(false);
               localStorage.setItem('banner', 'N');

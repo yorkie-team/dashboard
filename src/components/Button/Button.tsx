@@ -88,7 +88,14 @@ function ButtonInner({
     );
   }
   return (
-    <button className={buttonClassName} type={type} disabled={disabled} {...restProps} ref={buttonRef}>
+    <button
+      className={buttonClassName}
+      type={type}
+      disabled={disabled}
+      aria-pressed={color === 'toggle' ? !!isActive : undefined}
+      {...restProps}
+      ref={buttonRef}
+    >
       {icon && icon}
       {children && <span className={`${blindText ? 'blind' : 'text'}`}>{children}</span>}
     </button>

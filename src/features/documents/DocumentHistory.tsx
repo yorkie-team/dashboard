@@ -162,7 +162,7 @@ export function DocumentHistory() {
     <div className="detail_content" style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
       <div className="document_header">
         <div className="title_box">
-          <Link to=".." relative="path" className="btn_back">
+          <Link to=".." relative="path" className="btn_back" aria-label="Back to document">
             <Icon type="arrowBack" />
           </Link>
           <div className="title_inner">

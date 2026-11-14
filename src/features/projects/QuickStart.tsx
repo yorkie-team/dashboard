@@ -110,7 +110,7 @@ main();`,
               <CopyButton value="npm install @yorkie-js/sdk" timeout={1000}>
                 {({ copied, copy }) => (
                   <>
-                    <Button icon={<Icon type="copy" />} outline onClick={copy} />
+                    <Button icon={<Icon type="copy" />} outline onClick={copy} aria-label="Copy" />
                     {copied && (
                       <div className="toast_box shadow_l">
                         <Icon type="check" />
@@ -133,7 +133,7 @@ main();`,
               <CopyButton value={snippet.npm} timeout={1000}>
                 {({ copied, copy }) => (
                   <>
-                    <Button icon={<Icon type="copy" />} outline onClick={copy} />
+                    <Button icon={<Icon type="copy" />} outline onClick={copy} aria-label="Copy" />
                     {copied && (
                       <div className="toast_box shadow_l">
                         <Icon type="check" />
@@ -163,7 +163,7 @@ main();`,
               <CopyButton value={snippet.cdn} timeout={1000}>
                 {({ copied, copy }) => (
                   <>
-                    <Button icon={<Icon type="copy" />} outline onClick={copy} />
+                    <Button icon={<Icon type="copy" />} outline onClick={copy} aria-label="Copy" />
                     {copied && (
                       <div className="toast_box shadow_l">
                         <Icon type="check" />

@@ -143,6 +143,8 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
               <button
                 type="button"
                 className="btn_all_check"
+                aria-label="Select all documents"
+                aria-pressed={documents.length > 0 && selectedDocKeys.length === documents.length}
                 onClick={() => {
                   if (selectedDocKeys.length === documents.length) {
                     setSelectedDocKeys([]);

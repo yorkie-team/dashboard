@@ -180,7 +180,7 @@ export function SchemaDetail() {
         <form onSubmit={handleSubmit(onSubmit)} className="schema_form">
           <div className="document_header">
             <div className="title_box">
-              <Link to="../" className="btn_back">
+              <Link to="../" className="btn_back" aria-label="Back to schemas">
                 <Icon type="arrowBack" />
               </Link>
               <div className="title_inner schema_title_inner">
@@ -236,7 +236,7 @@ export function SchemaDetail() {
                 )}
                 <Popover opened={optionOpened} onChange={setOptionOpened}>
                   <Popover.Target>
-                    <button type="button" className="btn btn_more">
+                    <button type="button" className="btn btn_more" aria-label="More actions">
                       <Icon type="moreLarge" />
                     </button>
                   </Popover.Target>

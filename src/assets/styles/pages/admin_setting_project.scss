@@ -149,7 +149,7 @@
       background-color: var(--gray-100);
 
       &.is_active {
-        background-color: variables.$white;
+        background-color: var(--gray-000);
       }
     }
   }
