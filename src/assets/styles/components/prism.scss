@@ -51,7 +51,10 @@ code[class*="language-"] ::selection {
 pre[class*="language-"] {
   overflow: auto;
   box-sizing: border-box;
+}
 
+pre[class*="language-"],
+.cm-editor {
   // Light theme: darker steps of the peer hues so every token reaches 4.5:1 on the paper background.
   --code-slategray: var(--gray-700);
   --code-gray: var(--gray-800);
@@ -62,7 +65,8 @@ pre[class*="language-"] {
   --code-green: #0b7a45;
 }
 
-.darkmode pre[class*="language-"] {
+.darkmode pre[class*="language-"],
+.darkmode .cm-editor {
   --code-slategray: var(--gray-300);
   --code-gray: var(--gray-600);
   --code-purple: var(--purple-dark);
