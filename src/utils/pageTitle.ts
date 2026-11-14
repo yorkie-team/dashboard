@@ -46,7 +46,9 @@ export function getPageTitle(pathname: string): string {
     const project = safeDecode(second);
     const section = third ? PROJECT_SECTION_TITLES[third] || 'Overview' : 'Overview';
     // A document or schema page leads with its own name.
-    const item = fourth && fourth !== 'new' && (third === 'documents' || third === 'schemas') ? safeDecode(fourth) : '';
+    // `new` is a reserved route only under schemas; a document may be keyed "new".
+    const isItem = fourth && (third === 'documents' || (third === 'schemas' && fourth !== 'new'));
+    const item = isItem ? safeDecode(fourth) : '';
     return `${item ? `${item} · ` : ''}${section} · ${project}`;
   }
   return 'Dashboard';

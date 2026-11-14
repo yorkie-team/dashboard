@@ -32,6 +32,9 @@ describe('getPageTitle', () => {
     expect(getPageTitle('/projects/default/documents/some-doc')).toBe('some-doc · Documents · default');
     expect(getPageTitle('/projects/default/documents/some-doc/history')).toBe('some-doc · Documents · default');
     expect(getPageTitle('/projects/default/schemas/new')).toBe('Schemas · default');
+    expect(getPageTitle('/projects/default/schemas/todo')).toBe('todo · Schemas · default');
+    expect(getPageTitle('/projects/default/documents/new')).toBe('new · Documents · default');
+    expect(getPageTitle('/projects/default/documents/%E0%A4%A')).toBe('%E0%A4%A · Documents · default');
   });
 
   it('decodes project names and falls back for unknown paths', () => {
