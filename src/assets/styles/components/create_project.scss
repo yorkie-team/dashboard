@@ -37,11 +37,11 @@
     }
 
     .btn {
-      padding: 12px variables.$spacing_56;
+      padding: 11px variables.$spacing_56;
       @include mixins-lib.rfonts(16, 24, 600);
 
       @include mixins-lib.tabletStart() {
-        padding: 12px variables.$spacing_40;
+        padding: 11px variables.$spacing_40;
       }
 
       @include mixins-lib.mobileStart() {

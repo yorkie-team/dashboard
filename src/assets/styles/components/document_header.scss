@@ -34,6 +34,10 @@
   }
 
   .btn {
+    // Icon buttons follow the small button size (32px) instead of shrinking to their icon.
+    min-width: 32px;
+    min-height: 32px;
+
     .icon {
       width: 24px;
       height: 24px;
@@ -46,12 +50,13 @@
 
     &_more {
       position: absolute;
-      top: 2px;
+      // Offsets keep the 32px button centered where the 26px one was.
+      top: -1px;
       right: variables.$spacing_8;
       padding: 0;
 
       @include mixins-lib.tabletStart() {
-        top: 0;
+        top: -3px;
         right: 0;
       }
 

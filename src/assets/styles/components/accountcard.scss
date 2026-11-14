@@ -143,7 +143,7 @@
     height: 100%;
     padding: 0 26px;
     box-sizing: border-box;
-    border-radius: 6px;
+    border-radius: 4px;
     background: var(--gray-400);
     @include mixins-lib.rfonts(12, 16, 500);
     // gray-400 is the same in both themes, so the label needs a fixed dark ink.
