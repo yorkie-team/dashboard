@@ -23,6 +23,15 @@ const PROJECT_SECTION_TITLES: Record<string, string> = {
   schemas: 'Schemas',
 };
 
+// A malformed escape in the URL must not throw while rendering the page.
+function safeDecode(segment: string): string {
+  try {
+    return decodeURIComponent(segment);
+  } catch {
+    return segment;
+  }
+}
+
 // Every route used to share one title, so tabs and history entries were indistinguishable.
 export function getPageTitle(pathname: string): string {
   const [first, second, third] = pathname.split('/').filter(Boolean);
@@ -33,8 +42,8 @@ export function getPageTitle(pathname: string): string {
   if (first === 'community') return 'Community';
   if (first === 'projects') {
     if (!second) return 'Projects';
-    if (second === 'new') return 'New project';
-    const project = decodeURIComponent(second);
+    if (second === 'new' && !third) return 'New project';
+    const project = safeDecode(second);
     return `${third ? PROJECT_SECTION_TITLES[third] || 'Overview' : 'Overview'} · ${project}`;
   }
   return 'Dashboard';

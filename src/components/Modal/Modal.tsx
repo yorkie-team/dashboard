@@ -19,7 +19,8 @@ import { createPortal } from 'react-dom';
 import { Icon } from 'components';
 import classNames from 'classnames';
 
-const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select, textarea, [tabindex]:not([tabindex="-1"])';
+const FOCUSABLE =
+  'a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select, textarea, [tabindex]:not([tabindex="-1"])';
 
 type ModalContextValue = {
   titleId: string;
@@ -28,9 +29,20 @@ type ModalContextValue = {
 };
 const ModalContext = createContext<ModalContextValue | null>(null);
 
-export function Modal({ children, large }: { children: React.ReactNode; large?: boolean }) {
+export function Modal({
+  children,
+  large,
+  onClose,
+}: {
+  children: React.ReactNode;
+  large?: boolean;
+  /** Called when Escape is pressed. Defaults to the handler of Modal.CloseButton, if there is one. */
+  onClose?: () => void;
+}) {
   const modalRef = useRef<HTMLDivElement | null>(null);
   const closeRef = useRef<(() => void) | null>(null);
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
   // Read during the first render: by the time effects run, an autofocused field inside the modal already has focus.
   const returnFocusRef = useRef<HTMLElement | null>(document.activeElement as HTMLElement | null);
   const titleId = useId();
@@ -47,29 +59,44 @@ export function Modal({ children, large }: { children: React.ReactNode; large?: 
     const $modal = modalRef.current;
     if (!$modal) return;
 
-    const focusables = () => Array.from($modal.querySelectorAll<HTMLElement>(FOCUSABLE));
-    const $first = $modal.querySelector<HTMLElement>('input:not([disabled]):not([type="hidden"]):not([hidden])') || $modal;
+    // Skip elements that cannot take focus (the `hidden` attribute, display: none, hidden ancestors).
+    const focusables = () =>
+      Array.from($modal.querySelectorAll<HTMLElement>(FOCUSABLE)).filter(
+        (el) => !el.hidden && el.getClientRects().length > 0,
+      );
+    const $first = focusables().find((el) => el.tagName === 'INPUT') || $modal;
     $first.focus();
 
+    // Listen on the document so the keys still work after a click on the dimmer moved focus out of the dialog.
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.defaultPrevented || e.isComposing) return;
 
-      if (e.key === 'Escape' && closeRef.current) {
+      // Only the topmost dialog reacts, e.g. an error modal shown over another modal.
+      const $modals = document.querySelectorAll('.modal');
+      if ($modals[$modals.length - 1] !== $modal) return;
+
+      if (e.key === 'Escape') {
+        const close = onCloseRef.current || closeRef.current;
+        if (!close) return;
         e.preventDefault();
-        closeRef.current();
+        close();
         return;
       }
       if (e.key !== 'Tab') return;
 
       const items = focusables();
+      const active = document.activeElement;
       if (items.length === 0) {
         e.preventDefault();
+        $modal.focus();
         return;
       }
       const first = items[0];
       const last = items[items.length - 1];
-      const active = document.activeElement;
-      if (e.shiftKey && (active === first || active === $modal)) {
+      if (!$modal.contains(active)) {
+        e.preventDefault();
+        (e.shiftKey ? last : first).focus();
+      } else if (e.shiftKey && (active === first || active === $modal)) {
         e.preventDefault();
         last.focus();
       } else if (!e.shiftKey && active === last) {
@@ -77,11 +104,13 @@ export function Modal({ children, large }: { children: React.ReactNode; large?: 
         first.focus();
       }
     };
-    $modal.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      $modal.removeEventListener('keydown', handleKeyDown);
-      returnFocusRef.current?.focus?.();
+      document.removeEventListener('keydown', handleKeyDown);
+      // The trigger may be gone by now (a deleted row, a closed dropdown item).
+      const $return = returnFocusRef.current;
+      if ($return?.isConnected) $return.focus();
     };
   }, []);
 

@@ -287,7 +287,7 @@ export function DocumentHistory() {
         <Modal>
           <Modal.Top>
             <Modal.Title>Restore Document</Modal.Title>
-            <Modal.CloseButton onClick={() => setShowRestoreModal(false)} />
+            <Modal.CloseButton onClick={() => !isRestoring && setShowRestoreModal(false)} />
           </Modal.Top>
           <Modal.Content>
             <Modal.Description>

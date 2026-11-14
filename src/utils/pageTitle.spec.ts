@@ -36,4 +36,9 @@ describe('getPageTitle', () => {
     expect(getPageTitle('/projects/my%20app/settings')).toBe('Settings · my app');
     expect(getPageTitle('/nope/nope')).toBe('Dashboard');
   });
+
+  it('survives malformed escapes and a project named new', () => {
+    expect(getPageTitle('/projects/%E0%A4%A/settings')).toBe('Settings · %E0%A4%A');
+    expect(getPageTitle('/projects/new/settings')).toBe('Settings · new');
+  });
 });
