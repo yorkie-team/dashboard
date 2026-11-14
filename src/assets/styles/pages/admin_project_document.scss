@@ -265,7 +265,7 @@
     .desc {
       padding-left: variables.$spacing_16;
       @include mixins-lib.rfonts(14, 22, 400);
-      color: var(--red-0);
+      color: var(--red-ink);
     }
   }
 

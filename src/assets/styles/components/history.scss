@@ -284,13 +284,13 @@
       &.is_removed {
         border: 1px solid var(--red-dark);
         background: var(--red-alpha-light);
-        color: var(--red-dark);
+        color: var(--red-ink);
       }
 
       &.is_created {
         border: 1px solid var(--green-dark);
         background: var(--green-alpha-light);
-        color: var(--green-dark);
+        color: var(--green-ink);
       }
     }
   }

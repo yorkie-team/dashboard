@@ -180,13 +180,13 @@
       &.is_created {
         border-color: var(--green-0);
         background: var(--green-alpha-light);
-        color: var(--green-dark);
+        color: var(--green-ink);
       }
 
       &.is_removed {
         border-color: var(--red-0);
         background: var(--red-alpha-light);
-        color: var(--red-dark);
+        color: var(--red-ink);
       }
     }
 

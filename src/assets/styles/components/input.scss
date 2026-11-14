@@ -59,7 +59,7 @@
 
     &.is_success {
       .input_guide {
-        color: var(--green-dark);
+        color: var(--green-ink);
 
         .icon {
           path:first-child {
@@ -68,14 +68,14 @@
         }
 
         &_desc {
-          color: var(--green-dark);
+          color: var(--green-ink);
         }
       }
     }
 
     &.is_error {
       .input_guide {
-        color: var(--red-dark);
+        color: var(--red-ink);
 
         .icon {
           path:last-child {
@@ -84,7 +84,7 @@
         }
 
         &_desc {
-          color: var(--red-dark);
+          color: var(--red-ink);
         }
       }
     }
@@ -156,7 +156,7 @@
       }
 
       #{$input}_guide {
-        color: var(--red-dark);
+        color: var(--red-ink);
 
         .icon {
           path {
@@ -175,7 +175,7 @@
       }
 
       #{$input}_guide {
-        color: var(--green-dark);
+        color: var(--green-ink);
 
         .icon {
           path {
@@ -267,11 +267,11 @@
   &.is_error {
     .input {
       border-color: var(--red-0);
-      color: var(--red-0);
+      color: var(--red-ink);
     }
 
     .input_guide {
-      color: var(--red-dark);
+      color: var(--red-ink);
 
       .icon {
         path:last-child {
@@ -280,7 +280,7 @@
       }
 
       &_desc {
-        color: var(--red-dark);
+        color: var(--red-ink);
       }
     }
   }
@@ -291,7 +291,7 @@
     }
 
     .input_guide {
-      color: var(--green-0);
+      color: var(--green-ink);
 
       .icon {
         path:first-child {
@@ -300,7 +300,7 @@
       }
 
       &_desc {
-        color: var(--green-0);
+        color: var(--green-ink);
       }
     }
   }
@@ -405,7 +405,7 @@
   &_large {
     &.is_success {
       .input {
-        color: var(--green-0);
+        color: var(--green-ink);
       }
     }
 
