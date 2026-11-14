@@ -41,6 +41,11 @@ const chrome = {
   '.cm-cursor, .cm-dropCursor': {
     borderLeftColor: 'var(--gray-900)',
   },
+  // CodeMirror's dark default (#233) disappears on the dashboard's dark
+  // background, so the selection takes a token that shows in both themes.
+  '&.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground, .cm-selectionBackground': {
+    background: 'var(--blue-alpha-light)',
+  },
 };
 
 /**
