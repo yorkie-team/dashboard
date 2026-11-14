@@ -182,19 +182,21 @@ export function DocumentDetail() {
               icon={<Icon type="branch" />}
               color="toggle"
               onClick={() => setShowContent('root')}
-              className={showContent === 'root' ? 'is_active' : ''}
+              isActive={showContent === 'root'}
+              aria-label="Show document root"
             />
             <Button
               icon={<Icon type="addMember" />}
               color="toggle"
               onClick={() => setShowContent('presence')}
-              className={showContent === 'presence' ? 'is_active' : ''}
+              isActive={showContent === 'presence'}
+              aria-label="Show presences"
             />
             <div className="btn_area">
               <CopyButton value={document?.root || ''} timeout={1000}>
                 {({ copied, copy }) => (
                   <>
-                    <Button icon={<Icon type="copy" />} color="toggle" outline onClick={copy} />
+                    <Button icon={<Icon type="copy" />} color="toggle" outline onClick={copy} aria-label="Copy document" />
                     {copied && (
                       <div className="toast_box shadow_l">
                         <Icon type="check" />

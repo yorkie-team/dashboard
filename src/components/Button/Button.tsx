@@ -92,7 +92,7 @@ function ButtonInner({
       className={buttonClassName}
       type={type}
       disabled={disabled}
-      aria-pressed={color === 'toggle' ? !!isActive : undefined}
+      aria-pressed={color === 'toggle' && isActive !== undefined ? isActive : undefined}
       {...restProps}
       ref={buttonRef}
     >

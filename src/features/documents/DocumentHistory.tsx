@@ -202,6 +202,7 @@ export function DocumentHistory() {
               disabled={selectedIndex <= 0}
               onClick={() => selectedIndex > 0 && handleRevisionClick(list[selectedIndex - 1].id)}
               style={{ minWidth: '32px', padding: '4px 8px' }}
+              aria-label="Previous revision"
             />
 
             <div className="slider_wrapper">
@@ -235,6 +236,7 @@ export function DocumentHistory() {
               disabled={selectedIndex >= list.length - 1}
               onClick={() => selectedIndex < list.length - 1 && handleRevisionClick(list[selectedIndex + 1].id)}
               style={{ minWidth: '32px', padding: '4px 8px', transform: 'rotate(180deg)' }}
+              aria-label="Next revision"
             />
           </div>
         )}
