@@ -35,7 +35,8 @@
       width: 100%;
       @include mixins-lib.rfonts(14, 22, 500);
       color: var(--gray-800);
-      word-break: break-all;
+      // Break at hyphens and other natural points first; only split a word when it cannot fit.
+      overflow-wrap: anywhere;
       border-radius: 4px;
 
       &:not(:first-of-type) {
@@ -113,6 +114,14 @@
     }
   }
 
+  // The header cell holds the "Select All" label, which needs more room than a row's checkbox.
+  .th.select {
+    @include mixins-lib.tabletStart() {
+      flex: none;
+      width: auto;
+    }
+  }
+
   .th {
     &:not(.select) {
       @include mixins-lib.tabletStart() {
@@ -127,8 +136,9 @@
       }
     }
 
+    // The button inside is 32px tall, so 8px keeps the header row at 48px.
     &.select {
-      padding: variables.$spacing_16 0;
+      padding: variables.$spacing_8 0;
     }
   }
 
@@ -213,12 +223,15 @@
     .btn_all_check {
       display: block;
       width: 100%;
+      // 8px of padding makes the text button 32px tall, the small button size.
+      padding: variables.$spacing_8 0;
+      white-space: nowrap;
       @include mixins-lib.rfonts(12, 16, 600);
-      color: var(--blue-dark);
-
-      @include mixins-lib.tabletStart() {
-        @include mixins-lib.rfonts(8, 8, 500);
-      }
+      // Blue text on the page is 3.5:1; the label is ink with a blue underline.
+      color: var(--gray-900);
+      text-decoration: underline;
+      text-decoration-color: var(--blue-0);
+      text-underline-offset: 3px;
     }
   }
 }

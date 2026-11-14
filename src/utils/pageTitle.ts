@@ -34,7 +34,7 @@ function safeDecode(segment: string): string {
 
 // Every route used to share one title, so tabs and history entries were indistinguishable.
 export function getPageTitle(pathname: string): string {
-  const [first, second, third] = pathname.split('/').filter(Boolean);
+  const [first, second, third, fourth] = pathname.split('/').filter(Boolean);
   if (first === 'login') return 'Sign in';
   if (first === 'signup') return 'Sign up';
   if (first === 'invite') return 'Accept invitation';
@@ -44,7 +44,12 @@ export function getPageTitle(pathname: string): string {
     if (!second) return 'Projects';
     if (second === 'new' && !third) return 'New project';
     const project = safeDecode(second);
-    return `${third ? PROJECT_SECTION_TITLES[third] || 'Overview' : 'Overview'} · ${project}`;
+    const section = third ? PROJECT_SECTION_TITLES[third] || 'Overview' : 'Overview';
+    // A document or schema page leads with its own name.
+    // `new` is a reserved route only under schemas; a document may be keyed "new".
+    const isItem = fourth && (third === 'documents' || (third === 'schemas' && fourth !== 'new'));
+    const item = isItem ? safeDecode(fourth) : '';
+    return `${item ? `${item} · ` : ''}${section} · ${project}`;
   }
   return 'Dashboard';
 }

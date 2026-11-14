@@ -69,7 +69,7 @@
   .title {
     @include mixins-lib.rfonts(20, 28, 600);
     color: var(--gray-800);
-    word-break: break-all;
+    overflow-wrap: anywhere;
   }
 
   .date {

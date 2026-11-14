@@ -270,14 +270,19 @@
   }
 
   .badge {
-    background-color: var(--gray-200);
-    color: var(--gray-700);
+    // A border keeps the chip visible on the hovered and selected rows, which share its fill.
+    border: 1px solid var(--gray-300);
+    background-color: var(--gray-100);
+    color: var(--gray-800);
     font-size: 1.1rem;
     font-weight: 400;
     padding: 2px 4px;
     border-radius: 4px;
     margin-left: 4px;
     word-break: keep-all;
+    // Stay on one line so the ellipsis applies; the key's wrapping rule is inherited otherwise.
+    white-space: nowrap;
+    overflow-wrap: normal;
 
     display: inline-block;
     max-width: 60px;
@@ -296,6 +301,7 @@
     align-items: center;
     gap: 6px;
     text-overflow: initial;
+    white-space: normal;
     margin-left: 0;
     max-width: 100%;
     font-size: 1.3rem;

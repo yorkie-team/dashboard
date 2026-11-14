@@ -43,11 +43,14 @@ export function DocumentHistory() {
   const [selectedRevisionId, setSelectedRevisionId] = useState<string | null>(null);
   const [showRestoreModal, setShowRestoreModal] = useState(false);
   const [isRestoring, setIsRestoring] = useState(false);
+  // True once the first list request for this document has finished, so an empty list means "none", not "loading".
+  const [hasLoaded, setHasLoaded] = useState(false);
   const clipboard = useClipboard();
 
   // Reset selection and revisions state when project or document changes
   useEffect(() => {
     setSelectedRevisionId(null);
+    setHasLoaded(false);
     dispatch(resetRevisions());
   }, [dispatch, currentProject?.id, documentKey]);
 
@@ -80,7 +83,11 @@ export function DocumentHistory() {
       }
     };
 
-    loadRevisions();
+    loadRevisions()
+      .then(() => setHasLoaded(true))
+      .catch(() => {
+        // The slice records the failure; the empty messages stay hidden.
+      });
   }, [dispatch, currentProject, documentKey]);
 
   const handleRevisionClick = (revisionId: string) => {
@@ -192,7 +199,7 @@ export function DocumentHistory() {
         </div>
 
         {list.length === 0 ? (
-          <div className="no_revisions">No revisions found</div>
+          <div className="no_revisions">{hasLoaded ? 'No revisions found' : ''}</div>
         ) : (
           <div className="slider_controls">
             <Button
@@ -280,7 +287,13 @@ export function DocumentHistory() {
           {selectedRevision ? (
             <CodeBlock.Code code={getSnapshotYSON()} language="json" withLineNumbers />
           ) : (
-            <div className="empty_state">Select a revision to view</div>
+            <div className="empty_state">
+              {list.length > 0
+                ? 'Select a revision to view'
+                : hasLoaded
+                ? 'This document has no saved revisions yet.'
+                : ''}
+            </div>
           )}
         </div>
       </div>
@@ -366,7 +379,7 @@ export function DocumentHistory() {
         .no_revisions {
           text-align: center;
           padding: 20px;
-          color: var(--gray-500);
+          color: var(--gray-700);
         }
         
         .slider_controls {
@@ -441,7 +454,7 @@ export function DocumentHistory() {
         .empty_state {
           padding: 20px;
           text-align: center;
-          color: var(--gray-500);
+          color: var(--gray-700);
         }
       `}</style>
     </div>

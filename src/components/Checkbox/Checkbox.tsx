@@ -31,7 +31,7 @@ export function Checkbox({
 } & React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <label className="input_check_box is_large">
-      <input type="checkbox" className="blind" id={id} onChange={onChange} checked={checked} />
+      <input type="checkbox" className="blind" id={id} onChange={onChange} checked={checked} {...restProps} />
       <em className="checkbox_ui">
         <span className="check">
           <Icon type="check" />
