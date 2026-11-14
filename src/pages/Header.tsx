@@ -33,8 +33,8 @@ export function Header({ className }: { className?: string }) {
           <h1 className="logo">
             <a href={`${import.meta.env.VITE_SERVICE_URL}`} className="logo_menu">
               <Icon type="logoNoText" fill />
+              <span className="blind">Yorkie</span>
             </a>
-            <span className="blind">Yorkie</span>
           </h1>
           {isAuthenticated && (
             <>

@@ -29,7 +29,7 @@ export function SearchBar({
       <div className="input_field_box">
         <div className="input_inner">
           <Icon type="search" className="icon_search" />
-          <input type="search" className="input" {...restProps} />
+          <input type="search" className="input" aria-label={restProps.placeholder} {...restProps} />
           {children}
         </div>
       </div>
