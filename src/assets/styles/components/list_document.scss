@@ -35,7 +35,8 @@
       width: 100%;
       @include mixins-lib.rfonts(14, 22, 500);
       color: var(--gray-800);
-      word-break: break-all;
+      // Break at hyphens and other natural points first; only split a word when it cannot fit.
+      overflow-wrap: anywhere;
       border-radius: 4px;
 
       &:not(:first-of-type) {
@@ -213,12 +214,14 @@
     .btn_all_check {
       display: block;
       width: 100%;
+      // 8px of padding makes the text button 32px tall, the small button size.
+      padding: variables.$spacing_8 0;
       @include mixins-lib.rfonts(12, 16, 600);
-      color: var(--blue-dark);
-
-      @include mixins-lib.tabletStart() {
-        @include mixins-lib.rfonts(8, 8, 500);
-      }
+      // Blue text on the page is 3.5:1; the label is ink with a blue underline.
+      color: var(--gray-900);
+      text-decoration: underline;
+      text-decoration-color: var(--blue-0);
+      text-underline-offset: 3px;
     }
   }
 }

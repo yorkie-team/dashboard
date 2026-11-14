@@ -29,7 +29,9 @@ describe('getPageTitle', () => {
   it('puts the section before the project name', () => {
     expect(getPageTitle('/projects/default')).toBe('Overview · default');
     expect(getPageTitle('/projects/default/apikeys')).toBe('API Keys · default');
-    expect(getPageTitle('/projects/default/documents/some-doc')).toBe('Documents · default');
+    expect(getPageTitle('/projects/default/documents/some-doc')).toBe('some-doc · Documents · default');
+    expect(getPageTitle('/projects/default/documents/some-doc/history')).toBe('some-doc · Documents · default');
+    expect(getPageTitle('/projects/default/schemas/new')).toBe('Schemas · default');
   });
 
   it('decodes project names and falls back for unknown paths', () => {

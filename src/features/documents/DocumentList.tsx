@@ -236,6 +236,7 @@ export function DocumentList({ isDetailOpen = false }: { isDetailOpen?: boolean 
                     <span className="td select">
                       <Checkbox
                         id={key}
+                        aria-label={`Select ${key}`}
                         onChange={() => {
                           setSelectedDocKeys((prev) => {
                             if (prev.includes(key)) {

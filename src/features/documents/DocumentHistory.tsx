@@ -192,7 +192,9 @@ export function DocumentHistory() {
         </div>
 
         {list.length === 0 ? (
-          <div className="no_revisions">No revisions found</div>
+          <div className="no_revisions" role="status">
+            No revisions found
+          </div>
         ) : (
           <div className="slider_controls">
             <Button
@@ -280,7 +282,9 @@ export function DocumentHistory() {
           {selectedRevision ? (
             <CodeBlock.Code code={getSnapshotYSON()} language="json" withLineNumbers />
           ) : (
-            <div className="empty_state">Select a revision to view</div>
+            <div className="empty_state">
+              {list.length === 0 ? 'This document has no saved revisions yet.' : 'Select a revision to view'}
+            </div>
           )}
         </div>
       </div>
@@ -366,7 +370,7 @@ export function DocumentHistory() {
         .no_revisions {
           text-align: center;
           padding: 20px;
-          color: var(--gray-500);
+          color: var(--gray-700);
         }
         
         .slider_controls {
@@ -441,7 +445,7 @@ export function DocumentHistory() {
         .empty_state {
           padding: 20px;
           text-align: center;
-          color: var(--gray-500);
+          color: var(--gray-700);
         }
       `}</style>
     </div>
