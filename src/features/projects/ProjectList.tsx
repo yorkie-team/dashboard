@@ -154,7 +154,7 @@ export function ProjectList() {
     <>
       <div className="project_area">
         <div className="title_group">
-          <strong className="title">Projects</strong>
+          <h2 className="title">Projects</h2>
           <Button.Box>
             <Button
               color="toggle"

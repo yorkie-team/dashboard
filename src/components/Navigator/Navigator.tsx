@@ -44,7 +44,7 @@ export const Navigator = ({ navList }: { navList: Array<{ name: string; id: stri
   }, [setActiveId]);
 
   return (
-    <nav className="navigator">
+    <nav className="navigator" aria-label="On this page">
       <ul className="navigator_list">
         {navList.map(({ name, id }) => {
           return (
