@@ -14,12 +14,27 @@
  * limitations under the License.
  */
 
-import { useEffect } from 'react';
+import { createContext, useContext, useEffect, useId, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { Icon } from 'components';
 import classNames from 'classnames';
 
+const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select, textarea, [tabindex]:not([tabindex="-1"])';
+
+type ModalContextValue = {
+  titleId: string;
+  // The close button registers its handler here so Escape can close the modal the same way.
+  closeRef: React.MutableRefObject<(() => void) | null>;
+};
+const ModalContext = createContext<ModalContextValue | null>(null);
+
 export function Modal({ children, large }: { children: React.ReactNode; large?: boolean }) {
+  const modalRef = useRef<HTMLDivElement | null>(null);
+  const closeRef = useRef<(() => void) | null>(null);
+  // Read during the first render: by the time effects run, an autofocused field inside the modal already has focus.
+  const returnFocusRef = useRef<HTMLElement | null>(document.activeElement as HTMLElement | null);
+  const titleId = useId();
+
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -27,13 +42,63 @@ export function Modal({ children, large }: { children: React.ReactNode; large?: 
     };
   }, []);
 
+  // Move focus into the dialog, keep Tab inside it, close on Escape, and restore focus on close.
+  useEffect(() => {
+    const $modal = modalRef.current;
+    if (!$modal) return;
+
+    const focusables = () => Array.from($modal.querySelectorAll<HTMLElement>(FOCUSABLE));
+    const $first = $modal.querySelector<HTMLElement>('input:not([disabled]):not([type="hidden"]):not([hidden])') || $modal;
+    $first.focus();
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.defaultPrevented || e.isComposing) return;
+
+      if (e.key === 'Escape' && closeRef.current) {
+        e.preventDefault();
+        closeRef.current();
+        return;
+      }
+      if (e.key !== 'Tab') return;
+
+      const items = focusables();
+      if (items.length === 0) {
+        e.preventDefault();
+        return;
+      }
+      const first = items[0];
+      const last = items[items.length - 1];
+      const active = document.activeElement;
+      if (e.shiftKey && (active === first || active === $modal)) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    $modal.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      $modal.removeEventListener('keydown', handleKeyDown);
+      returnFocusRef.current?.focus?.();
+    };
+  }, []);
+
   return createPortal(
-    <>
+    <ModalContext.Provider value={{ titleId, closeRef }}>
       <div className="dimmed"></div>
-      <div className={classNames('modal', { modal_l: large })} role="dialog">
+      <div
+        ref={modalRef}
+        className={classNames('modal', { modal_l: large })}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        tabIndex={-1}
+      >
         {children}
       </div>
-    </>,
+    </ModalContext.Provider>,
     document.body,
   );
 }
@@ -47,7 +112,12 @@ function Content({ children }: { children: React.ReactNode }) {
 }
 
 function Title({ children }: { children: React.ReactNode }) {
-  return <p className="modal_title fontsize_24 fontweight_600">{children}</p>;
+  const ctx = useContext(ModalContext);
+  return (
+    <p id={ctx?.titleId} className="modal_title fontsize_24 fontweight_600">
+      {children}
+    </p>
+  );
 }
 
 function Description({ children }: { children: React.ReactNode }) {
@@ -59,6 +129,15 @@ function Bottom({ children, combine }: { children: React.ReactNode; combine?: bo
 }
 
 function CloseButton({ onClick }: { onClick: () => void }) {
+  const ctx = useContext(ModalContext);
+  useEffect(() => {
+    if (!ctx) return;
+    ctx.closeRef.current = onClick;
+    return () => {
+      ctx.closeRef.current = null;
+    };
+  });
+
   return (
     <button type="button" className="btn_close" onClick={onClick} aria-label="Close">
       <Icon type="close" className="gray600" />
