@@ -1241,7 +1241,8 @@ export function Settings() {
                   >
                     <InputToggle
                       id="autoRevisionEnabled"
-                      label=""
+                      label="Auto Revision"
+                      blindLabel
                       checked={autoRevisionEnabled.value}
                       onChange={(e) => {
                         autoRevisionEnabled.onChange(e.target.checked);
@@ -1281,7 +1282,8 @@ export function Settings() {
                   >
                     <InputToggle
                       id="removeOnDetach"
-                      label=""
+                      label="Remove On Detach"
+                      blindLabel
                       checked={removeOnDetach.value}
                       onChange={(e) => {
                         removeOnDetach.onChange(e.target.checked);

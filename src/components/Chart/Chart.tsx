@@ -43,7 +43,7 @@ export function Chart({
           right: 25,
         }}
       >
-        <CartesianGrid strokeDasharray="3 3" stroke="var(--gray-300)" />
+        <CartesianGrid strokeDasharray="3 3" stroke="var(--gray-400)" strokeOpacity={0.5} />
         <XAxis
           dataKey={xKey}
           tickSize={0}
