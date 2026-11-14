@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { createSlice } from '@reduxjs/toolkit';
+import { createSelector, createSlice } from '@reduxjs/toolkit';
 import { createAppThunk } from 'app/appThunk';
 import { RootState } from 'app/store';
 import {
@@ -111,17 +111,18 @@ export const channelSlice = createSlice({
 
 export const { setCurrentPage, setLimit } = channelSlice.actions;
 
-export const selectChannelList = (state: RootState) => {
-  const { allChannels, currentPage, pageSize, limit, status, type } = state.channels.list;
-  
+// Memoized: the page slice is a new array each time, which made the list re-render on any store update.
+export const selectChannelList = createSelector([(state: RootState) => state.channels.list], (list) => {
+  const { allChannels, currentPage, pageSize, limit, status, type } = list;
+
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = startIndex + pageSize;
   const channels = allChannels.slice(startIndex, endIndex);
-  
+
   const totalPages = Math.ceil(allChannels.length / pageSize);
   const hasPrevious = currentPage > 1;
   const hasNext = currentPage < totalPages;
-  
+
   return {
     channels,
     currentPage,
@@ -133,7 +134,7 @@ export const selectChannelList = (state: RootState) => {
     status,
     type,
   };
-};
+});
 
 export const selectChannelDetail = (state: RootState) => state.channels.detail;
 

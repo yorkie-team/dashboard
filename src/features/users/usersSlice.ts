@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSelector, createSlice } from '@reduxjs/toolkit';
 import { createAppThunk } from 'app/appThunk';
 import * as api from 'api';
 import { User, RPCStatusCode, RPCError } from 'api/types';
@@ -361,14 +361,17 @@ export const {
 } = usersSlice.actions;
 
 export const selectUsers = (state: RootState) => state.users;
-export const selectCurrentUser = (state: RootState) => ({
-  user: state.users.isAuthenticated
-    ? {
-        username: state.users.username,
-        authProvider: state.users.authProvider,
-      }
-    : null,
-});
+// Memoized: building the object on every call made each subscriber re-render on any store update.
+export const selectCurrentUser = createSelector(
+  [
+    (state: RootState) => state.users.isAuthenticated,
+    (state: RootState) => state.users.username,
+    (state: RootState) => state.users.authProvider,
+  ],
+  (isAuthenticated, username, authProvider) => ({
+    user: isAuthenticated ? { username, authProvider } : null,
+  }),
+);
 export const selectPreferences = (state: RootState) => state.users.preferences;
 
 export default usersSlice.reducer;
