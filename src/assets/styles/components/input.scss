@@ -556,7 +556,8 @@
       width: 12px;
       height: 12px;
       padding: 2px;
-      color: var(--gray-700);
+      // Matches the ball so the check stays hidden while the toggle is off.
+      color: var(--gray-600);
       transform: scale(0.5);
       transition:
         transform 0.3s 0.1s,

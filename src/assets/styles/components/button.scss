@@ -379,10 +379,12 @@ $line: '.btn_line';
   }
 
   &.blue_0:not(.btn_line):not(:disabled):not(.is_disabled):hover {
+    background-color: var(--blue-0);
     background-color: color-mix(in srgb, var(--blue-0) 85%, #{variables.$white});
   }
 
   &.green_0:not(.btn_line):not(:disabled):not(.is_disabled):hover {
+    background-color: var(--green-0);
     background-color: color-mix(in srgb, var(--green-0) 85%, #{variables.$white});
   }
 
@@ -460,6 +462,7 @@ $line: '.btn_line';
     color: var(--ink-on-accent);
 
     &:hover {
+      background-color: var(--blue-0);
       background-color: color-mix(in srgb, var(--blue-0) 85%, #{variables.$white});
       color: var(--ink-on-accent);
     }

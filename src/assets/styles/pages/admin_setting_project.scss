@@ -95,7 +95,7 @@
 
         // Keep values readable in read-only mode (not just a faint disabled grey).
         color: var(--gray-700);
-        -webkit-text-fill-color: var(--gray-600);
+        -webkit-text-fill-color: var(--gray-700);
         cursor: not-allowed;
 
         &::placeholder {
@@ -431,10 +431,6 @@
           border-radius: 4px;
           @include mixins-lib.rfonts(11, 16, 500);
           text-transform: uppercase;
-
-          .darkmode & {
-            background-color: var(--orange-alpha-light);
-          }
         }
       }
 
@@ -456,14 +452,10 @@
             border-color: var(--gray-600);
           }
 
+          // The gray scale inverts on the dark theme, so the same tokens work for both.
           &:hover:not(:disabled) {
             border-color: var(--gray-400);
             background-color: var(--gray-50);
-
-            .darkmode & {
-              border-color: var(--gray-500);
-              background-color: var(--gray-700);
-            }
           }
 
           &:disabled {
