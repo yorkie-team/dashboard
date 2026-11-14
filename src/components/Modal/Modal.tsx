@@ -30,7 +30,9 @@ export function Modal({ children, large }: { children: React.ReactNode; large?: 
   return createPortal(
     <>
       <div className="dimmed"></div>
-      <div className={classNames('modal', { modal_l: large })}>{children}</div>
+      <div className={classNames('modal', { modal_l: large })} role="dialog">
+        {children}
+      </div>
     </>,
     document.body,
   );
@@ -58,7 +60,7 @@ function Bottom({ children, combine }: { children: React.ReactNode; combine?: bo
 
 function CloseButton({ onClick }: { onClick: () => void }) {
   return (
-    <button type="button" className="btn_close" onClick={onClick}>
+    <button type="button" className="btn_close" onClick={onClick} aria-label="Close">
       <Icon type="close" className="gray600" />
     </button>
   );

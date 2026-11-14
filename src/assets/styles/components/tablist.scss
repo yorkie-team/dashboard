@@ -147,7 +147,7 @@
       width: 12px;
       height: 12px;
       margin-right: variables.$spacing_8;
-      color: var(--gray-500);
+      color: var(--gray-700);
       transition: color 0.2s;
       vertical-align: middle;
 
@@ -164,7 +164,7 @@
 
   &_text {
     @include mixins-lib.rfonts(14, 22);
-    color: var(--gray-500);
+    color: var(--gray-700);
     transition: color 0.2s;
   }
 }

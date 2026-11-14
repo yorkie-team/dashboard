@@ -21,14 +21,14 @@
   }
 
   &::placeholder {
-    color: var(--gray-500);
-    opacity: 0.4;
+    color: var(--gray-600);
+    opacity: 1;
     font-weight: 500;
     font-style: italic;
   }
 
   &:-webkit-autofill {
-    box-shadow: 0 0 0 1000px variables.$white inset;
+    box-shadow: 0 0 0 1000px var(--gray-000) inset;
     -webkit-text-fill-color: var(--gray-900);
   }
 
@@ -37,6 +37,12 @@
     border-color: var(--blue-0);
     caret-color: var(--blue-0);
     outline: none;
+  }
+
+  // The blue border alone is under 3:1 and some variants override it; keyboard focus gets the shared ink ring.
+  &:focus-visible {
+    outline: 2px solid var(--gray-900);
+    outline-offset: 2px;
   }
 
   &_group {
@@ -366,6 +372,15 @@
     }
   }
 
+  // Large fields carry a label for assistive technology only; it must not take space or push the input down.
+  &_large .label.blind {
+    position: absolute;
+
+    & ~ .input_inner {
+      margin-top: 0;
+    }
+  }
+
   .input {
     width: 511px;
     margin-right: 12px;
@@ -425,6 +440,12 @@
   }
 
   input {
+    // The real checkbox is visually hidden, so its focus ring is drawn on the toggle.
+    &:focus-visible ~ .toggle_ui {
+      outline: 2px solid var(--gray-900);
+      outline-offset: 2px;
+    }
+
     &:checked {
       & ~ .toggle_ui {
         border-color: var(--blue-0);
@@ -563,6 +584,11 @@
   align-items: center;
 
   input {
+    &:focus-visible ~ .radio_ui {
+      outline: 2px solid var(--gray-900);
+      outline-offset: 2px;
+    }
+
     &:checked {
       & ~ .radio_ui {
         border-color: var(--blue-0);
@@ -647,6 +673,11 @@
   }
 
   input {
+    &:focus-visible ~ .checkbox_ui {
+      outline: 2px solid var(--gray-900);
+      outline-offset: 2px;
+    }
+
     &:checked {
       & ~ .checkbox_ui {
         border-color: var(--blue-0);
@@ -727,8 +758,9 @@
 
 .darkmode {
   .input {
-    &:-webkit-autofill {
-      box-shadow: 0 0 0 1000px var(--gray-000) inset;
+    // gray-600 inverts to almost the text color; keep placeholders visibly muted on the dark theme.
+    &::placeholder {
+      color: var(--gray-300);
     }
   }
 }

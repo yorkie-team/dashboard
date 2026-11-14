@@ -80,11 +80,9 @@ export const InputTextField = forwardRef<HTMLInputElement, InputTextFieldProps>(
 
     return (
       <div className={inputTextFieldClassName}>
-        {!large && (
-          <label htmlFor={id} className={classNames('label', { blind: blindLabel })}>
-            {label}
-          </label>
-        )}
+        <label htmlFor={id} className={classNames('label', { blind: blindLabel || large })}>
+          {label}
+        </label>
         <div className="input_inner" onKeyDown={onKeyDown}>
           <input
             type={type}

@@ -43,8 +43,8 @@ export function MobileGnbDropdown() {
   return (
     <Popover opened={opened} onChange={setOpened}>
       <Popover.Target>
-        <button className="btn_menu">
-          <span className="blind">Open menu</span>
+        <button type="button" className="btn_menu">
+          <span className="blind">{opened ? 'Close menu' : 'Open menu'}</span>
           <Icon type="gnbMenu" className={classNames('icon_menu', { is_active: !opened })} />
           <Icon type="close" className={classNames('icon_close', { is_active: opened })} />
         </button>

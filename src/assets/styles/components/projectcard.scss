@@ -189,7 +189,7 @@
       flex: 0 0 auto;
       margin-right: variables.$spacing_32;
       @include mixins-lib.rfonts(12, 16, 400);
-      color: var(--gray-400);
+      color: var(--gray-700);
       white-space: nowrap;
 
       &:last-of-type {
@@ -232,7 +232,7 @@
     width: 32px;
     height: 32px;
     padding: 0;
-    color: var(--gray-500);
+    color: var(--gray-700);
   }
 
   .btn_favorite_full {
