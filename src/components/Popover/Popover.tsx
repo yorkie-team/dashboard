@@ -83,12 +83,15 @@ export function Popover({
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key !== 'Escape' || e.defaultPrevented || e.isComposing) return;
+      // Mark the key as handled so an enclosing modal does not close as well.
+      e.preventDefault();
       onClose && onClose();
       setOpened(false);
       targetRef.current?.focus();
     };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    // Capture phase: a popover inside a modal must see Escape before the modal does.
+    window.addEventListener('keydown', handleKeyDown, true);
+    return () => window.removeEventListener('keydown', handleKeyDown, true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [_opened]);
 

@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { getPageTitle } from 'utils/pageTitle';
 
 import { Header } from './Header';
 import { Footer } from './Footer';
@@ -31,6 +33,11 @@ export function PageTemplate({
   contentClassName?: string;
   children: ReactNode;
 }) {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    document.title = `${getPageTitle(pathname)} · Yorkie`;
+  }, [pathname]);
+
   return (
     <div className={`wrap ${className}`}>
       <Header className={headerClassName} />

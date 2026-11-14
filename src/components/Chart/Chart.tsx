@@ -43,14 +43,22 @@ export function Chart({
           right: 25,
         }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey={xKey} tickSize={0} tickMargin={10} tickFormatter={tickFormatter} />
+        <CartesianGrid strokeDasharray="3 3" stroke="var(--gray-300)" />
+        <XAxis
+          dataKey={xKey}
+          tickSize={0}
+          tickMargin={10}
+          tickFormatter={tickFormatter}
+          tick={{ fill: 'var(--gray-700)' }}
+          stroke="var(--gray-400)"
+        />
         <Tooltip
-          labelStyle={{ color: '#333' }}
+          contentStyle={{ backgroundColor: 'var(--gray-000)', borderColor: 'var(--gray-400)' }}
+          labelStyle={{ color: 'var(--gray-900)' }}
           formatter={(value) => formatNumber(value as number)}
           labelFormatter={labelFormatter}
         />
-        <Line type="monotone" dataKey={dataKey} stroke="orange" dot={{ r: 3 }} activeDot={{ stroke: 'none', r: 3 }} />
+        <Line type="monotone" dataKey={dataKey} stroke="var(--orange-0)" dot={{ r: 3 }} activeDot={{ stroke: 'none', r: 3 }} />
       </LineChart>
     </ResponsiveContainer>
   );

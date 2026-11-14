@@ -459,3 +459,8 @@
     color: var(--red-0);
   }
 }
+
+// The dialog itself takes focus when it has no text field; it is not a control, so it shows no ring.
+.modal:focus {
+  outline: none;
+}

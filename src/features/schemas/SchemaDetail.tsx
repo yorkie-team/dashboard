@@ -287,7 +287,7 @@ export function SchemaDetail() {
         </form>
       </div>
       {isModalOpen && (
-        <Modal>
+        <Modal onClose={() => setIsModalOpen(false)}>
           <Modal.Top>
             <Icon type="alert" className="red_0" />
           </Modal.Top>

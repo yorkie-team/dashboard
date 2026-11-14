@@ -336,7 +336,7 @@ export function MembersList() {
         })()}
 
       {isRemoveModalOpen && (
-        <Modal>
+        <Modal onClose={cancelRemoveMember}>
           <Modal.Top>
             <Modal.Title>Remove Member</Modal.Title>
           </Modal.Top>

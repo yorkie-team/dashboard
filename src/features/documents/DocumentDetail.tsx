@@ -219,7 +219,7 @@ export function DocumentDetail() {
         )}
       </div>
       {isModalOpen && (
-        <Modal>
+        <Modal onClose={() => setIsModalOpen(false)}>
           <Modal.Top>
             <Icon type="alert" className="red_0" />
           </Modal.Top>
@@ -250,7 +250,7 @@ export function DocumentDetail() {
         </Modal>
       )}
       {isCompactModalOpen && (
-        <Modal>
+        <Modal onClose={() => setIsCompactModalOpen(false)}>
           <Modal.Top>
             <Icon type="alert" className="orange_0" />
           </Modal.Top>
