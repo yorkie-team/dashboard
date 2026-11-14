@@ -372,6 +372,15 @@
     }
   }
 
+  // Large fields carry a label for assistive technology only; it must not take space or push the input down.
+  &_large .label.blind {
+    position: absolute;
+
+    & ~ .input_inner {
+      margin-top: 0;
+    }
+  }
+
   .input {
     width: 511px;
     margin-right: 12px;
@@ -749,8 +758,9 @@
 
 .darkmode {
   .input {
-    &:-webkit-autofill {
-      box-shadow: 0 0 0 1000px var(--gray-000) inset;
+    // gray-600 inverts to almost the text color; keep placeholders visibly muted on the dark theme.
+    &::placeholder {
+      color: var(--gray-300);
     }
   }
 }

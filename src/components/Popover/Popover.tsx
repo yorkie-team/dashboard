@@ -82,7 +82,7 @@ export function Popover({
     if (!_opened) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key !== 'Escape') return;
+      if (e.key !== 'Escape' || e.defaultPrevented || e.isComposing) return;
       onClose && onClose();
       setOpened(false);
       targetRef.current?.focus();

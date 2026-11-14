@@ -30,7 +30,7 @@ export function Modal({ children, large }: { children: React.ReactNode; large?: 
   return createPortal(
     <>
       <div className="dimmed"></div>
-      <div className={classNames('modal', { modal_l: large })} role="dialog" aria-modal="true">
+      <div className={classNames('modal', { modal_l: large })} role="dialog">
         {children}
       </div>
     </>,
