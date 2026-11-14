@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useParams, useLocation } from 'react-router-dom';
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
@@ -39,6 +39,7 @@ import {
   removeSchemaAsync,
 } from './schemasSlice';
 import { selectCurrentProject } from 'features/projects/projectsSlice';
+import { schemaEditorTheme } from './editorTheme';
 
 const INITIAL_BODY = `// Document is the root of the document.
 // Every schema must have a Document type.
@@ -80,6 +81,7 @@ export function SchemaDetail() {
   const dispatch = useAppDispatch();
   const { schemaName } = useParams();
   const { theme } = useAppSelector(selectPreferences);
+  const editorTheme = useMemo(() => schemaEditorTheme(theme.darkMode), [theme.darkMode]);
   const { isSuccess, error } = useAppSelector(selectSchemaCreate);
   const { schemas } = useAppSelector(selectSchemaDetail);
   const { project: currentProject } = useAppSelector(selectCurrentProject);
@@ -267,7 +269,7 @@ export function SchemaDetail() {
               <CodeMirror
                 height="100%"
                 style={{ height: '100%' }}
-                theme={theme.darkMode ? 'dark' : 'light'}
+                theme={editorTheme}
                 value={schemaBody}
                 onChange={onChange}
                 extensions={[javascript({ typescript: true }), yorkieLinter, lintGutter(), scrollStyle]}
