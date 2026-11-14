@@ -1,4 +1,6 @@
 :root {
+  // Text on saturated orange fills. Fixed in both themes so contrast stays above 4.5:1.
+  --ink-on-accent: #332e2b;
   --gray-900: #332e2b;
   --gray-800: #514c49;
   --gray-700: #6e6966;

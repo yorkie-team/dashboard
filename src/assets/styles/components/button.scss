@@ -361,6 +361,15 @@ $line: '.btn_line';
     }
   }
 
+  // White on orange is about 2.4:1; dark ink keeps filled orange buttons readable.
+  &.orange_0,
+  &.orange_dark,
+  &.orange_light {
+    &:not(.btn_line):not(:disabled):not(.is_disabled) {
+      color: var(--ink-on-accent);
+    }
+  }
+
   @each $name, $value in $yellow_map {
     &.yellow_#{$name} {
       @include setColor($yellow_map, $name, $value);

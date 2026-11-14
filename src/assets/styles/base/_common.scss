@@ -121,7 +121,8 @@ button {
 button,
 a {
   &:focus-visible {
-    outline: 1px solid var(--orange-0);
+    outline: 2px solid var(--gray-900);
+    outline-offset: 2px;
   }
 }
 
