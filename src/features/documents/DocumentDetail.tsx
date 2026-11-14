@@ -95,7 +95,7 @@ export function DocumentDetail() {
         )}
         <div className="document_header">
           <div className="title_box">
-            <Link to="../" className="btn_back">
+            <Link to="../" className="btn_back" aria-label="Back to documents">
               <Icon type="arrowBack" />
             </Link>
             <div className="title_inner">
@@ -110,7 +110,7 @@ export function DocumentDetail() {
 
             <Popover opened={opened} onChange={setOpened}>
               <Popover.Target>
-                <button type="button" className="btn btn_more">
+                <button type="button" className="btn btn_more" aria-label="More actions">
                   <Icon type="moreLarge" />
                 </button>
               </Popover.Target>
@@ -182,19 +182,21 @@ export function DocumentDetail() {
               icon={<Icon type="branch" />}
               color="toggle"
               onClick={() => setShowContent('root')}
-              className={showContent === 'root' ? 'is_active' : ''}
+              isActive={showContent === 'root'}
+              aria-label="Show document root"
             />
             <Button
               icon={<Icon type="addMember" />}
               color="toggle"
               onClick={() => setShowContent('presence')}
-              className={showContent === 'presence' ? 'is_active' : ''}
+              isActive={showContent === 'presence'}
+              aria-label="Show presences"
             />
             <div className="btn_area">
               <CopyButton value={document?.root || ''} timeout={1000}>
                 {({ copied, copy }) => (
                   <>
-                    <Button icon={<Icon type="copy" />} color="toggle" outline onClick={copy} />
+                    <Button icon={<Icon type="copy" />} color="toggle" outline onClick={copy} aria-label="Copy document" />
                     {copied && (
                       <div className="toast_box shadow_l">
                         <Icon type="check" />
