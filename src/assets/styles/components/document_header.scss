@@ -50,12 +50,13 @@
 
     &_more {
       position: absolute;
-      top: 2px;
+      // Offsets keep the 32px button centered where the 26px one was.
+      top: -1px;
       right: variables.$spacing_8;
       padding: 0;
 
       @include mixins-lib.tabletStart() {
-        top: 0;
+        top: -3px;
         right: 0;
       }
 
