@@ -42,6 +42,9 @@
   --red-alpha-dark: rgb(233 61 71 / 40%);
   --red-alpha-0: rgb(244 73 84 / 32%);
   --red-alpha-light: rgb(247 119 126 / 24%);
+  // Text steps: red and green that reach 4.5:1 on the paper background.
+  --red-ink: #d62c38;
+  --green-ink: #0b7a45;
   --purple-dark: #764af3;
   --purple-0: #855cf9;
   --purple-light: #a385fb;
@@ -81,6 +84,8 @@
   --red-light: #e93d47;
   --red-alpha-dark: rgb(247 119 126 / 24%);
   --red-alpha-light: rgb(233 61 71 / 40%);
+  --red-ink: #f7777e;
+  --green-ink: #5ad198;
   --purple-dark: #a385fb;
   --purple-light: #764af3;
   --purple-alpha-dark: rgb(163 133 251 / 24%);

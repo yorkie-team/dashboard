@@ -150,7 +150,7 @@ function Title({ children }: { children: React.ReactNode }) {
 }
 
 function Description({ children }: { children: React.ReactNode }) {
-  return <p className="modal_desc fontsize_14 gray600">{children}</p>;
+  return <p className="modal_desc fontsize_14 gray700">{children}</p>;
 }
 
 function Bottom({ children, combine }: { children: React.ReactNode; combine?: boolean }) {
