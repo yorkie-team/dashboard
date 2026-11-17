@@ -22,6 +22,7 @@ import { InviteExpireOption } from './yorkie/v1/admin_pb';
 import { InterceptorBuilder } from './interceptor';
 import {
   User,
+  AuthProviders,
   Project,
   DocumentSummary,
   ChannelSummary,
@@ -34,6 +35,7 @@ import {
   RevisionSummary,
 } from './types';
 import * as converter from './converter';
+import { isAuthProviders } from 'features/users/authProviders';
 import { Rule } from '@yorkie-js/schema';
 
 export * from './types';
@@ -74,6 +76,24 @@ export async function fetchMe(): Promise<User> {
   }
 
   return (await res.json()) as User;
+}
+
+// fetchAuthProviders fetches the login methods the server offers. Servers
+// before the endpoint answer 404, which is thrown like any other failure.
+export async function fetchAuthProviders(): Promise<AuthProviders> {
+  const res = await fetch(`${import.meta.env.VITE_API_ADDR!}/auth/providers`, {
+    method: 'GET',
+    signal: AbortSignal.timeout(3000),
+  });
+  if (!res.ok) {
+    throw new Error(`/auth/providers answered ${res.status}`);
+  }
+
+  const body: unknown = await res.json();
+  if (!isAuthProviders(body)) {
+    throw new Error('/auth/providers answered an unexpected body');
+  }
+  return body;
 }
 
 // logIn logs in the user.

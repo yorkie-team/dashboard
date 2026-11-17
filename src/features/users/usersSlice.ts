@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-import { PayloadAction, createSelector, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit';
 import { createAppThunk } from 'app/appThunk';
 import * as api from 'api';
-import { User, RPCStatusCode, RPCError } from 'api/types';
+import { User, RPCStatusCode, RPCError, AuthProviders } from 'api/types';
+import { fallbackAuthProviders } from './authProviders';
 import { RootState } from 'app/store';
 
 export interface UsersState {
@@ -26,6 +27,9 @@ export interface UsersState {
   username: string;
   fetchMe: {
     status: 'idle' | 'loading' | 'failed';
+  };
+  authProviders: AuthProviders & {
+    status: 'idle' | 'loading' | 'loaded';
   };
   login: {
     isSuccess: boolean;
@@ -99,6 +103,11 @@ const initialState: UsersState = {
   fetchMe: {
     status: 'idle',
   },
+  authProviders: {
+    passwordLogin: true,
+    providers: [],
+    status: 'idle',
+  },
   login: {
     isSuccess: false,
     status: 'idle',
@@ -135,6 +144,21 @@ const initialState: UsersState = {
 export const fetchMe = createAppThunk<User, void>('users/me', async () => {
   return await api.fetchMe();
 });
+
+// fetchAuthProviders never fails: a server that does not answer gets the
+// login methods the build enables, as before the endpoint existed. It runs
+// once per page load, so components mounting together send one request.
+export const fetchAuthProviders = createAsyncThunk<AuthProviders, void, { state: RootState }>(
+  'users/authProviders',
+  async () => {
+    try {
+      return await api.fetchAuthProviders();
+    } catch {
+      return fallbackAuthProviders(import.meta.env.VITE_GITHUB_AUTH_ENABLED);
+    }
+  },
+  { condition: (_, { getState }) => getState().users.authProviders.status === 'idle' },
+);
 
 export const loginUser = createAppThunk<User, LoginFields>('users/login', async ({ username, password }) => {
   await api.logIn(username, password);
@@ -218,9 +242,16 @@ export const usersSlice = createSlice({
       state.username = '';
       state.fetchMe.status = 'failed';
     });
+    builder.addCase(fetchAuthProviders.pending, (state) => {
+      state.authProviders.status = 'loading';
+    });
+    builder.addCase(fetchAuthProviders.fulfilled, (state, action) => {
+      state.authProviders = { ...action.payload, status: 'loaded' };
+    });
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.isAuthenticated = true;
       state.username = action.payload.username;
+      state.authProvider = action.payload.authProvider;
       state.login.status = 'idle';
       state.login.isSuccess = true;
     });
@@ -372,6 +403,7 @@ export const selectCurrentUser = createSelector(
     user: isAuthenticated ? { username, authProvider } : null,
   }),
 );
+export const selectAuthProviders = (state: RootState) => state.users.authProviders;
 export const selectPreferences = (state: RootState) => state.users.preferences;
 
 export default usersSlice.reducer;
