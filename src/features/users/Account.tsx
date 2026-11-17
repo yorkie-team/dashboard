@@ -19,6 +19,7 @@ import { Button, Icon, Modal, InputTextBox } from 'components';
 import { selectUsers, ChangePasswordFields, changePassword, logoutUser } from './usersSlice';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { useForm } from 'react-hook-form';
+import { useProviderDisplayName } from './useAuthProviders';
 
 export function Account() {
   const dispatch = useAppDispatch();
@@ -28,6 +29,7 @@ export function Account() {
     authProvider,
     changePassword: { isSuccess, status, error },
   } = useAppSelector(selectUsers);
+  const providerName = useProviderDisplayName(authProvider);
 
   const {
     register,
@@ -63,13 +65,13 @@ export function Account() {
       <div className="setting_title">
         <strong className="text">Account</strong>
       </div>
-      {authProvider === 'github' ? (
+      {providerName ? (
         <dl className="sub_info">
-          <dt className="sub_title">GitHub Account</dt>
+          <dt className="sub_title">{providerName} Account</dt>
           <dd className="sub_desc">
             <p className="guide">
-              Your account <b>{username}</b> is linked to GitHub. Please visit GitHub's settings page to manage your
-              account configuration.
+              Your account <b>{username}</b> is linked to {providerName}. Please manage your account configuration with{' '}
+              {providerName}.
             </p>
           </dd>
         </dl>

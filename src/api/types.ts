@@ -59,6 +59,19 @@ export type User = {
   createdAt: number;
 };
 
+// AuthProviderInfo is a login method the server offers on the login page.
+export type AuthProviderInfo = {
+  name: string;
+  displayName: string;
+  loginPath: string;
+};
+
+// AuthProviders is the answer of `/auth/providers`.
+export type AuthProviders = {
+  passwordLogin: boolean;
+  providers: Array<AuthProviderInfo>;
+};
+
 export type Member = {
   id: string;
   projectId: string;

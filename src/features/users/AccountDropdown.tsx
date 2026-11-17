@@ -17,10 +17,12 @@
 import { useCallback, useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 import { selectUsers, logoutUser } from './usersSlice';
+import { useProviderDisplayName } from './useAuthProviders';
 import { Popover, Dropdown } from 'components';
 
 export function AccountDropdown() {
   const { username, authProvider } = useAppSelector(selectUsers);
+  const providerName = useProviderDisplayName(authProvider);
   const [opened, setOpened] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -58,9 +60,7 @@ export function AccountDropdown() {
             <dd className="user_account_text">{username}</dd>
             <dt className="blind">Mail</dt>
             <dd className="user_account_text">
-              <span className="user_account_mail">
-                {authProvider === 'github' ? 'GitHub Account' : 'Local Account'}
-              </span>
+              <span className="user_account_mail">{providerName ? `${providerName} Account` : 'Local Account'}</span>
             </dd>
           </dl>
           <Dropdown.List>
