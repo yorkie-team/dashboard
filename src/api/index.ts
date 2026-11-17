@@ -35,6 +35,7 @@ import {
   RevisionSummary,
 } from './types';
 import * as converter from './converter';
+import { isAuthProviders } from 'features/users/authProviders';
 import { Rule } from '@yorkie-js/schema';
 
 export * from './types';
@@ -88,8 +89,8 @@ export async function fetchAuthProviders(): Promise<AuthProviders> {
     throw new Error(`/auth/providers answered ${res.status}`);
   }
 
-  const body = (await res.json()) as AuthProviders;
-  if (typeof body.passwordLogin !== 'boolean' || !Array.isArray(body.providers)) {
+  const body: unknown = await res.json();
+  if (!isAuthProviders(body)) {
     throw new Error('/auth/providers answered an unexpected body');
   }
   return body;

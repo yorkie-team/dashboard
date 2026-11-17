@@ -37,6 +37,28 @@ export function isEnabled(value: string | undefined): boolean {
 }
 
 /**
+ * `isAuthProviders` reports whether the given `/auth/providers` body has the
+ * shape the login page reads, so a malformed answer falls back instead of
+ * breaking the page.
+ */
+export function isAuthProviders(body: unknown): body is AuthProviders {
+  if (typeof body !== 'object' || body === null) return false;
+  const { passwordLogin, providers } = body as Record<string, unknown>;
+  return (
+    typeof passwordLogin === 'boolean' &&
+    Array.isArray(providers) &&
+    providers.every(
+      (provider) =>
+        typeof provider === 'object' &&
+        provider !== null &&
+        typeof provider.name === 'string' &&
+        typeof provider.displayName === 'string' &&
+        typeof provider.loginPath === 'string',
+    )
+  );
+}
+
+/**
  * `fallbackAuthProviders` returns the login methods to offer when the server
  * does not answer `/auth/providers`, as servers before it do not: password
  * login, and GitHub when the build enables it.

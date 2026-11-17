@@ -146,14 +146,19 @@ export const fetchMe = createAppThunk<User, void>('users/me', async () => {
 });
 
 // fetchAuthProviders never fails: a server that does not answer gets the
-// login methods the build enables, as before the endpoint existed.
-export const fetchAuthProviders = createAsyncThunk<AuthProviders, void>('users/authProviders', async () => {
-  try {
-    return await api.fetchAuthProviders();
-  } catch {
-    return fallbackAuthProviders(import.meta.env.VITE_GITHUB_AUTH_ENABLED);
-  }
-});
+// login methods the build enables, as before the endpoint existed. It runs
+// once per page load, so components mounting together send one request.
+export const fetchAuthProviders = createAsyncThunk<AuthProviders, void, { state: RootState }>(
+  'users/authProviders',
+  async () => {
+    try {
+      return await api.fetchAuthProviders();
+    } catch {
+      return fallbackAuthProviders(import.meta.env.VITE_GITHUB_AUTH_ENABLED);
+    }
+  },
+  { condition: (_, { getState }) => getState().users.authProviders.status === 'idle' },
+);
 
 export const loginUser = createAppThunk<User, LoginFields>('users/login', async ({ username, password }) => {
   await api.logIn(username, password);

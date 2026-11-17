@@ -15,7 +15,7 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { fallbackAuthProviders, isEnabled, providerDisplayName } from './authProviders';
+import { fallbackAuthProviders, isAuthProviders, isEnabled, providerDisplayName } from './authProviders';
 
 describe('isEnabled', () => {
   it('treats false, 0 and empty as disabled', () => {
@@ -31,6 +31,25 @@ describe('isEnabled', () => {
     expect(isEnabled('true')).toBe(true);
     expect(isEnabled('1')).toBe(true);
     expect(isEnabled('yes')).toBe(true);
+  });
+});
+
+describe('isAuthProviders', () => {
+  const github = { name: 'github', displayName: 'GitHub', loginPath: '/auth/github/login' };
+
+  it('accepts the answer of the server', () => {
+    expect(isAuthProviders({ passwordLogin: true, providers: [] })).toBe(true);
+    expect(isAuthProviders({ passwordLogin: true, providers: [github] })).toBe(true);
+  });
+
+  it('refuses a malformed answer', () => {
+    expect(isAuthProviders(null)).toBe(false);
+    expect(isAuthProviders('ok')).toBe(false);
+    expect(isAuthProviders({ providers: [github] })).toBe(false);
+    expect(isAuthProviders({ passwordLogin: true, providers: {} })).toBe(false);
+    expect(isAuthProviders({ passwordLogin: true, providers: [null] })).toBe(false);
+    expect(isAuthProviders({ passwordLogin: true, providers: [{ ...github, loginPath: 1 }] })).toBe(false);
+    expect(isAuthProviders({ passwordLogin: true, providers: [{ name: 'github', loginPath: '/x' }] })).toBe(false);
   });
 });
 
