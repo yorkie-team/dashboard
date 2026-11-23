@@ -379,6 +379,13 @@ export const usersSlice = createSlice({
         action.meta.isHandledError = true;
         return;
       }
+      if (error.errorCode === 'ErrOwnedProjectExists') {
+        state.deleteAccount.error = {
+          message: 'This account owns projects. Accounts that own projects cannot be deleted yet.',
+        };
+        action.meta.isHandledError = true;
+        return;
+      }
     });
   },
 });

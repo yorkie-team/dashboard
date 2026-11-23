@@ -250,12 +250,16 @@ export class RPCError extends Error {
   readonly code: string;
   readonly message: string;
   readonly details?: Array<FieldViolation>;
-  constructor(code: string, message: string, details?: Array<FieldViolation>) {
+  // errorCode is the server's error code, e.g. `ErrOwnedProjectExists`, which
+  // tells apart errors that share a status code.
+  readonly errorCode?: string;
+  constructor(code: string, message: string, details?: Array<FieldViolation>, errorCode?: string) {
     super(message);
     this.name = 'RPCError';
     this.code = code;
     this.message = message;
     if (details) this.details = details;
+    if (errorCode) this.errorCode = errorCode;
   }
 }
 

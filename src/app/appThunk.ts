@@ -1,7 +1,7 @@
 import { createAsyncThunk, isAction, isRejectedWithValue } from '@reduxjs/toolkit';
 import type { Action, AsyncThunkPayloadCreator, AsyncThunk, Dispatch } from '@reduxjs/toolkit';
 import { ConnectError } from '@connectrpc/connect';
-import { fromErrorDetails } from 'api/converter';
+import { fromErrorCode, fromErrorDetails } from 'api/converter';
 import { RPCError } from 'api/types';
 
 type AsyncThunkConfig = {
@@ -76,7 +76,7 @@ export const createAppThunk = <Returned, ThunkArg, ThunkApiConfig extends AsyncT
       // the SerializedError interface will have been removed from it. So, we need to convert
       // the error.code to string.
       // See https://redux-toolkit.js.org/api/createAsyncThunk#handling-thunk-errors for more details.
-      const rpcError = new RPCError(JSON.stringify(error.code), error.message, errorDetails);
+      const rpcError = new RPCError(JSON.stringify(error.code), error.message, errorDetails, fromErrorCode(error));
       return thunkAPI.rejectWithValue(
         {
           error: rpcError,
