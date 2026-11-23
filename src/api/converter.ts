@@ -53,7 +53,7 @@ import {
 } from './yorkie/v1/resources_pb';
 import { GetProjectStatsRequest_DateRange as PbDateRange } from './yorkie/v1/admin_pb';
 import { ConnectError } from '@connectrpc/connect';
-import { BadRequest } from '@buf/googleapis_googleapis.bufbuild_es/google/rpc/error_details_pb';
+import { BadRequest, ErrorInfo } from '@buf/googleapis_googleapis.bufbuild_es/google/rpc/error_details_pb';
 
 export function fromTimestamp(pbTimestamp: PbTimestamp): number {
   return pbTimestamp.toDate().getTime() / 1000;
@@ -203,6 +203,17 @@ export function fromErrorDetails(error: ConnectError) {
     }
   }
   return details;
+}
+
+/**
+ * `fromErrorCode` returns the server's error code, e.g. `ErrOwnedProjectExists`,
+ * which the server puts in the `code` metadata of an ErrorInfo detail.
+ */
+export function fromErrorCode(error: ConnectError): string | undefined {
+  for (const info of error.findDetails(ErrorInfo)) {
+    if (info.metadata.code) return info.metadata.code;
+  }
+  return undefined;
 }
 
 // toUpdatableProjectFields converts the given model format to Protobuf format.

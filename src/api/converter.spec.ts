@@ -16,7 +16,9 @@
 
 import { describe, it, expect } from 'vitest';
 import { UpdatableProjectFields } from './types';
-import { toUpdatableProjectFields } from './converter';
+import { fromErrorCode, toUpdatableProjectFields } from './converter';
+import { Code, ConnectError } from '@connectrpc/connect';
+import { ErrorInfo } from '@buf/googleapis_googleapis.bufbuild_es/google/rpc/error_details_pb';
 import { UpdatableProjectFields as PbUpdatableProjectFields } from './yorkie/v1/resources_pb';
 
 // Text inputs hand their values to the API as strings even where the type says number.
@@ -92,5 +94,19 @@ describe('toUpdatableProjectFields', () => {
     const decoded = PbUpdatableProjectFields.fromBinary(pbFields.toBinary());
 
     expect(decoded.channelBatchWindow).toBeUndefined();
+  });
+});
+
+describe('fromErrorCode', () => {
+  it('reads the server error code from the ErrorInfo metadata', () => {
+    const error = new ConnectError('rejected', Code.FailedPrecondition, undefined, [
+      new ErrorInfo({ metadata: { code: 'ErrOwnedProjectExists' } }),
+    ]);
+
+    expect(fromErrorCode(error)).toBe('ErrOwnedProjectExists');
+  });
+
+  it('returns undefined when the error has no code', () => {
+    expect(fromErrorCode(new ConnectError('rejected', Code.FailedPrecondition))).toBeUndefined();
   });
 });

@@ -363,6 +363,7 @@ export const usersSlice = createSlice({
     });
     builder.addCase(deleteUser.pending, (state) => {
       state.deleteAccount.status = 'loading';
+      state.deleteAccount.error = null;
     });
     builder.addCase(deleteUser.rejected, (state, action) => {
       state.deleteAccount.status = 'failed';
@@ -374,6 +375,13 @@ export const usersSlice = createSlice({
       if (statusCode === RPCStatusCode.NOT_FOUND || statusCode === RPCStatusCode.UNAUTHENTICATED) {
         state.deleteAccount.error = {
           message: 'Please verify your account information and try again.',
+        };
+        action.meta.isHandledError = true;
+        return;
+      }
+      if (error.errorCode === 'ErrOwnedProjectExists') {
+        state.deleteAccount.error = {
+          message: 'This account owns projects. Accounts that own projects cannot be deleted yet.',
         };
         action.meta.isHandledError = true;
         return;
