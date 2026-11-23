@@ -34,11 +34,13 @@ export function DangerZone() {
   const handleSubmit = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      await dispatch(deleteUser({ username, password: inputValue }));
-      await dispatch(logoutUser());
+      const result = await dispatch(deleteUser({ username, password: inputValue }));
       setInputValue('');
+      // Stay signed in when the deletion fails, so the modal can show why.
+      if (!deleteUser.fulfilled.match(result)) return;
+      await dispatch(logoutUser());
     },
-    [dispatch, inputValue],
+    [dispatch, username, inputValue],
   );
 
   return (

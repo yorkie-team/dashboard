@@ -363,6 +363,7 @@ export const usersSlice = createSlice({
     });
     builder.addCase(deleteUser.pending, (state) => {
       state.deleteAccount.status = 'loading';
+      state.deleteAccount.error = null;
     });
     builder.addCase(deleteUser.rejected, (state, action) => {
       state.deleteAccount.status = 'failed';
